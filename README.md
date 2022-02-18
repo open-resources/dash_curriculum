@@ -2,7 +2,7 @@
 
 ![](brainstorm_draft1.png)
 
-## Part 1: Introduction
+## Part I: Introduction
  
  - What Dash is. Who Plotly is.
  - What you will learn in this part
@@ -35,7 +35,7 @@
 
  - Basic deployment to Heroku
 
-## Part 2: Data Visualization
+## Part II: Data Visualization
 
  - What you will learn in this part
 
@@ -52,12 +52,59 @@
 
  - Intro to Plotly Express (PX)
  - PX graphs: pie chart, bar chart, scatter plot (using fig.show())
- - incorporting PX graphs in Dash app 
+ - Incorporting PX graphs in Dash app 
 
-## Part 3: Dash
+## Part III: Dash
+
+ - What you will learn in this part
+ 
+### Chapter 1: Advanced Layout and Styling
+
+ - Creating a layout component inside a callback
+ - Dash Bootstrap Components: dbc.Container, dbc.Row, dbc.Col
+ - Dash Bootstrap Components: Accordion, alert, input
+  
+### Chapter 2: Advanced Callback
+
+ - State
+ - multiple buttons: callback_context
+ - Multiple outputs and inputs
+
+### Chapter 3: Advanced Components
+
+ - RadioItem
+ - RagneSlider
+ - Datepicker
+ - Interval
+ - Store
+
+### Chapter 4: DataTable
+
+ - Intro to the DataTable: creating a basic DataTable
+ - Linking dataTable to graph
+ - Editing the DataTable
+ - Other importnat DataTable props
+
+## Part IV: Important stuff
 
  - What you will learn in this part
 
-## Part 4: Important stuff
+### Chapter 1: Proper Deployment
 
- - What you will learn in this part
+ - How to properly deploy your app to heroku
+ - Should we add subsection on deploying to Pythoanywhere??????
+
+### Chapter 2: Improving app performance and multi-page app
+
+ - Callback graph to asses speed
+ - Actions to improve app speed
+ - Efficiency
+ - Building multi-page app
+ 
+### Chapter 3: Gallery
+
+ - Need to add something here?????????
+
+### Chapter 4: Case Study
+
+ - Need to add something here?????????
