@@ -17,7 +17,7 @@
 - Summary and overview of this part
 - Learning Objectives
 
-### Chapter 1: What is a dashboard
+### Chapter 1: What is a dashboard?
 
 - Sample Dashboards
 - Theory on Dashboards
@@ -27,19 +27,40 @@
 
 ### Chapter 2: Getting Started with Dash
 
- - Structure of a Dash app: data, layout, callback
- - Installation
+ - Structure of a Dash app
+ - Installation and setup
+ - Create your first Dash app
+ - Live updates and debugging
 
 ### Chapter 3: Dash Components and Layout
 
- - Core components: dcc.dropdown, dcc.graph 
- - HTML components: html.div
  - Design the app layout
+ - Linking a CSS file
+ - Dash Core components
+   - Markdown
+   - Dropdown
+   - Checkbox
+   - Slider
+   - Graph
+   - etc...
+ - Dash Bootstrap Components:
+   - Container
+   - Accordion
+   - Card
+   - Layout
+   - Row and Col
 
-### Chapter 4: Callback I- connecting two components
+### Chapter 4: Connecting components together
 
- - Callback Decorator: Input, Output, Component_id, Component_property
- - Callback function
+ - Introduction to decorators in Python
+ - Callback decorators in Dash
+   - Input
+   - Output
+   - Component_id
+   - Component_property
+ - Setting up a callback
+   - Dropdown and Graph
+   - Slider and Graph
  
 ### Chapter 5: Deploying app to the Web
 
@@ -50,19 +71,27 @@
 - Summary and overview of this part
 - Learning Objectives
 
-### Chapter 6: Using Data inside App
+### Chapter 6: Working with Data in Dash
 
- - Loading data: creating our own pandas df, from excel to df, connecting to api 
- 
+- Using an existing pandas dataframe
+- From excel or csv to pandas df
+- Creating our own pandas df 
+- Using data from an API
+
 ### Chapter 7: Wrangling data
 
- - Intro to Pandas's basic operations
- - wrangling an example dataset 
+- Case Study: Select a dataset
+- Basic operations with pandas
+- Cleaning, processing, wrangling
+- Preprocessing files
 
 ### Chapter 8: Data Visualization
 
- - Intro to Plotly Express (PX)
- - PX graphs: pie chart, bar chart, scatter plot (using fig.show())
+ - Introduction to Plotly Express
+ - Plotly Express graphs
+   - scatter plot
+   - line plot
+   - bar plot
  - Incorporting PX graphs in Dash app 
 
 ## Part III: Dash
@@ -73,19 +102,20 @@
 ### Chapter 9: Advanced Layout and Styling
 
  - Creating a layout component inside a callback
- - Dash Bootstrap Components: dbc.Container, dbc.Row, dbc.Col
  - Dash Bootstrap Components: Accordion, alert, input
+ - Dash HTML components
+ - CSS (Optional)
   
-### Chapter 10: Advanced Callback
+### Chapter 10: Advanced Callbacks
 
- - State
- - multiple buttons: callback_context
+ - States
+ - Multiple buttons: callback_context
  - Multiple outputs and inputs
 
 ### Chapter 11: Advanced Components
 
  - RadioItem
- - RagneSlider
+ - RangeSlider
  - Datepicker
  - Interval
  - Store
