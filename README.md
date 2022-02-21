@@ -39,16 +39,16 @@
 
  - What you will learn in this part
 
-### Chapter 1: Using Data inside App
+### Chapter 6: Using Data inside App
 
  - Loading data: creating our own pandas df, from excel to df, connecting to api 
  
-### Chapter 2: Wrangling data
+### Chapter 7: Wrangling data
 
  - Intro to Pandas's basic operations
  - wrangling an example dataset 
 
-### Chapter 3: Data Visualization
+### Chapter 8: Data Visualization
 
  - Intro to Plotly Express (PX)
  - PX graphs: pie chart, bar chart, scatter plot (using fig.show())
@@ -58,19 +58,19 @@
 
  - What you will learn in this part
  
-### Chapter 1: Advanced Layout and Styling
+### Chapter 9: Advanced Layout and Styling
 
  - Creating a layout component inside a callback
  - Dash Bootstrap Components: dbc.Container, dbc.Row, dbc.Col
  - Dash Bootstrap Components: Accordion, alert, input
   
-### Chapter 2: Advanced Callback
+### Chapter 10: Advanced Callback
 
  - State
  - multiple buttons: callback_context
  - Multiple outputs and inputs
 
-### Chapter 3: Advanced Components
+### Chapter 11: Advanced Components
 
  - RadioItem
  - RagneSlider
@@ -78,7 +78,7 @@
  - Interval
  - Store
 
-### Chapter 4: DataTable
+### Chapter 12: DataTable
 
  - Intro to the DataTable: creating a basic DataTable
  - Linking dataTable to graph
@@ -89,22 +89,22 @@
 
  - What you will learn in this part
 
-### Chapter 1: Proper Deployment
+### Chapter 13: Proper Deployment
 
  - How to properly deploy your app to heroku
  - Should we add subsection on deploying to Pythoanywhere??????
 
-### Chapter 2: Improving app performance and multi-page app
+### Chapter 14: Improving app performance and multi-page app
 
  - Callback graph to asses speed
  - Actions to improve app speed
  - Efficiency
  - Building multi-page app
  
-### Chapter 3: Gallery
+### Chapter 15: Gallery
 
  - Need to add something here?????????
 
-### Chapter 4: Case Study
+### Chapter 16: Case Study
 
  - Need to add something here?????????
