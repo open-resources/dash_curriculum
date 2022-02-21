@@ -5,7 +5,7 @@
 ## Preface
 
 - What is this resource?
-- Who is this resource for?
+- [Learner Personas](https://teachtogether.tech/en/#s:process-personas)
 - How to use this resource?
 - Who created this resource?
   - Introduction to the team
