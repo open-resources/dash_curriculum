@@ -12,10 +12,10 @@
   - What is Plotly and Dash?
 - Acknowledgements
 
-## Part I: Introduction
+## Part I: Introduction to Dashboards in Dash
 
 - Summary and overview of this part
-- Learning Objectives
+- Learning Intentions
 
 ### Chapter 1: What is a dashboard?
 
@@ -32,7 +32,7 @@
  - Create your first Dash app
  - Live updates and debugging
 
-### Chapter 3: Dash Components and Layout
+### Chapter 3: Dash Components and Layouts
 
  - Design the app layout
  - Linking a CSS file
@@ -50,7 +50,7 @@
    - Layout
    - Row and Col
 
-### Chapter 4: Connecting components together
+### Chapter 4: Linking Dash components
 
  - Introduction to decorators in Python
  - Callback decorators in Dash
@@ -62,14 +62,14 @@
    - Dropdown and Graph
    - Slider and Graph
  
-### Chapter 5: Deploying app to the Web
+### Chapter 5: Deploying a Dash app to the Web
 
  - Basic deployment to Heroku
 
 ## Part II: Data Visualization
 
 - Summary and overview of this part
-- Learning Objectives
+- Learning Intentions
 
 ### Chapter 6: Working with Data in Dash
 
@@ -92,17 +92,20 @@
    - scatter plot
    - line plot
    - bar plot
- - Incorporting PX graphs in Dash app 
+   - etc...
+ - Principles of Effective Visualizations
+ - Incorporting PX graphs in a Dash app 
+ - References and resourcres
 
-## Part III: Dash
+## Part III: Polishing your Dash application
 
 - Summary and overview of this part
-- Learning Objectives
+- Learning Intentions
  
 ### Chapter 9: Advanced Layout and Styling
 
  - Creating a layout component inside a callback
- - Dash Bootstrap Components: Accordion, alert, input
+ - More Dash Bootstrap Components
  - Dash HTML components
  - CSS (Optional)
   
@@ -127,26 +130,33 @@
  - Editing the DataTable
  - Other importnat DataTable props
 
-## Part IV: Important stuff
+## Part IV: Publishing your Dash Application
 
- - What you will learn in this part
+- What you will learn in this part
+- Learning Intentions
 
-### Chapter 13: Proper Deployment
+### Chapter 13: Full Deployment
 
- - How to properly deploy your app to heroku
- - Should we add subsection on deploying to Pythoanywhere??????
+ - Components of deployment
+   - Procfile
+   - requirements.txt
+   - Dockerfile
+   - Heroku build pipeline 
+ - Deploying to Pythoanywhere ? (Optional)
 
 ### Chapter 14: Improving app performance and multi-page app
 
- - Callback graph to asses speed
+ - Callback graphs to asses speed
  - Actions to improve app speed
  - Efficiency
  - Building multi-page app
  
-### Chapter 15: Gallery
+### Chapter 15: Gallery and Template
 
- - Need to add something here?????????
-
-### Chapter 16: Case Study
-
- - Need to add something here?????????
+- Dashboard Layouts
+  - Template 1
+  - Template 2
+  - Template 3  
+- Case Studies
+ - Case Study 1
+ - Case Study 2
