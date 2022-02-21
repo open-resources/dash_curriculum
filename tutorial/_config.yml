@@ -1,0 +1,60 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Dash Tutorial
+author: Dash Community Ambassadors
+logo: assets/dashboard.jpg
+copyright: ""
+exclude_patterns: ["LICENSE.md", "README.md","files/*"]
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/open-resources/dash_curriculum # Online location of your book
+  path_to_book: tutorial  # Optional path to your book, relative to the repository root
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  use_issues_button: true
+  use_repository_button: true
+  navbar_number_sections : false
+  home_page_in_navbar : true
+  baseurl : "https://github.com/open-resources/dash_curriculum/"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  extra_footer : |
+      <div>
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+          All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+      </div>
+
+sphinx:
+  config:
+    html_show_copyright: false
+    html_extra_path: ['files']
+    bibtex_reference_style: author_year
+
+myst_enable_extensions:
+  - amsmath
+  - colon_fence
+  - deflist
+  - dollarmath
+  - html_admonition
+  - html_image
+  - linkify
+  - replacements
+  - substitution
+  - tasklist
