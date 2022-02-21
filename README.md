@@ -2,10 +2,20 @@
 
 ![jamboard-curriculum](https://user-images.githubusercontent.com/32049495/154767620-3a2b0579-c586-4581-a3be-51c6157549ba.png)
 
+## Preface
+
+- What is this resource?
+- Who is this resource for?
+- How to use this resource?
+- Who created this resource?
+  - Introduction to the team
+  - What is Plotly and Dash?
+- Acknowledgements
+
 ## Part I: Introduction
- 
- - What Dash is. Who Plotly is.
- - What you will learn in this part
+
+- Summary and overview of this part
+- Learning Objectives
 
 ### Chapter 1: What is a dashboard
 
@@ -37,7 +47,8 @@
 
 ## Part II: Data Visualization
 
- - What you will learn in this part
+- Summary and overview of this part
+- Learning Objectives
 
 ### Chapter 6: Using Data inside App
 
@@ -56,7 +67,8 @@
 
 ## Part III: Dash
 
- - What you will learn in this part
+- Summary and overview of this part
+- Learning Objectives
  
 ### Chapter 9: Advanced Layout and Styling
 
