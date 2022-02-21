@@ -151,10 +151,10 @@
  
 ### Chapter 15: Gallery and Template
 
-- Dashboard Layouts
+- [Dashboard Layouts](https://github.com/matthewconnell/dashr_sample_layouts)
   - Template 1
   - Template 2
   - Template 3  
-- Case Studies
+- [Case Studies](https://dashboard-showcase-532.herokuapp.com/)
  - Case Study 1
  - Case Study 2
