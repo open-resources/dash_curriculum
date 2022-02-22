@@ -115,7 +115,6 @@
 
 ### Chapter 11: Advanced Components
 
- - RadioItem
  - RangeSlider
  - Datepicker
  - Interval
