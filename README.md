@@ -71,8 +71,8 @@
 
 ### Chapter 6: Working with Data in Dash
 
-- Using an existing pandas dataframe
 - From excel or csv to pandas df
+- Loading a dataframe from a URL
 - Creating our own pandas df 
 - Using data from an API
 
