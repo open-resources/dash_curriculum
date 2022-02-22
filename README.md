@@ -1,13 +1,21 @@
 # Overview of Dash Curriculum
 
-![jamboard-curriculum](https://user-images.githubusercontent.com/32049495/154767620-3a2b0579-c586-4581-a3be-51c6157549ba.png)
+## Preface
 
-## Part I: Introduction
- 
- - What Dash is. Who Plotly is.
- - What you will learn in this part
+- What is this resource?
+- [Learner Personas](https://teachtogether.tech/en/#s:process-personas)
+- How to use this resource?
+- Who created this resource?
+  - Introduction to the team
+  - What is Plotly and Dash?
+- Acknowledgements
 
-### Chapter 1: What is a dashboard
+## Part I: Introduction to Dashboards in Dash
+
+- Summary and overview of this part
+- Learning Intentions
+
+### Chapter 1: What is a dashboard?
 
 - Sample Dashboards
 - Theory on Dashboards
@@ -17,94 +25,140 @@
 
 ### Chapter 2: Getting Started with Dash
 
- - Structure of a Dash app: data, layout, callback
- - Installation
+- Structure of a Dash app
+- Installation and setup
+- Create your first Dash app
+- Live updates and debugging
+  - how to stop your app (and why you should) (Ctrl+C)
+  - how to update your app (Ctrl+C and then re-run)
+  - how to turn on "live updating" (with debug=True) and what this means (i.e. what happens if you have a syntax error and your app crashes)
 
-### Chapter 3: Dash Components and Layout
+### Chapter 3: Dash Components and Layouts
 
- - Core components: dcc.dropdown, dcc.graph 
- - HTML components: html.div
  - Design the app layout
+ - Linking a CSS file
+ - Dash Core components
+   - Markdown
+   - Dropdown
+   - Checkbox
+   - Slider
+   - Graph
+   - etc...
+ - Dash Bootstrap Components:
+   - Container
+   - Accordion
+   - Card
+   - Layout
+   - Row and Col
 
-### Chapter 4: Callback I- connecting two components
+### Chapter 4: Linking Dash components
 
- - Callback Decorator: Input, Output, Component_id, Component_property
- - Callback function
+ - Introduction to decorators in Python
+ - Callback decorators in Dash
+   - Input
+   - Output
+   - Component_id
+   - Component_property
+ - Setting up a callback
+   - Dropdown and Graph
+   - Slider and Graph
  
-### Chapter 5: Deploying app to the Web
+### Chapter 5: Deploying a Dash app to the Web
 
  - Basic deployment to Heroku
 
 ## Part II: Data Visualization
 
- - What you will learn in this part
+- Summary and overview of this part
+- Learning Intentions
 
-### Chapter 1: Using Data inside App
+### Chapter 6: Working with Data in Dash
 
- - Loading data: creating our own pandas df, from excel to df, connecting to api 
+- From excel or csv to pandas df
+- Loading a dataframe from a URL
+- Creating our own pandas df 
+- Using data from an API
+
+### Chapter 7: Wrangling data
+
+- Case Study: Select a dataset
+- Basic operations with pandas
+- Cleaning, processing, wrangling
+- Preprocessing files
+
+### Chapter 8: Data Visualization
+
+ - Introduction to Plotly Express
+ - Plotly Express graphs
+   - scatter plot
+   - line plot
+   - bar plot
+   - etc...
+ - Principles of Effective Visualizations
+ - Incorporting PX graphs in a Dash app 
+ - References and resourcres
+
+## Part III: Polishing your Dash application
+
+- Summary and overview of this part
+- Learning Intentions
  
-### Chapter 2: Wrangling data
-
- - Intro to Pandas's basic operations
- - wrangling an example dataset 
-
-### Chapter 3: Data Visualization
-
- - Intro to Plotly Express (PX)
- - PX graphs: pie chart, bar chart, scatter plot (using fig.show())
- - Incorporting PX graphs in Dash app 
-
-## Part III: Dash
-
- - What you will learn in this part
- 
-### Chapter 1: Advanced Layout and Styling
+### Chapter 9: Advanced Layout and Styling
 
  - Creating a layout component inside a callback
- - Dash Bootstrap Components: dbc.Container, dbc.Row, dbc.Col
- - Dash Bootstrap Components: Accordion, alert, input
+ - More Dash Bootstrap Components
+ - Dash HTML components
+ - CSS (Optional)
   
-### Chapter 2: Advanced Callback
+### Chapter 10: Advanced Callbacks
 
- - State
- - multiple buttons: callback_context
+ - States
+ - Multiple buttons: callback_context
  - Multiple outputs and inputs
 
-### Chapter 3: Advanced Components
+### Chapter 11: Advanced Components
 
- - RadioItem
- - RagneSlider
+- Advanced DBC
+- Advanced DCC
+ - RangeSlider
  - Datepicker
  - Interval
  - Store
 
-### Chapter 4: DataTable
+### Chapter 12: DataTable
 
  - Intro to the DataTable: creating a basic DataTable
  - Linking dataTable to graph
  - Editing the DataTable
  - Other importnat DataTable props
 
-## Part IV: Important stuff
+## Part IV: Publishing your Dash Application
 
- - What you will learn in this part
+- What you will learn in this part
+- Learning Intentions
 
-### Chapter 1: Proper Deployment
+### Chapter 13: Full Deployment
 
- - How to properly deploy your app to heroku
- - Should we add subsection on deploying to Pythoanywhere??????
+ - Components of deployment
+   - Procfile
+   - requirements.txt
+   - Dockerfile
+   - Heroku build pipeline 
+ - Deploying to Pythoanywhere ? (Optional)
 
-### Chapter 2: Improving app performance and multi-page app
+### Chapter 14: Improving app performance and multi-page app
 
- - Callback graph to asses speed
+ - Callback graphs to asses speed
  - Actions to improve app speed
  - Efficiency
  - Building multi-page app
  
-### Chapter 3: Gallery
+### Chapter 15: Gallery and Template
 
- - Need to add something here?????????
-
-### Chapter 4: Case Study
-
- - Need to add something here?????????
+- [Dashboard Layouts](https://github.com/matthewconnell/dashr_sample_layouts)
+  - Template 1
+  - Template 2
+  - Template 3  
+- [Case Studies](https://dashboard-showcase-532.herokuapp.com/)
+ - Case Study 1
+ - Case Study 2
