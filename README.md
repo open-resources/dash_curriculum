@@ -118,6 +118,8 @@
 
 ### Chapter 11: Advanced Components
 
+- Advanced DBC
+- Advanced DCC
  - RangeSlider
  - Datepicker
  - Interval
