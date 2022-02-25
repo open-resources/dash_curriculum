@@ -16,16 +16,16 @@ Outcome of this activity:
 Chapter 2: Getting Started with Dash
 
 - Structure of a Dash app
-  - Libraries
-  - Data
-  - Layout
-  - Callback
+  1. Libraries
+  2. Data
+  3. Layout
+  4. Callback
 
 - Create your first Dash app
   ```
-  from dash import Dash, html  # importing libraries
+  from dash import Dash, html  # 1. importing libraries
   
-  # incorporating data
+  # 2. incorporating data
   
   app = Dash(__name__)  # Instantiate your app
   
@@ -33,7 +33,7 @@ Chapter 2: Getting Started with Dash
       html.Label("Hello to my first Dash App")
   ])
   
-  # @callback(....) # more about this later
+  # @callback(....) # 4. more about this later
   
   if __name__=='__main__':  # Run your App
       app.run_server()
