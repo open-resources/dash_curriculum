@@ -29,13 +29,13 @@ jobs:
       uses: actions/cache@v2
       with:
         path: ${{ env.pythonLocation }}
-        key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('tutorial/requirements.txt') }}
 
     - name: Install dependencies
       run: |
-        pip install -r requirements.txt
+        pip install -r tutorial/requirements.txt
         
-    # Build the book
+    # Publish the book to the docs folder
     - name: Build the book
       run: |
         jupyter-book build .
