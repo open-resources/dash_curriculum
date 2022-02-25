@@ -1,4 +1,4 @@
-# Chapter 2
+# Chapter 2 (Group 1)
 
 ## Procedure for Activity together
 
