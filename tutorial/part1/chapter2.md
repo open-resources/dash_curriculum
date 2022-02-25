@@ -16,8 +16,23 @@ Outcome of this activity:
 Chapter 2: Getting Started with Dash
 
 - Structure of a Dash app
+  - importing libraries
+  - Defining App Layout
+  -  
 - Installation and setup
+  - 
 - Create your first Dash app
+  ```
+  from dash import Dash
+  
+  app = Dash(__name__)  # Instantiate your app
+  app.layout = html.Div([
+      html.Label("Hello to my first App")
+  ])
+  
+  if __name__=='__main__':
+      app.run_server()
+  ```
 - Live updates and debugging
   - how to stop your app (and why you should) (Ctrl+C)
   - how to update your app (Ctrl+C and then re-run)
