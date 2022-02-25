@@ -39,5 +39,5 @@ jobs:
     # Publish the book to the docs folder
     - name: Build the book
       run: |
-        jupyter-book build .
+        jupyter-book build tutorial/
         cp -r tutorial/_build/html/* docs/
