@@ -10,6 +10,11 @@
   - What is Plotly and Dash?
 - Acknowledgements
 
+## Chapter 0: Prerequisites
+
+- checklist of things they need
+- install stack
+
 ## Part I: Introduction to Dashboards in Dash
 
 - Summary and overview of this part
