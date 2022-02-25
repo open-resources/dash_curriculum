@@ -40,6 +40,6 @@ jobs:
     - name: Build the book
       run: |
         jupyter-book build tutorial/
-        rm -f docs/*
+        rm -rf docs/*
         cp -r tutorial/_build/html/* docs/
         touch docs/.nojekyll
