@@ -1,17 +1,15 @@
 # Chapter 0 - Stack Installation
 ## Overview
 
-In this chapter we will set up the tech stack using:
+In this chapter we will set up the tech stack.  A **tech stack** is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applicatoins:  
+
 - Visual Studio Code
   - Code editor and debugger
-  - [Most popular](https://www.tabnine.com/blog/visual-studio-code-really-the-best-code-editor/) for professional developers 
   - Extensions help us to code and improve productivity
 - Python
   - Programming language we will use
-  - [Most popular](https://nexttechnology.io/top-10-programming-languages-for-2022/) programming language 
   - Python libraries (such as Dash and Pandas) are collections of code that we will use to make the applications
 - Git
-  - Git is the [most popular](https://www.softwaretestinghelp.com/version-control-software/) version control system
   - Version control systems allow us to track and manage changes to our code
 
 
