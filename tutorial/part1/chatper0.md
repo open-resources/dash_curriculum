@@ -68,7 +68,7 @@ In this chapter we will set up the tech stack used in this course.  A **tech sta
 
 
 ## Test the stack
-Let's make sure everything is installed correctly.  Open VScode and create a new file called **main.py**.  Copy and paste this code:\
+Let's make sure everything is installed correctly.  Open VScode and create a new file called **main.py**.  Copy and paste this code:
 ```
 import dash 
 import dash_bootstrap_components as dbc
@@ -77,13 +77,17 @@ import pandas
 
 print("Hello World!")
 ```
-Then press **F5** to debug/run the file.  You should see **Hello World!** printed out in the console:
-TODO: INSERT PICTURE HERE
+Then press **F5** to debug/run the file.  If we see **Hello World!** printed out in the console then we know the Python code is working properly with all libraries installed. 
+![Debug_code](../assets/p1_s0/run_code.png)
 
-Now that we have our **main.py** file running let's use ```git``` to save the file.  Go to the terminal and type ```git status```.  We see that there is a new **Untracked file** called **main.py**:
+Now that we have our **main.py** file running let's use ```git``` to track the file in our repository.  Go to the terminal in VScode and type ```git status```.  We see that there is a new **Untracked file** called **main.py**:
+![git_status](../assets/p1_s0/git_status.png)
 
 We'll **add** that file to the git **staging area** with ```git add main.py```:
+![git_add](../assets/p1_s0/git_add.png)
 
 Then we need to **commit** the changes.  Type in ```git commit -m "This is a commit message"```.  Every commit needs a message and this is a good opportunity to include a short reminder of what this commit changed:
+![git_commit](../assets/p1_s0/git_commit.png)
 
-
+## Notes
+- **Git** is not related to **Github**.  Github is a website that stores [repositories](https://www.youtube.com/watch?v=9A26ybw6tGY), and Git is a version control system.
