@@ -13,12 +13,14 @@ The **layout** is made up of **components**.  Let's make a small Dash applicatio
 
 Copy/paste the minimal Dash app code below.  
 ```python
-from dash import Dash, html
+# Import Python libraries
+from dash import Dash, html 
 
+# Create a Dash application
 app = Dash()
-
-app.layout = html.Div("This is a HTML Div component")
-
+# Create the layout of the app
+app.layout = html.Div("Look at these changes")
+# Run the app
 app.run_server()
 ```
 
