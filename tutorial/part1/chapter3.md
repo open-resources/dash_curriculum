@@ -64,8 +64,25 @@ Run the code, open a web browser, enter http://127.0.0.1:8050/ in the address ba
 
 </details>
 
-Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp)
+
+
+Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).  We will be using the Dash Bootstrap Components library that makes it [easier to build consistently styled apps with complex, responsive layouts](https://dash-bootstrap-components.opensource.faculty.ai/)
 <details>
-  <summary>Bootstrap</summary>
+  <summary>Dash Bootstrap Components</summary>
+- Layout in Bootstrap is controlled using the grid system. The Bootstrap grid has twelve columns, and six responsive tiers 
+- three main layout components in dash-bootstrap-components: Container, Row, and Col.
+- Container component can be used to center and horizontally pad your app's content
+- Row component is a wrapper for columns
+- Col component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space
+For best results, make sure you adhere to the following two rules when constructing your layouts:
+
+  1. Only use Row and Col inside a Container. A single Container wrapping your entire app's content is fine. Set fluid=True if you don't want the margins that Container adds by default. Since the content of this page is wrapped with a Container, the snippets below don't explicitly include them.
+  2. The immediate children of any Row component should always be Col components. Your content should go inside the Col components.
+  <details>
+    <summary>Rows</summary>
+  </details>
+  <details>
+    <summary>Columns</summary>
+  </details>
   
 </details>
