@@ -63,3 +63,9 @@ Run the code, open a web browser, enter http://127.0.0.1:8050/ in the address ba
 ![Display minimal Dash app](../assets/p1_s3/display_3_2.png)
 
 </details>
+
+Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp)
+<details>
+  <summary>Bootstrap</summary>
+  
+</details>
