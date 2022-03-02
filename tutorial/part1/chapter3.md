@@ -8,6 +8,7 @@ Dash applications are comprised of 2 parts:
 - Layout: What the application looks like
 - Callabacks: Interactivity of the application
 
+***
 The **layout** is made up of **components**.  Let's make a minimal Dash application to demonstrate this concept:
 <details>
   <summary>Minimal Dash App</summary>
@@ -37,6 +38,8 @@ Open a web browser, enter http://127.0.0.1:8050/ in the address bar, and you sho
 ![Display minimal Dash app](../assets/p1_s3/display_minimal.png)
 </details>
 
+***
+
 Next, we'll add some styling with **CSS**.   We'll use a [stylesheet](https://www.w3schools.com/css/css_intro.asp) from the **Bootstrap** library.  
 <details>
   <summary>CSS</summary>
@@ -60,11 +63,14 @@ app.run_server()
 ```
 
 Run the code, open a web browser, enter http://127.0.0.1:8050/ in the address bar, and you should see our minimal application with a slightly different style this time:
+
 ![Display minimal Dash app](../assets/p1_s3/display_3_2.png)
+vs
+![no CSS comparison](../assets/p1_s3/display_minimal.png)
 
 </details>
 
-
+***
 
 Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).  We will be using the Dash Bootstrap Components library that makes it [easier to build consistently styled apps with complex, responsive layouts](https://dash-bootstrap-components.opensource.faculty.ai/)
 
@@ -72,9 +78,11 @@ Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for
   
   <summary>Dash Bootstrap Components</summary>
   
-<details>
+  ***
+  
+  <details>
 
-  <summary>Layout in Bootstrap</summary>
+    <summary>Layout in Bootstrap</summary>
   
 * Layout in Bootstrap is controlled using the grid system. The Bootstrap grid has twelve columns
 * 3 main layout components: Container, Row, and Column.
@@ -82,16 +90,23 @@ Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for
 * Rows only contain columns
 * Columns holds your components
   
-</details>
+  </details>
+  
+  ***
 
-<details>
-  <summary>Rows</summary>
-  
-</details>
+  <details>
+    <summary>Rows</summary>
 
-<details>
-  <summary>Columns</summary>
+  </details>
   
-</details>
+  ***
+
+  <details>
+    <summary>Columns</summary>
+
+  </details>
   
-</details>
+  ***
+
+  </details>
+***
