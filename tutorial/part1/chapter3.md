@@ -78,11 +78,11 @@ Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for
   
   <summary>Dash Bootstrap Components</summary>
   
-  ***
+***
   
-  <details>
+<details>
 
-    <summary>Layout in Bootstrap</summary>
+  <summary>Layout in Bootstrap</summary>
   
 * Layout in Bootstrap is controlled using the grid system. The Bootstrap grid has twelve columns
 * 3 main layout components: Container, Row, and Column.
