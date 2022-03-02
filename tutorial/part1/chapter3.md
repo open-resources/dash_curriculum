@@ -12,9 +12,9 @@ The **layout** is made up of **components**.  Let's make a minimal Dash applicat
 <details>
   <summary>Minimal Dash App</summary>
   
-Create **app.py** in the `tutorial/part1` directory:
+Create **app_3_1.py** in the `tutorial/part1` directory:
 
-![Make app.py](../assets/p1_s3/make_app_py.png)
+![Make app_3_1.py](../assets/p1_s3/make_app_3_1.png)
 
 Copy/paste the minimal Dash app code:  
 ```python
@@ -37,3 +37,29 @@ Open a web browser, enter http://127.0.0.1:8050/ in the address bar, and you sho
 ![Display minimal Dash app](../assets/p1_s3/display_minimal.png)
 </details>
 
+Next, we'll add some styling with **CSS**.   We'll use a [stylesheet](https://www.w3schools.com/css/css_intro.asp) from the **Bootstrap** library.  
+<details>
+  <summary>CSS</summary>
+
+Create **app_3_2.py** in the `tutorial/part1` directory:
+
+![Make app_3_2.py](../assets/p1_s3/make_app_3_2.png)
+
+Copy/paste the minimal Dash + CSS app code:  
+```python
+# Import Python libraries
+from dash import Dash, html 
+import dash_bootstrap_components as dbc
+
+# Create a Dash application, pass in a stylesheet from Bootstrap
+app = Dash( external_stylesheets=[dbc.themes.BOOTSTRAP] )
+# Create the layout of the app
+app.layout = html.Div("This is a HTML Div component with Bootstrap CSS theme", className="m-5")
+# Run the app
+app.run_server()
+```
+
+Run the code, open a web browser, enter http://127.0.0.1:8050/ in the address bar, and you should see our minimal application with a slightly different style this time:
+![Display minimal Dash app](../assets/p1_s3/display_3_2.png)
+
+</details>
