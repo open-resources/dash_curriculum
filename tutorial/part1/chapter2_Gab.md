@@ -1,8 +1,8 @@
 # Chapter 2: Getting Started with Dash
 
 - Structure of a Dash App
-  - Dash apps are rendered and accessible in a web browser and require the developer to follow some folder structure and naming conventions.
-  - The are best practices for a structure of a simple Dash App. Take this app as an example:
+  - Dash apps are rendered and displayed in a web browser.
+  - The are best practices to structure a Dash Apps. Following such best practices will simplify the development of the app. Let's take a simple Dash App example:
 
 ```
 # (1) Required Python Libraries
@@ -31,15 +31,16 @@ if __name__ == '__main__':
 ```
 
   - As you can see in the code above, we can divide the app into 6 sections:
-      -  (1) : xxx
-      -  (2) : data
-      -  (3) : "App" object
-      -  (4) the app layout: i.e. the objects that we intend to show in the dashboards
-      -  (5) functions that can be defined to enable user interaction, e.g. allow the user to filter a chart by geography
-      -  (6) some statements to run the app (run_server)
-  - More complete app will include ... any other additional app asset such as: "css" files (Chapter...)  to further customise the layout  
+      -  (1) : Dash apps require some libraries to run
+      -  (2) : Data is normally created / imported in a global section so that the whole App can use it as needed
+      -  (3) : In this section, we initialise an app. This one row is pretty much static and fixed for any Dash app you may create.
+      -  (4) : The app layout contains the structure of the app. There are a lot of elements that you can include in the app layout, normally they are encapsulated into html.Div() sections (within a "div" it is possible to specify its title (e.g. chiltren='My First App') and many other properties). In order to add a figure, we call dcc (which stands for "Dash Core Components"): in this example, we added a scatter plot.
+      -  (5) : Callbacks will be covered in chapter XY. These elements define the user interaction with the Dashboard, e.g. defines what a filter does on a chart
+      -  (6) : In order to display the app, we add these statements to Launch the server. Also this sectino is pretty much static and fixed for any Dash app you may create.
+  - More complete app will include .css files (covered in Chapter XY) and may require additional files (for instance in order to allow multi page Apps).
 
 
+Once we have a code ready, we need to launch this file in the following way:
 - How to run the python file (via VS code)
 --> add screenshot in VS code (.gif)
 --> add screenshot of final output (.gif)
