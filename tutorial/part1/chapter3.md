@@ -89,6 +89,35 @@ Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for
 * Container wraps the entire app
 * Rows only contain columns
 * Columns holds your components
+
+Now let's add to our minimal, CSS styled app by using a Container, Rows, and Columns.\
+Create a new file called **app_3_3.py** and copy/paste the following code:
+```python
+# Import Python libraries
+from dash import Dash, html 
+import dash_bootstrap_components as dbc
+
+# Create a Dash application, pass in a stylesheet from Bootstrap
+app = Dash( external_stylesheets=[dbc.themes.BOOTSTRAP] )
+
+# Create the layout of the app
+app.layout = dbc.Container([
+                dbc.Row([
+                    dbc.Col([
+                        html.Div("Div 1", style={"outline": "2px dashed blue"})
+                    ]),
+                    dbc.Col([
+                        html.Div("Div 2", style={"outline": "2px dashed red"})
+                        ]),
+                    ]),
+            ],
+            fluid=True # fill the horizontal space
+            )
+
+# Run the app
+app.run_server()
+```
+![Bootstrap layout](../assets/p1_s3/bootstrap_layout.png)
   
   </details>
   
