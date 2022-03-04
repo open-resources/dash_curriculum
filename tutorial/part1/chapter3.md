@@ -87,9 +87,9 @@ Let's continue to learn about **Bootstrap**, [the most popular CSS Framework for
 * [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
 ![Bootstrap layout](../assets/p1_s3/bootstrap_grid.png)
 * 3 main layout components: Container, Row, and Column.
-* Container wraps the entire app
-* Rows only contain columns
-* Columns holds your components
+  * Container wraps the entire app
+  * Rows only contain columns
+  * Columns holds your components
 
 Now let's add to our minimal, CSS styled app by using a Container, Rows, and Columns.  Create a new file called **app_3_3.py** and copy/paste the following code:
 ```python
@@ -123,21 +123,5 @@ You can see that we have a Container that holds our app.  Then we have 1 row tha
   
   </details>
   
-  ***
-
-  <details>
-    <summary>Rows</summary>
-
-  </details>
-  
-  ***
-
-  <details>
-    <summary>Columns</summary>
-
-  </details>
-  
-  ***
-
-  </details>
 ***
+
