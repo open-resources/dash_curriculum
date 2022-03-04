@@ -137,7 +137,7 @@ app.layout = dbc.Container([
 # Run the app
 app.run_server()
 ```
-You can see that we have a Container that holds our app.  Then we have 1 row that holds 2 columns. Each column has a single html.Div component that we added some CSS styling so it's easy to differentiate.
+Notice that a ```container``` which holds our app then we have 2 ```rows``` which hold 2 ```columns``` each, and each ```column``` containers a ```Div```. We added some CSS styling to change each column's ```background-color```.  The Rows also include some CSS styling to show how we can change the height of the Row.  Finally, we added CSS styling to make sure the Container expands to 100% of the height of the browser.
 
 ![Bootstrap layout](../assets/p1_s3/bootstrap_layout.png)
   
