@@ -67,8 +67,8 @@ Once the app is launched and working, we can:
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-```{attention} Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised.
-```
+```{attention} Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised. ```
+
 ? (i.e. what happens if you have a syntax error and your app crashes)  - _error message if something is missing (example where we didn't import html)_
 
 
