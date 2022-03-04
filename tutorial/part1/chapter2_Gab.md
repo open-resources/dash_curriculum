@@ -31,12 +31,12 @@ if __name__ == '__main__':
 ```
 
   - As you can see in the code above, we can divide the app into 6 sections:
-      1) Dash apps require some libraries to run, the first statement is importing them
-      2) Data is normally created / imported in a global section so that the whole App can use it as needed
-      3) In this section, we initialise an app. This one row is pretty much static and fixed for any Dash app you may create.
-      4) The app layout contains the structure of the app. There are a lot of elements that you can include in the app layout, normally they are encapsulated into html.Div() sections (within a "div" it is possible to specify its title (e.g. chiltren='My First App') and many other properties). In this example, we added a scatter plot: to add a figure, we call dcc (which stands for "Dash Core Components") and then specify which figure we want to use. (Chapter 3 will go through all the components)
-      5) Callbacks define the user interaction with the dashboard, e.g. defines what a filter does on a chart. (These elements will be covered in chapter 4)
-      6) In order to display the app, we add these statements to Launch the server. This section is pretty much static and fixed for any Dash app you may create.
+1) Dash apps require some libraries to run, the first statement is importing them
+2) Data is normally created / imported in a global section so that the whole App can use it as needed
+3) In this section, we initialise an app. This one row is pretty much static and fixed for any Dash app you may create.
+4) The app layout contains the structure of the app. There are a lot of elements that you can include in the app layout, normally they are encapsulated into html.Div() sections (within a "div" it is possible to specify its title (e.g. chiltren='My First App') and many other properties). In this example, we added a scatter plot: to add a figure, we call dcc (which stands for "Dash Core Components") and then specify which figure we want to use. (Chapter 3 will go through all the components)
+5) Callbacks define the user interaction with the dashboard, e.g. defines what a filter does on a chart. (These elements will be covered in chapter 4)
+6) In order to display the app, we add these statements to Launch the server. This section is pretty much static and fixed for any Dash app you may create.
   - More complete app will include more sections: such as .css files (covered in Chapter 3).
   - This is an initial template that can be used as a starting point for your dashboard. 
 
