@@ -102,16 +102,36 @@ app = Dash( external_stylesheets=[dbc.themes.BOOTSTRAP] )
 
 # Create the layout of the app
 app.layout = dbc.Container([
+                # Row 1
                 dbc.Row([
                     dbc.Col([
-                        html.Div("Div 1", style={"outline": "2px dashed blue"})
-                    ]),
+                        html.Div("Div 1")
+                    ],
+                    style={"background-color": "blue"},
+                    ),
                     dbc.Col([
-                        html.Div("Div 2", style={"outline": "2px dashed red"})
+                        html.Div("Div 2")
                         ]),
-                    ]),
+                    ],
+                    style={"background-color": "green"},
+                    className="h-75",
+                    ),
+                # Row 2
+                dbc.Row([
+                    dbc.Col([
+                        html.Div("Div 3")
+                    ],
+                    style={"background-color": "pink"},
+                    ),
+                    dbc.Col([
+                        html.Div("Div 4")
+                        ]),
+                    ],
+                    style={"background-color": "yellow"},
+                    className="h-25",
+                    ),
             ],
-            fluid=True # fill the horizontal space
+            style={"height": "100vh"},
             )
 
 # Run the app
