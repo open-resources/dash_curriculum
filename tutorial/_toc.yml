@@ -15,6 +15,12 @@ parts:
   - file: preface/how
   - file: preface/who
   - file: preface/acknowledgements
+- caption: Installation Stack
+  chapters:
+  - file: preface/chapter0/chapter0
+  - file: preface/chapter0/macos
+  - file: preface/chapter0/windows
+  - file: preface/chapter0/linux
 
 - caption: Part 1. Introduction to Dashboards in Dash
   chapters:
