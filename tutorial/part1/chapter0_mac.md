@@ -1,3 +1,5 @@
+# Mac Installation
+
 ## VS Code
 - [Text based instructions](https://code.visualstudio.com/docs/setup/mac)
 - [Video instructions](https://www.youtube.com/watch?v=bJaBHGKHv9A)
