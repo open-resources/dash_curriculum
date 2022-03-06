@@ -1,3 +1,5 @@
+# Windows Installation
+
 ## VS Code
 - [Text based instructions](https://code.visualstudio.com/docs/setup/windows)
 - [Video instructions](https://www.youtube.com/watch?v=MlIzFUI1QGA)
