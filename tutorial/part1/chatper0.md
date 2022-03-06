@@ -19,8 +19,8 @@ In this chapter we will set up the tech stack used in this course.  A **tech sta
 
 ## Installation Instructions
 [**Windows**](chapter0_windows.md)\
-[**Mac**](chapter0_windows.md)\
-[**Linux**](chapter0_windows.md)
+[**Mac**](chapter0_mac.md)\
+[**Linux**](chapter0_linux.md)
 
 ## Test the stack
 Let's make sure everything is installed correctly.  Open VScode and create a new file called **main.py**.  Copy and paste this code:
