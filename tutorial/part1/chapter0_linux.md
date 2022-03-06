@@ -1,3 +1,5 @@
+# Linux Installation
+
 ## VS Code
 - [Text based instructions](https://code.visualstudio.com/docs/setup/linux)
 - [Video instructions](https://www.youtube.com/watch?v=Y1fei1mzP7Q)
