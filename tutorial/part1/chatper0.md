@@ -3,40 +3,24 @@
 
 In this chapter we will set up the tech stack used in this course.  A **tech stack** is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applicatoins.
 
-- Visual Studio Code
+- **Visual Studio Code**
   - Code editor and debugger
   - Extensions help us to code and improve productivity
-- Python
+- **Python**
   - Programming language we will use
   - Python libraries (such as Dash and Pandas) are collections of code that we will use to make the applications
-- Git
+- **Git**
   - Version control systems allow us to track and manage changes to our code over time
   - [Learn Git in 15 minutes](https://youtu.be/USjZcfj8yxE)
-- Github
+- **Github**
   -  Website that will store our repository
   - **Git** is not related to **Github**.  Github is a website that stores [repositories](https://www.youtube.com/watch?v=9A26ybw6tGY), and Git is a version control system.
 
 
 ## Installation Instructions
-<details>
-  <summary>Windows</summary>
-  
-Add link to Windows instructions
-
-</details>
-
-<details>
-  <summary>Mac</summary>
-  
-Add link to Mac instructions
-</details>
-
-<details>
-  <summary>Linux</summary>
-  
-Add link to Linux instructions
-</details>
-
+[**Windows**](chapter0_windows.md)\
+[**Mac**](chapter0_windows.md)\
+[**Linux**](chapter0_windows.md)
 
 ## Test the stack
 Let's make sure everything is installed correctly.  Open VScode and create a new file called **main.py**.  Copy and paste this code:
