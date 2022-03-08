@@ -17,10 +17,10 @@ parts:
   - file: preface/acknowledgements
 - caption: Installation Stack
   chapters:
-  - file: part1/chapter0/chapter0
-  - file: part1/chapter0/chapter0_mac
-  - file: part1/chapter0/chapter0_windows
-  - file: part1/chapter0/chapter0_linux
+  - file: part1/chapter0
+  - file: part1/chapter0_mac
+  - file: part1/chapter0_windows
+  - file: part1/chapter0_linux
 
 - caption: Part 1. Introduction to Dashboards in Dash
   chapters:
