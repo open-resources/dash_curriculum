@@ -1,0 +1,1152 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>551 Lec 2 - Building a basic Dash app &#8212; Dash Tutorial</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://github.com/open-resources/dash_curriculum/ref_material/2-building-a-basic-dash-app.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dashboard.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Dash Tutorial</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/about.html">
+   About this Project
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preface
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/what.html">
+   What
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/personas.html">
+   Personans
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/how.html">
+   How
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/who.html">
+   Who
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installation Stack
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/chapter0/chapter0.html">
+   Chapter 0 - Set up and Tech stack
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 1. Introduction to Dashboards in Dash
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter1.html">
+   Chapter 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter2_Gab.html">
+   Chapter 2: Getting Started with Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter3.html">
+   Chapter 3 - Dash Components and Layouts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter4.html">
+   Chapter 4: Linking Dash components
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter5.html">
+   Chapter 5 - App Deployment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 2. Data Visualization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter6.html">
+   Chapter 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter7.html">
+   Chapter 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter8.html">
+   Chapter 8
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 3. Polishing your Dash application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter9.html">
+   Chapter 9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter10.html">
+   Chapter 10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter11.html">
+   Chapter 11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter12.html">
+   Chapter 12
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 4. Publishing your Dash Application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter13.html">
+   Chapter 13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter14.html">
+   Chapter 14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter15.html">
+   Chapter 15
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/ref_material/2-building-a-basic-dash-app.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fref_material/2-building-a-basic-dash-app.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/open-resources/dash_curriculum/main?urlpath=tree/tutorial/ref_material/2-building-a-basic-dash-app.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-learning-goals">
+   Lecture learning goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-very-minimal-requirement-for-a-dash-app">
+   The very minimal requirement for a dash app
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuring-the-layout">
+   Configuring the layout
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#html-elements">
+     HTML elements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-core-components-receiving-input">
+   Dash core components (receiving input)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sliders-for-numerical-values">
+   Sliders for numerical values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dropdowns-for-categorical-values">
+   Dropdowns for categorical values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-callbacks-interactions">
+   Dash callbacks (interactions)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-plots-to-your-dashboard">
+   Adding plots to your Dashboard
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linking-widgets-with-plots-to-enable-interactive-updates">
+     Linking widgets with plots to enable interactive updates
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#control-the-xrange-with-a-slider">
+       Control the xrange with a slider
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#controlling-the-x-axis-column-with-a-dropdown">
+       Controlling the x-axis column with a dropdown
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplifying-the-callbacks-when-using-an-iframe">
+     Simplifying the callbacks when using an IFrame
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>551 Lec 2 - Building a basic Dash app</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-learning-goals">
+   Lecture learning goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-very-minimal-requirement-for-a-dash-app">
+   The very minimal requirement for a dash app
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuring-the-layout">
+   Configuring the layout
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#html-elements">
+     HTML elements
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-core-components-receiving-input">
+   Dash core components (receiving input)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sliders-for-numerical-values">
+   Sliders for numerical values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dropdowns-for-categorical-values">
+   Dropdowns for categorical values
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-callbacks-interactions">
+   Dash callbacks (interactions)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adding-plots-to-your-dashboard">
+   Adding plots to your Dashboard
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linking-widgets-with-plots-to-enable-interactive-updates">
+     Linking widgets with plots to enable interactive updates
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#control-the-xrange-with-a-slider">
+       Control the xrange with a slider
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#controlling-the-x-axis-column-with-a-dropdown">
+       Controlling the x-axis column with a dropdown
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simplifying-the-callbacks-when-using-an-iframe">
+     Simplifying the callbacks when using an IFrame
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="lec-2-building-a-basic-dash-app">
+<h1>551 Lec 2 - Building a basic Dash app<a class="headerlink" href="#lec-2-building-a-basic-dash-app" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="lecture-learning-goals">
+<h2>Lecture learning goals<a class="headerlink" href="#lecture-learning-goals" title="Permalink to this headline">¶</a></h2>
+<p>By the end of the lecture you will be able to:</p>
+<ol class="simple">
+<li><p>Identify how a Dash app is designed conceptually</p></li>
+<li><p>Run a Dash app on a local server</p></li>
+<li><p>Create Dash html and widgets (dropdowns, sliders, etc)</p></li>
+<li><p>Create an Altair plot in dash</p></li>
+<li><p>Control an Altair plot via widgets</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Please download this notebook to be able to view the images</strong></p>
+<p>Some of these sections have been copied and modified from <a class="reference external" href="https://dash.plotly.com/">the dash documentation</a>.</p>
+<p>We’re going to explain the basic logic of the dashboard before we start working with data.
+This is because it can get a little messy to keep track of the overall app structure
+when we have big chunks of data wrangling etc,
+so we’re starting out with short toy examples.</p>
+</div>
+<div class="section" id="the-very-minimal-requirement-for-a-dash-app">
+<h2>The very minimal requirement for a dash app<a class="headerlink" href="#the-very-minimal-requirement-for-a-dash-app" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s1">&#39;I am alive!!&#39;</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If we save this as a file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code>,
+we can run it by typing <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code>.
+This will serve a web page locally,
+which you can view by navigating to the address <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8050/</span></code>
+in your browser,
+which should look like this:</p>
+<p><img alt="" src="../_images/2.01.png" /></p>
+<p>Congratulations,
+you’re now a dashboard developer!
+However,
+I would probably wait until after milestone 4
+before you can comfortably put that line on your resume =)</p>
+<p>Although the above is a functioning app,
+there are a few more lines that we should add to our minimal skeleton.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s1">&#39;I am alive!!&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">__name__</span></code> is an automatically created variable in Python
+that holds the name of the currently running module.
+This is <code class="docutils literal notranslate"><span class="pre">'__main__'</span></code> if we run the script directly with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">app.py</span></code>
+and otherwise it is the name of the module.</p>
+<p>Passing <code class="docutils literal notranslate"><span class="pre">__name__</span></code> to <code class="docutils literal notranslate"><span class="pre">Dash()</span></code> is conventions
+and sets the name of the Flask instance.
+The last if statement is a check to make sure that <code class="docutils literal notranslate"><span class="pre">app.py</span></code> is being run as the main script and not imported from another script.</p>
+<p>Adding <code class="docutils literal notranslate"><span class="pre">debug=True</span></code> makes sure that we capture any debugging output
+and the app stops if we run into an error.
+It also enable “hot reloading”,
+which means that as you make changes to the source file,
+the dash/flask server will automatically detect that the source file have changed
+and update the app,
+without you having to relaunch it
+(and usually without manually refreshing the browser).
+This is very convenient for quickly iterating over changes you’re making in the app</p>
+</div>
+<div class="section" id="configuring-the-layout">
+<h2>Configuring the layout<a class="headerlink" href="#configuring-the-layout" title="Permalink to this headline">¶</a></h2>
+<p>The layout in the dash app is a list of dash components laid out vertically.</p>
+<div class="section" id="html-elements">
+<h3>HTML elements<a class="headerlink" href="#html-elements" title="Permalink to this headline">¶</a></h3>
+<p>The Dash web application framework provides pure Python abstraction around HTML, CSS, and JavaScript.
+That means that instead of writing HTML or using an HTML templating engine,
+you compose your layout using Python structures with the <code class="docutils literal notranslate"><span class="pre">dash-html-components</span></code> library.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s1">&#39;Hello Dash&#39;</span><span class="p">),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s1">&#39;Dash converts Python classes into HTML&#39;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;This conversion happens behind the scenes by Dash&#39;s JavaScript front-end&quot;</span><span class="p">)])])</span>
+</pre></div>
+</div>
+<p>which get converted into the following HTML (as you can see if you right-click and inspect the HTML of your app):</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Hello Dash<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Dash converts Python classes into HTML<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This conversion happens behind the scenes by Dash&#39;s JavaScript front-end<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>With this change, our app now looks like this.</p>
+<p><img alt="" src="../_images/2.02.png" /></p>
+<p>If you don’t want your app to look like it is from the early 90s,
+you can style your app with CSS.
+While it is possible to write your own,
+it is much easier to use a pre-made stylesheet by changing the initialization of your app to:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>which fastforwads the looks of the app a couple of decades:</p>
+<p><img alt="" src="../_images/2.03.png" /></p>
+<p>You can modify the stylesheet at that URL however you would like and save it as a different URL.
+This is optional and should only be done after more important parts of your dashboard are taken care of.
+You can <a class="reference external" href="https://dash.plotly.com/external-resources">learn more about stylesheets for dash in the docs</a>.</p>
+<p>You can also style individual HTML components,
+and set HTML properties such as class names, etc:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s1">&#39;Hello blue dash&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">44</span><span class="p">}),</span> 
+    <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s1">&#39;Hi there&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-para&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;background-color&#39;</span><span class="p">:</span><span class="s1">&#39;red&#39;</span><span class="p">})</span>
+<span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">})</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.04.png" /></p>
+<p>Another way of inserting whitespace would to use <code class="docutils literal notranslate"><span class="pre">html.Br()</span></code> in the layout list.</p>
+<p>We will not cover everything you can do in HTML in this class,
+and for your dashboards you likely don’t need to change much at all,
+but it is there if you want to
+and you can read more about <a class="reference external" href="https://dash.plotly.com/dash-html-components">all the available HTML components</a>.</p>
+</div>
+</div>
+<div class="section" id="dash-core-components-receiving-input">
+<h2>Dash core components (receiving input)<a class="headerlink" href="#dash-core-components-receiving-input" title="Permalink to this headline">¶</a></h2>
+<p>The core components (or widgets) of dash
+are those that enable you to create interactive user interfaces:
+dropdowns, sliders, checkboxes, etc.
+We will not go through all of these,
+but cover to of the main ones so that you grok
+how they work in general.
+The dash documentation is an excellent source
+for finding <span class="xref myst">additional parameters and components,
+such as text input, buttons, and date pickers</span>.</p>
+</div>
+<div class="section" id="sliders-for-numerical-values">
+<h2>Sliders for numerical values<a class="headerlink" href="#sliders-for-numerical-values" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="s1">&#39;This is my slider&#39;</span><span class="p">,</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">})])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.05.png" /></p>
+<p>There is also the range slider for selecting a range of value instead of just one:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dcc</span><span class="o">.</span><span class="n">RangeSlider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">marks</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.06.png" /></p>
+</div>
+<div class="section" id="dropdowns-for-categorical-values">
+<h2>Dropdowns for categorical values<a class="headerlink" href="#dropdowns-for-categorical-values" title="Permalink to this headline">¶</a></h2>
+<p>Dropdowns are searchable and select a single value by default.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="s1">&#39;This is my dropdown&#39;</span><span class="p">,</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;NYC&#39;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;SF&#39;</span><span class="p">}],</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;SF&#39;</span><span class="p">)])</span> 
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.07.png" /></p>
+<p>But can be changed to allow selection of multiple values.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="s1">&#39;This is my dropdown&#39;</span><span class="p">,</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;NYC&#39;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;SF&#39;</span><span class="p">}],</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;SF&#39;</span><span class="p">,</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span> 
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.08.png" /></p>
+<p>It can also be helpful to change the placeholder text as an indication to the user
+when there is no selected value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="s1">&#39;This is my dropdown&#39;</span><span class="p">,</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;NYC&#39;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;SF&#39;</span><span class="p">}],</span>
+            <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Select a city...&#39;</span><span class="p">)])</span> 
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.09.png" /></p>
+<p>There are also checkboxes for multiple categorical values and radio buttons for single ones
+that work similar.</p>
+</div>
+<div class="section" id="dash-callbacks-interactions">
+<h2>Dash callbacks (interactions)<a class="headerlink" href="#dash-callbacks-interactions" title="Permalink to this headline">¶</a></h2>
+<p>So far we have seen how to layout our app
+and how to receive input from the person using it.
+But how can our app be updated after this input is received?
+For this,
+we need to “call back” to some function
+with the updated values after a widget has been changed.
+Dash callback functions are simply Python functions
+that are automatically called by Dash whenever an input component’s property changes.</p>
+<p>The simplest such callback function
+would do nothing else than returning the value of the input widget
+and could look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">input_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">input_value</span>
+</pre></div>
+</div>
+<p>But how do we link this function to a Dash widget
+such as a dropdown or text input?
+For this,
+we can use a special decorator function that Dash provides.
+As a quick recap, decorators are functions that modify another function.
+Here is a <a class="reference external" href="https://realpython.com/primer-on-python-decorators/">quick primer on decorators in python</a>.
+In this case,
+the modification is that it links two functions together.
+The Dash decorator function for callbacks is names <code class="docutils literal notranslate"><span class="pre">app.callback</span></code>
+and if we add the decorator to our output function,
+it would look like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;widget-2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;widget-1&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">input_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">input_value</span>
+</pre></div>
+</div>
+<p>Now the input value of the <code class="docutils literal notranslate"><span class="pre">widget-1</span></code> would be linked to that of <code class="docutils literal notranslate"><span class="pre">widget-2</span></code>.
+Let’s create these widgets and see what this would look like in a complete app.
+We will set the <code class="docutils literal notranslate"><span class="pre">id</span></code> parameter of the widgets
+to identify which is for input
+and which is for output.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;widget-1&#39;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Textarea</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;widget-2&#39;</span><span class="p">)])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;widget-2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;widget-1&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">input_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">input_value</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.10.png" /></p>
+<p>Everything I write in the input box to the left, will now be copied into the text area box to the right.
+Note that this is a one way interaction, the left-most box will not update when I update the rightmost one.
+Therefore, I normally should not use and widgets that accept input (such as textarea) as the output target, which I have done in this simplified example.
+More appropriate would be to use an HTML div and update its <code class="docutils literal notranslate"><span class="pre">children</span></code> property when the input changes (there is no <code class="docutils literal notranslate"><span class="pre">value</span></code> property for the div).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;widget-1&#39;</span><span class="p">),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;widget-2&#39;</span><span class="p">)])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;widget-2&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;widget-1&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">input_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">input_value</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.11.png" /></p>
+</div>
+<div class="section" id="adding-plots-to-your-dashboard">
+<h2>Adding plots to your Dashboard<a class="headerlink" href="#adding-plots-to-your-dashboard" title="Permalink to this headline">¶</a></h2>
+<p>For native plotly charts, there is a dash core component called <code class="docutils literal notranslate"><span class="pre">dcc.Graph</span></code>, but this will not work for Altair or other non-plotly libraries.
+Instead we will leverage the fact that Altair is built with web technologies and use the <code class="docutils literal notranslate"><span class="pre">to_html()</span></code> method to include charts in iframes (which are essentially nesting a HTML page within a page).
+The only thing we’re missing out on here really is that we can’t capture signals from Altair (for example when selecting points) and use that info to update a dash widget (like a dropdown).
+This is not a very common usage pattern, and Altair does not have support for emitting these signals yet other than to other Altair plots (which we will see how to do later).</p>
+<p>Let’s start with a simple chart that you have seen before:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Weight_in_lbs&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To get the assigned <code class="docutils literal notranslate"><span class="pre">chart</span></code> variable to show up in Dash,
+we will use it in an iframe like this.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span><span class="n">srcDoc</span><span class="o">=</span><span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">())])</span>
+</pre></div>
+</div>
+<p>Together,
+the app source code looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+<span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span><span class="n">srcDoc</span><span class="o">=</span><span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">())])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.12.png" /></p>
+<p>As you can see, the size of the iframe is small by default and there is a border around this.
+We can fix these issues via the css styling parameter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span>
+            <span class="n">srcDoc</span><span class="o">=</span><span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">(),</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;border-width&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">})])</span>
+</pre></div>
+</div>
+<p><img alt="" src="../_images/2.13.png" /></p>
+<p>Now we can see the entire plot!
+You can adjust the width and height parameters to fit with your dashboard layout.
+They can be defined in either percentages or pixels, but height doesn’t always expand correctly for percentages.</p>
+<p>How do we link this plot to a dash component such as a slider or dropdown?
+We need to use the callback decorator again, and because of that we need to define a function that creates the Altair plot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_altair</span><span class="p">():</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Weight_in_lbs&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can now call this function in the iframe instead of passing the variable and get the exact same output as before.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span>
+            <span class="n">srcDoc</span><span class="o">=</span><span class="n">plot_altair</span><span class="p">(),</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;border-width&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">})])</span>
+</pre></div>
+</div>
+<div class="section" id="linking-widgets-with-plots-to-enable-interactive-updates">
+<h3>Linking widgets with plots to enable interactive updates<a class="headerlink" href="#linking-widgets-with-plots-to-enable-interactive-updates" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="control-the-xrange-with-a-slider">
+<h4>Control the xrange with a slider<a class="headerlink" href="#control-the-xrange-with-a-slider" title="Permalink to this headline">¶</a></h4>
+<p>To add the interactivity, let’s start with a slider to filter the values of the data.
+To be able to link the slider to the iframe, we need to give both of them an <code class="docutils literal notranslate"><span class="pre">id</span></code> and write a callback function that links them together.
+The target that we want to replace in the iframe is the Altair plot, so we will target the <code class="docutils literal notranslate"><span class="pre">srcDoc</span></code> parameter.
+We will also update the plot creation function to accept one argument and filter the cars data set based on the value in the slider.
+The final app looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_altair</span><span class="p">(</span><span class="n">xmax</span><span class="p">):</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">[</span><span class="n">cars</span><span class="p">[</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">xmax</span><span class="p">])</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Weight_in_lbs&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span><span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>
+            <span class="n">srcDoc</span><span class="o">=</span><span class="n">plot_altair</span><span class="p">(</span><span class="n">xmax</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;border-width&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">}),</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;xslider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">240</span><span class="p">)])</span>
+        
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="s1">&#39;srcDoc&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xslider&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">xmax</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">plot_altair</span><span class="p">(</span><span class="n">xmax</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>As we drag the slider to higher values, the max value of the x-axis in the plot increases and more points are included.</p>
+<p><img alt="" src="../_images/2.14.png" /></p>
+<p><img alt="" src="../_images/2.15.png" /></p>
+<p>It might look odd that <code class="docutils literal notranslate"><span class="pre">cars</span></code> is not passed explicitly to the <code class="docutils literal notranslate"><span class="pre">plot_altair</span></code> function.
+In general, Python encourages you to be explicit rather than implicit.
+You could do this by defining an optional argument in the function, which is a copy of the <code class="docutils literal notranslate"><span class="pre">cars</span></code> dataframe (without <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> you will modify the <code class="docutils literal notranslate"><span class="pre">cars</span></code> dataframe when you modify <code class="docutils literal notranslate"><span class="pre">df</span></code>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_altair</span><span class="p">(</span><span class="n">xcol</span><span class="p">,</span> <span class="n">df</span><span class="o">=</span><span class="n">cars</span><span class="o">.</span><span class="n">copy</span><span class="p">()):</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">xcol</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>However, it seems to be more common to work with the global dataframe, at least from what I have seen in the docs and examples.
+Either is technically fine, as long as you avoid modifying the global <code class="docutils literal notranslate"><span class="pre">cars</span></code> dataframe inside a function.
+<strong>This is important</strong>, and we will talk more about it next week, but you can <a class="reference external" href="https://dash.plotly.com/sharing-data-between-callbacks#why-global-variables-will-break-your-app">read about modifying global variables in the docs</a> if you are interested now already.</p>
+</div>
+<div class="section" id="controlling-the-x-axis-column-with-a-dropdown">
+<h4>Controlling the x-axis column with a dropdown<a class="headerlink" href="#controlling-the-x-axis-column-with-a-dropdown" title="Permalink to this headline">¶</a></h4>
+<p>The process for linking a dropdown is very similar to linking a slider.
+Things to note here are that we are now changing which column is used for the xaxis
+rather than the range of the x-axis,
+and we are setting the options of the dropdown automatically
+via a list comprehension with a dictionary.
+Compare with the manual way of setting the options that we went through in the beginning,
+it would be tedious to do this for all values in the dataframe,
+which is why we autopopulate it instead.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_altair</span><span class="p">(</span><span class="n">xcol</span><span class="p">):</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">xcol</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span><span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;xcol&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
+            <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cars</span><span class="o">.</span><span class="n">columns</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;border-width&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">},</span>
+            <span class="n">srcDoc</span><span class="o">=</span><span class="n">plot_altair</span><span class="p">(</span><span class="n">xcol</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">))])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="s1">&#39;srcDoc&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xcol&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">xcol</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">plot_altair</span><span class="p">(</span><span class="n">xcol</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>The plotted column now changes as we use the dropdown</p>
+<p><img alt="" src="../_images/2.16.png" /></p>
+<p><img alt="" src="../_images/2.17.png" /></p>
+</div>
+</div>
+<div class="section" id="simplifying-the-callbacks-when-using-an-iframe">
+<h3>Simplifying the callbacks when using an IFrame<a class="headerlink" href="#simplifying-the-callbacks-when-using-an-iframe" title="Permalink to this headline">¶</a></h3>
+<p>The above works perfectly fine,
+but it feels a bit inelegant
+to have a separate function just for the callback decorator.
+The reason for this above is that we set <code class="docutils literal notranslate"><span class="pre">srcDoc</span></code> to <code class="docutils literal notranslate"><span class="pre">plot_altair()</span></code>,
+so we need this function to be defined before the iframe is referenced.
+We could work around this
+by not specifying any argument to the <code class="docutils literal notranslate"><span class="pre">srcDoc</span></code> parameter
+when creating the Iframe:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;border-width&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">}),</span>
+</pre></div>
+</div>
+<p>Now we could move the <code class="docutils literal notranslate"><span class="pre">plot_altair()</span></code> function down under the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code>
+and use the callback decorator directly on this function
+instead of having a separate <code class="docutils literal notranslate"><span class="pre">update_output</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="s1">&#39;srcDoc&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xcol-widget&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">plot_altair</span><span class="p">(</span><span class="n">xcol</span><span class="p">):</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">xcol</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This looks neater, and is more similar to how dash is used with plotly where the iframe is not needed.
+But we have one big issue.
+The first time the app loads, the iframe will be empty and it will not show an Altair plot until the dropdown is used to select a value.
+This is not good because we often want our app to tell a story by default.
+Luckily it is easy to fix.
+We can trigger a callback from the dropdown by setting its default value, which will act just as if we had clicked it manually and call the function that creates the Altair plot!</p>
+<p>Our full app now looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="c1"># Read in global data</span>
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="c1"># Setup app and layout/frontend</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span>  <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span>
+        <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;border-width&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">}),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;xcol-widget&#39;</span><span class="p">,</span>
+        <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>  <span class="c1"># REQUIRED to show the plot on the first page load</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">col</span><span class="p">}</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cars</span><span class="o">.</span><span class="n">columns</span><span class="p">])])</span>
+
+<span class="c1"># Set up callbacks/backend</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="s1">&#39;srcDoc&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;xcol-widget&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">plot_altair</span><span class="p">(</span><span class="n">xcol</span><span class="p">):</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">xcol</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Displacement&#39;</span><span class="p">,</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The comments explain what each section is for, and are worth keeping in mind for developing your own app.
+The reason we load the data first is that it is often used in the app layout, for example to populate the options of the dropdown.
+<strong>This is the app skeleton I recommend using for your project</strong>, but remember that it is possile to use what we did first also in case you need to workaround some particularity with how you want your app to work.</p>
+</div>
+</div>
+<div class="section" id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h2>
+<p>These lecture notes were prepared by Dr. Joel Ostblom, a post-doctoral teaching fellow in the UBC Vancouver MDS program.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ref_material"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+    All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</div>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

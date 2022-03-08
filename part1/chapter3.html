@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 3 - Dash Components and Layouts &#8212; Dash Tutorial</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://github.com/open-resources/dash_curriculum/part1/chapter3.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 4: Linking Dash components" href="chapter4.html" />
+    <link rel="prev" title="Chapter 2: Getting Started with Dash" href="chapter2_Gab.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dashboard.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Dash Tutorial</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/about.html">
+   About this Project
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preface
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/what.html">
+   What
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/personas.html">
+   Personans
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/how.html">
+   How
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/who.html">
+   Who
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installation Stack
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/chapter0/chapter0.html">
+   Chapter 0 - Set up and Tech stack
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 1. Introduction to Dashboards in Dash
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter1.html">
+   Chapter 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter2_Gab.html">
+   Chapter 2: Getting Started with Dash
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 3 - Dash Components and Layouts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4.html">
+   Chapter 4: Linking Dash components
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter5.html">
+   Chapter 5 - App Deployment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 2. Data Visualization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter6.html">
+   Chapter 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter7.html">
+   Chapter 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter8.html">
+   Chapter 8
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 3. Polishing your Dash application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter9.html">
+   Chapter 9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter10.html">
+   Chapter 10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter11.html">
+   Chapter 11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter12.html">
+   Chapter 12
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 4. Publishing your Dash Application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter13.html">
+   Chapter 13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter14.html">
+   Chapter 14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter15.html">
+   Chapter 15
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/part1/chapter3.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart1/chapter3.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-layout">
+   Dash Layout
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 3 - Dash Components and Layouts</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-layout">
+   Dash Layout
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-3-dash-components-and-layouts">
+<h1>Chapter 3 - Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we explore Dash <strong>layouts</strong> and the <strong>components</strong> that make up the layout.</p>
+</div>
+<div class="section" id="dash-layout">
+<h2>Dash Layout<a class="headerlink" href="#dash-layout" title="Permalink to this headline">¶</a></h2>
+<p>Dash applications are comprised of 2 parts:</p>
+<ul class="simple">
+<li><p>Layout: What the application looks like</p></li>
+<li><p>Callabacks: Interactivity of the application</p></li>
+</ul>
+<hr class="docutils" />
+<p>The <strong>layout</strong> is made up of <strong>components</strong>.  Let’s make a minimal Dash application to demonstrate this concept:</p>
+<details>
+  <summary>Minimal Dash App</summary>
+<p>Create <strong>app_3_1.py</strong> in the <code class="docutils literal notranslate"><span class="pre">tutorial/part1</span></code> directory:</p>
+<p><img alt="Make app_3_1.py" src="../_images/make_app_3_1.png" /></p>
+<p>Copy/paste the minimal Dash app code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Python libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span> 
+
+<span class="c1"># Create a Dash application</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">()</span>
+<span class="c1"># Create the layout of the app</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;This is a HTML Div component&quot;</span><span class="p">)</span>
+<span class="c1"># Run the app</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Now <strong>Run/Debug</strong> the code:
+<img alt="Running minimal Dash app" src="../_images/run_minimal.png" /></p>
+<p>Open a web browser, enter <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a> in the address bar, and you should see our minimal application:
+<img alt="Display minimal Dash app" src="../_images/display_minimal.png" /></p>
+</details>
+<hr class="docutils" />
+<p>Next, we’ll add some styling with <strong>CSS</strong>.   We’ll use a <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> from the <strong>Bootstrap</strong> library.</p>
+<details>
+  <summary>CSS</summary>
+<p>Create <strong>app_3_2.py</strong> in the <code class="docutils literal notranslate"><span class="pre">tutorial/part1</span></code> directory:</p>
+<p><img alt="Make app_3_2.py" src="../_images/make_app_3_2.png" /></p>
+<p>Copy/paste the minimal Dash + CSS app code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Python libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span> 
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Create a Dash application, pass in a stylesheet from Bootstrap</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">]</span> <span class="p">)</span>
+<span class="c1"># Create the layout of the app</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;This is a HTML Div component with Bootstrap CSS theme&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;m-5&quot;</span><span class="p">)</span>
+<span class="c1"># Run the app</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Run the code, open a web browser, enter <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a> in the address bar, and you should see our minimal application with a slightly different style this time:</p>
+<p><img alt="Display minimal Dash app" src="../_images/display_3_2.png" />
+vs
+<img alt="no CSS comparison" src="../_images/display_minimal.png" /></p>
+</details>
+<hr class="docutils" />
+<p>Let’s continue to learn about <strong>Bootstrap</strong>, <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.  We will be using the Dash Bootstrap Components library that makes it <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/">easier to build consistently styled apps with complex, responsive layouts</a></p>
+<details>
+  <summary>Dash Bootstrap Components</summary>
+<hr class="docutils" />
+<details>
+  <summary>Layout in Bootstrap</summary>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
+<img alt="Bootstrap layout" src="../_images/bootstrap_grid.png" /></p></li>
+<li><p>3 main layout components: Container, Row, and Column.</p>
+<ul>
+<li><p>Container wraps the entire app</p></li>
+<li><p>Rows only contain columns</p></li>
+<li><p>Columns holds your components</p></li>
+</ul>
+</li>
+</ul>
+<p>Now let’s add to our minimal, CSS styled app by using a Container, Rows, and Columns.  Create a new file called <strong>app_3_3.py</strong> and copy/paste the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Python libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span> 
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Create a Dash application, pass in a stylesheet from Bootstrap</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="c1"># Create the layout of the app</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+                <span class="c1"># Row 1</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 1&quot;</span><span class="p">)</span>
+                    <span class="p">],</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">},</span>
+                    <span class="p">),</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 2&quot;</span><span class="p">)</span>
+                        <span class="p">]),</span>
+                    <span class="p">],</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">},</span>
+                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;h-75&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="c1"># Row 2</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 3&quot;</span><span class="p">)</span>
+                    <span class="p">],</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;pink&quot;</span><span class="p">},</span>
+                    <span class="p">),</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 4&quot;</span><span class="p">)</span>
+                        <span class="p">]),</span>
+                    <span class="p">],</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span><span class="p">},</span>
+                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;h-25&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;100vh&quot;</span><span class="p">},</span>
+            <span class="p">)</span>
+
+<span class="c1"># Run the app</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Notice that a <code class="docutils literal notranslate"><span class="pre">container</span></code> which holds our app then we have 2 <code class="docutils literal notranslate"><span class="pre">rows</span></code> which hold 2 <code class="docutils literal notranslate"><span class="pre">columns</span></code> each, and each <code class="docutils literal notranslate"><span class="pre">column</span></code> containers a <code class="docutils literal notranslate"><span class="pre">Div</span></code>. We added some CSS styling to change each column’s <code class="docutils literal notranslate"><span class="pre">background-color</span></code>.  The Rows also include some CSS styling to show how we can change the height of the Row.  Finally, we added CSS styling to make sure the Container expands to 100% of the height of the browser.</p>
+<p><img alt="Bootstrap layout" src="../_images/bootstrap_layout.png" /></p>
+  </details>
+<hr class="docutils" />
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./part1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chapter2_Gab.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 2: Getting Started with Dash</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="chapter4.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 4: Linking Dash components</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+    All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</div>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

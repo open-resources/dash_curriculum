@@ -1,0 +1,1430 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>551 Lec 4 - Deployment on Heroku and maps in Altair &#8212; Dash Tutorial</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://github.com/open-resources/dash_curriculum/ref_material/4-maps-deployment.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dashboard.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Dash Tutorial</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/about.html">
+   About this Project
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preface
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/what.html">
+   What
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/personas.html">
+   Personans
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/how.html">
+   How
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/who.html">
+   Who
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installation Stack
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/chapter0/chapter0.html">
+   Chapter 0 - Set up and Tech stack
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 1. Introduction to Dashboards in Dash
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter1.html">
+   Chapter 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter2_Gab.html">
+   Chapter 2: Getting Started with Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter3.html">
+   Chapter 3 - Dash Components and Layouts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter4.html">
+   Chapter 4: Linking Dash components
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter5.html">
+   Chapter 5 - App Deployment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 2. Data Visualization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter6.html">
+   Chapter 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter7.html">
+   Chapter 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter8.html">
+   Chapter 8
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 3. Polishing your Dash application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter9.html">
+   Chapter 9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter10.html">
+   Chapter 10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter11.html">
+   Chapter 11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter12.html">
+   Chapter 12
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 4. Publishing your Dash Application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter13.html">
+   Chapter 13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter14.html">
+   Chapter 14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter15.html">
+   Chapter 15
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/ref_material/4-maps-deployment.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fref_material/4-maps-deployment.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/open-resources/dash_curriculum/main?urlpath=tree/tutorial/ref_material/4-maps-deployment.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-learning-goals">
+   Lecture learning goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deployment-with-heroku">
+   Deployment with Heroku
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pip">
+   Pip
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gunicorn">
+   gunicorn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#push-and-deploy">
+   Push and deploy!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geographic-data-geojson-and-topojson">
+   Geographic Data: GeoJSON and TopoJSON
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geoshape-marks">
+     Geoshape Marks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linking-datasets-together-via-lookups">
+     Linking datasets together via lookups
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-interactivity">
+     Map interactivity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-note-on-choropleth-interpretation">
+     A note on choropleth interpretation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-dataset-with-ids-for-all-the-world-s-countries">
+     A dataset with IDs for all the world’s countries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>551 Lec 4 - Deployment on Heroku and maps in Altair</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lecture-learning-goals">
+   Lecture learning goals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deployment-with-heroku">
+   Deployment with Heroku
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pip">
+   Pip
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gunicorn">
+   gunicorn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#push-and-deploy">
+   Push and deploy!
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#geographic-data-geojson-and-topojson">
+   Geographic Data: GeoJSON and TopoJSON
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#geoshape-marks">
+     Geoshape Marks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linking-datasets-together-via-lookups">
+     Linking datasets together via lookups
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#map-interactivity">
+     Map interactivity
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-note-on-choropleth-interpretation">
+     A note on choropleth interpretation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-dataset-with-ids-for-all-the-world-s-countries">
+     A dataset with IDs for all the world’s countries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#attribution">
+   Attribution
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="lec-4-deployment-on-heroku-and-maps-in-altair">
+<h1>551 Lec 4 - Deployment on Heroku and maps in Altair<a class="headerlink" href="#lec-4-deployment-on-heroku-and-maps-in-altair" title="Permalink to this headline">¶</a></h1>
+<p>You need to download this notebook to view images.</p>
+<div class="section" id="lecture-learning-goals">
+<h2>Lecture learning goals<a class="headerlink" href="#lecture-learning-goals" title="Permalink to this headline">¶</a></h2>
+<p>By the end of the lecture you will be able to:</p>
+<ol class="simple">
+<li><p>Setup and Heroku account and run the Heroku CLI</p></li>
+<li><p>Prepare the necessary files for deployment</p></li>
+<li><p>Push to Heroku’s repo and troubleshoot remote errors</p></li>
+<li><p>Work with geojson and topojson files</p></li>
+<li><p>Create maps in Altair with interactivity</p></li>
+</ol>
+</div>
+<hr class="docutils" />
+<div class="section" id="deployment-with-heroku">
+<h2>Deployment with Heroku<a class="headerlink" href="#deployment-with-heroku" title="Permalink to this headline">¶</a></h2>
+<p>Deploying our app essentially means everything we need to do
+in order for it to become available for others to use.
+For our dashboard,
+this entails uploading our code to a computer that is always running
+and has a web server so that other people can visit it.
+On this web server,
+we need to install all the required Python packages for our app,
+and then run it via the same command we use on our computer.</p>
+<p>Luckily,
+we don’t have to do these steps manually.
+We’re going to use the Heroku web service,
+that will take care of most of these steps for us,
+after we have set up a few configuration files.
+Similar to how GitHub actions and tests can run as soon as you make your PR,
+Heroku will build our app and start the Python server
+as soon as we upload our code.</p>
+<p>As an overview, this is what Heroku does:</p>
+<ol class="simple">
+<li><p>New code is pushed to heroku’s git repo.</p></li>
+<li><p>Heroku installs the packages in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p></li>
+<li><p>Heroku runs whatever line you have in <code class="docutils literal notranslate"><span class="pre">Procfile</span></code>
+(in our case to serve your app on the web, but it could be other things).</p></li>
+</ol>
+<p>Let’s get going!</p>
+<p>The first step is to get an account at <a class="reference external" href="https://www.heroku.com/">https://www.heroku.com/</a>,
+and for this lab,
+you can create a common account that all of you share,
+or have one dedicated person doing the deployment
+(but it is good to have at least one backup person!).
+Heroku provides us with unix web servers configured to run apps in Python
+and other languages,
+so that we don’t have to worry about building them ourselves.</p>
+<p>The second step is to <a class="reference external" href="https://devcenter.heroku.com/articles/getting-started-with-python#set-up">download the heroku CLI</a>
+and login with your credentials of the account you just created
+by typing <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> at the command line.
+Then we are going to <a class="reference external" href="https://dash.plotly.com/deployment">follow the dash deployment guide</a>
+(scroll down to the Heroku section),
+but skip all the steps related to virtualenv
+(and the gitignore part is optional),
+details below.
+If some of the concepts below sound confusing and you want to learn more,
+<a class="reference external" href="https://towardsdatascience.com/deploying-your-dash-app-to-heroku-the-magical-guide-39bd6a0c586c">this is a good writeup</a>
+although it does not follow exactly the same steps as we do.</p>
+</div>
+<div class="section" id="pip">
+<h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
+<p>Heroku uses <code class="docutils literal notranslate"><span class="pre">pip</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> to install dependencies,
+so we will need to create a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file to control what Heroku will install.
+Instead of doing this via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code>,
+it is recommended that you create <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> manually,
+to avoid that you get a lot of conda-specific packages included that we don’t need,
+and that can’t be installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code>.
+The requirements file has either just the <code class="docutils literal notranslate"><span class="pre">package-name</span></code> or <code class="docutils literal notranslate"><span class="pre">package-name==version-number</span></code>,
+and could look like this for your app:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pandas</span>
+<span class="n">gunicorn</span>
+<span class="n">altair</span>
+<span class="n">dash</span><span class="o">==</span><span class="mf">1.18.1</span>
+<span class="n">dash_bootstrap_components</span>
+<span class="n">plotly</span><span class="o">==</span><span class="mf">4.14.3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gunicorn">
+<h2>gunicorn<a class="headerlink" href="#gunicorn" title="Permalink to this headline">¶</a></h2>
+<p>You need to include the <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> library even though you don’t use it locally.
+<code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> is a HTTP server specifically for Python web applications which runs natively in Unix.
+You also need to create a <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> which tells Heroku
+where your main app file is located and that you want to use <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> to run it.
+This line will work if it is in <code class="docutils literal notranslate"><span class="pre">src/app.py</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">web</span><span class="p">:</span> <span class="n">gunicorn</span> <span class="n">app</span><span class="p">:</span><span class="n">server</span>
+</pre></div>
+</div>
+<p>If you have issues with performance,
+you can try running <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> with more workers (<code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">num</span></code>) or threads (<code class="docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">num</span></code>), but the dash docs recommends the line we have above. The <a class="reference external" href="https://docs.gunicorn.org/en/latest/design.html#how-many-workers"><code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> docs reccommend this formula</a>: <code class="docutils literal notranslate"><span class="pre">2x</span> <span class="pre">&lt;num_cores&gt;</span> <span class="pre">+</span> <span class="pre">1</span></code>. I believe that the free heroku tier dynos has 4 cores, but they are shared with other users, so maybe try with <code class="docutils literal notranslate"><span class="pre">-w</span> <span class="pre">4</span></code> if you want to experiment with performance.</p>
+<p>The final modification we need to make,
+is to define the variable <code class="docutils literal notranslate"><span class="pre">server</span></code> in our <code class="docutils literal notranslate"><span class="pre">app.py</span></code>.
+The name is a convention
+for what <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> will run (app:<strong>server</strong>).
+So we need to add this line anywhere in <code class="docutils literal notranslate"><span class="pre">app.py</span></code>
+(conventionally just below <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">dash.Dash(...)</span></code>,
+see the example in the dash deployment docs for reference if this is unclear).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">server</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="push-and-deploy">
+<h2>Push and deploy!<a class="headerlink" href="#push-and-deploy" title="Permalink to this headline">¶</a></h2>
+<p>Almost there!
+The rest is following steps 4 and 5 in the heroku deployment guide:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku create my-dash-app <span class="c1"># change my-dash-app to a unique name</span>
+git add . <span class="c1"># add the files you need to git</span>
+git commit -m <span class="s1">&#39;Initial app boilerplate&#39;</span>
+git push heroku master <span class="c1"># deploy code to the heroku repos master branch</span>
+</pre></div>
+</div>
+<p>If you are prompted to login when pushing,
+use <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> instead of typing your credentials to git.
+When you push,
+heroku will automatically start building your app,
+let it finish and look out for errors.
+Then run the following,
+to start one “dyno” (unix machine)
+for your app.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">ps</span><span class="p">:</span><span class="n">scale</span> <span class="n">web</span><span class="o">=</span><span class="mi">1</span>  <span class="c1"># run the app with a 1 heroku &quot;dyno&quot;</span>
+</pre></div>
+</div>
+<p>Navigate to the URL heroku gave you
+(you can also type <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">open</span></code>).
+YOU DID IT!!!!! :raise_hands:</p>
+<p>If your app fails to launch,
+you can check what went wrong via <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">logs</span> <span class="pre">--tail</span></code>.
+Usually you forgot to include some package in the requirements file
+(like I did twice while writing these notes…).</p>
+<p>When you make changes to your app,
+you need to follow add and commit it to github
+and then push to heroku again,
+so it rebuilds your app.</p>
+<p>Your app might be slow on first launch,
+after a while of activity because your server it stopped
+to ssave costs unless you pay for an account:</p>
+<blockquote>
+<div><p>By default, your app is deployed on a free dyno. Free dynos will sleep after a half hour of inactivity (if they don’t receive any traffic). This causes a delay of a few seconds for the first request upon waking. Subsequent requests will perform normally. Free dynos also consume from a monthly, account-level quota of free dyno hours - as long as the quota is not exhausted, all free apps can continue to run</p>
+<p><a class="reference external" href="https://devcenter.heroku.com/articles/free-dyno-hours#usage">https://devcenter.heroku.com/articles/free-dyno-hours#usage</a></p>
+</div></blockquote>
+<p>You have about 500 free hours per month, which is plenty for one app.</p>
+</div>
+<div class="section" id="geographic-data-geojson-and-topojson">
+<h2>Geographic Data: GeoJSON and TopoJSON<a class="headerlink" href="#geographic-data-geojson-and-topojson" title="Permalink to this headline">¶</a></h2>
+<p><em>This first half of this geo section is taken from
+<a class="reference external" href="https://github.com/uwdata/visualization-curriculum">https://github.com/uwdata/visualization-curriculum</a> with minor modifications.</em></p>
+<p>Up to this point, we have worked with JSON and CSV formatted datasets that correspond to data tables made up of rows (records) and columns (fields). In order to represent geographic regions (countries, states, <em>etc.</em>) and trajectories (flight paths, subway lines, <em>etc.</em>), we need to expand our repertoire with additional formats designed to support rich geometries.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/GeoJSON">GeoJSON</a> models geographic features within a specialized JSON format. A GeoJSON <code class="docutils literal notranslate"><span class="pre">feature</span></code> can include geometric data – such as <code class="docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="docutils literal notranslate"><span class="pre">latitude</span></code> coordinates that make up a country boundary – as well as additional data attributes.</p>
+<p>Here is a GeoJSON <code class="docutils literal notranslate"><span class="pre">feature</span></code> object for the boundary of the U.S. state of Colorado:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Feature&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;properties&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Colorado&quot;</span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;geometry&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Polygon&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;coordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="p">[[</span><span class="mf">-106.32056285448942</span><span class="p">,</span><span class="mf">40.998675790862656</span><span class="p">],[</span><span class="mf">-106.19134826714341</span><span class="p">,</span><span class="mf">40.99813863734313</span><span class="p">],[</span><span class="mf">-105.27607827344248</span><span class="p">,</span><span class="mf">40.99813863734313</span><span class="p">],[</span><span class="mf">-104.9422739227986</span><span class="p">,</span><span class="mf">40.99813863734313</span><span class="p">],[</span><span class="mf">-104.05212898774828</span><span class="p">,</span><span class="mf">41.00136155846029</span><span class="p">],[</span><span class="mf">-103.57475287338661</span><span class="p">,</span><span class="mf">41.00189871197981</span><span class="p">],[</span><span class="mf">-103.38093099236758</span><span class="p">,</span><span class="mf">41.00189871197981</span><span class="p">],[</span><span class="mf">-102.65589358559272</span><span class="p">,</span><span class="mf">41.00189871197981</span><span class="p">],[</span><span class="mf">-102.62000064466328</span><span class="p">,</span><span class="mf">41.00189871197981</span><span class="p">],[</span><span class="mf">-102.052892177978</span><span class="p">,</span><span class="mf">41.00189871197981</span><span class="p">],[</span><span class="mf">-102.052892177978</span><span class="p">,</span><span class="mf">40.74889940428302</span><span class="p">],[</span><span class="mf">-102.052892177978</span><span class="p">,</span><span class="mf">40.69733266640851</span><span class="p">],[</span><span class="mf">-102.052892177978</span><span class="p">,</span><span class="mf">40.44003613055551</span><span class="p">],[</span><span class="mf">-102.052892177978</span><span class="p">,</span><span class="mf">40.3492571857556</span><span class="p">],[</span><span class="mf">-102.052892177978</span><span class="p">,</span><span class="mf">40.00333031918079</span><span class="p">],[</span><span class="mf">-102.04930288388505</span><span class="p">,</span><span class="mf">39.57414465707943</span><span class="p">],[</span><span class="mf">-102.04930288388505</span><span class="p">,</span><span class="mf">39.56823596836465</span><span class="p">],[</span><span class="mf">-102.0457135897921</span><span class="p">,</span><span class="mf">39.1331416175485</span><span class="p">],[</span><span class="mf">-102.0457135897921</span><span class="p">,</span><span class="mf">39.0466599009048</span><span class="p">],[</span><span class="mf">-102.0457135897921</span><span class="p">,</span><span class="mf">38.69751011321283</span><span class="p">],[</span><span class="mf">-102.0457135897921</span><span class="p">,</span><span class="mf">38.61478847120581</span><span class="p">],[</span><span class="mf">-102.0457135897921</span><span class="p">,</span><span class="mf">38.268861604631</span><span class="p">],[</span><span class="mf">-102.0457135897921</span><span class="p">,</span><span class="mf">38.262415762396685</span><span class="p">],[</span><span class="mf">-102.04212429569915</span><span class="p">,</span><span class="mf">37.738153927339205</span><span class="p">],[</span><span class="mf">-102.04212429569915</span><span class="p">,</span><span class="mf">37.64415206142214</span><span class="p">],[</span><span class="mf">-102.04212429569915</span><span class="p">,</span><span class="mf">37.38900413964724</span><span class="p">],[</span><span class="mf">-102.04212429569915</span><span class="p">,</span><span class="mf">36.99365914927603</span><span class="p">],[</span><span class="mf">-103.00046581851544</span><span class="p">,</span><span class="mf">37.00010499151034</span><span class="p">],[</span><span class="mf">-103.08660887674611</span><span class="p">,</span><span class="mf">37.00010499151034</span><span class="p">],[</span><span class="mf">-104.00905745863294</span><span class="p">,</span><span class="mf">36.99580776335414</span><span class="p">],[</span><span class="mf">-105.15404227428235</span><span class="p">,</span><span class="mf">36.995270609834606</span><span class="p">],[</span><span class="mf">-105.2222388620483</span><span class="p">,</span><span class="mf">36.995270609834606</span><span class="p">],[</span><span class="mf">-105.7175614468747</span><span class="p">,</span><span class="mf">36.99580776335414</span><span class="p">],[</span><span class="mf">-106.00829426840322</span><span class="p">,</span><span class="mf">36.995270609834606</span><span class="p">],[</span><span class="mf">-106.47490250048605</span><span class="p">,</span><span class="mf">36.99365914927603</span><span class="p">],[</span><span class="mf">-107.4224761410235</span><span class="p">,</span><span class="mf">37.00010499151034</span><span class="p">],[</span><span class="mf">-107.48349414060355</span><span class="p">,</span><span class="mf">37.00010499151034</span><span class="p">],[</span><span class="mf">-108.38081766383978</span><span class="p">,</span><span class="mf">36.99903068447129</span><span class="p">],[</span><span class="mf">-109.04483707103458</span><span class="p">,</span><span class="mf">36.99903068447129</span><span class="p">],[</span><span class="mf">-109.04483707103458</span><span class="p">,</span><span class="mf">37.484617466122884</span><span class="p">],[</span><span class="mf">-109.04124777694163</span><span class="p">,</span><span class="mf">37.88049961001363</span><span class="p">],[</span><span class="mf">-109.04124777694163</span><span class="p">,</span><span class="mf">38.15283644441336</span><span class="p">],[</span><span class="mf">-109.05919424740635</span><span class="p">,</span><span class="mf">38.49983761802722</span><span class="p">],[</span><span class="mf">-109.05201565922046</span><span class="p">,</span><span class="mf">39.36680339854235</span><span class="p">],[</span><span class="mf">-109.05201565922046</span><span class="p">,</span><span class="mf">39.49786885730673</span><span class="p">],[</span><span class="mf">-109.05201565922046</span><span class="p">,</span><span class="mf">39.66062637372313</span><span class="p">],[</span><span class="mf">-109.05201565922046</span><span class="p">,</span><span class="mf">40.22248895514744</span><span class="p">],[</span><span class="mf">-109.05201565922046</span><span class="p">,</span><span class="mf">40.653823231326896</span><span class="p">],[</span><span class="mf">-109.05201565922046</span><span class="p">,</span><span class="mf">41.000287251421234</span><span class="p">],[</span><span class="mf">-107.91779872584989</span><span class="p">,</span><span class="mf">41.00189871197981</span><span class="p">],[</span><span class="mf">-107.3183866123281</span><span class="p">,</span><span class="mf">41.00297301901887</span><span class="p">],[</span><span class="mf">-106.85895696843116</span><span class="p">,</span><span class="mf">41.00189871197981</span><span class="p">],[</span><span class="mf">-106.32056285448942</span><span class="p">,</span><span class="mf">40.998675790862656</span><span class="p">]]</span><span class="w"></span>
+<span class="w">    </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">feature</span></code> includes a <code class="docutils literal notranslate"><span class="pre">properties</span></code> object, which can include any number of data fields, plus a <code class="docutils literal notranslate"><span class="pre">geometry</span></code> object, which in this case contains a single polygon that consists of <code class="docutils literal notranslate"><span class="pre">[longitude,</span> <span class="pre">latitude]</span></code> coordinates for the state boundary.</p>
+<p>To learn more about the nitty-gritty details of GeoJSON, see the <a class="reference external" href="http://geojson.org/">official GeoJSON specification</a> or read <a class="reference external" href="https://macwright.org/2015/03/23/geojson-second-bite">Tom MacWright’s helpful primer</a>.</p>
+<p>One drawback of GeoJSON as a storage format is that it can be redundant, resulting in larger file sizes. Consider: Colorado shares boundaries with six other states (seven if you include the corner touching Arizona). Instead of using separate, overlapping coordinate lists for each of those states, a more compact approach is to encode shared borders only once, representing the <em>topology</em> of geographic regions. Fortunately, this is precisely what the <a class="reference external" href="https://github.com/topojson/topojson/blob/master/README.md">TopoJSON</a> format does!</p>
+<p>There is a list of There is a list of Countries often make geojson
+Countries often make geojson</p>
+<p>Let’s load a TopoJSON file of world countries (at 110 meter resolution):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">enable</span><span class="p">(</span><span class="s1">&#39;mimetype&#39;</span><span class="p">)</span>
+
+<span class="n">world</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">world_110m</span><span class="p">()</span>
+<span class="c1"># This is a large dictionary so we don&#39;t want to print out all the values</span>
+<span class="n">world</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;type&#39;, &#39;transform&#39;, &#39;objects&#39;, &#39;arcs&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">[</span><span class="s1">&#39;objects&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>dict_keys([&#39;land&#39;, &#39;countries&#39;])
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the data above, the <code class="docutils literal notranslate"><span class="pre">objects</span></code> property indicates the named elements we can extract from the data: geometries for all <code class="docutils literal notranslate"><span class="pre">countries</span></code>, or a single polygon representing all <code class="docutils literal notranslate"><span class="pre">land</span></code> on Earth. Either of these can be unpacked to GeoJSON data we can then visualize.</p>
+<p>As TopoJSON is a specialized format, we need to instruct Altair to parse the TopoJSON format, indicating which named faeture object we wish to extract from the topology. The following code indicates that we want to extract GeoJSON features from the <code class="docutils literal notranslate"><span class="pre">world</span></code> dataset for the <code class="docutils literal notranslate"><span class="pre">countries</span></code> object:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We need to use the url that points to the json format, not the dictionary</span>
+<span class="n">world_map</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">topo_feature</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">world_110m</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;countries&#39;</span><span class="p">)</span>
+<span class="n">world_map</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UrlData({
+  format: TopoDataFormat({
+    feature: &#39;countries&#39;,
+    type: &#39;topojson&#39;
+  }),
+  url: &#39;https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/world-110m.json&#39;
+})
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that we can load geographic data, we’re ready to start making maps!</p>
+<div class="section" id="geoshape-marks">
+<h3>Geoshape Marks<a class="headerlink" href="#geoshape-marks" title="Permalink to this headline">¶</a></h3>
+<p>To visualize geographic data, Altair provides the <code class="docutils literal notranslate"><span class="pre">geoshape</span></code> mark type. To create a basic map, we can create a <code class="docutils literal notranslate"><span class="pre">geoshape</span></code> mark and pass it our TopoJSON data, which is then unpacked into GeoJSON features, one for each country of the world:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># alt.Chart(alt.topo_feature(data.world_110m()[&#39;objects&#39;][&#39;caountries&#39;][&#39;geometries&#39;]).mark_geoshape()</span>
+<span class="c1"># alt.Chart(alt.Data(values=data.world_110m())).mark_geoshape()</span>
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">world_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_16_0.png" src="../_images/4-maps-deployment_16_0.png" />
+</div>
+</div>
+<p>In the example above, Altair applies a default blue color and uses a default map projection (<code class="docutils literal notranslate"><span class="pre">mercator</span></code>). We can customize the colors and boundary stroke widths using standard mark properties. Using the <code class="docutils literal notranslate"><span class="pre">project</span></code> method we can also add our own map projection (<a class="reference external" href="https://en.wikipedia.org/wiki/List_of_map_projections">there are many interesting map projections</a>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># https://en.wikipedia.org/wiki/Equal_Earth_projection</span>
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">world_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">(</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;#2a1d0c&#39;</span><span class="p">,</span> <span class="n">stroke</span><span class="o">=</span><span class="s1">&#39;#706545&#39;</span><span class="p">,</span> <span class="n">strokeWidth</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;equalEarth&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_18_0.png" src="../_images/4-maps-deployment_18_0.png" />
+</div>
+</div>
+<p>By default Altair automatically adjusts the projection so that all the data fits within the width and height of the chart. We can also specify projection parameters, such as <code class="docutils literal notranslate"><span class="pre">scale</span></code> (zoom level) and <code class="docutils literal notranslate"><span class="pre">translate</span></code> (panning), to customize the projection settings. Here we adjust the <code class="docutils literal notranslate"><span class="pre">scale</span></code> and <code class="docutils literal notranslate"><span class="pre">translate</span></code> parameters to focus on Europe:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">world_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">(</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;#2a1d0c&#39;</span><span class="p">,</span> <span class="n">stroke</span><span class="o">=</span><span class="s1">&#39;#706545&#39;</span><span class="p">,</span> <span class="n">strokeWidth</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;naturalEarth1&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">translate</span><span class="o">=</span><span class="p">[</span><span class="mi">140</span><span class="p">,</span> <span class="mi">610</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_20_0.png" src="../_images/4-maps-deployment_20_0.png" />
+</div>
+</div>
+<p>If we want information on regions within a country,
+we have to use a geo/topojson file that contains this info.
+There is already one in the vega demo datasets for the US,
+so let’s use that one.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_map</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">topo_feature</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">us_10m</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="s1">&#39;states&#39;</span><span class="p">)</span>
+
+<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_22_0.png" src="../_images/4-maps-deployment_22_0.png" />
+</div>
+</div>
+<p>This is not too useful on its own,
+it is very small and both Alaska and Hawaii
+are shown far away from the rest of the US.
+There is a special projection of America
+that is more ideal when only showing this country.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_24_0.png" src="../_images/4-maps-deployment_24_0.png" />
+</div>
+</div>
+<p>That looks better!</p>
+<p>We could make this into a heatmap
+by encoding the color to be a variable from the geojson.
+If we inspected the geojson table,
+we would find that it does contain the ID of each state
+in alphabetical order,
+so let’s use this for demo purposes.
+Because we are not using a pandas df,
+we mush specify the type of data in the column.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;id:Q&#39;</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_26_0.png" src="../_images/4-maps-deployment_26_0.png" />
+</div>
+</div>
+<p>This type of geographical heatmap is called a choropleth,
+and we will learn more about it later in this lecture.
+To color NANs in grey instead melting together with the background,
+see these links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/59223458/alt-condition-not-working-for-choropleth-missing-values-n-a">https://stackoverflow.com/questions/59223458/alt-condition-not-working-for-choropleth-missing-values-n-a</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/55229651/dealing-with-missing-values-nulls-in-altair-choropleth-map">https://stackoverflow.com/questions/55229651/dealing-with-missing-values-nulls-in-altair-choropleth-map</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/58698545/can-you-add-a-label-for-missing-data-to-a-legend-for-an-altair-chart">https://stackoverflow.com/questions/58698545/can-you-add-a-label-for-missing-data-to-a-legend-for-an-altair-chart</a></p></li>
+</ul>
+</div>
+<div class="section" id="linking-datasets-together-via-lookups">
+<h3>Linking datasets together via lookups<a class="headerlink" href="#linking-datasets-together-via-lookups" title="Permalink to this headline">¶</a></h3>
+<p>Although any arbitrary information could be put in a geojson file,
+they often only contain spatial coordinates
+and we need to link any variables of interest from another data set
+together with the json file.</p>
+<p>For example,
+we might have this table with the population for each state.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">state_pop</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">population_engineers_hurricanes</span><span class="p">()[[</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">]]</span>
+<span class="n">state_pop</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>id</th>
+      <th>population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>1</td>
+      <td>4863300</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>2</td>
+      <td>741894</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>4</td>
+      <td>6931071</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>5</td>
+      <td>2988248</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>6</td>
+      <td>39250017</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>So how do we link these two tables together?
+We could do it manually,
+possibly by using geopandas,
+but Altair also allows us to do it in the plot call itself
+by <em>looking up</em> the data in the other dataset
+via a shared key column.
+We have ID in alphabetical order,
+just like the geojson so let’s use this as the common column in the lookup.
+The columns we want to fetch from the dataframe are passed in a list,
+here it is only the population.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_31_0.png" src="../_images/4-maps-deployment_31_0.png" />
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">transform_lookup</span></code> is <a class="reference external" href="https://altair-viz.github.io/user_guide/transform/lookup.html">a one sided join similar to <code class="docutils literal notranslate"><span class="pre">pd.merge(how='left')</span></code>,
+which you can read more about in the Altair docs</a>.</p>
+</div>
+<div class="section" id="map-interactivity">
+<h3>Map interactivity<a class="headerlink" href="#map-interactivity" title="Permalink to this headline">¶</a></h3>
+<p>Let’s also set the tooltip so we can see which state has which name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">,</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span> <span class="s1">&#39;population:Q&#39;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_34_0.png" src="../_images/4-maps-deployment_34_0.png" />
+</div>
+</div>
+<p>We could add a selection do this map,
+the same way we learned in last lecture.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">()</span>
+
+<span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">map_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span> <span class="s1">&#39;population:Q&#39;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">map_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_36_0.png" src="../_images/4-maps-deployment_36_0.png" />
+</div>
+</div>
+<p>Let’s have the selection do something meaningful.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+
+<span class="n">choropleth</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">,</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">map_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span> <span class="s1">&#39;population:Q&#39;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">map_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_pop</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">map_click</span><span class="p">))</span>
+
+<span class="n">choropleth</span> <span class="o">&amp;</span> <span class="n">bars</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_38_0.png" src="../_images/4-maps-deployment_38_0.png" />
+</div>
+</div>
+<p>Let’s make the bars clickable also and add a splash of color to them.
+On the click even,
+we will set the stroke color of both the bars and the map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+<span class="n">bar_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+
+<span class="n">choropleth</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">)),</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">map_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span> <span class="s1">&#39;population:Q&#39;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">map_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_pop</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">)),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">bar_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">map_click</span><span class="p">))</span>
+
+<span class="n">choropleth</span> <span class="o">&amp;</span> <span class="n">bars</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_40_0.png" src="../_images/4-maps-deployment_40_0.png" />
+</div>
+</div>
+<p>One annoyance is that the outline of the map looks broken.
+This is because the outilne of the non-selected regions is drawn in white,
+and sometimes it is drawn on top of the black, covering it.
+What we really want is transparency!
+HTML colors can control transparency in the hex code directly,
+by setting two extra characters at the end.
+They range from <code class="docutils literal notranslate"><span class="pre">00</span></code> (transparent) to <code class="docutils literal notranslate"><span class="pre">ff</span></code> (opaque).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+<span class="n">bar_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+
+<span class="n">choropleth</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff00&#39;</span><span class="p">)),</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">map_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span> <span class="s1">&#39;population:Q&#39;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">map_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_pop</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff00&#39;</span><span class="p">)),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">bar_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">map_click</span><span class="p">))</span>
+
+<span class="n">choropleth</span> <span class="o">&amp;</span> <span class="n">bars</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_42_0.png" src="../_images/4-maps-deployment_42_0.png" />
+</div>
+</div>
+<p>Now we can always see the outline!</p>
+<p>Rather than clicking the bars,
+it would be cool if we could just hover over them
+to quicker see what is what in the plot.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+<span class="n">bar_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;mouseover&#39;</span><span class="p">)</span>
+
+<span class="n">choropleth</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff00&#39;</span><span class="p">)),</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">map_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span> <span class="s1">&#39;population:Q&#39;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">map_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_pop</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff00&#39;</span><span class="p">)),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">bar_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">map_click</span><span class="p">))</span>
+
+<span class="n">choropleth</span> <span class="o">&amp;</span> <span class="n">bars</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_44_0.png" src="../_images/4-maps-deployment_44_0.png" />
+</div>
+</div>
+<p>Neat!</p>
+<p>However,
+sometimes the map blinks and we see all borders, why?
+This happens when we transition from one bar to another
+and might hit a space between where our selection is cleared
+and everything is highlighted.
+To ensure that something is always highlighted,
+we can use the <code class="docutils literal notranslate"><span class="pre">nearest</span></code> parameter (on increase the bar width in this case).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">map_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">])</span>
+<span class="n">bar_click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">],</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span> <span class="n">nearest</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">choropleth</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">state_pop</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;population&#39;</span><span class="p">,</span> <span class="s1">&#39;state&#39;</span><span class="p">]))</span>
+<span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population:Q&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff00&#39;</span><span class="p">)),</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">map_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span> <span class="s1">&#39;population:Q&#39;</span><span class="p">])</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">map_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">))</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">state_pop</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;population&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">bar_click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;#ffffff00&#39;</span><span class="p">)),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;population&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">bar_click</span><span class="p">)</span>
+<span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">map_click</span><span class="p">))</span>
+
+<span class="n">choropleth</span> <span class="o">&amp;</span> <span class="n">bars</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_46_0.png" src="../_images/4-maps-deployment_46_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="a-note-on-choropleth-interpretation">
+<h3>A note on choropleth interpretation<a class="headerlink" href="#a-note-on-choropleth-interpretation" title="Permalink to this headline">¶</a></h3>
+<p>Although pretty,
+choropleth maps have the disadvantage of hiding regions that have small land areas,
+even when it is not relevant for the measurement that we are showing
+(some small states might have really high population density,
+but they would remain hidden in the choropleth map when we color by pop density).
+In the chart below we can see the result from a recent american election (2012).
+Just looking at this map,
+do you think it was an even race?</p>
+<p>Images from <a class="reference external" href="http://www-personal.umich.edu/~mejn/election/2012/">http://www-personal.umich.edu/~mejn/election/2012/</a></p>
+<p><img alt="" src="../_images/4.01.png" /></p>
+<p>It looks like it was pretty tight,
+but in fact it was a blowout.
+This is Obama’s 332-206 victory in 2012,
+but the map does not show 62% blue region,
+since it is scaled by land area,
+rather than scaled by votes.
+Maps scaled by other variables than area,
+are called cartograms,
+and there is one for the 2012 election.</p>
+<p><img alt="" src="../_images/4.02.png" /></p>
+<p>Now it looks more like an overwhelming blue victory.</p>
+<p>Another way to create cartograms is by pixelation:</p>
+<p>Images from <a class="reference external" href="https://www.ft.com/content/3685bf9e-a4cc-11e6-8b69-02899e8bd9d1">https://www.ft.com/content/3685bf9e-a4cc-11e6-8b69-02899e8bd9d1</a></p>
+<p><img alt="" src="../_images/4.03.png" /></p>
+<p>Or simply include a graphical mark such as a circle as the mean coordinates for each state
+and scaling it proportionally.
+This is a great visualization that is easy to interpret,
+and it could be overlayed a map if needed
+(sometimes it might still be hard to see big circles in small regions close together).</p>
+<p><img alt="" src="../_images/4.04.png" /></p>
+<p>Altair has <a class="reference external" href="https://altair-viz.github.io/gallery/airports_count.html">a nice example of dots overlaying a geoshape</a>
+and a <a class="reference external" href="https://altair-viz.github.io/gallery/airport_connections.html">cool interactive version showing all airport connections</a>.
+To make sure the marks line up with the underlying map
+even when the projection changes,
+we need to use the <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and <code class="docutils literal notranslate"><span class="pre">latitude</span></code> parameters
+rather than <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>
+as seen in this example from the Altair docs</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">airports</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">airports</span><span class="o">.</span><span class="n">url</span>
+<span class="n">states</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">topo_feature</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">us_10m</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">feature</span><span class="o">=</span><span class="s1">&#39;states&#39;</span><span class="p">)</span>
+
+<span class="c1"># US states background</span>
+<span class="n">background</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">(</span>
+    <span class="n">fill</span><span class="o">=</span><span class="s1">&#39;lightgray&#39;</span><span class="p">,</span>
+    <span class="n">stroke</span><span class="o">=</span><span class="s1">&#39;white&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">300</span>
+<span class="p">)</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;albersUsa&#39;</span><span class="p">)</span>
+
+<span class="c1"># This `transform_aggregate` step could have been performed in pandas instead</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">airports</span><span class="p">)</span><span class="o">.</span><span class="n">transform_aggregate</span><span class="p">(</span>
+    <span class="n">latitude</span><span class="o">=</span><span class="s1">&#39;mean(latitude)&#39;</span><span class="p">,</span>
+    <span class="n">longitude</span><span class="o">=</span><span class="s1">&#39;mean(longitude)&#39;</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
+    <span class="n">groupby</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">longitude</span><span class="o">=</span><span class="s1">&#39;longitude:Q&#39;</span><span class="p">,</span>
+    <span class="n">latitude</span><span class="o">=</span><span class="s1">&#39;latitude:Q&#39;</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Size</span><span class="p">(</span><span class="s1">&#39;count:Q&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Number of Airports&#39;</span><span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;steelblue&#39;</span><span class="p">),</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;state:N&#39;</span><span class="p">,</span><span class="s1">&#39;count:Q&#39;</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Number of airports in US&#39;</span>
+<span class="p">)</span>
+
+<span class="n">background</span> <span class="o">+</span> <span class="n">points</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_49_0.png" src="../_images/4-maps-deployment_49_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="a-dataset-with-ids-for-all-the-world-s-countries">
+<h3>A dataset with IDs for all the world’s countries<a class="headerlink" href="#a-dataset-with-ids-for-all-the-world-s-countries" title="Permalink to this headline">¶</a></h3>
+<p>The world geojson file contains the ID of each geometry,
+similar to the US states data.
+However,
+we need a dataset that links these IDs to country names,
+and there is none in the vega_datasets repo.
+I have uploaded one to the <code class="docutils literal notranslate"><span class="pre">data</span></code> folder of the 532 github repo that you can use
+(<a class="reference external" href="https://raw.githubusercontent.com/KoGor/Map-Icons-Generator/master/data/world-110m-country-names.tsv">originally from here</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">country_ids</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/country-ids.csv&#39;</span><span class="p">)</span> 
+<span class="n">country_ids</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>Afghanistan</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>8</td>
+      <td>Albania</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12</td>
+      <td>Algeria</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>24</td>
+      <td>Angola</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>Antarctica</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">world_map</span><span class="p">)</span><span class="o">.</span><span class="n">mark_geoshape</span><span class="p">()</span><span class="o">.</span><span class="n">transform_lookup</span><span class="p">(</span>
+    <span class="n">lookup</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span>
+    <span class="n">from_</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">LookupData</span><span class="p">(</span><span class="n">country_ids</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]))</span>
+ <span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;name:O&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;id:Q&#39;</span><span class="p">)</span>
+ <span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;equalEarth&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">90</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4-maps-deployment_52_0.png" src="../_images/4-maps-deployment_52_0.png" />
+</div>
+</div>
+<p>Unless you have previous experience with geojson,
+I advice against trying to merge geojson files
+to create a custom file with only your countries of interest.
+At least in my testing,
+this was not very straightfoward,
+and it is easier to just use one country with regions inside it,
+or the world with countries instead of regions.
+If you are interested in trying or looking at geojsons
+for countries other than the US,
+look into the following resources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/topojson/world-atlas">https://github.com/topojson/world-atlas</a></p></li>
+<li><p><a class="reference external" href="https://github.com/topojson/us-atlas">https://github.com/topojson/us-atlas</a></p></li>
+<li><p><a class="reference external" href="https://geojson-maps.ash.ms/">https://geojson-maps.ash.ms/</a></p></li>
+<li><p><a class="reference external" href="https://funkeinteraktiv.github.io/geo-data-merger/">https://funkeinteraktiv.github.io/geo-data-merger/</a></p></li>
+<li><p><a class="reference external" href="http://code.highcharts.com/mapdata/">http://code.highcharts.com/mapdata/</a></p></li>
+<li><p><a class="reference external" href="https://gadm.org/download_country_v3.html">https://gadm.org/download_country_v3.html</a></p></li>
+<li><p><a class="reference external" href="http://www.naturalearthdata.com/downloads/">http://www.naturalearthdata.com/downloads/</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mapbox/geojson-merge">https://github.com/mapbox/geojson-merge</a></p></li>
+<li><p><a class="reference external" href="https://mapshaper.org/">https://mapshaper.org/</a></p></li>
+</ul>
+<p>Lastly,
+here is a cool visualization of all the countries in the world ordered by area: <a class="reference external" href="https://www.jasondavies.com/maps/countries-by-area/">https://www.jasondavies.com/maps/countries-by-area/</a></p>
+</div>
+</div>
+<div class="section" id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h2>
+<p>These lecture notes were prepared by Dr. Joel Ostblom, a post-doctoral teaching fellow in the UBC Vancouver MDS program.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./ref_material"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+    All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</div>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

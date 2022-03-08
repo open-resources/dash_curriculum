@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 5 - App Deployment &#8212; Dash Tutorial</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://github.com/open-resources/dash_curriculum/part1/chapter5.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Summary" href="../part2/summary.html" />
+    <link rel="prev" title="Chapter 4: Linking Dash components" href="chapter4.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dashboard.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Dash Tutorial</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/about.html">
+   About this Project
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preface
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/what.html">
+   What
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/personas.html">
+   Personans
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/how.html">
+   How
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/who.html">
+   Who
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installation Stack
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/chapter0/chapter0.html">
+   Chapter 0 - Set up and Tech stack
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 1. Introduction to Dashboards in Dash
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter1.html">
+   Chapter 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter2_Gab.html">
+   Chapter 2: Getting Started with Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter3.html">
+   Chapter 3 - Dash Components and Layouts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter4.html">
+   Chapter 4: Linking Dash components
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Chapter 5 - App Deployment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 2. Data Visualization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter6.html">
+   Chapter 6
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter7.html">
+   Chapter 7
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter8.html">
+   Chapter 8
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 3. Polishing your Dash application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter9.html">
+   Chapter 9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter10.html">
+   Chapter 10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter11.html">
+   Chapter 11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part3/chapter12.html">
+   Chapter 12
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 4. Publishing your Dash Application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter13.html">
+   Chapter 13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter14.html">
+   Chapter 14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter15.html">
+   Chapter 15
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/part1/chapter5.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart1/chapter5.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turn-off-debugging-mode">
+     Turn off Debugging mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heroku-cli-section-figure-out-best-way-to-order-this-install-cli-first-or-login-with-browser-first-with-note-that-login-command-will-take-you-there-also">
+     Heroku CLI section –figure out best way to order this (install CLI first or login with browser first with note that login command will take you there also)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outcome">
+   Outcome
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Chapter 5 - App Deployment</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#instructions">
+   Instructions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#turn-off-debugging-mode">
+     Turn off Debugging mode
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#heroku-cli-section-figure-out-best-way-to-order-this-install-cli-first-or-login-with-browser-first-with-note-that-login-command-will-take-you-there-also">
+     Heroku CLI section –figure out best way to order this (install CLI first or login with browser first with note that login command will take you there also)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outcome">
+   Outcome
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-5-app-deployment">
+<h1>Chapter 5 - App Deployment<a class="headerlink" href="#chapter-5-app-deployment" title="Permalink to this headline">¶</a></h1>
+<p>Start with this skeleton app from Chapter 4.</p>
+<hr class="docutils" />
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter you will learn how to deploy your Dash application to the web publicly so you can share it with your friends. This example uses a Heroku account and Git.</p>
+<p><strong>Heroku</strong> is a platform as a service (PaaS) that supports Python where you can deploy and manage public Dash applications. Heroku uses containers called “dynos” to deploy your app by packaging its code and dependencies and executing it in a virtualized environment in a way that’s scalable according to the changing resource needs of your application.</p>
+<p>It’s free to create a Heroku user account, and a Free tier is available for a basic app. Additional tier options support the needs of more complex apps or those requiring additional memory (RAM), and you can read more about <a class="reference external" href="https://www.heroku.com/pricing">Heroku pricing</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{note}</span> <span class="pre">Make</span> <span class="pre">sure</span> <span class="pre">you</span> <span class="pre">have</span> <span class="pre">set</span> <span class="pre">up</span> <span class="pre">Git</span> <span class="pre">version</span> <span class="pre">control</span> <span class="pre">on</span> <span class="pre">your</span> <span class="pre">project</span> <span class="pre">folder</span> <span class="pre">directory</span> <span class="pre">by</span> <span class="pre">following</span> <span class="pre">those</span> <span class="pre">steps</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">Stack</span> <span class="pre">Installation</span> <span class="pre">chapter,</span> <span class="pre">and</span> <span class="pre">that</span> <span class="pre">you've</span> <span class="pre">successfully</span> <span class="pre">tested</span> <span class="pre">your</span> <span class="pre">Dash</span> <span class="pre">app</span> <span class="pre">locally</span> <span class="pre">on</span> <span class="pre">your</span> <span class="pre">computer.</span></code></p>
+</div>
+<hr class="docutils" />
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="turn-off-debugging-mode">
+<h3>Turn off Debugging mode<a class="headerlink" href="#turn-off-debugging-mode" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Open your <a class="reference external" href="http://app.py">app.py</a> script file and turn off the interactive debugging mode by changing your <a class="reference external" href="http://app.py">app.py</a> run statement to <code class="docutils literal notranslate"><span class="pre">debug=FALSE</span></code>.</p></li>
+</ol>
+<p>(code detail here)</p>
+<ol class="simple">
+<li><p>Save and close <a class="reference external" href="http://app.py">app.py</a>.</p></li>
+</ol>
+</div>
+<div class="section" id="heroku-cli-section-figure-out-best-way-to-order-this-install-cli-first-or-login-with-browser-first-with-note-that-login-command-will-take-you-there-also">
+<h3>Heroku CLI section –figure out best way to order this (install CLI first or login with browser first with note that login command will take you there also)<a class="headerlink" href="#heroku-cli-section-figure-out-best-way-to-order-this-install-cli-first-or-login-with-browser-first-with-note-that-login-command-will-take-you-there-also" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Setup or log into a Heroku user account.</p>
+<ol class="simple">
+<li><p>From a web browser, <a class="reference external" href="https://signup.heroku.com/dc">sign up</a> or <a class="reference external" href="https://id.heroku.com/login">log in</a> if you have an existing account.</p></li>
+<li><p>Verify your identity for security purposes using one of Heroku’s available verifaction methods.</p></li>
+<li><p>This takes you to your user account dashboard.</p></li>
+</ol>
+</li>
+<li><p>Setup the Heroku Command Line Interface CLI.</p>
+<ol class="simple">
+<li><p>Install Heroku CLI for your platform (macOS, Windows, or Ubuntu).</p></li>
+<li><p>From your command shell, use the <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code> command to log in to the Heroku CLI.</p></li>
+</ol>
+</li>
+<li><p>Install the additional dependency <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> production server for Python web applications.</p>
+<ol class="simple">
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">gunicorn</span></code> command.</p></li>
+</ol>
+</li>
+<li><p>Prepare the necessary additional files for deployment.</p>
+<ol class="simple">
+<li><p>A Procfile <em>without a file extension</em> with <code class="docutils literal notranslate"><span class="pre">web:</span> <span class="pre">gunicorn</span> <span class="pre">app:server</span></code> in it on a single line.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file describing your Python dependencies. Be sure gunicorn now also appears in this file. (add quickest way to add only the few packages we need, since we will not use a virtual environment up to this chapter, so we don’t want to use pip freeze)
+(move this to a later chapter for full web deployment: Create this automatically with the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></code>.</p></li>
+</ol>
+</li>
+<li><p>Initialize Heroku, add files to Git, and deploy. (add details)</p></li>
+</ol>
+<p>You should now be able to view your app at <code class="docutils literal notranslate"><span class="pre">http://my-dash-app.herokuapp.com</span></code> (changing <code class="docutils literal notranslate"><span class="pre">my-dash-app</span></code> to the name of your app.</p>
+<ol class="simple">
+<li><p>Fix errors.
+(add details about common deployment errors for example app, i.e. forgetting to add a package dependency in your requirements file.)</p></li>
+</ol>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="outcome">
+<h2>Outcome<a class="headerlink" href="#outcome" title="Permalink to this headline">¶</a></h2>
+<p>When you’ve completed this chapter, your app should be visible on the web by anyone with its URL link.</p>
+<p>It should look like this.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./part1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="chapter4.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 4: Linking Dash components</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../part2/summary.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summary</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+    All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</div>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
