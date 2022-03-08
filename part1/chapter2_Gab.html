@@ -369,6 +369,31 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-a-dash-app">
+   Structure of a Dash App
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-packages">
+     Import packages
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -381,6 +406,31 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-a-dash-app">
+   Structure of a Dash App
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-packages">
+     Import packages
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -389,14 +439,10 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-2-getting-started-with-dash">
 <h1>Chapter 2: Getting Started with Dash<a class="headerlink" href="#chapter-2-getting-started-with-dash" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>Structure of a Dash App</p>
-<ul>
-<li><p>Dash apps are rendered and displayed inside a web browser.</p></li>
-<li><p>The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. Let’s take a simple Dash App example:</p></li>
-</ul>
-</li>
-</ul>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<p>This chapter sets the basis to create Dash Applications. Starting from a simple example, the structure of a Dash app will be explained.
+By the end of the chapter, you’ll be able to understand the following code and launch your first Dash App:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (1) Required Python Libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -422,6 +468,22 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><span class="xref myst">Download the code</span></p>
+</div>
+<div class="section" id="structure-of-a-dash-app">
+<h2>Structure of a Dash App<a class="headerlink" href="#structure-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
+<p>The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app.
+In a Dash App we can find the following sections:</p>
+<ol class="simple">
+<li><p>Import packages</p></li>
+<li><p>Prepare Data</p></li>
+<li><p>Initialise the App</p></li>
+<li><p>Structure the App Layout</p></li>
+<li><p>Configure Callbacks</p></li>
+<li><p>Run the App</p></li>
+</ol>
+<div class="section" id="import-packages">
+<h3>Import packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>As you can see in the code above, we can divide the app into 6 sections:</p></li>
 </ul>
@@ -476,6 +538,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Try to change the title of your App</p></li>
 <li><p>Try to change the scatter plot into a barchart (add a “tip” to link it with the documentation)</p></li>
 </ul>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

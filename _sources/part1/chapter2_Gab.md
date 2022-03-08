@@ -1,8 +1,8 @@
 # Chapter 2: Getting Started with Dash
 
-- Structure of a Dash App
-  - Dash apps are rendered and displayed inside a web browser.
-  - The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. Let's take a simple Dash App example:
+## What you will learn
+This chapter sets the basis to create Dash Applications. Starting from a simple example, the structure of a Dash app will be explained.
+By the end of the chapter, you'll be able to understand the following code and launch your first Dash App:
 
 ```
 # (1) Required Python Libraries
@@ -29,6 +29,26 @@ app.layout =html.Div([
 if __name__ == '__main__':
     app.run_server()
 ```
+
+[Download the code](www.com)
+
+## Structure of a Dash App
+The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. 
+In a Dash App we can find the following sections:
+1) Import packages
+2) Prepare Data
+3) Initialise the App
+4) Structure the App Layout
+5) Configure Callbacks
+6) Run the App
+
+### Import packages
+
+
+
+
+
+
 
   - As you can see in the code above, we can divide the app into 6 sections:
 1) Dash apps require some libraries to run, the first statement is importing them
