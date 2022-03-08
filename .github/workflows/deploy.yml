@@ -40,9 +40,6 @@ jobs:
     - name: Build the book
       run: |
         jupyter-book build tutorial/
-        rm -rf docs/*
-        cp -r tutorial/_build/html/* docs/
-        touch docs/.nojekyll
         
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
