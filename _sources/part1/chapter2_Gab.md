@@ -1,7 +1,7 @@
 # Chapter 2: Getting Started with Dash
 
 - Structure of a Dash App
-  - Dash apps are rendered and displayed in a web browser.
+  - Dash apps are rendered and displayed inside a web browser.
   - The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. Let's take a simple Dash App example:
 
 ```
