@@ -2,7 +2,7 @@
 ## What you will learn
 
 In this chapter we will explore Dash various **components** and how to position them with **layout** as well as add styling with **CSS**\
-[p1c3_start.py](../assets/p1c3/p1c3_start.py)\
+[p1c3_start.py](../assets/p1c3/p1c2_end.py)\
 [p1c3_end.py](../assets/p1c3/p1c3_end.py)
 
 
