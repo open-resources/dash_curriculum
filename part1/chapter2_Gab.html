@@ -633,17 +633,18 @@ Callbacks will be covered in chapter 4.</p>
 [.jpg with the error message appearing when two apps are simultaneously launched]</p></li>
 <li><p>Update the app: whenever we apply any change the app code, we may re-launch the app to display the new version of the code. A quicker alternative can be to activate the “live updating”. Live update will refresh the app, from the browser, as you apply any modification to the corresponding .py file. In order to activate this functionality, the statement to Launch the server should be modified to:</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (6) Server Launch</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">{attention}</span> <span class="pre">Make</span> <span class="pre">sure</span> <span class="pre">the</span> <span class="pre">live</span> <span class="pre">updating</span> <span class="pre">mode</span> <span class="pre">is</span> <span class="pre">deactivated</span> <span class="pre">(debug=False)</span> <span class="pre">before</span> <span class="pre">releasing/deploying</span> <span class="pre">the</span> <span class="pre">App.</span> <span class="pre">It</span> <span class="pre">is</span> <span class="pre">best</span> <span class="pre">practice</span> <span class="pre">to</span> <span class="pre">deactivate</span> <span class="pre">the</span> <span class="pre">debug</span> <span class="pre">mode,</span> <span class="pre">once</span> <span class="pre">the</span> <span class="pre">App</span> <span class="pre">is</span> <span class="pre">finalised.</span> </code></p>
-<p>? (i.e. what happens if you have a syntax error and your app crashes)  - <em>error message if something is missing (example where we didn’t import html)</em></p>
-<p>Now that you know how to launch your first basic App, try to play around with it:</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised</p>
+</div>
+<p>Now that you know how to create and launch your first basic App, try to play around with it:</p>
 <ul class="simple">
-<li><p>Try to change the title of your App</p></li>
-<li><p>Try to change the scatter plot into a barchart (add a “tip” to link it with the documentation)</p></li>
+<li><p>Try to change the content of your first Markdown of your App</p></li>
+<li><p>Try to add a new Markdown with a custom content</p></li>
 </ul>
 </div>
 </div>
