@@ -16,9 +16,8 @@ import dash_bootstrap_components as dbc
 app = Dash(__name__)
 
 # (4) App Layout --------------------------------------------
-app.layout =html.Div([
-    html.Div(id='our-title', children='My First App', style={'textAlign': 'center'}),
-    dcc.Graph(id='our-graph', figure=px.scatter(data_frame=df, x='sepal_length', y='petal_length'))
+app.layout = dbc.Container([
+    dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
 ])
 
 # (5) Configure Callbacks --------------------------------------------
@@ -32,6 +31,8 @@ if __name__ == '__main__':
 
 [Download the code](www.com)
 
+---
+
 ## Structure of a Dash App
 The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. The recommended Dash App structure consists in  the following sections, that will be explained below:
 1) Import packages
@@ -41,51 +42,60 @@ The are best practices to structure Dash Applications. Following such best pract
 5) Configure Callbacks
 6) Run the App
 
+This structure is an initial template that can be used as a starting point for your dashboard.
+
 ### (1) Import packages
 ```
 from dash import Dash
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 ```
-Dash apps require some libraries to run, this statement is importing them.
+Dash apps require some libraries to run, this statement is importing them. Let's examine each library, one by one:
 - Dash is the framework which is required to develop the App
 > Dash is a python framework created by Plotly for creating interactive web applications. Dash is written on the top of Flask, Plotly. js and React. js.
 - dash_core_components module gives access to many interactive components that will be added to the App and introduced in Chapter 3.
 - Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.
 
 ### (2) Prepare Data
-Data is normally created / imported in a global section of the app, so that the whole code we'll develop can refer to and use it.
-You may want to add to section 1 dedicated libraries for data wrangling (importing pandas, numpy, etc.)
+Data is normally created / imported in a global section of the app. In this way, the whole code can refer to and use it.
+If you plan to perform any data wrangling tasks, you may want to add to section 1 dedicated libraries (import pandas as pd, ...)
 
 ### (3) Initialise the App
 ```
 app = Dash(__name__)
 ```
 In this section, we initialise an app by creating a Dash instance and calling it "app".
-This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll need to specify more parameters to create more complex apps. 
+This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll need to specify more properties to create more complex apps (e.g. point at CSS files). 
 
 ### (4) App Layout
+```
+app.layout = dbc.Container([
+    dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
+])
+```
+The app layout contains the structure of the app.
+There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container".
+In this simple example one single component was added and that's a "Markdown" which is a text components, allowing to encapsulate different text styles.
+This component has been customised with three properties:
+- id : every component has an id which is uniquely identifying it (your App may have many "Markdown", the id helps differenciating them).
+- children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the "My First App" will be the content displayed inside the component.
+- style : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary and in this case, a center alignment was set.
 
+### (5) Configure Callbacks
+Callbacks define the user interaction with the dashboard, e.g. we can create a callback to define how a filter should affect a chart.
+Callbacks will be covered in chapter 4.
 
+### (6) Run the App
+```
+if __name__ == '__main__':
+    app.run_server()
+```
+In order to display the app through the browser, we add these statements to "Launch the server". This section is pretty much static and fixed for any Dash app you may create.
 
+Once we have the full code ready and saved in a .py file, we need to launch it:
+[.gif on how to launch the code via .py and what is displayed in the terminal output]
 
-  - As you can see in the code above, we can divide the app into 6 sections:
-1) Dash apps require some libraries to run, the first statement is importing them
-2) Data is normally created / imported in a global section so that the whole App can use it as needed
-3) In this section, we initialise an app. This one row is pretty much static and fixed for any Dash app you may create.
-4) The app layout contains the structure of the app. There are a lot of elements that you can include in the app layout, normally they are encapsulated into html.Div() sections (within a "div" it is possible to specify its title (e.g. chiltren='My First App') and many other properties). In this example, we added a scatter plot: to add a figure, we call dcc (which stands for "Dash Core Components") and then specify which figure we want to use. (Chapter 3 will go through all the components)
-5) Callbacks define the user interaction with the dashboard, e.g. defines what a filter does on a chart. (These elements will be covered in chapter 4)
-6) In order to display the app, we add these statements to Launch the server. This section is pretty much static and fixed for any Dash app you may create.
-  - More complete app will include more sections: such as .css files (covered in Chapter 3).
-  - This is an initial template that can be used as a starting point for your dashboard. 
-
-
-Once we have a code ready, we need to launch the corresponding .py file in the following way:
-- How to run the python file (via VS code)
-- [add screenshot in VS code (.gif)]
-- [add screenshot of final output (.jpg)]
-
-After launching the app, we have two outputs:
+After launching the app, we will see a console output that doesn't look as our Dash app:
 - The console will show the following message
 ```
 Dash is running on http://127.0.0.1:8050/
@@ -96,11 +106,17 @@ Dash is running on http://127.0.0.1:8050/
    Use a production WSGI server instead.
  * Debug mode: off
 ```
-- In order to display the app, open the browser and navigate to the URL shown in the console: http://127.0.0.1:8050/
+- In order to display the app, open the browser and navigate to the URL shown in the console, in this case: http://127.0.0.1:8050/
 
+[.jpg with the App output]
+
+---
+
+## Interacting with the App
 Once the app is launched and working, we can:
-  - Stop the app: type (Ctrl+C) on the console and this will stop the app. ( ? and why you should)
-  - Update the app: once we change the app code, we may re-launch the app to display the new version of the code or activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification on the .py file. In order to activate this functionality, the statement to Launch the server should be modified to:
+  - Stop the app: typing (Ctrl+C) on the console will stop the app. This is sometimes required as one App per port can be launched: if we forgot to stop the app and we launch a different app, an error message will be displayed.
+[.jpg with the error message appearing when two apps are simultaneously launched]
+  - Update the app: whenever we apply any change the app code, we may re-launch the app to display the new version of the code. A quicker alternative can be to activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification to the corresponding .py file. In order to activate this functionality, the statement to Launch the server should be modified to:
 ```
 # (6) Server Launch
 if __name__ == '__main__':
