@@ -24,7 +24,8 @@ checklist1 = dcc.Checklist(
                     {'label': 'New York City', 'value': 'NYC'},
                     {'label': 'Montreal', 'value': 'MTL'},
                     {'label': 'San Francisco', 'value': 'SF'},
-                ]
+                ],
+                value="SF"
             )
                 
 # Add components to app layout
@@ -40,9 +41,53 @@ if __name__ == '__main__':
 **Insert picture of checklist and button together**
 
 Next, let's add a **dropdown** 
+```python
+# Import required Python libraries
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Create the Dash app object
+app = Dash(__name__)
+
+# Create app components
+button = html.Button("Button 1", id="button")
+
+checklist = dcc.Checklist(
+                id="checklist",
+                options=[
+                    {'label': 'New York City', 'value': 'NYC'},
+                    {'label': 'Montreal', 'value': 'MTL'},
+                    {'label': 'San Francisco', 'value': 'SF'},
+                ],
+                value="SF"
+            )
+            
+dropdown = dcc.Dropdown(
+              id='dropdown',              
+              options=[
+              {'label': 'New York City', 'value': 'NYC'},
+              {'label': 'Montreal', 'value': 'MTL'},
+              {'label': 'San Francisco', 'value': 'SF'},
+              ],
+              value="NYC"
+          )
+
+# Add components to app layout
+app.layout = dbc.Container([
+                button,
+                checklist,
+                dropdown
+])
+
+# Launch app
+if __name__ == '__main__':
+    app.run_server()
+```
+**Add picture of app with components up to dropdown**
 
 
-slider
+
+Next, let's add a **slider** 
 
 ## Dash Layout
 Dash applications are comprised of 2 parts:
