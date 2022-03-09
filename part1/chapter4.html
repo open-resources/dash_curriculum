@@ -536,7 +536,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ol>
 <p>The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.</p>
 <blockquote>
-<div><p>In order to build more complex applications with Dash later we will introduce a third argument called State. Also the argument Input can take on different components.</p>
+<div><p>In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.</p>
 </div></blockquote>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
@@ -556,9 +556,8 @@ const thebe_selector_output = ".output, .cell_output"
 </ol>
 <p>The callback function makes up the second part of the callback and is itself composed into three different parts:</p>
 <ul class="simple">
-<li><p>The function argument
-The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p></li>
-<li><p>The function body</p></li>
+<li><p>The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p></li>
+<li><p>The function body: The function body is the place where you can work with the input data to build graphs and manipulate app data.</p></li>
 <li><p>The return or output of the function</p></li>
 </ul>
 </div>
