@@ -443,12 +443,39 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="dash-components">
 <h2>Dash Components<a class="headerlink" href="#dash-components" title="Permalink to this headline">¶</a></h2>
-<p>First, we will add some popular Dash components to our app.</p>
-<p>Markdown</p>
-<p>Dropdown</p>
-<p>check box</p>
+<p>First, we’ll start with the previous app which <em>created and used a button</em> and add a checklist to it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import required Python libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Create the Dash app object</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">button1</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button 1&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;button1&quot;</span><span class="p">)</span>
+
+<span class="n">checklist1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">(</span>
+                <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+                    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;NYC&#39;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Montreal&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;MTL&#39;</span><span class="p">},</span>
+                    <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;SF&#39;</span><span class="p">},</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
+                
+<span class="c1"># Add components to app layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+                <span class="n">button1</span><span class="p">,</span>
+                <span class="n">checklist1</span>
+<span class="p">])</span>
+
+<span class="c1"># Launch app</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Insert picture of checklist and button together</strong></p>
+<p>Next, let’s add a <strong>dropdown</strong></p>
 <p>slider</p>
-<p>button</p>
 </div>
 <div class="section" id="dash-layout">
 <h2>Dash Layout<a class="headerlink" href="#dash-layout" title="Permalink to this headline">¶</a></h2>
