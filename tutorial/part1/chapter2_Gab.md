@@ -118,15 +118,15 @@ Once the app is launched and working, we can:
 [.jpg with the error message appearing when two apps are simultaneously launched]
   - Update the app: whenever we apply any change the app code, we may re-launch the app to display the new version of the code. A quicker alternative can be to activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification to the corresponding .py file. In order to activate this functionality, the statement to Launch the server should be modified to:
 ```
-# (6) Server Launch
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-```{attention} Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised. ```
 
-? (i.e. what happens if you have a syntax error and your app crashes)  - _error message if something is missing (example where we didn't import html)_
+```{attention} Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised
+```
 
 
-Now that you know how to launch your first basic App, try to play around with it:
-- Try to change the title of your App
-- Try to change the scatter plot into a barchart (add a "tip" to link it with the documentation)
+
+Now that you know how to create and launch your first basic App, try to play around with it:
+- Try to change the content of your first Markdown of your App
+- Try to add a new Markdown with a custom content
