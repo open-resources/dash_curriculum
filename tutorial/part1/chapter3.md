@@ -1,9 +1,24 @@
 # Chapter 3 - Dash Components and Layouts
 ## What you will learn
 
-In this chapter we will explore Dash various **components** and how to position them with **layout** as well as add styling with **CSS**
-[p1c3_start.py](../assets/p1c3/p1c3_start.py)
+In this chapter we will explore Dash various **components** and how to position them with **layout** as well as add styling with **CSS**\
+[p1c3_start.py](../assets/p1c3/p1c3_start.py)\
 [p1c3_end.py](../assets/p1c3/p1c3_end.py)
+
+
+## Dash Components
+First, we will add some popular Dash components to our app. 
+
+Markdown
+
+Dropdown
+
+check box
+
+slider
+
+button
+
 
 ## Dash Layout
 Dash applications are comprised of 2 parts:
