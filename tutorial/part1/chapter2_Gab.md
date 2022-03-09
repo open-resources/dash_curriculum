@@ -29,7 +29,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-[Download the code](www.com)
+[Download the code](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/chapter2_app.py)
 
 ---
 
