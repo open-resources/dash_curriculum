@@ -5,14 +5,14 @@ This chapter sets the basis to create Dash Applications. Starting from a simple 
 By the end of the chapter, you'll be able to understand the following code and launch your first Dash App:
 
 ```
-# (1) Required Python Libraries
-from dash import Dash, html, dcc, Output, Input
-import plotly.express as px
+# (1) Import packages --------------------------------------------
+from dash import Dash
+import dash_core_components as dcc
+import dash_bootstrap_components as dbc
 
-# (2) App Data
-df = px.data.iris()
+# (2) Prepare Data --------------------------------------------
 
-# (3) App object --------------------------------------------
+# (3) Initialise the App --------------------------------------------
 app = Dash(__name__)
 
 # (4) App Layout --------------------------------------------
@@ -21,11 +21,11 @@ app.layout =html.Div([
     dcc.Graph(id='our-graph', figure=px.scatter(data_frame=df, x='sepal_length', y='petal_length'))
 ])
 
-# (5) App Callback
+# (5) Configure Callbacks --------------------------------------------
 #@app.callback(...)
 
 
-# (6) Server Launch
+# (6) Run the App --------------------------------------------
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -33,19 +33,38 @@ if __name__ == '__main__':
 [Download the code](www.com)
 
 ## Structure of a Dash App
-The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. 
-In a Dash App we can find the following sections:
+The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. The recommended Dash App structure consists in  the following sections, that will be explained below:
 1) Import packages
 2) Prepare Data
 3) Initialise the App
-4) Structure the App Layout
+4) App Layout
 5) Configure Callbacks
 6) Run the App
 
-### Import packages
+### (1) Import packages
+```
+from dash import Dash
+import dash_core_components as dcc
+import dash_bootstrap_components as dbc
+```
+Dash apps require some libraries to run, this statement is importing them.
+- Dash is the framework which is required to develop the App
+> Dash is a python framework created by Plotly for creating interactive web applications. Dash is written on the top of Flask, Plotly. js and React. js.
+- dash_core_components module gives access to many interactive components that will be added to the App and introduced in Chapter 3.
+- Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.
 
+### (2) Prepare Data
+Data is normally created / imported in a global section of the app, so that the whole code we'll develop can refer to and use it.
+You may want to add to section 1 dedicated libraries for data wrangling (importing pandas, numpy, etc.)
 
+### (3) Initialise the App
+```
+app = Dash(__name__)
+```
+In this section, we initialise an app by creating a Dash instance and calling it "app".
+This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll need to specify more parameters to create more complex apps. 
 
+### (4) App Layout
 
 
 
