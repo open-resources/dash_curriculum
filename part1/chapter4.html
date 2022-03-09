@@ -369,6 +369,58 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-decorators-in-python">
+   Introduction to decorators in Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-app-callbacks">
+   Structure of app callbacks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#structure-of-dash-callback-decorator">
+     Structure of Dash callback decorator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#structure-of-dash-callback-function">
+     Structure of Dash callback function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#callbacks-in-action">
+   Callbacks in action
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
+     Change a graph by dropdown
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
+     Change a markdown by dropdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -381,6 +433,58 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction-to-decorators-in-python">
+   Introduction to decorators in Python
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-app-callbacks">
+   Structure of app callbacks
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#structure-of-dash-callback-decorator">
+     Structure of Dash callback decorator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#structure-of-dash-callback-function">
+     Structure of Dash callback function
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#callbacks-in-action">
+   Callbacks in action
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
+     Change a graph by dropdown
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
+     Change a markdown by dropdown
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -389,17 +493,59 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-4-linking-dash-components">
 <h1>Chapter 4: Linking Dash components<a class="headerlink" href="#chapter-4-linking-dash-components" title="Permalink to this headline">¶</a></h1>
-<ol class="simple">
-<li><p>Introduction to decorators in Python</p>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<p>After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the look of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.</p>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
+<ul class="simple">
+<li><p>Decorators in Python</p></li>
+<li><p>Structure of callbacks</p></li>
+<li><p>Simple examples for callbacks</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="introduction-to-decorators-in-python">
+<h2>Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
 <li><p>what are the advantages of decorators and basic structure</p></li>
 </ol>
-</li>
+</div>
+<div class="section" id="structure-of-app-callbacks">
+<h2>Structure of app callbacks<a class="headerlink" href="#structure-of-app-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (1) Callback decorator</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-comp-out&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;prop-out&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-comp-in&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;prop-in&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># (2) Callback function</span>
+<span class="k">def</span> <span class="nf">function_output</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">output</span>
+</pre></div>
+</div>
+<div class="section" id="structure-of-dash-callback-decorator">
+<h3>Structure of Dash callback decorator<a class="headerlink" href="#structure-of-dash-callback-decorator" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
 <li><p>Structure of a Dash callback decorator (*copy simple app from chapter 2 to refer to its callback here)</p>
 <ol class="simple">
 <li><p>Decorator arguments: Output, Input, component_id, component_property</p></li>
 </ol>
 </li>
+</ol>
+<p>The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.</p>
+<blockquote>
+<div><p>In order to build more complex applications with Dash later we will introduce a third argument called State. Also the argument Input can take on different components.</p>
+</div></blockquote>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The arguments of a callback decorator Output and Input need to be imported from the dash library on top of your app.</p>
+</div>
+</div>
+<div class="section" id="structure-of-dash-callback-function">
+<h3>Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
 <li><p>Structure of Dash callback function</p>
 <ol class="simple">
 <li><p>function argument (*also mention multiple inputs require multiple arguments)</p></li>
@@ -407,6 +553,22 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Return output of function (*also mention multiple outputs require multiple objects)</p></li>
 </ol>
 </li>
+</ol>
+<p>The callback function makes up the second part of the callback and is itself composed into three different parts:</p>
+<ul class="simple">
+<li><p>The function argument
+The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p></li>
+<li><p>The function body</p></li>
+<li><p>The return or output of the function</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="callbacks-in-action">
+<h2>Callbacks in action<a class="headerlink" href="#callbacks-in-action" title="Permalink to this headline">¶</a></h2>
+<p>Now it’s time to see some callbacks in action. For this chapter two examples should be discussed in detail.</p>
+<div class="section" id="change-a-graph-by-dropdown">
+<h3>Change a graph by dropdown<a class="headerlink" href="#change-a-graph-by-dropdown" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
 <li><p>Seeing Graph and Dropdown in action (*copy simple app from chapter 3 to refer to its graph and dropdown components)</p>
 <ol class="simple">
 <li><p>Create a callback with the Dropdown and Graph from chapter 3</p>
@@ -415,16 +577,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>In callback function body: taking dropdown value to change bar graph</p></li>
 </ol>
 </li>
-</ol>
-</li>
-<li><p>Seeing Dropdown and Div children in action: (* div would represent title of webpage)</p>
-<ol class="simple">
-<li><p>show reader how to control title of page: Dropdown with different text that will change the children of div</p></li>
-</ol>
-</li>
-<li><p>Seeing Slider and Div style in action</p>
-<ol class="simple">
-<li><p>slider value would change font size</p></li>
 </ol>
 </li>
 </ol>
@@ -462,6 +614,21 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="change-a-markdown-by-dropdown">
+<h3>Change a markdown by dropdown<a class="headerlink" href="#change-a-markdown-by-dropdown" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>Seeing Dropdown and Div children in action: (* div would represent title of webpage)</p>
+<ol class="simple">
+<li><p>show reader how to control title of page: Dropdown with different text that will change the children of div</p></li>
+</ol>
+</li>
+<li><p>Seeing Slider and Div style in action</p>
+<ol class="simple">
+<li><p>slider value would change font size</p></li>
+</ol>
+</li>
+</ol>
 <p>Example for section 5</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -487,6 +654,8 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8001</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
 </div>
 </div>
 
