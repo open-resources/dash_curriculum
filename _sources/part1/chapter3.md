@@ -7,7 +7,10 @@ In this chapter we will explore Dash various **components** and how to position 
 
 
 ## Dash Components
-First, we'll start with the previous app which *created and used a button* and add a checklist to it:
+First, we'll start with the previous app and add a checklist to it:
+<details>
+  <summary>Checklist</summary>
+  
 ```python
 # Import required Python libraries
 from dash import Dash, html, dcc
@@ -39,8 +42,14 @@ if __name__ == '__main__':
     app.run_server()
 ```
 **Insert picture of checklist and button together**
+  
+</details>
 
 Next, let's add a **dropdown** 
+
+<details>
+  <summary>Dropdown</summary>
+  
 ```python
 # Import required Python libraries
 from dash import Dash, html, dcc
@@ -85,9 +94,15 @@ if __name__ == '__main__':
 ```
 **Add picture of app with components up to dropdown**
 
+</details>
 
 
 Next, let's add a **slider** 
+
+<details>
+  <summary>Slider</summary>
+  
+</details>
 
 ## Dash Layout
 Dash applications are comprised of 2 parts:
