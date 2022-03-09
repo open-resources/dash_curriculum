@@ -2,23 +2,47 @@
 ## What you will learn
 
 In this chapter we will explore Dash various **components** and how to position them with **layout** as well as add styling with **CSS**\
-[p1c3_start.py](../assets/p1c3/p1c2_end.py)\
+[p1c3_start.py](../assets/p1c2/p1c2_end.py)\
 [p1c3_end.py](../assets/p1c3/p1c3_end.py)
 
 
 ## Dash Components
-First, we will add some popular Dash components to our app. 
+First, we'll start with the previous app which *created and used a button* and add a checklist to it:
+```python
+# Import required Python libraries
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-Markdown
+# Create the Dash app object
+app = Dash(__name__)
 
-Dropdown
+# Create app components
+button1 = html.Button("Button 1", id="button1")
 
-check box
+checklist1 = dcc.Checklist(
+                options=[
+                    {'label': 'New York City', 'value': 'NYC'},
+                    {'label': 'Montreal', 'value': 'MTL'},
+                    {'label': 'San Francisco', 'value': 'SF'},
+                ]
+            )
+                
+# Add components to app layout
+app.layout = dbc.Container([
+                button1,
+                checklist1
+])
+
+# Launch app
+if __name__ == '__main__':
+    app.run_server()
+```
+**Insert picture of checklist and button together**
+
+Next, let's add a **dropdown** 
+
 
 slider
-
-button
-
 
 ## Dash Layout
 Dash applications are comprised of 2 parts:
