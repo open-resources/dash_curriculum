@@ -386,7 +386,22 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-packages">
-     Import packages
+     (1) Import packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-data">
+     (2) Prepare Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialise-the-app">
+     (3) Initialise the App
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#app-layout">
+     (4) App Layout
     </a>
    </li>
   </ul>
@@ -423,7 +438,22 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-packages">
-     Import packages
+     (1) Import packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#prepare-data">
+     (2) Prepare Data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#initialise-the-app">
+     (3) Initialise the App
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#app-layout">
+     (4) App Layout
     </a>
    </li>
   </ul>
@@ -443,14 +473,14 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <p>This chapter sets the basis to create Dash Applications. Starting from a simple example, the structure of a Dash app will be explained.
 By the end of the chapter, you’ll be able to understand the following code and launch your first Dash App:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (1) Required Python Libraries</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (1) Import packages --------------------------------------------</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="c1"># (2) App Data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">iris</span><span class="p">()</span>
+<span class="c1"># (2) Prepare Data --------------------------------------------</span>
 
-<span class="c1"># (3) App object --------------------------------------------</span>
+<span class="c1"># (3) Initialise the App --------------------------------------------</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="c1"># (4) App Layout --------------------------------------------</span>
@@ -459,11 +489,11 @@ By the end of the chapter, you’ll be able to understand the following code and
     <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-graph&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data_frame</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">))</span>
 <span class="p">])</span>
 
-<span class="c1"># (5) App Callback</span>
+<span class="c1"># (5) Configure Callbacks --------------------------------------------</span>
 <span class="c1">#@app.callback(...)</span>
 
 
-<span class="c1"># (6) Server Launch</span>
+<span class="c1"># (6) Run the App --------------------------------------------</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
@@ -472,18 +502,49 @@ By the end of the chapter, you’ll be able to understand the following code and
 </div>
 <div class="section" id="structure-of-a-dash-app">
 <h2>Structure of a Dash App<a class="headerlink" href="#structure-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
-<p>The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app.
-In a Dash App we can find the following sections:</p>
+<p>The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. The recommended Dash App structure consists in  the following sections, that will be explained below:</p>
 <ol class="simple">
 <li><p>Import packages</p></li>
 <li><p>Prepare Data</p></li>
 <li><p>Initialise the App</p></li>
-<li><p>Structure the App Layout</p></li>
+<li><p>App Layout</p></li>
 <li><p>Configure Callbacks</p></li>
 <li><p>Run the App</p></li>
 </ol>
 <div class="section" id="import-packages">
-<h3>Import packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
+<h3>(1) Import packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+</pre></div>
+</div>
+<p>Dash apps require some libraries to run, this statement is importing them.</p>
+<ul class="simple">
+<li><p>Dash is the framework which is required to develop the App</p></li>
+</ul>
+<blockquote>
+<div><p>Dash is a python framework created by Plotly for creating interactive web applications. Dash is written on the top of Flask, Plotly. js and React. js.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>dash_core_components module gives access to many interactive components that will be added to the App and introduced in Chapter 3.</p></li>
+<li><p>Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.</p></li>
+</ul>
+</div>
+<div class="section" id="prepare-data">
+<h3>(2) Prepare Data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h3>
+<p>Data is normally created / imported in a global section of the app, so that the whole code we’ll develop can refer to and use it.
+You may want to add to section 1 dedicated libraries for data wrangling (importing pandas, numpy, etc.)</p>
+</div>
+<div class="section" id="initialise-the-app">
+<h3>(3) Initialise the App<a class="headerlink" href="#initialise-the-app" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this section, we initialise an app by creating a Dash instance and calling it “app”.
+This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we’ll need to specify more parameters to create more complex apps.</p>
+</div>
+<div class="section" id="app-layout">
+<h3>(4) App Layout<a class="headerlink" href="#app-layout" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>As you can see in the code above, we can divide the app into 6 sections:</p></li>
 </ul>
