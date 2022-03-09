@@ -37,7 +37,7 @@ def function_output(arg):
 
 The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.
 
-> In order to build more complex applications with Dash later we will introduce a third argument called State. Also the argument Input can take on different components.
+> In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.
 
 ```{attention}
 The arguments of a callback decorator Output and Input need to be imported from the dash library on top of your app.
@@ -51,9 +51,8 @@ The arguments of a callback decorator Output and Input need to be imported from 
      3. Return output of function (*also mention multiple outputs require multiple objects)
 
 The callback function makes up the second part of the callback and is itself composed into three different parts:
-- The function argument
-The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
-- The function body
+- The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
+- The function body: The function body is the place where you can work with the input data to build graphs and manipulate app data.
 - The return or output of the function
 
 ## Callbacks in action
