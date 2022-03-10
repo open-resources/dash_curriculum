@@ -7,9 +7,10 @@ In this chapter we will explore Dash various **components** and how to position 
 
 
 ## Dash Components
-First, we'll start with the previous app and add a checklist to it:
 <details>
   <summary>Checklist</summary>
+  
+**Add gif of checklist function**
   
 ```python
 # Import required Python libraries
@@ -37,10 +38,11 @@ if __name__ == '__main__':
   
 </details>
 
-Next, let's add a **dropdown** 
 
 <details>
   <summary>Dropdown</summary>
+  
+**Add gif of dropdown function**
   
 ```python
 # Import required Python libraries
@@ -66,16 +68,14 @@ app.layout = dbc.Container([
 if __name__ == '__main__':
     app.run_server()
 ```
-**Add picture of app with components up to dropdown**
-
+  
 </details>
-
-
-Next, let's add a **slider** 
 
 <details>
   <summary>Slider</summary>
   
+**Add gif of slider function**
+
 ```python
 # Import required Python libraries
 from dash import Dash, html, dcc
@@ -102,11 +102,44 @@ app.layout = dbc.Container([
 if __name__ == '__main__':
     app.run_server()
 ```
-  
+
 </details>
 
+<details>
+  <summary>Input</summary>
+  
+**Add gif of input function**
 
+```python
+# Import required Python libraries
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
+# Create the Dash app object
+app = Dash(__name__)
+
+# Create app components
+button = html.Button("Button 1", id="button")
+checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
+slider = dcc.Slider(0, 20)
+input_ = dcc.Input("Enter a value")
+
+# Add components to app layout
+app.layout = dbc.Container([
+                button,
+                checklist,
+                dropdown,
+                slider,
+                input_
+])
+
+# Launch app
+if __name__ == '__main__':
+    app.run_server()
+```
+  
+</details>
 
 
 
