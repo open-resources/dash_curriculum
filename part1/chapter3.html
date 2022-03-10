@@ -597,40 +597,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="dash-layout">
 <h2>Dash Layout<a class="headerlink" href="#dash-layout" title="Permalink to this headline">¶</a></h2>
-<p>Dash applications are comprised of 2 parts:</p>
-<ul class="simple">
-<li><p>Layout: What the application looks like</p></li>
-<li><p>Callabacks: Interactivity of the application</p></li>
-</ul>
-<hr class="docutils" />
-<p>The <strong>layout</strong> is made up of <strong>components</strong>.  Let’s make a minimal Dash application to demonstrate this concept:</p>
-<details>
-  <summary>Minimal Dash App</summary>
-<p>Create <strong>app_3_1.py</strong> in the <code class="docutils literal notranslate"><span class="pre">tutorial/part1</span></code> directory:</p>
-<p><img alt="Make app_3_1.py" src="../_images/make_app_3_1.png" /></p>
-<p>Copy/paste the minimal Dash app code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Python libraries</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span> 
-
-<span class="c1"># Create a Dash application</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">()</span>
-<span class="c1"># Create the layout of the app</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;This is a HTML Div component&quot;</span><span class="p">)</span>
-<span class="c1"># Run the app</span>
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Now <strong>Run/Debug</strong> the code:
-<img alt="Running minimal Dash app" src="../_images/run_minimal.png" /></p>
-<p>Open a web browser, enter <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a> in the address bar, and you should see our minimal application:
-<img alt="Display minimal Dash app" src="../_images/display_minimal.png" /></p>
-</details>
-<hr class="docutils" />
 <p>Next, we’ll add some styling with <strong>CSS</strong>.   We’ll use a <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> from the <strong>Bootstrap</strong> library.</p>
 <details>
   <summary>CSS</summary>
-<p>Create <strong>app_3_2.py</strong> in the <code class="docutils literal notranslate"><span class="pre">tutorial/part1</span></code> directory:</p>
-<p><img alt="Make app_3_2.py" src="../_images/make_app_3_2.png" /></p>
 <p>Copy/paste the minimal Dash + CSS app code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Python libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span> 
@@ -650,7 +619,7 @@ vs
 <img alt="no CSS comparison" src="../_images/display_minimal.png" /></p>
 </details>
 <hr class="docutils" />
-<p>Let’s continue to learn about <strong>Bootstrap</strong>, <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.  We will be using the Dash Bootstrap Components library that makes it <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/">easier to build consistently styled apps with complex, responsive layouts</a></p>
+<p>Now let’s learn how to place the components at specific locations on the page instead of stacked vertically.  We will use <strong>Dash Bootstrap Components</strong> to do this.  <strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
 <details>
   <summary>Dash Bootstrap Components</summary>
 <hr class="docutils" />
@@ -667,55 +636,7 @@ vs
 </ul>
 </li>
 </ul>
-<p>Now let’s add to our minimal, CSS styled app by using a Container, Rows, and Columns.  Create a new file called <strong>app_3_3.py</strong> and copy/paste the following code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Python libraries</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span> 
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-
-<span class="c1"># Create a Dash application, pass in a stylesheet from Bootstrap</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">]</span> <span class="p">)</span>
-
-<span class="c1"># Create the layout of the app</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="c1"># Row 1</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 1&quot;</span><span class="p">)</span>
-                    <span class="p">],</span>
-                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">},</span>
-                    <span class="p">),</span>
-                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 2&quot;</span><span class="p">)</span>
-                        <span class="p">]),</span>
-                    <span class="p">],</span>
-                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">},</span>
-                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;h-75&quot;</span><span class="p">,</span>
-                    <span class="p">),</span>
-                <span class="c1"># Row 2</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 3&quot;</span><span class="p">)</span>
-                    <span class="p">],</span>
-                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;pink&quot;</span><span class="p">},</span>
-                    <span class="p">),</span>
-                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-                        <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;Div 4&quot;</span><span class="p">)</span>
-                        <span class="p">]),</span>
-                    <span class="p">],</span>
-                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span><span class="p">},</span>
-                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;h-25&quot;</span><span class="p">,</span>
-                    <span class="p">),</span>
-            <span class="p">],</span>
-            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;100vh&quot;</span><span class="p">},</span>
-            <span class="p">)</span>
-
-<span class="c1"># Run the app</span>
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Notice that a <code class="docutils literal notranslate"><span class="pre">container</span></code> which holds our app then we have 2 <code class="docutils literal notranslate"><span class="pre">rows</span></code> which hold 2 <code class="docutils literal notranslate"><span class="pre">columns</span></code> each, and each <code class="docutils literal notranslate"><span class="pre">column</span></code> containers a <code class="docutils literal notranslate"><span class="pre">Div</span></code>. We added some CSS styling to change each column’s <code class="docutils literal notranslate"><span class="pre">background-color</span></code>.  The Rows also include some CSS styling to show how we can change the height of the Row.  Finally, we added CSS styling to make sure the Container expands to 100% of the height of the browser.</p>
-<p><img alt="Bootstrap layout" src="../_images/bootstrap_layout.png" /></p>
-  </details>
+</details>
 <hr class="docutils" />
 </div>
 </div>
