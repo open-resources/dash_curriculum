@@ -383,6 +383,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github">
+   Github
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#test-the-stack">
    Test the stack
   </a>
@@ -415,6 +420,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#installation-instructions">
    Installation Instructions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github">
+   Github
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -457,8 +467,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li><p><strong>Github</strong></p>
 <ul>
-<li><p>Website that will store our repository</p></li>
-<li><p><strong>Git</strong> is not related to <strong>Github</strong>.  Github is a website that stores <a class="reference external" href="https://www.youtube.com/watch?v=9A26ybw6tGY">repositories</a>, and Git is a version control system.</p></li>
+<li><p>Website that will store your <a class="reference external" href="https://www.youtube.com/watch?v=9A26ybw6tGY">repository</a></p></li>
+<li><p><strong>Git</strong> is not related to <strong>Github</strong>.  Github is a website that stores repositories, and Git is a version control system.</p></li>
 </ul>
 </li>
 </ul>
@@ -468,6 +478,31 @@ const thebe_selector_output = ".output, .cell_output"
 <p><a class="reference internal" href="chapter0_windows.html"><span class="doc std std-doc"><strong>Windows</strong></span></a><br />
 <a class="reference internal" href="chapter0_mac.html"><span class="doc std std-doc"><strong>Mac</strong></span></a><br />
 <a class="reference internal" href="chapter0_linux.html"><span class="doc std std-doc"><strong>Linux</strong></span></a></p>
+</div>
+<div class="section" id="github">
+<h2>Github<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.github.com/en/get-started/onboarding/getting-started-with-your-github-account">Getting started with your github account</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=QUtk-Uuq9nE">Video - How to Create Github account</a></p></li>
+</ul>
+<p>After you create an account we need to make a repository that will store your code:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.github.com/en/get-started/quickstart/create-a-repo">Text - Create a public repo</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=u-_uGO95xco">Video - How to create a Github repository</a></p></li>
+</ul>
+<p>Now we need to set up a secure way to talk with Github by using a personal access token:
+-<a class="reference external" href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">Text - Creating a personal access token</a>
+-<a class="reference external" href="https://www.youtube.com/watch?v=kHkQnuYzwoo">Video - Using a personal access token</a></p>
+<p>We can now <strong>clone</strong> the repository from Github to our local machine.  Go to your Github repository home page, click the green <em>Code</em> button, select <em>HTTP</em>, copy the command, paste it into VScode, <br />
+<strong>Add gif of copying https clone command, pasting into VScode</strong><br />
+Press enter, enter your github account credentials (might need to set up git config here for first time)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;bolajiayodeji&quot;</span>
+<span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="n">mailtobolaji</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p><strong>Add gif of being prompted for github credentials and entering them</strong><br />
+Lastly, open the newly cloned folder in VScode<br />
+<strong>Add gif of opening repo folder in vscode</strong></p>
 </div>
 <div class="section" id="test-the-stack">
 <h2>Test the stack<a class="headerlink" href="#test-the-stack" title="Permalink to this headline">¶</a></h2>
