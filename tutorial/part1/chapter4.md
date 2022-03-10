@@ -2,7 +2,7 @@
 
 ## What you will learn
 
-After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the look of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
+After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the notation of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
 
 ```{admonition} Learning Intentions
 - Decorators in Python
@@ -37,7 +37,7 @@ def function_output(arg):
 
 The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.
 
-> In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.
+In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.
 
 ```{attention}
 The arguments of a callback decorator Output and Input need to be imported from the dash library on top of your app.
@@ -53,11 +53,50 @@ The arguments of a callback decorator Output and Input need to be imported from 
 The callback function makes up the second part of the callback and is itself composed into three different parts:
 - The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
 - The function body: The function body is the place where you can work with the input data to build graphs and manipulate app data.
-- The return or output of the function
+- The return or output of the function: At the end of the callback function the output that has been prepared in the function body gets returned i.e., that's the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.
 
 ## Callbacks in action
 
 Now it's time to see some callbacks in action. For this chapter two examples should be discussed in detail.
+
+### Change a markdown by dropdown
+
+Let's start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app. Using callbacks always make sure to import the libraries 'Output' and 'Input' for the callback decorator.
+
+Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback. The callback itself takes on the id as well as the children property of the markdown as output arguments in the decorator. As input arguments the id and the value of the dropdown. The value of the dropdown gets put into the callback function, saved into a basic variable and then gets returned. The complete code is shown below.
+
+```
+# Import packages
+from dash import Dash, dcc, Output, Input
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__)
+
+# Create app components
+markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
+dropdown = dcc.Dropdown(id='our-drop', options=['My First App', 'Another Title', 'Welcome to this App'], value='My First App')
+
+# App Layout
+app.layout = dbc.Container([
+    markdown,
+    dropdown
+])
+
+# Configure Callback
+@app.callback(
+    Output(component_id='our-title', component_property='children'),
+    Input(component_id='our-drop', component_property='value')
+)
+def update_markdown(value_drop):
+    text = value_drop
+    return text
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
 
 ### Change a graph by dropdown
 
@@ -100,8 +139,6 @@ def update_output_div(dropdown_value):
 if __name__ == '__main__':
     app.run_server(debug=False)
 ```
-
-### Change a markdown by dropdown
 
   1. Seeing Dropdown and Div children in action: (* div would represent title of webpage)
      1. show reader how to control title of page: Dropdown with different text that will change the children of div
