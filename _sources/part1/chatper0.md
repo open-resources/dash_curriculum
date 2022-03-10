@@ -6,6 +6,7 @@ In this chapter we will set up the tech stack used in this course.  A **tech sta
 - **Visual Studio Code**
   - Code editor and debugger
   - Extensions help us to code and improve productivity
+  - **Note**: There are many different [IDE](https://www.codecademy.com/article/what-is-an-ide) options but using VScode will make for a smoother learning experience for this course
 - **Python**
   - Programming language we will use
   - Python libraries (such as Dash and Pandas) are collections of code that we will use to make the applications
