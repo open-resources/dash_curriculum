@@ -6,7 +6,7 @@
 - [Extensions - Text](https://code.visualstudio.com/docs/languages/python)
 - [Extensions - Video](https://www.youtube.com/watch?v=Z3i04RoI9Fk)
 
-Check if you already have Python installed by running ```python --version``` in the VScode terminal.  If you don't see a message about the version then proceed to the next section to install Python.\
+Check if you already have Python installed by running ```python --version``` in the VScode terminal.  If you see Python installed then skip to installing the libraries in the next section.  Otherwise follow the installation instruction\
 **Gif of checking python version**
 
 ## Python
