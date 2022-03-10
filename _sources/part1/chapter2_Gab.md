@@ -1,13 +1,11 @@
 # Chapter 2: Getting Started with Dash
 
 ## What you will learn
-This chapter sets the basis to create Dash Applications. Starting from a simple example, the structure of a Dash app will be explained.
-By the end of the chapter, you'll be able to understand the following code and launch your first Dash App:
+This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you'll understand the following code and know how to launch your first Dash App:
 
 ```
 # (1) Import packages --------------------------------------------
-from dash import Dash
-import dash_core_components as dcc
+from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 
 # (2) Prepare Data --------------------------------------------
@@ -34,7 +32,7 @@ if __name__ == '__main__':
 ---
 
 ## Structure of a Dash App
-The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. The recommended Dash App structure consists in  the following sections, that will be explained below:
+There are best practices to structure Dash Apps. Following these best practices will simplify the development of future applications. The recommended Dash App structure consists of the following sections:
 1) Import packages
 2) Prepare Data
 3) Initialise the App
@@ -42,18 +40,15 @@ The are best practices to structure Dash Applications. Following such best pract
 5) Configure Callbacks
 6) Run the App
 
-This structure is an initial template that can be used as a starting point for your dashboard.
-
 ### (1) Import packages
 ```
-from dash import Dash
-import dash_core_components as dcc
+from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 ```
 Dash apps require some libraries to run, this statement is importing them. Let's examine each library, one by one:
 - Dash is the framework which is required to develop the App
 > Dash is a python framework created by Plotly for creating interactive web applications. Dash is written on the top of Flask, Plotly. js and React. js.
-- dash_core_components module gives access to many interactive components that will be added to the App and introduced in Chapter 3.
+- dcc stands for dash_core_components which is a module that give access to many interactive components that are used in Dash apps and will be introduced in Chapter 3.
 - Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.
 
 ### (2) Prepare Data
@@ -65,7 +60,7 @@ If you plan to perform any data wrangling tasks, you may want to add to section 
 app = Dash(__name__)
 ```
 In this section, we initialise an app by creating a Dash instance and calling it "app".
-This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll need to specify more properties to create more complex apps (e.g. point at CSS files). 
+This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll need to specify more properties to create more complex apps (e.g. point to CSS files). 
 
 ### (4) App Layout
 ```
@@ -73,17 +68,13 @@ app.layout = dbc.Container([
     dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
 ])
 ```
-The app layout contains the structure of the app.
-There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container".
-In this simple example one single component was added and that's a "Markdown" which is a text components, allowing to encapsulate different text styles.
-This component has been customised with three properties:
+The app layout contains the structure of the app. This represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Components gives you access to a markup language that makes it easier to format text for web pages. This component has been customized with three properties:
 - id : every component has an id which is uniquely identifying it (your App may have many "Markdown", the id helps differenciating them).
-- children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the "My First App" will be the content displayed inside the component.
+- children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the "My First App" will be the content displayed on the web page.
 - style : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary and in this case, a center alignment was set.
 
 ### (5) Configure Callbacks
-Callbacks define the user interaction with the dashboard, e.g. we can create a callback to define how a filter should affect a chart.
-Callbacks will be covered in chapter 4.
+Callbacks define the user interaction with the dashboard. For example, a Dash app can have a callback that defines how a dropdown could affect a chart being displayed on the page. Callbacks will be covered in chapter 4.
 
 ### (6) Run the App
 ```
@@ -95,8 +86,7 @@ In order to display the app through the browser, we add these statements to "Lau
 Once we have the full code ready and saved in a .py file, we need to launch it:
 [.gif on how to launch the code via .py and what is displayed in the terminal output]
 
-After launching the app, we will see a console output that doesn't look as our Dash app:
-- The console will show the following message
+After launching the app, we will see the following console output:
 ```
 Dash is running on http://127.0.0.1:8050/
 

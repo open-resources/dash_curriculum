@@ -501,11 +501,9 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 2: Getting Started with Dash<a class="headerlink" href="#chapter-2-getting-started-with-dash" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>This chapter sets the basis to create Dash Applications. Starting from a simple example, the structure of a Dash app will be explained.
-By the end of the chapter, you’ll be able to understand the following code and launch your first Dash App:</p>
+<p>This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we’ll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you’ll understand the following code and know how to launch your first Dash App:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (1) Import packages --------------------------------------------</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span>
-<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
 <span class="c1"># (2) Prepare Data --------------------------------------------</span>
@@ -532,7 +530,7 @@ By the end of the chapter, you’ll be able to understand the following code and
 <hr class="docutils" />
 <div class="section" id="structure-of-a-dash-app">
 <h2>Structure of a Dash App<a class="headerlink" href="#structure-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
-<p>The are best practices to structure Dash Applications. Following such best practices will simplify the development of the app. The recommended Dash App structure consists in  the following sections, that will be explained below:</p>
+<p>There are best practices to structure Dash Apps. Following these best practices will simplify the development of future applications. The recommended Dash App structure consists of the following sections:</p>
 <ol class="simple">
 <li><p>Import packages</p></li>
 <li><p>Prepare Data</p></li>
@@ -541,11 +539,9 @@ By the end of the chapter, you’ll be able to understand the following code and
 <li><p>Configure Callbacks</p></li>
 <li><p>Run the App</p></li>
 </ol>
-<p>This structure is an initial template that can be used as a starting point for your dashboard.</p>
 <div class="section" id="import-packages">
 <h3>(1) Import packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span>
-<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 </pre></div>
 </div>
@@ -557,7 +553,7 @@ By the end of the chapter, you’ll be able to understand the following code and
 <div><p>Dash is a python framework created by Plotly for creating interactive web applications. Dash is written on the top of Flask, Plotly. js and React. js.</p>
 </div></blockquote>
 <ul class="simple">
-<li><p>dash_core_components module gives access to many interactive components that will be added to the App and introduced in Chapter 3.</p></li>
+<li><p>dcc stands for dash_core_components which is a module that give access to many interactive components that are used in Dash apps and will be introduced in Chapter 3.</p></li>
 <li><p>Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.</p></li>
 </ul>
 </div>
@@ -572,7 +568,7 @@ If you plan to perform any data wrangling tasks, you may want to add to section 
 </pre></div>
 </div>
 <p>In this section, we initialise an app by creating a Dash instance and calling it “app”.
-This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we’ll need to specify more properties to create more complex apps (e.g. point at CSS files).</p>
+This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we’ll need to specify more properties to create more complex apps (e.g. point to CSS files).</p>
 </div>
 <div class="section" id="app-layout">
 <h3>(4) App Layout<a class="headerlink" href="#app-layout" title="Permalink to this headline">¶</a></h3>
@@ -581,20 +577,16 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>The app layout contains the structure of the app.
-There are a lot of elements that you can include in the app layout, normally they are encapsulated into a “Container”.
-In this simple example one single component was added and that’s a “Markdown” which is a text components, allowing to encapsulate different text styles.
-This component has been customised with three properties:</p>
+<p>The app layout contains the structure of the app. This represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a “Container”. In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Components gives you access to a markup language that makes it easier to format text for web pages. This component has been customized with three properties:</p>
 <ul class="simple">
 <li><p>id : every component has an id which is uniquely identifying it (your App may have many “Markdown”, the id helps differenciating them).</p></li>
-<li><p>children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the “My First App” will be the content displayed inside the component.</p></li>
+<li><p>children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the “My First App” will be the content displayed on the web page.</p></li>
 <li><p>style : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary and in this case, a center alignment was set.</p></li>
 </ul>
 </div>
 <div class="section" id="configure-callbacks">
 <h3>(5) Configure Callbacks<a class="headerlink" href="#configure-callbacks" title="Permalink to this headline">¶</a></h3>
-<p>Callbacks define the user interaction with the dashboard, e.g. we can create a callback to define how a filter should affect a chart.
-Callbacks will be covered in chapter 4.</p>
+<p>Callbacks define the user interaction with the dashboard. For example, a Dash app can have a callback that defines how a dropdown could affect a chart being displayed on the page. Callbacks will be covered in chapter 4.</p>
 </div>
 <div class="section" id="run-the-app">
 <h3>(6) Run the App<a class="headerlink" href="#run-the-app" title="Permalink to this headline">¶</a></h3>
@@ -605,10 +597,7 @@ Callbacks will be covered in chapter 4.</p>
 <p>In order to display the app through the browser, we add these statements to “Launch the server”. This section is pretty much static and fixed for any Dash app you may create.</p>
 <p>Once we have the full code ready and saved in a .py file, we need to launch it:
 [.gif on how to launch the code via .py and what is displayed in the terminal output]</p>
-<p>After launching the app, we will see a console output that doesn’t look as our Dash app:</p>
-<ul class="simple">
-<li><p>The console will show the following message</p></li>
-</ul>
+<p>After launching the app, we will see the following console output:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dash</span> <span class="ow">is</span> <span class="n">running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8050</span><span class="o">/</span>
 
  <span class="o">*</span> <span class="n">Serving</span> <span class="n">Flask</span> <span class="n">app</span> <span class="s1">&#39;chpater2-code1&#39;</span> <span class="p">(</span><span class="n">lazy</span> <span class="n">loading</span><span class="p">)</span>
