@@ -40,6 +40,39 @@ if __name__ == '__main__':
 
 
 <details>
+  <summary>Radio Item</summary>
+  
+**Add gif of radio item function**
+
+```python
+# Import required Python libraries
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Create the Dash app object
+app = Dash(__name__)
+
+# Create app components
+button = html.Button("Button 1", id="button")
+checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
+
+# Add components to app layout
+app.layout = dbc.Container([
+                button,
+                checklist,
+                radio
+])
+
+# Launch app
+if __name__ == '__main__':
+    app.run_server()
+```
+  
+  
+</details>
+
+<details>
   <summary>Dropdown</summary>
   
 **Add gif of dropdown function**
@@ -55,12 +88,14 @@ app = Dash(__name__)
 # Create app components
 button = html.Button("Button 1", id="button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
 
 # Add components to app layout
 app.layout = dbc.Container([
                 button,
                 checklist,
+                radio,
                 dropdown,
 ])
 
@@ -87,6 +122,7 @@ app = Dash(__name__)
 # Create app components
 button = html.Button("Button 1", id="button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
 slider = dcc.Slider(0, 20)
 
@@ -94,6 +130,7 @@ slider = dcc.Slider(0, 20)
 app.layout = dbc.Container([
                 button,
                 checklist,
+                radio,
                 dropdown,
                 slider
 ])
@@ -121,6 +158,7 @@ app = Dash(__name__)
 # Create app components
 button = html.Button("Button 1", id="button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
 slider = dcc.Slider(0, 20)
 input_ = dcc.Input("Enter a value")
@@ -129,6 +167,7 @@ input_ = dcc.Input("Enter a value")
 app.layout = dbc.Container([
                 button,
                 checklist,
+                radio
                 dropdown,
                 slider,
                 input_
