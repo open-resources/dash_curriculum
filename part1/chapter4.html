@@ -407,13 +407,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
-     Change a graph by dropdown
+    <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
+     Change a markdown by dropdown
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
-     Change a markdown by dropdown
+    <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
+     Change a graph by dropdown
     </a>
    </li>
   </ul>
@@ -471,13 +471,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
-     Change a graph by dropdown
+    <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
+     Change a markdown by dropdown
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
-     Change a markdown by dropdown
+    <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
+     Change a graph by dropdown
     </a>
    </li>
   </ul>
@@ -495,7 +495,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 4: Linking Dash components<a class="headerlink" href="#chapter-4-linking-dash-components" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the look of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.</p>
+<p>After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the notation of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
@@ -535,9 +535,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 </ol>
 <p>The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.</p>
-<blockquote>
-<div><p>In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.</p>
-</div></blockquote>
+<p>In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>The arguments of a callback decorator Output and Input need to be imported from the dash library on top of your app.</p>
@@ -558,13 +556,50 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="simple">
 <li><p>The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p></li>
 <li><p>The function body: The function body is the place where you can work with the input data to build graphs and manipulate app data.</p></li>
-<li><p>The return or output of the function</p></li>
+<li><p>The return or output of the function: At the end of the callback function the output that has been prepared in the function body gets returned i.e., that’s the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="callbacks-in-action">
 <h2>Callbacks in action<a class="headerlink" href="#callbacks-in-action" title="Permalink to this headline">¶</a></h2>
 <p>Now it’s time to see some callbacks in action. For this chapter two examples should be discussed in detail.</p>
+<div class="section" id="change-a-markdown-by-dropdown">
+<h3>Change a markdown by dropdown<a class="headerlink" href="#change-a-markdown-by-dropdown" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app. Using callbacks always make sure to import the libraries ‘Output’ and ‘Input’ for the callback decorator.</p>
+<p>Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback. The callback itself takes on the id as well as the children property of the markdown as output arguments in the decorator. As input arguments the id and the value of the dropdown. The value of the dropdown gets put into the callback function, saved into a basic variable and then gets returned. The complete code is shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-title&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-drop&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="s1">&#39;Another Title&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to this App&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+    <span class="n">markdown</span><span class="p">,</span>
+    <span class="n">dropdown</span>
+<span class="p">])</span>
+
+<span class="c1"># Configure Callback</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-title&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-drop&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">value_drop</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="change-a-graph-by-dropdown">
 <h3>Change a graph by dropdown<a class="headerlink" href="#change-a-graph-by-dropdown" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
@@ -613,9 +648,6 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="change-a-markdown-by-dropdown">
-<h3>Change a markdown by dropdown<a class="headerlink" href="#change-a-markdown-by-dropdown" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p>Seeing Dropdown and Div children in action: (* div would represent title of webpage)</p>
 <ol class="simple">
