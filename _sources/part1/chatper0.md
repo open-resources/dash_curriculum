@@ -11,11 +11,10 @@ In this chapter we will set up the tech stack used in this course.  A **tech sta
   - Python is the programming language we will use to build our applications
   - We will use various Python [libraries](https://www.geeksforgeeks.org/libraries-in-python/) (such as Dash and Pandas) as the primary building blocks for our application
 - **Git**
-  - Git is a [version control systems](https://www.geeksforgeeks.org/version-control-systems/) that is used to track and manage changes to our code over time
+  - Git is a [version control systems](https://www.geeksforgeeks.org/version-control-systems/) that is used to track and manage changes to our code over time in a [repository](https://www.geeksforgeeks.org/what-is-a-git-repository/)
   - [Learn Git in 15 minutes](https://youtu.be/USjZcfj8yxE)
 - **Github**
-  -  Github is a website that will store your [repository](https://www.youtube.com/watch?v=9A26ybw6tGY)
-  - **Git** is not related to **Github**.  Github is a website that stores repositories, and Git is a version control system.
+  -  Github is a website that hosts Git [repositories](https://www.geeksforgeeks.org/what-is-a-git-repository/)
 
 
 ## Installation Instructions
