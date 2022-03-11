@@ -81,7 +81,8 @@ Callbacks define the user interaction with the dashboard. For example, a Dash ap
 if __name__ == '__main__':
     app.run_server()
 ```
-In order to display the app through the browser, we add these statements to "Launch the server". This section is pretty much static and fixed for any Dash app you may create.
+In order to display the app through the browser, we add these statements to "Launch the server". { !!! TO-DO !!! Add a bried explanation on why we need a server}
+This section is pretty much static and fixed for any Dash app you may create.
 
 Once we have the full code ready and saved in a .py file, we need to launch it:
 [.gif on how to launch the code via .py and what is displayed in the terminal output]
