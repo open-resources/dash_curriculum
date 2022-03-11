@@ -12,7 +12,7 @@ After initializing a first simple app, learning about Dash components and settin
 
 ## Introduction to decorators in Python
  
- 1. what are the advantages of decorators and basic structure  
+> 1. what are the advantages of decorators and basic structure  
 
 ## Structure of app callbacks
 
@@ -32,7 +32,7 @@ def function_output(arg):
 
 ### Structure of Dash callback decorator
 
- 1. Structure of a Dash callback decorator (*copy simple app from chapter 2 to refer to its callback here)
+> 1. Structure of a Dash callback decorator (*copy simple app from chapter 2 to refer to its callback here)
      1. Decorator arguments: Output, Input, component_id, component_property 
 
 The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.
@@ -45,7 +45,7 @@ The arguments of a callback decorator Output and Input need to be imported from 
 
 ### Structure of Dash callback function
 
- 1. Structure of Dash callback function
+> 1. Structure of Dash callback function
      1. function argument (*also mention multiple inputs require multiple arguments)
      2. function body (*a place where you can work with the input data to build graphs and manipulate app data)
      3. Return output of function (*also mention multiple outputs require multiple objects)
@@ -89,8 +89,8 @@ app.layout = dbc.Container([
     Input(component_id='our-drop', component_property='value')
 )
 def update_markdown(value_drop):
-    text = value_drop
-    return text
+    title = value_drop
+    return title
 
 
 # Run the App
@@ -100,74 +100,69 @@ if __name__ == '__main__':
 
 ### Change a graph by dropdown
 
-  1. Seeing Graph and Dropdown in action (*copy simple app from chapter 3 to refer to its graph and dropdown components)
+>  1. Seeing Graph and Dropdown in action (*copy simple app from chapter 3 to refer to its graph and dropdown components)
      1. Create a callback with the Dropdown and Graph from chapter 3
         1. add the graph figure and dropdown value in decorator as the component_property
         2. In callback function body: taking dropdown value to change bar graph 
 
-Example code for section 4
+Now, that we have already changed the title of our app, let's get a little more sophisticated. We're keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash. 
+
+For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd. plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.
+
+One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it'll take on a dictionary and give it a tabular structure. Now, you are set for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.
+
+> df = pd.DataFrame({"Fruit": ["Apples", "Oranges", "Bananas"], "Amount": [4, 1, 2]})
+
+Next, we plot these data as a bar plot, with the fruits named on horizontal axis and the assigned values on the vertical axis. With plotly.express this will be as easy as the following line of code:
+
+> fig = px.bar(df, x="Fruit", y="Amount")
+
+Bringing all pieces together gives the following simple app:
+
 ```
-from dash import Dash, html, dcc, Output, Input
+# Import packages
+from dash import Dash, dcc, Output, Input
+import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
 
+# Prepare data
+df = pd.DataFrame({
+    "Fruit": ["Apples", "Oranges", "Bananas"],
+    "Amount": [4, 1, 2]
+})
+fig = px.bar(df, x="Fruit", y="Amount")
+
+# Initialise the App
 app = Dash(__name__)
 
-app.layout =html.Div([
-    dcc.Dropdown(options=[1,2,3], value=3, id='my-dropdown', clearable=False),
-    dcc.Graph(id='my-graph')
+# Create app components
+markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
+dropdown = dcc.Dropdown(id='our-drop', options=[1,2,3], value=3, clearable=False)
+figure = dcc.Graph(id='our-graph', figure=fig)
+
+# App Layout
+app.layout = dbc.Container([
+    markdown,
+    dropdown,
+    figure
 ])
 
+# Configure Callback
 @app.callback(
-    Output(component_id='my-graph', component_property='figure'),
-    Input(component_id='my-dropdown', component_property='value')
+    Output(component_id='our-graph', component_property='figure'),
+    Input(component_id='our-drop', component_property='value')
 )
-def update_output_div(dropdown_value):
-    df = pd.DataFrame({
-        "Fruit": ["Apples", "Oranges", "Bananas"],
-        "Amount": [4, 1, 2],
-        # "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-    })
+def update_output_div(value_drop):
     dff = df.copy()
-    dff['Amount'][1] = dff['Amount'][1]*dropdown_value
+    dff['Amount'][1] = dff['Amount'][1]*value_drop
 
     fig = px.bar(dff, x="Fruit", y="Amount")
 
     return fig
 
 
+# Run the App
 if __name__ == '__main__':
     app.run_server(debug=False)
-```
-
-  1. Seeing Dropdown and Div children in action: (* div would represent title of webpage)
-     1. show reader how to control title of page: Dropdown with different text that will change the children of div
-  2. Seeing Slider and Div style in action 
-     1. slider value would change font size 
-    
-Example for section 5
-```
-from dash import Dash, html, dcc, Output, Input
-import plotly.express as px
-import pandas as pd
-
-app = Dash(__name__)
-
-app.layout =html.Div([
-    dbc.Row()
-    html.Div(children="Our App Title", id='my-title'),
-    dcc.Slider(min=10, max=100, step=5, value=10, id='my-slider'),
-])
-
-@app.callback(
-    Output(component_id='my-title', component_property='style'),
-    Input(component_id='my-slider', component_property='value')
-)
-def update_output_div(slider_v):
-    title_size={'fontSize':slider_v}
-    return title_size
-
-
-if __name__ == '__main__':
-    app.run_server(debug=False, port=8001)
 ```

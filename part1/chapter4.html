@@ -507,9 +507,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="introduction-to-decorators-in-python">
 <h2>Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+<blockquote>
+<div><ol class="simple">
 <li><p>what are the advantages of decorators and basic structure</p></li>
 </ol>
+</div></blockquote>
 </div>
 <div class="section" id="structure-of-app-callbacks">
 <h2>Structure of app callbacks<a class="headerlink" href="#structure-of-app-callbacks" title="Permalink to this headline">¶</a></h2>
@@ -527,13 +529,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="structure-of-dash-callback-decorator">
 <h3>Structure of Dash callback decorator<a class="headerlink" href="#structure-of-dash-callback-decorator" title="Permalink to this headline">¶</a></h3>
-<ol class="simple">
-<li><p>Structure of a Dash callback decorator (*copy simple app from chapter 2 to refer to its callback here)</p>
-<ol class="simple">
-<li><p>Decorator arguments: Output, Input, component_id, component_property</p></li>
+<blockquote>
+<div><ol class="simple">
+<li><p>Structure of a Dash callback decorator (*copy simple app from chapter 2 to refer to its callback here)
+1. Decorator arguments: Output, Input, component_id, component_property</p></li>
 </ol>
-</li>
-</ol>
+</div></blockquote>
 <p>The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.</p>
 <p>In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.</p>
 <div class="admonition attention">
@@ -543,15 +544,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="structure-of-dash-callback-function">
 <h3>Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
-<ol class="simple">
-<li><p>Structure of Dash callback function</p>
-<ol class="simple">
-<li><p>function argument (*also mention multiple inputs require multiple arguments)</p></li>
-<li><p>function body (*a place where you can work with the input data to build graphs and manipulate app data)</p></li>
-<li><p>Return output of function (*also mention multiple outputs require multiple objects)</p></li>
+<blockquote>
+<div><ol class="simple">
+<li><p>Structure of Dash callback function
+1. function argument (*also mention multiple inputs require multiple arguments)
+2. function body (*a place where you can work with the input data to build graphs and manipulate app data)
+3. Return output of function (*also mention multiple outputs require multiple objects)</p></li>
 </ol>
-</li>
-</ol>
+</div></blockquote>
 <p>The callback function makes up the second part of the callback and is itself composed into three different parts:</p>
 <ul class="simple">
 <li><p>The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p></li>
@@ -590,8 +590,8 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-drop&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">value_drop</span>
-    <span class="k">return</span> <span class="n">text</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">value_drop</span>
+    <span class="k">return</span> <span class="n">title</span>
 
 
 <span class="c1"># Run the App</span>
@@ -602,88 +602,70 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="change-a-graph-by-dropdown">
 <h3>Change a graph by dropdown<a class="headerlink" href="#change-a-graph-by-dropdown" title="Permalink to this headline">¶</a></h3>
-<ol class="simple">
-<li><p>Seeing Graph and Dropdown in action (*copy simple app from chapter 3 to refer to its graph and dropdown components)</p>
-<ol class="simple">
-<li><p>Create a callback with the Dropdown and Graph from chapter 3</p>
-<ol class="simple">
-<li><p>add the graph figure and dropdown value in decorator as the component_property</p></li>
-<li><p>In callback function body: taking dropdown value to change bar graph</p></li>
+<blockquote>
+<div><ol class="simple">
+<li><p>Seeing Graph and Dropdown in action (*copy simple app from chapter 3 to refer to its graph and dropdown components)
+1. Create a callback with the Dropdown and Graph from chapter 3
+1. add the graph figure and dropdown value in decorator as the component_property
+2. In callback function body: taking dropdown value to change bar graph</p></li>
 </ol>
-</li>
-</ol>
-</li>
-</ol>
-<p>Example code for section 4</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+</div></blockquote>
+<p>Now, that we have already changed the title of our app, let’s get a little more sophisticated. We’re keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash.</p>
+<p>For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd. plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.</p>
+<p>One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it’ll take on a dictionary and give it a tabular structure. Now, you are set for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.</p>
+<blockquote>
+<div><p>df = pd.DataFrame({“Fruit”: [“Apples”, “Oranges”, “Bananas”], “Amount”: [4, 1, 2]})</p>
+</div></blockquote>
+<p>Next, we plot these data as a bar plot, with the fruits named on horizontal axis and the assigned values on the vertical axis. With plotly.express this will be as easy as the following line of code:</p>
+<blockquote>
+<div><p>fig = px.bar(df, x=”Fruit”, y=”Amount”)</p>
+</div></blockquote>
+<p>Bringing all pieces together gives the following simple app:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="c1"># Prepare data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Fruit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Apples&quot;</span><span class="p">,</span> <span class="s2">&quot;Oranges&quot;</span><span class="p">,</span> <span class="s2">&quot;Bananas&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Amount&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">})</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fruit&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Amount&quot;</span><span class="p">)</span>
+
+<span class="c1"># Initialise the App</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
-    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-dropdown&#39;</span><span class="p">,</span> <span class="n">clearable</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
-    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph&#39;</span><span class="p">)</span>
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-title&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-drop&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">clearable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">figure</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-graph&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+    <span class="n">markdown</span><span class="p">,</span>
+    <span class="n">dropdown</span><span class="p">,</span>
+    <span class="n">figure</span>
 <span class="p">])</span>
 
+<span class="c1"># Configure Callback</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-graph&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-graph&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-drop&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">dropdown_value</span><span class="p">):</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s2">&quot;Fruit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Apples&quot;</span><span class="p">,</span> <span class="s2">&quot;Oranges&quot;</span><span class="p">,</span> <span class="s2">&quot;Bananas&quot;</span><span class="p">],</span>
-        <span class="s2">&quot;Amount&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-        <span class="c1"># &quot;City&quot;: [&quot;SF&quot;, &quot;SF&quot;, &quot;SF&quot;, &quot;Montreal&quot;, &quot;Montreal&quot;, &quot;Montreal&quot;]</span>
-    <span class="p">})</span>
+<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>
     <span class="n">dff</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    <span class="n">dff</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dff</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">dropdown_value</span>
+    <span class="n">dff</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dff</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">value_drop</span>
 
     <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">dff</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fruit&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Amount&quot;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">fig</span>
 
 
+<span class="c1"># Run the App</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<ol class="simple">
-<li><p>Seeing Dropdown and Div children in action: (* div would represent title of webpage)</p>
-<ol class="simple">
-<li><p>show reader how to control title of page: Dropdown with different text that will change the children of div</p></li>
-</ol>
-</li>
-<li><p>Seeing Slider and Div style in action</p>
-<ol class="simple">
-<li><p>slider value would change font size</p></li>
-</ol>
-</li>
-</ol>
-<p>Example for section 5</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">()</span>
-    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s2">&quot;Our App Title&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-title&#39;</span><span class="p">),</span>
-    <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-slider&#39;</span><span class="p">),</span>
-<span class="p">])</span>
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-title&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;style&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">slider_v</span><span class="p">):</span>
-    <span class="n">title_size</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span><span class="n">slider_v</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">title_size</span>
-
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8001</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
