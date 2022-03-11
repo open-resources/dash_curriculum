@@ -389,6 +389,33 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-9">
 <h1>Chapter 9<a class="headerlink" href="#chapter-9" title="Permalink to this headline">¶</a></h1>
+<p>Idea: Seeing Slider and Div style in action (* div would represent title of webpage): slider value would change font size</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">()</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s2">&quot;Our App Title&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-title&#39;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-slider&#39;</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-title&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;style&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">slider_v</span><span class="p">):</span>
+    <span class="n">title_size</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span><span class="n">slider_v</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">title_size</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8001</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
