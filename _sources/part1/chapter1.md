@@ -44,7 +44,9 @@ Here is an image and a list.
 - List item 2
 
 <img src="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/assets/dashboard.jpg" width=80%>
-     
+
+<img src="../assets/p1_c0/git_add.png" width = 80%>
+
 ## Heading 2
 
 ```{tip} text
