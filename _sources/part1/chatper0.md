@@ -1,20 +1,20 @@
 # Chapter 0 - Stack Installation
-## Overview
+## What you will learn
 
 In this chapter we will set up the tech stack used in this course.  A **tech stack** is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applicatoins.
 
 - **Visual Studio Code**
-  - Code editor and debugger
-  - Extensions help us to code and improve productivity
+  - VScode is a program that we will use to edit and debug our code
+  - VScode Extensions help us to code and improve productivity
   - **Note**: There are many different [IDE](https://www.codecademy.com/article/what-is-an-ide) options but using VScode will make for a smoother learning experience for this course
 - **Python**
-  - Programming language we will use
-  - Python libraries (such as Dash and Pandas) are collections of code that we will use to make the applications
+  - Python is the programming language we will use to build our applications
+  - We will use various Python [libraries](https://www.geeksforgeeks.org/libraries-in-python/) (such as Dash and Pandas) as the primary building blocks for our application
 - **Git**
-  - Version control systems allow us to track and manage changes to our code over time
+  - Git is a [version control systems](https://www.geeksforgeeks.org/version-control-systems/) that is used to track and manage changes to our code over time
   - [Learn Git in 15 minutes](https://youtu.be/USjZcfj8yxE)
 - **Github**
-  -  Website that will store your [repository](https://www.youtube.com/watch?v=9A26ybw6tGY)
+  -  Github is a website that will store your [repository](https://www.youtube.com/watch?v=9A26ybw6tGY)
   - **Git** is not related to **Github**.  Github is a website that stores repositories, and Git is a version control system.
 
 
@@ -58,16 +58,16 @@ import pandas
 print("Hello World!")
 ```
 Then press **F5** to debug/run the file.  If we see **Hello World!** printed out in the console then we know the Python code is working properly with all libraries installed. 
-**Picture:  Code working in VScode**
+**gif:  Code working in VScode**
 
 Now that we have our **main.py** file running let's use ```git``` to track the file in our repository.  Go to the terminal in VScode and type ```git status```.  We see that there is a new **Untracked file** called **main.py**:
-**Picture: Git status**
+**gif: Git status**
 
 We'll **add** that file to the git **staging area** with ```git add main.py```:
-**Picture: Git add**
+**gif: Git add**
 
 Then we need to **commit** the changes.  Type in ```git commit -m "This is a commit message"```.  Every commit needs a message and this is a good opportunity to include a short reminder of what this commit changed:
-**Picture: Git commit**
+**gif: Git commit**
 
 Lastly, we will push the changes to our Github repo with ```git push```
-**Picture:  succesful git push**
+**gif:  succesful git push**
