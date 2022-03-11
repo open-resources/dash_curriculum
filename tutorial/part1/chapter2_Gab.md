@@ -112,7 +112,8 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 ```
 
-```{attention} Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised
+```{attention}
+Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised
 ```
 
 
