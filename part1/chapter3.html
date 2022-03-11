@@ -385,8 +385,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dash-layout">
-   Dash Layout
+  <a class="reference internal nav-link" href="#css">
+   CSS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#layout">
+   Layout
   </a>
  </li>
 </ul>
@@ -420,8 +425,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dash-layout">
-   Dash Layout
+  <a class="reference internal nav-link" href="#css">
+   CSS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#layout">
+   Layout
   </a>
  </li>
 </ul>
@@ -595,36 +605,50 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </details>
 </div>
-<div class="section" id="dash-layout">
-<h2>Dash Layout<a class="headerlink" href="#dash-layout" title="Permalink to this headline">¶</a></h2>
-<p>Next, we’ll add some styling with <strong>CSS</strong>.   We’ll use a <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> from the <strong>Bootstrap</strong> library.</p>
+<div class="section" id="css">
+<h2>CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h2>
+<p>Next, we’ll add styling to our application with a Cascading Style Sheets or <strong>CSS</strong>.   We will use the Bootstrap <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> for this application.</p>
 <details>
   <summary>CSS</summary>
-<p>Copy/paste the minimal Dash + CSS app code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import Python libraries</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span> 
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import required Python libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="c1"># Create a Dash application, pass in a stylesheet from Bootstrap</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">]</span> <span class="p">)</span>
-<span class="c1"># Create the layout of the app</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="s2">&quot;This is a HTML Div component with Bootstrap CSS theme&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;m-5&quot;</span><span class="p">)</span>
-<span class="c1"># Run the app</span>
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+<span class="c1"># Create the Dash app object</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button 1&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;button&quot;</span><span class="p">)</span>
+<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
+<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">input_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;Enter a value&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add components to app layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+                <span class="n">button</span><span class="p">,</span>
+                <span class="n">checklist</span><span class="p">,</span>
+                <span class="n">radio</span><span class="p">,</span>
+                <span class="n">dropdown</span><span class="p">,</span>
+                <span class="n">slider</span><span class="p">,</span>
+                <span class="n">input_</span>
+<span class="p">])</span>
+
+<span class="c1"># Launch app</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Run the code, open a web browser, enter <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a> in the address bar, and you should see our minimal application with a slightly different style this time:</p>
-<p><img alt="Display minimal Dash app" src="../_images/display_3_2.png" />
-vs
-<img alt="no CSS comparison" src="../_images/display_minimal.png" /></p>
+<p><strong>pictures/gif showing the difference CSS stylesheet makes</strong></p>
 </details>
+</div>
 <hr class="docutils" />
-<p>Now let’s learn how to place the components at specific locations on the page instead of stacked vertically.  We will use <strong>Dash Bootstrap Components</strong> to do this.  <strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
+<div class="section" id="layout">
+<h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+<p>Now let’s learn about layout and how to place the components at specific locations on the page instead.  We will use <strong>Dash Bootstrap Components</strong> to do this.  <strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
 <details>
   <summary>Dash Bootstrap Components</summary>
-<hr class="docutils" />
-<details>
-  <summary>Layout in Bootstrap</summary>
 <ul class="simple">
 <li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
 <img alt="Bootstrap layout" src="../_images/bootstrap_grid.png" /></p></li>
@@ -637,7 +661,6 @@ vs
 </li>
 </ul>
 </details>
-<hr class="docutils" />
 </div>
 </div>
 
