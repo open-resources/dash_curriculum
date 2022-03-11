@@ -34,7 +34,9 @@ Now we need to set up a secure way to talk with Github by using a personal acces
 - [Text - Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 - [Video - Using a personal access token](https://www.youtube.com/watch?v=kHkQnuYzwoo)
 
-We can now **clone** the repository from Github to our local machine.  Go to your Github repository home page, click the green *Code* button, select *HTTP*, copy the command, paste it into VScode, \
+We can now **clone** the repository from Github to our local machine.  Go to your Github repository home page, click the green *Code* button, select *HTTP*, copy the web address.  Go to the VScode terminal and enter:\
+```git clone *web address copied from Github*```
+
 **Add gif of copying https clone command, pasting into VScode**\
 Press enter, enter your github account credentials (might need to set up git config here for first time)
 ```
