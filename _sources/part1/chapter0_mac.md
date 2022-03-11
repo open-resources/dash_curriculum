@@ -14,7 +14,7 @@ Check if you already have Python installed by running ```python --version``` in 
 - [Text based instruction](https://www.python.org/downloads/)
 - [Video instructions](https://www.youtube.com/watch?v=M323OL6K5vs)
 - We need to install various Python libraries, including Dash, to run our application.  We will use [pip](https://code.visualstudio.com/docs/getstarted/introvideos) to install the libraries. Paste the following command into the VScode terminal:\
-``` pip install dash dash-bootstrap-components pandas```
+``` pip install dash -U dash-bootstrap-components -U pandas -U```
   
   **PICTURE/GIF of pip install process and terminal in VScode**
 
