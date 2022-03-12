@@ -25,7 +25,16 @@ When we finish this chapter you'll have a fully working app linking together two
 
 ## Structure of app callbacks
 
-Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:
+Before we talk about the structure of a callback, let's briefly discuss how callbacks in general will fit into your app. Referring to the structure of an app that we have discussed so far your callbacks will always fit after your app layout and before you actually run the app. Your app gets the following structure:
+
+- Import packages
+- Initialise the app
+- Create app components
+- App layout
+- Configure callback(s)
+- Run the app
+
+Now, let's have a closer look at what a callback looks like. Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:
 
 ```
 # Callback decorator
@@ -40,6 +49,8 @@ def function_output(arg):
     return output
 ```
 
+As there might be still some arguments you are not familiar with, we will go through the upper lines step by step.
+
 ### Structure of Dash callback decorator
 
 The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.
@@ -53,6 +64,28 @@ The arguments of a callback decorator Output and Input need to be imported from 
 ### Structure of Dash callback function
 
 The callback function makes up the second part of the callback and is itself composed into three different parts:
+
+```{admonition} The function argument
+:class: dropdown
+
+The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
+
+```
+
+```{admonition} The function body
+:class: dropdown
+
+The function body is the place where you can work with the input data to build graphs and manipulate app data.
+
+```
+
+```{admonition} The return or output of the function
+:class: dropdown
+
+At the end of the callback function the output that has been prepared in the function body gets returned i.e., that's the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.
+
+```
+
 - The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
 - The function body: The function body is the place where you can work with the input data to build graphs and manipulate app data.
 - The return or output of the function: At the end of the callback function the output that has been prepared in the function body gets returned i.e., that's the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.
@@ -72,20 +105,20 @@ Creating the app components we are using the markdown and the dropdown from the 
 from dash import Dash, dcc, Output, Input
 import dash_bootstrap_components as dbc
 
-# Initialise the App
+# Initialise the app
 app = Dash(__name__)
 
 # Create app components
 markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
 dropdown = dcc.Dropdown(id='our-drop', options=['My First App', 'Another Title', 'Welcome to this App'], value='My First App')
 
-# App Layout
+# App layout
 app.layout = dbc.Container([
     markdown,
     dropdown
 ])
 
-# Configure Callback
+# Configure callback
 @app.callback(
     Output(component_id='our-title', component_property='children'),
     Input(component_id='our-drop', component_property='value')
@@ -95,7 +128,7 @@ def update_markdown(value_drop):
     return title
 
 
-# Run the App
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -137,7 +170,7 @@ df = pd.DataFrame({
 })
 fig = px.bar(df, x="Fruit", y="Amount")
 
-# Initialise the App
+# Initialise the app
 app = Dash(__name__)
 
 # Create app components
@@ -145,14 +178,14 @@ markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAli
 dropdown = dcc.Dropdown(id='our-drop', options=[1,2,3], value=3, clearable=False)
 figure = dcc.Graph(id='our-graph', figure=fig)
 
-# App Layout
+# App layout
 app.layout = dbc.Container([
     markdown,
     dropdown,
     figure
 ])
 
-# Configure Callback
+# Configure callback
 @app.callback(
     Output(component_id='our-graph', component_property='figure'),
     Input(component_id='our-drop', component_property='value')
@@ -166,7 +199,7 @@ def update_output_div(value_drop):
     return fig
 
 
-# Run the App
+# Run the app
 if __name__ == '__main__':
     app.run_server(debug=False)
 ```
