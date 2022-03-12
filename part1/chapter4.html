@@ -504,37 +504,31 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Simple examples for callbacks</p></li>
 </ul>
 </div>
+<p>When we finish this chapter you’ll have a fully working app linking together two components. You can find the code already in the dropdown box below.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">Click the button to reveal the end result of this chapter!</p>
+</div>
 </div>
 <div class="section" id="introduction-to-decorators-in-python">
 <h2>Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ol class="simple">
-<li><p>what are the advantages of decorators and basic structure</p></li>
-</ol>
-</div></blockquote>
 </div>
 <div class="section" id="structure-of-app-callbacks">
 <h2>Structure of app callbacks<a class="headerlink" href="#structure-of-app-callbacks" title="Permalink to this headline">¶</a></h2>
 <p>Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># (1) Callback decorator</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Callback decorator</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-comp-out&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;prop-out&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-comp-in&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;prop-in&#39;</span><span class="p">)</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-component-1&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;property-1&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;my-component-2&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;property-2&#39;</span><span class="p">)</span>
 <span class="p">)</span>
 
-<span class="c1"># (2) Callback function</span>
+<span class="c1"># Callback function</span>
 <span class="k">def</span> <span class="nf">function_output</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">arg</span>
     <span class="k">return</span> <span class="n">output</span>
 </pre></div>
 </div>
 <div class="section" id="structure-of-dash-callback-decorator">
 <h3>Structure of Dash callback decorator<a class="headerlink" href="#structure-of-dash-callback-decorator" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ol class="simple">
-<li><p>Structure of a Dash callback decorator (*copy simple app from chapter 2 to refer to its callback here)
-1. Decorator arguments: Output, Input, component_id, component_property</p></li>
-</ol>
-</div></blockquote>
 <p>The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.</p>
 <p>In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.</p>
 <div class="admonition attention">
@@ -544,14 +538,6 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="structure-of-dash-callback-function">
 <h3>Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ol class="simple">
-<li><p>Structure of Dash callback function
-1. function argument (*also mention multiple inputs require multiple arguments)
-2. function body (*a place where you can work with the input data to build graphs and manipulate app data)
-3. Return output of function (*also mention multiple outputs require multiple objects)</p></li>
-</ol>
-</div></blockquote>
 <p>The callback function makes up the second part of the callback and is itself composed into three different parts:</p>
 <ul class="simple">
 <li><p>The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p></li>
@@ -602,24 +588,19 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="change-a-graph-by-dropdown">
 <h3>Change a graph by dropdown<a class="headerlink" href="#change-a-graph-by-dropdown" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ol class="simple">
-<li><p>Seeing Graph and Dropdown in action (*copy simple app from chapter 3 to refer to its graph and dropdown components)
-1. Create a callback with the Dropdown and Graph from chapter 3
-1. add the graph figure and dropdown value in decorator as the component_property
-2. In callback function body: taking dropdown value to change bar graph</p></li>
-</ol>
-</div></blockquote>
 <p>Now, that we have already changed the title of our app, let’s get a little more sophisticated. We’re keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash.</p>
 <p>For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd. plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.</p>
 <p>One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it’ll take on a dictionary and give it a tabular structure. Now, you are set for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.</p>
-<blockquote>
-<div><p>df = pd.DataFrame({“Fruit”: [“Apples”, “Oranges”, “Bananas”], “Amount”: [4, 1, 2]})</p>
-</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s2">&quot;Fruit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Apples&quot;</span><span class="p">,</span> <span class="s2">&quot;Oranges&quot;</span><span class="p">,</span> <span class="s2">&quot;Bananas&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;Amount&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">})</span>
+</pre></div>
+</div>
 <p>Next, we plot these data as a bar plot, with the fruits named on horizontal axis and the assigned values on the vertical axis. With plotly.express this will be as easy as the following line of code:</p>
-<blockquote>
-<div><p>fig = px.bar(df, x=”Fruit”, y=”Amount”)</p>
-</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fruit&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Amount&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>Bringing all pieces together gives the following simple app:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
