@@ -544,9 +544,13 @@ const thebe_selector_output = ".output, .cell_output"
 <div><p>The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.</p>
 </div></blockquote>
 <p>The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.</p>
-<div class="admonition-component-id-and-property admonition">
-<p class="admonition-title">Component id and property</p>
-<p>We have already introduced different components of an app like a markdown or a dropdown. To work properly all of these components need at least one input argument like a children, a value or a list declaring several options. These arguments are also called properties. Furthermore, when you are building advanced dashboards you are probably using many of the same components. In order to identify them uniquely one optional argument every component takes is the id. Also when you are working with callbacks the id is necessary as you use it to refer which components you are linking.</p>
+<div class="admonition-component-property admonition">
+<p class="admonition-title">Component property</p>
+<p>We have already introduced different components of an app like a markdown or a dropdown. To work properly all of these components need at least one input argument like a children, a value or a list declaring several options. These arguments are also called properties.</p>
+</div>
+<div class="admonition-component-id admonition">
+<p class="admonition-title">Component id</p>
+<p>When you are building advanced dashboards you are probably using many of the same components. In order to identify them uniquely one optional argument every component takes is the id. Also when you are working with callbacks the id is necessary as you use it to refer which components you are linking.</p>
 </div>
 <p>The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.</p>
 <p>In order to build more complex applications with Dash later we will introduce a third argument called State, which in some sense will allow to circumvent this direct relationship. Also the arguments Output and Input can take on different components to allow for advanced functionality. However, we’ll come back to this in chapter 10.</p>
