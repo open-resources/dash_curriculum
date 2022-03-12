@@ -53,9 +53,11 @@ As there might be still some arguments you are not familiar with, we will go thr
 
 ### Structure of Dash callback decorator
 
-The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.
+> The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding porperties that you want to link together.
 
-In order to build more complex applications with Dash later we will introduce a third argument called State. Also the arguments Output and Input can take on different components.
+The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
+
+In order to build more complex applications with Dash later we will introduce a third argument called State, which in some sense will allow to circumvent this direct relationship. Also the arguments Output and Input can take on different components to allow for advanced functionality. However, we'll come back to this in chapter 10.
 
 ```{attention}
 The arguments of a callback decorator Output and Input need to be imported from the dash library on top of your app.
