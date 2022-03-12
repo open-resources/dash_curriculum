@@ -223,14 +223,11 @@ if __name__ == '__main__':
 
 </details>
 
-***
-
 ## Layout
 
 Now let's learn about layout and how to place the components at specific locations on the page instead.  We will use **Dash Bootstrap Components** to do this.  **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
 
 <details>
-  
   <summary>Dash Bootstrap Components</summary>
   
 * [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
