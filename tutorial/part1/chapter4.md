@@ -16,8 +16,7 @@ When we finish this chapter you'll have a fully working app linking together two
 ```{admonition} Click the button to reveal the end result of this chapter!
 :class: dropdown
 
-`
-# Import packages
+`# Import packages
 from dash import Dash, dcc, Output, Input
 import dash_bootstrap_components as dbc
 
@@ -46,8 +45,7 @@ def update_markdown(value_drop):
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server()
-`
+    app.run_server()`
 
 ```
 
