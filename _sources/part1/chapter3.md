@@ -142,46 +142,6 @@ if __name__ == '__main__':
 
 </details>
 
-<details>
-  <summary>Input</summary>
-  
-**Add gif of input function**
-
-```python
-# Import required Python libraries
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-# Create the Dash app object
-app = Dash(__name__)
-
-# Create app components
-button = html.Button("Button 1", id="button")
-checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
-radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
-dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
-slider = dcc.Slider(0, 20)
-input_ = dcc.Input("Enter a value")
-
-# Add components to app layout
-app.layout = dbc.Container([
-                button,
-                checklist,
-                radio
-                dropdown,
-                slider,
-                input_
-])
-
-# Launch app
-if __name__ == '__main__':
-    app.run_server()
-```
-  
-</details>
-
-
-
 ## CSS
 
 Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.   We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
