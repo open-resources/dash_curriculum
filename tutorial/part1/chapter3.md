@@ -7,32 +7,63 @@ In this chapter we will explore Dash various **components** and how to position 
 
 
 ## Dash Components
+
+<details>
+  <summary>Button</summary>
+  
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App 
+app = Dash(__name__)
+
+# Create app components
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
+
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+])
+
+# Run the App 
+if __name__ == '__main__':
+    app.run_server()
+```
+</details>
+
 <details>
   <summary>Checklist</summary>
   
 **Add gif of checklist function**
   
 ```python
-# Import required Python libraries
+# Import packages 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-# Create the Dash app object
+# Initialise the App 
 app = Dash(__name__)
 
 # Create app components
-button = html.Button("Button 1", id="button")
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
 
-# Add components to app layout
+# App Layout 
 app.layout = dbc.Container([
+                markdown,
                 button,
                 checklist,
 ])
 
-# Launch app
+# Run the App 
 if __name__ == '__main__':
     app.run_server()
+
 ```
 **Insert picture of checklist and button together**
   
@@ -45,28 +76,31 @@ if __name__ == '__main__':
 **Add gif of radio item function**
 
 ```python
-# Import required Python libraries
+# Import packages 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-# Create the Dash app object
+# Initialise the App 
 app = Dash(__name__)
 
 # Create app components
-button = html.Button("Button 1", id="button")
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
 radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 
-# Add components to app layout
+# App Layout 
 app.layout = dbc.Container([
+                markdown,
                 button,
                 checklist,
-                radio
+                radio,
 ])
 
-# Launch app
+# Run the App 
 if __name__ == '__main__':
     app.run_server()
+
 ```
   
   
@@ -78,30 +112,33 @@ if __name__ == '__main__':
 **Add gif of dropdown function**
   
 ```python
-# Import required Python libraries
+# Import packages 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-# Create the Dash app object
+# Initialise the App 
 app = Dash(__name__)
 
 # Create app components
-button = html.Button("Button 1", id="button")
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
 radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
 
-# Add components to app layout
+# App Layout 
 app.layout = dbc.Container([
+                markdown,
                 button,
                 checklist,
                 radio,
                 dropdown,
 ])
 
-# Launch app
+# Run the App 
 if __name__ == '__main__':
     app.run_server()
+
 ```
   
 </details>
@@ -112,32 +149,35 @@ if __name__ == '__main__':
 **Add gif of slider function**
 
 ```python
-# Import required Python libraries
+# Import packages 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-# Create the Dash app object
+# Initialise the App 
 app = Dash(__name__)
 
 # Create app components
-button = html.Button("Button 1", id="button")
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
 radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
-slider = dcc.Slider(0, 20)
+slider = dcc.Slider(0, 10, 1)
 
-# Add components to app layout
+# App Layout 
 app.layout = dbc.Container([
+                markdown,
                 button,
                 checklist,
                 radio,
                 dropdown,
-                slider
+                slider,
 ])
 
-# Launch app
+# Run the App 
 if __name__ == '__main__':
     app.run_server()
+
 ```
 
 </details>
