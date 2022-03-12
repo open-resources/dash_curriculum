@@ -58,8 +58,8 @@ As there might be still some arguments you are not familiar with, we will go thr
 
 The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.
 
-```{admonition} Component id & property
-We have some content in here...
+```{admonition} Component id and property
+We have already introduced different components of an app like a markdown or a dropdown. To work properly all of these components need at least one input argument like a children, a value or a list declaring several options. These arguments are also called properties. Furthermore, when you are building advanced dashboards you are probably using many of the same components. In order to identify them uniquely one optional argument every component takes is the id. Also when you are working with callbacks the id is necessary as you use it to refer which components you are linking.
 ```
 
 The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
