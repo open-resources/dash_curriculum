@@ -189,32 +189,32 @@ Next, we'll add styling to our application with a Cascading Style Sheets or **CS
   <summary>CSS</summary>
  
 ```python
-# Import required Python libraries
+# Import packages 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-# Create the Dash app object
+# Initialise the App 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-button = html.Button("Button 1", id="button")
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
 checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
 radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
-slider = dcc.Slider(0, 20)
-input_ = dcc.Input("Enter a value")
+slider = dcc.Slider(0, 10, 1)
 
-# Add components to app layout
+# App Layout 
 app.layout = dbc.Container([
+                markdown,
                 button,
                 checklist,
                 radio,
                 dropdown,
                 slider,
-                input_
 ])
 
-# Launch app
+# Run the App 
 if __name__ == '__main__':
     app.run_server()
 ```
