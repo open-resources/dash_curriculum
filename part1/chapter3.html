@@ -504,6 +504,45 @@ if __name__ == &#39;__main__&#39;:
 </pre></div>
 </div>
 </div>
+</details><details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header">
+Radio items<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>**Add gif of radio item function**
+
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App 
+app = Dash(__name__)
+
+# Create app components
+markdown = dcc.Markdown(&#39;My First app&#39;)
+button = html.Button(&quot;Button&quot;)
+checklist = dcc.Checklist([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+radio = dcc.RadioItems([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+])
+
+# Run the App 
+if __name__ == &#39;__main__&#39;:
+    app.run_server()
+
+```
+</pre></div>
+</div>
+</div>
 </details></div>
 </div>
 
