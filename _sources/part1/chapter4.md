@@ -23,7 +23,7 @@ When we finish this chapter you'll have a fully working app linking together two
 ## 4.1 Introduction to decorators in Python
 
 ```{tip}
-If you are looking for more input on Python decorators you also may want to have a look at 
+If you are looking for more input on Python decorators you also may want to have a look at [Real Python](https://realpython.com/primer-on-python-decorators/).
 ```
 
 ## 4.2 Structure of app callbacks
