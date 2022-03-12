@@ -36,7 +36,7 @@ if __name__ == '__main__':
 ```
 :::
 
-```{dropdown} Checklist
+:::{dropdown} Checklist
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
@@ -70,9 +70,9 @@ if __name__ == '__main__':
 
 **Insert picture of checklist and button together**
   
-```
+:::
 
-```{dropdown} Radio items
+:::{dropdown} Radio items
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
@@ -108,9 +108,9 @@ if __name__ == '__main__':
 
 ```
 
-```
+:::
 
-```{dropdown} Dropdown
+:::{dropdown} Dropdown
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
@@ -147,4 +147,4 @@ if __name__ == '__main__':
 
 ```
   
-```
+:::
