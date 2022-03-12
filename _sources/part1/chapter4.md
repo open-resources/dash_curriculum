@@ -7,6 +7,7 @@ After initializing a first simple app, learning about Dash components and settin
 ```{admonition} Learning Intentions
 - Decorators in Python
 - Structure of callbacks
+- Component ids & properties
 - Simple examples for callbacks
 ```
 
@@ -31,7 +32,7 @@ Before we talk about the structure of a callback, let's briefly discuss how call
 - Initialise the app
 - Create app components
 - App layout
-- Configure callback(s)
+- **Configure callback(s)**
 - Run the app
 
 Now, let's have a closer look at what a callback looks like. Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:
