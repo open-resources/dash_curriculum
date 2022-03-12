@@ -12,8 +12,6 @@ In this chapter we will explore Dash various **components** and how to position 
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
-![grid](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/bootstrap_grid.png)
-
 ```python
 # Import packages 
 from dash import Dash, html, dcc
@@ -41,7 +39,8 @@ if __name__ == '__main__':
 
 ```{dropdown} Checklist
     :container: + shadow
-  
+    :title: bg-primary text-white font-weight-bold
+
 **Add gif of checklist function**
 
 ```python
@@ -76,6 +75,8 @@ if __name__ == '__main__':
 
 ```{dropdown} Radio items
     :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+
   
 
 **Add gif of radio item function**
@@ -112,6 +113,8 @@ if __name__ == '__main__':
 
 ```{dropdown} Dropdown
     :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+
   
 **Add gif of dropdown function**
   
