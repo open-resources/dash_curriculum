@@ -434,45 +434,41 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="dash-components">
 <h2>Dash Components<a class="headerlink" href="#dash-components" title="Permalink to this headline">¶</a></h2>
 <details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
 Buttons<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```python
-# Import packages 
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
+<p class="card-text"><img alt="grid" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/bootstrap_grid.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-# Initialise the App 
-app = Dash(__name__)
+<span class="c1"># Initialise the App </span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-# Create app components
-markdown = dcc.Markdown(&#39;My First app&#39;)
-button = html.Button(&quot;Button&quot;)
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
 
-# App Layout 
-app.layout = dbc.Container([
-                markdown,
-                button,
-])
+<span class="c1"># App Layout </span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+                <span class="n">markdown</span><span class="p">,</span>
+                <span class="n">button</span><span class="p">,</span>
+<span class="p">])</span>
 
-# Run the App 
-if __name__ == &#39;__main__&#39;:
-    app.run_server()
-```
+<span class="c1"># Run the App </span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-</details><details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header">
-Checklist<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>**Add gif of checklist function**
+</details><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{dropdown} Checklist
+    :container: + shadow
+  
+**Add gif of checklist function**
 
 ```python
 # Import packages 
@@ -498,20 +494,15 @@ app.layout = dbc.Container([
 if __name__ == &#39;__main__&#39;:
     app.run_server()
 
-```
-
-**Insert picture of checklist and button together**
 </pre></div>
 </div>
-</div>
-</details><details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header">
-Radio items<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>**Add gif of radio item function**
+<p><strong>Insert picture of checklist and button together</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{dropdown} Radio items
+    :container: + shadow
+  
+
+**Add gif of radio item function**
 
 ```python
 # Import packages 
@@ -539,48 +530,45 @@ app.layout = dbc.Container([
 if __name__ == &#39;__main__&#39;:
     app.run_server()
 
-```
 </pre></div>
 </div>
-</div>
-</details><details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header">
-Dropdown<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<p class="card-text"><strong>Add gif of dropdown function</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{dropdown} Dropdown
+    :container: + shadow
+  
+**Add gif of dropdown function**
+  
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-<span class="c1"># Initialise the App </span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+# Initialise the App 
+app = Dash(__name__)
 
-<span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
-<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
+# Create app components
+markdown = dcc.Markdown(&#39;My First app&#39;)
+button = html.Button(&quot;Button&quot;)
+checklist = dcc.Checklist([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+radio = dcc.RadioItems([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+dropdown = dcc.Dropdown([&#39;NYC&#39;, &#39;MTL&#39;, &#39;SF&#39;])
 
-<span class="c1"># App Layout </span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-<span class="p">])</span>
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+                dropdown,
+])
 
-<span class="c1"># Run the App </span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+# Run the App 
+if __name__ == &#39;__main__&#39;:
+    app.run_server()
+
 </pre></div>
 </div>
-</div>
-</details><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
