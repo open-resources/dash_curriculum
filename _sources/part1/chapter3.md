@@ -8,7 +8,7 @@ In this chapter we will explore Dash various **components** and how to position 
 
 ## Dash Components
 
-:::{dropdown} Buttons
+````{dropdown} Buttons
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
@@ -34,9 +34,9 @@ app.layout = dbc.Container([
 if __name__ == '__main__':
     app.run_server()
 ```
-:::
+````
 
-:::{dropdown} Checklist
+````{dropdown} Checklist
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
@@ -70,9 +70,9 @@ if __name__ == '__main__':
 
 **Insert picture of checklist and button together**
   
-:::
+````
 
-:::{dropdown} Radio items
+````{dropdown} Radio items
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
@@ -108,9 +108,9 @@ if __name__ == '__main__':
 
 ```
 
-:::
+````
 
-:::{dropdown} Dropdown
+````{dropdown} Dropdown
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
@@ -147,9 +147,9 @@ if __name__ == '__main__':
 
 ```
   
-:::
+````
 
-:::{dropdown} Slider
+````{dropdown} Slider
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
     
@@ -186,13 +186,13 @@ if __name__ == '__main__':
     app.run_server()
 
 ```
-:::
+````
 
 ## CSS
 
 Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.   We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
 
-:::{dropdown} CSS
+````{dropdown} CSS
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
     
@@ -229,13 +229,13 @@ if __name__ == '__main__':
  
 **pictures/gif showing the difference CSS stylesheet makes**
 
-:::
+````
 
 ## Layout
 
 Now let's learn about layout and how to place the components at specific locations on the page instead.  We will use **Dash Bootstrap Components** to do this.  **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
 
-:::{dropdown} Dash Bootstrap Components
+````{dropdown} Dash Bootstrap Components
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
@@ -246,4 +246,4 @@ Now let's learn about layout and how to place the components at specific locatio
   * Rows only contain columns
   * Columns holds your components
 
-:::
+````
