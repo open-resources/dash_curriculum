@@ -8,8 +8,8 @@ In this chapter we will explore Dash various **components** and how to position 
 
 ## Dash Components
 
-<details>
-  <summary>Button</summary>
+```{dropdown} Buttons
+    :container: + shadow
   
 ```python
 # Import packages 
@@ -33,7 +33,8 @@ app.layout = dbc.Container([
 if __name__ == '__main__':
     app.run_server()
 ```
-</details>
+
+```
 
 <details>
   <summary>Checklist</summary>
