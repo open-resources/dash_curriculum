@@ -549,23 +549,18 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="structure-of-dash-callback-function">
 <h3>Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
 <p>The callback function makes up the second part of the callback and is itself composed into three different parts:</p>
-<div class="dropdown admonition">
+<div class="admonition-the-function-argument admonition">
 <p class="admonition-title">The function argument</p>
 <p>The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p>
 </div>
-<div class="dropdown admonition">
+<div class="admonition-the-function-body admonition">
 <p class="admonition-title">The function body</p>
 <p>The function body is the place where you can work with the input data to build graphs and manipulate app data.</p>
 </div>
-<div class="dropdown admonition">
+<div class="admonition-the-return-or-output-of-the-function admonition">
 <p class="admonition-title">The return or output of the function</p>
 <p>At the end of the callback function the output that has been prepared in the function body gets returned i.e., that’s the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.</p>
 </div>
-<ul class="simple">
-<li><p>The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p></li>
-<li><p>The function body: The function body is the place where you can work with the input data to build graphs and manipulate app data.</p></li>
-<li><p>The return or output of the function: At the end of the callback function the output that has been prepared in the function body gets returned i.e., that’s the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.</p></li>
-</ul>
 </div>
 </div>
 <div class="section" id="callbacks-in-action">

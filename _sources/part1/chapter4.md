@@ -66,29 +66,16 @@ The arguments of a callback decorator Output and Input need to be imported from 
 The callback function makes up the second part of the callback and is itself composed into three different parts:
 
 ```{admonition} The function argument
-:class: dropdown
-
 The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
-
 ```
 
 ```{admonition} The function body
-:class: dropdown
-
 The function body is the place where you can work with the input data to build graphs and manipulate app data.
-
 ```
 
 ```{admonition} The return or output of the function
-:class: dropdown
-
 At the end of the callback function the output that has been prepared in the function body gets returned i.e., that's the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.
-
 ```
-
-- The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
-- The function body: The function body is the place where you can work with the input data to build graphs and manipulate app data.
-- The return or output of the function: At the end of the callback function the output that has been prepared in the function body gets returned i.e., that's the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.
 
 ## Callbacks in action
 
