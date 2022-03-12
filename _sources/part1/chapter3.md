@@ -8,7 +8,7 @@ In this chapter we will explore Dash various **components** and how to position 
 
 ## Dash Components
 
-```{dropdown} Buttons
+:::{dropdown} Buttons
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
@@ -34,8 +34,7 @@ app.layout = dbc.Container([
 if __name__ == '__main__':
     app.run_server()
 ```
-
-```
+:::
 
 ```{dropdown} Checklist
     :container: + shadow
