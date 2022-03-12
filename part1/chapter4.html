@@ -551,7 +551,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="structure-of-dash-callback-function">
 <h3>Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
-<p>The callback function makes up the second part of the callback and is itself composed into three different parts:</p>
+<blockquote>
+<div><p>The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.</p>
+</div></blockquote>
+<p>The function itself - like any arbitrary function in python - is composed into three different parts, namely</p>
+<ul class="simple">
+<li><p>The function argument(s)</p></li>
+<li><p>The function body</p></li>
+<li><p>The return or output of the function</p></li>
+</ul>
+<p>Let’s have a look at those in more detail.</p>
 <div class="admonition-the-function-argument admonition">
 <p class="admonition-title">The function argument</p>
 <p>The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p>

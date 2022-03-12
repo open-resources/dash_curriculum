@@ -65,7 +65,15 @@ The arguments of a callback decorator Output and Input need to be imported from 
 
 ### Structure of Dash callback function
 
-The callback function makes up the second part of the callback and is itself composed into three different parts:
+> The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.
+
+The function itself - like any arbitrary function in python - is composed into three different parts, namely
+
+- The function argument(s)
+- The function body
+- The return or output of the function
+
+Let's have a look at those in more detail.
 
 ```{admonition} The function argument
 The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
