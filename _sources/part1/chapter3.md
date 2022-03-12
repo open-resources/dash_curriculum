@@ -149,11 +149,10 @@ if __name__ == '__main__':
   
 :::
 
-
-
 :::{dropdown} Slider
     :container: + shadow
-  
+    :title: bg-primary text-white font-weight-bold
+    
 **Add gif of slider function**
 
 ```python
@@ -195,7 +194,8 @@ Next, we'll add styling to our application with a Cascading Style Sheets or **CS
 
 :::{dropdown} CSS
     :container: + shadow
- 
+    :title: bg-primary text-white font-weight-bold
+    
 ```python
 # Import packages 
 from dash import Dash, html, dcc
@@ -237,6 +237,7 @@ Now let's learn about layout and how to place the components at specific locatio
 
 :::{dropdown} Dash Bootstrap Components
     :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 * [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
 ![Bootstrap layout](../assets/p1_c3/bootstrap_grid.png)
