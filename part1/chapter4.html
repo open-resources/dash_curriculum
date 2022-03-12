@@ -381,39 +381,39 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction-to-decorators-in-python">
-   Introduction to decorators in Python
+   4.1 Introduction to decorators in Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#structure-of-app-callbacks">
-   Structure of app callbacks
+   4.2 Structure of app callbacks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#structure-of-dash-callback-decorator">
-     Structure of Dash callback decorator
+     4.2.1 Structure of Dash callback decorator
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#structure-of-dash-callback-function">
-     Structure of Dash callback function
+     4.2.2 Structure of Dash callback function
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#callbacks-in-action">
-   Callbacks in action
+   4.3 Callbacks in action
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
-     Change a markdown by dropdown
+     4.3.1 Change a markdown by dropdown
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
-     Change a graph by dropdown
+     4.3.2 Change a graph by dropdown
     </a>
    </li>
   </ul>
@@ -445,39 +445,39 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction-to-decorators-in-python">
-   Introduction to decorators in Python
+   4.1 Introduction to decorators in Python
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#structure-of-app-callbacks">
-   Structure of app callbacks
+   4.2 Structure of app callbacks
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#structure-of-dash-callback-decorator">
-     Structure of Dash callback decorator
+     4.2.1 Structure of Dash callback decorator
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#structure-of-dash-callback-function">
-     Structure of Dash callback function
+     4.2.2 Structure of Dash callback function
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#callbacks-in-action">
-   Callbacks in action
+   4.3 Callbacks in action
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#change-a-markdown-by-dropdown">
-     Change a markdown by dropdown
+     4.3.1 Change a markdown by dropdown
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#change-a-graph-by-dropdown">
-     Change a graph by dropdown
+     4.3.2 Change a graph by dropdown
     </a>
    </li>
   </ul>
@@ -511,10 +511,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="introduction-to-decorators-in-python">
-<h2>Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
+<h2>4.1 Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="structure-of-app-callbacks">
-<h2>Structure of app callbacks<a class="headerlink" href="#structure-of-app-callbacks" title="Permalink to this headline">¶</a></h2>
+<h2>4.2 Structure of app callbacks<a class="headerlink" href="#structure-of-app-callbacks" title="Permalink to this headline">¶</a></h2>
 <p>Before we talk about the structure of a callback, let’s briefly discuss how callbacks in general will fit into your app. Referring to the structure of an app that we have discussed so far your callbacks will always fit after your app layout and before you actually run the app. Your app gets the following structure:</p>
 <ul class="simple">
 <li><p>Import packages</p></li>
@@ -539,19 +539,16 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>As there might be still some arguments you are not familiar with, we will go through the upper lines step by step.</p>
 <div class="section" id="structure-of-dash-callback-decorator">
-<h3>Structure of Dash callback decorator<a class="headerlink" href="#structure-of-dash-callback-decorator" title="Permalink to this headline">¶</a></h3>
+<h3>4.2.1 Structure of Dash callback decorator<a class="headerlink" href="#structure-of-dash-callback-decorator" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div><p>The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding porperties that you want to link together.</p>
+<div><p>The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.</p>
 </div></blockquote>
-<p>The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.</p>
+<p>The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.</p>
+<p>The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.</p>
 <p>In order to build more complex applications with Dash later we will introduce a third argument called State, which in some sense will allow to circumvent this direct relationship. Also the arguments Output and Input can take on different components to allow for advanced functionality. However, we’ll come back to this in chapter 10.</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>The arguments of a callback decorator Output and Input need to be imported from the dash library on top of your app.</p>
-</div>
 </div>
 <div class="section" id="structure-of-dash-callback-function">
-<h3>Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
+<h3>4.2.2 Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><p>The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.</p>
 </div></blockquote>
@@ -577,11 +574,15 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="section" id="callbacks-in-action">
-<h2>Callbacks in action<a class="headerlink" href="#callbacks-in-action" title="Permalink to this headline">¶</a></h2>
+<h2>4.3 Callbacks in action<a class="headerlink" href="#callbacks-in-action" title="Permalink to this headline">¶</a></h2>
 <p>Now it’s time to see some callbacks in action. For this chapter two examples should be discussed in detail.</p>
 <div class="section" id="change-a-markdown-by-dropdown">
-<h3>Change a markdown by dropdown<a class="headerlink" href="#change-a-markdown-by-dropdown" title="Permalink to this headline">¶</a></h3>
-<p>Let’s start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app. Using callbacks always make sure to import the libraries ‘Output’ and ‘Input’ for the callback decorator.</p>
+<h3>4.3.1 Change a markdown by dropdown<a class="headerlink" href="#change-a-markdown-by-dropdown" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Using callbacks always make sure to import the libraries ‘Output’ and ‘Input’ for the callback decorator.</p>
+</div>
 <p>Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create app components</span>
 <span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-title&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
@@ -635,7 +636,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]</strong></p>
 </div>
 <div class="section" id="change-a-graph-by-dropdown">
-<h3>Change a graph by dropdown<a class="headerlink" href="#change-a-graph-by-dropdown" title="Permalink to this headline">¶</a></h3>
+<h3>4.3.2 Change a graph by dropdown<a class="headerlink" href="#change-a-graph-by-dropdown" title="Permalink to this headline">¶</a></h3>
 <p>Now, that we have already changed the title of our app, let’s get a little more sophisticated. We’re keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash.</p>
 <p>For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd. plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.</p>
 <p>One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it’ll take on a dictionary and give it a tabular structure. Now, you are set for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.</p>
@@ -697,6 +698,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
+<p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE BAR OF THE BARCHART]</strong></p>
 </div>
 </div>
 </div>

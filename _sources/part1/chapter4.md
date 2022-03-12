@@ -20,11 +20,11 @@ When we finish this chapter you'll have a fully working app linking together two
 
 ```
 
-## Introduction to decorators in Python
+## 4.1 Introduction to decorators in Python
 
 
 
-## Structure of app callbacks
+## 4.2 Structure of app callbacks
 
 Before we talk about the structure of a callback, let's briefly discuss how callbacks in general will fit into your app. Referring to the structure of an app that we have discussed so far your callbacks will always fit after your app layout and before you actually run the app. Your app gets the following structure:
 
@@ -52,19 +52,21 @@ def function_output(arg):
 
 As there might be still some arguments you are not familiar with, we will go through the upper lines step by step.
 
-### Structure of Dash callback decorator
+### 4.2.1 Structure of Dash callback decorator
 
-> The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding porperties that you want to link together.
+> The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.
 
-The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
+The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.
+
+```{admonition} Component id & property
+
+```
+
+The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
 
 In order to build more complex applications with Dash later we will introduce a third argument called State, which in some sense will allow to circumvent this direct relationship. Also the arguments Output and Input can take on different components to allow for advanced functionality. However, we'll come back to this in chapter 10.
 
-```{attention}
-The arguments of a callback decorator Output and Input need to be imported from the dash library on top of your app.
-```
-
-### Structure of Dash callback function
+### 4.2.2 Structure of Dash callback function
 
 > The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.
 
@@ -88,13 +90,17 @@ The function body is the place where you can work with the input data to build g
 At the end of the callback function the output that has been prepared in the function body gets returned i.e., that's the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.
 ```
 
-## Callbacks in action
+## 4.3 Callbacks in action
 
 Now it's time to see some callbacks in action. For this chapter two examples should be discussed in detail.
 
-### Change a markdown by dropdown
+### 4.3.1 Change a markdown by dropdown
 
-Let's start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app. Using callbacks always make sure to import the libraries 'Output' and 'Input' for the callback decorator.
+Let's start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app.
+
+```{attention}
+Using callbacks always make sure to import the libraries 'Output' and 'Input' for the callback decorator.
+```
 
 Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback.
 
@@ -154,7 +160,7 @@ if __name__ == '__main__':
 
 **[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
 
-### Change a graph by dropdown
+### 4.3.2 Change a graph by dropdown
 
 Now, that we have already changed the title of our app, let's get a little more sophisticated. We're keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash. 
 
@@ -224,3 +230,4 @@ def update_output_div(value_drop):
 if __name__ == '__main__':
     app.run_server(debug=False)
 ```
+**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE BAR OF THE BARCHART]**
