@@ -10,30 +10,37 @@ After initializing a first simple app, learning about Dash components and settin
 - Simple examples for callbacks
 ```
 
+When we finish this chapter you'll have a fully working app linking together two components. You can find the code already in the dropdown box below.
+
+```{admonition} Click the button to reveal the end result of this chapter!
+:class: dropdown
+
+
+
+```
+
 ## Introduction to decorators in Python
- 
-> 1. what are the advantages of decorators and basic structure  
+
+
 
 ## Structure of app callbacks
 
 Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:
 
 ```
-# (1) Callback decorator
+# Callback decorator
 @app.callback(
-    Output(component_id='my-comp-out', component_property='prop-out'),
-    Input(component_id='my-comp-in', component_property='prop-in')
+    Output(component_id='my-component-1', component_property='property-1'),
+    Input(component_id='my-component-2', component_property='property-2')
 )
 
-# (2) Callback function
+# Callback function
 def function_output(arg):
+    output = arg
     return output
 ```
 
 ### Structure of Dash callback decorator
-
-> 1. Structure of a Dash callback decorator (*copy simple app from chapter 2 to refer to its callback here)
-     1. Decorator arguments: Output, Input, component_id, component_property 
 
 The callback decorator makes up the first part of the callback. The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component_id and the component_property. The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output.
 
@@ -44,11 +51,6 @@ The arguments of a callback decorator Output and Input need to be imported from 
 ```
 
 ### Structure of Dash callback function
-
-> 1. Structure of Dash callback function
-     1. function argument (*also mention multiple inputs require multiple arguments)
-     2. function body (*a place where you can work with the input data to build graphs and manipulate app data)
-     3. Return output of function (*also mention multiple outputs require multiple objects)
 
 The callback function makes up the second part of the callback and is itself composed into three different parts:
 - The function argument: The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
@@ -100,22 +102,24 @@ if __name__ == '__main__':
 
 ### Change a graph by dropdown
 
->  1. Seeing Graph and Dropdown in action (*copy simple app from chapter 3 to refer to its graph and dropdown components)
-     1. Create a callback with the Dropdown and Graph from chapter 3
-        1. add the graph figure and dropdown value in decorator as the component_property
-        2. In callback function body: taking dropdown value to change bar graph 
-
 Now, that we have already changed the title of our app, let's get a little more sophisticated. We're keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash. 
 
 For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd. plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.
 
 One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it'll take on a dictionary and give it a tabular structure. Now, you are set for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.
 
-> df = pd.DataFrame({"Fruit": ["Apples", "Oranges", "Bananas"], "Amount": [4, 1, 2]})
+```
+df = pd.DataFrame({
+    "Fruit": ["Apples", "Oranges", "Bananas"],
+    "Amount": [4, 1, 2]
+})
+```
 
 Next, we plot these data as a bar plot, with the fruits named on horizontal axis and the assigned values on the vertical axis. With plotly.express this will be as easy as the following line of code:
 
-> fig = px.bar(df, x="Fruit", y="Amount")
+```
+fig = px.bar(df, x="Fruit", y="Amount")
+```
 
 Bringing all pieces together gives the following simple app:
 
