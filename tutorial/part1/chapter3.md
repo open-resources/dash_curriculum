@@ -10,100 +10,103 @@ In this chapter we will explore Dash various **components** and how to position 
 
 ```{dropdown} Buttons
     :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
-    ```python
-    # Import packages 
-    from dash import Dash, html, dcc
-    import dash_bootstrap_components as dbc
+![grid](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/bootstrap_grid.png)
 
-    # Initialise the App 
-    app = Dash(__name__)
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-    # Create app components
-    markdown = dcc.Markdown('My First app')
-    button = html.Button("Button")
+# Initialise the App 
+app = Dash(__name__)
 
-    # App Layout 
-    app.layout = dbc.Container([
-                    markdown,
-                    button,
-    ])
+# Create app components
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
 
-    # Run the App 
-    if __name__ == '__main__':
-        app.run_server()
-    ```
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+])
+
+# Run the App 
+if __name__ == '__main__':
+    app.run_server()
+```
 
 ```
 
 ```{dropdown} Checklist
     :container: + shadow
   
-    **Add gif of checklist function**
+**Add gif of checklist function**
 
-    ```python
-    # Import packages 
-    from dash import Dash, html, dcc
-    import dash_bootstrap_components as dbc
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-    # Initialise the App 
-    app = Dash(__name__)
+# Initialise the App 
+app = Dash(__name__)
 
-    # Create app components
-    markdown = dcc.Markdown('My First app')
-    button = html.Button("Button")
-    checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+# Create app components
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
+checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
 
-    # App Layout 
-    app.layout = dbc.Container([
-                    markdown,
-                    button,
-                    checklist,
-    ])
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+])
 
-    # Run the App 
-    if __name__ == '__main__':
-        app.run_server()
+# Run the App 
+if __name__ == '__main__':
+    app.run_server()
 
-    ```
+```
 
-    **Insert picture of checklist and button together**
+**Insert picture of checklist and button together**
   
 ```
 
 ```{dropdown} Radio items
     :container: + shadow
   
-  
-    **Add gif of radio item function**
 
-    ```python
-    # Import packages 
-    from dash import Dash, html, dcc
-    import dash_bootstrap_components as dbc
+**Add gif of radio item function**
 
-    # Initialise the App 
-    app = Dash(__name__)
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-    # Create app components
-    markdown = dcc.Markdown('My First app')
-    button = html.Button("Button")
-    checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
-    radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
+# Initialise the App 
+app = Dash(__name__)
 
-    # App Layout 
-    app.layout = dbc.Container([
-                    markdown,
-                    button,
-                    checklist,
-                    radio,
-    ])
+# Create app components
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
+checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
 
-    # Run the App 
-    if __name__ == '__main__':
-        app.run_server()
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+])
 
-    ```
+# Run the App 
+if __name__ == '__main__':
+    app.run_server()
+
+```
 
 ```
 
