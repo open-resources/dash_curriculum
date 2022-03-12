@@ -96,7 +96,28 @@ Now it's time to see some callbacks in action. For this chapter two examples sho
 
 Let's start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app. Using callbacks always make sure to import the libraries 'Output' and 'Input' for the callback decorator.
 
-Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback. The callback itself takes on the id as well as the children property of the markdown as output arguments in the decorator. As input arguments the id and the value of the dropdown. The value of the dropdown gets put into the callback function, saved into a basic variable and then gets returned. The complete code is shown below.
+Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback.
+
+```
+# Create app components
+markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
+dropdown = dcc.Dropdown(id='our-drop', options=['My First App', 'Another Title', 'Welcome to this App'], value='My First App')
+```
+
+The callback itself takes on the id as well as the children property of the markdown as output arguments in the decorator. As input arguments the id and the value of the dropdown. The value of the dropdown gets put into the callback function, saved into a basic variable and then gets returned.
+
+```
+# Configure callback
+@app.callback(
+    Output(component_id='our-title', component_property='children'),
+    Input(component_id='our-drop', component_property='value')
+)
+def update_markdown(value_drop):
+    title = value_drop
+    return title
+```
+
+The complete code is shown below.
 
 ```
 # Import packages
@@ -130,6 +151,8 @@ def update_markdown(value_drop):
 if __name__ == '__main__':
     app.run_server()
 ```
+
+**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
 
 ### Change a graph by dropdown
 
