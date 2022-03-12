@@ -36,8 +36,8 @@ if __name__ == '__main__':
 
 ```
 
-<details>
-  <summary>Checklist</summary>
+```{dropdown} Checklist
+    :container: + shadow
   
 **Add gif of checklist function**
   
@@ -68,11 +68,11 @@ if __name__ == '__main__':
 ```
 **Insert picture of checklist and button together**
   
-</details>
+```
 
 
-<details>
-  <summary>Radio Item</summary>
+```{dropdown} Radio Items
+    :container: + shadow
   
 **Add gif of radio item function**
 
@@ -103,12 +103,11 @@ if __name__ == '__main__':
     app.run_server()
 
 ```
-  
-  
-</details>
 
-<details>
-  <summary>Dropdown</summary>
+```
+
+```{dropdown} Dropdown
+    :container: + shadow
   
 **Add gif of dropdown function**
   
@@ -142,10 +141,10 @@ if __name__ == '__main__':
 
 ```
   
-</details>
+```
 
-<details>
-  <summary>Slider</summary>
+```{dropdown} Slider
+    :container: + shadow
   
 **Add gif of slider function**
 
@@ -181,13 +180,14 @@ if __name__ == '__main__':
 
 ```
 
-</details>
+```
 
 ## CSS
 
 Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.   We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
-<details>
-  <summary>CSS</summary>
+
+```{dropdown} CSS
+    :container: + shadow
  
 ```python
 # Import packages 
@@ -222,14 +222,14 @@ if __name__ == '__main__':
  
 **pictures/gif showing the difference CSS stylesheet makes**
 
-</details>
+```
 
 ## Layout
 
 Now let's learn about layout and how to place the components at specific locations on the page instead.  We will use **Dash Bootstrap Components** to do this.  **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
 
-<details>
-  <summary>Dash Bootstrap Components</summary>
+```{dropdown} Dash Bootstrap Components
+    :container: + shadow
   
 * [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
 ![Bootstrap layout](../assets/p1_c3/bootstrap_grid.png)
@@ -238,5 +238,5 @@ Now let's learn about layout and how to place the components at specific locatio
   * Rows only contain columns
   * Columns holds your components
 
-</details>
+```
   

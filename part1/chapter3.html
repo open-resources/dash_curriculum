@@ -384,16 +384,6 @@ const thebe_selector_output = ".output, .cell_output"
    Dash Components
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#css">
-   CSS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#layout">
-   Layout
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -422,16 +412,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#dash-components">
    Dash Components
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#css">
-   CSS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#layout">
-   Layout
   </a>
  </li>
 </ul>
@@ -484,8 +464,8 @@ Buttons<div class="summary-down docutils">
 </div>
 </div>
 </details><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-&lt;details&gt;
-  &lt;summary&gt;Checklist&lt;/summary&gt;
+```{dropdown} Checklist
+    :container: + shadow
   
 **Add gif of checklist function**
   
@@ -516,162 +496,172 @@ if __name__ == &#39;__main__&#39;:
 </pre></div>
 </div>
 <p><strong>Insert picture of checklist and button together</strong></p>
-</details>
-<details>
-  <summary>Radio Item</summary>
-<p><strong>Add gif of radio item function</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
 
-<span class="c1"># Initialise the App </span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+```{dropdown} Radio Items
+    :container: + shadow
+  
+**Add gif of radio item function**
 
-<span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
-<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-<span class="c1"># App Layout </span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-<span class="p">])</span>
+# Initialise the App 
+app = Dash(__name__)
 
-<span class="c1"># Run the App </span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+# Create app components
+markdown = dcc.Markdown(&#39;My First app&#39;)
+button = html.Button(&quot;Button&quot;)
+checklist = dcc.Checklist([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+radio = dcc.RadioItems([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
 
-</pre></div>
-</div>
-</details>
-<details>
-  <summary>Dropdown</summary>
-<p><strong>Add gif of dropdown function</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+])
 
-<span class="c1"># Initialise the App </span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
-<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
-
-<span class="c1"># App Layout </span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-<span class="p">])</span>
-
-<span class="c1"># Run the App </span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+# Run the App 
+if __name__ == &#39;__main__&#39;:
+    app.run_server()
 
 </pre></div>
 </div>
-</details>
-<details>
-  <summary>Slider</summary>
-<p><strong>Add gif of slider function</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{dropdown} Dropdown
+    :container: + shadow
+  
+**Add gif of dropdown function**
+  
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-<span class="c1"># Initialise the App </span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+# Initialise the App 
+app = Dash(__name__)
 
-<span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
-<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
-<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+# Create app components
+markdown = dcc.Markdown(&#39;My First app&#39;)
+button = html.Button(&quot;Button&quot;)
+checklist = dcc.Checklist([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+radio = dcc.RadioItems([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+dropdown = dcc.Dropdown([&#39;NYC&#39;, &#39;MTL&#39;, &#39;SF&#39;])
 
-<span class="c1"># App Layout </span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-                <span class="n">slider</span><span class="p">,</span>
-<span class="p">])</span>
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+                dropdown,
+])
 
-<span class="c1"># Run the App </span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+# Run the App 
+if __name__ == &#39;__main__&#39;:
+    app.run_server()
 
 </pre></div>
 </div>
-</details>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{dropdown} Slider
+    :container: + shadow
+  
+**Add gif of slider function**
+
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App 
+app = Dash(__name__)
+
+# Create app components
+markdown = dcc.Markdown(&#39;My First app&#39;)
+button = html.Button(&quot;Button&quot;)
+checklist = dcc.Checklist([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+radio = dcc.RadioItems([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+dropdown = dcc.Dropdown([&#39;NYC&#39;, &#39;MTL&#39;, &#39;SF&#39;])
+slider = dcc.Slider(0, 10, 1)
+
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+                dropdown,
+                slider,
+])
+
+# Run the App 
+if __name__ == &#39;__main__&#39;:
+    app.run_server()
+
+</pre></div>
 </div>
-<div class="section" id="css">
-<h2>CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h2>
-<p>Next, we’ll add styling to our application with a Cascading Style Sheets or <strong>CSS</strong>.   We will use the Bootstrap <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> for this application.</p>
-<details>
-  <summary>CSS</summary>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+## CSS
 
-<span class="c1"># Initialise the App </span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+Next, we&#39;ll add styling to our application with a Cascading Style Sheets or **CSS**.   We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
 
-<span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
-<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
-<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+```{dropdown} CSS
+    :container: + shadow
+ 
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
 
-<span class="c1"># App Layout </span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-                <span class="n">slider</span><span class="p">,</span>
-<span class="p">])</span>
+# Initialise the App 
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-<span class="c1"># Run the App </span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+# Create app components
+markdown = dcc.Markdown(&#39;My First app&#39;)
+button = html.Button(&quot;Button&quot;)
+checklist = dcc.Checklist([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+radio = dcc.RadioItems([&#39;New York City&#39;, &#39;Montréal&#39;, &#39;San Francisco&#39;])
+dropdown = dcc.Dropdown([&#39;NYC&#39;, &#39;MTL&#39;, &#39;SF&#39;])
+slider = dcc.Slider(0, 10, 1)
+
+# App Layout 
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+                dropdown,
+                slider,
+])
+
+# Run the App 
+if __name__ == &#39;__main__&#39;:
+    app.run_server()
 </pre></div>
 </div>
 <p><strong>pictures/gif showing the difference CSS stylesheet makes</strong></p>
-</details>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+## Layout
+
+Now let&#39;s learn about layout and how to place the components at specific locations on the page instead.  We will use **Dash Bootstrap Components** to do this.  **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
+
+```{dropdown} Dash Bootstrap Components
+    :container: + shadow
+  
+* [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
+![Bootstrap layout](../assets/p1_c3/bootstrap_grid.png)
+* 3 main layout components: Container, Row, and Column.
+  * Container wraps the entire app
+  * Rows only contain columns
+  * Columns holds your components
+
+</pre></div>
 </div>
-<div class="section" id="layout">
-<h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s learn about layout and how to place the components at specific locations on the page instead.  We will use <strong>Dash Bootstrap Components</strong> to do this.  <strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
-<details>
-  <summary>Dash Bootstrap Components</summary>
-<ul class="simple">
-<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
-<img alt="Bootstrap layout" src="../_images/bootstrap_grid.png" /></p></li>
-<li><p>3 main layout components: Container, Row, and Column.</p>
-<ul>
-<li><p>Container wraps the entire app</p></li>
-<li><p>Rows only contain columns</p></li>
-<li><p>Columns holds your components</p></li>
-</ul>
-</li>
-</ul>
-</details>
 </div>
 </div>
 
