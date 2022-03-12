@@ -11,68 +11,70 @@ In this chapter we will explore Dash various **components** and how to position 
 ```{dropdown} Buttons
     :container: + shadow
   
-```python
-# Import packages 
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
+    ```python
+    # Import packages 
+    from dash import Dash, html, dcc
+    import dash_bootstrap_components as dbc
 
-# Initialise the App 
-app = Dash(__name__)
+    # Initialise the App 
+    app = Dash(__name__)
 
-# Create app components
-markdown = dcc.Markdown('My First app')
-button = html.Button("Button")
+    # Create app components
+    markdown = dcc.Markdown('My First app')
+    button = html.Button("Button")
 
-# App Layout 
-app.layout = dbc.Container([
-                markdown,
-                button,
-])
+    # App Layout 
+    app.layout = dbc.Container([
+                    markdown,
+                    button,
+    ])
 
-# Run the App 
-if __name__ == '__main__':
-    app.run_server()
-```
+    # Run the App 
+    if __name__ == '__main__':
+        app.run_server()
+    ```
 
 ```
 
 ```{dropdown} Checklist
     :container: + shadow
   
-**Add gif of checklist function**
+    **Add gif of checklist function**
+
+    ```python
+    # Import packages 
+    from dash import Dash, html, dcc
+    import dash_bootstrap_components as dbc
+
+    # Initialise the App 
+    app = Dash(__name__)
+
+    # Create app components
+    markdown = dcc.Markdown('My First app')
+    button = html.Button("Button")
+    checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+
+    # App Layout 
+    app.layout = dbc.Container([
+                    markdown,
+                    button,
+                    checklist,
+    ])
+
+    # Run the App 
+    if __name__ == '__main__':
+        app.run_server()
+
+    ```
+
+    **Insert picture of checklist and button together**
   
-```python
-# Import packages 
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-# Initialise the App 
-app = Dash(__name__)
-
-# Create app components
-markdown = dcc.Markdown('My First app')
-button = html.Button("Button")
-checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
-
-# App Layout 
-app.layout = dbc.Container([
-                markdown,
-                button,
-                checklist,
-])
-
-# Run the App 
-if __name__ == '__main__':
-    app.run_server()
-
-```
-**Insert picture of checklist and button together**
-  
 ```
 
 
-```{dropdown} Radio Items
+```{dropdown} Radio items
     :container: + shadow
+  
   
 **Add gif of radio item function**
 
