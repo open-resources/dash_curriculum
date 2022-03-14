@@ -110,6 +110,8 @@ Now that you know how to create and launch your first basic App, try to play aro
 - Try to change the content of your first Markdown of your App
 - Try to add a new Markdown with a custom content
 
+In the next chapter, we will focus on the Dash components examining what components can be included in the Dashboards and how to place and style them.
+
 ---
 ---
 
