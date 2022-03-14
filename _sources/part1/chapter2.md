@@ -110,7 +110,10 @@ Now that you know how to create and launch your first basic App, try to play aro
 - Try to change the content of your first Markdown of your App
 - Try to add a new Markdown with a custom content
 
-## Sections that will be covered in later chapters
+---
+---
+
+## Sections that will be covered in later chapters [ Move / Delete this section ]
 In later chapters, we'll add features to our App, enhancing the App structure: we will include the following sections:
 
 ### Data Preparation
