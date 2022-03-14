@@ -51,11 +51,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://github.com/open-resources/dash_curriculum/part1/chapter2_Gab.html" />
+    <link rel="canonical" href="https://github.com/open-resources/dash_curriculum/part1/chapter2.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Chapter 3 - Dash Components and Layouts" href="chapter3.html" />
-    <link rel="prev" title="Chapter 1" href="chapter1.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -170,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
   Part 1. Introduction to Dashboards in Dash
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="summary.html">
    Introduction
@@ -179,11 +177,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="chapter1.html">
    Chapter 1
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Chapter 2: Getting Started with Dash
   </a>
  </li>
  <li class="toctree-l1">
@@ -328,7 +321,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/part1/chapter2_Gab.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/part1/chapter2.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -348,7 +341,7 @@ const thebe_selector_output = ".output, .cell_output"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart1/chapter2_Gab.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart1/chapter2.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -390,28 +383,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prepare-data">
-     (2) Prepare Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialise-the-app">
-     (3) Initialise the App
+     (2) Initialise the App
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#app-layout">
-     (4) App Layout
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-callbacks">
-     (5) Configure Callbacks
+     (3) App Layout
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#run-the-app">
-     (6) Run the App
+     (4) Run the App
     </a>
    </li>
   </ul>
@@ -420,6 +403,23 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#interacting-with-the-app">
    Interacting with the App
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sections-that-will-be-covered-in-later-chapters">
+   Sections that will be covered in later chapters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-preparation">
+     Data Preparation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#callbacks-configuration">
+     Callbacks Configuration
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -457,28 +457,18 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#prepare-data">
-     (2) Prepare Data
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialise-the-app">
-     (3) Initialise the App
+     (2) Initialise the App
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#app-layout">
-     (4) App Layout
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#configure-callbacks">
-     (5) Configure Callbacks
+     (3) App Layout
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#run-the-app">
-     (6) Run the App
+     (4) Run the App
     </a>
    </li>
   </ul>
@@ -487,6 +477,23 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#interacting-with-the-app">
    Interacting with the App
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sections-that-will-be-covered-in-later-chapters">
+   Sections that will be covered in later chapters
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data-preparation">
+     Data Preparation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#callbacks-configuration">
+     Callbacks Configuration
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -506,21 +513,15 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="c1"># (2) Prepare Data --------------------------------------------</span>
-
-<span class="c1"># (3) Initialise the App --------------------------------------------</span>
+<span class="c1"># (2) Initialise the App --------------------------------------------</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="c1"># (4) App Layout --------------------------------------------</span>
+<span class="c1"># (3) App Layout --------------------------------------------</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-    <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-title&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
 <span class="p">])</span>
 
-<span class="c1"># (5) Configure Callbacks --------------------------------------------</span>
-<span class="c1">#@app.callback(...)</span>
-
-
-<span class="c1"># (6) Run the App --------------------------------------------</span>
+<span class="c1"># (4) Run the App --------------------------------------------</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
@@ -533,10 +534,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p>There are best practices to structure Dash Apps. Following these best practices will simplify the development of future applications. The recommended Dash App structure consists of the following sections:</p>
 <ol class="simple">
 <li><p>Import packages</p></li>
-<li><p>Prepare Data</p></li>
 <li><p>Initialise the App</p></li>
 <li><p>App Layout</p></li>
-<li><p>Configure Callbacks</p></li>
 <li><p>Run the App</p></li>
 </ol>
 <div class="section" id="import-packages">
@@ -557,13 +556,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.</p></li>
 </ul>
 </div>
-<div class="section" id="prepare-data">
-<h3>(2) Prepare Data<a class="headerlink" href="#prepare-data" title="Permalink to this headline">¶</a></h3>
-<p>Data is normally created / imported in a global section of the app. In this way, the whole code can refer to and use it.
-If you plan to perform any data wrangling tasks, you may want to add to section 1 dedicated libraries (import pandas as pd, …)</p>
-</div>
 <div class="section" id="initialise-the-app">
-<h3>(3) Initialise the App<a class="headerlink" href="#initialise-the-app" title="Permalink to this headline">¶</a></h3>
+<h3>(2) Initialise the App<a class="headerlink" href="#initialise-the-app" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -571,7 +565,7 @@ If you plan to perform any data wrangling tasks, you may want to add to section 
 This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we’ll need to specify more properties to create more complex apps (e.g. point to CSS files).</p>
 </div>
 <div class="section" id="app-layout">
-<h3>(4) App Layout<a class="headerlink" href="#app-layout" title="Permalink to this headline">¶</a></h3>
+<h3>(3) App Layout<a class="headerlink" href="#app-layout" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
     <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-title&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
 <span class="p">])</span>
@@ -584,12 +578,8 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 <li><p>style : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary and in this case, a center alignment was set.</p></li>
 </ul>
 </div>
-<div class="section" id="configure-callbacks">
-<h3>(5) Configure Callbacks<a class="headerlink" href="#configure-callbacks" title="Permalink to this headline">¶</a></h3>
-<p>Callbacks define the user interaction with the dashboard. For example, a Dash app can have a callback that defines how a dropdown could affect a chart being displayed on the page. Callbacks will be covered in chapter 4.</p>
-</div>
 <div class="section" id="run-the-app">
-<h3>(6) Run the App<a class="headerlink" href="#run-the-app" title="Permalink to this headline">¶</a></h3>
+<h3>(4) Run the App<a class="headerlink" href="#run-the-app" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
@@ -637,6 +627,19 @@ This section is pretty much static and fixed for any Dash app you may create.</p
 <li><p>Try to add a new Markdown with a custom content</p></li>
 </ul>
 </div>
+<div class="section" id="sections-that-will-be-covered-in-later-chapters">
+<h2>Sections that will be covered in later chapters<a class="headerlink" href="#sections-that-will-be-covered-in-later-chapters" title="Permalink to this headline">¶</a></h2>
+<p>In later chapters, we’ll add features to our App, enhancing the App structure that will include the following sections:</p>
+<div class="section" id="data-preparation">
+<h3>Data Preparation<a class="headerlink" href="#data-preparation" title="Permalink to this headline">¶</a></h3>
+<p>Data is normally created / imported in a global section of the app. In this way, the whole code can refer to and use it.
+If you plan to perform any data wrangling tasks, you may want to add to section 1 dedicated libraries (import pandas as pd, …)</p>
+</div>
+<div class="section" id="callbacks-configuration">
+<h3>Callbacks Configuration<a class="headerlink" href="#callbacks-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Callbacks define the user interaction with the dashboard. For example, a Dash app can have a callback that defines how a dropdown could affect a chart being displayed on the page. Callbacks will be covered in chapter 4.</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -663,21 +666,7 @@ This section is pretty much static and fixed for any Dash app you may create.</p
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="chapter1.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Chapter 1</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="chapter3.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Chapter 3 - Dash Components and Layouts</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

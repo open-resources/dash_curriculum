@@ -8,21 +8,15 @@ This chapter sets the foundation for the creation of Dash Applications. Starting
 from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 
-# (2) Prepare Data --------------------------------------------
-
-# (3) Initialise the App --------------------------------------------
+# (2) Initialise the App --------------------------------------------
 app = Dash(__name__)
 
-# (4) App Layout --------------------------------------------
+# (3) App Layout --------------------------------------------
 app.layout = dbc.Container([
-    dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
+    dcc.Markdown(children='My First App', style={'textAlign': 'center'})
 ])
 
-# (5) Configure Callbacks --------------------------------------------
-#@app.callback(...)
-
-
-# (6) Run the App --------------------------------------------
+# (4) Run the App --------------------------------------------
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -34,11 +28,9 @@ if __name__ == '__main__':
 ## Structure of a Dash App
 There are best practices to structure Dash Apps. Following these best practices will simplify the development of future applications. The recommended Dash App structure consists of the following sections:
 1) Import packages
-2) Prepare Data
-3) Initialise the App
-4) App Layout
-5) Configure Callbacks
-6) Run the App
+2) Initialise the App
+3) App Layout
+4) Run the App
 
 ### (1) Import packages
 ```
@@ -51,18 +43,14 @@ Dash apps require some libraries to run, this statement is importing them. Let's
 - dcc stands for dash_core_components which is a module that give access to many interactive components that are used in Dash apps and will be introduced in Chapter 3.
 - Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.
 
-### (2) Prepare Data
-Data is normally created / imported in a global section of the app. In this way, the whole code can refer to and use it.
-If you plan to perform any data wrangling tasks, you may want to add to section 1 dedicated libraries (import pandas as pd, ...)
-
-### (3) Initialise the App
+### (2) Initialise the App
 ```
 app = Dash(__name__)
 ```
 In this section, we initialise an app by creating a Dash instance and calling it "app".
 This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll need to specify more properties to create more complex apps (e.g. point to CSS files). 
 
-### (4) App Layout
+### (3) App Layout
 ```
 app.layout = dbc.Container([
     dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
@@ -73,10 +61,7 @@ The app layout contains the structure of the app. This represents what will be d
 - children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the "My First App" will be the content displayed on the web page.
 - style : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary and in this case, a center alignment was set.
 
-### (5) Configure Callbacks
-Callbacks define the user interaction with the dashboard. For example, a Dash app can have a callback that defines how a dropdown could affect a chart being displayed on the page. Callbacks will be covered in chapter 4.
-
-### (6) Run the App
+### (4) Run the App
 ```
 if __name__ == '__main__':
     app.run_server()
@@ -117,8 +102,16 @@ if __name__ == '__main__':
 Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised
 ```
 
-
-
 Now that you know how to create and launch your first basic App, try to play around with it:
 - Try to change the content of your first Markdown of your App
 - Try to add a new Markdown with a custom content
+
+## Sections that will be covered in later chapters
+In later chapters, we'll add features to our App, enhancing the App structure that will include the following sections:
+
+### Data Preparation
+Data is normally created / imported in a global section of the app. In this way, the whole code can refer to and use it.
+If you plan to perform any data wrangling tasks, you may want to add to section 1 dedicated libraries (import pandas as pd, ...)
+
+### Callbacks Configuration
+Callbacks define the user interaction with the dashboard. For example, a Dash app can have a callback that defines how a dropdown could affect a chart being displayed on the page. Callbacks will be covered in chapter 4.
