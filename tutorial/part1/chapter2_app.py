@@ -1,22 +1,15 @@
 # (1) Import packages --------------------------------------------
-from dash import Dash
-import dash_core_components as dcc
+from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 
-# (2) Prepare Data --------------------------------------------
-
-# (3) Initialise the App --------------------------------------------
+# (2) Initialise the App --------------------------------------------
 app = Dash(__name__)
 
-# (4) App Layout --------------------------------------------
+# (3) App Layout --------------------------------------------
 app.layout = dbc.Container([
-    dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
+    dcc.Markdown(children='My First App', style={'textAlign': 'center'})
 ])
 
-# (5) Configure Callbacks --------------------------------------------
-#@app.callback(...)
-
-
-# (6) Run the App --------------------------------------------
+# (4) Run the App --------------------------------------------
 if __name__ == '__main__':
     app.run_server()
