@@ -53,11 +53,10 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 ### (3) App Layout
 ```
 app.layout = dbc.Container([
-    dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
+    dcc.Markdown(children='My First App', style={'textAlign': 'center'})
 ])
 ```
-The app layout contains the structure of the app. This represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Components gives you access to a markup language that makes it easier to format text for web pages. This component has been customized with three properties:
-- id : every component has an id which is uniquely identifying it (your App may have many "Markdown", the id helps differenciating them).
+The app layout contains the structure of the app. This represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Components gives you access to a markup language that makes it easier to format text for web pages. This component has been customized properties, such as:
 - children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the "My First App" will be the content displayed on the web page.
 - style : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary and in this case, a center alignment was set.
 
@@ -66,11 +65,14 @@ The app layout contains the structure of the app. This represents what will be d
 if __name__ == '__main__':
     app.run_server()
 ```
-In order to display the app through the browser, we add these statements to "Launch the server". { !!! TO-DO !!! Add a bried explanation on why we need a server}
+In order to display the app through the browser, we add these statements to "Launch the server". 
+
+{ !!! TO-DO !!! Add a bried explanation on why we need a server}
+
 This section is pretty much static and fixed for any Dash app you may create.
 
 Once we have the full code ready and saved in a .py file, we need to launch it:
-[.gif on how to launch the code via .py and what is displayed in the terminal output]
+[.gif showing how to launch the .py file of this chapter via VS code, displaying the Console output]
 
 After launching the app, we will see the following console output:
 ```
@@ -84,14 +86,16 @@ Dash is running on http://127.0.0.1:8050/
 ```
 - In order to display the app, open the browser and navigate to the URL shown in the console, in this case: http://127.0.0.1:8050/
 
-[.jpg with the App output]
+[.png with the App output from browser only]
 
 ---
 
 ## Interacting with the App
 Once the app is launched and working, we can:
   - Stop the app: typing (Ctrl+C) on the console will stop the app. This is sometimes required as one App per port can be launched: if we forgot to stop the app and we launch a different app, an error message will be displayed.
-[.jpg with the error message appearing when two apps are simultaneously launched]
+
+[.png with the error message appearing when two apps are simultaneously launched]
+
   - Update the app: whenever we apply any change the app code, we may re-launch the app to display the new version of the code. A quicker alternative can be to activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification to the corresponding .py file. In order to activate this functionality, the statement to Launch the server should be modified to:
 ```
 if __name__ == '__main__':
@@ -107,7 +111,7 @@ Now that you know how to create and launch your first basic App, try to play aro
 - Try to add a new Markdown with a custom content
 
 ## Sections that will be covered in later chapters
-In later chapters, we'll add features to our App, enhancing the App structure that will include the following sections:
+In later chapters, we'll add features to our App, enhancing the App structure: we will include the following sections:
 
 ### Data Preparation
 Data is normally created / imported in a global section of the app. In this way, the whole code can refer to and use it.
