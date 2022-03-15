@@ -590,7 +590,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Attention</p>
 <p>Using callbacks always make sure to import the libraries ‘Output’ and ‘Input’ for the callback decorator.</p>
 </div>
-<p>Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback.</p>
+<p>Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. In this case, the forementioned children, style, options and value are the properties of the two components. The unique ids are necessary for implementing a working callback.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create app components</span>
 <span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-title&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
 <span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-drop&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="s1">&#39;Another Title&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to this App&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">)</span>
@@ -607,7 +607,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="k">return</span> <span class="n">title</span>
 </pre></div>
 </div>
-<p>The complete code is shown below.</p>
+<p>The complete code will now look as follows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -645,18 +645,31 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="change-a-graph-by-dropdown">
 <h3>4.3.2 Change a graph by dropdown<a class="headerlink" href="#change-a-graph-by-dropdown" title="Permalink to this headline">¶</a></h3>
 <p>Now, that we have already changed the title of our app, let’s get a little more sophisticated. We’re keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash.</p>
-<p>For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd. plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.</p>
-<p>One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it’ll take on a dictionary and give it a tabular structure. Now, you are set for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.</p>
+<p>For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import additional packages</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+<p>plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.</p>
+<p>One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it’ll take on a dictionary and give it a tabular structure. Dictionaries are basically used to store data values in key:value pairs.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are not yet familiar with dictionaries you also may want to have a look at <a class="reference external" href="https://www.w3schools.com/python/python_dictionaries.asp">W3Schools</a>.</p>
+</div>
+<p>Now, you are set up for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">&quot;Fruit&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Apples&quot;</span><span class="p">,</span> <span class="s2">&quot;Oranges&quot;</span><span class="p">,</span> <span class="s2">&quot;Bananas&quot;</span><span class="p">],</span>
     <span class="s2">&quot;Amount&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="p">})</span>
 </pre></div>
 </div>
+<p><strong>[PNG, THAT SHOWS THE PRINTED DATA FRAME IN VS CODE]</strong></p>
 <p>Next, we plot these data as a bar plot, with the fruits named on horizontal axis and the assigned values on the vertical axis. With plotly.express this will be as easy as the following line of code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fruit&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Amount&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+<p><strong>[PNG, THAT SHOWS ONLY THE DEFAULT BARPLOT]</strong></p>
 <p>Bringing all pieces together gives the following simple app:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
