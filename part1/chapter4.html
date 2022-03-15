@@ -670,7 +670,22 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><strong>[PNG, THAT SHOWS ONLY THE DEFAULT BARPLOT]</strong></p>
-<p>Bringing all pieces together gives the following simple app:</p>
+<p>Whereas the arguments of the callback decorator will be straight forward, let’s pay some more attention on the callback function, especially the function body. The basic idea of our app example is to assign various numbers to a dropdown which itself is linked to the barplot. Whenever you choose a number via dropdown the bar in the middle, which represents the amount of oranges, will change. Let’s say the original amount gets multiplied by the selected value of the dropdown. Herefore, we’ll duplicate the DataFrame and reassign the amount of oranges, which will be multiplied by the selected value of the dropdown. We update the bar plot with the copied DataFrame and return the bar plot as function output. This makes up the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure callback</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-graph&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-drop&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_output_div</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>
+    <span class="n">dff</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dff</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">dff</span><span class="p">[</span><span class="s1">&#39;Amount&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">value_drop</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">dff</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;Fruit&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;Amount&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+<p>Don’t worry if that still looks confusing to you! The upcoming chapters will go into these operations in more detail. However, bringing all pieces together gives the following simple app:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>

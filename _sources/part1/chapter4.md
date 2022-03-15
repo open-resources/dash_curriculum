@@ -203,7 +203,24 @@ fig = px.bar(df, x="Fruit", y="Amount")
 ```
 **[PNG, THAT SHOWS ONLY THE DEFAULT BARPLOT]**
 
-Bringing all pieces together gives the following simple app:
+Whereas the arguments of the callback decorator will be straight forward, let's pay some more attention on the callback function, especially the function body. The basic idea of our app example is to assign various numbers to a dropdown which itself is linked to the barplot. Whenever you choose a number via dropdown the bar in the middle, which represents the amount of oranges, will change. Let's say the original amount gets multiplied by the selected value of the dropdown. Herefore, we'll duplicate the DataFrame and reassign the amount of oranges, which will be multiplied by the selected value of the dropdown. We update the bar plot with the copied DataFrame and return the bar plot as function output. This makes up the following code:
+
+```
+# Configure callback
+@app.callback(
+    Output(component_id='our-graph', component_property='figure'),
+    Input(component_id='our-drop', component_property='value')
+)
+def update_output_div(value_drop):
+    dff = df.copy()
+    dff['Amount'][1] = dff['Amount'][1]*value_drop
+
+    fig = px.bar(dff, x="Fruit", y="Amount")
+
+    return fig
+```
+
+Don't worry if that still looks confusing to you! The upcoming chapters will go into these operations in more detail. However, bringing all pieces together gives the following simple app:
 
 ```
 # Import packages
