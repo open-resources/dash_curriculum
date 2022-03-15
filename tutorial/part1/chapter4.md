@@ -108,7 +108,7 @@ Let's start of with linking a dropdown to a markdown. The markdown in this case 
 Using callbacks always make sure to import the libraries 'Output' and 'Input' for the callback decorator.
 ```
 
-Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. The unique ids are necessary for implementing a working callback.
+Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. In this case, the forementioned children, style, options and value are the properties of the two components. The unique ids are necessary for implementing a working callback.
 
 ```
 # Create app components
@@ -129,7 +129,7 @@ def update_markdown(value_drop):
     return title
 ```
 
-The complete code is shown below.
+The complete code will now look as follows.
 
 ```
 # Import packages
@@ -170,9 +170,23 @@ if __name__ == '__main__':
 
 Now, that we have already changed the title of our app, let's get a little more sophisticated. We're keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash. 
 
-For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd. plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.
+For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd.
 
-One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it'll take on a dictionary and give it a tabular structure. Now, you are set for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.
+```
+# Import additional packages
+import plotly.express as px
+import pandas as pd
+```
+
+plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.
+
+One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it'll take on a dictionary and give it a tabular structure. Dictionaries are basically used to store data values in key:value pairs.
+
+```{tip}
+If you are not yet familiar with dictionaries you also may want to have a look at [W3Schools](https://www.w3schools.com/python/python_dictionaries.asp).
+```
+
+Now, you are set up for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.
 
 ```
 df = pd.DataFrame({
@@ -180,12 +194,14 @@ df = pd.DataFrame({
     "Amount": [4, 1, 2]
 })
 ```
+**[PNG, THAT SHOWS THE PRINTED DATA FRAME IN VS CODE]**
 
 Next, we plot these data as a bar plot, with the fruits named on horizontal axis and the assigned values on the vertical axis. With plotly.express this will be as easy as the following line of code:
 
 ```
 fig = px.bar(df, x="Fruit", y="Amount")
 ```
+**[PNG, THAT SHOWS ONLY THE DEFAULT BARPLOT]**
 
 Bringing all pieces together gives the following simple app:
 
