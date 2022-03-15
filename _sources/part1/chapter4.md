@@ -203,7 +203,9 @@ fig = px.bar(df, x="Fruit", y="Amount")
 ```
 **[PNG, THAT SHOWS ONLY THE DEFAULT BARPLOT]**
 
-Whereas the arguments of the callback decorator will be straight forward, let's pay some more attention on the callback function, especially the function body. The basic idea of our app example is to assign various numbers to a dropdown which itself is linked to the barplot. Whenever you choose a number via dropdown the bar in the middle, which represents the amount of oranges, will change. Let's say the original amount gets multiplied by the selected value of the dropdown. Herefore, we'll duplicate the DataFrame and reassign the amount of oranges, which will be multiplied by the selected value of the dropdown. We update the bar plot with the copied DataFrame and return the bar plot as function output. This makes up the following code:
+Whereas the arguments of the callback decorator will be straight forward, let's pay some more attention on the callback function, especially the function body. The basic idea of our app example is to assign various numbers to a dropdown which itself is linked to the barplot. Whenever you choose a number via dropdown the bar in the middle, which represents the amount of oranges, will change. Let's say the original amount gets multiplied by the selected value of the dropdown. 
+
+Herefore, we'll duplicate the DataFrame and reassign the amount of oranges, which will be multiplied by the selected value of the dropdown. We update the bar plot with the copied DataFrame and return the bar plot as function output. This makes up the following code:
 
 ```
 # Configure callback
