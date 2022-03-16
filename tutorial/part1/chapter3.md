@@ -251,7 +251,7 @@ Running the code we have so far would produce an app with the following layout:
 
 [![enter image description here][1]][1]
 
-Here, the elements are organized in a `dbc.Component()` component (?) without any further specifications. This means that they will appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). The three componenst mentioned so far are the three main [Layout][2] components in dash-bootstrap-components.
+Here, the elements are organized in a `dbc.Container()` component without any further specifications. This means that they will appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). The three componenst mentioned so far are the three main [Layout][2] components in dash-bootstrap-components.
 
 The Row component is a wrapper for columns. The layout of your app should be built as a series of rows of columns. The Col component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
 
