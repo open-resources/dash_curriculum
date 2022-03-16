@@ -710,7 +710,7 @@ Dash Bootstrap Components<div class="summary-down docutils">
 )
 </pre></div>
 </div>
-<p>Be aware that <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> requires the affiliated components like <code class="docutils literal notranslate"><span class="pre">dbc.Col(button)</span></code> to be organized in a list <em><strong>if</strong></em> there are more than one element. So <code class="docutils literal notranslate"><span class="pre">dbc.Row(dbc.Col(markdown))</span></code> will not raise an error, but <code class="docutils literal notranslate"><span class="pre">dbc.Row([dbc.Col(button),</span> <span class="pre">dbc.Col(checklist)])</span></code> will.</p>
+<p>Be aware that <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> requires the affiliated components like <code class="docutils literal notranslate"><span class="pre">dbc.Col(button)</span></code> to be organized in a list <em><strong>if</strong></em> there is more than one element. So <code class="docutils literal notranslate"><span class="pre">dbc.Row(dbc.Col(markdown))</span></code> will not raise an error, but <code class="docutils literal notranslate"><span class="pre">dbc.Row(dbc.Col(button),</span> <span class="pre">dbc.Col(checklist))</span></code> will.</p>
 <p>For best results, also make sure you adhere to the following two rules when constructing your layouts:</p>
 <ol class="simple">
 <li><p>Only use Row and Col inside a Container. A single Container wrapping your entire app’s content is fine.</p></li>
