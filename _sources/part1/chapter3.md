@@ -247,3 +247,38 @@ Now let's learn about layout and how to place the components at specific locatio
   * Columns holds your components
 
 ````
+Running the code we have so far would produce an app with the following layout:
+
+[![enter image description here][1]][1]
+
+Here, the elements are organized in a `dbc.Component()` component (?) without any further specifications. This means that they will appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). The three componenst mentioned so far are the three main [Layout][2] components in dash-bootstrap-components.
+
+The Row component is a wrapper for columns. The layout of your app should be built as a series of rows of columns. The Col component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
+
+Now, lets set up the existing app with the markdown element on top, followed by a row with the button and checklist in two different columns. Then we'll follow up with a row with the radio, and dropdown components in two different columns. At the very bottow, we'll place the slider in a row that fills up the space of one single column. Here's the same app with a new layout:
+
+[![enter image description here][3]][3]
+
+And here's the corresponding snippet:
+
+    app.layout = dbc.Container(
+        [
+            dbc.Row(dbc.Col(markdown)),
+            dbc.Row([dbc.Col(button), dbc.Col(checklist)]),
+            dbc.Row([dbc.Col(radio), dbc.Col(dropdown)]),
+            dbc.Row(dbc.Col(slider)),
+        ]
+    )
+
+Be aware that `dbc.Row()` requires the affiliated components like `dbc.Col(button)` to be organized in a list ***if*** there are more than one element. So `dbc.Row(dbc.Col(markdown))` will not raise an error, but `dbc.Row([dbc.Col(button), dbc.Col(checklist)])` will. 
+
+For best results, also make sure you adhere to the following two rules when constructing your layouts:
+
+1. Only use Row and Col inside a Container. A single Container wrapping your entire app's content is fine.
+
+2. The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.
+
+
+  [1]: https://i.stack.imgur.com/8wTPR.png
+  [2]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout
+  [3]: https://i.stack.imgur.com/VpcDJ.png
