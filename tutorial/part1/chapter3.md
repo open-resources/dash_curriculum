@@ -270,7 +270,7 @@ And here's the corresponding snippet:
         ]
     )
 
-Be aware that `dbc.Row()` requires the affiliated components like `dbc.Col(button)` to be organized in a list ***if*** there are more than one element. So `dbc.Row(dbc.Col(markdown))` will not raise an error, but `dbc.Row([dbc.Col(button), dbc.Col(checklist)])` will. 
+Be aware that `dbc.Row()` requires the affiliated components like `dbc.Col(button)` to be organized in a list ***if*** there is more than one element. So `dbc.Row(dbc.Col(markdown))` will not raise an error, but `dbc.Row(dbc.Col(button), dbc.Col(checklist))` will. 
 
 For best results, also make sure you adhere to the following two rules when constructing your layouts:
 
