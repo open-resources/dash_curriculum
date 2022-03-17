@@ -43,7 +43,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![button](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/button.gif)
+![button](../tutorial/assets/p1_c3/button.gif)
 
 ````
 
@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
 ```
 
-![checklist](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/checklist.gif)
+![checklist](../tutorial/assets/p1_c3/checklist.gif)
   
 ````
 
@@ -120,7 +120,7 @@ if __name__ == '__main__':
 
 ```
 
-![radio_item](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/radio.gif)
+![radio_item](../tutorial/assets/p1_c3/radio.gif)
 
 ````
 
@@ -159,7 +159,7 @@ if __name__ == '__main__':
 
 ```
 
-![drop_down](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/dropdown.gif)
+![drop_down](../tutorial/assets/p1_c3/dropdown.gif)
   
 ````
 
@@ -167,8 +167,6 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
     
-**Add gif of slider function**
-
 ```python
 # Import packages 
 from dash import Dash, html, dcc
@@ -201,7 +199,7 @@ if __name__ == '__main__':
 
 ```
 
-![slider](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/slider.gif)
+![slider](../tutorial/assets/p1_c3/slider.gif)
 ````
 
 ## CSS
@@ -243,7 +241,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
  
-![css_diff](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/style_comparison.png)
+![css_diff](../tutorial/assets/p1_c3/style_comparison.png)
 
 ````
 
