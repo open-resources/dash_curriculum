@@ -8,10 +8,18 @@ In this chapter we will explore Dash various **components** and how to position 
 
 ## Dash Components
 
+**Components** are the building blocks of the app such as buttons, sliders, graphs, selectors, and many more. We will learn a few common components in this chapter.
+
+**Properties** are attributes of components (TODO: add more here)\
+
+
 ````{dropdown} Buttons
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
+Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass in a **child** property to give the button a name in the dashboard.
+
+
 ```python
 # Import packages 
 from dash import Dash, html, dcc
@@ -34,13 +42,17 @@ app.layout = dbc.Container([
 if __name__ == '__main__':
     app.run_server()
 ```
+
+![button](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/button.gif)
+
 ````
 
 ````{dropdown} Checklist
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
-**Add gif of checklist function**
+Checklists display a set of options for the user to choose.  We will pass in a list of **options** when we create the checklist component below\
+
 
 ```python
 # Import packages 
@@ -68,7 +80,7 @@ if __name__ == '__main__':
 
 ```
 
-**Insert picture of checklist and button together**
+![checklist](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/checklist.gif)
   
 ````
 
@@ -78,7 +90,7 @@ if __name__ == '__main__':
 
   
 
-**Add gif of radio item function**
+Radio items are lists of options that a user can only select one option.  Similar to the checklst we will pass in a list of **options** when we create the component.
 
 ```python
 # Import packages 
@@ -108,15 +120,15 @@ if __name__ == '__main__':
 
 ```
 
+![radio_item](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/radio.gif)
+
 ````
 
 ````{dropdown} Dropdown
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
-  
-**Add gif of dropdown function**
-  
+    
 ```python
 # Import packages 
 from dash import Dash, html, dcc
@@ -146,6 +158,8 @@ if __name__ == '__main__':
     app.run_server()
 
 ```
+
+![drop_down](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/dropdown.gif)
   
 ````
 
@@ -186,6 +200,8 @@ if __name__ == '__main__':
     app.run_server()
 
 ```
+
+![slider](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/slider.gif)
 ````
 
 ## CSS
@@ -227,7 +243,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
  
-**pictures/gif showing the difference CSS stylesheet makes**
+![css_diff](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/style_comparison.png)
 
 ````
 

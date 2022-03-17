@@ -448,6 +448,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="dash-components">
 <h2>Dash Components<a class="headerlink" href="#dash-components" title="Permalink to this headline">¶</a></h2>
+<p><strong>Components</strong> are the building blocks of the app such as buttons, sliders, graphs, selectors, and many more. We will learn a few common components in this chapter.</p>
+<p><strong>Properties</strong> are attributes of components (TODO: add more here)\</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 Buttons<div class="summary-down docutils">
@@ -455,6 +457,7 @@ Buttons<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
+<p class="card-text">Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass in a <strong>child</strong> property to give the button a name in the dashboard.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -477,6 +480,7 @@ Buttons<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<p class="card-text"><img alt="button" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/button.gif" /></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -485,7 +489,7 @@ Checklist<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text"><strong>Add gif of checklist function</strong></p>
+<p class="card-text">Checklists display a set of options for the user to choose.  We will pass in a list of <strong>options</strong> when we create the checklist component below\</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -511,7 +515,7 @@ Checklist<div class="summary-down docutils">
 
 </pre></div>
 </div>
-<p class="card-text"><strong>Insert picture of checklist and button together</strong></p>
+<p class="card-text"><img alt="checklist" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/checklist.gif" /></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -520,7 +524,7 @@ Radio items<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text"><strong>Add gif of radio item function</strong></p>
+<p class="card-text">Radio items are lists of options that a user can only select one option.  Similar to the checklst we will pass in a list of <strong>options</strong> when we create the component.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -548,6 +552,7 @@ Radio items<div class="summary-down docutils">
 
 </pre></div>
 </div>
+<p class="card-text"><img alt="radio_item" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/radio.gif" /></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -556,7 +561,6 @@ Dropdown<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text"><strong>Add gif of dropdown function</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -586,6 +590,7 @@ Dropdown<div class="summary-down docutils">
 
 </pre></div>
 </div>
+<p class="card-text"><img alt="drop_down" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/dropdown.gif" /></p>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -626,6 +631,7 @@ Slider<div class="summary-down docutils">
 
 </pre></div>
 </div>
+<p class="card-text"><img alt="slider" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/slider.gif" /></p>
 </div>
 </details></div>
 <div class="section" id="css">
@@ -668,7 +674,7 @@ CSS<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="card-text"><strong>pictures/gif showing the difference CSS stylesheet makes</strong></p>
+<p class="card-text"><img alt="css_diff" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c3/style_comparison.png" /></p>
 </div>
 </details></div>
 <div class="section" id="layout">
