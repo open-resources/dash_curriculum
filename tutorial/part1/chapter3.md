@@ -12,7 +12,6 @@ In this chapter we will explore Dash various **components** and how to position 
 
 **Properties** are attributes of components (TODO: add more here)\
 
-
 ````{dropdown} Buttons
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
