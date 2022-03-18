@@ -14,7 +14,9 @@ __Heroku__ is a platform as a service (PaaS) that supports Python where you can 
 
 It's free to create a Heroku user account, and a Free tier is available for a basic app. Additional tier options support the needs of more complex apps or those requiring additional memory (RAM), and you can read more about [Heroku pricing](https://www.heroku.com/pricing).
 
-```{note} Make sure you have set up Git version control on your project folder directory by following those steps in the Stack Installation chapter, and that you've successfully tested your Dash app locally on your computer.```
+```{note} 
+Make sure you have set up Git version control on your project folder directory by following those steps in the Stack Installation chapter, and that you've successfully tested your Dash app locally on your computer.
+```
 
 
 ---
