@@ -4,7 +4,8 @@
 
 After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the notation of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
 
-```{admonition} Learning Intentions
+```
+{admonition} Learning Intentions
 - Decorators in Python
 - Structure of callbacks
 - Component ids & properties
