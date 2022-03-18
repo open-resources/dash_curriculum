@@ -260,30 +260,72 @@ Now let's learn about layout and how to place the components at specific locatio
   * Columns holds your components
 
 ````
-Running the code we have so far would produce an app with the following layout:
 
-[![enter image description here][1]][1]
+So far, we've only organized our app  in a `dbc.Container()` component without any further specifications:
 
-Here, the elements are organized in a `dbc.Container()` component without any further specifications. This means that they will appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). The three componenst mentioned so far are the three main [Layout][2] components in dash-bootstrap-components.
+    app.layout = dbc.Container([
+                    markdown,
+                    button,
+                    checklist,
+                    radio,
+                    dropdown,
+                    slider,
+    ])
 
-The Row component is a wrapper for columns. The layout of your app should be built as a series of rows of columns. The Col component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
 
-Now, lets set up the existing app with the markdown element on top, followed by a row with the button and checklist in two different columns. Then we'll follow up with a row with the radio, and dropdown components in two different columns. At the very bottow, we'll place the slider in a row that fills up the space of one single column. Here's the same app with a new layout:
+And we've seen that this will make our app elements appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). Together with `dbc.Container()` these are the main [Layout][1] components in dash-bootstrap-components. A `container` wraps the entire app, and a  `row` is a wrapper for `columns` than in tur contains elements such as controls, figures, tables, text and so on.
 
-[![enter image description here][3]][3]
+The layout of your app should thereofre be built as a series of rows of columns. The `col` component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space. But let's get back to spacing and adjustments after we've seen how the already defined components `markdown`, `checklist`, `radio`, `slider` and `button` can all fit together with `rows` and `columns`.
 
-And here's the corresponding snippet:
+The following snippet will produce the app shown in the image below:
 
     app.layout = dbc.Container(
         [
             dbc.Row(dbc.Col(markdown)),
-            dbc.Row([dbc.Col(button), dbc.Col(checklist)]),
-            dbc.Row([dbc.Col(radio), dbc.Col(dropdown)]),
+            dbc.Row([dbc.Col(dropdown), dbc.Col(slider)]),
             dbc.Row(dbc.Col(slider)),
+            dbc.Row(dbc.Col(button)),
         ]
     )
 
-Be aware that `dbc.Row()` requires the affiliated components like `dbc.Col(button)` to be organized in a list ***if*** there is more than one element. So `dbc.Row(dbc.Col(markdown))` will not raise an error, but `dbc.Row(dbc.Col(button), dbc.Col(checklist))` will. 
+[![enter image description here][2]][2]
+
+***missing: details about default width: 12***
+
+There are two main learning points here. First, notice how you can freely put `dbc.Col(markdown)` as the only argument in the first `dbc.Row()` component. If you have more than one element, like in the second `Row`, you'll have to encapsulate them in a list like this: `dbc.Row([dbc.Col(dropdown), dbc.Col(slider)])`. Second, notice how the rows still appear sequentually in a vertical fashion, and that our two `Col` components withnin a `Row`  appear horizontally within the common `Row`:
+
+[![enter image description here][3]][3]
+
+
+***this paragraph possibly redundant by now???***
+For best results, also make sure you adhere to the following two rules when constructing your layouts:
+
+1. Only use Row and Col inside a Container. A single Container wrapping your entire app's content is fine.
+
+2. The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.
+
+### Introducing styling
+With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end. Or, in other words, in which row and column a specific element like for example our `dbc.Col(slider)` is embedded. That's not crucial to our current example, but it's a good opportunity to introduce how to edit the layout and appearence of the different `col` components. One way to do that, is to add `CSS` elements through the `style` attribute of like `dbc.Col(slider)` like this:
+
+***the following section is the complete addition, and needs to be explained more in details:***
+
+### Snippet
+
+    app.layout = dbc.Container(
+        [
+            dbc.Row(dbc.Col(markdown, style={"background-color": '#636EFA'})),
+            dbc.Row([dbc.Col(dropdown, style={"background-color": '#00CC96'}),
+                     dbc.Col(slider, style={"background-color": '#EF553B'})]),
+            dbc.Row(dbc.Col(slider, style={"background-color": '#AB63FA'})),
+            dbc.Row(dbc.Col(button, style={"background-color": '#00CC96'})),
+        ]
+    )
+
+
+### Image
+
+[![enter image description here][4]][4]
+
 
 For best results, also make sure you adhere to the following two rules when constructing your layouts:
 
@@ -292,6 +334,7 @@ For best results, also make sure you adhere to the following two rules when cons
 2. The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.
 
 
-  [1]: https://i.stack.imgur.com/8wTPR.png
-  [2]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout
-  [3]: https://i.stack.imgur.com/VpcDJ.png
+  [1]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout
+  [2]: https://i.stack.imgur.com/M8j6q.png
+  [3]: https://i.stack.imgur.com/3Yk7o.png
+  [4]: https://i.stack.imgur.com/a8aB3.png
