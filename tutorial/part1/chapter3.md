@@ -293,6 +293,12 @@ The following snippet will produce the app shown in the image below:
 
 ***missing: details about default width: 12***
 
+```{margin}
+Editor's Note: Discuss setting width to variable 3, 6, 8, 12 etc...
+
+- FM
+```
+
 There are two main learning points here.
 First, notice how you can freely put `dbc.Col(markdown)` as the only argument in the first `dbc.Row()` component.
 If you have more than one element, like in the second `Row`, you'll have to encapsulate them in a list like this: `dbc.Row([dbc.Col(dropdown), dbc.Col(slider)])`.
@@ -336,6 +342,12 @@ One way to do that, is to add `CSS` elements through the `style` attribute of li
 ***the following section is the complete addition, and needs to be explained more in details:***
 
 ### Snippet
+
+```{margin}
+Editor's Note: As discussed in the meeting, leave in code, remove "style", and add "width =" to show that it doesn't HAVE to span the full page.
+
+- FM
+```
 
     app.layout = dbc.Container(
         [
