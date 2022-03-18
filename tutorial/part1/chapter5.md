@@ -69,12 +69,14 @@ Type the ```pip install gunicorn``` command in your command shell.
 
 ## Prepare the necessary additional files for deployment.
 
-Make a __Procfile__ *without a file extension*. This is a process file
+Make a __Procfile__ *without a file extension*. This file tells Heroku all the commands that must be executed by the app on startup.
 
 Type the following single line of text in the first line of the file.
 
 ```web: gunicorn app:server``` 
 
+```{warning} Make sure the first letter '_P_' is capitalized in _Procfile_ and that you spell it exactly that way or Heroku cannot recognize it.
+```
 
 Make a ```requirements.txt``` text file describing your Python dependencies. 
 
@@ -87,8 +89,9 @@ dash_bootstrap_components==1.0.2
 plotly.express==0.4.1
 pandas==1.3.4
 gunicorn==20.1.0
+```
 
-```{note} In a later chapter as part of a more complex deployment process, you will learn how to create this file automatically with the command ```pip freeze > requirements.txt```.while working in a virtual environment.
+```{note} In a later chapter as part of a more complex deployment process, you will learn how to create this file automatically with the command ```pip freeze > requirements.txt``` while working in a virtual environment.
 ```
 
 ## Add files to Git
