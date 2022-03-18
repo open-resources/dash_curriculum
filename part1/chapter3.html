@@ -388,6 +388,23 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#layout">
    Layout
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introducing-styling">
+     Introducing styling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#snippet">
+     Snippet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image">
+     Image
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -428,6 +445,23 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#layout">
    Layout
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introducing-styling">
+     Introducing styling
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#snippet">
+     Snippet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#image">
+     Image
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -698,29 +732,68 @@ Dash Bootstrap Components<div class="summary-down docutils">
 </li>
 </ul>
 </div>
-</details><p>Running the code we have so far would produce an app with the following layout:</p>
-<p><a class="reference external" href="https://i.stack.imgur.com/8wTPR.png"><img alt="enter image description here" src="https://i.stack.imgur.com/8wTPR.png" /></a></p>
-<p>Here, the elements are organized in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications. This means that they will appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and dbc.Column(). The three componenst mentioned so far are the three main <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">Layout</a> components in dash-bootstrap-components.</p>
-<p>The Row component is a wrapper for columns. The layout of your app should be built as a series of rows of columns. The Col component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.</p>
-<p>Now, lets set up the existing app with the markdown element on top, followed by a row with the button and checklist in two different columns. Then we’ll follow up with a row with the radio, and dropdown components in two different columns. At the very bottow, we’ll place the slider in a row that fills up the space of one single column. Here’s the same app with a new layout:</p>
-<p><a class="reference external" href="https://i.stack.imgur.com/VpcDJ.png"><img alt="enter image description here" src="https://i.stack.imgur.com/VpcDJ.png" /></a></p>
-<p>And here’s the corresponding snippet:</p>
+</details><p>So far, we’ve only organized our app  in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+                dropdown,
+                slider,
+])
+</pre></div>
+</div>
+<p>And we’ve seen that this will make our app elements appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and dbc.Column(). Together with <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> these are the main <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">Layout</a> components in dash-bootstrap-components. A <code class="docutils literal notranslate"><span class="pre">container</span></code> wraps the entire app, and a  <code class="docutils literal notranslate"><span class="pre">row</span></code> is a wrapper for <code class="docutils literal notranslate"><span class="pre">columns</span></code> than in tur contains elements such as controls, figures, tables, text and so on.</p>
+<p>The layout of your app should thereofre be built as a series of rows of columns. The <code class="docutils literal notranslate"><span class="pre">col</span></code> component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space. But let’s get back to spacing and adjustments after we’ve seen how the already defined components <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, <code class="docutils literal notranslate"><span class="pre">checklist</span></code>, <code class="docutils literal notranslate"><span class="pre">radio</span></code>, <code class="docutils literal notranslate"><span class="pre">slider</span></code> and <code class="docutils literal notranslate"><span class="pre">button</span></code> can all fit together with <code class="docutils literal notranslate"><span class="pre">rows</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</p>
+<p>The following snippet will produce the app shown in the image below:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container(
     [
         dbc.Row(dbc.Col(markdown)),
-        dbc.Row([dbc.Col(button), dbc.Col(checklist)]),
-        dbc.Row([dbc.Col(radio), dbc.Col(dropdown)]),
+        dbc.Row([dbc.Col(dropdown), dbc.Col(slider)]),
         dbc.Row(dbc.Col(slider)),
+        dbc.Row(dbc.Col(button)),
     ]
 )
 </pre></div>
 </div>
-<p>Be aware that <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> requires the affiliated components like <code class="docutils literal notranslate"><span class="pre">dbc.Col(button)</span></code> to be organized in a list <em><strong>if</strong></em> there is more than one element. So <code class="docutils literal notranslate"><span class="pre">dbc.Row(dbc.Col(markdown))</span></code> will not raise an error, but <code class="docutils literal notranslate"><span class="pre">dbc.Row(dbc.Col(button),</span> <span class="pre">dbc.Col(checklist))</span></code> will.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/M8j6q.png"><img alt="enter image description here" src="https://i.stack.imgur.com/M8j6q.png" /></a></p>
+<p><em><strong>missing: details about default width: 12</strong></em></p>
+<p>There are two main learning points here. First, notice how you can freely put <code class="docutils literal notranslate"><span class="pre">dbc.Col(markdown)</span></code> as the only argument in the first <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component. If you have more than one element, like in the second <code class="docutils literal notranslate"><span class="pre">Row</span></code>, you’ll have to encapsulate them in a list like this: <code class="docutils literal notranslate"><span class="pre">dbc.Row([dbc.Col(dropdown),</span> <span class="pre">dbc.Col(slider)])</span></code>. Second, notice how the rows still appear sequentually in a vertical fashion, and that our two <code class="docutils literal notranslate"><span class="pre">Col</span></code> components withnin a <code class="docutils literal notranslate"><span class="pre">Row</span></code>  appear horizontally within the common <code class="docutils literal notranslate"><span class="pre">Row</span></code>:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/3Yk7o.png"><img alt="enter image description here" src="https://i.stack.imgur.com/3Yk7o.png" /></a></p>
+<p><em><strong>this paragraph possibly redundant by now???</strong></em>
+For best results, also make sure you adhere to the following two rules when constructing your layouts:</p>
+<ol class="simple">
+<li><p>Only use Row and Col inside a Container. A single Container wrapping your entire app’s content is fine.</p></li>
+<li><p>The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.</p></li>
+</ol>
+<div class="section" id="introducing-styling">
+<h3>Introducing styling<a class="headerlink" href="#introducing-styling" title="Permalink to this headline">¶</a></h3>
+<p>With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end. Or, in other words, in which row and column a specific element like for example our <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> is embedded. That’s not crucial to our current example, but it’s a good opportunity to introduce how to edit the layout and appearence of the different <code class="docutils literal notranslate"><span class="pre">col</span></code> components. One way to do that, is to add <code class="docutils literal notranslate"><span class="pre">CSS</span></code> elements through the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute of like <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> like this:</p>
+<p><em><strong>the following section is the complete addition, and needs to be explained more in details:</strong></em></p>
+</div>
+<div class="section" id="snippet">
+<h3>Snippet<a class="headerlink" href="#snippet" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown, style={&quot;background-color&quot;: &#39;#636EFA&#39;})),
+        dbc.Row([dbc.Col(dropdown, style={&quot;background-color&quot;: &#39;#00CC96&#39;}),
+                 dbc.Col(slider, style={&quot;background-color&quot;: &#39;#EF553B&#39;})]),
+        dbc.Row(dbc.Col(slider, style={&quot;background-color&quot;: &#39;#AB63FA&#39;})),
+        dbc.Row(dbc.Col(button, style={&quot;background-color&quot;: &#39;#00CC96&#39;})),
+    ]
+)
+</pre></div>
+</div>
+</div>
+<div class="section" id="image">
+<h3>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://i.stack.imgur.com/a8aB3.png"><img alt="enter image description here" src="https://i.stack.imgur.com/a8aB3.png" /></a></p>
 <p>For best results, also make sure you adhere to the following two rules when constructing your layouts:</p>
 <ol class="simple">
 <li><p>Only use Row and Col inside a Container. A single Container wrapping your entire app’s content is fine.</p></li>
 <li><p>The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.</p></li>
 </ol>
+</div>
 </div>
 </div>
 
