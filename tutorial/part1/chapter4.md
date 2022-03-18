@@ -11,7 +11,7 @@ After initializing a first simple app, learning about Dash components and settin
 - Simple examples for callbacks
 ```
 
-When we finish this chapter you'll have a fully working app linking together two components. You can find the code already in the dropdown box below.
+When we finish this chapter you'll have a fully-operational interactive app that links together two components. [Download the code](/tutorial/part1/ch4_files/chapter4_app_graph.py)
 
 ```{admonition} Click the button to reveal the end result of this chapter!
 :class: dropdown
@@ -22,8 +22,10 @@ When we finish this chapter you'll have a fully working app linking together two
 
 ## 4.1 Introduction to decorators in Python
 
+Decorators provide extensions to the behavior of Python functions without modifying the functions' code.
+
 ```{tip}
-If you are looking for more input on Python decorators you also may want to have a look at [Real Python](https://realpython.com/primer-on-python-decorators/).
+For a comprehensive overview of the Python decorator, have a look at [Real Python](https://realpython.com/primer-on-python-decorators/).
 ```
 
 ## 4.2 Structure of app callbacks
@@ -56,7 +58,7 @@ As there might be still some arguments you are not familiar with, we will go thr
 
 ### 4.2.1 Structure of Dash callback decorator
 
-> The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.
+The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.
 
 The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.
 
@@ -74,7 +76,7 @@ In order to build more complex applications with Dash later we will introduce a 
 
 ### 4.2.2 Structure of Dash callback function
 
-> The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.
+The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.
 
 The function itself - like any arbitrary function in python - is composed into three different parts, namely
 
