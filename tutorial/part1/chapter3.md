@@ -206,18 +206,9 @@ if __name__ == '__main__':
 
 ## CSS
 
-```{margin}
-Editor's Note: I wouldn't put this in a dropdown since this is required content and not a "choose one or two of these".
-
-- FM
-```
-
 Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.
 We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
 
-````{dropdown} CSS
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
     
 ```python
 # Import packages 
@@ -252,7 +243,6 @@ if __name__ == '__main__':
  
 ![css_diff](../assets/p1_c3/style_comparison.png)
 
-````
 
 ## Layout
 
@@ -260,15 +250,6 @@ Now let's learn about layout and how to place the components at specific locatio
 We will use **Dash Bootstrap Components** to do this.
 **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
 
-```{margin}
-Editor's Note: I wouldn't put this in a dropdown since this is required content and not a "choose one or two of these".
-
-- FM
-```
-
-````{dropdown} Dash Bootstrap Components
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
   
 * [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
 ![Bootstrap layout](../assets/p1_c3/bootstrap_grid.png)
@@ -276,8 +257,6 @@ Editor's Note: I wouldn't put this in a dropdown since this is required content 
   * Container wraps the entire app
   * Rows only contain columns
   * Columns holds your components
-
-````
 
 So far, we've only organized our app  in a `dbc.Container()` component without any further specifications:
 
