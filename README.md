@@ -83,9 +83,11 @@
 - Loading a dataframe from a URL
 - Creating our own pandas df 
 - Using data from an API
+- "do wrangling inside app" --> show that it is slow
 
 ### Chapter 7: Wrangling data
 
+- "do wrangling separately in py files" --> show that it's faster
 - Case Study: Select a dataset
 - Basic operations with pandas
 - Cleaning, processing, wrangling
