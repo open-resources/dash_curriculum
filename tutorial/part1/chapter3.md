@@ -327,13 +327,6 @@ With more advanced apps, it can be a bit hard to discern where the different row
 [![enter image description here][4]][4]
 
 
-For best results, also make sure you adhere to the following two rules when constructing your layouts:
-
-1. Only use Row and Col inside a Container. A single Container wrapping your entire app's content is fine.
-
-2. The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.
-
-
   [1]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout
   [2]: https://i.stack.imgur.com/M8j6q.png
   [3]: https://i.stack.imgur.com/3Yk7o.png
