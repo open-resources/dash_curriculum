@@ -27,7 +27,7 @@ parts:
   - file: part1/summary
     title: Introduction
   - file: part1/chapter1
-  - file: part1/chapter2_Gab
+  - file: part1/chapter2
   - file: part1/chapter3
   - file: part1/chapter4
   - file: part1/chapter5
