@@ -500,16 +500,17 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Simple examples for callbacks</p></li>
 </ul>
 </div>
-<p>When we finish this chapter you’ll have a fully working app linking together two components. You can find the code already in the dropdown box below.</p>
+<p>When we finish this chapter you’ll have a fully-operational interactive app that links together two components. <span class="xref myst">Download the code</span></p>
 <div class="dropdown admonition">
 <p class="admonition-title">Click the button to reveal the end result of this chapter!</p>
 </div>
 </div>
 <div class="section" id="introduction-to-decorators-in-python">
 <h2>4.1 Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
+<p>Decorators provide extensions to the behavior of Python functions without modifying the functions’ code.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If you are looking for more input on Python decorators you also may want to have a look at <a class="reference external" href="https://realpython.com/primer-on-python-decorators/">Real Python</a>.</p>
+<p>For a comprehensive overview of the Python decorator, have a look at <a class="reference external" href="https://realpython.com/primer-on-python-decorators/">Real Python</a>.</p>
 </div>
 </div>
 <div class="section" id="structure-of-app-callbacks">
@@ -539,9 +540,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>As there might be still some arguments you are not familiar with, we will go through the upper lines step by step.</p>
 <div class="section" id="structure-of-dash-callback-decorator">
 <h3>4.2.1 Structure of Dash callback decorator<a class="headerlink" href="#structure-of-dash-callback-decorator" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><p>The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.</p>
-</div></blockquote>
+<p>The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.</p>
 <p>The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.</p>
 <div class="admonition-component-property admonition">
 <p class="admonition-title">Component property</p>
@@ -556,9 +555,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="structure-of-dash-callback-function">
 <h3>4.2.2 Structure of Dash callback function<a class="headerlink" href="#structure-of-dash-callback-function" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><p>The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.</p>
-</div></blockquote>
+<p>The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.</p>
 <p>The function itself - like any arbitrary function in python - is composed into three different parts, namely</p>
 <ul class="simple">
 <li><p>The function argument(s)</p></li>
