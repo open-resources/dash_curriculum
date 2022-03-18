@@ -43,7 +43,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![button](../tutorial/assets/p1_c3/button.gif)
+![button](../assets/p1_c3/button.gif)
 
 ````
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
 ```
 
-![checklist](../tutorial/assets/p1_c3/checklist.gif)
+![checklist](../assets/p1_c3/checklist.gif)
   
 ````
 
@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
 ```
 
-![radio_item](../tutorial/assets/p1_c3/radio.gif)
+![radio_item](../assets/p1_c3/radio.gif)
 
 ````
 
@@ -161,7 +161,7 @@ if __name__ == '__main__':
 
 ```
 
-![drop_down](../tutorial/assets/p1_c3/dropdown.gif)
+![drop_down](../assets/p1_c3/dropdown.gif)
   
 ````
 
@@ -201,7 +201,7 @@ if __name__ == '__main__':
 
 ```
 
-![slider](../tutorial/assets/p1_c3/slider.gif)
+![slider](../assets/p1_c3/slider.gif)
 ````
 
 ## CSS
@@ -250,7 +250,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
  
-![css_diff](../tutorial/assets/p1_c3/style_comparison.png)
+![css_diff](../assets/p1_c3/style_comparison.png)
 
 ````
 
