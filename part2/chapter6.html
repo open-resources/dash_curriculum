@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 6 &#8212; Dash Tutorial</title>
+    <title>Chapter 6 - Working with Data in Dash &#8212; Dash Tutorial</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -215,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 6
+   Chapter 6 - Working with Data in Dash
   </a>
  </li>
  <li class="toctree-l1">
@@ -369,6 +369,59 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-intentions">
+   Learning Intentions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#app-at-the-start">
+   App at the Start
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-data-from-excel-or-csv">
+   Read data from Excel or CSV
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-data-from-a-url">
+   Load data from a URL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-simple-pandas-dataframe">
+   Create a simple Pandas dataframe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-to-api-data">
+   Connect to API data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-wrangling-in-dash">
+   Data wrangling in Dash
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-cases-for-pre-processing-data">
+   Use cases for pre-processing data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#app-at-the-end">
+   App at the end
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -376,19 +429,113 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 6</h1>
+                <h1>Chapter 6 - Working with Data in Dash</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#learning-intentions">
+   Learning Intentions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#app-at-the-start">
+   App at the Start
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#read-data-from-excel-or-csv">
+   Read data from Excel or CSV
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#load-data-from-a-url">
+   Load data from a URL
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-simple-pandas-dataframe">
+   Create a simple Pandas dataframe
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-to-api-data">
+   Connect to API data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-wrangling-in-dash">
+   Data wrangling in Dash
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#use-cases-for-pre-processing-data">
+   Use cases for pre-processing data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#app-at-the-end">
+   App at the end
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-6">
-<h1>Chapter 6<a class="headerlink" href="#chapter-6" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-6-working-with-data-in-dash">
+<h1>Chapter 6 - Working with Data in Dash<a class="headerlink" href="#chapter-6-working-with-data-in-dash" title="Permalink to this headline">¶</a></h1>
+<p>Overview introduction placehoder.</p>
+<div class="section" id="learning-intentions">
+<h2>Learning Intentions<a class="headerlink" href="#learning-intentions" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we intend you to learn:</p>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
+<ul class="simple">
+<li><p>how to read data from excel or csv files to a Pandas dataframe</p></li>
+<li><p>loading a dataframe from a URL</p></li>
+<li><p>creating your own Pandas dataframe from scratch in the Python app script</p></li>
+<li><p>using data from an Application Programming Interface (API)</p></li>
+<li><p>perform minimal data wrangling inside the app, and learn the trade-offs with speed compared to working with pre-processed data</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="app-at-the-start">
+<h2>App at the Start<a class="headerlink" href="#app-at-the-start" title="Permalink to this headline">¶</a></h2>
+<p>As a framework for this chapter, <a class="reference external" href="https://sportsnet.ca">here is a zipped file</a> of what your app should look like when you start.</p>
+</div>
+<div class="section" id="read-data-from-excel-or-csv">
+<h2>Read data from Excel or CSV<a class="headerlink" href="#read-data-from-excel-or-csv" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="load-data-from-a-url">
+<h2>Load data from a URL<a class="headerlink" href="#load-data-from-a-url" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="create-a-simple-pandas-dataframe">
+<h2>Create a simple Pandas dataframe<a class="headerlink" href="#create-a-simple-pandas-dataframe" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="connect-to-api-data">
+<h2>Connect to API data<a class="headerlink" href="#connect-to-api-data" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="data-wrangling-in-dash">
+<h2>Data wrangling in Dash<a class="headerlink" href="#data-wrangling-in-dash" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="use-cases-for-pre-processing-data">
+<h2>Use cases for pre-processing data<a class="headerlink" href="#use-cases-for-pre-processing-data" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="app-at-the-end">
+<h2>App at the end<a class="headerlink" href="#app-at-the-end" title="Permalink to this headline">¶</a></h2>
+<p>At the end of this chapter, <a class="reference external" href="https://sportsnet.ca">here is a zipped file</a> of what your app should look like.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
