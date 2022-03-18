@@ -1,14 +1,15 @@
 # Chapter 3 - Dash Components and Layouts
+
 ## What you will learn
 
 In this chapter we will explore Dash various **components** and how to position them with **layout** as well as add styling with **CSS**\
-[p1c3_start.py](../assets/p1c2/p1c2_end.py)\
-[p1c3_end.py](../assets/p1c3/p1c3_end.py)
-
+- [p1c3_start.py](../assets/p1c2/p1c2_end.py)\
+- [p1c3_end.py](../assets/p1c3/p1c3_end.py)
 
 ## Dash Components
 
-**Components** are the building blocks of the app such as buttons, sliders, graphs, selectors, and many more. We will learn a few common components in this chapter.
+**Components** are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc...), slider bars, graphs, and many others.
+We will learn a few common components in this chapter.
 
 **Properties** are attributes of components (TODO: add more here)\
 
@@ -203,6 +204,12 @@ if __name__ == '__main__':
 
 ## CSS
 
+```{margin}
+Editor's Note: I wouldn't put this in a dropdown since this is required content and not a "choose one or two of these".
+
+- FM
+```
+
 Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.   We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
 
 ````{dropdown} CSS
@@ -247,6 +254,12 @@ if __name__ == '__main__':
 ## Layout
 
 Now let's learn about layout and how to place the components at specific locations on the page instead.  We will use **Dash Bootstrap Components** to do this.  **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
+
+```{margin}
+Editor's Note: I wouldn't put this in a dropdown since this is required content and not a "choose one or two of these".
+
+- FM
+```
 
 ````{dropdown} Dash Bootstrap Components
     :container: + shadow
