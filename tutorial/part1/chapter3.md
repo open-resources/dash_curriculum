@@ -3,7 +3,7 @@
 ## What you will learn
 
 In this chapter we will explore Dash various **components** and how to position them with **layout** as well as add styling with **CSS**\
-- [p1c3_start.py](../assets/p1c2/p1c2_end.py)\
+- [p1c3_start.py](../assets/p1c2/p1c2_end.py)
 - [p1c3_end.py](../assets/p1c3/p1c3_end.py)
 
 ## Dash Components
@@ -51,7 +51,8 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
-Checklists display a set of options for the user to choose.  We will pass in a list of **options** when we create the checklist component below\
+Checklists display a set of options for the user to choose.
+We will pass in a list of **options** when we create the checklist component below:
 
 
 ```python
@@ -90,7 +91,8 @@ if __name__ == '__main__':
 
   
 
-Radio items are lists of options that a user can only select one option.  Similar to the checklst we will pass in a list of **options** when we create the component.
+Radio items are lists of options that a user can only select one option.
+Similar to the checklst we will pass in a list of **options** when we create the component.
 
 ```python
 # Import packages 
@@ -210,7 +212,8 @@ Editor's Note: I wouldn't put this in a dropdown since this is required content 
 - FM
 ```
 
-Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.   We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
+Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.
+We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
 
 ````{dropdown} CSS
     :container: + shadow
@@ -253,7 +256,9 @@ if __name__ == '__main__':
 
 ## Layout
 
-Now let's learn about layout and how to place the components at specific locations on the page instead.  We will use **Dash Bootstrap Components** to do this.  **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
+Now let's learn about layout and how to place the components at specific locations on the page instead.
+We will use **Dash Bootstrap Components** to do this.
+**Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
 
 ```{margin}
 Editor's Note: I wouldn't put this in a dropdown since this is required content and not a "choose one or two of these".
@@ -286,9 +291,13 @@ So far, we've only organized our app  in a `dbc.Container()` component without a
     ])
 
 
-And we've seen that this will make our app elements appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). Together with `dbc.Container()` these are the main [Layout][1] components in dash-bootstrap-components. A `container` wraps the entire app, and a  `row` is a wrapper for `columns` than in tur contains elements such as controls, figures, tables, text and so on.
+And we've seen that this will make our app elements appear sequentually in one single column.
+In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). Together with `dbc.Container()` these are the main [Layout][1] components in dash-bootstrap-components.
+A `container` wraps the entire app, and a  `row` is a wrapper for `columns` than in tur contains elements such as controls, figures, tables, text and so on.
 
-The layout of your app should thereofre be built as a series of rows of columns. The `col` component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space. But let's get back to spacing and adjustments after we've seen how the already defined components `markdown`, `checklist`, `radio`, `slider` and `button` can all fit together with `rows` and `columns`.
+The layout of your app should thereofre be built as a series of rows of columns.
+The `col` component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
+But let's get back to spacing and adjustments after we've seen how the already defined components `markdown`, `checklist`, `radio`, `slider` and `button` can all fit together with `rows` and `columns`.
 
 The following snippet will produce the app shown in the image below:
 
@@ -305,20 +314,45 @@ The following snippet will produce the app shown in the image below:
 
 ***missing: details about default width: 12***
 
-There are two main learning points here. First, notice how you can freely put `dbc.Col(markdown)` as the only argument in the first `dbc.Row()` component. If you have more than one element, like in the second `Row`, you'll have to encapsulate them in a list like this: `dbc.Row([dbc.Col(dropdown), dbc.Col(slider)])`. Second, notice how the rows still appear sequentually in a vertical fashion, and that our two `Col` components withnin a `Row`  appear horizontally within the common `Row`:
+There are two main learning points here.
+First, notice how you can freely put `dbc.Col(markdown)` as the only argument in the first `dbc.Row()` component.
+If you have more than one element, like in the second `Row`, you'll have to encapsulate them in a list like this: `dbc.Row([dbc.Col(dropdown), dbc.Col(slider)])`.
+Second, notice how the rows still appear sequentually in a vertical fashion, and that our two `Col` components withnin a `Row`  appear horizontally within the common `Row`:
 
 [![enter image description here][3]][3]
 
 
 ***this paragraph possibly redundant by now???***
+
+```{margin}
+Editor's Note: I think it's fine to have a "Summary" section to review/recap
+
+- FM
+```
 For best results, also make sure you adhere to the following two rules when constructing your layouts:
 
-1. Only use Row and Col inside a Container. A single Container wrapping your entire app's content is fine.
+1. Only use `Row` and `Col` inside a Container. 
+2. A single Container wrapping your entire app's content is ideal, at least at this stage.
+3. The immediate children of any `Row` component should always be `Col` components. Your further content should go inside the `Col` components.
 
-2. The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.
+```{margin}
+Editor's Note: Is a "Row component" and a "Col component" the right terminology? Should we use a different word to disambiguate Dash components?
+
+- FM
+```
 
 ### Introducing styling
-With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end. Or, in other words, in which row and column a specific element like for example our `dbc.Col(slider)` is embedded. That's not crucial to our current example, but it's a good opportunity to introduce how to edit the layout and appearence of the different `col` components. One way to do that, is to add `CSS` elements through the `style` attribute of like `dbc.Col(slider)` like this:
+
+```{margin}
+Editor's Note: Idon't fully see the value of this section here...I suggest we defer the style stuff to a later section? Or at least discuss the goal of it.
+
+- FM
+```
+
+With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end.
+Or, in other words, in which row and column a specific element like for example our `dbc.Col(slider)` is embedded.
+That's not crucial to our current example, but it's a good opportunity to introduce how to edit the layout and appearence of the different `col` components.
+One way to do that, is to add `CSS` elements through the `style` attribute of like `dbc.Col(slider)` like this:
 
 ***the following section is the complete addition, and needs to be explained more in details:***
 
