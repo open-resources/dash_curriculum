@@ -478,7 +478,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter we will explore Dash various <strong>components</strong> and how to position them with <strong>layout</strong> as well as add styling with <strong>CSS</strong>\</p>
 <ul class="simple">
-<li><p><span class="xref myst">p1c3_start.py</span>\</p></li>
+<li><p><span class="xref myst">p1c3_start.py</span></p></li>
 <li><p><span class="xref myst">p1c3_end.py</span></p></li>
 </ul>
 </div>
@@ -526,7 +526,8 @@ Checklist<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Checklists display a set of options for the user to choose.  We will pass in a list of <strong>options</strong> when we create the checklist component below\</p>
+<p class="card-text">Checklists display a set of options for the user to choose.
+We will pass in a list of <strong>options</strong> when we create the checklist component below:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -561,7 +562,8 @@ Radio items<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Radio items are lists of options that a user can only select one option.  Similar to the checklst we will pass in a list of <strong>options</strong> when we create the component.</p>
+<p class="card-text">Radio items are lists of options that a user can only select one option.
+Similar to the checklst we will pass in a list of <strong>options</strong> when we create the component.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -679,7 +681,8 @@ Slider<div class="summary-down docutils">
 <li><p>FM</p></li>
 </ul>
 </div>
-<p>Next, we’ll add styling to our application with a Cascading Style Sheets or <strong>CSS</strong>.   We will use the Bootstrap <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> for this application.</p>
+<p>Next, we’ll add styling to our application with a Cascading Style Sheets or <strong>CSS</strong>.
+We will use the Bootstrap <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> for this application.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 CSS<div class="summary-down docutils">
@@ -722,7 +725,9 @@ CSS<div class="summary-down docutils">
 </details></div>
 <div class="section" id="layout">
 <h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s learn about layout and how to place the components at specific locations on the page instead.  We will use <strong>Dash Bootstrap Components</strong> to do this.  <strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
+<p>Now let’s learn about layout and how to place the components at specific locations on the page instead.
+We will use <strong>Dash Bootstrap Components</strong> to do this.
+<strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Editor’s Note: I wouldn’t put this in a dropdown since this is required content and not a “choose one or two of these”.</p>
@@ -760,8 +765,12 @@ Dash Bootstrap Components<div class="summary-down docutils">
 ])
 </pre></div>
 </div>
-<p>And we’ve seen that this will make our app elements appear sequentually in one single column. In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and dbc.Column(). Together with <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> these are the main <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">Layout</a> components in dash-bootstrap-components. A <code class="docutils literal notranslate"><span class="pre">container</span></code> wraps the entire app, and a  <code class="docutils literal notranslate"><span class="pre">row</span></code> is a wrapper for <code class="docutils literal notranslate"><span class="pre">columns</span></code> than in tur contains elements such as controls, figures, tables, text and so on.</p>
-<p>The layout of your app should thereofre be built as a series of rows of columns. The <code class="docutils literal notranslate"><span class="pre">col</span></code> component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space. But let’s get back to spacing and adjustments after we’ve seen how the already defined components <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, <code class="docutils literal notranslate"><span class="pre">checklist</span></code>, <code class="docutils literal notranslate"><span class="pre">radio</span></code>, <code class="docutils literal notranslate"><span class="pre">slider</span></code> and <code class="docutils literal notranslate"><span class="pre">button</span></code> can all fit together with <code class="docutils literal notranslate"><span class="pre">rows</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</p>
+<p>And we’ve seen that this will make our app elements appear sequentually in one single column.
+In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and dbc.Column(). Together with <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> these are the main <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">Layout</a> components in dash-bootstrap-components.
+A <code class="docutils literal notranslate"><span class="pre">container</span></code> wraps the entire app, and a  <code class="docutils literal notranslate"><span class="pre">row</span></code> is a wrapper for <code class="docutils literal notranslate"><span class="pre">columns</span></code> than in tur contains elements such as controls, figures, tables, text and so on.</p>
+<p>The layout of your app should thereofre be built as a series of rows of columns.
+The <code class="docutils literal notranslate"><span class="pre">col</span></code> component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
+But let’s get back to spacing and adjustments after we’ve seen how the already defined components <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, <code class="docutils literal notranslate"><span class="pre">checklist</span></code>, <code class="docutils literal notranslate"><span class="pre">radio</span></code>, <code class="docutils literal notranslate"><span class="pre">slider</span></code> and <code class="docutils literal notranslate"><span class="pre">button</span></code> can all fit together with <code class="docutils literal notranslate"><span class="pre">rows</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</p>
 <p>The following snippet will produce the app shown in the image below:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container(
     [
@@ -775,17 +784,45 @@ Dash Bootstrap Components<div class="summary-down docutils">
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/M8j6q.png"><img alt="enter image description here" src="https://i.stack.imgur.com/M8j6q.png" /></a></p>
 <p><em><strong>missing: details about default width: 12</strong></em></p>
-<p>There are two main learning points here. First, notice how you can freely put <code class="docutils literal notranslate"><span class="pre">dbc.Col(markdown)</span></code> as the only argument in the first <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component. If you have more than one element, like in the second <code class="docutils literal notranslate"><span class="pre">Row</span></code>, you’ll have to encapsulate them in a list like this: <code class="docutils literal notranslate"><span class="pre">dbc.Row([dbc.Col(dropdown),</span> <span class="pre">dbc.Col(slider)])</span></code>. Second, notice how the rows still appear sequentually in a vertical fashion, and that our two <code class="docutils literal notranslate"><span class="pre">Col</span></code> components withnin a <code class="docutils literal notranslate"><span class="pre">Row</span></code>  appear horizontally within the common <code class="docutils literal notranslate"><span class="pre">Row</span></code>:</p>
+<p>There are two main learning points here.
+First, notice how you can freely put <code class="docutils literal notranslate"><span class="pre">dbc.Col(markdown)</span></code> as the only argument in the first <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component.
+If you have more than one element, like in the second <code class="docutils literal notranslate"><span class="pre">Row</span></code>, you’ll have to encapsulate them in a list like this: <code class="docutils literal notranslate"><span class="pre">dbc.Row([dbc.Col(dropdown),</span> <span class="pre">dbc.Col(slider)])</span></code>.
+Second, notice how the rows still appear sequentually in a vertical fashion, and that our two <code class="docutils literal notranslate"><span class="pre">Col</span></code> components withnin a <code class="docutils literal notranslate"><span class="pre">Row</span></code>  appear horizontally within the common <code class="docutils literal notranslate"><span class="pre">Row</span></code>:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/3Yk7o.png"><img alt="enter image description here" src="https://i.stack.imgur.com/3Yk7o.png" /></a></p>
-<p><em><strong>this paragraph possibly redundant by now???</strong></em>
-For best results, also make sure you adhere to the following two rules when constructing your layouts:</p>
+<p><em><strong>this paragraph possibly redundant by now???</strong></em></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Editor’s Note: I think it’s fine to have a “Summary” section to review/recap</p>
+<ul class="simple">
+<li><p>FM</p></li>
+</ul>
+</div>
+<p>For best results, also make sure you adhere to the following two rules when constructing your layouts:</p>
 <ol class="simple">
-<li><p>Only use Row and Col inside a Container. A single Container wrapping your entire app’s content is fine.</p></li>
-<li><p>The immediate children of any Row component should always be Col components. Your further content should go inside the Col components.</p></li>
+<li><p>Only use <code class="docutils literal notranslate"><span class="pre">Row</span></code> and <code class="docutils literal notranslate"><span class="pre">Col</span></code> inside a Container.</p></li>
+<li><p>A single Container wrapping your entire app’s content is ideal, at least at this stage.</p></li>
+<li><p>The immediate children of any <code class="docutils literal notranslate"><span class="pre">Row</span></code> component should always be <code class="docutils literal notranslate"><span class="pre">Col</span></code> components. Your further content should go inside the <code class="docutils literal notranslate"><span class="pre">Col</span></code> components.</p></li>
 </ol>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Editor’s Note: Is a “Row component” and a “Col component” the right terminology? Should we use a different word to disambiguate Dash components?</p>
+<ul class="simple">
+<li><p>FM</p></li>
+</ul>
+</div>
 <div class="section" id="introducing-styling">
 <h3>Introducing styling<a class="headerlink" href="#introducing-styling" title="Permalink to this headline">¶</a></h3>
-<p>With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end. Or, in other words, in which row and column a specific element like for example our <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> is embedded. That’s not crucial to our current example, but it’s a good opportunity to introduce how to edit the layout and appearence of the different <code class="docutils literal notranslate"><span class="pre">col</span></code> components. One way to do that, is to add <code class="docutils literal notranslate"><span class="pre">CSS</span></code> elements through the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute of like <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> like this:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Editor’s Note: Idon’t fully see the value of this section here…I suggest we defer the style stuff to a later section? Or at least discuss the goal of it.</p>
+<ul class="simple">
+<li><p>FM</p></li>
+</ul>
+</div>
+<p>With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end.
+Or, in other words, in which row and column a specific element like for example our <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> is embedded.
+That’s not crucial to our current example, but it’s a good opportunity to introduce how to edit the layout and appearence of the different <code class="docutils literal notranslate"><span class="pre">col</span></code> components.
+One way to do that, is to add <code class="docutils literal notranslate"><span class="pre">CSS</span></code> elements through the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute of like <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> like this:</p>
 <p><em><strong>the following section is the complete addition, and needs to be explained more in details:</strong></em></p>
 </div>
 <div class="section" id="snippet">
