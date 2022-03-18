@@ -674,22 +674,8 @@ Slider<div class="summary-down docutils">
 </details></div>
 <div class="section" id="css">
 <h2>CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h2>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Editor’s Note: I wouldn’t put this in a dropdown since this is required content and not a “choose one or two of these”.</p>
-<ul class="simple">
-<li><p>FM</p></li>
-</ul>
-</div>
 <p>Next, we’ll add styling to our application with a Cascading Style Sheets or <strong>CSS</strong>.
 We will use the Bootstrap <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> for this application.</p>
-<details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header bg-primary text-white font-weight-bold">
-CSS<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -720,41 +706,25 @@ CSS<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="card-text"><img alt="css_diff" src="../_images/style_comparison.png" /></p>
+<p><img alt="css_diff" src="../_images/style_comparison.png" /></p>
 </div>
-</details></div>
 <div class="section" id="layout">
 <h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
 <p>Now let’s learn about layout and how to place the components at specific locations on the page instead.
 We will use <strong>Dash Bootstrap Components</strong> to do this.
 <strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Editor’s Note: I wouldn’t put this in a dropdown since this is required content and not a “choose one or two of these”.</p>
 <ul class="simple">
-<li><p>FM</p></li>
-</ul>
-</div>
-<details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header bg-primary text-white font-weight-bold">
-Dash Bootstrap Components<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<ul class="simple">
-<li><p class="card-text"><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
+<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
 <img alt="Bootstrap layout" src="../_images/bootstrap_grid.png" /></p></li>
-<li><p class="card-text">3 main layout components: Container, Row, and Column.</p>
+<li><p>3 main layout components: Container, Row, and Column.</p>
 <ul>
-<li><p class="card-text">Container wraps the entire app</p></li>
-<li><p class="card-text">Rows only contain columns</p></li>
-<li><p class="card-text">Columns holds your components</p></li>
+<li><p>Container wraps the entire app</p></li>
+<li><p>Rows only contain columns</p></li>
+<li><p>Columns holds your components</p></li>
 </ul>
 </li>
 </ul>
-</div>
-</details><p>So far, we’ve only organized our app  in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications:</p>
+<p>So far, we’ve only organized our app  in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container([
                 markdown,
                 button,
