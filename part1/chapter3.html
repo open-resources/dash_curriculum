@@ -754,6 +754,13 @@ But let’s get back to spacing and adjustments after we’ve seen how the alrea
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/M8j6q.png"><img alt="enter image description here" src="https://i.stack.imgur.com/M8j6q.png" /></a></p>
 <p><em><strong>missing: details about default width: 12</strong></em></p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Editor’s Note: Discuss setting width to variable 3, 6, 8, 12 etc…</p>
+<ul class="simple">
+<li><p>FM</p></li>
+</ul>
+</div>
 <p>There are two main learning points here.
 First, notice how you can freely put <code class="docutils literal notranslate"><span class="pre">dbc.Col(markdown)</span></code> as the only argument in the first <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component.
 If you have more than one element, like in the second <code class="docutils literal notranslate"><span class="pre">Row</span></code>, you’ll have to encapsulate them in a list like this: <code class="docutils literal notranslate"><span class="pre">dbc.Row([dbc.Col(dropdown),</span> <span class="pre">dbc.Col(slider)])</span></code>.
@@ -797,6 +804,13 @@ One way to do that, is to add <code class="docutils literal notranslate"><span c
 </div>
 <div class="section" id="snippet">
 <h3>Snippet<a class="headerlink" href="#snippet" title="Permalink to this headline">¶</a></h3>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Editor’s Note: As discussed in the meeting, leave in code, remove “style”, and add “width =” to show that it doesn’t HAVE to span the full page.</p>
+<ul class="simple">
+<li><p>FM</p></li>
+</ul>
+</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container(
     [
         dbc.Row(dbc.Col(markdown, style={&quot;background-color&quot;: &#39;#636EFA&#39;})),
