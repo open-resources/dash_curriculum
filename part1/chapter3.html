@@ -393,17 +393,12 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#layout">
    Layout
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#should-we-mention-bootstrap-here">
+   Should we mention Bootstrap here?\
+  </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#introducing-styling">
-     Introducing styling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#snippet">
-     Snippet
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#image">
      Image
@@ -450,17 +445,12 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#layout">
    Layout
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#should-we-mention-bootstrap-here">
+   Should we mention Bootstrap here?\
+  </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#introducing-styling">
-     Introducing styling
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#snippet">
-     Snippet
-    </a>
-   </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#image">
      Image
@@ -481,10 +471,10 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 3 - Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will explore Dash various <strong>components</strong> and how to position them with <strong>layout</strong> as well as add styling with <strong>CSS</strong>\</p>
+<p>In this chapter we will explore Dash various <strong>components</strong>, how to add styling to them with <strong>CSS</strong>, and how to position them with <strong>layout</strong></p>
 <ul class="simple">
-<li><p><span class="xref myst">p1c3_start.py</span></p></li>
-<li><p><span class="xref myst">p1c3_end.py</span></p></li>
+<li><p><span class="xref myst">starting_file.py</span></p></li>
+<li><p><span class="xref myst">ending_file.py</span></p></li>
 </ul>
 </div>
 <div class="section" id="dash-components">
@@ -729,15 +719,6 @@ We will use the Bootstrap <a class="reference external" href="https://www.w3scho
 <p>And we’ve seen that this will place our app components sequentually in one single column.  In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Column()</span></code>. Together with <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> these are the main <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">Layout</a> components in dash-bootstrap-components.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Should we mention Bootstrap here?<br />
-Now let’s learn about layout and how to place the components at specific locations on the page instead.
-We will use <strong>Dash Bootstrap Components</strong> to do this.
-<strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
-<img alt="Bootstrap layout" src="../_images/bootstrap_grid.png" /></p></li>
-</ul>
-<p>-SM</p>
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">container</span></code> wraps the entire app, and a  <code class="docutils literal notranslate"><span class="pre">row</span></code> is a wrapper for <code class="docutils literal notranslate"><span class="pre">columns</span></code> than in turn contains elements such as controls, figures, tables, text and so on.  The layout of your app should thereofre be built as a series of rows of columns.</p>
 <div class="margin sidebar">
@@ -750,14 +731,14 @@ We will use <strong>Dash Bootstrap Components</strong> to do this.
 <p><strong>The <code class="docutils literal notranslate"><span class="pre">col</span></code> component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
 But let’s get back to spacing and adjustments after we’ve seen how the already defined components <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, <code class="docutils literal notranslate"><span class="pre">checklist</span></code>, <code class="docutils literal notranslate"><span class="pre">radio</span></code>, <code class="docutils literal notranslate"><span class="pre">slider</span></code> and <code class="docutils literal notranslate"><span class="pre">button</span></code> can all fit together with <code class="docutils literal notranslate"><span class="pre">rows</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</strong></p>
 <p>The following snippet will produce the app shown in the image below:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container(
-    [
-        dbc.Row(dbc.Col(markdown)),
-        dbc.Row([dbc.Col(dropdown), dbc.Col(slider)]),
-        dbc.Row(dbc.Col(slider)),
-        dbc.Row(dbc.Col(button)),
-    ]
-)
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">button</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/M8j6q.png"><img alt="enter image description here" src="https://i.stack.imgur.com/M8j6q.png" /></a></p>
@@ -795,23 +776,6 @@ Second, notice how the rows still appear sequentually in a vertical fashion, and
 <li><p>FM</p></li>
 </ul>
 </div>
-<div class="section" id="introducing-styling">
-<h3>Introducing styling<a class="headerlink" href="#introducing-styling" title="Permalink to this headline">¶</a></h3>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Editor’s Note: Idon’t fully see the value of this section here…I suggest we defer the style stuff to a later section? Or at least discuss the goal of it.</p>
-<ul class="simple">
-<li><p>FM</p></li>
-</ul>
-</div>
-<p>With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end.
-Or, in other words, in which row and column a specific element like for example our <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> is embedded.
-That’s not crucial to our current example, but it’s a good opportunity to introduce how to edit the layout and appearence of the different <code class="docutils literal notranslate"><span class="pre">col</span></code> components.
-One way to do that, is to add <code class="docutils literal notranslate"><span class="pre">CSS</span></code> elements through the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute of like <code class="docutils literal notranslate"><span class="pre">dbc.Col(slider)</span></code> like this:</p>
-<p><em><strong>the following section is the complete addition, and needs to be explained more in details:</strong></em></p>
-</div>
-<div class="section" id="snippet">
-<h3>Snippet<a class="headerlink" href="#snippet" title="Permalink to this headline">¶</a></h3>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Editor’s Note: As discussed in the meeting, leave in code, remove “style”, and add “width =” to show that it doesn’t HAVE to span the full page.</p>
@@ -831,9 +795,19 @@ One way to do that, is to add <code class="docutils literal notranslate"><span c
 </pre></div>
 </div>
 </div>
+<div class="section" id="should-we-mention-bootstrap-here">
+<h2>Should we mention Bootstrap here?\<a class="headerlink" href="#should-we-mention-bootstrap-here" title="Permalink to this headline">¶</a></h2>
+<p>Now let’s learn about layout and how to place the components at specific locations on the page instead.
+We will use <strong>Dash Bootstrap Components</strong> to do this.
+<strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
+<img alt="Bootstrap layout" src="../_images/bootstrap_grid.png" /></p></li>
+</ul>
+<p>-SM</p>
 <div class="section" id="image">
 <h3>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://i.stack.imgur.com/a8aB3.png"><img alt="enter image description here" src="https://i.stack.imgur.com/a8aB3.png" /></a></p>
+<p>[<img alt="colored_app" src="assets/p1_c3/app_colored.png" /></p>
 </div>
 </div>
 </div>
