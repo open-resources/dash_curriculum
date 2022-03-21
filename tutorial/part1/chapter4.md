@@ -11,7 +11,7 @@ After initializing a first simple app, learning about Dash components and settin
 - Simple examples for callbacks
 ```
 
-When we finish this chapter you'll have a fully-operational interactive app that links together two components. [Download the code](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch4_files/chapter4_app_graph.py)
+When we finish this chapter you'll have a fully-operational interactive app that links together two components. [Download the code](./ch4_files/chapter4_app_graph.py)
 
 ## 4.1 Introduction to decorators in Python
 
@@ -84,13 +84,13 @@ Now, that we have assigned different properties and ids to the components we can
 
 ```
 # Configure callback
-@app.callback(                                                          ###----------------###
-    Output(component_id='our-markdown', component_property='children'), # Callback decorator #
-    Input(component_id='our-dropdown', component_property='value')      #                    #
-)                                                                       ###----------------###
-def update_markdown(value_drop):                                        ###----------------###
-    title = value_drop                                                  # Callback function  #
-    return title                                                        ###----------------###
+@app.callback(                                                          ###---------------###
+    Output(component_id='our-markdown', component_property='children'), #     Callback      #
+    Input(component_id='our-dropdown', component_property='value')      #     decorator     #
+)                                                                       ###---------------###
+def update_markdown(value_drop):                                        ###---------------###
+    title = value_drop                                                  # Callback function #
+    return title                                                        ###---------------###
 ```
 
 Let's break further down these two components.
