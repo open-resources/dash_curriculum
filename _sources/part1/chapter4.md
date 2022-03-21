@@ -36,7 +36,7 @@ Let's start of with an easy example. For this purpose let's take the app from th
 
 **[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
 
-The code herfore will look as follows:
+The code herefore will look as follows:
 
 ```
 # Import packages
@@ -84,13 +84,13 @@ Now, that we have assigned different properties and ids to the components we can
 
 ```
 # Configure callback
-@app.callback(
-    Output(component_id='our-markdown', component_property='children'),
-    Input(component_id='our-dropdown', component_property='value')
-)
-def update_markdown(value_dropdown):
-    title = value_dropdown
-    return title
+@app.callback(                                                          ###
+    Output(component_id='our-markdown', component_property='children'), #   callback
+    Input(component_id='our-dropdown', component_property='value')      #   decorator
+)                                                                       ###
+def update_markdown(value_drop):                                        ###
+    title = value_drop                                                  #   callback function
+    return title                                                        ###
 ```
 
 Let's break down these two components.
@@ -336,3 +336,6 @@ if __name__ == '__main__':
     app.run_server(debug=False)
 ```
 **[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE BAR OF THE BARCHART]**
+
+## Summary
+

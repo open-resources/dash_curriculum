@@ -418,6 +418,11 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -482,6 +487,11 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -528,7 +538,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p>Let’s start of with an easy example. For this purpose let’s take the app from the previous chapter, containing a markdown and a dropdown. Extending this code by a simple callback we get an app that links these two components together.</p>
 <p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]</strong></p>
-<p>The code herfore will look as follows:</p>
+<p>The code herefore will look as follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -570,13 +580,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Now, that we have assigned different properties and ids to the components we can actually link them together. This is done within the callback. Despite the variety of usage of callbacks they all share the same basic structure. They all share the above structure and are composed of two main components, the callback decorator and the callback function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure callback</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">):</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">value_dropdown</span>
-    <span class="k">return</span> <span class="n">title</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>                                                          <span class="c1">###</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span> <span class="c1">#   callback</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>      <span class="c1">#   decorator</span>
+<span class="p">)</span>                                                                       <span class="c1">###</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>                                        <span class="c1">###</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">value_drop</span>                                                  <span class="c1">#   callback function</span>
+    <span class="k">return</span> <span class="n">title</span>                                                        <span class="c1">###</span>
 </pre></div>
 </div>
 <p>Let’s break down these two components.</p>
@@ -789,6 +799,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE BAR OF THE BARCHART]</strong></p>
 </div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
