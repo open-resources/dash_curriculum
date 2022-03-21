@@ -6,7 +6,7 @@ In this chapter we will explore Dash various **components**, how to add styling 
 
 [starting_file.py](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter2_app.py)
 
-[ending_file.py](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py    )
+[ending_file.py](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py)
 
 ## Dash Components
 
