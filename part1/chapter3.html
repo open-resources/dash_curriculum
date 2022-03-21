@@ -693,46 +693,10 @@ We will use the Bootstrap <a class="reference external" href="https://www.w3scho
 <p>Best practices when constructing your layout using <strong>Dash Bootstrap Components</strong>:</p>
 <ol class="simple">
 <li><p>The entire app layout goes inside a <code class="docutils literal notranslate"><span class="pre">Containter</span></code></p></li>
-<li><p>‘Rows’ go inside the <code class="docutils literal notranslate"><span class="pre">Container</span></code></p></li>
-<li><p>‘Cols’ go inside ‘Rows’</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rows</span></code> go inside the <code class="docutils literal notranslate"><span class="pre">Container</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Cols</span></code> go inside <code class="docutils literal notranslate"><span class="pre">Rows</span></code></p></li>
 <li><p>Components go inside <code class="docutils literal notranslate"><span class="pre">Cols</span></code></p></li>
 </ol>
-<p><img alt="app image" src="https://i.stack.imgur.com/M8j6q.png" /></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-
-<span class="c1"># Initialise the App </span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-
-<span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
-<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
-<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># App Layout </span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">)]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">),</span> 
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">),</span>
-            <span class="p">]</span>
-        <span class="p">),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">button</span><span class="p">)]),</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-
-<span class="c1"># Run the App </span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
-</pre></div>
-</div>
 <p><img alt="colored_app" src="../_images/app_colored.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>

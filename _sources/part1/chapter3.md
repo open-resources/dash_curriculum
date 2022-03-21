@@ -253,50 +253,9 @@ So far, we've only organized our app **layout** in a `dbc.Container()` component
 Best practices when constructing your layout using **Dash Bootstrap Components**:
 
 1. The entire app layout goes inside a `Containter`
-2. 'Rows' go inside the `Container`
-3. 'Cols' go inside 'Rows'
+2. `Rows` go inside the `Container`
+3. `Cols` go inside `Rows`
 4. Components go inside `Cols`
-
-![app image](https://i.stack.imgur.com/M8j6q.png)
-
-
-```python
-# Import packages 
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-# Initialise the App 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Create app components
-markdown = dcc.Markdown('My First app')
-button = html.Button("Button")
-checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
-radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
-dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
-slider = dcc.Slider(0, 10, 1)
-
-# App Layout 
-app.layout = dbc.Container(
-    [
-        dbc.Row([dbc.Col(markdown)]),
-        dbc.Row(
-            [
-                dbc.Col(dropdown), 
-                dbc.Col(slider),
-            ]
-        ),
-        dbc.Row([dbc.Col(slider)]),
-        dbc.Row([dbc.Col(button)]),
-    ]
-)
-
-# Run the App 
-if __name__ == '__main__':
-    app.run_server()
-```
-
-
 
 ![colored_app](../assets/p1_c3/app_colored.png)
 
