@@ -3,8 +3,8 @@
 ## What you will learn
 
 In this chapter we will explore Dash various **components**, how to add styling to them with **CSS**, and how to position them with **layout**
-- [starting_file.py](ch3_files/start.py)
-- [ending_file.py](ch3_files/app.py)
+[starting_file.py](ch3_files/start.py)
+[ending_file.py](ch3_files/app.py)
 
 ## Dash Components
 
@@ -259,21 +259,7 @@ app.layout = dbc.Container([
 ])
 ```
 
-And we've seen that this will place our app components sequentually in one single column.  In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and `dbc.Column()`. Together with `dbc.Container()` these are the main [Layout][1] components in dash-bootstrap-components.
-
-```{margin}
-Should we mention Bootstrap here?\
----
-Now let's learn about layout and how to place the components at specific locations on the page instead.
-We will use **Dash Bootstrap Components** to do this.
-**Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
-
-  
-* [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
-![Bootstrap layout](../assets/p1_c3/bootstrap_grid.png)
-
--SM
-```
+And we've seen that this will place our app components sequentually in one single column.  In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and `dbc.Column()`. Together with `dbc.Container()` these are the main [Layout][components in dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout)
 
 A `container` wraps the entire app, and a  `row` is a wrapper for `columns` than in turn contains elements such as controls, figures, tables, text and so on.  The layout of your app should thereofre be built as a series of rows of columns.
 
@@ -298,7 +284,7 @@ app.layout = dbc.Container(
 )
 ```
 
-[![enter image description here][2]][2]
+[app image](https://i.stack.imgur.com/M8j6q.png)
 
 ***missing: details about default width: 12***
 
@@ -313,8 +299,7 @@ First, notice how you can freely put `dbc.Col(markdown)` as the only argument in
 If you have more than one element, like in the second `Row`, you'll have to encapsulate them in a list like this: `dbc.Row([dbc.Col(dropdown), dbc.Col(slider)])`.
 Second, notice how the rows still appear sequentually in a vertical fashion, and that our two `Col` components withnin a `Row`  appear horizontally within the common `Row`:
 
-[![enter image description here][3]][3]
-
+[row_col](https://i.stack.imgur.com/3Yk7o.png)
 
 ***this paragraph possibly redundant by now???***
 
@@ -323,11 +308,13 @@ Editor's Note: I think it's fine to have a "Summary" section to review/recap
 
 - FM
 ```
-For best results, also make sure you adhere to the following two rules when constructing your layouts:
 
-1. Only use `Row` and `Col` inside a Container. 
-2. A single Container wrapping your entire app's content is ideal, at least at this stage.
-3. The immediate children of any `Row` component should always be `Col` components. Your further content should go inside the `Col` components.
+Best practices when constructing your layouts:
+
+1. Wrap the entire app layout in a `Containter`
+2. Only use `Row` and `Col` inside a Container 
+3. `Rows` only contain `Col`
+4. Components go inside `Col`
 
 ```{margin}
 Editor's Note: Is a "Row component" and a "Col component" the right terminology? Should we use a different word to disambiguate Dash components?
@@ -335,30 +322,44 @@ Editor's Note: Is a "Row component" and a "Col component" the right terminology?
 - FM
 ```
 
+![colored_app](../assets/p1_c3/app_colored.png)
 
-```{margin}
-Editor's Note: As discussed in the meeting, leave in code, remove "style", and add "width =" to show that it doesn't HAVE to span the full page.
 
-- FM
+```python
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App 
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown('My First app')
+button = html.Button("Button")
+checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
+dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
+slider = dcc.Slider(0, 10, 1)
+
+# App Layout 
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown, width=8)),
+        dbc.Row(
+            [
+                dbc.Col(dropdown, width = 3), 
+                dbc.Col(slider, width = 9),
+            ]
+        ),
+        dbc.Row(dbc.Col(slider, width = 6)),
+        dbc.Row(dbc.Col(button, width = 11)),
+    ]
+)
+
+# Run the App 
+if __name__ == '__main__':
+    app.run_server()
 ```
 
-    app.layout = dbc.Container(
-        [
-            dbc.Row(dbc.Col(markdown, style={"background-color": '#636EFA'})),
-            dbc.Row([dbc.Col(dropdown, style={"background-color": '#00CC96'}),
-                     dbc.Col(slider, style={"background-color": '#EF553B'})]),
-            dbc.Row(dbc.Col(slider, style={"background-color": '#AB63FA'})),
-            dbc.Row(dbc.Col(button, style={"background-color": '#00CC96'})),
-        ]
-    )
-
-
-### Image
-
-[![colored_app](../assets/p1_c3/app_colored.png)
-
-
-  [1]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout
-  [2]: https://i.stack.imgur.com/M8j6q.png
-  [3]: https://i.stack.imgur.com/3Yk7o.png
-  [4]: https://i.stack.imgur.com/a8aB3.png
+## Summary
+In this chapter we learned about Dash components, styling, and layout. **TODO: add more here**

@@ -395,16 +395,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#should-we-mention-bootstrap-here">
-   Should we mention Bootstrap here?\
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#image">
-     Image
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -447,16 +440,9 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#should-we-mention-bootstrap-here">
-   Should we mention Bootstrap here?\
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#image">
-     Image
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -471,11 +457,9 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 3 - Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will explore Dash various <strong>components</strong>, how to add styling to them with <strong>CSS</strong>, and how to position them with <strong>layout</strong></p>
-<ul class="simple">
-<li><p><span class="xref myst">starting_file.py</span></p></li>
-<li><p><span class="xref myst">ending_file.py</span></p></li>
-</ul>
+<p>In this chapter we will explore Dash various <strong>components</strong>, how to add styling to them with <strong>CSS</strong>, and how to position them with <strong>layout</strong>
+<span class="xref myst">starting_file.py</span>
+<span class="xref myst">ending_file.py</span></p>
 </div>
 <div class="section" id="dash-components">
 <h2>Dash Components<a class="headerlink" href="#dash-components" title="Permalink to this headline">¶</a></h2>
@@ -716,10 +700,7 @@ We will use the Bootstrap <a class="reference external" href="https://www.w3scho
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>And we’ve seen that this will place our app components sequentually in one single column.  In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Column()</span></code>. Together with <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> these are the main <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">Layout</a> components in dash-bootstrap-components.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-</div>
+<p>And we’ve seen that this will place our app components sequentually in one single column.  In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Column()</span></code>. Together with <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> these are the main [Layout]<a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">components in dash-bootstrap-components</a></p>
 <p>A <code class="docutils literal notranslate"><span class="pre">container</span></code> wraps the entire app, and a  <code class="docutils literal notranslate"><span class="pre">row</span></code> is a wrapper for <code class="docutils literal notranslate"><span class="pre">columns</span></code> than in turn contains elements such as controls, figures, tables, text and so on.  The layout of your app should thereofre be built as a series of rows of columns.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -741,7 +722,7 @@ But let’s get back to spacing and adjustments after we’ve seen how the alrea
 <span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://i.stack.imgur.com/M8j6q.png"><img alt="enter image description here" src="https://i.stack.imgur.com/M8j6q.png" /></a></p>
+<p><a class="reference external" href="https://i.stack.imgur.com/M8j6q.png">app image</a></p>
 <p><em><strong>missing: details about default width: 12</strong></em></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -754,7 +735,7 @@ But let’s get back to spacing and adjustments after we’ve seen how the alrea
 First, notice how you can freely put <code class="docutils literal notranslate"><span class="pre">dbc.Col(markdown)</span></code> as the only argument in the first <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component.
 If you have more than one element, like in the second <code class="docutils literal notranslate"><span class="pre">Row</span></code>, you’ll have to encapsulate them in a list like this: <code class="docutils literal notranslate"><span class="pre">dbc.Row([dbc.Col(dropdown),</span> <span class="pre">dbc.Col(slider)])</span></code>.
 Second, notice how the rows still appear sequentually in a vertical fashion, and that our two <code class="docutils literal notranslate"><span class="pre">Col</span></code> components withnin a <code class="docutils literal notranslate"><span class="pre">Row</span></code>  appear horizontally within the common <code class="docutils literal notranslate"><span class="pre">Row</span></code>:</p>
-<p><a class="reference external" href="https://i.stack.imgur.com/3Yk7o.png"><img alt="enter image description here" src="https://i.stack.imgur.com/3Yk7o.png" /></a></p>
+<p><a class="reference external" href="https://i.stack.imgur.com/3Yk7o.png">row_col</a></p>
 <p><em><strong>this paragraph possibly redundant by now???</strong></em></p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -763,11 +744,12 @@ Second, notice how the rows still appear sequentually in a vertical fashion, and
 <li><p>FM</p></li>
 </ul>
 </div>
-<p>For best results, also make sure you adhere to the following two rules when constructing your layouts:</p>
+<p>Best practices when constructing your layouts:</p>
 <ol class="simple">
-<li><p>Only use <code class="docutils literal notranslate"><span class="pre">Row</span></code> and <code class="docutils literal notranslate"><span class="pre">Col</span></code> inside a Container.</p></li>
-<li><p>A single Container wrapping your entire app’s content is ideal, at least at this stage.</p></li>
-<li><p>The immediate children of any <code class="docutils literal notranslate"><span class="pre">Row</span></code> component should always be <code class="docutils literal notranslate"><span class="pre">Col</span></code> components. Your further content should go inside the <code class="docutils literal notranslate"><span class="pre">Col</span></code> components.</p></li>
+<li><p>Wrap the entire app layout in a <code class="docutils literal notranslate"><span class="pre">Containter</span></code></p></li>
+<li><p>Only use <code class="docutils literal notranslate"><span class="pre">Row</span></code> and <code class="docutils literal notranslate"><span class="pre">Col</span></code> inside a Container</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Rows</span></code> only contain <code class="docutils literal notranslate"><span class="pre">Col</span></code></p></li>
+<li><p>Components go inside <code class="docutils literal notranslate"><span class="pre">Col</span></code></p></li>
 </ol>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -776,39 +758,46 @@ Second, notice how the rows still appear sequentually in a vertical fashion, and
 <li><p>FM</p></li>
 </ul>
 </div>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Editor’s Note: As discussed in the meeting, leave in code, remove “style”, and add “width =” to show that it doesn’t HAVE to span the full page.</p>
-<ul class="simple">
-<li><p>FM</p></li>
-</ul>
-</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>app.layout = dbc.Container(
-    [
-        dbc.Row(dbc.Col(markdown, style={&quot;background-color&quot;: &#39;#636EFA&#39;})),
-        dbc.Row([dbc.Col(dropdown, style={&quot;background-color&quot;: &#39;#00CC96&#39;}),
-                 dbc.Col(slider, style={&quot;background-color&quot;: &#39;#EF553B&#39;})]),
-        dbc.Row(dbc.Col(slider, style={&quot;background-color&quot;: &#39;#AB63FA&#39;})),
-        dbc.Row(dbc.Col(button, style={&quot;background-color&quot;: &#39;#00CC96&#39;})),
-    ]
-)
+<p><img alt="colored_app" src="../_images/app_colored.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App </span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
+<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
+<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># App Layout </span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">3</span><span class="p">),</span> 
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">9</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">11</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Run the App </span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="should-we-mention-bootstrap-here">
-<h2>Should we mention Bootstrap here?\<a class="headerlink" href="#should-we-mention-bootstrap-here" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s learn about layout and how to place the components at specific locations on the page instead.
-We will use <strong>Dash Bootstrap Components</strong> to do this.
-<strong>Bootstrap</strong> is <a class="reference external" href="https://www.w3schools.com/whatis/whatis_bootstrap.asp">the most popular CSS Framework for developing responsive and mobile-first websites</a>.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">Layout in Bootstrap</a> is controlled using the grid system. The Bootstrap grid has twelve columns
-<img alt="Bootstrap layout" src="../_images/bootstrap_grid.png" /></p></li>
-</ul>
-<p>-SM</p>
-<div class="section" id="image">
-<h3>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
-<p>[<img alt="colored_app" src="../_images/app_colored.png" /></p>
-</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we learned about Dash components, styling, and layout. <strong>TODO: add more here</strong></p>
 </div>
 </div>
 
