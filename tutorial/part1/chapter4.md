@@ -11,7 +11,7 @@ After initializing a first simple app, learning about Dash components and settin
 - Simple examples for callbacks
 ```
 
-When we finish this chapter you'll have a fully-operational interactive app that links together two components. [Download the code](./ch4_files/chapter4_app_graph.py)
+When we finish this chapter you'll have a fully-operational interactive app that links together different components. [Download the code](/ch4_files/chapter4_app_graph.py)
 
 ## 4.1 Introduction to decorators in Python
 
@@ -36,7 +36,7 @@ Let's start of with an easy example. For this purpose let's take the app from th
 
 **[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
 
-The code herefore will look as follows:
+The code herefore will look as follows.
 
 ```
 # Import packages
@@ -105,7 +105,7 @@ The decorator itself takes up two different arguments: Output and Input. Both of
 Always make sure to import the packages 'Output' and 'Input' from the dash library at the beginning of your code when you are working with callbacks.
 ```
 
-The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected e.g., the children property of the markdown. Accordingly, the Input specifies what property of which other component of your app should trigger the Output e.g., the value property of the dropdown. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
+The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected e.g., the `children` property of the markdown. Accordingly, the Input specifies what property of which other component of your app should trigger the Output e.g., the `value` property of the dropdown. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
 
 In order to build more complex applications with Dash later we will introduce a third argument called State, which in some sense will allow to circumvent this direct relationship. Also the arguments Output and Input can take on different components to allow for advanced functionality. However, we'll come back to this in [chapter 10](../part3/chapter10.md).
 
@@ -122,7 +122,7 @@ The function itself - like any arbitrary function in python - is composed into t
 Let's have a look at those in more detail.
 
 ```{admonition} The function argument
-The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
+The callback function takes as many arguments as there are input components. The order remains stable i.e., the property of the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
 ```
 
 ```{admonition} The function body
@@ -135,9 +135,15 @@ At the end of the callback function the output that has been prepared in the fun
 
 ## 4.3 Callbacks in action
 
-Now it's time to see some callbacks in action. For this chapter two examples should be discussed in detail.
+Now, that we have already seen a simple callback and understand how it is implemented, let's grade things up a little.
 
 ### 4.3.1 Change the style of a markdown by a slider
+
+After linking together a markdown and a dropdown, let's replace the dropdown by a slider. Instead of the children property of the markdown we introduce another property called `style` which can be used for any kind of styling e.g., the color of the markdown or the font size. [Chapter 9](../part3/chapter9.md) will give you some more insights on this topic.
+
+We equip the slider introduced in the previous chapter with an `id` and add the `value` property with a default value to it. The respective value of the slider will then be responsible for seizing the markdown. In this case, we change the font size of the markdown to be the default value added by twice the value choosen within the slider.
+
+The following snippet shows the corresponding code.
 
 ```
 # Import packages
@@ -164,8 +170,8 @@ app.layout = dbc.Container([
     Input(component_id='our-slider', component_property='value')
 )
 def update_markdown(value_slider):
-    title_size = {'fontSize': 12+2*value_slider}
-    return title_size
+    markdown_style = {'fontSize': 12+2*value_slider}
+    return markdown_style
 
 
 # Run the App
@@ -173,7 +179,17 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
+In action, you will now have programmed the following interactive app:
+
+**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER TO CHANGE THE FONT SIZE OF THE MARKDOWN]**
+
 ### 4.3.2 Bringing everything together
+
+To end this chapter, let's tie everything together. Especially, we want to make you aware, how to use mutliple callbacks in your app. Therefore, this paragraph brings everything together we have achieved in this chapter. In order to combine both callbacks implemented above just put both of them behind each other in your code. Hereby the order doesn't matter, just make sure you have all components defined and assigned the right ids and properties. Merging everything together will you the final app for this chapter.
+
+**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]**
+
+The code looks as follows.
 
 ```
 # Import packages
