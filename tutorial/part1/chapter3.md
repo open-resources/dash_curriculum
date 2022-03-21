@@ -4,7 +4,7 @@
 
 In this chapter we will explore Dash various **components**, how to add styling to them with **CSS**, and how to position them with **layout**
 - [starting_file.py](ch3_files/start.py)
-- [ending_file.py](ch3_files/end.py)
+- [ending_file.py](ch3_files/app.py)
 
 ## Dash Components
 
