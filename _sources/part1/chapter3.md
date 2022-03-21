@@ -4,16 +4,16 @@
 
 In this chapter we will explore Dash various **components**, how to add styling to them with **CSS**, and how to position them with **layout**
 
-[starting_file.py](ch3_files/start.py)
+[starting_file.py](./ch3_files/start.py)
 
-[ending_file.py](ch3_files/app.py)
+[ending_file.py](./ch3_files/app.py)
 
 ## Dash Components
 
 **Components** are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc...), slider bars, graphs, and many others.
 We will learn a few common components in this chapter.
 
-**Properties** are attributes of components (TODO: add more here)\
+**Properties** are attributes of components such as their `id` or `children`.  We will learn more about properties in [chapter 4](./chapter4.md)
 
 ````{dropdown} Buttons
     :container: + shadow
