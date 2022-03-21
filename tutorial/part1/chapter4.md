@@ -84,13 +84,13 @@ Now, that we have assigned different properties and ids to the components we can
 
 ```
 # Configure callback
-@app.callback(                                                          ###--------------------###
-    Output(component_id='our-markdown', component_property='children'), #   Callback decorator   #
-    Input(component_id='our-dropdown', component_property='value')      #                        #
-)                                                                       ###--------------------###
-def update_markdown(value_drop):                                        ###--------------------###
-    title = value_drop                                                  #   Callback function    #
-    return title                                                        ###--------------------###
+@app.callback(                                                          ###----------------###
+    Output(component_id='our-markdown', component_property='children'), # Callback decorator #
+    Input(component_id='our-dropdown', component_property='value')      #                    #
+)                                                                       ###----------------###
+def update_markdown(value_drop):                                        ###----------------###
+    title = value_drop                                                  # Callback function  #
+    return title                                                        ###----------------###
 ```
 
 Let's break further down these two components.
