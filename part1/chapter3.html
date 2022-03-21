@@ -457,9 +457,9 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 3 - Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will explore Dash various <strong>components</strong>, how to add styling to them with <strong>CSS</strong>, and how to position them with <strong>layout</strong>
-<span class="xref myst">starting_file.py</span>
-<span class="xref myst">ending_file.py</span></p>
+<p>In this chapter we will explore Dash various <strong>components</strong>, how to add styling to them with <strong>CSS</strong>, and how to position them with <strong>layout</strong></p>
+<p><span class="xref myst">starting_file.py</span></p>
+<p><span class="xref myst">ending_file.py</span></p>
 </div>
 <div class="section" id="dash-components">
 <h2>Dash Components<a class="headerlink" href="#dash-components" title="Permalink to this headline">¶</a></h2>
@@ -689,74 +689,49 @@ We will use the Bootstrap <a class="reference external" href="https://www.w3scho
 </div>
 <div class="section" id="layout">
 <h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
-<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-                <span class="n">slider</span><span class="p">,</span>
-<span class="p">])</span>
-</pre></div>
-</div>
-<p>And we’ve seen that this will place our app components sequentually in one single column.  In order to neatly place the different components in a more functional and visually pleasing way, we’ll have to introduce <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Column()</span></code>. Together with <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> these are the main [Layout]<a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">components in dash-bootstrap-components</a></p>
-<p>A <code class="docutils literal notranslate"><span class="pre">container</span></code> wraps the entire app, and a  <code class="docutils literal notranslate"><span class="pre">row</span></code> is a wrapper for <code class="docutils literal notranslate"><span class="pre">columns</span></code> than in turn contains elements such as controls, figures, tables, text and so on.  The layout of your app should thereofre be built as a series of rows of columns.</p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>I’d like to take out this bold section and give the students a demonstration of the Rows/Columns immediately as I think the concept of <strong>wrapper</strong> or <strong>wrapping</strong> might confuse them</p>
-<ul class="simple">
-<li><p>SM</p></li>
-</ul>
-</div>
-<p><strong>The <code class="docutils literal notranslate"><span class="pre">col</span></code> component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
-But let’s get back to spacing and adjustments after we’ve seen how the already defined components <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, <code class="docutils literal notranslate"><span class="pre">checklist</span></code>, <code class="docutils literal notranslate"><span class="pre">radio</span></code>, <code class="docutils literal notranslate"><span class="pre">slider</span></code> and <code class="docutils literal notranslate"><span class="pre">button</span></code> can all fit together with <code class="docutils literal notranslate"><span class="pre">rows</span></code> and <code class="docutils literal notranslate"><span class="pre">columns</span></code>.</strong></p>
-<p>The following snippet will produce the app shown in the image below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications.  We’ve seen that this will place our app components sequentually in one single column.  To change the layout of components we’ll use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library layout components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Column()</span></code>.</p>
+<p>Best practices when constructing your layout using <strong>Dash Bootstrap Components</strong>:</p>
+<ol class="simple">
+<li><p>The entire app layout goes inside a <code class="docutils literal notranslate"><span class="pre">Containter</span></code></p></li>
+<li><p>‘Rows’ go inside the <code class="docutils literal notranslate"><span class="pre">Container</span></code></p></li>
+<li><p>‘Cols’ go inside ‘Rows’</p></li>
+<li><p>Components go inside <code class="docutils literal notranslate"><span class="pre">Cols</span></code></p></li>
+</ol>
+<p><img alt="app image" src="https://i.stack.imgur.com/M8j6q.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App </span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
+<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
+<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># App Layout </span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">)),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">button</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">),</span> 
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">button</span><span class="p">)]),</span>
     <span class="p">]</span>
 <span class="p">)</span>
+
+<span class="c1"># Run the App </span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
-</div>
-<p><a class="reference external" href="https://i.stack.imgur.com/M8j6q.png">app image</a></p>
-<p><em><strong>missing: details about default width: 12</strong></em></p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Editor’s Note: Discuss setting width to variable 3, 6, 8, 12 etc…</p>
-<ul class="simple">
-<li><p>FM</p></li>
-</ul>
-</div>
-<p>There are two main learning points here.
-First, notice how you can freely put <code class="docutils literal notranslate"><span class="pre">dbc.Col(markdown)</span></code> as the only argument in the first <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component.
-If you have more than one element, like in the second <code class="docutils literal notranslate"><span class="pre">Row</span></code>, you’ll have to encapsulate them in a list like this: <code class="docutils literal notranslate"><span class="pre">dbc.Row([dbc.Col(dropdown),</span> <span class="pre">dbc.Col(slider)])</span></code>.
-Second, notice how the rows still appear sequentually in a vertical fashion, and that our two <code class="docutils literal notranslate"><span class="pre">Col</span></code> components withnin a <code class="docutils literal notranslate"><span class="pre">Row</span></code>  appear horizontally within the common <code class="docutils literal notranslate"><span class="pre">Row</span></code>:</p>
-<p><a class="reference external" href="https://i.stack.imgur.com/3Yk7o.png">row_col</a></p>
-<p><em><strong>this paragraph possibly redundant by now???</strong></em></p>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Editor’s Note: I think it’s fine to have a “Summary” section to review/recap</p>
-<ul class="simple">
-<li><p>FM</p></li>
-</ul>
-</div>
-<p>Best practices when constructing your layouts:</p>
-<ol class="simple">
-<li><p>Wrap the entire app layout in a <code class="docutils literal notranslate"><span class="pre">Containter</span></code></p></li>
-<li><p>Only use <code class="docutils literal notranslate"><span class="pre">Row</span></code> and <code class="docutils literal notranslate"><span class="pre">Col</span></code> inside a Container</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Rows</span></code> only contain <code class="docutils literal notranslate"><span class="pre">Col</span></code></p></li>
-<li><p>Components go inside <code class="docutils literal notranslate"><span class="pre">Col</span></code></p></li>
-</ol>
-<div class="margin sidebar">
-<p class="sidebar-title"></p>
-<p>Editor’s Note: Is a “Row component” and a “Col component” the right terminology? Should we use a different word to disambiguate Dash components?</p>
-<ul class="simple">
-<li><p>FM</p></li>
-</ul>
 </div>
 <p><img alt="colored_app" src="../_images/app_colored.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
