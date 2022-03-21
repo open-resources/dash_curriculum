@@ -13,13 +13,6 @@ After initializing a first simple app, learning about Dash components and settin
 
 When we finish this chapter you'll have a fully-operational interactive app that links together two components. [Download the code](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch4_files/chapter4_app_graph.py)
 
-```{admonition} Click the button to reveal the end result of this chapter!
-:class: dropdown
-
-
-
-```
-
 ## 4.1 Introduction to decorators in Python
 
 Decorators provide extensions to the behavior of Python functions without modifying the functions' code.
@@ -33,11 +26,80 @@ For a comprehensive overview of the Python decorator, have a look at [Real Pytho
 Before we talk about the structure of a callback, let's briefly discuss how callbacks in general will fit into your app. Referring to the structure of an app that we have discussed so far your callbacks will always fit after your app layout and before you actually run the app. Your app gets the following structure:
 
 - Import packages
-- Initialise the app
+- Initialise the App
 - Create app components
-- App layout
+- App Layout
 - **Configure callback(s)**
-- Run the app
+- Run the App
+
+Let's start of with an easy example. For this purpose let's take the app from the previous chapter, containing a markdown and a dropdown. Extending this code by a simple callback we get an app that links these two components together.
+
+**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
+
+The code herfore will look as follows:
+
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='My First app')
+dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
+
+# App Layout
+app.layout = dbc.Container([
+                markdown,
+                dropdown,
+])
+
+
+# Configure callback
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value')
+)
+def update_markdown(value_dropdown):
+    title = value_dropdown
+    return title
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+Let's go through this step by step. Note first, that linking components with each other, in general we have to be able to uniquely identify them in order to distinguish between different of the same components in an app e.g., different dropdowns. This way we can specify which components should influence each other. For this purpose for every component you want to add a component id.
+
+More general, the id of a component is also called a property of a component. Besides an id every component has multiple properties which can be used to specify the component. In the example above we introduce the children property for the markdown as well as the options and the value property for the dropdown.
+
+```{tip}
+For a comprehensive overview of all the different properties for the components of the dash core components library please have a look at the specific component in the [Official documentation](https://dash.plotly.com/dash-core-components).
+```
+
+Now, that we have assigned different properties and ids to the components we can actually link them together. This is done within the callback. Despite the variety of usage of callbacks they all share the same basic structure. They all share the above structure and are composed of two main components, the callback decorator and the callback function:
+
+```
+# Configure callback
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value')
+)
+def update_markdown(value_dropdown):
+    title = value_dropdown
+    return title
+```
+
+Let's break down these two components.
+
+
+
+
+
+
 
 Now, let's have a closer look at what a callback looks like. Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:
 
