@@ -2,9 +2,9 @@
 
 ## What you will learn
 
-In this chapter we will explore Dash various **components** and how to position them with **layout** as well as add styling with **CSS**\
-- [p1c3_start.py](../assets/p1c2/p1c2_end.py)
-- [p1c3_end.py](../assets/p1c3/p1c3_end.py)
+In this chapter we will explore Dash various **components**, how to add styling to them with **CSS**, and how to position them with **layout**
+- [starting_file.py](ch3_files/start.py)
+- [ending_file.py](ch3_files/end.py)
 
 ## Dash Components
 
@@ -263,6 +263,7 @@ And we've seen that this will place our app components sequentually in one singl
 
 ```{margin}
 Should we mention Bootstrap here?\
+---
 Now let's learn about layout and how to place the components at specific locations on the page instead.
 We will use **Dash Bootstrap Components** to do this.
 **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
@@ -286,14 +287,16 @@ But let's get back to spacing and adjustments after we've seen how the already d
 
 The following snippet will produce the app shown in the image below:
 
-    app.layout = dbc.Container(
-        [
-            dbc.Row(dbc.Col(markdown)),
-            dbc.Row([dbc.Col(dropdown), dbc.Col(slider)]),
-            dbc.Row(dbc.Col(slider)),
-            dbc.Row(dbc.Col(button)),
-        ]
-    )
+```python
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row([dbc.Col(dropdown), dbc.Col(slider)]),
+        dbc.Row(dbc.Col(slider)),
+        dbc.Row(dbc.Col(button)),
+    ]
+)
+```
 
 [![enter image description here][2]][2]
 
@@ -332,22 +335,6 @@ Editor's Note: Is a "Row component" and a "Col component" the right terminology?
 - FM
 ```
 
-### Introducing styling
-
-```{margin}
-Editor's Note: Idon't fully see the value of this section here...I suggest we defer the style stuff to a later section? Or at least discuss the goal of it.
-
-- FM
-```
-
-With more advanced apps, it can be a bit hard to discern where the different rows and columns start and end.
-Or, in other words, in which row and column a specific element like for example our `dbc.Col(slider)` is embedded.
-That's not crucial to our current example, but it's a good opportunity to introduce how to edit the layout and appearence of the different `col` components.
-One way to do that, is to add `CSS` elements through the `style` attribute of like `dbc.Col(slider)` like this:
-
-***the following section is the complete addition, and needs to be explained more in details:***
-
-### Snippet
 
 ```{margin}
 Editor's Note: As discussed in the meeting, leave in code, remove "style", and add "width =" to show that it doesn't HAVE to span the full page.
@@ -368,7 +355,7 @@ Editor's Note: As discussed in the meeting, leave in code, remove "style", and a
 
 ### Image
 
-[![enter image description here][4]][4]
+[![colored_app](../assets/p1_c3/app_colored.png)
 
 
   [1]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout
