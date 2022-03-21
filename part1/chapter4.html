@@ -580,13 +580,13 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Now, that we have assigned different properties and ids to the components we can actually link them together. This is done within the callback. Despite the variety of usage of callbacks they all share the above structure and are composed of two main components, the callback decorator and the callback function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure callback</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>                                                          <span class="c1">###--------------------###</span>
-    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span> <span class="c1">#   Callback decorator   #</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>      <span class="c1">#                        #</span>
-<span class="p">)</span>                                                                       <span class="c1">###--------------------###</span>
-<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>                                        <span class="c1">###--------------------###</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">value_drop</span>                                                  <span class="c1">#   Callback function    #</span>
-    <span class="k">return</span> <span class="n">title</span>                                                        <span class="c1">###--------------------###</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>                                                          <span class="c1">###----------------###</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span> <span class="c1"># Callback decorator #</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>      <span class="c1">#                    #</span>
+<span class="p">)</span>                                                                       <span class="c1">###----------------###</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>                                        <span class="c1">###----------------###</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">value_drop</span>                                                  <span class="c1"># Callback function  #</span>
+    <span class="k">return</span> <span class="n">title</span>                                                        <span class="c1">###----------------###</span>
 </pre></div>
 </div>
 <p>Let’s break further down these two components.</p>
