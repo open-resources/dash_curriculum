@@ -246,6 +246,23 @@ if __name__ == '__main__':
 
 ## Layout
 
+So far, we've only organized our app **layout** in a `dbc.Container()` component without any further specifications:
+
+```python
+app.layout = dbc.Container([
+                markdown,
+                button,
+                checklist,
+                radio,
+                dropdown,
+                slider,
+])
+```
+
+And we've seen that this will place our app components sequentually in one single column.  In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and `dbc.Column()`. Together with `dbc.Container()` these are the main [Layout][1] components in dash-bootstrap-components.
+
+```{margin}
+Should we mention Bootstrap here?\
 Now let's learn about layout and how to place the components at specific locations on the page instead.
 We will use **Dash Bootstrap Components** to do this.
 **Bootstrap** is [the most popular CSS Framework for developing responsive and mobile-first websites](https://www.w3schools.com/whatis/whatis_bootstrap.asp).
@@ -253,30 +270,19 @@ We will use **Dash Bootstrap Components** to do this.
   
 * [Layout in Bootstrap](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/) is controlled using the grid system. The Bootstrap grid has twelve columns
 ![Bootstrap layout](../assets/p1_c3/bootstrap_grid.png)
-* 3 main layout components: Container, Row, and Column.
-  * Container wraps the entire app
-  * Rows only contain columns
-  * Columns holds your components
 
-So far, we've only organized our app  in a `dbc.Container()` component without any further specifications:
+-SM
+```
 
-    app.layout = dbc.Container([
-                    markdown,
-                    button,
-                    checklist,
-                    radio,
-                    dropdown,
-                    slider,
-    ])
+A `container` wraps the entire app, and a  `row` is a wrapper for `columns` than in turn contains elements such as controls, figures, tables, text and so on.  The layout of your app should thereofre be built as a series of rows of columns.
 
+```{margin}
+I'd like to take out this bold section and give the students a demonstration of the Rows/Columns immediately as I think the concept of **wrapper** or **wrapping** might confuse them
 
-And we've seen that this will make our app elements appear sequentually in one single column.
-In order to neatly place the different components in a more functional and visually pleasing way, we'll have to introduce `dbc.Row()` and dbc.Column(). Together with `dbc.Container()` these are the main [Layout][1] components in dash-bootstrap-components.
-A `container` wraps the entire app, and a  `row` is a wrapper for `columns` than in tur contains elements such as controls, figures, tables, text and so on.
-
-The layout of your app should thereofre be built as a series of rows of columns.
-The `col` component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
-But let's get back to spacing and adjustments after we've seen how the already defined components `markdown`, `checklist`, `radio`, `slider` and `button` can all fit together with `rows` and `columns`.
+- SM
+```
+**The `col` component should always be used as an immediate child of Row and is a wrapper for your content that ensures it takes up the correct amount of horizontal space.
+But let's get back to spacing and adjustments after we've seen how the already defined components `markdown`, `checklist`, `radio`, `slider` and `button` can all fit together with `rows` and `columns`.**
 
 The following snippet will produce the app shown in the image below:
 
