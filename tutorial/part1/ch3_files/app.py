@@ -16,15 +16,15 @@ slider = dcc.Slider(0, 10, 1)
 # App Layout 
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown, style={"background-color": '#636EFA'}, width=8)),
+        dbc.Row(dbc.Col(markdown, width=8)),
         dbc.Row(
             [
-                dbc.Col(dropdown, style={"background-color": '#00CC96'}, width = 3), 
-                dbc.Col(slider, style={"background-color": '#EF553B'}, width = 9),
+                dbc.Col(dropdown, width = 3), 
+                dbc.Col(slider, width = 9),
             ]
         ),
-        dbc.Row(dbc.Col(slider, style={"background-color": '#AB63FA'}, width = 6)),
-        dbc.Row(dbc.Col(button, style={"background-color": '#00CC96'}, width = 11)),
+        dbc.Row(dbc.Col(slider, width = 6)),
+        dbc.Row(dbc.Col(button, width = 11)),
     ]
 )
 
