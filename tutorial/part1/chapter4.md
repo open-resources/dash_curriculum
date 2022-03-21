@@ -72,65 +72,34 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-Let's go through this step by step. Note first, that linking components with each other, in general we have to be able to uniquely identify them in order to distinguish between different of the same components in an app e.g., different dropdowns. This way we can specify which components should influence each other. For this purpose for every component you want to add a component id.
+Let's go through this step by step. Note first, that linking components with each other, in general we have to be able to uniquely identify them in order to distinguish between different of the same components in an app e.g., different dropdowns. This way we can specify which components should influence each other. For this purpose for every component you want to add a component `id`.
 
-More general, the id of a component is also called a property of a component. Besides an id every component has multiple properties which can be used to specify the component. In the example above we introduce the children property for the markdown as well as the options and the value property for the dropdown.
+More general, the id of a component is also called a property of a component. Besides an id every component has multiple properties which can be used to specify the component. In the example above we introduce the `children` property for the markdown as well as the `options` and the `value` property for the dropdown.
 
 ```{tip}
 For a comprehensive overview of all the different properties for the components of the dash core components library please have a look at the specific component in the [Official documentation](https://dash.plotly.com/dash-core-components).
 ```
 
-Now, that we have assigned different properties and ids to the components we can actually link them together. This is done within the callback. Despite the variety of usage of callbacks they all share the same basic structure. They all share the above structure and are composed of two main components, the callback decorator and the callback function:
+Now, that we have assigned different properties and ids to the components we can actually link them together. This is done within the callback. Despite the variety of usage of callbacks they all share the above structure and are composed of two main components, the callback decorator and the callback function:
 
 ```
 # Configure callback
-@app.callback(                                                          ###
-    Output(component_id='our-markdown', component_property='children'), #   callback
-    Input(component_id='our-dropdown', component_property='value')      #   decorator
-)                                                                       ###
-def update_markdown(value_drop):                                        ###
-    title = value_drop                                                  #   callback function
-    return title                                                        ###
+@app.callback(                                                          ###--------------------###
+    Output(component_id='our-markdown', component_property='children'), #   Callback decorator   #
+    Input(component_id='our-dropdown', component_property='value')      #                        #
+)                                                                       ###--------------------###
+def update_markdown(value_drop):                                        ###--------------------###
+    title = value_drop                                                  #   Callback function    #
+    return title                                                        ###--------------------###
 ```
 
-Let's break down these two components.
-
-
-
-
-
-
-
-Now, let's have a closer look at what a callback looks like. Despite the variety of usage of callbacks they all share the same basic structure. A generic callback will have the following structure and is composed of two main components, the callback decorator and the callback function:
-
-```
-# Callback decorator
-@app.callback(
-    Output(component_id='my-component-1', component_property='property-1'),
-    Input(component_id='my-component-2', component_property='property-2')
-)
-
-# Callback function
-def function_output(arg):
-    output = arg
-    return output
-```
-
-As there might be still some arguments you are not familiar with, we will go through the upper lines step by step.
+Let's break further down these two components.
 
 ### 4.2.1 Structure of Dash callback decorator
 
 The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.
 
 The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.
-
-```{admonition} Component property
-We have already introduced different components of an app like a markdown or a dropdown. To work properly all of these components need at least one input argument like a children, a value or a list declaring several options. These arguments are also called properties.
-```
-
-```{admonition} Component id
-When you are building advanced dashboards you are probably using many of the same components. In order to identify them uniquely one optional argument every component takes is the id. Also when you are working with callbacks the id is necessary as you use it to refer which components you are linking.
-```
 
 The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected. Accordingly, the Input specifies what property of which other component of your app should trigger the Output. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
 
