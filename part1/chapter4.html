@@ -525,7 +525,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Simple examples for callbacks</p></li>
 </ul>
 </div>
-<p>When we finish this chapter you’ll have a fully-operational interactive app that links together two components. <span class="xref myst">Download the code</span></p>
+<p>When we finish this chapter you’ll have a fully-operational interactive app that links together different components. <span class="xref myst">Download the code</span></p>
 </div>
 <div class="section" id="introduction-to-decorators-in-python">
 <h2>4.1 Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
@@ -548,7 +548,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p>Let’s start of with an easy example. For this purpose let’s take the app from the previous chapter, containing a markdown and a dropdown. Extending this code by a simple callback we get an app that links these two components together.</p>
 <p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]</strong></p>
-<p>The code herefore will look as follows:</p>
+<p>The code herefore will look as follows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -608,7 +608,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Attention</p>
 <p>Always make sure to import the packages ‘Output’ and ‘Input’ from the dash library at the beginning of your code when you are working with callbacks.</p>
 </div>
-<p>The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected e.g., the children property of the markdown. Accordingly, the Input specifies what property of which other component of your app should trigger the Output e.g., the value property of the dropdown. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.</p>
+<p>The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected e.g., the <code class="docutils literal notranslate"><span class="pre">children</span></code> property of the markdown. Accordingly, the Input specifies what property of which other component of your app should trigger the Output e.g., the <code class="docutils literal notranslate"><span class="pre">value</span></code> property of the dropdown. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.</p>
 <p>In order to build more complex applications with Dash later we will introduce a third argument called State, which in some sense will allow to circumvent this direct relationship. Also the arguments Output and Input can take on different components to allow for advanced functionality. However, we’ll come back to this in <a class="reference internal" href="../part3/chapter10.html"><span class="doc std std-doc">chapter 10</span></a>.</p>
 </div>
 <div class="section" id="structure-of-dash-callback-function">
@@ -623,7 +623,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Let’s have a look at those in more detail.</p>
 <div class="admonition-the-function-argument admonition">
 <p class="admonition-title">The function argument</p>
-<p>The callback function takes as many arguments as there are input components. The order remains stable i.e., the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p>
+<p>The callback function takes as many arguments as there are input components. The order remains stable i.e., the property of the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p>
 </div>
 <div class="admonition-the-function-body admonition">
 <p class="admonition-title">The function body</p>
@@ -637,9 +637,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="callbacks-in-action">
 <h2>4.3 Callbacks in action<a class="headerlink" href="#callbacks-in-action" title="Permalink to this headline">¶</a></h2>
-<p>Now it’s time to see some callbacks in action. For this chapter two examples should be discussed in detail.</p>
+<p>Now, that we have already seen a simple callback and understand how it is implemented, let’s grade things up a little.</p>
 <div class="section" id="change-the-style-of-a-markdown-by-a-slider">
 <h3>4.3.1 Change the style of a markdown by a slider<a class="headerlink" href="#change-the-style-of-a-markdown-by-a-slider" title="Permalink to this headline">¶</a></h3>
+<p>After linking together a markdown and a dropdown, let’s replace the dropdown by a slider. Instead of the children property of the markdown we introduce another property called <code class="docutils literal notranslate"><span class="pre">style</span></code> which can be used for any kind of styling e.g., the color of the markdown or the font size. <a class="reference internal" href="../part3/chapter9.html"><span class="doc std std-doc">Chapter 9</span></a> will give you some more insights on this topic.</p>
+<p>We equip the slider introduced in the previous chapter with an <code class="docutils literal notranslate"><span class="pre">id</span></code> and add the <code class="docutils literal notranslate"><span class="pre">value</span></code> property with a default value to it. The respective value of the slider will then be responsible for seizing the markdown. In this case, we change the font size of the markdown to be the default value added by twice the value choosen within the slider.</p>
+<p>The following snippet shows the corresponding code.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -664,8 +667,8 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_slider</span><span class="p">):</span>
-    <span class="n">title_size</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">value_slider</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">title_size</span>
+    <span class="n">markdown_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">value_slider</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">markdown_style</span>
 
 
 <span class="c1"># Run the App</span>
@@ -673,9 +676,14 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<p>In action, you will now have programmed the following interactive app:</p>
+<p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER TO CHANGE THE FONT SIZE OF THE MARKDOWN]</strong></p>
 </div>
 <div class="section" id="bringing-everything-together">
 <h3>4.3.2 Bringing everything together<a class="headerlink" href="#bringing-everything-together" title="Permalink to this headline">¶</a></h3>
+<p>To end this chapter, let’s tie everything together. Especially, we want to make you aware, how to use mutliple callbacks in your app. Therefore, this paragraph brings everything together we have achieved in this chapter. In order to combine both callbacks implemented above just put both of them behind each other in your code. Hereby the order doesn’t matter, just make sure you have all components defined and assigned the right ids and properties. Merging everything together will you the final app for this chapter.</p>
+<p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]</strong></p>
+<p>The code looks as follows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
