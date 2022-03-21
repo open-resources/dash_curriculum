@@ -11,7 +11,7 @@ After initializing a first simple app, learning about Dash components and settin
 - Simple examples for callbacks
 ```
 
-When we finish this chapter you'll have a fully-operational interactive app that links together two components. [Download the code](ch4_files/chapter4_app_graph.py)
+When we finish this chapter you'll have a fully-operational interactive app that links together two components. [Download the code](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch4_files/chapter4_app_graph.py)
 
 ```{admonition} Click the button to reveal the end result of this chapter!
 :class: dropdown
