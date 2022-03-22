@@ -11,7 +11,7 @@ After initializing a first simple app, learning about Dash components and settin
 - Simple examples for callbacks
 ```
 
-When we finish this chapter you'll have a fully-operational interactive app that links together different components. [Download the code](../blob/main/tutorial/part1/ch4_files/ch4_app.py)
+When we finish this chapter you'll have a fully-operational interactive app that links together different components. [Download the code](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch4_files/ch4_app.py)
 
 ## 4.1 Introduction to decorators in Python
 
