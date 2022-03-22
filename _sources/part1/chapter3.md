@@ -260,6 +260,12 @@ Best practices when constructing your layout using **Dash Bootstrap Components**
 3. `Cols` go inside `Rows`
 4. Components go inside `Cols`
 
+```{admonition} Side Notes
+- There are **12** columns in each Row
+- In the code below we define the `width` property of the `Column` to change the width of the `Row`
+- We added a color to each `Column` to demonstrate width. However,the code for the color is not included below for simplicity sake.  In future lessons we will learn more about component `Properties` like color
+```
+
 ![colored_app](../assets/p1_c3/app_colored.png)
 
 
