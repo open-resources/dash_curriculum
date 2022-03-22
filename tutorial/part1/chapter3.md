@@ -306,4 +306,4 @@ if __name__ == '__main__':
 ```
 
 ## Summary
-In this chapter we learned about Dash components, styling, and layout. **TODO: add more here**
+In this chapter we learned about Dash **components**, **styling**, and **layout**. In the next chapter we will learn how to interact with the components and link them together.
