@@ -131,7 +131,8 @@ if __name__ == '__main__':
 ````{dropdown} Dropdown
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
-
+    
+Dropdowns allow the user to select from a list of option. Similar to the checklst we will pass in a list of **options** when we create the component.
     
 ```python
 # Import packages 
@@ -171,6 +172,8 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
     
+Sliders allow the user to select a value by moving an indicator.  We pass in the (**start**, **end**, **increment**) `properties` to this component.
+
 ```python
 # Import packages 
 from dash import Dash, html, dcc
