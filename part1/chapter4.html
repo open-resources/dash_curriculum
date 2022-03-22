@@ -561,10 +561,12 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to the App&#39;</span><span class="p">,</span> <span class="s1">&#39;This is the title&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-<span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
 
 <span class="c1"># Configure callback</span>
@@ -655,10 +657,12 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">slider</span><span class="p">,</span>
-<span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
 
 <span class="c1"># Configure callback</span>
@@ -697,11 +701,17 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-                <span class="n">slider</span><span class="p">,</span>
-<span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+                <span class="c1">#dbc.Col(slider, width=9),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
 
 <span class="c1"># Configure callbacks</span>
