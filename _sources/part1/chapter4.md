@@ -36,7 +36,7 @@ Let's start of with an easy example. For this purpose let's take the app from th
 
 **[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
 
-The code herefore will look as follows.
+The corresponding code will look as follows.
 
 ```
 # Import packages
@@ -189,7 +189,7 @@ In action, you will now have programmed the following interactive app:
 
 ### 4.3.2 Bringing everything together
 
-To end this chapter, let's tie everything together. Especially, we want to make you aware, how to use mutliple callbacks in your app. Therefore, this paragraph brings everything together we have achieved in this chapter. In order to combine both callbacks implemented above just put both of them behind each other in your code. Hereby the order doesn't matter, just make sure you have all components defined and assigned the right ids and properties. Merging everything together will you the final app for this chapter.
+To end this chapter, let's tie everything together. Especially, we want to make you aware, how to use mutliple callbacks in your app. Therefore, this paragraph brings everything together we have achieved in this chapter. In order to combine both callbacks implemented above just put both of them behind each other in your code. Hereby the order doesn't matter, just make sure you have all components defined and assigned the right ids and properties. Merging everything together will give you the final app for this chapter.
 
 **[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]**
 
@@ -246,191 +246,8 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Let's start of with linking a dropdown to a markdown. The markdown in this case could represent the title of the app.
-
-```{attention}
-Using callbacks always make sure to import the libraries 'Output' and 'Input' for the callback decorator.
-```
-
-Creating the app components we are using the markdown and the dropdown from the dash core components (dcc) library. The markdown gets assigned an id, a children and a style, whereas the dropdown gets assigned an id, some options and an initial value. In this case, the forementioned children, style, options and value are the properties of the two components. The unique ids are necessary for implementing a working callback.
-
-```
-# Create app components
-markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
-dropdown = dcc.Dropdown(id='our-drop', options=['My First App', 'Another Title', 'Welcome to this App'], value='My First App')
-```
-
-The callback itself takes on the id as well as the children property of the markdown as output arguments in the decorator. As input arguments the id and the value of the dropdown. The value of the dropdown gets put into the callback function, saved into a basic variable and then gets returned.
-
-```
-# Configure callback
-@app.callback(
-    Output(component_id='our-title', component_property='children'),
-    Input(component_id='our-drop', component_property='value')
-)
-def update_markdown(value_drop):
-    title = value_drop
-    return title
-```
-
-The complete code will now look as follows.
-
-```
-# Import packages
-from dash import Dash, dcc, Output, Input
-import dash_bootstrap_components as dbc
-
-# Initialise the app
-app = Dash(__name__)
-
-# Create app components
-markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
-dropdown = dcc.Dropdown(id='our-drop', options=['My First App', 'Another Title', 'Welcome to this App'], value='My First App')
-
-# App layout
-app.layout = dbc.Container([
-    markdown,
-    dropdown
-])
-
-# Configure callback
-@app.callback(
-    Output(component_id='our-title', component_property='children'),
-    Input(component_id='our-drop', component_property='value')
-)
-def update_markdown(value_drop):
-    title = value_drop
-    return title
-
-
-# Run the app
-if __name__ == '__main__':
-    app.run_server()
-```
-
-**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
-
-### 4.3.2 Change a graph by dropdown
-
-Now, that we have already changed the title of our app, let's get a little more sophisticated. We're keeping the dropdown but now want to link it to a simple graph. Linking dash core components like buttons, checkboxes, dropdowns or sliders to graphs is probably the most common usecase when working with dash. 
-
-For this purpose we are extending our simple app by two more common libraries: plotly.express which we shorten by px and the pandas library which we shorten by pd.
-
-```
-# Import additional packages
-import plotly.express as px
-import pandas as pd
-```
-
-plotly.express is an easy to use library when plotting data, pandas is a very functional library when wrangling and analysing data, so both of these will probably accompany you from now on.
-
-One of the best known functions from pandas is the so called DataFrame, which allows to structure a set of data. As an argument it'll take on a dictionary and give it a tabular structure. Dictionaries are basically used to store data values in key:value pairs.
-
-```{tip}
-If you are not yet familiar with dictionaries you also may want to have a look at [W3Schools](https://www.w3schools.com/python/python_dictionaries.asp).
-```
-
-Now, you are set up for performant data analysis which will be further discussed in the second part of this curriculum. In this example we give in a list of fruits, each of them assigned with a numeric value, which you may think of as an amount. The corresponding code is given below.
-
-```
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2]
-})
-```
-**[PNG, THAT SHOWS THE PRINTED DATA FRAME IN VS CODE]**
-
-Next, we plot these data as a bar plot, with the fruits named on horizontal axis and the assigned values on the vertical axis. With plotly.express this will be as easy as the following line of code:
-
-```
-fig = px.bar(df, x="Fruit", y="Amount")
-```
-**[PNG, THAT SHOWS ONLY THE DEFAULT BARPLOT]**
-
-Whereas the arguments of the callback decorator will be straight forward, let's pay some more attention on the callback function, especially the function body. The basic idea of our app example is to assign various numbers to a dropdown which itself is linked to the barplot. Whenever you choose a number via dropdown the bar in the middle, which represents the amount of oranges, will change. Let's say the original amount gets multiplied by the selected value of the dropdown. 
-
-Herefore, we'll duplicate the DataFrame and reassign the amount of oranges, which will be multiplied by the selected value of the dropdown. We update the bar plot with the copied DataFrame and return the bar plot as function output. This makes up the following code:
-
-```
-# Configure callback
-@app.callback(
-    Output(component_id='our-graph', component_property='figure'),
-    Input(component_id='our-drop', component_property='value')
-)
-def update_output_div(value_drop):
-    dff = df.copy()
-    dff['Amount'][1] = dff['Amount'][1]*value_drop
-
-    fig = px.bar(dff, x="Fruit", y="Amount")
-
-    return fig
-```
-
-Don't worry if that still looks confusing to you! The upcoming chapters will go into these operations in more detail. However, bringing all pieces together gives the following simple app:
-
-```
-# Import packages
-from dash import Dash, dcc, Output, Input
-import dash_bootstrap_components as dbc
-import plotly.express as px
-import pandas as pd
-
-# Prepare data
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2]
-})
-fig = px.bar(df, x="Fruit", y="Amount")
-
-# Initialise the app
-app = Dash(__name__)
-
-# Create app components
-markdown = dcc.Markdown(id='our-title', children='My First App', style={'textAlign': 'center'})
-dropdown = dcc.Dropdown(id='our-drop', options=[1,2,3], value=3, clearable=False)
-figure = dcc.Graph(id='our-graph', figure=fig)
-
-# App layout
-app.layout = dbc.Container([
-    markdown,
-    dropdown,
-    figure
-])
-
-# Configure callback
-@app.callback(
-    Output(component_id='our-graph', component_property='figure'),
-    Input(component_id='our-drop', component_property='value')
-)
-def update_output_div(value_drop):
-    dff = df.copy()
-    dff['Amount'][1] = dff['Amount'][1]*value_drop
-
-    fig = px.bar(dff, x="Fruit", y="Amount")
-
-    return fig
-
-
-# Run the app
-if __name__ == '__main__':
-    app.run_server(debug=False)
-```
-**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE BAR OF THE BARCHART]**
-
 ## Summary
 
+Congratulations! You are now able to build a simple app with variuos components, structure them within the app and understand the neccessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. No matter if only one or multiple callbacks, you'll be able to manage your app linking different components together. 
+
+Now it's your turn, try yourself to link other components you already know and build your own first interactive app.
