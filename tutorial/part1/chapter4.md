@@ -51,10 +51,12 @@ markdown = dcc.Markdown(id='our-markdown', children='My First app')
 dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
 
 # App Layout
-app.layout = dbc.Container([
-                markdown,
-                dropdown,
-])
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown, width=8)),
+        dbc.Row(dbc.Col(dropdown, width=3)),
+    ]
+)
 
 
 # Configure callback
@@ -158,10 +160,12 @@ markdown = dcc.Markdown(id='our-markdown', children='My First app', style={'font
 slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
 
 # App Layout
-app.layout = dbc.Container([
-                markdown,
-                slider,
-])
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown, width=8)),
+        dbc.Row(dbc.Col(slider, width=9)),
+    ]
+)
 
 
 # Configure callback
@@ -205,11 +209,17 @@ dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to 
 slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
 
 # App Layout
-app.layout = dbc.Container([
-                markdown,
-                dropdown,
-                slider,
-])
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown, width=8)),
+        dbc.Row(
+            [
+                dbc.Col(dropdown, width=3),
+                #dbc.Col(slider, width=9),
+            ]
+        ),
+    ]
+)
 
 
 # Configure callbacks
