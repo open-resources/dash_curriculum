@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 8 &#8212; Dash Tutorial</title>
+    <title>Some initial thoughts: &#8212; Dash Tutorial</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -225,7 +225,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 8
+   Some initial thoughts:
   </a>
  </li>
 </ul>
@@ -374,44 +374,66 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-initial-thoughts">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
    Some initial thoughts:
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#main-goal">
      Main goal:
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#why-talk-about-plotly-graph-objects">
      Why talk about plotly.graph_objects?
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ability-to-inspect-and-edit-figures-empowerment">
      Ability to inspect and edit figures =&gt; empowerment
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotly-express-works-best-with-data-of-a-long-format">
      Plotly express works best with data of a long format
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#some-learning-points">
-     Some learning points:
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-1">
+     Editing help 1
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#introduction">
-     1. Introduction
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-2">
+     Editing help 2
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-3">
+     Editing help 3
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-4">
+     Editing help 4
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chapter-8">
+   Chapter 8
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-to-plotly-express">
+     8.1 Introduction to Plotly Express
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#breakdown-of-px-line-and-relation-to-plotly-graph-objects">
-     2. Breakdown of
+     8.2 Breakdown of
      <code class="docutils literal notranslate">
       <span class="pre">
        px.line()
@@ -419,71 +441,73 @@ const thebe_selector_output = ".output, .cell_output"
      </code>
      and relation to Plotly Graph Objects
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#figure-object-methods">
-     3. Figure object methods
-    </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dataframes-as-data-source">
-       4. DataFrames as data source
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-object-methods">
+       3. Figure object methods
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#dataframes-as-data-source">
+         4. DataFrames as data source
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#easy-data-handling-with-plotly-express">
+         5. Easy data handling with Plotly Express
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#inspect-the-structure-of-a-px-line-figure">
+         6. Inspect the structure of a
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           px.line()
+          </span>
+         </code>
+         figure
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#plotly-express-marker-symbols">
+         7. Plotly Express marker symbols
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-multiple-dimensions-of-a-dataset">
+       8.1 Visualizing multiple dimensions of a dataset
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#easy-data-handling-with-plotly-express">
-       5. Easy data handling with Plotly Express
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#long-and-wide-data-format">
+       8.2 Long and wide data format
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#inspect-the-structure-of-a-px-line-figure">
-       6. Inspect the structure of a
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         px.line()
-        </span>
-       </code>
-       figure
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-another-dimension-to-a-dataframe-of-a-long-format">
+       8.3 Adding another dimension to a dataframe of a long format
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#what-we-have-so-far">
+         What we have so far
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#templates">
+         9. Templates
+        </a>
+       </li>
+      </ul>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plotly-express-marker-symbols">
-       7. Plotly Express marker symbols
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ideas-for-the-next-section">
+       IDEAS FOR THE NEXT SECTION:
       </a>
      </li>
     </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-multiple-dimensions-of-a-dataset">
-     8.1 Visualizing multiple dimensions of a dataset
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#long-and-wide-data-format">
-     8.2 Long and wide data format
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-another-dimension-to-a-dataframe-of-a-long-format">
-     8.3 Adding another dimension to a dataframe of a long format
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-we-have-so-far">
-       What we have so far
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#templates">
-       9. Templates
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ideas-for-the-next-section">
-     IDEAS FOR THE NEXT SECTION:
-    </a>
    </li>
   </ul>
  </li>
@@ -497,7 +521,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 8</h1>
+                <h1>Some initial thoughts:</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -507,44 +531,66 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#some-initial-thoughts">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
    Some initial thoughts:
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#main-goal">
      Main goal:
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#why-talk-about-plotly-graph-objects">
      Why talk about plotly.graph_objects?
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#ability-to-inspect-and-edit-figures-empowerment">
      Ability to inspect and edit figures =&gt; empowerment
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotly-express-works-best-with-data-of-a-long-format">
      Plotly express works best with data of a long format
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#some-learning-points">
-     Some learning points:
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-1">
+     Editing help 1
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#introduction">
-     1. Introduction
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-2">
+     Editing help 2
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-3">
+     Editing help 3
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-help-4">
+     Editing help 4
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#chapter-8">
+   Chapter 8
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#introduction-to-plotly-express">
+     8.1 Introduction to Plotly Express
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#breakdown-of-px-line-and-relation-to-plotly-graph-objects">
-     2. Breakdown of
+     8.2 Breakdown of
      <code class="docutils literal notranslate">
       <span class="pre">
        px.line()
@@ -552,71 +598,73 @@ const thebe_selector_output = ".output, .cell_output"
      </code>
      and relation to Plotly Graph Objects
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#figure-object-methods">
-     3. Figure object methods
-    </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#dataframes-as-data-source">
-       4. DataFrames as data source
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#figure-object-methods">
+       3. Figure object methods
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#dataframes-as-data-source">
+         4. DataFrames as data source
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#easy-data-handling-with-plotly-express">
+         5. Easy data handling with Plotly Express
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#inspect-the-structure-of-a-px-line-figure">
+         6. Inspect the structure of a
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           px.line()
+          </span>
+         </code>
+         figure
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#plotly-express-marker-symbols">
+         7. Plotly Express marker symbols
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#visualizing-multiple-dimensions-of-a-dataset">
+       8.1 Visualizing multiple dimensions of a dataset
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#easy-data-handling-with-plotly-express">
-       5. Easy data handling with Plotly Express
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#long-and-wide-data-format">
+       8.2 Long and wide data format
       </a>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#inspect-the-structure-of-a-px-line-figure">
-       6. Inspect the structure of a
-       <code class="docutils literal notranslate">
-        <span class="pre">
-         px.line()
-        </span>
-       </code>
-       figure
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-another-dimension-to-a-dataframe-of-a-long-format">
+       8.3 Adding another dimension to a dataframe of a long format
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#what-we-have-so-far">
+         What we have so far
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#templates">
+         9. Templates
+        </a>
+       </li>
+      </ul>
      </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#plotly-express-marker-symbols">
-       7. Plotly Express marker symbols
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#ideas-for-the-next-section">
+       IDEAS FOR THE NEXT SECTION:
       </a>
      </li>
     </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#visualizing-multiple-dimensions-of-a-dataset">
-     8.1 Visualizing multiple dimensions of a dataset
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#long-and-wide-data-format">
-     8.2 Long and wide data format
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-another-dimension-to-a-dataframe-of-a-long-format">
-     8.3 Adding another dimension to a dataframe of a long format
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-we-have-so-far">
-       What we have so far
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#templates">
-       9. Templates
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ideas-for-the-next-section">
-     IDEAS FOR THE NEXT SECTION:
-    </a>
    </li>
   </ul>
  </li>
@@ -629,24 +677,22 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-8">
-<h1>Chapter 8<a class="headerlink" href="#chapter-8" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="some-initial-thoughts">
-<h2>Some initial thoughts:<a class="headerlink" href="#some-initial-thoughts" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="some-initial-thoughts">
+<h1>Some initial thoughts:<a class="headerlink" href="#some-initial-thoughts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="main-goal">
-<h3>Main goal:<a class="headerlink" href="#main-goal" title="Permalink to this headline">¶</a></h3>
+<h2>Main goal:<a class="headerlink" href="#main-goal" title="Permalink to this headline">¶</a></h2>
 <p>Empower the students to understand how Plotly Express works, which dataformat is best suited, how to inspect the structure of a figure, and how to edit elements of a figure. With this suggested chapter structure, some students may find it to be a punch in the face. If so, that’s only a wake-up call to prepare them for the powers they are about to obtain =)</p>
 </div>
 <div class="section" id="why-talk-about-plotly-graph-objects">
-<h3>Why talk about plotly.graph_objects?<a class="headerlink" href="#why-talk-about-plotly-graph-objects" title="Permalink to this headline">¶</a></h3>
+<h2>Why talk about plotly.graph_objects?<a class="headerlink" href="#why-talk-about-plotly-graph-objects" title="Permalink to this headline">¶</a></h2>
 <p>Plotly express is fantastic, and should be the preferred approach to using Plotly with Dash. But in the wild, the students will quickly come across Plotly Graph Objects as well. Particularly in the docs where the first examples for visualizations like line graphs often start out with a <code class="docutils literal notranslate"><span class="pre">go.Figure</span></code> example. So even if this suggested section might seem too detailed, it’s all there to avoid future confusion.</p>
 </div>
 <div class="section" id="ability-to-inspect-and-edit-figures-empowerment">
-<h3>Ability to inspect and edit figures =&gt; empowerment<a class="headerlink" href="#ability-to-inspect-and-edit-figures-empowerment" title="Permalink to this headline">¶</a></h3>
+<h2>Ability to inspect and edit figures =&gt; empowerment<a class="headerlink" href="#ability-to-inspect-and-edit-figures-empowerment" title="Permalink to this headline">¶</a></h2>
 <p>Personally, one reason why I love Plotly is because it’s so much fun to work with if you know how to <strong>build</strong>, <strong>inspect</strong> and <strong>edit</strong> the figures that <code class="docutils literal notranslate"><span class="pre">px</span></code> will let you produce. The sooner the students learn how to do this, the better. This MIGHT get a little confusing, BUT I’m hoping the following section will pulverize that confusion and quickly give the students a feeling of <em><strong>empowerment</strong></em> using the plotly library.</p>
 </div>
 <div class="section" id="plotly-express-works-best-with-data-of-a-long-format">
-<h3>Plotly express works best with data of a long format<a class="headerlink" href="#plotly-express-works-best-with-data-of-a-long-format" title="Permalink to this headline">¶</a></h3>
+<h2>Plotly express works best with data of a long format<a class="headerlink" href="#plotly-express-works-best-with-data-of-a-long-format" title="Permalink to this headline">¶</a></h2>
 <p>After version x.x.x, px also handles data of a wide format.
 Bt you can’t unleash the true powers of px without knowing how it works with data of a long format.
 Thus, chp 7 <em><strong>must</strong></em> include the difference between wide and long, and methods of transformation:</p>
@@ -656,49 +702,91 @@ Thus, chp 7 <em><strong>must</strong></em> include the difference between wide a
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="some-learning-points">
-<h3>Some learning points:<a class="headerlink" href="#some-learning-points" title="Permalink to this headline">¶</a></h3>
-<ol class="simple">
-<li><p>Introduction: What Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is and why you should use it.</p></li>
+<div class="section" id="editing-help-1">
+<h2>Editing help 1<a class="headerlink" href="#editing-help-1" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
+<ul class="simple">
+<li><p>info 1</p></li>
+<li><p>info 2</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="editing-help-2">
+<h2>Editing help 2<a class="headerlink" href="#editing-help-2" title="Permalink to this headline">¶</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Her’s a great tip</p>
+</div>
+</div>
+<div class="section" id="editing-help-3">
+<h2>Editing help 3<a class="headerlink" href="#editing-help-3" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">back</span>
+<span class="n">tick</span>
+<span class="n">code</span> 
+<span class="n">block</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="editing-help-4">
+<h2>Editing help 4<a class="headerlink" href="#editing-help-4" title="Permalink to this headline">¶</a></h2>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Yeah, pay some attention</p>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="chapter-8">
+<h1>Chapter 8<a class="headerlink" href="#chapter-8" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
+<ul class="simple">
+<li><p>What Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is and why you should use it.</p></li>
 <li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> relates Plotly Graph Objects (<code class="docutils literal notranslate"><span class="pre">go</span></code>)</p></li>
-<li><p>How to build a basic <code class="docutils literal notranslate"><span class="pre">go.Figure</span></code> canvas</p></li>
+<li><p>How to build a basic <code class="docutils literal notranslate"><span class="pre">go.Figure</span></code> <strong>canvas</strong></p></li>
 <li><p>How to <strong>display</strong> a figure with <code class="docutils literal notranslate"><span class="pre">fig.show()</span></code></p></li>
 <li><p>How to <strong>inspect</strong> a figure with <code class="docutils literal notranslate"><span class="pre">fig.show</span></code></p></li>
-<li><p>How using <code class="docutils literal notranslate"><span class="pre">px</span></code> with, for example <code class="docutils literal notranslate"><span class="pre">px.line</span></code>,structurally  will produce the same object as a basic <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> call</p></li>
+<li><p>How using <code class="docutils literal notranslate"><span class="pre">px</span></code> with, for example <code class="docutils literal notranslate"><span class="pre">px.line</span></code> structurally  will produce the same object as a basic <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> call</p></li>
 <li><p>The <strong>structure</strong> of a <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> object</p></li>
 <li><p>How to <strong>add data</strong> (traces) to a <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> object</p></li>
 <li><p>How to easily handle larger <strong>datasets</strong> with <code class="docutils literal notranslate"><span class="pre">px</span></code></p></li>
 <li><p>How to <strong>edit</strong> a figure object after setting it up with <code class="docutils literal notranslate"><span class="pre">px</span></code></p></li>
-</ol>
+</ul>
 </div>
-<div class="section" id="introduction">
-<h3>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="introduction-to-plotly-express">
+<h2>8.1 Introduction to Plotly Express<a class="headerlink" href="#introduction-to-plotly-express" title="Permalink to this headline">¶</a></h2>
 <p>Plotly’s arguably greatest power is how easily you can make beautiful interactive graphs. Plotly express adds to the versatility of Plotly through two specific features:</p>
 <ol class="simple">
-<li><p>You can easily create almost any plot with only one line of code like <code class="docutils literal notranslate"><span class="pre">px.line(df,</span> <span class="pre">x=</span> <span class="pre">'year',</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">'lifeExp'</span></code>, […])</p></li>
-<li><p>You can visualize multidimensional data through attributes like <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code>.</p></li>
+<li><p>You can easily create almost any plot with only one line of code like</p></li>
 </ol>
-<p>Here’s an example that we’ll learn to build and understand from scratch:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import plotly.express as px
-df = px.data.gapminder()
-px.line(df, x= &#39;year&#39;, y = &#39;lifeExp&#39;, color = &#39;country&#39;, symbol = &#39;continent&#39;, template = &#39;plotly_white&#39;)
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>px.line(df, x= &#39;year&#39;, y = &#39;lifeExp&#39;`, [...])
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>You can visualize multidimensional data through attributes like <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code>. Here’s an example that we’ll learn to build and understand from scratch:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/qCaDf.png"><img alt="enter image description here" src="https://i.stack.imgur.com/qCaDf.png" /></a></p>
 <p>Plotly Express is commonly imported like <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">plotly.express</span> <span class="pre">as</span> <span class="pre">px</span></code>. <code class="docutils literal notranslate"><span class="pre">px.data</span></code> holds a several datasets. In the figure above you have seen how to easily build a lineplot with a built-in dataset. <code class="docutils literal notranslate"><span class="pre">px</span></code> can produce a lot more than line charts, but we’ll take a closer look at that in a later section. Right now, let’s see how <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> creates the awesome looking figure above.</p>
 </div>
 <div class="section" id="breakdown-of-px-line-and-relation-to-plotly-graph-objects">
-<h3>2. Breakdown of <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> and relation to Plotly Graph Objects<a class="headerlink" href="#breakdown-of-px-line-and-relation-to-plotly-graph-objects" title="Permalink to this headline">¶</a></h3>
+<h2>8.2 Breakdown of <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> and relation to Plotly Graph Objects<a class="headerlink" href="#breakdown-of-px-line-and-relation-to-plotly-graph-objects" title="Permalink to this headline">¶</a></h2>
 <p>Running <a class="reference external" href="https://plotly.com/python/line-charts/"><code class="docutils literal notranslate"><span class="pre">px.line()</span></code></a> will produce a <a class="reference external" href="https://plotly.com/python/graph-objects/">Plotly Graph Objects</a> figure object <code class="docutils literal notranslate"><span class="pre">go.Figure</span></code> (where <code class="docutils literal notranslate"><span class="pre">go</span></code> is the commonly used alias for <code class="docutils literal notranslate"><span class="pre">plotly.graph_objects</span></code>) which is one of the main building blocks of the Plotly library; the canvas (better to call it something else?). Running <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> will produce a completely empty figure or canvas like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import plotly.graph_objects as go
-go.Figure()
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/FFZFt.png"><img alt="enter image description here" src="https://i.stack.imgur.com/FFZFt.png" /></a></p>
 <p>What we’re looking at here is a figure template with a few defined settings. We’ve got an x and an y-axis as well as white gridlines for both axes on a light-blue background. We can take a closer look at the underlying settings with <code class="docutils literal notranslate"><span class="pre">fig.show</span></code> that will reveal this dictionary:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
-    &#39;data&#39;: [], &#39;layout&#39;: {&#39;template&#39;: &#39;...&#39;}
-}
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;layout&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;template&#39;</span><span class="p">:</span> <span class="s1">&#39;...&#39;</span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>So at its core, a figure object is built up by a <code class="docutils literal notranslate"><span class="pre">data</span></code> and  <code class="docutils literal notranslate"><span class="pre">layout</span></code> element. As you’ll soon learn, there are endless ways to construct a Plotly figure. But building on this basic example, you will have to populate the data attribute through the addition of traces, like a <a class="reference external" href="https://plotly.com/python/line-and-scatter/#scatter-and-line-plots-with-goscatter"><code class="docutils literal notranslate"><span class="pre">go.Scatter()</span></code></a> trace (more on this and other options?). You can also edit the layout through <a class="reference external" href="https://plotly.com/python/reference/layout/"><code class="docutils literal notranslate"><span class="pre">go.Layout()</span></code></a>. Below is an example where the dataset <code class="docutils literal notranslate"><span class="pre">x=</span> <span class="pre">[1,2,3,4]</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">[10,11,12,13]</span></code> is added to the empty canvas. We’ll also specify a figure title.</p>
@@ -717,7 +805,6 @@ fig.show()
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">layout</span></code> now has another dictionary <code class="docutils literal notranslate"><span class="pre">'title':</span> <span class="pre">{'text':</span> <span class="pre">'My</span> <span class="pre">first</span> <span class="pre">plotly</span> <span class="pre">figure'}</span></code>, and <code class="docutils literal notranslate"><span class="pre">data</span></code> has a list with one trace element.</p>
 <p>Notice how we’ve used both <code class="docutils literal notranslate"><span class="pre">fig.show</span></code> and <code class="docutils literal notranslate"><span class="pre">fig.show()</span></code>. The former let’s you study the content of the figure object while the latter displays a visual representation of the figure.</p>
-</div>
 <div class="section" id="figure-object-methods">
 <h3>3. Figure object methods<a class="headerlink" href="#figure-object-methods" title="Permalink to this headline">¶</a></h3>
 <p>The figure object has numerous useful methods that you can study through <code class="docutils literal notranslate"><span class="pre">dir(fig)</span></code>. One of them, <code class="docutils literal notranslate"><span class="pre">fig.add_traces()</span></code>, adds new data to an already existing figure object, and works much in the same way as <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> in that you’ll have to specify a trace category as well. Below we’ll use <code class="docutils literal notranslate"><span class="pre">fig.add_traces(go.Scatter())</span></code> to add another line to our lineplot.</p>

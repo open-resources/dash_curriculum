@@ -1,5 +1,3 @@
-# Chapter 8
-
 ## Some initial thoughts:
 
 #### Main goal:
@@ -22,53 +20,93 @@ Thus, chp 7 ***must*** include the difference between wide and long, and methods
 
 ---
 
-### Some learning points:
+### Editing help 1
+
+```{admonition} Learning Intentions
+- info 1
+- info 2
+```
+
+### Editing help 2
+
+```{tip}
+Her's a great tip
+
+```
+
+### Editing help 3
+```
+back
+tick
+code 
+block
+
+```
+
+### Editing help 4
+
+```{attention}
+Yeah, pay some attention
+```
+
+---
+
+# Chapter 8
+
+```{admonition} Learning Intentions
+
+-  What Plotly Express (`px`) is and why you should use it.
+- How `px` relates Plotly Graph Objects (`go`)
+- How to build a basic `go.Figure` **canvas**
+- How to **display** a figure with `fig.show()`
+- How to **inspect** a figure with `fig.show`
+- How using `px` with, for example `px.line` structurally  will produce the same object as a basic `go.Figure()` call
+- The **structure** of a `go.Figure()` object
+- How to **add data** (traces) to a `go.Figure()` object
+- How to easily handle larger **datasets** with `px`
+- How to **edit** a figure object after setting it up with `px` 
+
+```
 
 
-1. Introduction: What Plotly Express (`px`) is and why you should use it.
-2. How `px` relates Plotly Graph Objects (`go`)
-3. How to build a basic `go.Figure` canvas
-4. How to **display** a figure with `fig.show()`
-5. How to **inspect** a figure with `fig.show`
-6. How using `px` with, for example `px.line`,structurally  will produce the same object as a basic `go.Figure()` call
-7. The **structure** of a `go.Figure()` object
-8. How to **add data** (traces) to a `go.Figure()` object
-9. How to easily handle larger **datasets** with `px`
-10. How to **edit** a figure object after setting it up with `px` 
-
-
-### 1. Introduction
+## 8.1 Introduction to Plotly Express
 Plotly's arguably greatest power is how easily you can make beautiful interactive graphs. Plotly express adds to the versatility of Plotly through two specific features:
 
-1) You can easily create almost any plot with only one line of code like `px.line(df, x= 'year', y = 'lifeExp'`, [...])
+1) You can easily create almost any plot with only one line of code like
 
-2) You can visualize multidimensional data through attributes like `color` and `symbol`.
+```python
+px.line(df, x= 'year', y = 'lifeExp'`, [...])
+```
+2) You can visualize multidimensional data through attributes like `color` and `symbol`. Here's an example that we'll learn to build and understand from scratch:
 
-Here's an example that we'll learn to build and understand from scratch:
-
-    import plotly.express as px
-    df = px.data.gapminder()
-    px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent', template = 'plotly_white')
+```python
+import plotly.express as px
+df = px.data.gapminder()
+px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent', template = 'plotly_white')
+```
 
 [![enter image description here][1]][1]
 
 Plotly Express is commonly imported like `import plotly.express as px`. `px.data` holds a several datasets. In the figure above you have seen how to easily build a lineplot with a built-in dataset. `px` can produce a lot more than line charts, but we'll take a closer look at that in a later section. Right now, let's see how `px.line()` creates the awesome looking figure above. 
 
 
-### 2. Breakdown of `px.line()` and relation to Plotly Graph Objects
+## 8.2 Breakdown of `px.line()` and relation to Plotly Graph Objects
 
 Running [`px.line()`][2] will produce a [Plotly Graph Objects][3] figure object `go.Figure` (where `go` is the commonly used alias for `plotly.graph_objects`) which is one of the main building blocks of the Plotly library; the canvas (better to call it something else?). Running `go.Figure()` will produce a completely empty figure or canvas like this:
-
-    import plotly.graph_objects as go
-    go.Figure()
+```python
+import plotly.graph_objects as go
+go.Figure()
+```
 
 [![enter image description here][4]][4]
 
 What we're looking at here is a figure template with a few defined settings. We've got an x and an y-axis as well as white gridlines for both axes on a light-blue background. We can take a closer look at the underlying settings with `fig.show` that will reveal this dictionary:
 
-    {
-        'data': [], 'layout': {'template': '...'}
-    }
+```python
+{
+    'data': [], 'layout': {'template': '...'}
+}
+```
 
 So at its core, a figure object is built up by a `data` and  `layout` element. As you'll soon learn, there are endless ways to construct a Plotly figure. But building on this basic example, you will have to populate the data attribute through the addition of traces, like a [`go.Scatter()`][5] trace (more on this and other options?). You can also edit the layout through [`go.Layout()`][6]. Below is an example where the dataset `x= [1,2,3,4]` and `y = [10,11,12,13]` is added to the empty canvas. We'll also specify a figure title.
 
