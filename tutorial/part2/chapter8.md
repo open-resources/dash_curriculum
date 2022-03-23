@@ -1,4 +1,4 @@
-#(Chapter 8)
+#Chapter 8
 
 ## Some initial thoughts:
 
@@ -22,8 +22,6 @@ Thus, chp 7 ***must*** include the difference between wide and long, and methods
 
 ---
 
-# Chapter 8
-
 ### Some learning points:
 
 
@@ -42,9 +40,11 @@ Thus, chp 7 ***must*** include the difference between wide and long, and methods
 ### 1. Introduction
 Plotly's arguably greatest power is how easily you can make beautiful interactive graphs. Plotly express adds to the versatility of Plotly through two specific features:
 
-1) You can easily create almost any plot with only one line of code like `px.line(df, x= 'year', y = 'lifeExp'`.
+1) You can easily create almost any plot with only one line of code like `px.line(df, x= 'year', y = 'lifeExp'`, [...])
 
-2) You can visualize multidimensional data through attributes like `color` and `symbol`. Here's an example that we'll learn to build and understand from scratch:
+2) You can visualize multidimensional data through attributes like `color` and `symbol`.
+
+Here's an example that we'll learn to build and understand from scratch:
 
     import plotly.express as px
     df = px.data.gapminder()
