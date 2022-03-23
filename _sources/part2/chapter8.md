@@ -1,3 +1,5 @@
+# Chapter 8
+
 ## Some initial thoughts:
 
 #### Main goal:
