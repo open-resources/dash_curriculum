@@ -1,59 +1,26 @@
 # Chapter 8: Data Visualization
 
-## Some initial thoughts:
+```{admonition} Some initial thoughts from me to the team (not meant as part of the final product)
 
-#### Main goal:
+## Main goal:
 
 Empower the students to understand how Plotly Express works, which dataformat is best suited, how to inspect the structure of a figure, and how to edit elements of a figure. With this suggested chapter structure, some students may find it to be a punch in the face. If so, that's only a wake-up call to prepare them for the powers they are about to obtain =)
 
-#### Why talk about plotly.graph_objects?
+## Why talk about plotly.graph_objects?
 Plotly express is fantastic, and should be the preferred approach to using Plotly with Dash. But in the wild, the students will quickly come across Plotly Graph Objects as well. Particularly in the docs where the first examples for visualizations like line graphs often start out with a `go.Figure` example. So even if this suggested section might seem too detailed, it's all there to avoid future confusion. 
 
-#### Ability to inspect and edit figures => empowerment
+## Ability to inspect and edit figures => empowerment
 Personally, one reason why I love Plotly is because it's so much fun to work with if you know how to **build**, **inspect** and **edit** the figures that `px` will let you produce. The sooner the students learn how to do this, the better. This MIGHT get a little confusing, BUT I'm hoping the following section will pulverize that confusion and quickly give the students a feeling of ***empowerment*** using the plotly library.
 
-#### Plotly express works best with data of a long format
-After version x.x.x, px also handles data of a wide format.
+## Plotly express works best with data of a long format
+As of [plotly.py 4.8](https://community.plotly.com/t/announcing-plotly-py-4-8-plotly-express-support-for-wide-and-mixed-form-data-plus-a-pandas-backend/40048) px also handles data of a wide format.
 Bt you can't unleash the true powers of px without knowing how it works with data of a long format.
 Thus, chp 7 ***must*** include the difference between wide and long, and methods of transformation:
 
 - `pd.melt()` at the very least
 - `pd.pivot()` perhaps?
-
----
-
-### Editing help 1
-
-```{admonition} Learning Intentions
-- info 1
-- info 2
 ```
 
-### Editing help 2
-
-```{tip}
-Her's a great tip
-
-```
-
-### Editing help 3
-```
-back
-tick
-code 
-block
-
-```
-
-### Editing help 4
-
-```{attention}
-Yeah, pay some attention
-```
-
----
-
-# Chapter 8
 
 ```{admonition} Learning Intentions
 
@@ -319,7 +286,7 @@ Now you no longer need to specify a list of names from a wide dataframe for `y` 
 
 [![enter image description here][12]][12]
 
-## 8.1.7.2 Long and wide data format
+## 8.1.7.2 Adding another dimension to a dataframe of a long format
 
 From here we can add yet another dimension to the dataset through a new variable, `'continent'`, by mapping a dictionary to our already existing `'country'` column:
 
@@ -337,8 +304,8 @@ px.line(df_long, x='year', y = 'value', color = 'country')
 The dataset is defined in the first argument, and the rest are just references to that dataset. And perhaps most importantly, `color` does not take actual colors as input, but rather a column with multiple values to which a color from a default color cycle is applied to each unique element. Now we can take our new variable / dimension `'continent'` into account as well with `symbol = 'continent'` in:
 
 ```python
-    fig = px.line(df_long, x='year', y = 'value', color = 'country', symbol = 'continent')
-    fig.show()
+fig = px.line(df_long, x='year', y = 'value', color = 'country', symbol = 'continent')
+fig.show()
 ```
 
 This works exactly the same way as `color = 'country'`, but this time a symbol sequence is used to represent unique values of a dataframe column.
@@ -347,22 +314,24 @@ This works exactly the same way as `color = 'country'`, but this time a symbol s
 
 And this explains why `px.line()` doesn't assign symbols to markers by default; the function is simply waiting for you to make use of the multidimensional capabilites of the library.
 
-#### 9. Templates
+## 8.1.7 Templates
 
 Our previous call to `px.line()` is now only missing one element compared to the initial figure, the `template`. There we used `plotly_white`. Other available templates are:
 
-    ['ggplot2', 'seaborn', 'simple_white', 'plotly', 'plotly_white', 'plotly_dark', 'presentation', 'xgridoff', 'ygridoff', 'gridon', 'none']
+```python
+['ggplot2', 'seaborn', 'simple_white', 'plotly', 'plotly_white', 'plotly_dark', 'presentation', 'xgridoff', 'ygridoff', 'gridon', 'none']
+```
 
 Let's round off this section with `plotly_dark`:
 
 [![enter image description here][14]][14]
 
 
-Now that you're able to master some of the basic powers of Plotly Express, we'll take a look at how you can build other chart types than line charts and combine them with the template of your liking to create almost any chart with any design!
+Now that you're able to master some of the basic powers of Plotly Express, we'll soon move on to taking a look at how you can build other chart types than line charts and combine them with the template of your liking to create almost any chart with any design.
 
 ---
 
-### IDEAS FOR THE NEXT SECTION:
+## IDEAS FOR THE NEXT SECTION:
 
 [Plotly: How to make different plots using plotly?](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937)
 
