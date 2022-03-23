@@ -1,7 +1,6 @@
 # Chapter 8: Data Visualization
 
 ```{admonition} Some initial thoughts from me to the team (not meant as part of the final product)
-
 ## Main goal:
 
 Empower the students to understand how Plotly Express works, which dataformat is best suited, how to inspect the structure of a figure, and how to edit elements of a figure. With this suggested chapter structure, some students may find it to be a punch in the face. If so, that's only a wake-up call to prepare them for the powers they are about to obtain =)
