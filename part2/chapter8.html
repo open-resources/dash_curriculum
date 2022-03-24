@@ -437,8 +437,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plotly-express-marker-symbols">
-   8.1.6 Plotly Express marker symbols
+  <a class="reference internal nav-link" href="#how-to-edit-the-attributes-of-traces">
+   8.1.6 How to edit the attributes of traces
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -554,8 +554,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#plotly-express-marker-symbols">
-   8.1.6 Plotly Express marker symbols
+  <a class="reference internal nav-link" href="#how-to-edit-the-attributes-of-traces">
+   8.1.6 How to edit the attributes of traces
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -793,9 +793,9 @@ fig.show()
 </div>
 </div>
 <hr class="docutils" />
-<div class="section" id="plotly-express-marker-symbols">
-<h2>8.1.6 Plotly Express marker symbols<a class="headerlink" href="#plotly-express-marker-symbols" title="Permalink to this headline">¶</a></h2>
-<p>If you would like to include the circle symbol for each datapoint, you can either do so through the call to <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> itself, with:</p>
+<div class="section" id="how-to-edit-the-attributes-of-traces">
+<h2>8.1.6 How to edit the attributes of traces<a class="headerlink" href="#how-to-edit-the-attributes-of-traces" title="Permalink to this headline">¶</a></h2>
+<p>If you, as an example, would like to include the circle symbol for each datapoint, you can either do so through the call to <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> itself, with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">],</span>
                   <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;My first Plotly Express figure&#39;</span><span class="p">,</span>
                   <span class="n">markers</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>

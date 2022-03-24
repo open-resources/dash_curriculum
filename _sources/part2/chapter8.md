@@ -222,8 +222,8 @@ Be aware that `fig.show` only reveals *some* of the attributes of `fig`. If you'
 
 ---
 
-## 8.1.6 Plotly Express marker symbols
-If you would like to include the circle symbol for each datapoint, you can either do so through the call to `px.line()` itself, with:
+## 8.1.6 How to edit the attributes of traces
+If you, as an example, would like to include the circle symbol for each datapoint, you can either do so through the call to `px.line()` itself, with:
 
 ```python
 fig = px.line(df, x='x', y = ['y', 'y1'],
