@@ -313,7 +313,7 @@ This works exactly the same way as `color = 'country'`, but this time a symbol s
 
 And this explains why `px.line()` doesn't assign symbols to markers by default; the function is simply waiting for you to make use of the multidimensional capabilites of the library.
 
-## 8.1.7 Templates
+## 8.1.8 Templates
 
 Our previous call to `px.line()` is now only missing one element compared to the initial figure, the `template`. There we used `plotly_white`. Other available templates are:
 
