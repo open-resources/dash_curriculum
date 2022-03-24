@@ -383,6 +383,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#basic-operations-with-pandas">
    Basic Operations with Pandas
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#links-to-use-for-pandas-data-wrangling">
+     Links to use for Pandas data wrangling
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#processing-data">
@@ -418,6 +425,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#basic-operations-with-pandas">
    Basic Operations with Pandas
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#links-to-use-for-pandas-data-wrangling">
+     Links to use for Pandas data wrangling
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#processing-data">
@@ -442,6 +456,25 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="basic-operations-with-pandas">
 <h2>Basic Operations with Pandas<a class="headerlink" href="#basic-operations-with-pandas" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> is a data analysis and manipulation library</p>
+<div class="section" id="links-to-use-for-pandas-data-wrangling">
+<h3>Links to use for Pandas data wrangling<a class="headerlink" href="#links-to-use-for-pandas-data-wrangling" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://towardsdatascience.com/data-wrangling-using-pandas-library-ae26f8bbbdd2">https://towardsdatascience.com/data-wrangling-using-pandas-library-ae26f8bbbdd2</a></p></li>
+<li><p><a class="reference external" href="https://towardsdatascience.com/7-must-know-data-wrangling-operations-with-python-pandas-849438a90d15">https://towardsdatascience.com/7-must-know-data-wrangling-operations-with-python-pandas-849438a90d15</a></p></li>
+<li><p><a class="reference external" href="https://realpython.com/python-data-cleaning-numpy-pandas/">https://realpython.com/python-data-cleaning-numpy-pandas/</a></p></li>
+<li><p><a class="reference external" href="https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c">https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404">https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404</a></p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># shows top 5 rows of df</span>
+<span class="n">df</span><span class="o">.</span><span class="n">types</span><span class="p">()</span> <span class="c1"># shows data type of columns</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span> <span class="c1"># computes various statistics for each column</span>
+
+<span class="c1"># Dealing with missing values</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># display how many **NA** entries in each row</span>
+
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="processing-data">
 <h2>Processing data<a class="headerlink" href="#processing-data" title="Permalink to this headline">¶</a></h2>
