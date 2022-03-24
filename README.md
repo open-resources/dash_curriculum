@@ -95,13 +95,13 @@
 
 ### Chapter 8: Data Visualization
 
+ - Principles of Effective Visualizations
  - Introduction to Plotly Express
  - Plotly Express graphs
    - scatter plot
    - line plot
    - bar plot
    - etc...
- - Principles of Effective Visualizations
  - Incorporting PX graphs in a Dash app 
  - References and resourcres
 
