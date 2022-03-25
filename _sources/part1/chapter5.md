@@ -91,7 +91,8 @@ pandas==1.3.4
 gunicorn==20.1.0
 ```
 
-```{note} In a later chapter as part of a more complex deployment process, you will learn how to create this file automatically with the command ```pip freeze > requirements.txt``` while working in a virtual environment.
+```{note} 
+In a later chapter as part of a more complex deployment process, you will learn how to create this file automatically with the command ```pip freeze > requirements.txt``` while working in a virtual environment.
 ```
 
 ## Add files to Git
