@@ -8,7 +8,7 @@ Empower the students to understand how Plotly Express works, which dataformat is
 ## Why talk about plotly.graph_objects?
 Plotly express is fantastic, and should be the preferred approach to using Plotly with Dash. But in the wild, the students will quickly come across Plotly Graph Objects as well. Particularly in the docs where the first examples for visualizations like line graphs often start out with a `go.Figure` example. So even if this suggested section might seem too detailed, it's all there to avoid future confusion. 
 
-## Ability to inspect and edit figures => empowerment
+## Ability to inspect and edit figures => ability to change and edit figure attributes through callbacks(!!!)
 Personally, one reason why I love Plotly is because it's so much fun to work with if you know how to **build**, **inspect** and **edit** the figures that `px` will let you produce. The sooner the students learn how to do this, the better. This MIGHT get a little confusing, BUT I'm hoping the following section will pulverize that confusion and quickly give the students a feeling of ***empowerment*** using the plotly library.
 
 ## Plotly express works best with data of a long format
