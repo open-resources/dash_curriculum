@@ -505,7 +505,8 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 4: Linking Dash components<a class="headerlink" href="#chapter-4-linking-dash-components" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the notation of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.</p>
+<p>After initializing your first app, learning about Dash components and the layout, this chapter will cover the callback. The callback will allow you to link the various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps.</p>
+<p>To better understand the notation of a callback, there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
@@ -536,9 +537,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><strong>Configure callback(s)</strong></p></li>
 <li><p>Run the App</p></li>
 </ul>
-<p>Let’s start of with an easy example. For this purpose let’s take the app from the previous chapter, containing a markdown and a dropdown. Extending this code by a simple callback we get an app that links these two components together.</p>
-<p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]</strong></p>
-<p>The corresponding code will look as follows.</p>
+<p>Let’s start off with an easy example. For this purpose let’s take the app from the previous chapter, containing a markdown and a dropdown. Extending this code by a simple callback we get an app that links these two components together.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -574,6 +573,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]</strong></p>
 <p>Let’s go through this step by step. Note first, that linking components with each other, in general we have to be able to uniquely identify them in order to distinguish between different of the same components in an app e.g., different dropdowns. This way we can specify which components should influence each other. For this purpose for every component you want to add a component <code class="docutils literal notranslate"><span class="pre">id</span></code>.</p>
 <p>More general, the id of a component is also called a property of a component. Besides an id every component has multiple properties which can be used to specify the component. In the example above we introduce the <code class="docutils literal notranslate"><span class="pre">children</span></code> property for the markdown as well as the <code class="docutils literal notranslate"><span class="pre">options</span></code> and the <code class="docutils literal notranslate"><span class="pre">value</span></code> property for the dropdown.</p>
 <div class="admonition tip">
@@ -676,8 +676,6 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="bringing-everything-together">
 <h3>4.3.2 Bringing everything together<a class="headerlink" href="#bringing-everything-together" title="Permalink to this headline">¶</a></h3>
 <p>To end this chapter, let’s tie everything together. Especially, we want to make you aware, how to use mutliple callbacks in your app. Therefore, this paragraph brings everything together we have achieved in this chapter. In order to combine both callbacks implemented above just put both of them behind each other in your code. Hereby the order doesn’t matter, just make sure you have all components defined and assigned the right ids and properties. Merging everything together will give you the final app for this chapter.</p>
-<p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]</strong></p>
-<p>The code looks as follows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -728,6 +726,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><strong>[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]</strong></p>
 </div>
 </div>
 <div class="section" id="summary">
