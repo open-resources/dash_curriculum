@@ -2,7 +2,9 @@
 
 ## What you will learn
 
-After initializing a first simple app, learning about Dash components and setting a layout this chapter covers so called app callbacks, that will allow you to link various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps. This chapter aims at preparing you with the basics of callbacks. In order to not let you get confused by the notation of a callback there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
+After initializing your first app, learning about Dash components and the layout, this chapter will cover the callback. The callback will allow you to link the various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps.
+
+To better understand the notation of a callback, there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
 
 ```{admonition} Learning Intentions
 - Decorators in Python
@@ -32,11 +34,7 @@ Before we talk about the structure of a callback, let's briefly discuss how call
 - **Configure callback(s)**
 - Run the App
 
-Let's start of with an easy example. For this purpose let's take the app from the previous chapter, containing a markdown and a dropdown. Extending this code by a simple callback we get an app that links these two components together.
-
-**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
-
-The corresponding code will look as follows.
+Let's start off with an easy example. For this purpose let's take the app from the previous chapter, containing a markdown and a dropdown. Extending this code by a simple callback we get an app that links these two components together.
 
 ```
 # Import packages
@@ -73,6 +71,8 @@ def update_markdown(value_dropdown):
 if __name__ == '__main__':
     app.run_server()
 ```
+
+**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
 
 Let's go through this step by step. Note first, that linking components with each other, in general we have to be able to uniquely identify them in order to distinguish between different of the same components in an app e.g., different dropdowns. This way we can specify which components should influence each other. For this purpose for every component you want to add a component `id`.
 
@@ -191,10 +191,6 @@ In action, you will now have programmed the following interactive app:
 
 To end this chapter, let's tie everything together. Especially, we want to make you aware, how to use mutliple callbacks in your app. Therefore, this paragraph brings everything together we have achieved in this chapter. In order to combine both callbacks implemented above just put both of them behind each other in your code. Hereby the order doesn't matter, just make sure you have all components defined and assigned the right ids and properties. Merging everything together will give you the final app for this chapter.
 
-**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]**
-
-The code looks as follows.
-
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output
@@ -245,6 +241,8 @@ def update_markdown(value_slider):
 if __name__ == '__main__':
     app.run_server()
 ```
+
+**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]**
 
 ## Summary
 
