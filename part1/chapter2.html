@@ -381,34 +381,39 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#structure-of-a-dash-app">
-   Structure of a Dash App
+   2.1 Structure of a Dash App
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-packages">
-     (1) Import packages
+     2.1.1 Import packages
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialise-the-app">
-     (2) Initialise the App
+     2.1.2 Initialise the App
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#app-layout">
-     (3) App Layout
+     2.1.3 App Layout
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#run-the-app">
-     (4) Run the App
+     2.1.4 Run the App
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interacting-with-the-app">
-   Interacting with the App
+   2.2 Interacting with the App
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.3 Summary
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -455,34 +460,39 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#structure-of-a-dash-app">
-   Structure of a Dash App
+   2.1 Structure of a Dash App
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#import-packages">
-     (1) Import packages
+     2.1.1 Import packages
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#initialise-the-app">
-     (2) Initialise the App
+     2.1.2 Initialise the App
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#app-layout">
-     (3) App Layout
+     2.1.3 App Layout
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#run-the-app">
-     (4) Run the App
+     2.1.4 Run the App
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#interacting-with-the-app">
-   Interacting with the App
+   2.2 Interacting with the App
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   2.3 Summary
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -537,7 +547,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <hr class="docutils" />
 <div class="section" id="structure-of-a-dash-app">
-<h2>Structure of a Dash App<a class="headerlink" href="#structure-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
+<h2>2.1 Structure of a Dash App<a class="headerlink" href="#structure-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
 <p>There are best practices to structure Dash Apps. Following these best practices will simplify the development of future applications. The recommended Dash App structure consists of the following sections:</p>
 <ol class="simple">
 <li><p>Import packages</p></li>
@@ -546,7 +556,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Run the App</p></li>
 </ol>
 <div class="section" id="import-packages">
-<h3>(1) Import packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.1 Import packages<a class="headerlink" href="#import-packages" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 </pre></div>
@@ -559,7 +569,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 <div class="section" id="initialise-the-app">
-<h3>(2) Initialise the App<a class="headerlink" href="#initialise-the-app" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.2 Initialise the App<a class="headerlink" href="#initialise-the-app" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -567,7 +577,7 @@ const thebe_selector_output = ".output, .cell_output"
 This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we’ll show you how to to specify more properties to create more complex apps.</p>
 </div>
 <div class="section" id="app-layout">
-<h3>(3) App Layout<a class="headerlink" href="#app-layout" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.3 App Layout<a class="headerlink" href="#app-layout" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
     <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
 <span class="p">])</span>
@@ -580,7 +590,7 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 </ul>
 </div>
 <div class="section" id="run-the-app">
-<h3>(4) Run the App<a class="headerlink" href="#run-the-app" title="Permalink to this headline">¶</a></h3>
+<h3>2.1.4 Run the App<a class="headerlink" href="#run-the-app" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
@@ -608,7 +618,7 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 </div>
 <hr class="docutils" />
 <div class="section" id="interacting-with-the-app">
-<h2>Interacting with the App<a class="headerlink" href="#interacting-with-the-app" title="Permalink to this headline">¶</a></h2>
+<h2>2.2 Interacting with the App<a class="headerlink" href="#interacting-with-the-app" title="Permalink to this headline">¶</a></h2>
 <p>Once the app is launched and working, we can:</p>
 <ul class="simple">
 <li><p><strong>Stop the app</strong>: typing (‘Ctrl+C’ on Windows, ‘Command+C’ on Mac) on the console will stop the app. This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the app and we launch a different app, with the same port number, an error message will be displayed.</p></li>
@@ -630,7 +640,11 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 <li><p>Try to change the content of the Markdown in your App</p></li>
 <li><p>Try to add a new Markdown with custom content</p></li>
 </ul>
-<p>In the next chapter, we will discover additional the Dash components and examine how to position them in the layout.</p>
+</div>
+<div class="section" id="summary">
+<h2>2.3 Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we learned about what is a Dash App and what is its recommended sturture. We have also explored each building block and their core properties.
+In the next chapter, we will discover additional the Dash components and examine how to position them in the layout.</p>
 <hr class="docutils" />
 </div>
 <hr class="docutils" />

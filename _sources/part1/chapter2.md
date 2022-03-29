@@ -25,14 +25,14 @@ if __name__ == '__main__':
 
 ---
 
-## Structure of a Dash App
+## 2.1 Structure of a Dash App
 There are best practices to structure Dash Apps. Following these best practices will simplify the development of future applications. The recommended Dash App structure consists of the following sections:
 1) Import packages
 2) Initialise the App
 3) App Layout
 4) Run the App
 
-### (1) Import packages
+### 2.1.1 Import packages
 ```
 from dash import Dash, dcc
 import dash_bootstrap_components as dbc
@@ -42,14 +42,14 @@ Dash apps require some libraries to run, which we import in the above code. Let'
 - **dcc** stands for dash_core_components which is a module that gives access to many interactive components that are used in Dash apps and will be introduced in Chapter 3.
 - Via the **dash_bootstrap_components** module, it is possible to incorporate Boostrap components into the App making it easier to customise the app layout and giving you access to additional components not found in Dash Core Components
 
-### (2) Initialise the App
+### 2.1.2 Initialise the App
 ```
 app = Dash(__name__)
 ```
 In this section, we initialise an app by creating a Dash instance and calling it "app".
 This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll show you how to to specify more properties to create more complex apps. 
 
-### (3) App Layout
+### 2.1.3 App Layout
 ```
 app.layout = dbc.Container([
     dcc.Markdown(children='My First App', style={'textAlign': 'center'})
@@ -59,7 +59,7 @@ The app layout represents what will be displayed on the web browser. There are a
 - **Children** : this is a common prop shared by many Dash components and it allows the adding of textual content. In a Markdown, the "My First App" will be the content displayed on the web page.
 - **Style** : this is another common prop shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
 
-### (4) Run the App
+### 2.1.4 Run the App
 ```
 if __name__ == '__main__':
     app.run_server()
@@ -89,7 +89,7 @@ Dash is running on http://127.0.0.1:8050/
 
 ---
 
-## Interacting with the App
+## 2.2 Interacting with the App
 Once the app is launched and working, we can:
   - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) on the console will stop the app. This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the app and we launch a different app, with the same port number, an error message will be displayed.
 
@@ -109,6 +109,8 @@ Now that you know how to create and launch your first basic App, try to play aro
 - Try to change the content of the Markdown in your App
 - Try to add a new Markdown with custom content
 
+## 2.3 Summary
+In this chapter we learned about what is a Dash App and what is its recommended sturture. We have also explored each building block and their core properties. 
 In the next chapter, we will discover additional the Dash components and examine how to position them in the layout.
 
 ---
