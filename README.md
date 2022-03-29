@@ -41,8 +41,9 @@
 ### Chapter 3: Dash Components and Layouts
 
  - What you will Learn
- - Dash Core components
+ - Dash Components
    - Markdown
+   - Button
    - Dropdown
    - Checkbox
    - Slider
