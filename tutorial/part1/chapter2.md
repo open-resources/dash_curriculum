@@ -21,7 +21,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-[Download the code](tutorial/part1/ch2_files/chapter2_app.py)
+[Download the file](tutorial/part1/ch2_files/chapter2_app.py)
 
 ---
 
@@ -37,18 +37,17 @@ There are best practices to structure Dash Apps. Following these best practices 
 from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 ```
-Dash apps require some libraries to run, this statement is importing them. Let's examine each library, one by one:
-- Dash is the framework which is required to develop the App
-> Dash is a python framework created by Plotly for creating interactive web applications. Dash is written on the top of Flask, Plotly. js and React. js.
-- dcc stands for dash_core_components which is a module that give access to many interactive components that are used in Dash apps and will be introduced in Chapter 3.
-- Via the dash_bootstrap_components module, it is possible to incorporates Boostrap components into the App making it easier to customise the app layout.
+Dash apps require some libraries to run, which we import in the above code. Let's examine each library, one by one:
+- **Dash** is the framework which is required to develop the App
+- **dcc** stands for dash_core_components which is a module that gives access to many interactive components that are used in Dash apps and will be introduced in Chapter 3.
+- Via the **dash_bootstrap_components** module, it is possible to incorporate Boostrap components into the App making it easier to customise the app layout and giving you access to additional components not found in Dash Core Components
 
 ### (2) Initialise the App
 ```
 app = Dash(__name__)
 ```
 In this section, we initialise an app by creating a Dash instance and calling it "app".
-This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll need to specify more properties to create more complex apps (e.g. point to CSS files). 
+This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll show you how to to specify more properties to create more complex apps. 
 
 ### (3) App Layout
 ```
@@ -56,9 +55,9 @@ app.layout = dbc.Container([
     dcc.Markdown(children='My First App', style={'textAlign': 'center'})
 ])
 ```
-The app layout contains the structure of the app. This represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Components gives you access to a markup language that makes it easier to format text for web pages. This component has been customized properties, such as:
-- children : this is a common property shared by many Dash components and it allows to add textual content to it. In a Markdown, the "My First App" will be the content displayed on the web page.
-- style : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary and in this case, a center alignment was set.
+The app layout represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Component gives you access to a markup language that makes it easier to format text for web pages. This component has a few props, such as `children` and `style`:
+- **Children** : this is a common prop shared by many Dash components and it allows the adding of textual content. In a Markdown, the "My First App" will be the content displayed on the web page.
+- **Style** : this is another common prop shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
 
 ### (4) Run the App
 ```
@@ -92,11 +91,11 @@ Dash is running on http://127.0.0.1:8050/
 
 ## Interacting with the App
 Once the app is launched and working, we can:
-  - Stop the app: typing (Ctrl+C) on the console will stop the app. This is sometimes required as one App per port can be launched: if we forgot to stop the app and we launch a different app, an error message will be displayed.
+  - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) on the console will stop the app. This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the app and we launch a different app, with the same port number, an error message will be displayed.
 
 [.png with the error message appearing when two apps are simultaneously launched]
 
-  - Update the app: whenever we apply any change the app code, we may re-launch the app to display the new version of the code. A quicker alternative can be to activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification to the corresponding .py file. In order to activate this functionality, the statement to Launch the server should be modified to:
+  - **Update the app**: whenever we apply changes to the app code, we may first stop the app and re-launch it after making the changes in order to display the new version of the app. A quicker alternative can be to activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification to the app's code. This way, you don't need to stop the app prior to modifying the code. In order to activate this functionality, the statement to Launch the server should be modified to:
 ```
 if __name__ == '__main__':
     app.run_server(debug=True)
@@ -107,10 +106,10 @@ Make sure the live updating mode is deactivated (debug=False) before releasing/d
 ```
 
 Now that you know how to create and launch your first basic App, try to play around with it:
-- Try to change the content of your first Markdown of your App
-- Try to add a new Markdown with a custom content
+- Try to change the content of the Markdown in your App
+- Try to add a new Markdown with custom content
 
-In the next chapter, we will focus on the Dash components examining what components can be included in the Dashboards and how to place and style them.
+In the next chapter, we will discover additional the Dash components and examine how to position them in the layout.
 
 ---
 ---
