@@ -40,21 +40,16 @@
 
 ### Chapter 3: Dash Components and Layouts
 
- - Design the app layout
- - Linking a CSS file
+ - What you will Learn
  - Dash Core components
    - Markdown
    - Dropdown
    - Checkbox
    - Slider
    - Graph
-   - etc...
- - Dash Bootstrap Components:
-   - Container
-   - Accordion
-   - Card
-   - Layout
-   - Row and Col
+ - Design App layout
+   - Container: Dash Bootstrap Components
+   - Row and Col: Dash Bootstrap Components
 
 ### Chapter 4: Linking Dash components
 
@@ -115,7 +110,7 @@
  - Creating a layout component inside a callback
  - More Dash Bootstrap Components
  - Dash HTML components
- - CSS (Optional)
+ - Sytling app with Dash Bootstrap Components
   
 ### Chapter 10: Advanced Callbacks
 
