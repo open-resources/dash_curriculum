@@ -110,7 +110,8 @@ Now that you know how to create and launch your first basic App, try to play aro
 - Try to add a new Markdown with custom content
 
 ## 2.3 Summary
-In this chapter we learned about what is a Dash App and what is its recommended sturture. We have also explored each building block and their core properties. 
+In this chapter we learned about what is a Dash App and what is its recommended sturture. We have also explored each building block and their core properties, learning how to modify them.  Finally, we learned how to launch the App, stop and update the App.
+
 In the next chapter, we will discover additional the Dash components and examine how to position them in the layout.
 
 ---
