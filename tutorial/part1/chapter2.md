@@ -9,7 +9,7 @@ from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 
 # (2) Initialise the App --------------------------------------------
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # (3) App Layout --------------------------------------------
 app.layout = dbc.Container([
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-[Download the file](tutorial/part1/ch2_files/chapter2_app.py)
+[Download the file](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter2_app.py) 
 
 ---
 
@@ -44,10 +44,10 @@ Dash apps require some libraries to run, which we import in the above code. Let'
 
 ### 2.1.2 Initialise the App
 ```
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 ```
 In this section, we initialise an app by creating a Dash instance and calling it "app".
-This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll show you how to to specify more properties to create more complex apps. 
+This one line of code is pretty much static and fixed for any Dash app you may create. In later chapters, we'll talk about external stylesheets and show you how to to specify more properties to create more complex apps. 
 
 ### 2.1.3 App Layout
 ```
