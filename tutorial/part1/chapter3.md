@@ -203,7 +203,6 @@ app.layout = dbc.Container([
 # Run the App 
 if __name__ == '__main__':
     app.run_server()
-
 ```
 
 ![slider](../assets/p1_c3/slider.gif)
@@ -223,7 +222,6 @@ Best practices when constructing your layout using **Dash Bootstrap Components**
 ```{admonition} Note
 - There are **12 Columns** in each Row
 - In the code below we define the `width` property of the `Column`
-- The picture below shows colors not implemented in code. In future lessons we will learn more about component `Properties` like color
 ```
 
 ![colored_app](../assets/p1_c3/app_colored.png)
@@ -238,12 +236,12 @@ import dash_bootstrap_components as dbc
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown('My First app')
-button = html.Button("Button")
-checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
-radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
-dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
-slider = dcc.Slider(0, 10, 1)
+markdown = dcc.Markdown(children='My First app')
+button = html.Button(children="Button")
+checklist = dcc.Checklist(options=['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(options=['New York City', 'Montréal', 'San Francisco'])
+dropdown = dcc.Dropdown(options=['NYC', 'MTL', 'SF'])
+slider = dcc.Slider(min=0, max=10, step=1)
 
 # App Layout 
 app.layout = dbc.Container(
@@ -266,4 +264,4 @@ if __name__ == '__main__':
 ```
 
 ## Summary
-In this chapter we learned about Dash **components**, **styling**, and **layout**. In the next chapter we will learn how to interact with the components and link them together.
+In this chapter we learned about Dash **components** and **layout**. In the next chapter we will learn how to create an interactive app by linking the components together.
