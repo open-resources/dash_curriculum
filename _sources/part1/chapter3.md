@@ -267,11 +267,11 @@ if __name__ == '__main__':
 
 ![colored_app](../assets/p1_c3/app_colored.png)
 
-We see there are 4 rows with components of various *widths*.  The first column contains a 'Markdown' component which is 8 columns wide.  The second row contains a 'Dropdown', which is 3 columns wide, and a 'Slider', which is 9 columns wide.  You can play around with the widths to see how it changes the column and component widths.
+We see there are 4 rows with components of various `widths`.  The first column contains a `Markdown` component which is 8 columns wide.  The second row contains a `Dropdown`, which is 3 columns wide, and a `Slider`, which is 9 columns wide.  The third column has the `Checklist` and `Radio` components which are both 6 columns wide.  The fourth column is 11 columns wide and contains a button.  You can play around with the `width` of the columns to see how it changes the column and component widths. 
 
 ```{admonition} Note
-- We will learn about the code 'external_stylesheets=[dbc.themes.BOOTSTRAP]' in later chapters.  For now just know that this code is mandatory to use 'Dash Bootstrap Components'
-- The column colors are not defined in the code above.  We will learn how to color our app in later chapters
+- We will learn about `external_stylesheets` in later chapters
+- The colors above are for demonstration purposes, you will not see them in your dashboard
 ```
 
 ## Summary
