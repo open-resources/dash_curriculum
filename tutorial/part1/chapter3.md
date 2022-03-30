@@ -209,47 +209,7 @@ if __name__ == '__main__':
 ![slider](../assets/p1_c3/slider.gif)
 ````
 
-## 3.2 CSS
-
-Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.
-We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
-
-    
-```python
-# Import packages 
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-# Initialise the App 
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Create app components
-markdown = dcc.Markdown('My First app')
-button = html.Button("Button")
-checklist = dcc.Checklist(['New York City', 'Montréal', 'San Francisco'])
-radio = dcc.RadioItems(['New York City', 'Montréal', 'San Francisco'])
-dropdown = dcc.Dropdown(['NYC', 'MTL', 'SF'])
-slider = dcc.Slider(0, 10, 1)
-
-# App Layout 
-app.layout = dbc.Container([
-                markdown,
-                button,
-                checklist,
-                radio,
-                dropdown,
-                slider,
-])
-
-# Run the App 
-if __name__ == '__main__':
-    app.run_server()
-```
- 
-![css_diff](../assets/p1_c3/style_comparison.png)
-
-
-## 3.3 Layout
+## 3.2 Layout
 
 So far, we've only organized our app **layout** in a `dbc.Container()` component without any further specifications.  We've seen that this will place our app components sequentually in one single column.  To change the layout of components we'll use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library layout components `dbc.Row()` and `dbc.Column()`.
 
