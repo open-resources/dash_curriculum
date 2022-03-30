@@ -138,36 +138,40 @@
  - Sytling app with Dash Bootstrap Components
   
 
-### Chapter 13: Improving app performance and multi-page app
+### Chapter 13: Improving app performance
 
- - Callback graphs to asses speed
- - Actions to improve app speed
- - Efficiency
- - Building multi-page app
+- Callback graphs to asses speed
+- Actions to improve app speed
+- Efficiency
+
+### Chapter 14: Multi-page apps
+
+- Building multi-page app
+- Separating into multiple files (layout.py, app1.py. appy2.py, etc...)
 
 ## Part V: Automations and Deployments
 
 - What you will learn in this part
 - Learning Intentions
 
-### Chapter 14: Continuous Integration/Deployment
+### Chapter 15: Continuous Integration/Deployment
 
 - Testing
 - Setting up a pipeline
 - Github Actions
 
-### Chapter 15: Full Deployment
+### Chapter 16: Full Deployment
 
- - Components of deployment
-   - Procfile
-   - requirements.txt
-   - Dockerfile
-   - Heroku build pipeline 
- - Deploying to Pythoanywhere ? (Optional)
+- Components of deployment
+  - Procfile
+  - requirements.txt
+  - Dockerfile
+  - Heroku build pipeline 
+- Deploying to Pythoanywhere ? (Optional)
 
 ## Appendix
 
-### Chapter 16: Gallery and Template
+### Gallery and Template
 
 - [Dashboard Layouts](https://github.com/matthewconnell/dashr_sample_layouts)
   - Template 1
