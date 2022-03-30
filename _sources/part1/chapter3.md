@@ -8,7 +8,7 @@ In this chapter we will explore Dash various **components**, how to add styling 
 
 [ending_file.py](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py)
 
-## Dash Components
+## 3.1 Dash Components
 
 **Components** are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc...), slider bars, graphs, and many others.
 We will learn a few common components in this chapter.
@@ -209,7 +209,7 @@ if __name__ == '__main__':
 ![slider](../assets/p1_c3/slider.gif)
 ````
 
-## CSS
+## 3.2 CSS
 
 Next, we'll add styling to our application with a Cascading Style Sheets or **CSS**.
 We will use the Bootstrap [stylesheet](https://www.w3schools.com/css/css_intro.asp) for this application.  
@@ -249,7 +249,7 @@ if __name__ == '__main__':
 ![css_diff](../assets/p1_c3/style_comparison.png)
 
 
-## Layout
+## 3.3 Layout
 
 So far, we've only organized our app **layout** in a `dbc.Container()` component without any further specifications.  We've seen that this will place our app components sequentually in one single column.  To change the layout of components we'll use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library layout components `dbc.Row()` and `dbc.Column()`.
 
