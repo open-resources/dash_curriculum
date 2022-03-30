@@ -385,13 +385,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#css">
-   3.2 CSS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#layout">
-   3.3 Layout
+   3.2 Layout
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -430,13 +425,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#css">
-   3.2 CSS
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#layout">
-   3.3 Layout
+   3.2 Layout
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -653,44 +643,8 @@ Slider<div class="summary-down docutils">
 <p class="card-text"><img alt="slider" src="../_images/slider.gif" /></p>
 </div>
 </details></div>
-<div class="section" id="css">
-<h2>3.2 CSS<a class="headerlink" href="#css" title="Permalink to this headline">¶</a></h2>
-<p>Next, we’ll add styling to our application with a Cascading Style Sheets or <strong>CSS</strong>.
-We will use the Bootstrap <a class="reference external" href="https://www.w3schools.com/css/css_intro.asp">stylesheet</a> for this application.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-
-<span class="c1"># Initialise the App </span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-
-<span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Button&quot;</span><span class="p">)</span>
-<span class="n">checklist</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">([</span><span class="s1">&#39;New York City&#39;</span><span class="p">,</span> <span class="s1">&#39;Montréal&#39;</span><span class="p">,</span> <span class="s1">&#39;San Francisco&#39;</span><span class="p">])</span>
-<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;NYC&#39;</span><span class="p">,</span> <span class="s1">&#39;MTL&#39;</span><span class="p">,</span> <span class="s1">&#39;SF&#39;</span><span class="p">])</span>
-<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># App Layout </span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-                <span class="n">slider</span><span class="p">,</span>
-<span class="p">])</span>
-
-<span class="c1"># Run the App </span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
-</pre></div>
-</div>
-<p><img alt="css_diff" src="../_images/style_comparison.png" /></p>
-</div>
 <div class="section" id="layout">
-<h2>3.3 Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+<h2>3.2 Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
 <p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications.  We’ve seen that this will place our app components sequentually in one single column.  To change the layout of components we’ll use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library layout components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Column()</span></code>.</p>
 <p>Best practices when constructing your layout using <strong>Dash Bootstrap Components</strong>:</p>
 <ol class="simple">
