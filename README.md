@@ -101,7 +101,7 @@
  - Incorporting PX graphs in a Dash app 
  - References and resourcres
 
-### Chapter 9 (need to renumber): DataTable
+### Chapter 9: DataTable
 
  - Intro to the DataTable: creating a basic DataTable
  - Linking dataTable to graph
@@ -145,7 +145,7 @@
  - Efficiency
  - Building multi-page app
 
-## Part IV: Automations and Deployments
+## Part V: Automations and Deployments
 
 - What you will learn in this part
 - Learning Intentions
@@ -165,7 +165,7 @@
    - Heroku build pipeline 
  - Deploying to Pythoanywhere ? (Optional)
 
-## Part V: Appendix
+## Appendix
 
 ### Chapter 16: Gallery and Template
 
