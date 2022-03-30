@@ -210,7 +210,7 @@ if __name__ == '__main__':
 
 ## 3.2 Layout
 
-So far, we've only organized our app **layout** in a `dbc.Container()` component without any further specifications.  We've seen that this will place our app components sequentually in one single column.  To change the layout of components we'll use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library layout components `dbc.Row()` and `dbc.Column()`.
+So far, we've only organized our app **layout** in a `dbc.Container()` component without any further specifications.  We've seen that this will place our app components sequentually in one single column.  To change the layout of components we will use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library components `dbc.Row()` and `dbc.Column()`.
 
 Best practices when constructing your layout using **Dash Bootstrap Components**:
 
@@ -223,9 +223,6 @@ Best practices when constructing your layout using **Dash Bootstrap Components**
 - There are **12 Columns** in each Row
 - In the code below we define the `width` property of the `Column`
 ```
-
-![colored_app](../assets/p1_c3/app_colored.png)
-
 
 ```python
 # Import packages 
@@ -253,7 +250,12 @@ app.layout = dbc.Container(
                 dbc.Col(slider, width = 9),
             ]
         ),
-        dbc.Row(dbc.Col(slider, width = 6)),
+        dbc.Row(
+            [
+                dbc.Col(checklist, width = 6),
+                dbc.Col(radio, width = 6),
+            ]
+        ),
         dbc.Row(dbc.Col(button, width = 11)),
     ]
 )
@@ -261,6 +263,15 @@ app.layout = dbc.Container(
 # Run the App 
 if __name__ == '__main__':
     app.run_server()
+```
+
+![colored_app](../assets/p1_c3/app_colored.png)
+
+We see there are 4 rows with components of various *widths*.  The first column contains a 'Markdown' component which is 8 columns wide.  The second row contains a 'Dropdown', which is 3 columns wide, and a 'Slider', which is 9 columns wide.  You can play around with the widths to see how it changes the column and component widths.
+
+```{admonition} Note
+- We will learn about the code 'external_stylesheets=[dbc.themes.BOOTSTRAP]' in later chapters.  For now just know that this code is mandatory to use 'Dash Bootstrap Components'
+- The column colors are not defined in the code above.  We will learn how to color our app in later chapters
 ```
 
 ## Summary
