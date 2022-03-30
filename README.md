@@ -68,7 +68,7 @@
 
  - Basic deployment to Heroku
 
-## Part II: Data Visualization
+## Part II: Data Analysis
 
 - Summary and overview of this part
 - Learning Intentions
@@ -101,18 +101,18 @@
  - Incorporting PX graphs in a Dash app 
  - References and resourcres
 
-## Part III: Polishing your Dash application
+### Chapter 9 (need to renumber): DataTable
+
+ - Intro to the DataTable: creating a basic DataTable
+ - Linking dataTable to graph
+ - Editing the DataTable
+ - Other importnat DataTable props
+
+## Part III: Advanced Dash
 
 - Summary and overview of this part
 - Learning Intentions
  
-### Chapter 9: Advanced Layout and Styling
-
- - Creating a layout component inside a callback
- - More Dash Bootstrap Components
- - Dash HTML components
- - Sytling app with Dash Bootstrap Components
-  
 ### Chapter 10: Advanced Callbacks
 
  - States
@@ -128,19 +128,35 @@
  - Interval
  - Store
 
-### Chapter 12: DataTable
+## Part IV: Polishing your Dash App
 
- - Intro to the DataTable: creating a basic DataTable
- - Linking dataTable to graph
- - Editing the DataTable
- - Other importnat DataTable props
+### Chapter 12: Advanced Layout and Styling
 
-## Part IV: Publishing your Dash Application
+ - Creating a layout component inside a callback
+ - More Dash Bootstrap Components
+ - Dash HTML components
+ - Sytling app with Dash Bootstrap Components
+  
+
+### Chapter 13: Improving app performance and multi-page app
+
+ - Callback graphs to asses speed
+ - Actions to improve app speed
+ - Efficiency
+ - Building multi-page app
+
+## Part IV: Automations and Deployments
 
 - What you will learn in this part
 - Learning Intentions
 
-### Chapter 13: Full Deployment
+### Chapter 14: Continuous Integration/Deployment
+
+- Testing
+- Setting up a pipeline
+- Github Actions
+
+### Chapter 15: Full Deployment
 
  - Components of deployment
    - Procfile
@@ -149,14 +165,9 @@
    - Heroku build pipeline 
  - Deploying to Pythoanywhere ? (Optional)
 
-### Chapter 14: Improving app performance and multi-page app
+## Part V: Appendix
 
- - Callback graphs to asses speed
- - Actions to improve app speed
- - Efficiency
- - Building multi-page app
- 
-### Chapter 15: Gallery and Template
+### Chapter 16: Gallery and Template
 
 - [Dashboard Layouts](https://github.com/matthewconnell/dashr_sample_layouts)
   - Template 1
