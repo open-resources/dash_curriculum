@@ -1,20 +1,8 @@
 # Chapter 8: Data Visualization
 
 ```{admonition} Some initial thoughts from me to the team (not meant as part of the final product)
-## Main goal:
 
-Empower the students to understand how Plotly Express works, which dataformat is best suited, how to inspect the structure of a figure, and how to edit elements of a figure. With this suggested chapter structure, some students may find it to be a punch in the face. If so, that's only a wake-up call to prepare them for the powers they are about to obtain =)
-
-## Why talk about plotly.graph_objects?
-Plotly express is fantastic, and should be the preferred approach to using Plotly with Dash. But in the wild, the students will quickly come across Plotly Graph Objects as well. Particularly in the docs where the first examples for visualizations like line graphs often start out with a `go.Figure` example. So even if this suggested section might seem too detailed, it's all there to avoid future confusion. 
-
-## Ability to inspect and edit figures => ability to change and edit figure attributes through callbacks(!!!)
-Personally, one reason why I love Plotly is because it's so much fun to work with if you know how to **build**, **inspect** and **edit** the figures that `px` will let you produce. The sooner the students learn how to do this, the better. This MIGHT get a little confusing, BUT I'm hoping the following section will pulverize that confusion and quickly give the students a feeling of ***empowerment*** using the plotly library.
-
-## Plotly express works best with data of a long format
-As of [plotly.py 4.8](https://community.plotly.com/t/announcing-plotly-py-4-8-plotly-express-support-for-wide-and-mixed-form-data-plus-a-pandas-backend/40048) px also handles data of a wide format.
-Bt you can't unleash the true powers of px without knowing how it works with data of a long format.
-Thus, chp 7 ***must*** include the difference between wide and long, and methods of transformation:
+Chapter 7 should include the difference between wide and long, and methods of transformation:
 
 - `pd.melt()` at the very least
 - `pd.pivot()` perhaps?
@@ -24,28 +12,19 @@ Thus, chp 7 ***must*** include the difference between wide and long, and methods
 ```{admonition} Learning Intentions
 
 -  What Plotly Express (`px`) is and why you should use it.
-- How `px` relates Plotly Graph Objects (`go`)
-- How to build a basic `go.Figure` **canvas**
-- How to **display** a figure with `fig.show()`
-- How to **inspect** a figure with `fig.show`
-- How using `px` with, for example `px.line` structurally  will produce the same object as a basic `go.Figure()` call
-- The **structure** of a `go.Figure()` object
-- How to **add data** (traces) to a `go.Figure()` object
 - How to easily handle larger **datasets** with `px`
 - How to **edit** a figure object after setting it up with `px` 
 
 ```
 
 
-## 8.1 Introduction to Plotly Express
-Plotly's arguably greatest power is how easily you can make beautiful interactive graphs. Plotly express adds to the versatility of Plotly through two specific features:
+## 8.2 Introduction to Plotly Express
 
-1) You can easily create almost any plot with only one line of code like
+The [plotly.express module][1] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or `px`. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][2], [scatter][3], [area][4], [bar][5], [funnel][6] and [timeline][7] figures. Here, well take a look at how you can easily create a very informative figure from a complex dataset with only a few lines of code.
 
-```python
-px.line(df, x= 'year', y = 'lifeExp'`, [...])
-```
-2) You can visualize multidimensional data through attributes like `color` and `symbol`. Here's an example that we'll learn to build and understand from scratch:
+## 8.2.1 Line chart
+
+Let's take a look at how `px.line()` used on `px.data.gapminder()` will let you illustrate several dimensons of the dataset through attributes like `color` and `symbol`.
 
 ```python
 import plotly.express as px
@@ -53,26 +32,36 @@ df = px.data.gapminder()
 px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent', template = 'plotly_white')
 ```
 
-[![enter image description here][1]][1]
+[![enter image description here][8]][8]
 
-Plotly Express is commonly imported like this:
+The current dataet of a so-called long (or tidy) format:
 
-```python
-import plotly.express as px
-```
+[![enter image description here][9]][9]
 
-`px.data` holds several datasets. In the figure above you have seen how to easily build a lineplot with a built-in dataset. `px` can produce a lot more than line charts, but we'll take a closer look at that in a later section. Right now, let's see how `px.line()` creates the awesome looking figure above. 
+As you can see from the function call above, `color` and `symbol` don't take actual colors and symbols as  arguments, but rather columns of a dataset `df` from which unique values are assigned certain color and symbol sequences.
+
+## 8.2.2 Scatter plot
+
+You can drop the lines and produce a scatter plot with markers only if you substitute `px.line()` with `px.scatter()`
+
+
+
+---
+# TAKE-OUTS from initial suggestion
+---
+
+
 
 
 ## 8.1.1 Breakdown of `px.line()` and relation to Plotly Graph Objects
 
-Running [`px.line()`][2] will produce a [Plotly Graph Objects][3] figure object `go.Figure` (where `go` is the commonly used alias for `plotly.graph_objects`) which is one of the main building blocks of the Plotly library; the canvas (better to call it something else?). Running `go.Figure()` will produce a completely empty figure or canvas like this:
+Running [`px.line()`][2] will produce a [Plotly Graph Objects][11] figure object `go.Figure` (where `go` is the commonly used alias for `plotly.graph_objects`) which is one of the main building blocks of the Plotly library; the canvas (better to call it something else?). Running `go.Figure()` will produce a completely empty figure or canvas like this:
 ```python
 import plotly.graph_objects as go
 go.Figure()
 ```
 
-[![enter image description here][4]][4]
+[![enter image description here][12]][12]
 
 What we're looking at here is a figure template with a few defined settings. We've got an x and an y-axis as well as white gridlines for both axes on a light-blue background. We can take a closer look at the underlying settings with `fig.show` that will reveal this dictionary:
 
@@ -82,7 +71,7 @@ What we're looking at here is a figure template with a few defined settings. We'
 }
 ```
 
-So at its core, a figure object is built up by a `data` and  `layout` element. As you'll soon learn, there are endless ways to construct a Plotly figure. But building on this basic example, you will have to populate the data attribute through the addition of traces, like a [`go.Scatter()`][5] trace (more on this and other options?). You can also edit the layout through [`go.Layout()`][6]. Below is an example where the dataset `x= [1,2,3,4]` and `y = [10,11,12,13]` is added to the empty canvas. We'll also specify a figure title.
+So at its core, a figure object is built up by a `data` and  `layout` element. As you'll soon learn, there are endless ways to construct a Plotly figure. But building on this basic example, you will have to populate the data attribute through the addition of traces, like a [`go.Scatter()`][13] trace (more on this and other options?). You can also edit the layout through [`go.Layout()`][14]. Below is an example where the dataset `x= [1,2,3,4]` and `y = [10,11,12,13]` is added to the empty canvas. We'll also specify a figure title.
 
 ```python
 fig = go.Figure(data = [go.Scatter(x= [1,2,3,4], y = [10,11,12,13])],
@@ -90,7 +79,7 @@ fig = go.Figure(data = [go.Scatter(x= [1,2,3,4], y = [10,11,12,13])],
 fig.show()
 ```
 
-[![enter image description here][7]][7]
+[![enter image description here][15]][15]
 
 Now, if you run `fig.show` again, you'll see that our figure object is a bit more populated:
 
@@ -125,7 +114,7 @@ The figure object has numerous useful methods that you can study through `dir(fi
     fig.add_traces(go.Scatter(x= [1,2,3,4], y = [11,12,13,14]))
     fig.show()
 
-[![enter image description here][8]][8]
+[![enter image description here][16]][16]
 
 Aside from the new trace, you'll see that the figure now also displays a legend as well as some default names for the different traces. The names of the traces aren't that interesting yet since we haven't specified any names.
 
@@ -169,7 +158,7 @@ fig.show()
 
 And as you can see, *almost* the same figure doesn't mean that it's *almost* as good as the previous figure. On the contrary, `px.line()` improves the readability of the figure through the assignment of trace names in the legend, and adding names to the axes:
 
-[![enter image description here][9]][9]
+[![enter image description here][17]][17]
 
 ## 8.1.5 Inspect the structure of a `px.line()` figure
 
@@ -259,7 +248,7 @@ df = pd.DataFrame({'year': [2021,2022,2023,2024],
                    'Norway': [11,12,13,14,]})
 ```
 
-[![enter image description here][10]][10]
+[![enter image description here][18]][18]
 
 ## 8.1.7.1 Long and wide data format
 This dataframe is of a so-called wide format with a unique index in the left-most column, unique column names, and associated values for each index in the belonging rows. If you were to add data for another country, you would do so by adding another column, and the dataset would have become **wider**. Hence the name.
@@ -273,7 +262,7 @@ df_long = pd.melt(df, id_vars = ['year'], value_vars = df.columns[1:],)
 df_long.rename(columns = {'variable':'country'}, inplace = True)
 ```
 
-[![enter image description here][11]][11]
+[![enter image description here][19]][19]
 
 First of all, this will make it even easier to reproduce the figure we have so far, with:
 
@@ -283,7 +272,7 @@ fig = px.line(df_long, x='year', y = 'value', color = 'country')
 
 Now you no longer need to specify a list of names from a wide dataframe for `y` in `px.line()`. With this setup, the function recognizes that the input is a dataframe of a long format, and setting `color = 'country'` will let the function know that there are multiple unique values in that particular column to which a color cycle is assigned.
 
-[![enter image description here][12]][12]
+[![enter image description here][20]][20]
 
 ## 8.1.7.2 Adding another dimension to a dataframe of a long format
 
@@ -309,7 +298,7 @@ fig.show()
 
 This works exactly the same way as `color = 'country'`, but this time a symbol sequence is used to represent unique values of a dataframe column.
 
-[![enter image description here][13]][13]
+[![enter image description here][21]][21]
 
 And this explains why `px.line()` doesn't assign symbols to markers by default; the function is simply waiting for you to make use of the multidimensional capabilites of the library.
 
@@ -323,7 +312,7 @@ Our previous call to `px.line()` is now only missing one element compared to the
 
 Let's round off this section with `plotly_dark`:
 
-[![enter image description here][14]][14]
+[![enter image description here][22]][22]
 
 
 Now that you're able to master some of the basic powers of Plotly Express, we'll soon move on to taking a look at how you can build other chart types than line charts and combine them with the template of your liking to create almost any chart with any design.
@@ -335,17 +324,25 @@ Now that you're able to master some of the basic powers of Plotly Express, we'll
 [Plotly: How to make different plots using plotly?](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937)
 
 
-  [1]: https://i.stack.imgur.com/qCaDf.png
+  [1]: https://plotly.com/python/plotly-express/
   [2]: https://plotly.com/python/line-charts/
-  [3]: https://plotly.com/python/graph-objects/
-  [4]: https://i.stack.imgur.com/FFZFt.png
-  [5]: https://plotly.com/python/line-and-scatter/#scatter-and-line-plots-with-goscatter
-  [6]: https://plotly.com/python/reference/layout/
-  [7]: https://i.stack.imgur.com/X88Ak.png
-  [8]: https://i.stack.imgur.com/rSm7d.png
-  [9]: https://i.stack.imgur.com/lCE6Y.png
-  [10]: https://i.stack.imgur.com/N1uHD.png
-  [11]: https://i.stack.imgur.com/B708M.png
-  [12]: https://i.stack.imgur.com/VSCj0.png
-  [13]: https://i.stack.imgur.com/xo5iL.png
-  [14]: https://i.stack.imgur.com/bGs6b.png
+  [3]: https://plotly.com/python/line-and-scatter/
+  [4]: https://plotly.com/python/filled-area-plots/
+  [5]: https://plotly.com/python/bar-charts/
+  [6]: https://plotly.com/python/funnel-charts/
+  [7]: https://plotly.com/python/gantt/
+  [8]: https://i.stack.imgur.com/qCaDf.png
+  [9]: https://i.stack.imgur.com/ENAiB.png
+  [10]: https://plotly.com/python/wide-form/#plotly-express-works-with-long-wide-and-mixedform-data
+  [11]: https://plotly.com/python/graph-objects/
+  [12]: https://i.stack.imgur.com/FFZFt.png
+  [13]: https://plotly.com/python/line-and-scatter/#scatter-and-line-plots-with-goscatter
+  [14]: https://plotly.com/python/reference/layout/
+  [15]: https://i.stack.imgur.com/X88Ak.png
+  [16]: https://i.stack.imgur.com/rSm7d.png
+  [17]: https://i.stack.imgur.com/lCE6Y.png
+  [18]: https://i.stack.imgur.com/N1uHD.png
+  [19]: https://i.stack.imgur.com/B708M.png
+  [20]: https://i.stack.imgur.com/VSCj0.png
+  [21]: https://i.stack.imgur.com/xo5iL.png
+  [22]: https://i.stack.imgur.com/bGs6b.png
