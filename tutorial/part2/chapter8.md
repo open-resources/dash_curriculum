@@ -42,8 +42,27 @@ As you can see from the function call above, `color` and `symbol` don't take act
 
 ## 8.2.2 Scatter plot
 
-You can drop the lines and produce a scatter plot with markers only if you substitute `px.line()` with `px.scatter()`
+You can drop the lines and produce a scatter plot with markers only if you substitute `px.line()` with `px.scatter()`:
 
+```python
+fig = px.scatter(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent', template = 'plotly_white')
+```
+
+From here you can also add a trendline for each trace by adding `trendline="ols"` to the mix:
+
+In this case, the trendlines will indicate the increase in life expectanciese for each country through the years. In order to compare a relationship between two variables, you would have to wrangle the dataset a little so that you can assign individual sereis to `x` and `y`. But this is pretty straight-forward with `pd.pivot`.
+
+
+
+
+
+- when is a scatter plot appropriate?
+- which data format is best suited?
+
+## 8.2.3 Bar plot
+
+- when is a bar plot appropriate?
+- which data format is best suited?
 
 
 ---
