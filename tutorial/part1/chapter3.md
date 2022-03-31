@@ -267,7 +267,7 @@ if __name__ == '__main__':
 
 ![colored_app](../assets/p1_c3/app_colored.png)
 
-We see there are 4 rows with components of various `widths`.  The first row contains a `Markdown` component which is 8 columns wide. The second row contains a `Dropdown`, which is 3 columns wide, and a `Slider`, which is 9 columns wide.  The third column has the `Checklist` and `Radio` components which are both 6 columns wide.  The fourth column is 11 columns wide and contains a button.  You can play around with the `width` of the columns to see how it changes the column and component widths. Remember there is a limit of 12 columns per row.
+We see there are 4 rows with columns of various `widths` which contain components.  You can play around with the `width` value of the column to see how it changes the app layout.
 
 ```{admonition} Note
 - We will learn about `external_stylesheets` in later chapters
