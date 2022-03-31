@@ -380,6 +380,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#principles-of-effective-visualizations">
+     8.1 Principles of Effective Visualizations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#introduction-to-plotly-express">
      8.2 Introduction to Plotly Express
     </a>
@@ -395,15 +400,30 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression">
+     8.2.3 Regression
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bar-plot">
-     8.2.3 Bar plot
+     8.2.4 Bar plot
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incorporting-px-graphs-in-a-dash-app">
+     8.3 Incorporting PX graphs in a Dash app
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references-and-resources">
+     8.4 References and resources
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#take-outs-from-initial-suggestion">
-   TAKE-OUTS from initial suggestion
+  <a class="reference internal nav-link" href="#out-takes-from-initial-suggestion">
+   OUT-TAKES from initial suggestion
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -506,6 +526,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#principles-of-effective-visualizations">
+     8.1 Principles of Effective Visualizations
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#introduction-to-plotly-express">
      8.2 Introduction to Plotly Express
     </a>
@@ -521,15 +546,30 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression">
+     8.2.3 Regression
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bar-plot">
-     8.2.3 Bar plot
+     8.2.4 Bar plot
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#incorporting-px-graphs-in-a-dash-app">
+     8.3 Incorporting PX graphs in a Dash app
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references-and-resources">
+     8.4 References and resources
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#take-outs-from-initial-suggestion">
-   TAKE-OUTS from initial suggestion
+  <a class="reference internal nav-link" href="#out-takes-from-initial-suggestion">
+   OUT-TAKES from initial suggestion
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -619,19 +659,27 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 8: Data Visualization<a class="headerlink" href="#chapter-8-data-visualization" title="Permalink to this headline">¶</a></h1>
 <div class="admonition-some-initial-thoughts-from-me-to-the-team-not-meant-as-part-of-the-final-product admonition">
 <p class="admonition-title">Some initial thoughts from me to the team (not meant as part of the final product)</p>
-<p>Chapter 7 should include the difference between wide and long, and methods of transformation:</p>
+<p>Chapter 7 should include the following:</p>
 <ul class="simple">
+<li><p>data formats: long, wide and mixed</p></li>
+<li><p>Plotly express accept all formats</p></li>
+<li><p>Long (tidy) format often best</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code> at the very least</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code> perhaps?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code> perhaps…</p></li>
+<li><p>subsetting dataframes, of course…</p></li>
 </ul>
 </div>
 <div class="admonition-learning-intentions admonition">
-<p class="admonition-title">Learning Intentions</p>
+<p class="admonition-title">Learning intentions</p>
 <ul class="simple">
 <li><p>What Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is and why you should use it.</p></li>
-<li><p>How to easily handle larger <strong>datasets</strong> with <code class="docutils literal notranslate"><span class="pre">px</span></code></p></li>
-<li><p>How to <strong>edit</strong> a figure object after setting it up with <code class="docutils literal notranslate"><span class="pre">px</span></code></p></li>
+<li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> uses attributes such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> to illustrate multiple dimensions of a dataset</p></li>
+<li><p>line, scatter, regression(?), area, bar, funnel(?), timeline(?)</p></li>
 </ul>
+</div>
+<div class="section" id="principles-of-effective-visualizations">
+<h2>8.1 Principles of Effective Visualizations<a class="headerlink" href="#principles-of-effective-visualizations" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Firas</span></code></p>
 </div>
 <div class="section" id="introduction-to-plotly-express">
 <h2>8.2 Introduction to Plotly Express<a class="headerlink" href="#introduction-to-plotly-express" title="Permalink to this headline">¶</a></h2>
@@ -645,35 +693,61 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><a class="reference external" href="https://i.stack.imgur.com/qCaDf.png"><img alt="enter image description here" src="https://i.stack.imgur.com/qCaDf.png" /></a></p>
-<p>The current dataet of a so-called long (or tidy) format:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/MYpK9.png"><img alt="enter image description here" src="https://i.stack.imgur.com/MYpK9.png" /></a></p>
+<p>The current dataset is of a so-called long (or tidy) format:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/ENAiB.png"><img alt="enter image description here" src="https://i.stack.imgur.com/ENAiB.png" /></a></p>
+<p>…need more explaining…</p>
 <p>As you can see from the function call above, <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> don’t take actual colors and symbols as  arguments, but rather columns of a dataset <code class="docutils literal notranslate"><span class="pre">df</span></code> from which unique values are assigned certain color and symbol sequences.</p>
 </div>
 <div class="section" id="scatter-plot">
 <h2>8.2.2 Scatter plot<a class="headerlink" href="#scatter-plot" title="Permalink to this headline">¶</a></h2>
 <p>You can drop the lines and produce a scatter plot with markers only if you substitute <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> with <code class="docutils literal notranslate"><span class="pre">px.scatter()</span></code>:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/82TrL.png"><img alt="enter image description here" src="https://i.stack.imgur.com/82TrL.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="regression">
+<h2>8.2.3 Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h2>
 <p>From here you can also add a trendline for each trace by adding <code class="docutils literal notranslate"><span class="pre">trendline=&quot;ols&quot;</span></code> to the mix:</p>
-<p>In this case, the trendlines will indicate the increase in life expectanciese for each country through the years. In order to compare a relationship between two variables, you would have to wrangle the dataset a little so that you can assign individual sereis to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. But this is pretty straight-forward with <code class="docutils literal notranslate"><span class="pre">pd.pivot</span></code>.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/EEylA.png"><img alt="enter image description here" src="https://i.stack.imgur.com/EEylA.png" /></a></p>
+<p>In this case, the trendlines will indicate the increase in life expectanciese for each country through the years. In order to compare a relationship between two specifc variables, you would have to wrangle the dataset a little so that you can assign individual sereis to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. But this is pretty straight-forward with <code class="docutils literal notranslate"><span class="pre">pd.pivot</span></code>.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/lDZUC.png"><img alt="enter image description here" src="https://i.stack.imgur.com/lDZUC.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">dfp</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span>
+                     <span class="n">trendline</span> <span class="o">=</span> <span class="s2">&quot;ols&quot;</span><span class="p">,</span>
+                     <span class="n">trendline_color_override</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                     <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX regression, life expectancies in Canada and Germany&quot;</span><span class="p">,</span>
+                     <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://i.stack.imgur.com/MHR22.png"><img alt="enter image description here" src="https://i.stack.imgur.com/MHR22.png" /></a></p>
 <ul class="simple">
 <li><p>when is a scatter plot appropriate?</p></li>
 <li><p>which data format is best suited?</p></li>
 </ul>
 </div>
 <div class="section" id="bar-plot">
-<h2>8.2.3 Bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
+<h2>8.2.4 Bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>when is a bar plot appropriate?</p></li>
 <li><p>which data format is best suited?</p></li>
 </ul>
 </div>
+<div class="section" id="incorporting-px-graphs-in-a-dash-app">
+<h2>8.3 Incorporting PX graphs in a Dash app<a class="headerlink" href="#incorporting-px-graphs-in-a-dash-app" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="references-and-resources">
+<h2>8.4 References and resources<a class="headerlink" href="#references-and-resources" title="Permalink to this headline">¶</a></h2>
+<p>.</p>
+</div>
 </div>
 <hr class="docutils" />
-<div class="tex2jax_ignore mathjax_ignore section" id="take-outs-from-initial-suggestion">
-<h1>TAKE-OUTS from initial suggestion<a class="headerlink" href="#take-outs-from-initial-suggestion" title="Permalink to this headline">¶</a></h1>
+<div class="tex2jax_ignore mathjax_ignore section" id="out-takes-from-initial-suggestion">
+<h1>OUT-TAKES from initial suggestion<a class="headerlink" href="#out-takes-from-initial-suggestion" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <div class="section" id="breakdown-of-px-line-and-relation-to-plotly-graph-objects">
 <h2>8.1.1 Breakdown of <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> and relation to Plotly Graph Objects<a class="headerlink" href="#breakdown-of-px-line-and-relation-to-plotly-graph-objects" title="Permalink to this headline">¶</a></h2>
