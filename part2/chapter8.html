@@ -394,6 +394,11 @@ const thebe_selector_output = ".output, .cell_output"
      8.2.2 Scatter plot
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bar-plot">
+     8.2.3 Bar plot
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -513,6 +518,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#scatter-plot">
      8.2.2 Scatter plot
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bar-plot">
+     8.2.3 Bar plot
     </a>
    </li>
   </ul>
@@ -642,7 +652,23 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="scatter-plot">
 <h2>8.2.2 Scatter plot<a class="headerlink" href="#scatter-plot" title="Permalink to this headline">¶</a></h2>
-<p>You can drop the lines and produce a scatter plot with markers only if you substitute <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> with <code class="docutils literal notranslate"><span class="pre">px.scatter()</span></code></p>
+<p>You can drop the lines and produce a scatter plot with markers only if you substitute <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> with <code class="docutils literal notranslate"><span class="pre">px.scatter()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>From here you can also add a trendline for each trace by adding <code class="docutils literal notranslate"><span class="pre">trendline=&quot;ols&quot;</span></code> to the mix:</p>
+<p>In this case, the trendlines will indicate the increase in life expectanciese for each country through the years. In order to compare a relationship between two variables, you would have to wrangle the dataset a little so that you can assign individual sereis to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. But this is pretty straight-forward with <code class="docutils literal notranslate"><span class="pre">pd.pivot</span></code>.</p>
+<ul class="simple">
+<li><p>when is a scatter plot appropriate?</p></li>
+<li><p>which data format is best suited?</p></li>
+</ul>
+</div>
+<div class="section" id="bar-plot">
+<h2>8.2.3 Bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>when is a bar plot appropriate?</p></li>
+<li><p>which data format is best suited?</p></li>
+</ul>
 </div>
 </div>
 <hr class="docutils" />
