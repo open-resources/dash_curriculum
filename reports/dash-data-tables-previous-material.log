@@ -1,0 +1,72 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/asyncio/base_events.py", line 642, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.9.10/x64/lib/python3.9/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import altair as alt
+from vega_datasets import data
+
+source = data.cars()
+
+# Brush for selection
+brush = alt.selection(type='interval')
+
+# Scatter Plot
+points = alt.Chart(source).mark_point().encode(
+    x='Horsepower:Q',
+    y='Miles_per_Gallon:Q',
+    color=alt.condition(brush, alt.value('steelblue'), alt.value('grey'))
+).add_selection(brush)
+
+# Base chart for data tables
+ranked_text = alt.Chart(source).mark_text(align='right').encode(
+    y=alt.Y('row_number:O',axis=None)
+).transform_window(
+    row_number='row_number()'
+).transform_filter(
+    brush
+).transform_window(
+    rank='rank(row_number)'
+).transform_filter(
+    alt.datum.rank<16
+)
+
+# Data Tables
+horsepower = ranked_text.encode(text='Horsepower:N').properties(title=alt.TitleParams(text='Horsepower', align='right'))
+mpg = ranked_text.encode(text='Miles_per_Gallon:N').properties(title=alt.TitleParams(text='MPG', align='right'))
+origin = ranked_text.encode(text='Origin:N').properties(title=alt.TitleParams(text='Origin', align='right'))
+text = alt.hconcat(horsepower, mpg, origin) # Combine data tables
+
+# Build chart
+alt.hconcat(
+    points,
+    text
+).resolve_legend(
+    color="independent"
+).configure_view(strokeWidth=0)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Input [0;32mIn [1][0m, in [0;36m<cell line: 1>[0;34m()[0m
+[0;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01maltair[39;00m [38;5;28;01mas[39;00m [38;5;21;01malt[39;00m
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mvega_datasets[39;00m [38;5;28;01mimport[39;00m data
+[1;32m      4[0m source [38;5;241m=[39m data[38;5;241m.[39mcars()
+
+[0;31mModuleNotFoundError[0m: No module named 'altair'
+ModuleNotFoundError: No module named 'altair'
+

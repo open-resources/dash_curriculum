@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture learning goals &#8212; Dash Tutorial</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://github.com/open-resources/dash_curriculum/part3/dash-data-tables-previous-material.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dashboard.jpg" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Dash Tutorial</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Summary
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  About Us
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/about.html">
+   About this Project
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Preface
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/what.html">
+   What
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/personas.html">
+   Personans
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/how.html">
+   How
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/who.html">
+   Who
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Installation Stack
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter0_mac.html">
+   Mac Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter0_windows.html">
+   Windows Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter0_linux.html">
+   Linux Installation
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 1. Introduction to Dashboards in Dash
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter1.html">
+   Chapter 1
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter2.html">
+   Chapter 2: Getting Started with Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter3.html">
+   Chapter 3 - Dash Components and Layouts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter4.html">
+   Chapter 4: Linking Dash components
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part1/chapter5.html">
+   Chapter 5 - App Deployment
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 2. Data Visualization
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter6.html">
+   Chapter 6 - Working with Data in Dash
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter7.html">
+   Chapter 7: Wrangling data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part2/chapter8.html">
+   Chapter 8: Data Visualization
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 3. Polishing your Dash application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter9.html">
+   Chapter 9
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter10.html">
+   Chapter 10
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter11.html">
+   Chapter 11
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="chapter12.html">
+   Chapter 12
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Part 4. Publishing your Dash Application
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/summary.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter13.html">
+   Chapter 13
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter14.html">
+   Chapter 14
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../part4/chapter15.html">
+   Chapter 15
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/part3/dash-data-tables-previous-material.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart3/dash-data-tables-previous-material.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/open-resources/dash_curriculum/main?urlpath=tree/tutorial/part3/dash-data-tables-previous-material.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lecture learning goals
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-tables">
+   Dash tables
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-tables-with-pagination-filters-and-sorting">
+     Creating tables with pagination, filters and sorting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-callbacks">
+     Table callbacks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#controlling-plots-from-the-table-callback">
+     Controlling plots from the table callback
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-a-table-based-on-a-callback">
+     Updating a table based on a callback
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#updating-a-table-from-an-altair-plot">
+       Updating a table from an Altair plot
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Lecture learning goals</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Lecture learning goals
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dash-tables">
+   Dash tables
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#creating-tables-with-pagination-filters-and-sorting">
+     Creating tables with pagination, filters and sorting
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#table-callbacks">
+     Table callbacks
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#controlling-plots-from-the-table-callback">
+     Controlling plots from the table callback
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#updating-a-table-based-on-a-callback">
+     Updating a table based on a callback
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#updating-a-table-from-an-altair-plot">
+       Updating a table from an Altair plot
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="lecture-learning-goals">
+<h1>Lecture learning goals<a class="headerlink" href="#lecture-learning-goals" title="Permalink to this headline">¶</a></h1>
+<p>By the end of the lecture you will be able to:</p>
+<ol class="simple">
+<li><p>Create dash tables</p></li>
+<li><p>Use interactive dash table components in callbacks</p></li>
+</ol>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="dash-tables">
+<h1>Dash tables<a class="headerlink" href="#dash-tables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="creating-tables-with-pagination-filters-and-sorting">
+<h2>Creating tables with pagination, filters and sorting<a class="headerlink" href="#creating-tables-with-pagination-filters-and-sorting" title="Permalink to this headline">¶</a></h2>
+<p>Dash has tables that can filter and sort data,
+as well as send and respond to signals.
+let’s see how to create them!</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_table</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">}</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cars</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">5</span><span class="p">]],</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">cars</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">])</span>
+    <span class="p">])</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We only pass the five first columns of the data frame to make it a bit easier to look at for our purposes.
+In general,
+we probably don’t want to display massive amounts of data in this manner anyways.</p>
+<p><img alt="image.png" src="part3/attachment:3111d9b3-9a93-4b13-b873-4718ee879f0a.png" /></p>
+<p>Instead of viewing all the data in one long table,
+we can enable pagination by specifying e.g. <code class="docutils literal notranslate"><span class="pre">page_size=10</span></code>.</p>
+<p><img alt="image.png" src="part3/attachment:02b2ba32-acf7-458a-b04f-3ba2eecaa105.png" /></p>
+<p>We can enable sorting by setting <code class="docutils literal notranslate"><span class="pre">sort_action='native'</span></code>,
+which gives us small arrows to the click on the left side of each column header.</p>
+<p><img alt="image.png" src="part3/attachment:c46f1ae5-f2f2-4dee-8f6c-0399a69daa93.png" /></p>
+<p>Filtering can be enabled in the same manner
+by setting <code class="docutils literal notranslate"><span class="pre">filter_action='native'</span></code>.
+<a class="reference external" href="https://dash.plotly.com/datatable/filtering">Dash has it own filter syntax</a>,
+which is similar to what we have used previously with dataframes.</p>
+<p><img alt="image.png" src="part3/attachment:c41e82d5-bedd-42f0-a4a2-a6eef6aa140b.png" /></p>
+<p>To make columns selectable
+with a radio button,
+we need to add three lines
+(also showing how to avoid making all columns selectable,
+we’re skipping <code class="docutils literal notranslate"><span class="pre">'name'</span></code> here:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s1">&#39;Name&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">}</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cars</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">5</span><span class="p">]],</span>  
+<span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+<span class="n">selected_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">],</span> 
+</pre></div>
+</div>
+<p><img alt="image.png" src="part3/attachment:915bec77-ba42-4e2d-850f-574f37024b6f.png" /></p>
+<p>Finally,
+we can make our table a bit prettier
+by styling it with the following segment,
+which color the rows in alternating dark and light colors.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">},</span>
+<span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[{</span>
+    <span class="s1">&#39;if&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="s1">&#39;odd&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(248, 248, 248)&#39;</span><span class="p">}],</span>
+ <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(230, 230, 230)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="image.png" src="part3/attachment:b23e8e00-cb2d-4ad1-bf0c-c1119679a819.png" /></p>
+<p>Our entire app now looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_table</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s1">&#39;Name&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">}</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cars</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">5</span><span class="p">]],</span>  
+                <span class="n">data</span><span class="o">=</span><span class="n">cars</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span>
+                <span class="n">sort_action</span><span class="o">=</span><span class="s2">&quot;native&quot;</span><span class="p">,</span>
+                <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+                <span class="n">selected_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">],</span> 
+                <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                <span class="n">filter_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
+                <span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">},</span>
+                <span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[{</span>
+                    <span class="s1">&#39;if&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="s1">&#39;odd&#39;</span><span class="p">},</span>
+                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(248, 248, 248)&#39;</span><span class="p">}],</span>
+                 <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(230, 230, 230)&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+            <span class="p">),</span>
+        <span class="p">])</span>
+    <span class="p">])</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="table-callbacks">
+<h2>Table callbacks<a class="headerlink" href="#table-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>Tables have several emitted signals/events that we can listen for,
+the most relevant in our case are the rows which change when we filter,
+and the column that is selected.
+First we add an empty div as a placeholder for the output area,
+but we will not use it in the beginning.
+Instead,
+let’s just print the value
+which will show you that a list of columns is always returned.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;output-div&#39;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s2">&quot;selected_columns&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_graphs</span><span class="p">(</span><span class="n">selected_column</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">selected_column</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The other intersting signal,
+the rows of the table,
+are a bit more cryptically named (<code class="docutils literal notranslate"><span class="pre">'derived_virtual_data'</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;output-div&#39;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s2">&quot;derived_virtual_data&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s2">&quot;selected_columns&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_graphs</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">selected_column</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When we print the <code class="docutils literal notranslate"><span class="pre">rows</span></code>,
+you can see that the format is a list with one dictionary per row.
+To get this back to a dataframe,
+we will use <code class="docutils literal notranslate"><span class="pre">pd.DataFrame(rows)</span></code>.
+If you try filtering,
+you will see that fewer rows are returned here.</p>
+</div>
+<div class="section" id="controlling-plots-from-the-table-callback">
+<h2>Controlling plots from the table callback<a class="headerlink" href="#controlling-plots-from-the-table-callback" title="Permalink to this headline">¶</a></h2>
+<p>We can now use these callbacks to drive plotting events,
+just as we would have if we had used a dash core components widget.
+The following would plot a histogram of the selected column and the filtered data points:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># An Iframe with the &#39;histogram&#39; ID is also needed</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;histogram&#39;</span><span class="p">,</span> <span class="s2">&quot;srcDoc&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s2">&quot;derived_virtual_data&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s2">&quot;selected_columns&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_graphs</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">selected_column</span><span class="p">):</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">selected_column</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">bin</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;count()&#39;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">chart</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here is the entire app when plotting both a histogram and scatter plot
+based on the state of the table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_table</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s1">&#39;Name&#39;</span> <span class="k">else</span> <span class="kc">False</span><span class="p">}</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cars</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">5</span><span class="p">]],</span> 
+                <span class="n">data</span><span class="o">=</span><span class="n">cars</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span>
+                <span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">},</span>
+                <span class="n">sort_action</span><span class="o">=</span><span class="s2">&quot;native&quot;</span><span class="p">,</span>
+                <span class="n">page_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
+                <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+                <span class="n">selected_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">],</span> 
+                <span class="n">page_size</span><span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+                <span class="n">filter_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
+                <span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[{</span>
+                    <span class="s1">&#39;if&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="s1">&#39;odd&#39;</span><span class="p">},</span>
+                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(248, 248, 248)&#39;</span><span class="p">}],</span>
+                 <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(230, 230, 230)&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;output-div&#39;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Iframe</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;histogram&#39;</span><span class="p">,</span>
+                <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;border-width&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;400px&#39;</span><span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">])</span>
+    <span class="p">])</span>
+<span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;histogram&#39;</span><span class="p">,</span> <span class="s2">&quot;srcDoc&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s2">&quot;derived_virtual_data&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s2">&quot;selected_columns&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_graphs</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">selected_column</span><span class="p">):</span>
+    <span class="n">chart</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">selected_column</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">bin</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;count()&#39;</span><span class="p">))</span>
+    <span class="n">chart2</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="n">selected_column</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+        <span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">),</span>
+        <span class="n">tooltip</span><span class="o">=</span><span class="s1">&#39;Name&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">chart</span> <span class="o">|</span> <span class="n">chart2</span><span class="p">)</span><span class="o">.</span><span class="n">to_html</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span>
+</pre></div>
+</div>
+<p><img alt="image.png" src="part3/attachment:df3fecda-efda-4fda-acf7-bec4283d87e5.png" /></p>
+</div>
+<div class="section" id="updating-a-table-based-on-a-callback">
+<h2>Updating a table based on a callback<a class="headerlink" href="#updating-a-table-based-on-a-callback" title="Permalink to this headline">¶</a></h2>
+<p>For callbacks from other widgets or from plotly plots,
+you can treat tables as any other output element
+and target their <code class="docutils literal notranslate"><span class="pre">columns</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> attributes to update them
+via a callback function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_table</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+
+<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+            <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dropdown&#39;</span><span class="p">,</span>
+                <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">}</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cars</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+                <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">]</span>
+            <span class="p">),</span>
+        <span class="p">])</span>
+    <span class="p">])</span>
+<span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;table&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_table</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">col</span><span class="p">}</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">]</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">cars</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">columns</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="image.png" src="part3/attachment:a7a4923f-d0f8-46f1-b39e-530a3170e3e6.png" /></p>
+<div class="section" id="updating-a-table-from-an-altair-plot">
+<h3>Updating a table from an Altair plot<a class="headerlink" href="#updating-a-table-from-an-altair-plot" title="Permalink to this headline">¶</a></h3>
+<p>From altair plots,
+there is no way to update a dash table,
+but if you just need to show a few numbers based on a plot selection,
+you can <a class="reference external" href="https://altair-viz.github.io/gallery/scatter_linked_table.html">use <code class="docutils literal notranslate"><span class="pre">mark_text()</span></code>
+to update a plot area that looks like a table</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+
+<span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="c1"># Brush for selection</span>
+<span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;interval&#39;</span><span class="p">)</span>
+
+<span class="c1"># Scatter Plot</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower:Q&#39;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon:Q&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;steelblue&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">))</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
+
+<span class="c1"># Base chart for data tables</span>
+<span class="n">ranked_text</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_text</span><span class="p">(</span><span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;row_number:O&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform_window</span><span class="p">(</span>
+    <span class="n">row_number</span><span class="o">=</span><span class="s1">&#39;row_number()&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span>
+    <span class="n">brush</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform_window</span><span class="p">(</span>
+    <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;rank(row_number)&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span>
+    <span class="n">alt</span><span class="o">.</span><span class="n">datum</span><span class="o">.</span><span class="n">rank</span><span class="o">&lt;</span><span class="mi">16</span>
+<span class="p">)</span>
+
+<span class="c1"># Data Tables</span>
+<span class="n">horsepower</span> <span class="o">=</span> <span class="n">ranked_text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Horsepower:N&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">TitleParams</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">))</span>
+<span class="n">mpg</span> <span class="o">=</span> <span class="n">ranked_text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon:N&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">TitleParams</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;MPG&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">))</span>
+<span class="n">origin</span> <span class="o">=</span> <span class="n">ranked_text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Origin:N&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">TitleParams</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">))</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">hconcat</span><span class="p">(</span><span class="n">horsepower</span><span class="p">,</span> <span class="n">mpg</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span> <span class="c1"># Combine data tables</span>
+
+<span class="c1"># Build chart</span>
+<span class="n">alt</span><span class="o">.</span><span class="n">hconcat</span><span class="p">(</span>
+    <span class="n">points</span><span class="p">,</span>
+    <span class="n">text</span>
+<span class="p">)</span><span class="o">.</span><span class="n">resolve_legend</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;independent&quot;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">configure_view</span><span class="p">(</span><span class="n">strokeWidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;altair&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./part3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
+<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
+    All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
+</div>
+
+      </div>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
