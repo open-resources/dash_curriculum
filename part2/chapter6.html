@@ -380,8 +380,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-start">
-   App at the Start
+  <a class="reference internal nav-link" href="#incorporating-data-into-our-apps">
+   incorporating data into our apps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -445,8 +445,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-start">
-   App at the Start
+  <a class="reference internal nav-link" href="#incorporating-data-into-our-apps">
+   incorporating data into our apps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -510,30 +510,45 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 </div>
-<div class="section" id="app-at-the-start">
-<h2>App at the Start<a class="headerlink" href="#app-at-the-start" title="Permalink to this headline">¶</a></h2>
-<p>As a framework for this chapter, <a class="reference external" href="https://sportsnet.ca">here is a zipped file</a> of what your app should look like when you start.</p>
+<div class="section" id="incorporating-data-into-our-apps">
+<h2>incorporating data into our apps<a class="headerlink" href="#incorporating-data-into-our-apps" title="Permalink to this headline">¶</a></h2>
+<p>Make sure to incorporate data at the begiingn of the app, above the layout. This is considered global data.</p>
+<p>show example of code:</p>
 </div>
 <div class="section" id="read-data-from-excel-or-csv">
 <h2>Read data from Excel or CSV<a class="headerlink" href="#read-data-from-excel-or-csv" title="Permalink to this headline">¶</a></h2>
+<p>df = pd.read_csv()
+print(head())
+print(df.columns)</p>
+<p>dropdown = dcc.Dropdown(id=’our-dropdown’, options=[‘My First app’, ‘Welcome to the App’, ‘This is the title’], value=’My First app’)</p>
+<p>note: show how to write data into csv</p>
 </div>
 <div class="section" id="load-data-from-a-url">
 <h2>Load data from a URL<a class="headerlink" href="#load-data-from-a-url" title="Permalink to this headline">¶</a></h2>
+<p>df = pd.read_csv(“<a class="reference external" href="https://www.website.com">https://www.website.com</a>”)
+print(head())</p>
 </div>
 <div class="section" id="create-a-simple-pandas-dataframe">
 <h2>Create a simple Pandas dataframe<a class="headerlink" href="#create-a-simple-pandas-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>df = pd.DataFrame([…..])
+print(head())</p>
 </div>
 <div class="section" id="connect-to-api-data">
 <h2>Connect to API data<a class="headerlink" href="#connect-to-api-data" title="Permalink to this headline">¶</a></h2>
+<p>df =</p>
 </div>
 <div class="section" id="data-wrangling-in-dash">
 <h2>Data wrangling in Dash<a class="headerlink" href="#data-wrangling-in-dash" title="Permalink to this headline">¶</a></h2>
+<p>groupby
+slicing in pandas
+filtering</p>
 </div>
 <div class="section" id="use-cases-for-pre-processing-data">
 <h2>Use cases for pre-processing data<a class="headerlink" href="#use-cases-for-pre-processing-data" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="app-at-the-end">
 <h2>App at the end<a class="headerlink" href="#app-at-the-end" title="Permalink to this headline">¶</a></h2>
+<p>dropdown with country data options</p>
 <p>At the end of this chapter, <a class="reference external" href="https://sportsnet.ca">here is a zipped file</a> of what your app should look like.</p>
 </div>
 </div>
