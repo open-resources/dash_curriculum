@@ -435,6 +435,18 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#incorporting-px-graphs-in-a-dash-app">
      8.3 Incorporting PX graphs in a Dash app
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#app">
+       App
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#complete-code">
+       Complete code
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#references-and-resources">
@@ -603,6 +615,18 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#incorporting-px-graphs-in-a-dash-app">
      8.3 Incorporting PX graphs in a Dash app
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#app">
+       App
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#complete-code">
+       Complete code
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#references-and-resources">
@@ -705,7 +729,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Some initial thoughts from me to the team (not meant as part of the final product)</p>
-<p>Chapter 7 should include the following:</p>
+<p><strong>Chapter 7 should include the following:</strong></p>
 <ul class="simple">
 <li><p>data formats: long, wide and mixed</p></li>
 <li><p>Plotly express accepts all formats, but Long (tidy) format often best</p></li>
@@ -718,15 +742,30 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Warning</p>
 <p>With quick transitions between lines of code, code snippets, text and figures, should we agree upon a special writing style in this regard?</p>
 </div>
-<p><em><strong>…chapter content starts here…</strong></em></p>
-<div class="admonition-learning-intentions admonition">
-<p class="admonition-title">Learning intentions</p>
-<ul class="simple">
-<li><p>What Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is and why you should use it.</p></li>
-<li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> uses attributes such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> to illustrate multiple dimensions of a dataset</p></li>
-<li><p>line, scatter, regression(?), area, bar, funnel(?), timeline(?)</p></li>
-<li><p>how different data structures work best with different px functions</p></li>
-</ul>
+<p><em><strong>Style example 1:</strong></em></p>
+<p>With the following addition, you’ll get the result i the figure below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://i.stack.imgur.com/N1JSd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1JSd.png" /></a></p>
+<p><em><strong>Style example 2:</strong></em></p>
+<p>Just add</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and you’ll get:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/N1JSd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1JSd.png" /></a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+***...chapter content starts here...***
+
+```{admonition} Learning intentions
+
+- What Plotly Express (`px`) is and why you should use it.
+- How `px` uses attributes such as `color` and `symbol` to illustrate multiple dimensions of a dataset
+- line, scatter, regression(?), area, bar, funnel(?), timeline(?)
+- how different data structures work best with different px functions
+
+</pre></div>
 </div>
 <div class="section" id="principles-of-effective-visualizations">
 <h2>8.1 Principles of Effective Visualizations<a class="headerlink" href="#principles-of-effective-visualizations" title="Permalink to this headline">¶</a></h2>
@@ -789,7 +828,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><a class="reference external" href="https://i.stack.imgur.com/MHR22.png"><img alt="enter image description here" src="https://i.stack.imgur.com/MHR22.png" /></a></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can retrieve regression results with <code class="docutils literal notranslate"><span class="pre">px.get_trendline_results(fig)</span></code> and include them in your figure as explained in <a class="reference external" href="https://plotly.com/python/linear-fits/">Fitting multiple lines and retrieving the model parameters</a></p>
+<p>You can retrieve regression results with <code class="docutils literal notranslate"><span class="pre">px.get_trendline_results(fig)</span></code> and include them in your figure as explained in <a class="reference external" href="https://i.stack.imgur.com/MHR22.png">Fitting multiple lines and retrieving the model parameters</a></p>
 </div>
 </div>
 </div>
@@ -797,14 +836,20 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>8.2.4 Bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
 <p>So far, we’ve looked at chart types that are closely related in how they are structured. Bar charts are also widely used and introduces a few features that work a bit differently. Let’s take a look at the populations in two different countries.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
-                    <span class="c1">#  barmode = &#39;group&#39;,</span>
+                 
                      <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;PX scatter plot&#39;</span><span class="p">,</span>
                      <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
 <span class="c1"># fig.update_layout(barmode=&#39;group&#39;)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>As you can tell from the figure, you can now study the change in the total populations of these countries over the years. This makes sense for <code class="docutils literal notranslate"><span class="pre">population</span></code>, but not so much if you were to study life expectancies. The next section will introduce how to edit <code class="docutils literal notranslate"><span class="pre">barmode</span></code> both in the function call and <em>after</em> you’ve produced the figure.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/zPuh9.png"><img alt="enter image description here" src="https://i.stack.imgur.com/zPuh9.png" /></a></p>
+<p>As you can tell from the figure, you can now study the change in the total populations of these countries over the years. This makes sense for <code class="docutils literal notranslate"><span class="pre">population</span></code>, but not so much if you were to study life expectancies. In the latter case it would make more sense to display the bars for each country next to each other. The following section will introduce how to edit the <code class="docutils literal notranslate"><span class="pre">barmode</span></code> attribute for the figure object both in the function call and <em>after</em> you’ve produced the figure.</p>
+</div>
+<div class="section" id="how-to-edit-chart-features">
+<h2>8.2.5 How to edit chart features<a class="headerlink" href="#how-to-edit-chart-features" title="Permalink to this headline">¶</a></h2>
+<p>By default <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> uses <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'stacked'</span></code> which does exactly what it says, namely stacking the populations for each <code class="docutils literal notranslate"><span class="pre">country</span></code> (discerned by <code class="docutils literal notranslate"><span class="pre">color</span></code>) on top of each other. But you can change this behavior through <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'group'</span></code> and get the following result:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/xU3El.png"><img alt="enter image description here" src="https://i.stack.imgur.com/xU3El.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
                      <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span> <span class="p">,</span>
                      <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX Bar plot with barmode = &#39;group&#39;&quot;</span><span class="p">,</span>
@@ -812,13 +857,54 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>By default <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> uses <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'stacked'</span></code> which does exactly what it says, namely stacking the populations for each <code class="docutils literal notranslate"><span class="pre">country</span></code> discerned by <code class="docutils literal notranslate"><span class="pre">color</span></code> on top of each other. But you can change this behavior through <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'group'</span></code>.</p>
+<p>Another option is to make use of one of the many methods of the <code class="docutils literal notranslate"><span class="pre">fig</span></code> object itself, namely:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
 </div>
-<div class="section" id="how-to-edit-chart-features">
-<h2>8.2.5 How to edit chart features<a class="headerlink" href="#how-to-edit-chart-features" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="incorporting-px-graphs-in-a-dash-app">
 <h2>8.3 Incorporting PX graphs in a Dash app<a class="headerlink" href="#incorporting-px-graphs-in-a-dash-app" title="Permalink to this headline">¶</a></h2>
+<p>We earlier talked about how a <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component resides in a <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component and serves as a wrapper for other components. One such component can be a <code class="docutils literal notranslate"><span class="pre">dcc.Graph()</span></code> component, which in turn is a wrapper for a Plotly figure object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">))])</span>
+</pre></div>
+</div>
+<div class="section" id="app">
+<h3>App<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://i.stack.imgur.com/21H9I.png"><img alt="enter image description here" src="https://i.stack.imgur.com/21H9I.png" /></a></p>
+</div>
+<div class="section" id="complete-code">
+<h3>Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">dcc</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
+
+<span class="c1"># figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span>
+                  <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX line plot&quot;</span><span class="p">,</span>
+                  <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span>
+                  <span class="p">)</span>
+
+<span class="c1"># Dash App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">()</span>
+
+<span class="c1"># App Layout </span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">))])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+
+
+
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="references-and-resources">
 <h2>8.4 References and resources<a class="headerlink" href="#references-and-resources" title="Permalink to this headline">¶</a></h2>
