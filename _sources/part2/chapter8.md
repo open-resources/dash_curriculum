@@ -2,9 +2,9 @@
 
 ***...some initial thoughts...*** 
 
-```{tip} Some initial thoughts from me to the team (not meant as part of the final product)
+```{tip}
 
-**Chapter 7 should include the following:**
+**Chapter 7 should(?) include the following:**
 
 - data formats: long, wide and mixed
 - Plotly express accepts all formats, but Long (tidy) format often best
@@ -42,7 +42,6 @@ and you'll get:
 
 
 
-```
 
 ***...chapter content starts here...***
 
