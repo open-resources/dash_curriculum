@@ -400,13 +400,35 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regression">
-     8.2.3 Regression
+    <a class="reference internal nav-link" href="#scatter-plot-with-trendlines">
+     8.2.3 Scatter plot with trendlines
     </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-a-special-case-of-scatter-plot">
+     8.2.4 Regression - A special case of scatter plot
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#from-long-to-wide-with-pd-pivot">
+       From long to wide with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         pd.pivot()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bar-plot">
      8.2.4 Bar plot
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-edit-chart-features">
+     8.2.5 How to edit chart features
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -546,13 +568,35 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#regression">
-     8.2.3 Regression
+    <a class="reference internal nav-link" href="#scatter-plot-with-trendlines">
+     8.2.3 Scatter plot with trendlines
     </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#regression-a-special-case-of-scatter-plot">
+     8.2.4 Regression - A special case of scatter plot
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#from-long-to-wide-with-pd-pivot">
+       From long to wide with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         pd.pivot()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bar-plot">
      8.2.4 Bar plot
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-edit-chart-features">
+     8.2.5 How to edit chart features
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -657,24 +701,31 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-8-data-visualization">
 <h1>Chapter 8: Data Visualization<a class="headerlink" href="#chapter-8-data-visualization" title="Permalink to this headline">¶</a></h1>
-<div class="admonition-some-initial-thoughts-from-me-to-the-team-not-meant-as-part-of-the-final-product admonition">
-<p class="admonition-title">Some initial thoughts from me to the team (not meant as part of the final product)</p>
+<p><em><strong>…some initial thoughts…</strong></em></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Some initial thoughts from me to the team (not meant as part of the final product)</p>
 <p>Chapter 7 should include the following:</p>
 <ul class="simple">
 <li><p>data formats: long, wide and mixed</p></li>
-<li><p>Plotly express accept all formats</p></li>
-<li><p>Long (tidy) format often best</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code> at the very least</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code> perhaps…</p></li>
+<li><p>Plotly express accepts all formats, but Long (tidy) format often best</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code> at the very least (wide to long)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code> (long to perhaps…</p></li>
 <li><p>subsetting dataframes, of course…</p></li>
 </ul>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With quick transitions between lines of code, code snippets, text and figures, should we agree upon a special writing style in this regard?</p>
+</div>
+<p><em><strong>…chapter content starts here…</strong></em></p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning intentions</p>
 <ul class="simple">
 <li><p>What Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is and why you should use it.</p></li>
 <li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> uses attributes such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> to illustrate multiple dimensions of a dataset</p></li>
 <li><p>line, scatter, regression(?), area, bar, funnel(?), timeline(?)</p></li>
+<li><p>how different data structures work best with different px functions</p></li>
 </ul>
 </div>
 <div class="section" id="principles-of-effective-visualizations">
@@ -696,7 +747,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><a class="reference external" href="https://i.stack.imgur.com/MYpK9.png"><img alt="enter image description here" src="https://i.stack.imgur.com/MYpK9.png" /></a></p>
 <p>The current dataset is of a so-called long (or tidy) format:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/ENAiB.png"><img alt="enter image description here" src="https://i.stack.imgur.com/ENAiB.png" /></a></p>
-<p>…need more explaining…</p>
+<p><em><strong>…needs more explaining if not covered in chapter 7…</strong></em></p>
 <p>As you can see from the function call above, <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> don’t take actual colors and symbols as  arguments, but rather columns of a dataset <code class="docutils literal notranslate"><span class="pre">df</span></code> from which unique values are assigned certain color and symbol sequences.</p>
 </div>
 <div class="section" id="scatter-plot">
@@ -707,12 +758,23 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="section" id="regression">
-<h2>8.2.3 Regression<a class="headerlink" href="#regression" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scatter-plot-with-trendlines">
+<h2>8.2.3 Scatter plot with trendlines<a class="headerlink" href="#scatter-plot-with-trendlines" title="Permalink to this headline">¶</a></h2>
 <p>From here you can also add a trendline for each trace by adding <code class="docutils literal notranslate"><span class="pre">trendline=&quot;ols&quot;</span></code> to the mix:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/EEylA.png"><img alt="enter image description here" src="https://i.stack.imgur.com/EEylA.png" /></a></p>
-<p>In this case, the trendlines will indicate the increase in life expectanciese for each country through the years. In order to compare a relationship between two specifc variables, you would have to wrangle the dataset a little so that you can assign individual sereis to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. But this is pretty straight-forward with <code class="docutils literal notranslate"><span class="pre">pd.pivot</span></code>.</p>
+<p>In this case, the trendlines will indicate the increase in life expectanciese for each country over the years.</p>
+</div>
+<div class="section" id="regression-a-special-case-of-scatter-plot">
+<h2>8.2.4 Regression - A special case of scatter plot<a class="headerlink" href="#regression-a-special-case-of-scatter-plot" title="Permalink to this headline">¶</a></h2>
+<p>In order to compare a relationship between two specifc variables, you would have to wrangle the dataset a little so that you can assign individual sereis to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. But this is pretty straight-forward with <code class="docutils literal notranslate"><span class="pre">pd.pivot</span></code> like this</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="from-long-to-wide-with-pd-pivot">
+<h3>From long to wide with <code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code><a class="headerlink" href="#from-long-to-wide-with-pd-pivot" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/lDZUC.png"><img alt="enter image description here" src="https://i.stack.imgur.com/lDZUC.png" /></a></p>
+<p>As you can see, the dataset is no longer of a long format. With column names that now describe unique variables instead of a category, we’ve moved on to a dataset with a wide format.</p>
+<p>The complete setup to produce the figure below is now:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
 <span class="n">dfp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">)</span>
 
@@ -725,17 +787,35 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/MHR22.png"><img alt="enter image description here" src="https://i.stack.imgur.com/MHR22.png" /></a></p>
-<ul class="simple">
-<li><p>when is a scatter plot appropriate?</p></li>
-<li><p>which data format is best suited?</p></li>
-</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can retrieve regression results with <code class="docutils literal notranslate"><span class="pre">px.get_trendline_results(fig)</span></code> and include them in your figure as explained in <a class="reference external" href="https://plotly.com/python/linear-fits/">Fitting multiple lines and retrieving the model parameters</a></p>
+</div>
+</div>
 </div>
 <div class="section" id="bar-plot">
 <h2>8.2.4 Bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>when is a bar plot appropriate?</p></li>
-<li><p>which data format is best suited?</p></li>
-</ul>
+<p>So far, we’ve looked at chart types that are closely related in how they are structured. Bar charts are also widely used and introduces a few features that work a bit differently. Let’s take a look at the populations in two different countries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+                    <span class="c1">#  barmode = &#39;group&#39;,</span>
+                     <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;PX scatter plot&#39;</span><span class="p">,</span>
+                     <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+<span class="c1"># fig.update_layout(barmode=&#39;group&#39;)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>As you can tell from the figure, you can now study the change in the total populations of these countries over the years. This makes sense for <code class="docutils literal notranslate"><span class="pre">population</span></code>, but not so much if you were to study life expectancies. The next section will introduce how to edit <code class="docutils literal notranslate"><span class="pre">barmode</span></code> both in the function call and <em>after</em> you’ve produced the figure.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+                     <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span> <span class="p">,</span>
+                     <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX Bar plot with barmode = &#39;group&#39;&quot;</span><span class="p">,</span>
+                     <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>By default <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> uses <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'stacked'</span></code> which does exactly what it says, namely stacking the populations for each <code class="docutils literal notranslate"><span class="pre">country</span></code> discerned by <code class="docutils literal notranslate"><span class="pre">color</span></code> on top of each other. But you can change this behavior through <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'group'</span></code>.</p>
+</div>
+<div class="section" id="how-to-edit-chart-features">
+<h2>8.2.5 How to edit chart features<a class="headerlink" href="#how-to-edit-chart-features" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="incorporting-px-graphs-in-a-dash-app">
 <h2>8.3 Incorporting PX graphs in a Dash app<a class="headerlink" href="#incorporting-px-graphs-in-a-dash-app" title="Permalink to this headline">¶</a></h2>
