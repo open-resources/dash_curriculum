@@ -2,7 +2,6 @@
 
 Overview introduction placehoder.
 
-
 ## Learning Intentions
 
 In this chapter we intend you to learn:
@@ -17,40 +16,51 @@ In this chapter we intend you to learn:
 ```
 
 
-## App at the Start
+## incorporating data into our apps
+Make sure to incorporate data at the begiingn of the app, above the layout. This is considered global data. 
 
-As a framework for this chapter, [here is a zipped file](https://sportsnet.ca) of what your app should look like when you start.
+show example of code:
 
 
 ## Read data from Excel or CSV
 
+df = pd.read_csv()
+print(head())
+print(df.columns)
 
+dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
+
+note: show how to write data into csv
 
 
 ## Load data from a URL
 
-
-
+ df = pd.read_csv("https://www.website.com")
+print(head())
 
 ## Create a simple Pandas dataframe
 
-
+df = pd.DataFrame([.....])
+print(head())
 
 
 ## Connect to API data
 
-
+df = 
 
 
 ## Data wrangling in Dash
 
-
+groupby
+slicing in pandas
+filtering
 
 ## Use cases for pre-processing data
 
 
 
-
 ## App at the end
+
+dropdown with country data options
 
 At the end of this chapter, [here is a zipped file](https://sportsnet.ca) of what your app should look like.
