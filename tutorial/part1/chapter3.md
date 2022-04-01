@@ -28,7 +28,7 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
 # Initialise the App 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 markdown = dcc.Markdown(children='My First app')
@@ -47,6 +47,10 @@ if __name__ == '__main__':
 
 ![button](../assets/p1_c3/button.gif)
 
+```{admonition} Note
+- We will learn about `external_stylesheets` in later chapters
+```
+
 ````
 
 ````{dropdown} Checklist
@@ -63,7 +67,7 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
 # Initialise the App 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 markdown = dcc.Markdown(children='My First app')
@@ -102,7 +106,7 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
 # Initialise the App 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 markdown = dcc.Markdown(children='My First app')
@@ -140,7 +144,7 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
 # Initialise the App 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 markdown = dcc.Markdown(children='My First app')
@@ -180,7 +184,7 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
 # Initialise the App 
-app = Dash(__name__)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 markdown = dcc.Markdown(children='My First app')
@@ -270,7 +274,6 @@ if __name__ == '__main__':
 We see there are 4 rows with columns of various `widths` which contain components.  You can play around with the `width` value of the column to see how it changes the app layout.
 
 ```{admonition} Note
-- We will learn about `external_stylesheets` in later chapters
 - The colors above are for demonstration purposes, you will not see them in your local dashboard
 ```
 
