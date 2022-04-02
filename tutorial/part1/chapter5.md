@@ -59,7 +59,7 @@ Here is a view of the updated run statement showing this change in your Visual S
 
 ![screen_shot_debug](./ch5_files/ch5_screen_shot_debug.png)
 
-Save and close app.py.
+Save and close the ```ch5_app.py``` file.
 
 ## 5.3 Log in to Heroku user account
 
@@ -101,7 +101,7 @@ For UNIX systems, you will need an additional dependency called ```gunicorn``` w
 Type the ```pip install gunicorn``` command in your VS Code Terminal window.
 
 This should return output indicating that it was successfully installed showing the most current stable version.
-```Successfully installed gunicorn``
+```Successfully installed gunicorn```
 
 Here's a view of installing ```gunicorn``` in your VS Code Terminal successfully.
 ![screen_shot_install_gunicorn](./ch5_files/ch5_screen_shot_install_gunicorn.png)
@@ -134,7 +134,7 @@ Save and close the ```Procfile``` file.
 ```{warning} Make sure the first letter '_P_' is capitalized in _Procfile_ and that you spell it exactly that way or Heroku cannot recognize it.
 ```
 ```{note}
-There are alternate ways to create this file. If you instead select New File from the Toolbar File Menu in VS Code, you may be prompted to Select the Language. Select ```Plain Text```. Once you have completed the file, if you see a file ending, remove it using the Rename menu option from the Explorer pane, which you can access such as by right-clicking a mouse or keypad on the file name itself.
+There are alternate ways to create this file. If you instead select New File from the Toolbar File Menu in VS Code, you may be prompted to ```Select the Language```. Select ```Plain Text```. Once you have completed the file, if you see a file ending, remove it using the Rename menu option from the Explorer pane, which you can access such as by right-clicking a mouse or keypad on the file name itself.
 ```
 
 ### 5.5.2 Make a ```requirements.txt``` text file describing your Python dependencies. 
@@ -144,7 +144,7 @@ From the VS Code Explorer pane select the New File icon icon or use a correspond
 In the Explorer pane, type the file name ```requirements.txt``` in the empty name box that appears. Press the return key on your keyboard.
 
 ```{note}
-The ```requirements.txt`` file should have a .txt file ending. Otherwise it is similar to the Procfile steps, and you can follow alternate steps to create a plain text file if you prefer, such as using the Toolbar File Menu options.
+The ```requirements.txt``` file should have a .txt file ending. Otherwise it is similar to the Procfile steps, and you can follow alternate steps to create a plain text file if you prefer, such as using the Toolbar File Menu options.
 ```
 
 Open the file. Type the package names and version numbers of all of the packages your app requires to run, in a list with each package on its own single line. Type nothing else in this file.
@@ -165,6 +165,9 @@ An easy way to check the versions of Python packages you are using is to enter t
 ```{note}
 If you are deploying an app with Plotly Express graphs, include the Pandas library and Plotly Express in your requirements list. Pandas is required by Plotly Express, and both were installed in chapter 0.
 ```
+
+Save and close the ```requirements.txt``` file.
+
 ```{note} 
 In a later chapter as part of a more complex deployment process, you will learn how to create this file automatically with the command ```pip freeze > requirements.txt``` while working in a virtual environment.
 ```
@@ -196,7 +199,7 @@ git push
 
 From your app's root directory in your VS Code Terminal window, type the following command replacing ```my-dash-ch5-app``` with a specific name for your app.
 ```
-heroku create -a app my-dash-app
+heroku create -a app my-dash-ch5-app
 ```
 
 ```{note}
@@ -226,7 +229,7 @@ Common deployment errors you could encounter for this example app include:
 
 Refer to the Heroku documentation articles for [common error codes](https://devcenter.heroku.com/articles/error-codes) and [troubleshooting & support](https://devcenter.heroku.com/categories/troubleshooting).
 
-```
+```{note}
 In addition to minimum requirements, some new Python versions may not yet be supported on Heroku. For example, if Heroku supports Python 3.10.0, and your app is running a newer 3.11 version.
 ```
 
