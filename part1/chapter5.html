@@ -652,7 +652,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>Here is a view of the updated run statement showing this change in your Visual Studio Code (VS Code) editor’s main window.</p>
 <p><img alt="screen_shot_debug" src="../_images/ch5_screen_shot_debug.png" /></p>
-<p>Save and close <a class="reference external" href="http://app.py">app.py</a>.</p>
+<p>Save and close the <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file.</p>
 </div>
 <div class="section" id="log-in-to-heroku-user-account">
 <h2>5.3 Log in to Heroku user account<a class="headerlink" href="#log-in-to-heroku-user-account" title="Permalink to this headline">¶</a></h2>
@@ -687,7 +687,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>For UNIX systems, you will need an additional dependency called <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> which is a Python WSGI HTTP Server that handles Python web application traffic for UNIX systems.</p>
 <p>Type the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">gunicorn</span></code> command in your VS Code Terminal window.</p>
 <p>This should return output indicating that it was successfully installed showing the most current stable version.
-```Successfully installed gunicorn``</p>
+<code class="docutils literal notranslate"><span class="pre">Successfully</span> <span class="pre">installed</span> <span class="pre">gunicorn</span></code></p>
 <p>Here’s a view of installing <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> in your VS Code Terminal successfully.
 <img alt="screen_shot_install_gunicorn" src="../_images/ch5_screen_shot_install_gunicorn.png" /></p>
 <div class="admonition note">
@@ -714,7 +714,7 @@ By default, an icon appears beside the empty File Name box indicating Plain Text
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There are alternate ways to create this file. If you instead select New File from the Toolbar File Menu in VS Code, you may be prompted to Select the Language. Select <code class="docutils literal notranslate"><span class="pre">Plain</span> <span class="pre">Text</span></code>. Once you have completed the file, if you see a file ending, remove it using the Rename menu option from the Explorer pane, which you can access such as by right-clicking a mouse or keypad on the file name itself.</p>
+<p>There are alternate ways to create this file. If you instead select New File from the Toolbar File Menu in VS Code, you may be prompted to <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">the</span> <span class="pre">Language</span></code>. Select <code class="docutils literal notranslate"><span class="pre">Plain</span> <span class="pre">Text</span></code>. Once you have completed the file, if you see a file ending, remove it using the Rename menu option from the Explorer pane, which you can access such as by right-clicking a mouse or keypad on the file name itself.</p>
 </div>
 </div>
 <div class="section" id="make-a-requirements-txt-text-file-describing-your-python-dependencies">
@@ -723,7 +723,7 @@ By default, an icon appears beside the empty File Name box indicating Plain Text
 <p>In the Explorer pane, type the file name <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> in the empty name box that appears. Press the return key on your keyboard.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The ```requirements.txt`` file should have a .txt file ending. Otherwise it is similar to the Procfile steps, and you can follow alternate steps to create a plain text file if you prefer, such as using the Toolbar File Menu options.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file should have a .txt file ending. Otherwise it is similar to the Procfile steps, and you can follow alternate steps to create a plain text file if you prefer, such as using the Toolbar File Menu options.</p>
 </div>
 <p>Open the file. Type the package names and version numbers of all of the packages your app requires to run, in a list with each package on its own single line. Type nothing else in this file.</p>
 <p>Include all packages listed in your import statements in your <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file, and <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code></p>
@@ -741,6 +741,7 @@ By default, an icon appears beside the empty File Name box indicating Plain Text
 <p class="admonition-title">Note</p>
 <p>If you are deploying an app with Plotly Express graphs, include the Pandas library and Plotly Express in your requirements list. Pandas is required by Plotly Express, and both were installed in chapter 0.</p>
 </div>
+<p>Save and close the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In a later chapter as part of a more complex deployment process, you will learn how to create this file automatically with the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></code> while working in a virtual environment.</p>
@@ -770,7 +771,7 @@ By default, an icon appears beside the empty File Name box indicating Plain Text
 <div class="section" id="create-and-initialize-heroku-remote-application">
 <h2>5.7 Create and initialize Heroku Remote application<a class="headerlink" href="#create-and-initialize-heroku-remote-application" title="Permalink to this headline">¶</a></h2>
 <p>From your app’s root directory in your VS Code Terminal window, type the following command replacing <code class="docutils literal notranslate"><span class="pre">my-dash-ch5-app</span></code> with a specific name for your app.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">create</span> <span class="o">-</span><span class="n">a</span> <span class="n">app</span> <span class="n">my</span><span class="o">-</span><span class="n">dash</span><span class="o">-</span><span class="n">app</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">create</span> <span class="o">-</span><span class="n">a</span> <span class="n">app</span> <span class="n">my</span><span class="o">-</span><span class="n">dash</span><span class="o">-</span><span class="n">ch5</span><span class="o">-</span><span class="n">app</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -797,8 +798,9 @@ By default, an icon appears beside the empty File Name box indicating Plain Text
 <li><p>Using a Python version that is not compatible with Heroku</p></li>
 </ul>
 <p>Refer to the Heroku documentation articles for <a class="reference external" href="https://devcenter.heroku.com/articles/error-codes">common error codes</a> and <a class="reference external" href="https://devcenter.heroku.com/categories/troubleshooting">troubleshooting &amp; support</a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="n">addition</span> <span class="n">to</span> <span class="n">minimum</span> <span class="n">requirements</span><span class="p">,</span> <span class="n">some</span> <span class="n">new</span> <span class="n">Python</span> <span class="n">versions</span> <span class="n">may</span> <span class="ow">not</span> <span class="n">yet</span> <span class="n">be</span> <span class="n">supported</span> <span class="n">on</span> <span class="n">Heroku</span><span class="o">.</span> <span class="n">For</span> <span class="n">example</span><span class="p">,</span> <span class="k">if</span> <span class="n">Heroku</span> <span class="n">supports</span> <span class="n">Python</span> <span class="mf">3.10.0</span><span class="p">,</span> <span class="ow">and</span> <span class="n">your</span> <span class="n">app</span> <span class="ow">is</span> <span class="n">running</span> <span class="n">a</span> <span class="n">newer</span> <span class="mf">3.11</span> <span class="n">version</span><span class="o">.</span>
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In addition to minimum requirements, some new Python versions may not yet be supported on Heroku. For example, if Heroku supports Python 3.10.0, and your app is running a newer 3.11 version.</p>
 </div>
 </div>
 <div class="section" id="app-at-the-end">
