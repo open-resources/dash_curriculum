@@ -61,9 +61,89 @@ and you'll get:
 
 The [plotly.express module][2] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or `px`. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][3], [scatter][4], [area][5], [bar][6], [funnel][7] and [timeline][8] figures. Here, well take a look at how you can easily create a very informative figure from a complex dataset with only a few lines of code.
 
-## 8.2.1 Line chart
+## 8.3 About the gapminder dataset
+
+The gapminder dataset available through `px.data.gapminder()` is provided by gapminder.org. Here you'll find 1704 rows and the following columns `['country', 'continent', 'year', 'lifeExp', 'pop', 'gdpPercap' 'iso_alpha', 'iso_num']`. `lifeExp` is life expectanxy at birth, `pop` is total population for a country, and `gdpPercap` is the per capita GDP. The data is an excerpt of data found in specific spreadsheets on Gapminder.org circa 2010. The data has a so-called long (or  tidy) format that you'll soon learn is particularly useful for PX. PX also handles data of other formats.
+
+https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook
+
+https://cran.r-project.org/web/packages/gapminder/README.html
+
+
+
+
+## 8.4 Basic Graphs
+
+## 8.4.1 Line
 
 Let's take a look at how `px.line()` used on `px.data.gapminder()` will let you illustrate several dimensons of the dataset through attributes like `color` and `symbol`.
+
+## 8.4.2 Scatter
+
+## 8.4.3 Bar
+
+## 8.5 Animated Graphs
+
+
+
+
+## 8.3 Incorporting PX graphs in a Dash app
+
+We earlier talked about how a `dbc.Col` component resides in a `dbc.Row` component and serves as a wrapper for other components. One such component can be a `dcc.Graph()` component, which in turn is a wrapper for a Plotly figure object:
+
+```python
+app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig), width = 4))])
+```
+
+### App
+
+[![enter image description here][17]][17]
+
+
+
+### Complete code
+
+```python
+import pandas as pd
+import dash
+from dash import dcc
+from dash import html
+import plotly.express as px
+import dash_bootstrap_components as dbc
+
+# data
+df = px.data.gapminder()
+df = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
+
+# figure
+fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent',
+                  title = "PX line plot",
+                  template = 'plotly_white'
+                  )
+
+# Dash App
+app = dash.Dash()
+
+# App Layout 
+app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig), width = 4))])
+
+app.run_server(debug=True, use_reloader=False)
+
+
+
+
+```
+
+
+## 8.4 References and resources
+
+---
+# OUT-TAKES from round2 20220401
+---
+
+## 8.2.1 Line chart
+
+
 
 ```python
 import plotly.express as px
@@ -172,59 +252,6 @@ Another option is to make use of one of the many methods of the `fig` object its
 fig.update_layout(barmode = 'group')
 ```
 
-
-
-
-
-## 8.3 Incorporting PX graphs in a Dash app
-
-We earlier talked about how a `dbc.Col` component resides in a `dbc.Row` component and serves as a wrapper for other components. One such component can be a `dcc.Graph()` component, which in turn is a wrapper for a Plotly figure object:
-
-```python
-app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig), width = 4))])
-```
-
-### App
-
-[![enter image description here][17]][17]
-
-
-
-### Complete code
-
-```python
-import pandas as pd
-import dash
-from dash import dcc
-from dash import html
-import plotly.express as px
-import dash_bootstrap_components as dbc
-
-# data
-df = px.data.gapminder()
-df = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
-
-# figure
-fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent',
-                  title = "PX line plot",
-                  template = 'plotly_white'
-                  )
-
-# Dash App
-app = dash.Dash()
-
-# App Layout 
-app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig), width = 4))])
-
-app.run_server(debug=True, use_reloader=False)
-
-
-
-
-```
-
-
-## 8.4 References and resources
 
 .
 
