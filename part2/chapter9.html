@@ -595,7 +595,7 @@ const thebe_selector_output = ".output, .cell_output"
                                 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Now let’s add some styling:</p>
+<p>Now let’s add some <code class="docutils literal notranslate"><span class="pre">styling</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
 <span class="n">dataTable</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
                                 <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
@@ -604,9 +604,12 @@ const thebe_selector_output = ".output, .cell_output"
                                 <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
                                 <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
                                 <span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">},</span>
-                                <span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[{</span>
+                                <span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[</span>
+                                    <span class="p">{</span>
                                     <span class="s1">&#39;if&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="s1">&#39;odd&#39;</span><span class="p">},</span>
-                                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(248, 248, 248)&#39;</span><span class="p">}],</span>
+                                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(204, 230, 255)&#39;</span><span class="p">},</span>
+                                    <span class="p">],</span>
+
                                 <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
                                     <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(230, 230, 230)&#39;</span><span class="p">,</span>
                                     <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>

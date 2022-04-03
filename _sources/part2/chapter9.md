@@ -157,7 +157,7 @@ dataTable = dash_table.DataTable(id='dataTable1',
                                 )
 ```
 
-Now let's add some styling:
+Now let's add some `styling`:
 
 ```python
 # Create a Dash DataTable
@@ -168,9 +168,12 @@ dataTable = dash_table.DataTable(id='dataTable1',
                                 column_selectable="single",
                                 sort_action='native',
                                 style_cell={'padding': '5px'},
-                                style_data_conditional=[{
+                                style_data_conditional=[
+                                    {
                                     'if': {'row_index': 'odd'},
-                                    'backgroundColor': 'rgb(248, 248, 248)'}],
+                                    'backgroundColor': 'rgb(204, 230, 255)'},
+                                    ],
+
                                 style_header={
                                     'backgroundColor': 'rgb(230, 230, 230)',
                                     'fontWeight': 'bold'}
