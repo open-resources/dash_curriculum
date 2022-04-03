@@ -1,4 +1,4 @@
-# Chapter 9
+# Chapter 9: DataTables
 
 ## What You Will Learn
 In this chapter you will learn about `Dash DataTables' and how to use them to explore and edit data.
@@ -141,7 +141,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-## 9.4 Other Important DataTable props
+## 9.3 Other Important DataTable props
 
 Let's take a look at some useful `DataTable` props:
 
@@ -179,9 +179,6 @@ dataTable = dash_table.DataTable(id='dataTable1',
                                     'fontWeight': 'bold'}
 )
 ```
-
-
-
 
 ## Summary
 In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about **Advanced Callbacks**.
