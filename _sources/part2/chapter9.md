@@ -76,16 +76,7 @@ if __name__ == '__main__':
 
 Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.
 
-- For each `column` in the DataTable we need to set its `editable` property so our `DataTable` declaration changes from
-`dataTable = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'), page_size=10)`
-
-to
-
-`dataTable = dash_table.DataTable(id='dataTable1', 
-                                data=df.to_dict('records'), 
-                                columns=[{'name': i, 'id': i, 'editable':True} for i in df.columns]
-                                )`
-- 
+- `dataTable = dash_table.DataTable()` becomes more complicated because we need to make each column's `editable` property `true`
 
 ```python
 # Import libraries

@@ -378,54 +378,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     dataTable
-    </span>
-    <span class="pre">
-     =
-    </span>
-    <span class="pre">
-     dash_table.DataTable(id='dataTable1',
-    </span>
-    <span class="pre">
-     data=df.to_dict('records'),
-    </span>
-    <span class="pre">
-     columns=[{'name':
-    </span>
-    <span class="pre">
-     i,
-    </span>
-    <span class="pre">
-     'id':
-    </span>
-    <span class="pre">
-     i,
-    </span>
-    <span class="pre">
-     'editable':True}
-    </span>
-    <span class="pre">
-     for
-    </span>
-    <span class="pre">
-     i
-    </span>
-    <span class="pre">
-     in
-    </span>
-    <span class="pre">
-     df.columns]
-    </span>
-    <span class="pre">
-     )
-    </span>
-   </code>
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-importnat-datatable-props">
    9.4 Other importnat DataTable props
   </a>
@@ -468,54 +420,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#linking-datatable-to-a-graph">
    9.2 Linking DataTable to a Graph
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     dataTable
-    </span>
-    <span class="pre">
-     =
-    </span>
-    <span class="pre">
-     dash_table.DataTable(id='dataTable1',
-    </span>
-    <span class="pre">
-     data=df.to_dict('records'),
-    </span>
-    <span class="pre">
-     columns=[{'name':
-    </span>
-    <span class="pre">
-     i,
-    </span>
-    <span class="pre">
-     'id':
-    </span>
-    <span class="pre">
-     i,
-    </span>
-    <span class="pre">
-     'editable':True}
-    </span>
-    <span class="pre">
-     for
-    </span>
-    <span class="pre">
-     i
-    </span>
-    <span class="pre">
-     in
-    </span>
-    <span class="pre">
-     df.columns]
-    </span>
-    <span class="pre">
-     )
-    </span>
-   </code>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -614,13 +518,8 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>9.2 Linking DataTable to a Graph<a class="headerlink" href="#linking-datatable-to-a-graph" title="Permalink to this headline">¶</a></h2>
 <p>Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.</p>
 <ul class="simple">
-<li><p>For each <code class="docutils literal notranslate"><span class="pre">column</span></code> in the DataTable we need to set its <code class="docutils literal notranslate"><span class="pre">editable</span></code> property so our <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> declaration changes from
-<code class="docutils literal notranslate"><span class="pre">dataTable</span> <span class="pre">=</span> <span class="pre">dash_table.DataTable(id=&quot;dataTable1&quot;,</span> <span class="pre">data=df.to_dict('records'),</span> <span class="pre">page_size=10)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataTable</span> <span class="pre">=</span> <span class="pre">dash_table.DataTable()</span></code> becomes more complicated because we need to make each column’s <code class="docutils literal notranslate"><span class="pre">editable</span></code> property <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
 </ul>
-<p>to</p>
-</div>
-<div class="section" id="datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns">
-<h2><code class="docutils literal notranslate"><span class="pre">dataTable</span> <span class="pre">=</span> <span class="pre">dash_table.DataTable(id='dataTable1',</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">data=df.to_dict('records'),</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">columns=[{'name':</span> <span class="pre">i,</span> <span class="pre">'id':</span> <span class="pre">i,</span> <span class="pre">'editable':True}</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">df.columns]</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">)</span></code><a class="headerlink" href="#datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
