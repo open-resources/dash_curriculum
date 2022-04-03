@@ -378,8 +378,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-importnat-datatable-props">
-   9.4 Other importnat DataTable props
+  <a class="reference internal nav-link" href="#other-important-datatable-props">
+   9.4 Other Important DataTable props
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -423,8 +423,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-importnat-datatable-props">
-   9.4 Other importnat DataTable props
+  <a class="reference internal nav-link" href="#other-important-datatable-props">
+   9.4 Other Important DataTable props
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -581,8 +581,38 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="section" id="other-importnat-datatable-props">
-<h2>9.4 Other importnat DataTable props<a class="headerlink" href="#other-importnat-datatable-props" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="other-important-datatable-props">
+<h2>9.4 Other Important DataTable props<a class="headerlink" href="#other-important-datatable-props" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take a look at some useful <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> props:</p>
+<p>First let’s add <code class="docutils literal notranslate"><span class="pre">sorting</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
+<span class="n">dataTable</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
+                                <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
+                                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;editable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+                                <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+                                <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
+                                <span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s add some styling:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
+<span class="n">dataTable</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
+                                <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
+                                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;editable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+                                <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+                                <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
+                                <span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">},</span>
+                                <span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[{</span>
+                                    <span class="s1">&#39;if&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="s1">&#39;odd&#39;</span><span class="p">},</span>
+                                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(248, 248, 248)&#39;</span><span class="p">}],</span>
+                                <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
+                                    <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(230, 230, 230)&#39;</span><span class="p">,</span>
+                                    <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>

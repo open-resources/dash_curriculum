@@ -141,7 +141,43 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-## 9.4 Other importnat DataTable props
+## 9.4 Other Important DataTable props
+
+Let's take a look at some useful `DataTable` props:
+
+First let's add `sorting`:
+```python
+# Create a Dash DataTable
+dataTable = dash_table.DataTable(id='dataTable1', 
+                                data=df.to_dict('records'), 
+                                columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+                                page_size=10,
+                                column_selectable="single",
+                                sort_action='native',
+                                )
+```
+
+Now let's add some styling:
+
+```python
+# Create a Dash DataTable
+dataTable = dash_table.DataTable(id='dataTable1', 
+                                data=df.to_dict('records'), 
+                                columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+                                page_size=10,
+                                column_selectable="single",
+                                sort_action='native',
+                                style_cell={'padding': '5px'},
+                                style_data_conditional=[{
+                                    'if': {'row_index': 'odd'},
+                                    'backgroundColor': 'rgb(248, 248, 248)'}],
+                                style_header={
+                                    'backgroundColor': 'rgb(230, 230, 230)',
+                                    'fontWeight': 'bold'}
+)
+```
+
+
 
 
 ## Summary
