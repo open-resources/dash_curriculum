@@ -1,4 +1,4 @@
-# Chapter 9
+# Chapter 9: DataTables
 
 ## What You Will Learn
 In this chapter you will learn about `Dash DataTables' and how to use them to explore and edit data.
