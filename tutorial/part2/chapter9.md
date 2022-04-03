@@ -36,7 +36,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-We see that this `DataTable` is huge so let's set the `page_size` to limit what's shown on the dashboard:
+We see that this `DataTable` is huge let's filter for only a few countries and limit the rows shown to 10:
 
 ```python
 # Import libraries
@@ -47,6 +47,10 @@ import plotly.express as px
 
 # Import data into Pandas dataframe
 df = px.data.gapminder()
+
+# Filter data with a list of countries we're interested in exploring
+country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
+df = df[df['country'].isin(country_list)]
 
 # Create a Dash DataTable
 dataTable = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'), page_size=10)
