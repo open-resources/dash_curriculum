@@ -36,7 +36,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-We see that this `DataTable` is huge let's filter for only a few countries and limit the rows shown to 10:
+We see that this `DataTable` is huge so let's filter for only a few countries and limit the rows shown to 10:
 
 ```python
 # Import libraries
@@ -74,9 +74,9 @@ if __name__ == '__main__':
 
 ## 9.2 Linking DataTable to a Graph
 
-Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.
+Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.\
 
-- `dataTable = dash_table.DataTable()` becomes more complicated because we need to make each column's `editable` property `true`
+Creating the `DataTable` becomes more complicated because we need to make each column's `editable` and `selectable` property `true`.  We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
 
 ```python
 # Import libraries
@@ -98,7 +98,9 @@ df = df[df['country'].isin(country_list)]
 # Create a Dash DataTable
 dataTable = dash_table.DataTable(id='dataTable1', 
                                 data=df.to_dict('records'), 
-                                columns=[{'name': i, 'id': i, 'editable':True} for i in df.columns]
+                                columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+                                page_size=10,
+                                column_selectable="single",
                                 )
 
 # Create a line graph of life expectancy over time
@@ -123,13 +125,14 @@ app.layout = dbc.Container(
 @app.callback(
     Output('figure1', 'figure'),
     Input('dataTable1', 'data'),
-    Input('dataTable1', 'columns')
+    Input('dataTable1', 'columns'),
+    Input('dataTable1', 'selected_columns')
 )
-def display_output(rows, columns):
+def display_output(rows, columns, sel_col):
     # Create data frame from data table 
     df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
     # Create a new figure to replace previous figure
-    fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', markers=True)
+    fig = px.line(df, x= 'year', y = sel_col[0], color = 'country', markers=True)
 
     return fig
 

@@ -479,7 +479,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>We see that this <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> is huge let’s filter for only a few countries and limit the rows shown to 10:</p>
+<p>We see that this <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> is huge so let’s filter for only a few countries and limit the rows shown to 10:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -516,10 +516,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="linking-datatable-to-a-graph">
 <h2>9.2 Linking DataTable to a Graph<a class="headerlink" href="#linking-datatable-to-a-graph" title="Permalink to this headline">¶</a></h2>
-<p>Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">dataTable</span> <span class="pre">=</span> <span class="pre">dash_table.DataTable()</span></code> becomes more complicated because we need to make each column’s <code class="docutils literal notranslate"><span class="pre">editable</span></code> property <code class="docutils literal notranslate"><span class="pre">true</span></code></p></li>
-</ul>
+<p>Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.\</p>
+<p>Creating the <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> becomes more complicated because we need to make each column’s <code class="docutils literal notranslate"><span class="pre">editable</span></code> and <code class="docutils literal notranslate"><span class="pre">selectable</span></code> property <code class="docutils literal notranslate"><span class="pre">true</span></code>.  We also add a <code class="docutils literal notranslate"><span class="pre">Callback</span></code> function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -539,7 +537,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Create a Dash DataTable</span>
 <span class="n">dataTable</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
                                 <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
-                                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;editable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+                                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;editable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+                                <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                                <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
                                 <span class="p">)</span>
 
 <span class="c1"># Create a line graph of life expectancy over time</span>
@@ -564,13 +564,14 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
     <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">sel_col</span><span class="p">):</span>
     <span class="c1"># Create data frame from data table </span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
     <span class="c1"># Create a new figure to replace previous figure</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sel_col</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">fig</span>
 
