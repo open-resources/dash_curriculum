@@ -794,36 +794,6 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-8-data-visualization">
 <h1>Chapter 8: Data Visualization<a class="headerlink" href="#chapter-8-data-visualization" title="Permalink to this headline">¶</a></h1>
-<p><em><strong>…some initial thoughts…</strong></em></p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p><strong>Chapter 7 should(?) include the following:</strong></p>
-<ul class="simple">
-<li><p>data formats: long, wide and mixed</p></li>
-<li><p>Plotly express accepts all formats, but Long (tidy) format often best</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code> at the very least (wide to long)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code> (long to perhaps…</p></li>
-<li><p>subsetting dataframes, of course…</p></li>
-</ul>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>With quick transitions between lines of code, code snippets, text and figures, should we agree upon a special writing style in this regard?</p>
-</div>
-<p><em><strong>Style example 1:</strong></em></p>
-<p>With the following addition, you’ll get the result i the figure below:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="https://i.stack.imgur.com/N1JSd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1JSd.png" /></a></p>
-<p><em><strong>Style example 2:</strong></em></p>
-<p>Just add</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>and you’ll get:</p>
-<p><a class="reference external" href="https://i.stack.imgur.com/N1JSd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1JSd.png" /></a></p>
-<p><em><strong>…chapter content starts here…</strong></em></p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning intentions</p>
 <ul class="simple">
@@ -852,7 +822,63 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="line">
 <h2>8.4.1 Line<a class="headerlink" href="#line" title="Permalink to this headline">¶</a></h2>
-<p>Let’s take a look at how <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> used on <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> will let you illustrate several dimensons of the dataset through attributes like <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code>.</p>
+<p>As a minimal example, consider life expectancies in Canada in a period from 1962 to 2007:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/fu8NX.png"><img alt="enter image description here" src="https://i.stack.imgur.com/fu8NX.png" /></a></p>
+<p>This figure is produced using only these lines of code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># sample data </span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># data subset 1</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">])]</span>
+
+<span class="c1"># 8.1.1 line chart</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+                  <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX Line plot&quot;</span><span class="p">,</span>
+                  <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span>
+                  <span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Let’s look at the arguments one by one.</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df</span></code> is a reference to the imported dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x='year'</span></code> defines the <code class="docutils literal notranslate"><span class="pre">year</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to appear on the x-axis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y='lifeExp</span></code> defines the <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to appear on the y-axis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span> <span class="pre">=</span> <span class="pre">&quot;PX</span> <span class="pre">Line</span> <span class="pre">plot&quot;</span></code> is optional, and creates a title in the top left corner.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">=</span> <span class="pre">'plotly_white'</span></code> is also optional, and creates a minimal figure layout with a white backround.</p></li>
+</ol>
+<p>So far so good, but the dataset includes data for a lot more countries. And the way you add data from another country can seem a bit strange at first. But it’s also an important part of what makes Plotly Express so powerful and flexible. The following figure is produced by the snippet below where we’ve included some other countries in the dataset with <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df[df['country'].isin(['Canada',</span>&#160; <span class="pre">'Norway',</span> <span class="pre">'Germany'])]</span></code></p>
+<p><a class="reference external" href="https://i.stack.imgur.com/GpgGe.png"><img alt="enter image description here" src="https://i.stack.imgur.com/GpgGe.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># sample dataset from plotly express</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># subset 1</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span>  <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
+
+<span class="c1"># 8.1.1 line chart</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span> 
+                  <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX line plot&quot;</span><span class="p">,</span>
+                  <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span>
+                  <span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In addition to the already existing arguments, we’ve added <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code>. And this is exactly what you need to make a sensible addition of lines to a larger set of countries. What happens under the hood here, is that Plotly Express assigns a color from a certain color cycle to each unique value in the <code class="docutils literal notranslate"><span class="pre">country</span></code> column in df.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Without the color argument, an assignment of the y-axis to a multivariable column will create <a class="reference external" href="https://i.stack.imgur.com/jn4rl.gif">a mess off a chart where all lines are blue</a>, and the end-point of one line is connected to the starting point of another. How this appears is likely to be prone to changes for future versions of Plotly Express.</p>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code> initialized, a nice legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/jn4rl.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/jn4rl.gif" /></a></p>
+<p>Both axes also have interactive functionalities that dpend on where you click on the axes. If you, for example, grab the middle of the <code class="docutils literal notranslate"><span class="pre">y-axis</span></code>, the complete axis will slide when you move the mouse. If you grab the top of the axis, all other than the minumum value will change, and vice versa.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/1CTmL.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/1CTmL.gif" /></a></p>
 </div>
 <div class="section" id="scatter">
 <h2>8.4.2 Scatter<a class="headerlink" href="#scatter" title="Permalink to this headline">¶</a></h2>
@@ -915,6 +941,35 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="tex2jax_ignore mathjax_ignore section" id="out-takes-from-round2-20220401">
 <h1>OUT-TAKES from round2 20220401<a class="headerlink" href="#out-takes-from-round2-20220401" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
+<p><em><strong>…some initial thoughts…</strong></em></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Chapter 7 should(?) include the following:</strong></p>
+<ul class="simple">
+<li><p>data formats: long, wide and mixed</p></li>
+<li><p>Plotly express accepts all formats, but Long (tidy) format often best</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code> at the very least (wide to long)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code> (long to perhaps…</p></li>
+<li><p>subsetting dataframes, of course…</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>With quick transitions between lines of code, code snippets, text and figures, should we agree upon a special writing style in this regard?</p>
+</div>
+<p><em><strong>Style example 1:</strong></em></p>
+<p>With the following addition, you’ll get the result i the figure below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://i.stack.imgur.com/N1JSd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1JSd.png" /></a></p>
+<p><em><strong>Style example 2:</strong></em></p>
+<p>Just add</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and you’ll get:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/N1JSd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1JSd.png" /></a></p>
 <div class="section" id="line-chart">
 <h2>8.2.1 Line chart<a class="headerlink" href="#line-chart" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -967,7 +1022,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><a class="reference external" href="https://i.stack.imgur.com/MHR22.png"><img alt="enter image description here" src="https://i.stack.imgur.com/MHR22.png" /></a></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can retrieve regression results with <code class="docutils literal notranslate"><span class="pre">px.get_trendline_results(fig)</span></code> and include them in your figure as explained in <a class="reference external" href="https://i.stack.imgur.com/MHR22.png">Fitting multiple lines and retrieving the model parameters</a></p>
+<p>You can retrieve regression results with <code class="docutils literal notranslate"><span class="pre">px.get_trendline_results(fig)</span></code> and include them in your figure as explained in <a class="reference external" href="https://i.stack.imgur.com/MYpK9.png">Fitting multiple lines and retrieving the model parameters</a></p>
 </div>
 </div>
 </div>
