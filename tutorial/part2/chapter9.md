@@ -16,8 +16,40 @@ import plotly.express as px
 # Import data into Pandas dataframe
 df = px.data.gapminder()
 
-# Create a Dash DataTable, limit the page size to 10 because this data set is huge
+# Create a Dash DataTable
 dataTable = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'))
+
+# Create the Dash application with Bootstrap CSS stylesheet
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create the app layout
+app.layout = dbc.Container(
+    dbc.Row([
+        dbc.Col([
+            dataTable
+        ])
+    ])
+)
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+```
+
+We see that this `DataTable` is huge so let's set the `page_size` to limit what's shown on the dashboard:
+
+```python
+# Import libraries
+from dash import Dash, dash_table
+import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
+
+# Import data into Pandas dataframe
+df = px.data.gapminder()
+
+# Create a Dash DataTable
+dataTable = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'), page_size=10)
 
 # Create the Dash application with Bootstrap CSS stylesheet
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
