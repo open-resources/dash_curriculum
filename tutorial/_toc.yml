@@ -40,12 +40,13 @@ parts:
   - file: part2/chapter7
   - file: part2/chapter3
   - file: part2/chapter8
+  - file: part2/chapter9
 
 - caption: Part 3. Polishing your Dash application
   chapters:
   - file: part3/summary
     title: Introduction
-  - file: part3/chapter9
+
   - file: part3/chapter10
   - file: part3/chapter11
   - file: part3/chapter12
