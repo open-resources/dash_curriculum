@@ -373,13 +373,56 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linking-datatable-to-graph">
-   9.2 Linking dataTable to graph
+  <a class="reference internal nav-link" href="#linking-datatable-to-a-graph">
+   9.2 Linking DataTable to a Graph
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#editing-the-datatable">
-   9.3 Editing the DataTable
+  <a class="reference internal nav-link" href="#datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     dataTable
+    </span>
+    <span class="pre">
+     =
+    </span>
+    <span class="pre">
+     dash_table.DataTable(id='dataTable1',
+    </span>
+    <span class="pre">
+     data=df.to_dict('records'),
+    </span>
+    <span class="pre">
+     columns=[{'name':
+    </span>
+    <span class="pre">
+     i,
+    </span>
+    <span class="pre">
+     'id':
+    </span>
+    <span class="pre">
+     i,
+    </span>
+    <span class="pre">
+     'editable':True}
+    </span>
+    <span class="pre">
+     for
+    </span>
+    <span class="pre">
+     i
+    </span>
+    <span class="pre">
+     in
+    </span>
+    <span class="pre">
+     df.columns]
+    </span>
+    <span class="pre">
+     )
+    </span>
+   </code>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -423,13 +466,56 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#linking-datatable-to-graph">
-   9.2 Linking dataTable to graph
+  <a class="reference internal nav-link" href="#linking-datatable-to-a-graph">
+   9.2 Linking DataTable to a Graph
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#editing-the-datatable">
-   9.3 Editing the DataTable
+  <a class="reference internal nav-link" href="#datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     dataTable
+    </span>
+    <span class="pre">
+     =
+    </span>
+    <span class="pre">
+     dash_table.DataTable(id='dataTable1',
+    </span>
+    <span class="pre">
+     data=df.to_dict('records'),
+    </span>
+    <span class="pre">
+     columns=[{'name':
+    </span>
+    <span class="pre">
+     i,
+    </span>
+    <span class="pre">
+     'id':
+    </span>
+    <span class="pre">
+     i,
+    </span>
+    <span class="pre">
+     'editable':True}
+    </span>
+    <span class="pre">
+     for
+    </span>
+    <span class="pre">
+     i
+    </span>
+    <span class="pre">
+     in
+    </span>
+    <span class="pre">
+     df.columns]
+    </span>
+    <span class="pre">
+     )
+    </span>
+   </code>
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -524,11 +610,76 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="section" id="linking-datatable-to-graph">
-<h2>9.2 Linking dataTable to graph<a class="headerlink" href="#linking-datatable-to-graph" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="linking-datatable-to-a-graph">
+<h2>9.2 Linking DataTable to a Graph<a class="headerlink" href="#linking-datatable-to-a-graph" title="Permalink to this headline">¶</a></h2>
+<p>Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.</p>
+<ul class="simple">
+<li><p>For each <code class="docutils literal notranslate"><span class="pre">column</span></code> in the DataTable we need to set its <code class="docutils literal notranslate"><span class="pre">editable</span></code> property so our <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> declaration changes from
+<code class="docutils literal notranslate"><span class="pre">dataTable</span> <span class="pre">=</span> <span class="pre">dash_table.DataTable(id=&quot;dataTable1&quot;,</span> <span class="pre">data=df.to_dict('records'),</span> <span class="pre">page_size=10)</span></code></p></li>
+</ul>
+<p>to</p>
 </div>
-<div class="section" id="editing-the-datatable">
-<h2>9.3 Editing the DataTable<a class="headerlink" href="#editing-the-datatable" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns">
+<h2><code class="docutils literal notranslate"><span class="pre">dataTable</span> <span class="pre">=</span> <span class="pre">dash_table.DataTable(id='dataTable1',</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">data=df.to_dict('records'),</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">columns=[{'name':</span> <span class="pre">i,</span> <span class="pre">'id':</span> <span class="pre">i,</span> <span class="pre">'editable':True}</span> <span class="pre">for</span> <span class="pre">i</span> <span class="pre">in</span> <span class="pre">df.columns]</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">)</span></code><a class="headerlink" href="#datatable-dash-table-datatable-id-datatable1-data-df-to-dict-records-columns-name-i-id-i-editable-true-for-i-in-df-columns" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+
+<span class="c1"># Import data into Pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
+<span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Create a Dash DataTable</span>
+<span class="n">dataTable</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
+                                <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
+                                <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;editable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>
+                                <span class="p">)</span>
+
+<span class="c1"># Create a line graph of life expectancy over time</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create the app layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">graph1</span><span class="p">,</span>
+            <span class="n">dataTable</span><span class="p">,</span>
+        <span class="p">])</span>
+    <span class="p">])</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Link DataTable edits to the plot with a callback function</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+    <span class="c1"># Create data frame from data table </span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
+    <span class="c1"># Create a new figure to replace previous figure</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Launch the app server</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="other-importnat-datatable-props">
 <h2>9.4 Other importnat DataTable props<a class="headerlink" href="#other-importnat-datatable-props" title="Permalink to this headline">¶</a></h2>
