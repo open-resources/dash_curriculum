@@ -107,29 +107,6 @@ Both axes also have interactive functionalities that depend on where you click o
 [![enter image description here][16]][16]
 
 
-## 8.2.4 Scatter Plot
-
-Next to line charts, a scatter plots is arguably the second most used chart type out in the wild. The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the `px.line()` call with `px.scatter()` and otherwise use the same arguments.
-
-[![enter image description here][17]][17]
-
-```python
-import plotly.express as px
-import plotly.graph_objects as go
-import pandas as pd
-
-# sample dataset from plotly express
-df = px.data.gapminder()
-
-# subset 2
-df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]
-
-fig = px.scatter(df, x= 'year', y = 'lifeExp', color = 'country', 
-                     title = 'PX scatter plot',
-                     template = 'plotly_white')
-fig.show()
-```
-
 ## 8.2.5 Multidimensional data with lines and markers
 
 You can combine lines *and* markers in `px.line()` to illustrate multiple dimensions of your dataset through the addition of arguments like `symbol` and `width`. Below we've included `symbol = 'continent'` to our previous `px.line()` call. This works much like `color = 'country'`, but this time, we're applying a symbol sequence to the unique values in `df['continent']` which are `'Americas'` and `'Europe'`. The symbols assigned are `['Circle', 'Diamond']`:
@@ -152,13 +129,39 @@ fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'contine
 fig.show()
 ```
 
-## 8.2.6 Animated Scatter Charts
+## 8.2.6 Scatter Charts
 
-As briefly mentioned, `width` is another argument that can illustrate dimensions of a dataeset. Another is `pattern` (?). But where things get really wild is when you apply multiple settings like `animation_frame="year"`, `animation_group="country"` and `size="pop"`. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries across several continents for a given time period.
+Next to line charts, a scatter plots is arguably the second most used chart type out in the wild. The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the `px.line()` call with `px.scatter()` and otherwise use the same arguments.
 
+
+[![enter image description here][17]][17]
+
+```python
+import plotly.express as px
+import plotly.graph_objects as go
+import pandas as pd
+
+# sample dataset from plotly express
+df = px.data.gapminder()
+
+# subset 2
+df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]
+
+fig = px.scatter(df, x= 'year', y = 'lifeExp', color = 'country', 
+                     title = 'PX scatter plot',
+                     template = 'plotly_white')
+fig.show()
+```
+
+## 8.2.7 Animated Scatter Charts
+
+As briefly mentioned, `line_dash` is another argument that can illustrate dimensions of a dataeset. But where things get really interesting is when you apply multiple settings like `animation_frame="year"`, `animation_group="country"` and `size="pop"`. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents for a given time period.
+
+```python
 import plotly.express as px
 df = px.data.gapminder()
 px.scatter(df, x="gdpPercap", y="lifeExp", animation_frame="year", animation_group="country", size="pop", color="continent", hover_name="country", log_x=True, size_max=55, range_x=[100,100000], range_y=[25,90])
+```
 
 [![enter image description here][19]][19]
 
