@@ -17,7 +17,80 @@ You might want to have a graph that should be linked to more than one component,
 In addition to a much cleaner and shorter code, note that assigning two different callbacks the same component as an output argument is just not allowed by dash.
 ```
 
+Let us see multiple inputs in action. We take the final code from chapter 8 and add the markdown, some radio items and a slider, where both, the radio items as well as the slider, will affect the graph.
 
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+import plotly.express as px
+
+# Setup data
+df = px.data.gapminder()
+df = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='My First app')
+radio = dcc.RadioItems(id='our-radio', options=['line', 'scatter'], value='line')
+slider = dcc.Slider(
+    id='our-slider',
+    min=df['year'].min(),
+    max=df['year'].max()-5,
+    value=df['year'].min(),
+    step=5,
+    marks={str(year): str(year) for year in df['year'].unique()}
+)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(dbc.Col(radio)),
+        dbc.Row(dbc.Col(dcc.Graph(id='our-figure'))),
+        dbc.Row(dbc.Col(slider)),
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-figure', component_property='figure'),
+    Input(component_id='our-radio', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_graph(value_radio, value_slider):
+    df_sub = df[df['year'] >= value_slider]
+
+    if value_radio == 'scatter':
+        fig = px.scatter(
+            df_sub,
+            x='year',
+            y='lifeExp',
+            color='country',
+            symbol='continent',
+            title='PX {} plot'.format(value_radio),
+            template='plotly_white'
+        )
+    else:
+        fig = px.line(
+            df_sub,
+            x='year',
+            y='lifeExp',
+            color='country',
+            symbol='continent',
+            title='PX {} plot'.format(value_radio),
+            template='plotly_white'
+        )
+    return fig
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
 
 ## States
 
