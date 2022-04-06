@@ -103,12 +103,12 @@ df = df[df['country'].isin(country_list)]
 
 # Create a Dash DataTable
 data_table = dash_table.DataTable(
-                                id='dataTable1', 
-                                data=df.to_dict('records'), 
-                                columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
-                                page_size=10,
-                                column_selectable="single",
-                                )
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        )
 
 # Create a line graph of life expectancy over time
 fig = px.line(df, x='year', y='lifeExp', color='country', markers=True)
@@ -158,13 +158,13 @@ First let's add `sorting`:
 ```python
 # Create a Dash DataTable
 data_table = dash_table.DataTable(
-                                id='dataTable1', 
-                                data=df.to_dict('records'), 
-                                columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
-                                page_size=10,
-                                column_selectable="single",
-                                sort_action='native',
-                                )
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        sort_action='native',
+        )
 ```
 **TODO: gif of sorting**
 
@@ -173,22 +173,22 @@ Now let's add some `styling`:
 ```python
 # Create a Dash DataTable
 data_table = dash_table.DataTable(
-                                id='dataTable1', 
-                                data=df.to_dict('records'), 
-                                columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
-                                page_size=10,
-                                column_selectable="single",
-                                sort_action='native',
-                                style_cell={'padding': '5px'},
-                                style_data_conditional=[
-                                    {
-                                    'if': {'row_index': 'odd'},
-                                    'backgroundColor': 'rgb(204, 230, 255)'},
-                                    ],
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        sort_action='native',
+        style_cell={'padding': '5px'},
+        style_data_conditional=[
+            {
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(204, 230, 255)'},
+            ],
 
-                                style_header={
-                                    'backgroundColor': 'rgb(230, 230, 230)',
-                                    'fontWeight': 'bold'}
+        style_header={
+            'backgroundColor': 'rgb(230, 230, 230)',
+            'fontWeight': 'bold'}
 )
 ```
 
