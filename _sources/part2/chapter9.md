@@ -1,7 +1,7 @@
 # Chapter 9: DataTables
 
 ## What You Will Learn
-In this chapter you will learn about `Dash DataTables' and how to use them to explore and edit data.
+In this chapter you will learn about `Dash DataTables' and how to use them to explore and edit data.  **DataTables** are useful for showing raw data and allows for editing the data directly.
 
 ## 9.1 Intro to DataTables
 `DataTables` are an [interactive table component designed for viewing, editing, and exploring large datasets](https://dash.plotly.com/datatable).  Let's create a basic `DataTable` with the [gapminder dataset](https://www.gapminder.org/data/).
@@ -17,7 +17,7 @@ import plotly.express as px
 df = px.data.gapminder()
 
 # Create a Dash DataTable
-dataTable = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'))
+data_table = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'))
 
 # Create the Dash application with Bootstrap CSS stylesheet
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -26,7 +26,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     dbc.Row([
         dbc.Col([
-            dataTable
+            data_table
         ])
     ])
 )
@@ -55,7 +55,7 @@ country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
 df = df[df['country'].isin(country_list)]
 
 # Create a Dash DataTable
-dataTable = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'), page_size=10)
+data_table = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'), page_size=10)
 
 # Create the Dash application with Bootstrap CSS stylesheet
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -64,7 +64,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     dbc.Row([
         dbc.Col([
-            dataTable
+            data_table
         ])
     ])
 )
@@ -102,7 +102,8 @@ country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
 df = df[df['country'].isin(country_list)]
 
 # Create a Dash DataTable
-dataTable = dash_table.DataTable(id='dataTable1', 
+data_table = dash_table.DataTable(
+                                id='dataTable1', 
                                 data=df.to_dict('records'), 
                                 columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
                                 page_size=10,
@@ -110,7 +111,7 @@ dataTable = dash_table.DataTable(id='dataTable1',
                                 )
 
 # Create a line graph of life expectancy over time
-fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', markers=True)
+fig = px.line(df, x='year', y='lifeExp', color='country', markers=True)
 graph1 = dcc.Graph(id='figure1', figure=fig)
 
 # Create the Dash application with Bootstrap CSS stylesheet
@@ -121,7 +122,7 @@ app.layout = dbc.Container(
     dbc.Row([
         dbc.Col([
             graph1,
-            dataTable,
+            data_table,
         ])
     ])
 )
@@ -138,7 +139,7 @@ def display_output(rows, columns, sel_col):
     # Create data frame from data table 
     df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
     # Create a new figure to replace previous figure
-    fig = px.line(df, x= 'year', y = sel_col[0], color = 'country', markers=True)
+    fig = px.line(df, x='year', y=sel_col[0], color='country', markers=True)
 
     return fig
 
@@ -156,7 +157,8 @@ Let's take a look at some useful `DataTable` props:
 First let's add `sorting`:
 ```python
 # Create a Dash DataTable
-dataTable = dash_table.DataTable(id='dataTable1', 
+data_table = dash_table.DataTable(
+                                id='dataTable1', 
                                 data=df.to_dict('records'), 
                                 columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
                                 page_size=10,
@@ -170,7 +172,8 @@ Now let's add some `styling`:
 
 ```python
 # Create a Dash DataTable
-dataTable = dash_table.DataTable(id='dataTable1', 
+data_table = dash_table.DataTable(
+                                id='dataTable1', 
                                 data=df.to_dict('records'), 
                                 columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
                                 page_size=10,
