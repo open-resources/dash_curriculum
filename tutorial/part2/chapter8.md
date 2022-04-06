@@ -153,7 +153,7 @@ fig = px.scatter(df, x= 'year', y = 'lifeExp', color = 'country',
 fig.show()
 ```
 
-## 8.2.7 Animated Scatter Charts
+## 8.2.7 Animated Scatter / Bubble charts
 
 `line_dash` is another argument that can illustrate dimensions of a dataeset. But where things get really interesting is when you apply multiple settings like `animation_frame="year"`, `animation_group="country"` and `size="pop"`. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents for a given time period.
 
@@ -165,21 +165,87 @@ px.scatter(df, x="gdpPercap", y="lifeExp", animation_frame="year", animation_gro
 
 [![enter image description here][19]][19]
 
-```{tip}}
-The snippet above introduces several new methods of the `fig` object. We won't go more into details here, but you can use the closer with `help(px.scatter)`
+```{tip}
+The snippet above introduces several new methods of the `fig` object. We won't go more into details here, but you can use the closer with `help(px.scatter)` and in the [docs](https://plotly.com/python/px-arguments/)
 
 ```
-
 
 ## 8.3 A variety of Plotly Express figures
 
 Now that you've got a sense of the powers hidden in all plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:
 
+
+```{admonition} Main principles of PX
 1. Defining a dataset `df` let's you reference all available variables in the function arguments
 2. You can illustrate multiple dimensions of the dataset through variables like `color`, `symbol`.
 3. You can create animations through arguments like `animation_frame` and `animation_group`
+```
 
-One thing all following chart types have in common, is that we're using the very same dataset and that no or very little data wrangling is required.
+One thing all following chart types have in common, is that we're using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that *are* used are only there because some chart types require a specific data format or simply look better with a smaller subset of the gapminder dataset.
+
+## 8.3.X Stacked bar chart
+
+```python
+fig = px.bar(df, x= 'year', y = 'pop', color = 'country',
+                 
+                     title = 'PX scatter plot',
+                     template = 'plotly_white')
+fig.show()
+```
+
+## 8.3.X Grouped bar chart
+
+```python
+fig = px.bar(df, x= 'year', y = 'pop', color = 'country',
+                     barmode = 'group' ,
+                     title = "PX Bar plot with barmode = 'group'",
+                     template = 'plotly_white')
+fig.show()
+```
+
+## 8.3.X Map
+
+```python
+fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
+                    animation_frame='year', color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
+fig.show()
+```
+
+## 8.3.X Treemap
+
+```python
+import plotly.express as px
+import numpy as np
+df = px.data.gapminder().query("year == 2007")
+fig = px.treemap(df, path=[px.Constant('world'), 'continent', 'country'], values='pop',
+                  color='lifeExp', hover_data=['iso_alpha'])
+fig.show()
+```
+
+## 8.3.X Facet / Trellis plots
+
+This section uses a new argument that splits a dataset into several subplots `facet_col` thus in effect creating several subplots for the same dataset.
+
+```python
+import plotly.express as px
+df = px.data.gapminder()
+fig = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop',
+                facet_col='year', facet_col_wrap=4)
+fig.show()
+```
+# 8.3.X Heatmaps
+
+```python
+import plotly.express as px
+df = px.data.gapminder()
+
+df = df[df['gdpPercap']<60000]
+
+fig = px.density_heatmap(df, x="gdpPercap", y="lifeExp",
+                        nbinsx=20, nbinsy=20, color_continuous_scale="Viridis")
+fig.show()
+```
+
 
 ##############################################
 
