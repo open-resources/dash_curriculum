@@ -36,6 +36,8 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
+**TODO: picture of datatable**
+
 We see that this `DataTable` is huge so let's filter for only a few countries and use the `page_size` property of `DataTables` to limit the rows shown to 10:
 
 ```python
@@ -71,6 +73,8 @@ app.layout = dbc.Container(
 if __name__ == '__main__':
     app.run_server()
 ```
+
+**TODO: picture of filtered datatable**
 
 ## 9.2 Linking DataTable to a Graph
 
@@ -143,6 +147,8 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
+**TODO: picture of datatable and graph**
+
 ## 9.3 Other Important DataTable props
 
 Let's take a look at some useful `DataTable` props:
@@ -158,6 +164,7 @@ dataTable = dash_table.DataTable(id='dataTable1',
                                 sort_action='native',
                                 )
 ```
+**TODO: gif of sorting**
 
 Now let's add some `styling`:
 
@@ -181,6 +188,8 @@ dataTable = dash_table.DataTable(id='dataTable1',
                                     'fontWeight': 'bold'}
 )
 ```
+
+**TODO: picture of datatable**
 
 ## Summary
 In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about **Advanced Callbacks**.
