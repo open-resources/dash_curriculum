@@ -36,7 +36,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-We see that this `DataTable` is huge so let's filter for only a few countries and limit the rows shown to 10:
+We see that this `DataTable` is huge so let's filter for only a few countries and use the `page_size` property of `DataTables` to limit the rows shown to 10:
 
 ```python
 # Import libraries
@@ -74,9 +74,11 @@ if __name__ == '__main__':
 
 ## 9.2 Linking DataTable to a Graph
 
-Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.\
+Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.
 
-Creating the `DataTable` becomes more complicated because we need to make each column's `editable` and `selectable` property `true`.  We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
+Creating the `DataTable` becomes more complicated because we need to make each column's `editable` and `selectable` property `true`.  We'll modify the `columns` and `columns_selectable` properties of the DataFrame.
+
+We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
 
 ```python
 # Import libraries
