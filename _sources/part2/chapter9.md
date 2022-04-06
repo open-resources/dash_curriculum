@@ -108,7 +108,7 @@ data_table = dash_table.DataTable(
         columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
         page_size=10,
         column_selectable="single",
-        )
+)
 
 # Create a line graph of life expectancy over time
 fig = px.line(df, x='year', y='lifeExp', color='country', markers=True)
@@ -164,7 +164,7 @@ data_table = dash_table.DataTable(
         page_size=10,
         column_selectable="single",
         sort_action='native',
-        )
+)
 ```
 **TODO: gif of sorting**
 
