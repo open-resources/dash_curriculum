@@ -425,8 +425,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#animated-scatter-charts">
-     8.2.7 Animated Scatter Charts
+    <a class="reference internal nav-link" href="#animated-scatter-bubble-charts">
+     8.2.7 Animated Scatter / Bubble charts
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -434,6 +434,38 @@ const thebe_selector_output = ".output, .cell_output"
      8.3 A variety of Plotly Express figures
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-stacked-bar-chart">
+     8.3.X Stacked bar chart
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-grouped-bar-chart">
+     8.3.X Grouped bar chart
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-map">
+     8.3.X Map
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-treemap">
+     8.3.X Treemap
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-facet-trellis-plots">
+     8.3.X Facet / Trellis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#x-heatmaps">
+   8.3.X Heatmaps
+  </a>
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bar">
      8.3.1 Bar
@@ -662,8 +694,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#animated-scatter-charts">
-     8.2.7 Animated Scatter Charts
+    <a class="reference internal nav-link" href="#animated-scatter-bubble-charts">
+     8.2.7 Animated Scatter / Bubble charts
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -671,6 +703,38 @@ const thebe_selector_output = ".output, .cell_output"
      8.3 A variety of Plotly Express figures
     </a>
    </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-stacked-bar-chart">
+     8.3.X Stacked bar chart
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-grouped-bar-chart">
+     8.3.X Grouped bar chart
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-map">
+     8.3.X Map
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-treemap">
+     8.3.X Treemap
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-facet-trellis-plots">
+     8.3.X Facet / Trellis plots
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#x-heatmaps">
+   8.3.X Heatmaps
+  </a>
+  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#bar">
      8.3.1 Bar
@@ -974,8 +1038,8 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </pre></div>
 </div>
 </div>
-<div class="section" id="animated-scatter-charts">
-<h2>8.2.7 Animated Scatter Charts<a class="headerlink" href="#animated-scatter-charts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="animated-scatter-bubble-charts">
+<h2>8.2.7 Animated Scatter / Bubble charts<a class="headerlink" href="#animated-scatter-bubble-charts" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">line_dash</span></code> is another argument that can illustrate dimensions of a dataeset. But where things get really interesting is when you apply multiple settings like <code class="docutils literal notranslate"><span class="pre">animation_frame=&quot;year&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">animation_group=&quot;country&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">size=&quot;pop&quot;</span></code>. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents for a given time period.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -983,18 +1047,88 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/jvdM4.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/jvdM4.gif" /></a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The snippet above introduces several new methods of the <code class="docutils literal notranslate"><span class="pre">fig</span></code> object. We won’t go more into details here, but you can use the closer with <code class="docutils literal notranslate"><span class="pre">help(px.scatter)</span></code> and in the <a class="reference external" href="https://plotly.com/python/px-arguments/">docs</a></p>
+</div>
 </div>
 <div class="section" id="a-variety-of-plotly-express-figures">
 <h2>8.3 A variety of Plotly Express figures<a class="headerlink" href="#a-variety-of-plotly-express-figures" title="Permalink to this headline">¶</a></h2>
 <p>Now that you’ve got a sense of the powers hidden in all plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:</p>
+<div class="admonition-main-principles-of-px admonition">
+<p class="admonition-title">Main principles of PX</p>
 <ol class="simple">
 <li><p>Defining a dataset <code class="docutils literal notranslate"><span class="pre">df</span></code> let’s you reference all available variables in the function arguments</p></li>
 <li><p>You can illustrate multiple dimensions of the dataset through variables like <code class="docutils literal notranslate"><span class="pre">color</span></code>, <code class="docutils literal notranslate"><span class="pre">symbol</span></code>.</p></li>
 <li><p>You can create animations through arguments like <code class="docutils literal notranslate"><span class="pre">animation_frame</span></code> and <code class="docutils literal notranslate"><span class="pre">animation_group</span></code></p></li>
 </ol>
-<p>One thing all following chart types have in common, is that we’re using the very same dataset and that no or very little data wrangling is required.</p>
-<p>##############################################</p>
 </div>
+<p>One thing all following chart types have in common, is that we’re using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that <em>are</em> used are only there because some chart types require a specific data format or simply look better with a smaller subset of the gapminder dataset.</p>
+</div>
+<div class="section" id="x-stacked-bar-chart">
+<h2>8.3.X Stacked bar chart<a class="headerlink" href="#x-stacked-bar-chart" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+                 
+                     <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;PX scatter plot&#39;</span><span class="p">,</span>
+                     <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x-grouped-bar-chart">
+<h2>8.3.X Grouped bar chart<a class="headerlink" href="#x-grouped-bar-chart" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+                     <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;group&#39;</span> <span class="p">,</span>
+                     <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX Bar plot with barmode = &#39;group&#39;&quot;</span><span class="p">,</span>
+                     <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x-map">
+<h2>8.3.X Map<a class="headerlink" href="#x-map" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">gapminder</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> 
+                    <span class="n">animation_frame</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Plasma</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;natural earth&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x-treemap">
+<h2>8.3.X Treemap<a class="headerlink" href="#x-treemap" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year == 2007&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">treemap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="p">[</span><span class="n">px</span><span class="o">.</span><span class="n">Constant</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">),</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">hover_data</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;iso_alpha&#39;</span><span class="p">])</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="x-facet-trellis-plots">
+<h2>8.3.X Facet / Trellis plots<a class="headerlink" href="#x-facet-trellis-plots" title="Permalink to this headline">¶</a></h2>
+<p>This section uses a new argument that splits a dataset into several subplots <code class="docutils literal notranslate"><span class="pre">facet_col</span></code> thus in effect creating several subplots for the same dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
+                <span class="n">facet_col</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">facet_col_wrap</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="x-heatmaps">
+<h1>8.3.X Heatmaps<a class="headerlink" href="#x-heatmaps" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">60000</span><span class="p">]</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">density_heatmap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+                        <span class="n">nbinsx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">nbinsy</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>##############################################</p>
 <div class="section" id="bar">
 <h2>8.3.1 Bar<a class="headerlink" href="#bar" title="Permalink to this headline">¶</a></h2>
 </div>
