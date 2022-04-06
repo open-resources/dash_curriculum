@@ -1,10 +1,10 @@
 # Chapter 9: DataTables
 
 ## What You Will Learn
-In this chapter you will learn about `Dash DataTables' and how to use them to explore and edit data.  **DataTables** are useful for showing raw data and allows for editing the data directly.
+In this chapter you will learn about `Dash DataTables` and how to use them to explore and edit data.
 
 ## 9.1 Intro to DataTables
-`DataTables` are an [interactive table component designed for viewing, editing, and exploring large datasets](https://dash.plotly.com/datatable).  Let's create a basic `DataTable` with the [gapminder dataset](https://www.gapminder.org/data/).
+`DataTables` are an interactive table designed for viewing, editing, and exploring large datasets.  Let's create a basic `DataTable` with the [gapminder dataset](https://www.gapminder.org/data/).
 
 ```python
 # Import libraries
@@ -38,7 +38,7 @@ if __name__ == '__main__':
 
 **TODO: picture of datatable**
 
-We see that this `DataTable` is huge so let's filter for only a few countries and use the `page_size` property of `DataTables` to limit the rows shown to 10:
+We see that this dataset is huge so let's use the `page_size` property of `DataTables` to limit the rows shown to 10.  We'll also filter the dataset to only look at a few countries:
 
 ```python
 # Import libraries
@@ -149,6 +149,105 @@ if __name__ == '__main__':
 ```
 
 **TODO: picture of datatable and graph**
+
+Let's explore the data further using a `Histogram` that we'll animate to show population change over time:
+
+```python
+# Import libraries
+from dash import Dash, dash_table
+import dash_bootstrap_components as dbc
+import dash_core_components as dcc
+from dash.dependencies import Input, Output, State
+import pandas as pd
+import plotly.express as px
+
+
+# Import data into Pandas dataframe
+df = px.data.gapminder()
+
+# Filter data with a list of countries we're interested in exploring
+country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
+df = df[df['country'].isin(country_list)]
+
+# Create a Dash DataTable
+data_table = dash_table.DataTable(
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+)
+
+# Create a line graph of life expectancy over time
+fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
+graph1 = dcc.Graph(id='figure1', figure=fig1)
+# Create an animated histogram of population growth
+fig_bar = px.histogram(df, x="country", y="pop", color="country",
+                 animation_frame="year", animation_group="country", 
+                 range_y=[0,200000000],
+)
+graph2 = dcc.Graph(id='figure2', figure=fig_bar)
+
+
+# Create the Dash application with Bootstrap CSS stylesheet
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create the app layout
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            graph1,
+        ]),
+        dbc.Col([
+            graph2,
+        ]),
+    ]),
+    dbc.Row([
+        dbc.Col([
+            data_table,
+        ]),
+    ]),  
+])
+
+
+# Link DataTable edits to the plot with a callback function
+@app.callback(
+    Output('figure1', 'figure'),
+    Input('dataTable1', 'data'),
+    Input('dataTable1', 'columns'),
+    Input('dataTable1', 'selected_columns')
+)
+def display_output(rows, columns, sel_col):
+    # Create data frame from data table 
+    df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
+    # Create a new figure to replace previous figure
+    fig = px.line(df, x='year', y=sel_col[0], color='country', markers=True)
+
+    return fig
+
+
+# Link DataTable edits to the plot with a callback function
+@app.callback(
+    Output('figure2', 'figure'),
+    Input('dataTable1', 'data'),
+    Input('dataTable1', 'columns'),
+    Input('dataTable1', 'selected_columns')
+)
+def display_output(rows, columns, sel_col):
+    # Create data frame from data table 
+    df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
+    # Create a new figure to replace previous figure
+    # Create an animated histogram of population growth
+    fig = px.histogram(df, x="country", y="pop", color="country",
+                    animation_frame="year", animation_group="country", 
+                    range_y=[0,200000000],
+    )
+
+    return fig
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+```
 
 ## 9.3 Other Important DataTable props
 
