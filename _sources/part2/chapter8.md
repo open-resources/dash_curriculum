@@ -170,6 +170,15 @@ The snippet above introduces several new methods of the `fig` object. We won't g
 
 ```
 
+```{tip}
+
+Some IDEs from time to time encounter probblems with running the animations of Plotly even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at [this post](https://github.com/microsoft/vscode-jupyter/issues/4364) for more details: 
+
+```python
+import plotly.io as pio
+pio.renderers.default = 'notebook_connected'
+```
+
 ## 8.3 A variety of Plotly Express figures
 
 Now that you've got a sense of the powers hidden in all plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:
@@ -197,33 +206,85 @@ fig.show()
 
 [![enter image description here][19]][19]
 
+
+
 ## 8.3.X Grouped bar chart
 
-```python
-fig = px.bar(df, x= 'year', y = 'pop', color = 'country',
-                     barmode = 'group' ,
-                     title = "PX Bar plot with barmode = 'group'",
-                     template = 'plotly_white')
-fig.show()
-```
-
-## 8.3.X Map
-
-```python
-fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
-                    animation_frame='year', color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
-fig.show()
-```
+Stacking bars makes sense to illustrate accumulations for data such as `population`. But not so much for life expectancies. In order to group subcategories next to eachother, simply include `barmode = 'group'` in the function call.
 
 ```{tip}
 
-Some IDEs from time to time encounter probblems with running the animations of Plotly even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at [this post](https://github.com/microsoft/vscode-jupyter/issues/4364) for more details: 
+Not all Plotly Express functions produce perfect layout for every dataset every time. Below we've use antoher method of the `fig` object before `fig.show()` to adjust the range of the yaxis, namely `fig.update_yaxes(range=[50, 80])`. Try the code snippet without that particular line and see if you agree with our design choices.
+
+```
 
 ```python
-import plotly.io as pio
-pio.renderers.default = 'notebook_connected'
+import plotly.express as px
+df = px.data.gapminder()
+df = df[df['country'].isin([
+    #    'France', 'Germany', 
+
+    #    'Italy',
+       'Spain', 'United Kingdom'])]
+
+fig = px.bar(df, x= 'year', y = 'lifeExp', color = 'country',
+                     barmode = 'group' ,
+                     title = 'Grouped Bar Chart',
+                     template = 'plotly_white')
+fig.update_yaxes(range=[60, 80])
+fig.show()
 ```
+
+[![enter image description here][20]][20]
+
+
+# 8.3.X Box plot
+
+
+```python
+import plotly.express as px
+df = px.data.gapminder()
+
+fig = px.box(df, x="continent", y="lifeExp",
+             category_orders = {'continent': ['Oceania', 'Europe', 'Americas', 'Asia', 'Asia', 'Africa']})
+fig.update_traces(quartilemethod="exclusive") # or "inclusive", or "linear" by default
+fig.show()
+
 ```
+
+[![enter image description here][21]][21]
+
+
+# 8.3.X Histogram
+
+```python
+import plotly.express as px
+df = px.data.gapminder()
+df = df[df['continent'].isin(['Asia',  'Europe'])]
+fig = px.histogram(df, x='lifeExp', nbins = 20, color = 'continent', barmode = 'overlay')
+fig.show()
+```
+
+[![enter image description here][22]][22]
+
+## 8.3.X Facet / Trellis plots
+
+This section uses a new argument that splits a dataset into several subplots `facet_col` thus in effect creating several subplots for the same dataset.
+
+```python
+import plotly.express as px
+df = px.data.gapminder()
+
+# data subset
+df = df[df['continent'].isin(['Europe',  'Americas', 'Asia'])]
+df = df[df['year']>1962]
+
+fig = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop',
+                facet_col='year', facet_col_wrap=3)
+fig.show()
+```
+
+[![enter image description here][25]][25]
 
 ## 8.3.X Treemap
 
@@ -236,18 +297,10 @@ fig = px.treemap(df, path=[px.Constant('world'), 'continent', 'country'], values
 fig.show()
 ```
 
-## 8.3.X Facet / Trellis plots
+[![enter image description here][24]][24]
 
-This section uses a new argument that splits a dataset into several subplots `facet_col` thus in effect creating several subplots for the same dataset.
 
-```python
-import plotly.express as px
-df = px.data.gapminder()
-fig = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop',
-                facet_col='year', facet_col_wrap=4)
-fig.show()
-```
-# 8.3.X Heatmaps
+# 8.3.X Heatmap
 
 ```python
 import plotly.express as px
@@ -260,6 +313,49 @@ fig = px.density_heatmap(df, x="gdpPercap", y="lifeExp",
 fig.show()
 ```
 
+[![enter image description here][26]][26]
+
+
+
+## 8.3.X Choropleth map
+
+```python
+fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
+                    animation_frame='year', color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
+fig.show()
+```
+
+[![enter image description here][23]][23]
+
+
+
+
+
+
+
+
+```{tip}
+
+
+You can set Plotly to be the [plotting backend for pandas](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937). This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.
+
+```python
+import random
+import pandas as pd
+
+random.seed(123)
+df = pd.DataFrame({'x':[1,2,3,4,5,6]})
+pd.options.plotting.backend = "plotly"
+
+kinds = ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']
+
+for k in kinds[:-1]:
+    fig = df.plot(kind=k, title = k)
+    fig.update_layout(title = dict(font=dict(color='#EF553B')))
+    fig.show()
+```
+
+```
 
 ##############################################
 
@@ -277,7 +373,7 @@ app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig),
 
 ### App
 
-[![enter image description here][20]][20]
+[![enter image description here][27]][27]
 
 
 
@@ -347,7 +443,7 @@ With the following addition, you'll get the result i the figure below:
 fig.update_layout(barmode = 'group')
 ```
 
-[![enter image description here][21]][21]
+[![enter image description here][28]][28]
 
 ***Style example 2:***
 
@@ -359,7 +455,7 @@ fig.update_layout(barmode = 'group')
 
 and you'll get:
 
-[![enter image description here][21]][21]
+[![enter image description here][28]][28]
 
 ## 8.2.1 Line chart
 
@@ -371,11 +467,11 @@ df = px.data.gapminder()
 px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent', template = 'plotly_white')
 ```
 
-[![enter image description here][22]][22]
+[![enter image description here][29]][29]
 
 The current dataset is of a so-called long (or tidy) format:
 
-[![enter image description here][23]][23]
+[![enter image description here][30]][30]
 
 ***...needs more explaining if not covered in chapter 7...***
 
@@ -385,7 +481,7 @@ As you can see from the function call above, `color` and `symbol` don't take act
 
 You can drop the lines and produce a scatter plot with markers only if you substitute `px.line()` with `px.scatter()`:
 
-[![enter image description here][24]][24]
+[![enter image description here][31]][31]
 
 ```python
 fig = px.scatter(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent', template = 'plotly_white')
@@ -395,7 +491,7 @@ fig = px.scatter(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'cont
 
 From here you can also add a trendline for each trace by adding `trendline="ols"` to the mix:
 
-[![enter image description here][25]][25]
+[![enter image description here][32]][32]
 
 In this case, the trendlines will indicate the increase in life expectanciese for each country over the years.
 
@@ -409,7 +505,7 @@ df.pivot(index='year', columns='country', values='lifeExp')
 
 ### From long to wide with `pd.pivot()`
 
-[![enter image description here][26]][26]
+[![enter image description here][33]][33]
 
 As you can see, the dataset is no longer of a long format. With column names that now describe unique variables instead of a category, we've moved on to a dataset with a wide format.
 
@@ -427,7 +523,7 @@ fig = px.scatter(dfp, x= 'Canada', y = 'Germany',
 fig.show()
 ```
 
-[![enter image description here][27]][27]
+[![enter image description here][34]][34]
 
 ```{tip}
 
@@ -449,7 +545,7 @@ fig = px.bar(df, x= 'year', y = 'pop', color = 'country',
 fig.show()
 ```
 
-[![enter image description here][28]][28]
+[![enter image description here][35]][35]
 
 As you can tell from the figure, you can now study the change in the total populations of these countries over the years. This makes sense for `population`, but not so much if you were to study life expectancies. In the latter case it would make more sense to display the bars for each country next to each other. The following section will introduce how to edit the `barmode` attribute for the figure object both in the function call and *after* you've produced the figure.
 
@@ -457,7 +553,7 @@ As you can tell from the figure, you can now study the change in the total popul
 
 By default `px.bar()` uses `barmode = 'stacked'` which does exactly what it says, namely stacking the populations for each `country` (discerned by `color`) on top of each other. But you can change this behavior through `barmode = 'group'` and get the following result:
 
-[![enter image description here][29]][29]
+[![enter image description here][36]][36]
 
 ```python
 fig = px.bar(df, x= 'year', y = 'pop', color = 'country',
@@ -484,13 +580,13 @@ fig.update_layout(barmode = 'group')
 
 ## 8.1.1 Breakdown of `px.line()` and relation to Plotly Graph Objects
 
-Running [`px.line()`][2] will produce a [Plotly Graph Objects][30] figure object `go.Figure` (where `go` is the commonly used alias for `plotly.graph_objects`) which is one of the main building blocks of the Plotly library; the canvas (better to call it something else?). Running `go.Figure()` will produce a completely empty figure or canvas like this:
+Running [`px.line()`][2] will produce a [Plotly Graph Objects][37] figure object `go.Figure` (where `go` is the commonly used alias for `plotly.graph_objects`) which is one of the main building blocks of the Plotly library; the canvas (better to call it something else?). Running `go.Figure()` will produce a completely empty figure or canvas like this:
 ```python
 import plotly.graph_objects as go
 go.Figure()
 ```
 
-[![enter image description here][31]][31]
+[![enter image description here][38]][38]
 
 What we're looking at here is a figure template with a few defined settings. We've got an x and an y-axis as well as white gridlines for both axes on a light-blue background. We can take a closer look at the underlying settings with `fig.show` that will reveal this dictionary:
 
@@ -500,7 +596,7 @@ What we're looking at here is a figure template with a few defined settings. We'
 }
 ```
 
-So at its core, a figure object is built up by a `data` and  `layout` element. As you'll soon learn, there are endless ways to construct a Plotly figure. But building on this basic example, you will have to populate the data attribute through the addition of traces, like a [`go.Scatter()`][32] trace (more on this and other options?). You can also edit the layout through [`go.Layout()`][33]. Below is an example where the dataset `x= [1,2,3,4]` and `y = [10,11,12,13]` is added to the empty canvas. We'll also specify a figure title.
+So at its core, a figure object is built up by a `data` and  `layout` element. As you'll soon learn, there are endless ways to construct a Plotly figure. But building on this basic example, you will have to populate the data attribute through the addition of traces, like a [`go.Scatter()`][39] trace (more on this and other options?). You can also edit the layout through [`go.Layout()`][40]. Below is an example where the dataset `x= [1,2,3,4]` and `y = [10,11,12,13]` is added to the empty canvas. We'll also specify a figure title.
 
 ```python
 fig = go.Figure(data = [go.Scatter(x= [1,2,3,4], y = [10,11,12,13])],
@@ -508,7 +604,7 @@ fig = go.Figure(data = [go.Scatter(x= [1,2,3,4], y = [10,11,12,13])],
 fig.show()
 ```
 
-[![enter image description here][34]][34]
+[![enter image description here][41]][41]
 
 Now, if you run `fig.show` again, you'll see that our figure object is a bit more populated:
 
@@ -543,7 +639,7 @@ The figure object has numerous useful methods that you can study through `dir(fi
     fig.add_traces(go.Scatter(x= [1,2,3,4], y = [11,12,13,14]))
     fig.show()
 
-[![enter image description here][35]][35]
+[![enter image description here][42]][42]
 
 Aside from the new trace, you'll see that the figure now also displays a legend as well as some default names for the different traces. The names of the traces aren't that interesting yet since we haven't specified any names.
 
@@ -587,7 +683,7 @@ fig.show()
 
 And as you can see, *almost* the same figure doesn't mean that it's *almost* as good as the previous figure. On the contrary, `px.line()` improves the readability of the figure through the assignment of trace names in the legend, and adding names to the axes:
 
-[![enter image description here][36]][36]
+[![enter image description here][43]][43]
 
 ## 8.1.5 Inspect the structure of a `px.line()` figure
 
@@ -677,7 +773,7 @@ df = pd.DataFrame({'year': [2021,2022,2023,2024],
                    'Norway': [11,12,13,14,]})
 ```
 
-[![enter image description here][37]][37]
+[![enter image description here][44]][44]
 
 ## 8.1.7.1 Long and wide data format
 This dataframe is of a so-called wide format with a unique index in the left-most column, unique column names, and associated values for each index in the belonging rows. If you were to add data for another country, you would do so by adding another column, and the dataset would have become **wider**. Hence the name.
@@ -691,7 +787,7 @@ df_long = pd.melt(df, id_vars = ['year'], value_vars = df.columns[1:],)
 df_long.rename(columns = {'variable':'country'}, inplace = True)
 ```
 
-[![enter image description here][38]][38]
+[![enter image description here][45]][45]
 
 First of all, this will make it even easier to reproduce the figure we have so far, with:
 
@@ -701,7 +797,7 @@ fig = px.line(df_long, x='year', y = 'value', color = 'country')
 
 Now you no longer need to specify a list of names from a wide dataframe for `y` in `px.line()`. With this setup, the function recognizes that the input is a dataframe of a long format, and setting `color = 'country'` will let the function know that there are multiple unique values in that particular column to which a color cycle is assigned.
 
-[![enter image description here][39]][39]
+[![enter image description here][46]][46]
 
 ## 8.1.7.2 Adding another dimension to a dataframe of a long format
 
@@ -727,7 +823,7 @@ fig.show()
 
 This works exactly the same way as `color = 'country'`, but this time a symbol sequence is used to represent unique values of a dataframe column.
 
-[![enter image description here][40]][40]
+[![enter image description here][47]][47]
 
 And this explains why `px.line()` doesn't assign symbols to markers by default; the function is simply waiting for you to make use of the multidimensional capabilites of the library.
 
@@ -741,7 +837,7 @@ Our previous call to `px.line()` is now only missing one element compared to the
 
 Let's round off this section with `plotly_dark`:
 
-[![enter image description here][41]][41]
+[![enter image description here][48]][48]
 
 
 Now that you're able to master some of the basic powers of Plotly Express, we'll soon move on to taking a look at how you can build other chart types than line charts and combine them with the template of your liking to create almost any chart with any design.
@@ -771,26 +867,33 @@ Now that you're able to master some of the basic powers of Plotly Express, we'll
   [16]: https://i.stack.imgur.com/3yB43.png
   [17]: https://i.stack.imgur.com/2jVzU.png
   [18]: https://i.stack.imgur.com/jvdM4.gif
-  [19]: https://i.stack.imgur.com/wDhKG.png
-  [20]: https://i.stack.imgur.com/21H9I.png
-  [21]: https://i.stack.imgur.com/N1JSd.png
-  [22]: https://i.stack.imgur.com/MYpK9.png
-  [23]: https://i.stack.imgur.com/ENAiB.png
-  [24]: https://i.stack.imgur.com/82TrL.png
-  [25]: https://i.stack.imgur.com/EEylA.png
-  [26]: https://i.stack.imgur.com/lDZUC.png
-  [27]: https://i.stack.imgur.com/MHR22.png
-  [28]: https://i.stack.imgur.com/zPuh9.png
-  [29]: https://i.stack.imgur.com/xU3El.png
-  [30]: https://plotly.com/python/graph-objects/
-  [31]: https://i.stack.imgur.com/FFZFt.png
-  [32]: https://plotly.com/python/line-and-scatter/#scatter-and-line-plots-with-goscatter
-  [33]: https://plotly.com/python/reference/layout/
-  [34]: https://i.stack.imgur.com/X88Ak.png
-  [35]: https://i.stack.imgur.com/rSm7d.png
-  [36]: https://i.stack.imgur.com/lCE6Y.png
-  [37]: https://i.stack.imgur.com/N1uHD.png
-  [38]: https://i.stack.imgur.com/B708M.png
-  [39]: https://i.stack.imgur.com/VSCj0.png
-  [40]: https://i.stack.imgur.com/xo5iL.png
-  [41]: https://i.stack.imgur.com/bGs6b.png
+  [19]: https://i.stack.imgur.com/pAkfB.png
+  [20]: https://i.stack.imgur.com/5XnqR.png
+  [21]: https://i.stack.imgur.com/YzXfG.png
+  [22]: https://i.stack.imgur.com/9sw4h.png
+  [23]: https://i.stack.imgur.com/mIUah.gif
+  [24]: https://i.stack.imgur.com/6UVCx.png
+  [25]: https://i.stack.imgur.com/gj6oW.png
+  [26]: https://i.stack.imgur.com/AJswk.png
+  [27]: https://i.stack.imgur.com/21H9I.png
+  [28]: https://i.stack.imgur.com/N1JSd.png
+  [29]: https://i.stack.imgur.com/MYpK9.png
+  [30]: https://i.stack.imgur.com/ENAiB.png
+  [31]: https://i.stack.imgur.com/82TrL.png
+  [32]: https://i.stack.imgur.com/EEylA.png
+  [33]: https://i.stack.imgur.com/lDZUC.png
+  [34]: https://i.stack.imgur.com/MHR22.png
+  [35]: https://i.stack.imgur.com/zPuh9.png
+  [36]: https://i.stack.imgur.com/xU3El.png
+  [37]: https://plotly.com/python/graph-objects/
+  [38]: https://i.stack.imgur.com/FFZFt.png
+  [39]: https://plotly.com/python/line-and-scatter/#scatter-and-line-plots-with-goscatter
+  [40]: https://plotly.com/python/reference/layout/
+  [41]: https://i.stack.imgur.com/X88Ak.png
+  [42]: https://i.stack.imgur.com/rSm7d.png
+  [43]: https://i.stack.imgur.com/lCE6Y.png
+  [44]: https://i.stack.imgur.com/N1uHD.png
+  [45]: https://i.stack.imgur.com/B708M.png
+  [46]: https://i.stack.imgur.com/VSCj0.png
+  [47]: https://i.stack.imgur.com/xo5iL.png
+  [48]: https://i.stack.imgur.com/bGs6b.png
