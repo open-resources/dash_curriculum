@@ -70,7 +70,7 @@ You do not *have* to use the setup above with `fig = px.line([...])`. Just calli
 ## 8.2.3 Adding multiple lines with different colors
 So far so good, but the dataset includes data for a lot more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it's also an important part of what makes Plotly Express so powerful and flexible. The following figure is produced by the snippet below where we've included some other countries in the dataset with `df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]`
 
-[![enter image description here][13]][13]
+[![enter image description here][12]][12]
 
 ```python
 import plotly.express as px
@@ -91,7 +91,7 @@ fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country'
 fig.show()
 ```
 
-In addition to the already existing arguments, we've added `color = 'country'`. And this is exactly what you need to make an addition of lines to a larger set of countries. What happens under the hood, is that Plotly Express assigns a color from a certain [color sequence][14] to each unique value in the `country` column in `df` which are: `['Canada', 'Germany', 'Norway']`.
+In addition to the already existing arguments, we've added `color = 'country'`. And this is exactly what you need to make an addition of lines to a larger set of countries. What happens under the hood, is that Plotly Express assigns a color from a certain [color sequence][13] to each unique value in the `country` column in `df` which are: `['Canada', 'Germany', 'Norway']`.
 
 ```{warning}
 Without the color argument, an assignment of the y-axis to a multivariable column will create a [mess of a chart][10] where all lines are blue, and the end-point of one line is connected to the starting point of another. How this appears is likely to be prone to changes for future versions of Plotly Express.
@@ -100,18 +100,18 @@ Without the color argument, an assignment of the y-axis to a multivariable colum
 ## 8.2.4 The interactivity of Plotly Figure Objects.
 With `color = 'country'` initialized, a nice legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.
 
-[![enter image description here][15]][15]
+[![enter image description here][14]][14]
 
 Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the `y-axis`, the complete axis will slide when you move the mouse. If you grab the top of the axis, all other than the minumum value will change, and vice versa.
 
-[![enter image description here][16]][16]
+[![enter image description here][15]][15]
 
 
 ## 8.2.5 Multidimensional data with lines and markers
 
 You can combine lines *and* markers in `px.line()` to illustrate multiple dimensions of your dataset through the addition of the `symbol`argument. Below we've included `symbol = 'continent'` to our previous `px.line()` call. This works much like `color = 'country'`, but this time, we're applying a symbol sequence to the unique values in `df['continent']` which are `'Americas'` and `'Europe'`. The symbols assigned are `['Circle', 'Diamond']`:
 
-[![enter image description here][18]][18] 
+[![enter image description here][16]][16] 
 
 ```python
 import plotly.express as px
@@ -163,7 +163,7 @@ df = px.data.gapminder()
 px.scatter(df, x="gdpPercap", y="lifeExp", animation_frame="year", animation_group="country", size="pop", color="continent", hover_name="country", log_x=True, size_max=55, range_x=[100,100000], range_y=[25,90])
 ```
 
-[![enter image description here][19]][19]
+[![enter image description here][18]][18]
 
 ```{tip}
 The snippet above introduces several new methods of the `fig` object. We won't go more into details here, but you can use the closer with `help(px.scatter)` and in the [docs](https://plotly.com/python/px-arguments/)
@@ -186,12 +186,16 @@ One thing all following chart types have in common, is that we're using the very
 ## 8.3.X Stacked bar chart
 
 ```python
+import plotly.express as px
+df = px.data.gapminder()
+
 fig = px.bar(df, x= 'year', y = 'pop', color = 'country',
-                 
                      title = 'PX scatter plot',
                      template = 'plotly_white')
 fig.show()
 ```
+
+[![enter image description here][19]][19]
 
 ## 8.3.X Grouped bar chart
 
@@ -209,6 +213,16 @@ fig.show()
 fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
                     animation_frame='year', color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
 fig.show()
+```
+
+```{tip}
+
+Some IDEs from time to time encounter probblems with running the animations of Plotly even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at [this post](https://github.com/microsoft/vscode-jupyter/issues/4364) for more details: 
+
+```python
+import plotly.io as pio
+pio.renderers.default = 'notebook_connected'
+```
 ```
 
 ## 8.3.X Treemap
@@ -750,14 +764,14 @@ Now that you're able to master some of the basic powers of Plotly Express, we'll
   [9]: https://plotly.com/python/wide-form/
   [10]: https://i.stack.imgur.com/fu8NX.png
   [11]: https://plotly.com/python/line-charts/#line-plots-with-plotlyexpress
-  [12]: https://plotly.com/python/graph-objects/#what-are-graph-objects
-  [13]: https://i.stack.imgur.com/GpgGe.png
-  [14]: https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express
-  [15]: https://i.stack.imgur.com/jn4rl.gif
-  [16]: https://i.stack.imgur.com/1CTmL.gif
+  [12]: https://i.stack.imgur.com/GpgGe.png
+  [13]: https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express
+  [14]: https://i.stack.imgur.com/jn4rl.gif
+  [15]: https://i.stack.imgur.com/1CTmL.gif
+  [16]: https://i.stack.imgur.com/3yB43.png
   [17]: https://i.stack.imgur.com/2jVzU.png
-  [18]: https://i.stack.imgur.com/3yB43.png
-  [19]: https://i.stack.imgur.com/jvdM4.gif
+  [18]: https://i.stack.imgur.com/jvdM4.gif
+  [19]: https://i.stack.imgur.com/wDhKG.png
   [20]: https://i.stack.imgur.com/21H9I.png
   [21]: https://i.stack.imgur.com/N1JSd.png
   [22]: https://i.stack.imgur.com/MYpK9.png
