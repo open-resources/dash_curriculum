@@ -192,7 +192,7 @@ Now that you've got a sense of the powers hidden in all plotly figures, the time
 
 One thing all following chart types have in common, is that we're using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that *are* used are only there because some chart types require a specific data format or simply look better with a smaller subset of the gapminder dataset.
 
-## 8.3.X Stacked bar chart with `px.bar()`
+## 8.3.1 Stacked bar chart with `px.bar()`
 
 ```python
 import plotly.express as px
@@ -208,7 +208,7 @@ fig.show()
 
 
 
-## 8.3.X Grouped bar chart
+## 8.3.2 Grouped bar chart
 
 Stacking bars makes sense to illustrate accumulations for data such as `population`. But not so much for life expectancies. In order to group subcategories next to eachother, simply include `barmode = 'group'` in the function call.
 
@@ -238,7 +238,7 @@ fig.show()
 [![enter image description here][20]][20]
 
 
-# 8.3.X Box plot with `px.box()`
+# 8.3.3 Box plot with `px.box()`
 
 
 ```python
@@ -255,7 +255,7 @@ fig.show()
 [![enter image description here][21]][21]
 
 
-# 8.3.X Histogram with `px.histogram`
+# 8.3.4 Histogram with `px.histogram`
 
 ```python
 import plotly.express as px
@@ -267,7 +267,7 @@ fig.show()
 
 [![enter image description here][22]][22]
 
-## 8.3.X Facet / Trellis plots
+## 8.3.5 Facet / Trellis plots
 
 This section uses a new argument that splits a dataset into several subplots `facet_col` thus in effect creating several subplots for the same dataset.
 
@@ -286,7 +286,7 @@ fig.show()
 
 [![enter image description here][23]][23]
 
-## 8.3.X Treemap with `px.treemap()`
+## 8.3.6 Treemap with `px.treemap()`
 
 ```python
 import plotly.express as px
@@ -300,7 +300,7 @@ fig.show()
 [![enter image description here][24]][24]
 
 
-# 8.3.X Heatmap with `px.density_heatmap()`
+# 8.3.7 Heatmap with `px.density_heatmap()`
 
 ```python
 import plotly.express as px
@@ -315,7 +315,7 @@ fig.show()
 
 
 
-## 8.3.X Choropleth map with `px.choropleth`
+## 8.3.8 Choropleth map with `px.choropleth`
 
 ```python
 fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
@@ -326,7 +326,7 @@ fig.show()
 [![enter image description here][26]][26]
 
 
-## 8.3.X Timeline with `px.timeline()`
+## 8.3.9 Timeline with `px.timeline()`
 
 Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we've made a few changes to the gapminder dataset and removed some random dates. You can use this code snippet to illustrate what time periods that you have available data for a set of countries. Missing years *within* a time period are not taken into account.
 
