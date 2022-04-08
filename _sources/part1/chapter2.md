@@ -66,7 +66,9 @@ if __name__ == '__main__':
 ```
 In order to display the app through the browser, we add these statements to "Launch the server". 
 
-{ !!! TO-DO !!! Add a bried explanation on why we need a server}
+```{note}
+The "server" allows the App to run locally. It will be accessible from our laptop only. In Chapter 5 we will see how to deploy the app
+```
 
 This section is pretty much static and fixed for any Dash app you may create.
 
