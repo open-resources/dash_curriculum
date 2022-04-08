@@ -380,8 +380,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#incorporating-data-into-our-apps">
-   incorporating data into our apps
+  <a class="reference internal nav-link" href="#incorporating-data-into-dash-apps">
+   Incorporating data into Dash apps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-data-into-pandas-dataframes">
+   Create data into Pandas dataframes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -395,13 +400,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-a-simple-pandas-dataframe">
-   Create a simple Pandas dataframe
+  <a class="reference internal nav-link" href="#connect-to-api-data">
+   Connect to API data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connect-to-api-data">
-   Connect to API data
+  <a class="reference internal nav-link" href="#use-of-data-in-the-app">
+   Use of data in the app
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -445,8 +450,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#incorporating-data-into-our-apps">
-   incorporating data into our apps
+  <a class="reference internal nav-link" href="#incorporating-data-into-dash-apps">
+   Incorporating data into Dash apps
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-data-into-pandas-dataframes">
+   Create data into Pandas dataframes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -460,13 +470,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-a-simple-pandas-dataframe">
-   Create a simple Pandas dataframe
+  <a class="reference internal nav-link" href="#connect-to-api-data">
+   Connect to API data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connect-to-api-data">
-   Connect to API data
+  <a class="reference internal nav-link" href="#use-of-data-in-the-app">
+   Use of data in the app
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -510,38 +520,61 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 </div>
-<div class="section" id="incorporating-data-into-our-apps">
-<h2>incorporating data into our apps<a class="headerlink" href="#incorporating-data-into-our-apps" title="Permalink to this headline">¶</a></h2>
-<p>Make sure to incorporate data at the begiingn of the app, above the layout. This is considered global data.</p>
-<p>show example of code:</p>
+<div class="section" id="incorporating-data-into-dash-apps">
+<h2>Incorporating data into Dash apps<a class="headerlink" href="#incorporating-data-into-dash-apps" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Where to incorporate data within the app   (Make sure to incorporate data at the begiingn of the app, above the layout. This is considered global data. )</p></li>
+<li><p>Creating pandas dataframes (briefly define dataframe and pandas and show the python statement to create an empty df)</p></li>
+<li><p>Ways of uploading data into the dataframe (files, URL, API)</p></li>
+</ul>
+</div>
+<div class="section" id="create-data-into-pandas-dataframes">
+<h2>Create data into Pandas dataframes<a class="headerlink" href="#create-data-into-pandas-dataframes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Show how to include data into the dataframe using dictionaries</p></li>
+</ul>
+<p>df = pd.DataFrame([…..])
+print(head())</p>
 </div>
 <div class="section" id="read-data-from-excel-or-csv">
 <h2>Read data from Excel or CSV<a class="headerlink" href="#read-data-from-excel-or-csv" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Show a sample file with few data in it</p></li>
+<li><p>Upload data into the dataframe with read_csv explaining how to change properties such as: field separators, using or not using the field names)</p></li>
+</ul>
 <p>df = pd.read_csv()
 print(head())
 print(df.columns)</p>
-<p>dropdown = dcc.Dropdown(id=’our-dropdown’, options=[‘My First app’, ‘Welcome to the App’, ‘This is the title’], value=’My First app’)</p>
-<p>note: show how to write data into csv</p>
 </div>
 <div class="section" id="load-data-from-a-url">
 <h2>Load data from a URL<a class="headerlink" href="#load-data-from-a-url" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Show an URL with some data in it</p></li>
+<li><p>Upload data into the dataframe</p></li>
+</ul>
 <p>df = pd.read_csv(“<a class="reference external" href="https://www.website.com">https://www.website.com</a>”)
-print(head())</p>
-</div>
-<div class="section" id="create-a-simple-pandas-dataframe">
-<h2>Create a simple Pandas dataframe<a class="headerlink" href="#create-a-simple-pandas-dataframe" title="Permalink to this headline">¶</a></h2>
-<p>df = pd.DataFrame([…..])
 print(head())</p>
 </div>
 <div class="section" id="connect-to-api-data">
 <h2>Connect to API data<a class="headerlink" href="#connect-to-api-data" title="Permalink to this headline">¶</a></h2>
 <p>df =</p>
 </div>
+<div class="section" id="use-of-data-in-the-app">
+<h2>Use of data in the app<a class="headerlink" href="#use-of-data-in-the-app" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Show an example of a Dropdown object, with the option list loaded from the dataframe</p></li>
+</ul>
+<p>dropdown = dcc.Dropdown(id=’our-dropdown’, options=[‘My First app’, ‘Welcome to the App’, ‘This is the title’], value=’My First app’)</p>
+<p>note: show how to write data into csv</p>
+</div>
 <div class="section" id="data-wrangling-in-dash">
 <h2>Data wrangling in Dash<a class="headerlink" href="#data-wrangling-in-dash" title="Permalink to this headline">¶</a></h2>
-<p>groupby
+<ul class="simple">
+<li><p>Show some examples of basic data wrangling such as:
+groupby
 slicing in pandas
-filtering</p>
+filtering</p></li>
+</ul>
 </div>
 <div class="section" id="use-cases-for-pre-processing-data">
 <h2>Use cases for pre-processing data<a class="headerlink" href="#use-cases-for-pre-processing-data" title="Permalink to this headline">¶</a></h2>
