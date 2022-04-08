@@ -129,7 +129,7 @@ fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'contine
 fig.show()
 ```
 
-## 8.2.6 Scatter Charts
+## 8.2.6 Scatter Charts with `px.scatter`
 
 Next to line charts, a scatter plots is arguably the second most used chart type out in the wild. The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the `px.line()` call with `px.scatter()` and otherwise use the same arguments.
 
@@ -192,7 +192,7 @@ Now that you've got a sense of the powers hidden in all plotly figures, the time
 
 One thing all following chart types have in common, is that we're using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that *are* used are only there because some chart types require a specific data format or simply look better with a smaller subset of the gapminder dataset.
 
-## 8.3.X Stacked bar chart
+## 8.3.X Stacked bar chart with `px.bar()`
 
 ```python
 import plotly.express as px
@@ -238,7 +238,7 @@ fig.show()
 [![enter image description here][20]][20]
 
 
-# 8.3.X Box plot
+# 8.3.X Box plot with `px.box()`
 
 
 ```python
@@ -255,7 +255,7 @@ fig.show()
 [![enter image description here][21]][21]
 
 
-# 8.3.X Histogram
+# 8.3.X Histogram with `px.histogram`
 
 ```python
 import plotly.express as px
@@ -286,7 +286,7 @@ fig.show()
 
 [![enter image description here][23]][23]
 
-## 8.3.X Treemap
+## 8.3.X Treemap with `px.treemap()`
 
 ```python
 import plotly.express as px
@@ -300,7 +300,7 @@ fig.show()
 [![enter image description here][24]][24]
 
 
-# 8.3.X Heatmap
+# 8.3.X Heatmap with `px.density_heatmap()`
 
 ```python
 import plotly.express as px
@@ -315,7 +315,7 @@ fig.show()
 
 
 
-## 8.3.X Choropleth map
+## 8.3.X Choropleth map with `px.choropleth`
 
 ```python
 fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
@@ -326,7 +326,7 @@ fig.show()
 [![enter image description here][26]][26]
 
 
-## 8.3.X Timeline
+## 8.3.X Timeline with `px.timeline()`
 
 Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we've made a few changes to the gapminder dataset and removed some random dates. You can use this code snippet to illustrate what time periods that you have available data for a set of countries. Missing years *within* a time period are not taken into account.
 
@@ -434,11 +434,7 @@ app.run_server(debug=True, use_reloader=False)
 
 ## 8.5 References and resources
 
-###################################################################################################
-OUT-TAKES
-###################################################################################################
-
-
+#########################################
 
 
 ---
