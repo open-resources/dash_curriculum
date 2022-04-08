@@ -4,8 +4,6 @@
 
 In this chapter we will explore Dash various **components** and how to position them within the app **layout**
 
-[starting_file.py](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter2_app.py)
-
 [ending_file.py](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py)
 
 ## 3.1 Dash Components
@@ -271,7 +269,7 @@ if __name__ == '__main__':
 
 ![colored_app](../assets/p1_c3/app_colored.png)
 
-We see there are 4 rows with columns of various `widths` which contain components.  You can play around with the `width` value of the column to see how it changes the app layout.
+We see there are 4 rows with columns of various `widths` which contain components.  The `widths` of all components in a row should not be greater than **12 columns** or the components will overlap.  You can play around with the `width` value of the column to see how it changes the app layout.
 
 ```{admonition} Note
 - The colors above are for demonstration purposes, you will not see them in your local dashboard
