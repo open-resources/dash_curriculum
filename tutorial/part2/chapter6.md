@@ -63,8 +63,7 @@ groupby
 slicing in pandas
 filtering
 
-## Use cases for pre-processing data
-
+- Show performances by performing data wrangling before the app and inside the app, to show the most convenient one.
 
 
 ## App at the end
