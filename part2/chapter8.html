@@ -477,6 +477,11 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#x-choropleth-map">
      8.3.X Choropleth map
     </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-timeline">
+     8.3.X Timeline
+    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#app">
@@ -492,7 +497,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#references-and-resources">
-     8.4 References and resources
+     8.5 References and resources
     </a>
    </li>
   </ul>
@@ -748,6 +753,11 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#x-choropleth-map">
      8.3.X Choropleth map
     </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#x-timeline">
+     8.3.X Timeline
+    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#app">
@@ -763,7 +773,7 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#references-and-resources">
-     8.4 References and resources
+     8.5 References and resources
     </a>
    </li>
   </ul>
@@ -911,7 +921,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Learning intentions</p>
 <ul class="simple">
 <li><p>What Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is and why you should use it.</p></li>
-<li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> uses attributes such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> to illustrate multiple dimensions of a dataset</p></li>
+<li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> uses attributes such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> can illustrate multiple dimensions of a dataset</p></li>
 <li><p>line, scatter, regression(?), area, bar, funnel(?), timeline(?)</p></li>
 <li><p>how different data structures work best with different px functions</p></li>
 </ul>
@@ -1174,9 +1184,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 <h1>8.3.X Heatmap<a class="headerlink" href="#x-heatmap" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
-
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">60000</span><span class="p">]</span>
-
 <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">density_heatmap</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
                         <span class="n">nbinsx</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">nbinsy</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s2">&quot;Viridis&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1191,6 +1199,42 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/mIUah.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/mIUah.gif" /></a></p>
+</div>
+<div class="section" id="x-timeline">
+<h2>8.3.X Timeline<a class="headerlink" href="#x-timeline" title="Permalink to this headline">¶</a></h2>
+<p>Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we’ve made a few changes to the gapminder dataset and removed some random dates. You can use this code snippet to illustrate what time periods that you have available data for a set of countries. Missing years <em>within</em> a time period are not taken into account.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span>
+       <span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">,</span> 
+       <span class="s1">&#39;Sweden&#39;</span><span class="p">,</span> <span class="s1">&#39;Finland&#39;</span><span class="p">,</span>
+       <span class="s1">&#39;United Kingdom&#39;</span><span class="p">])]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># instructions to drop random observations</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">remove_n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">*</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">drop_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">remove_n</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">drop_indices</span><span class="p">)</span>
+
+<span class="c1"># pivot to country in column names, integer as index, and years as values</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">dfp</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;min&#39;</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">])</span>
+<span class="n">dfp</span> <span class="o">=</span> <span class="n">dfp</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">dfp</span><span class="o">.</span><span class="n">T</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">timeline</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x_start</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">,</span> <span class="n">x_end</span><span class="o">=</span><span class="s2">&quot;max&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="n">autorange</span><span class="o">=</span><span class="s2">&quot;reversed&quot;</span><span class="p">)</span> <span class="c1"># otherwise tasks are listed from the bottom up</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://i.stack.imgur.com/cVYGf.png"><img alt="enter image description here" src="https://i.stack.imgur.com/cVYGf.png" /></a></p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can set Plotly to be the <a class="reference external" href="https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937">plotting backend for pandas</a>. This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.</p>
@@ -1211,12 +1255,6 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-##############################################
-
-## 8.3.1 Bar
-
-
-
 ## 8.4 Incorporting PX graphs in a Dash app
 
 We earlier talked about how a `dbc.Col` component resides in a `dbc.Row` component and serves as a wrapper for other components. One such component can be a `dcc.Graph()` component, which in turn is a wrapper (is this a correct description?) for a Plotly figure object:
@@ -1255,16 +1293,15 @@ app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id=&#39;figure1&#39;, figu
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">))])</span>
 
 <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_reloader</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-
-
-
-
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="references-and-resources">
-<h2>8.4 References and resources<a class="headerlink" href="#references-and-resources" title="Permalink to this headline">¶</a></h2>
+<h2>8.5 References and resources<a class="headerlink" href="#references-and-resources" title="Permalink to this headline">¶</a></h2>
+<p>###################################################################################################
+OUT-TAKES
+###################################################################################################</p>
 </div>
 </div>
 <hr class="docutils" />
