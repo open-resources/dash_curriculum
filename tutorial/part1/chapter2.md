@@ -113,16 +113,3 @@ Now that you know how to create and launch your first basic App, try to play aro
 In this chapter we learned about what is a Dash App and what is its recommended sturture. We have also explored each building block and their core properties, learning how to modify them.  Finally, we learned how to launch the App, stop and update the App.
 
 In the next chapter, we will discover additional the Dash components and examine how to position them in the layout.
-
----
----
-
-## Sections that will be covered in later chapters [ Move / Delete this section ]
-In later chapters, we'll add features to our App, enhancing the App structure: we will include the following sections:
-
-### Data Preparation
-Data is normally created / imported in a global section of the app. In this way, the whole code can refer to and use it.
-If you plan to perform any data wrangling tasks, you may want to add to section 1 dedicated libraries (import pandas as pd, ...)
-
-### Callbacks Configuration
-Callbacks define the user interaction with the dashboard. For example, a Dash app can have a callback that defines how a dropdown could affect a chart being displayed on the page. Callbacks will be covered in chapter 4.
