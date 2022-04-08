@@ -182,7 +182,7 @@ pio.renderers.default = 'notebook_connected'
 Now that you've got a sense of the powers hidden in all Plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:
 
 
-```{admonition} Summary of main principles of PX
+```{admonition} Main principles of PX
 1. Defining a dataset `df` let's you reference all available variables in the function arguments
 2. You can illustrate multiple dimensions of the dataset through variables like `color`, `symbol`.
 3. You can create animations through arguments like `animation_frame` and `animation_group`
@@ -430,8 +430,14 @@ https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-e
 
 https://cran.r-project.org/web/packages/gapminder/README.html
 
-#########################################
 
+
+```{admonition} Summary
+
+
+```
+
+#########################################
 
 ---
 # OUT-TAKES from round2 20220401
