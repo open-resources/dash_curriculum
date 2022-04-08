@@ -14,16 +14,12 @@
 
 ## 8.2 Introduction to the powers of Plotly Express
 
-The [plotly.express module][1] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or `px`. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][2], [scatter][3], [area][4], [bar][5], [funnel][6] and [timeline][7] figures. We'll go through some of them in this chapter, and you can study more in the docs. But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple plotly express function call like `px.line()`
+The [plotly.express module][1] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or `px`. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][2], [scatter][3], [area][4], [bar][5], [funnel][6] and [timeline][7] figures. We'll go through some of them in this chapter, and you can study more in the docs. But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple plotly express function like `px.line()`
 
 ## 8.2.1 About the gapminder dataset
 
-The gapminder dataset available through `px.data.gapminder()` is provided by [Gapminder.org][8]. Here you'll find `1704` rows of data and the following columns `['country', 'continent', 'year', 'lifeExp', 'pop', 'gdpPercap' 'iso_alpha', 'iso_num']`. Life expectancy at birth is stored in `lifeExp`, population by country is`pop`, and `gdpPercap` is the per capita GDP. The data is an excerpt of data found in specific spreadsheets on [Gapminder][8] circa 2010. The data has a so-called long (or  tidy). Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data (more dimensions than 2). 
+The gapminder dataset available through `px.data.gapminder()` is provided by [Gapminder.org][8]. Here you'll find `1704` rows of data and the following columns `['country', 'continent', 'year', 'lifeExp', 'pop', 'gdpPercap' 'iso_alpha', 'iso_num']`. Life expectancy at birth is stored in `lifeExp`, population by country is `pop`, and `gdpPercap` is the per capita GDP. The data is an excerpt of data found in specific spreadsheets on [Gapminder][8] circa 2010. The data has a so-called long (or  tidy) format. Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data (more dimensions than 2). 
 PX also handles data of [other formats][9].
-
-https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook
-
-https://cran.r-project.org/web/packages/gapminder/README.html
 
 
 ## 8.2.2 A basic line chart with `px.line()`
@@ -63,7 +59,7 @@ Let's look at the applied arguments of `px.line()` one by one.
 5. `template = 'plotly_white'` is also optional, and creates a minimal figure layout with a white background.
 
 ```{tip}
-You do not *have* to use the setup above with `fig = px.line([...])`. Just calling `px.line([...])` will also produce a [Plotly Figure Object][12]. Depending on your IDE, this function call will also display the figure. However, running `fig = px.line([...])` is considered standard notation (?) and will make the figure available for further editing and methods like `fig.show()`
+You do not *have* to use the setup above with `fig = px.line([...])`. Just calling `px.line([...])` without the assignment to `fig` will also produce a [Plotly Graph Object](https://plotly.com/python/graph-objects/). Depending on your IDE, this function call will also display the figure. However, running `fig = px.line([...])` is considered standard notation (?) and will make the figure available for further editing and methods like `fig.show()`
 ```
 
 
@@ -93,12 +89,14 @@ fig.show()
 
 In addition to the already existing arguments, we've added `color = 'country'`. And this is exactly what you need to make an addition of lines to a larger set of countries. What happens under the hood, is that Plotly Express assigns a color from a certain [color sequence][13] to each unique value in the `country` column in `df` which are: `['Canada', 'Germany', 'Norway']`.
 
+
+
 ```{warning}
-Without the color argument, an assignment of the y-axis to a multivariable column will create a [mess of a chart][10] where all lines are blue, and the end-point of one line is connected to the starting point of another. How this appears is likely to be prone to changes for future versions of Plotly Express.
+Without the color argument, an assignment of the y-axis to a multivariable column will create a [mess of a chart](https://i.stack.imgur.com/uS3TP.png) where all lines are blue, and the end-point of one line is connected to the starting point of another. How this appears is likely to be prone to changes for future versions of Plotly Express.
 ```
 
 ## 8.2.4 The interactivity of Plotly Figure Objects.
-With `color = 'country'` initialized, a nice legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.
+With `color = 'country'` initialized, a legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.
 
 [![enter image description here][14]][14]
 
@@ -109,7 +107,7 @@ Both axes also have interactive functionalities that depend on where you click o
 
 ## 8.2.5 Multidimensional data with lines and markers
 
-You can combine lines *and* markers in `px.line()` to illustrate multiple dimensions of your dataset through the addition of the `symbol`argument. Below we've included `symbol = 'continent'` to our previous `px.line()` call. This works much like `color = 'country'`, but this time, we're applying a symbol sequence to the unique values in `df['continent']` which are `'Americas'` and `'Europe'`. The symbols assigned are `['Circle', 'Diamond']`:
+You can combine lines *and* markers in `px.line()` to illustrate multiple dimensions of your dataset through the addition of the `symbol` argument. Below we've included `symbol = 'continent'` to our previous `px.line()` call. This works much like `color = 'country'`. But this time, we're applying a symbol sequence to the unique values in `df['continent']` which are `'Americas'` and `'Europe'`. The symbols assigned are `['Circle', 'Diamond']`:
 
 [![enter image description here][16]][16] 
 
@@ -131,7 +129,7 @@ fig.show()
 
 ## 8.2.6 Scatter Charts with `px.scatter`
 
-Next to line charts, a scatter plots is arguably the second most used chart type out in the wild. The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the `px.line()` call with `px.scatter()` and otherwise use the same arguments.
+The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the `px.line()` call with `px.scatter()` and otherwise use the same arguments.
 
 
 [![enter image description here][17]][17]
@@ -155,7 +153,7 @@ fig.show()
 
 ## 8.2.7 Animated Scatter / Bubble charts
 
-`line_dash` is another argument that can illustrate dimensions of a dataeset. But where things get really interesting is when you apply multiple settings like `animation_frame="year"`, `animation_group="country"` and `size="pop"`. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents for a given time period.
+`line_dash` is another argument that can illustrate dimensions of a dataset. But where things get really interesting is when you apply multiple settings like `animation_frame="year"`, `animation_group="country"` and `size="pop"`. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents through multiple years.
 
 ```python
 import plotly.express as px
@@ -166,7 +164,7 @@ px.scatter(df, x="gdpPercap", y="lifeExp", animation_frame="year", animation_gro
 [![enter image description here][18]][18]
 
 ```{tip}
-The snippet above introduces several new methods of the `fig` object. We won't go more into details here, but you can use the closer with `help(px.scatter)` and in the [docs](https://plotly.com/python/px-arguments/)
+The snippet above introduces several new methods of the `fig` object. We won't go more into details here, but you can use them closer with `help(px.scatter)` and in the [docs](https://plotly.com/python/px-arguments/)
 
 ```
 
@@ -181,7 +179,7 @@ pio.renderers.default = 'notebook_connected'
 
 ## 8.3 A variety of Plotly Express figures
 
-Now that you've got a sense of the powers hidden in all plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:
+Now that you've got a sense of the powers hidden in all Plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:
 
 
 ```{admonition} Main principles of PX
@@ -190,7 +188,7 @@ Now that you've got a sense of the powers hidden in all plotly figures, the time
 3. You can create animations through arguments like `animation_frame` and `animation_group`
 ```
 
-One thing all following chart types have in common, is that we're using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that *are* used are only there because some chart types require a specific data format or simply look better with a smaller subset of the gapminder dataset.
+One thing all following chart types have in common, is that we're using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that are used are only there because some chart types require a specific data format, or simply look better with a smaller subset of the gapminder dataset.
 
 ## 8.3.1 Stacked bar chart with `px.bar()`
 
@@ -209,12 +207,11 @@ fig.show()
 
 
 ## 8.3.2 Grouped bar chart
-
-Stacking bars makes sense to illustrate accumulations for data such as `population`. But not so much for life expectancies. In order to group subcategories next to eachother, simply include `barmode = 'group'` in the function call.
+Stacking the bars makes sense to illustrate accumulations for data such as `population`. But not so much for life expectancies. In order to group subcategories next to eachother instead, simply include `barmode = 'group'` in the function call.
 
 ```{tip}
 
-Not all Plotly Express functions produce perfect layout for every dataset every time. Below we've use antoher method of the `fig` object before `fig.show()` to adjust the range of the yaxis, namely `fig.update_yaxes(range=[50, 80])`. Try the code snippet without that particular line and see if you agree with our design choices.
+Not all Plotly Express functions produce perfect layout for every dataset every time. Below we've used antoher method of the `fig` object before `fig.show()` to adjust the range of the y-axis; `fig.update_yaxes(range=[50, 80])`. Try the code snippet without that particular line and see if you agree with our design choices.
 
 ```
 
@@ -255,7 +252,7 @@ fig.show()
 [![enter image description here][21]][21]
 
 
-# 8.3.4 Histogram with `px.histogram`
+# 8.3.4 Histogram with `px.histogram()`
 
 ```python
 import plotly.express as px
@@ -269,7 +266,7 @@ fig.show()
 
 ## 8.3.5 Facet / Trellis plots
 
-This section uses a new argument that splits a dataset into several subplots `facet_col` thus in effect creating several subplots for the same dataset.
+This section uses a new argument that splits a dataset into several subplots; `facet_col`. This creates several subplots for the same dataset.
 
 ```python
 import plotly.express as px
@@ -315,7 +312,7 @@ fig.show()
 
 
 
-## 8.3.8 Choropleth map with `px.choropleth`
+## 8.3.8 Choropleth map with `px.choropleth()`
 
 ```python
 fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
@@ -369,7 +366,7 @@ fig.show()
 ```{tip}
 
 
-You can set Plotly to be the [plotting backend for pandas](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937). This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.
+You can set Plotly to be the [plotting backend for pandas](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937), and produce Plotly Figures with `df.plot(kind)` where `kind` can be any of ` ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']`. This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.
 
 ```python
 import random
@@ -387,7 +384,6 @@ for k in kinds[:-1]:
     fig.show()
 ```
 
-```
 
 ## 8.4 Incorporting PX graphs in a Dash app
 
@@ -432,7 +428,11 @@ app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig),
 app.run_server(debug=True, use_reloader=False)
 ```
 
-## 8.5 References and resources
+## 8.5 References and resources (more links at end of document)
+
+https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook
+
+https://cran.r-project.org/web/packages/gapminder/README.html
 
 #########################################
 
@@ -866,6 +866,8 @@ Let's round off this section with `plotly_dark`:
 
 Now that you're able to master some of the basic powers of Plotly Express, we'll soon move on to taking a look at how you can build other chart types than line charts and combine them with the template of your liking to create almost any chart with any design.
 
+[![enter image description here][50]][50]
+
 ---
 
 ## IDEAS FOR THE NEXT SECTION:
@@ -922,3 +924,4 @@ Now that you're able to master some of the basic powers of Plotly Express, we'll
   [47]: https://i.stack.imgur.com/VSCj0.png
   [48]: https://i.stack.imgur.com/xo5iL.png
   [49]: https://i.stack.imgur.com/bGs6b.png
+  [50]: https://i.stack.imgur.com/uS3TP.png
