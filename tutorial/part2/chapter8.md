@@ -1,11 +1,11 @@
 # Chapter 8: Data Visualization
 
-```{admonition} Learning intentions
+```{admonition} What you will learn
 
 - What Plotly Express (`px`) is and why you should use it.
-- How `px` uses attributes such as `color` and `symbol` can illustrate multiple dimensions of a dataset
-- line, scatter, regression(?), area, bar, funnel(?), timeline(?)
-- how different data structures work best with different px functions
+- How `px` uses attributes such as `color` and `symbol` to illustrate multiple dimensions of a dataset.
+- How `px` uses the attributes `animation_frame` and `animation_group` to create animations.
+- How to create chart types like  `line`, `scatter`, `bar`, `histogram`, `box`, `facet`, `maps` and`treemap`.
 
 ```
 ## 8.1 Principles of Effective Visualizations
@@ -14,7 +14,7 @@
 
 ## 8.2 Introduction to the powers of Plotly Express
 
-The [plotly.express module][1] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or `px`. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][2], [scatter][3], [area][4], [bar][5], [funnel][6] and [timeline][7] figures. We'll go through some of them in this chapter, and you can study more in the docs. But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple plotly express function like `px.line()`
+The [plotly.express module][1] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or `px`. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][2], [scatter][3], [bar][5],  and [timeline][7] figures. We'll go through some of them in this chapter, and you can study more in the docs. But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple plotly express function like `px.line()`
 
 ## 8.2.1 About the gapminder dataset
 
@@ -182,7 +182,7 @@ pio.renderers.default = 'notebook_connected'
 Now that you've got a sense of the powers hidden in all Plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:
 
 
-```{admonition} Main principles of PX
+```{admonition} Summary of main principles of PX
 1. Defining a dataset `df` let's you reference all available variables in the function arguments
 2. You can illustrate multiple dimensions of the dataset through variables like `color`, `symbol`.
 3. You can create animations through arguments like `animation_frame` and `animation_group`
@@ -235,7 +235,7 @@ fig.show()
 [![enter image description here][20]][20]
 
 
-# 8.3.3 Box plot with `px.box()`
+## 8.3.3 Box plot with `px.box()`
 
 
 ```python
@@ -252,7 +252,7 @@ fig.show()
 [![enter image description here][21]][21]
 
 
-# 8.3.4 Histogram with `px.histogram()`
+## 8.3.4 Histogram with `px.histogram()`
 
 ```python
 import plotly.express as px
@@ -297,7 +297,7 @@ fig.show()
 [![enter image description here][24]][24]
 
 
-# 8.3.7 Heatmap with `px.density_heatmap()`
+## 8.3.7 Heatmap with `px.density_heatmap()`
 
 ```python
 import plotly.express as px
@@ -361,11 +361,7 @@ fig.show()
 
 [![enter image description here][27]][27]
 
-
-
 ```{tip}
-
-
 You can set Plotly to be the [plotting backend for pandas](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937), and produce Plotly Figures with `df.plot(kind)` where `kind` can be any of ` ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']`. This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.
 
 ```python
