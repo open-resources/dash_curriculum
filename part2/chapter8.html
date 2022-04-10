@@ -390,6 +390,16 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-create-a-plotly-express-figure-for-your-dash-app">
+       8.2.1 How to create a Plotly Express Figure for your Dash APP
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-incorporate-the-figure-in-your-dash-app">
+       8.2.2 How to incorporate the Figure in your Dash APP
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#complete-code">
        Complete code
       </a>
@@ -410,136 +420,140 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#introduction-to-the-powers-of-plotly-express">
      8.3 Introduction to the powers of Plotly Express
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#about-the-gapminder-dataset">
-     8.3.1 About the gapminder dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-basic-line-chart-with-px-line">
-     8.3.2 A basic line chart with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.line()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-multiple-lines-with-different-colors">
-     8.3.3 Adding multiple lines with different colors
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figure-objects">
-     8.3.4 The interactivity of Plotly Figure Objects.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multidimensional-data-with-lines-and-markers">
-     8.3.5 Multidimensional data with lines and markers
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scatter-charts-with-px-scatter">
-     8.3.6 Scatter Charts with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.scatter
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#animated-scatter-bubble-charts">
-     8.3.7 Animated Scatter / Bubble charts
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#about-the-gapminder-dataset">
+       8.3.1 About the gapminder dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-basic-line-chart-with-px-line">
+       8.3.2 A basic line chart with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.line()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-multiple-lines-with-different-colors">
+       8.3.3 Adding multiple lines with different colors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figure-objects">
+       8.3.4 The interactivity of Plotly Figure Objects.
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multidimensional-data-with-lines-and-markers">
+       8.3.5 Multidimensional data with lines and markers
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scatter-charts-with-px-scatter">
+       8.3.6 Scatter Charts with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.scatter
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#animated-scatter-bubble-charts">
+       8.3.7 Animated Scatter / Bubble charts
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-variety-of-plotly-express-figures">
      8.4 A variety of Plotly Express figures
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stacked-bar-chart-with-px-bar">
-     8.4.1 Stacked bar chart with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.bar()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#grouped-bar-chart">
-     8.4.2 Grouped bar chart
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#box-plot-with-px-box">
-     8.4.3 Box plot with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.box()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram-with-px-histogram">
-     8.4.4 Histogram with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.histogram()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#facet-trellis-plots">
-     8.4.5 Facet / Trellis plots
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#treemap-with-px-treemap">
-     8.4.6 Treemap with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.treemap()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#heatmap-with-px-density-heatmap">
-     8.4.7 Heatmap with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.density_heatmap()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#choropleth-map-with-px-choropleth">
-     8.4.8 Choropleth map with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.choropleth()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#timeline-with-px-timeline">
-     8.4.9 Timeline with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.timeline()
-      </span>
-     </code>
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacked-bar-chart-with-px-bar">
+       8.4.1 Stacked bar chart with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.bar()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#grouped-bar-chart">
+       8.4.2 Grouped bar chart
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#histogram-with-px-histogram">
+       8.4.3 Histogram with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.histogram()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#box-plot-with-px-box">
+       8.4.4 Box plot with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.box()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#facet-trellis-plots">
+       8.4.5 Facet / Trellis plots
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#treemap-with-px-treemap">
+       8.4.6 Treemap with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.treemap()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#heatmap-with-px-density-heatmap">
+       8.4.7 Heatmap with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.density_heatmap()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choropleth-map-with-px-choropleth">
+       8.4.8 Choropleth map with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.choropleth()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#timeline-with-px-timeline">
+       8.4.9 Timeline with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.timeline()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#references-and-resources-more-links-at-end-of-document">
@@ -712,6 +726,16 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-create-a-plotly-express-figure-for-your-dash-app">
+       8.2.1 How to create a Plotly Express Figure for your Dash APP
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-incorporate-the-figure-in-your-dash-app">
+       8.2.2 How to incorporate the Figure in your Dash APP
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#complete-code">
        Complete code
       </a>
@@ -732,136 +756,140 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#introduction-to-the-powers-of-plotly-express">
      8.3 Introduction to the powers of Plotly Express
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#about-the-gapminder-dataset">
-     8.3.1 About the gapminder dataset
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-basic-line-chart-with-px-line">
-     8.3.2 A basic line chart with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.line()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#adding-multiple-lines-with-different-colors">
-     8.3.3 Adding multiple lines with different colors
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figure-objects">
-     8.3.4 The interactivity of Plotly Figure Objects.
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#multidimensional-data-with-lines-and-markers">
-     8.3.5 Multidimensional data with lines and markers
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scatter-charts-with-px-scatter">
-     8.3.6 Scatter Charts with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.scatter
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#animated-scatter-bubble-charts">
-     8.3.7 Animated Scatter / Bubble charts
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#about-the-gapminder-dataset">
+       8.3.1 About the gapminder dataset
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#a-basic-line-chart-with-px-line">
+       8.3.2 A basic line chart with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.line()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#adding-multiple-lines-with-different-colors">
+       8.3.3 Adding multiple lines with different colors
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figure-objects">
+       8.3.4 The interactivity of Plotly Figure Objects.
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multidimensional-data-with-lines-and-markers">
+       8.3.5 Multidimensional data with lines and markers
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scatter-charts-with-px-scatter">
+       8.3.6 Scatter Charts with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.scatter
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#animated-scatter-bubble-charts">
+       8.3.7 Animated Scatter / Bubble charts
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#a-variety-of-plotly-express-figures">
      8.4 A variety of Plotly Express figures
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#stacked-bar-chart-with-px-bar">
-     8.4.1 Stacked bar chart with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.bar()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#grouped-bar-chart">
-     8.4.2 Grouped bar chart
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#box-plot-with-px-box">
-     8.4.3 Box plot with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.box()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram-with-px-histogram">
-     8.4.4 Histogram with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.histogram()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#facet-trellis-plots">
-     8.4.5 Facet / Trellis plots
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#treemap-with-px-treemap">
-     8.4.6 Treemap with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.treemap()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#heatmap-with-px-density-heatmap">
-     8.4.7 Heatmap with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.density_heatmap()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#choropleth-map-with-px-choropleth">
-     8.4.8 Choropleth map with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.choropleth()
-      </span>
-     </code>
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#timeline-with-px-timeline">
-     8.4.9 Timeline with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       px.timeline()
-      </span>
-     </code>
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#stacked-bar-chart-with-px-bar">
+       8.4.1 Stacked bar chart with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.bar()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#grouped-bar-chart">
+       8.4.2 Grouped bar chart
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#histogram-with-px-histogram">
+       8.4.3 Histogram with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.histogram()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#box-plot-with-px-box">
+       8.4.4 Box plot with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.box()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#facet-trellis-plots">
+       8.4.5 Facet / Trellis plots
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#treemap-with-px-treemap">
+       8.4.6 Treemap with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.treemap()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#heatmap-with-px-density-heatmap">
+       8.4.7 Heatmap with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.density_heatmap()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#choropleth-map-with-px-choropleth">
+       8.4.8 Choropleth map with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.choropleth()
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#timeline-with-px-timeline">
+       8.4.9 Timeline with
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         px.timeline()
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#references-and-resources-more-links-at-end-of-document">
@@ -1012,7 +1040,10 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="admonition-what-you-will-learn admonition">
 <p class="admonition-title">What you will learn</p>
 <ul class="simple">
-<li><p>What Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is and why you should use it.</p></li>
+<li><p>Principles of Effective Visualizations</p></li>
+<li><p>How to incorporate a Plotly Figure Object in your Dash App.</p></li>
+<li><p>How Plotly Express (<code class="docutils literal notranslate"><span class="pre">px</span></code>) is the preferred way to create a Plotly Figure Object.</p></li>
+<li><p>An introduction to the powers of <code class="docutils literal notranslate"><span class="pre">px</span></code>.</p></li>
 <li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> uses attributes such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> to illustrate multiple dimensions of a dataset.</p></li>
 <li><p>How <code class="docutils literal notranslate"><span class="pre">px</span></code> uses the attributes <code class="docutils literal notranslate"><span class="pre">animation_frame</span></code> and <code class="docutils literal notranslate"><span class="pre">animation_group</span></code> to create animations.</p></li>
 <li><p>How to create chart types like  <code class="docutils literal notranslate"><span class="pre">line</span></code>, <code class="docutils literal notranslate"><span class="pre">scatter</span></code>, <code class="docutils literal notranslate"><span class="pre">bar</span></code>, <code class="docutils literal notranslate"><span class="pre">histogram</span></code>, <code class="docutils literal notranslate"><span class="pre">box</span></code>, <code class="docutils literal notranslate"><span class="pre">facet</span></code>, <code class="docutils literal notranslate"><span class="pre">maps</span></code> and<code class="docutils literal notranslate"><span class="pre">treemap</span></code>.</p></li>
@@ -1029,20 +1060,26 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>There’s almost no end to what such a figure object can be as we’ll describe in more detail in a bit. But as an example of how to include figures in your dash APP, consider the following snippet where we load a dataset from <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> and make a figure with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code>. The function call <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> in this snippet will contain attributes and arguments that you will learn more about in the following subsections.</p>
+<div class="section" id="how-to-create-a-plotly-express-figure-for-your-dash-app">
+<h3>8.2.1 How to create a Plotly Express Figure for your Dash APP<a class="headerlink" href="#how-to-create-a-plotly-express-figure-for-your-dash-app" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
 
 <span class="c1"># figure</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
+                  <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span>
                   <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX line plot&quot;</span><span class="p">,</span>
                   <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span>
                   <span class="p">)</span>
-
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/M89Yh.png"><img alt="enter image description here" src="https://i.stack.imgur.com/M89Yh.png" /></a></p>
+</div>
+<div class="section" id="how-to-incorporate-the-figure-in-your-dash-app">
+<h3>8.2.2 How to incorporate the Figure in your Dash APP<a class="headerlink" href="#how-to-incorporate-the-figure-in-your-dash-app" title="Permalink to this headline">¶</a></h3>
 <p>This figure can then be incorporated in the following snippet that loads a dataset, creates a Plotly Figure object, and displays it in a Dash app.</p>
+</div>
 <div class="section" id="complete-code">
 <h3>Complete code<a class="headerlink" href="#complete-code" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1084,14 +1121,13 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="introduction-to-the-powers-of-plotly-express">
 <h2>8.3 Introduction to the powers of Plotly Express<a class="headerlink" href="#introduction-to-the-powers-of-plotly-express" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://plotly.com/python/plotly-express/">plotly.express module</a> (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or <code class="docutils literal notranslate"><span class="pre">px</span></code>. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like <a class="reference external" href="https://plotly.com/python/line-charts/">line</a>, <a class="reference external" href="https://plotly.com/python/line-and-scatter/">scatter</a>, <a class="reference external" href="https://plotly.com/python/bar-charts/">bar</a>,  and <a class="reference external" href="https://plotly.com/python/gantt/">timeline</a> figures. We’ll go through some of them in this chapter, and you can study more in the docs. But first, let’s unveil the powers you can unleash with a multi-dimensinal dataset like <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> and a simple plotly express function like <code class="docutils literal notranslate"><span class="pre">px.line()</span></code></p>
-</div>
 <div class="section" id="about-the-gapminder-dataset">
-<h2>8.3.1 About the gapminder dataset<a class="headerlink" href="#about-the-gapminder-dataset" title="Permalink to this headline">¶</a></h2>
+<h3>8.3.1 About the gapminder dataset<a class="headerlink" href="#about-the-gapminder-dataset" title="Permalink to this headline">¶</a></h3>
 <p>The gapminder dataset available through <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> is provided by <a class="reference external" href="https://www.gapminder.org/">Gapminder.org</a>. Here you’ll find <code class="docutils literal notranslate"><span class="pre">1704</span></code> rows of data and the following columns <code class="docutils literal notranslate"><span class="pre">['country',</span> <span class="pre">'continent',</span> <span class="pre">'year',</span> <span class="pre">'lifeExp',</span> <span class="pre">'pop',</span> <span class="pre">'gdpPercap'</span> <span class="pre">'iso_alpha',</span> <span class="pre">'iso_num']</span></code>. Life expectancy at birth is stored in <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code>, population by country is <code class="docutils literal notranslate"><span class="pre">pop</span></code>, and <code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code> is the per capita GDP. The data is an excerpt of data found in specific spreadsheets on <a class="reference external" href="https://www.gapminder.org/">Gapminder</a> circa 2010. The data has a so-called long (or  tidy) format. Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data (more dimensions than 2).
 PX also handles data of <a class="reference external" href="https://plotly.com/python/wide-form/">other formats</a>.</p>
 </div>
 <div class="section" id="a-basic-line-chart-with-px-line">
-<h2>8.3.2 A basic line chart with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code><a class="headerlink" href="#a-basic-line-chart-with-px-line" title="Permalink to this headline">¶</a></h2>
+<h3>8.3.2 A basic line chart with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code><a class="headerlink" href="#a-basic-line-chart-with-px-line" title="Permalink to this headline">¶</a></h3>
 <p>As a minimal example, consider life expectancies in Canada in a period from 1962 to 2007:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/fu8NX.png"><img alt="enter image description here" src="https://i.stack.imgur.com/fu8NX.png" /></a></p>
 <p>This figure is produced using only these lines of code where the most essential part is <a class="reference external" href="https://plotly.com/python/line-charts/#line-plots-with-plotlyexpress"><code class="docutils literal notranslate"><span class="pre">px.line()</span></code></a>:</p>
@@ -1126,7 +1162,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 </div>
 <div class="section" id="adding-multiple-lines-with-different-colors">
-<h2>8.3.3 Adding multiple lines with different colors<a class="headerlink" href="#adding-multiple-lines-with-different-colors" title="Permalink to this headline">¶</a></h2>
+<h3>8.3.3 Adding multiple lines with different colors<a class="headerlink" href="#adding-multiple-lines-with-different-colors" title="Permalink to this headline">¶</a></h3>
 <p>So far so good, but the dataset includes data for a lot more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it’s also an important part of what makes Plotly Express so powerful and flexible. The following figure is produced by the snippet below where we’ve included some other countries in the dataset with <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df[df['country'].isin(['Canada',</span>&#160; <span class="pre">'Norway',</span> <span class="pre">'Germany'])]</span></code></p>
 <p><a class="reference external" href="https://i.stack.imgur.com/GpgGe.png"><img alt="enter image description here" src="https://i.stack.imgur.com/GpgGe.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -1154,14 +1190,14 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 </div>
 <div class="section" id="the-interactivity-of-plotly-figure-objects">
-<h2>8.3.4 The interactivity of Plotly Figure Objects.<a class="headerlink" href="#the-interactivity-of-plotly-figure-objects" title="Permalink to this headline">¶</a></h2>
+<h3>8.3.4 The interactivity of Plotly Figure Objects.<a class="headerlink" href="#the-interactivity-of-plotly-figure-objects" title="Permalink to this headline">¶</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code> initialized, a legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/jn4rl.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/jn4rl.gif" /></a></p>
 <p>Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the <code class="docutils literal notranslate"><span class="pre">y-axis</span></code>, the complete axis will slide when you move the mouse. If you grab the top of the axis, all other than the minumum value will change, and vice versa.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/1CTmL.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/1CTmL.gif" /></a></p>
 </div>
 <div class="section" id="multidimensional-data-with-lines-and-markers">
-<h2>8.3.5 Multidimensional data with lines and markers<a class="headerlink" href="#multidimensional-data-with-lines-and-markers" title="Permalink to this headline">¶</a></h2>
+<h3>8.3.5 Multidimensional data with lines and markers<a class="headerlink" href="#multidimensional-data-with-lines-and-markers" title="Permalink to this headline">¶</a></h3>
 <p>You can combine lines <em>and</em> markers in <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> to illustrate multiple dimensions of your dataset through the addition of the <code class="docutils literal notranslate"><span class="pre">symbol</span></code> argument. Below we’ve included <code class="docutils literal notranslate"><span class="pre">symbol</span> <span class="pre">=</span> <span class="pre">'continent'</span></code> to our previous <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> call. This works much like <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code>. But this time, we’re applying a symbol sequence to the unique values in <code class="docutils literal notranslate"><span class="pre">df['continent']</span></code> which are <code class="docutils literal notranslate"><span class="pre">'Americas'</span></code> and <code class="docutils literal notranslate"><span class="pre">'Europe'</span></code>. The symbols assigned are <code class="docutils literal notranslate"><span class="pre">['Circle',</span> <span class="pre">'Diamond']</span></code>:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/3yB43.png"><img alt="enter image description here" src="https://i.stack.imgur.com/3yB43.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -1181,7 +1217,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 </div>
 <div class="section" id="scatter-charts-with-px-scatter">
-<h2>8.3.6 Scatter Charts with <code class="docutils literal notranslate"><span class="pre">px.scatter</span></code><a class="headerlink" href="#scatter-charts-with-px-scatter" title="Permalink to this headline">¶</a></h2>
+<h3>8.3.6 Scatter Charts with <code class="docutils literal notranslate"><span class="pre">px.scatter</span></code><a class="headerlink" href="#scatter-charts-with-px-scatter" title="Permalink to this headline">¶</a></h3>
 <p>The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> call with <code class="docutils literal notranslate"><span class="pre">px.scatter()</span></code> and otherwise use the same arguments.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/2jVzU.png"><img alt="enter image description here" src="https://i.stack.imgur.com/2jVzU.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -1202,7 +1238,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 </div>
 <div class="section" id="animated-scatter-bubble-charts">
-<h2>8.3.7 Animated Scatter / Bubble charts<a class="headerlink" href="#animated-scatter-bubble-charts" title="Permalink to this headline">¶</a></h2>
+<h3>8.3.7 Animated Scatter / Bubble charts<a class="headerlink" href="#animated-scatter-bubble-charts" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">line_dash</span></code> is another argument that can illustrate dimensions of a dataset. But where things get really interesting is when you apply multiple settings like <code class="docutils literal notranslate"><span class="pre">animation_frame=&quot;year&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">animation_group=&quot;country&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">size=&quot;pop&quot;</span></code>. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents through multiple years.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -1223,6 +1259,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="a-variety-of-plotly-express-figures">
 <h2>8.4 A variety of Plotly Express figures<a class="headerlink" href="#a-variety-of-plotly-express-figures" title="Permalink to this headline">¶</a></h2>
 <p>Now that you’ve got a sense of the powers hidden in all Plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:</p>
@@ -1235,9 +1272,9 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </ol>
 </div>
 <p>One thing all following chart types have in common, is that we’re using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that are used are only there because some chart types require a specific data format, or simply look better with a smaller subset of the gapminder dataset.</p>
-</div>
 <div class="section" id="stacked-bar-chart-with-px-bar">
-<h2>8.4.1 Stacked bar chart with <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code><a class="headerlink" href="#stacked-bar-chart-with-px-bar" title="Permalink to this headline">¶</a></h2>
+<h3>8.4.1 Stacked bar chart with <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code><a class="headerlink" href="#stacked-bar-chart-with-px-bar" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> works similarly to <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> in that it uses <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">country</span></code> the very same way. By default, each colored category is stacked on top of eachother for each unique occurence of <code class="docutils literal notranslate"><span class="pre">year</span></code> on the <code class="docutils literal notranslate"><span class="pre">x-axis</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 
@@ -1250,7 +1287,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 <p><a class="reference external" href="https://i.stack.imgur.com/pAkfB.png"><img alt="enter image description here" src="https://i.stack.imgur.com/pAkfB.png" /></a></p>
 </div>
 <div class="section" id="grouped-bar-chart">
-<h2>8.4.2 Grouped bar chart<a class="headerlink" href="#grouped-bar-chart" title="Permalink to this headline">¶</a></h2>
+<h3>8.4.2 Grouped bar chart<a class="headerlink" href="#grouped-bar-chart" title="Permalink to this headline">¶</a></h3>
 <p>Stacking the bars makes sense to illustrate accumulations for data such as <code class="docutils literal notranslate"><span class="pre">population</span></code>. But not so much for life expectancies. In order to group subcategories next to eachother instead, simply include <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'group'</span></code> in the function call.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1274,8 +1311,21 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/5XnqR.png"><img alt="enter image description here" src="https://i.stack.imgur.com/5XnqR.png" /></a></p>
 </div>
+<div class="section" id="histogram-with-px-histogram">
+<h3>8.4.3 Histogram with <code class="docutils literal notranslate"><span class="pre">px.histogram()</span></code><a class="headerlink" href="#histogram-with-px-histogram" title="Permalink to this headline">¶</a></h3>
+<p>Histograms can be considered as a special kind of bar chart where the bars represent  groups of data instead of individual observations. By default, <code class="docutils literal notranslate"><span class="pre">px.histogram()</span></code> will also stack categories on top of eachother. To prevent that, and rather display distributions of data individually, jsut inclue <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'overlay'</span></code> as you can see in the snippet below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Asia&#39;</span><span class="p">,</span>  <span class="s1">&#39;Europe&#39;</span><span class="p">])]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">nbins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;overlay&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://i.stack.imgur.com/9sw4h.png"><img alt="enter image description here" src="https://i.stack.imgur.com/9sw4h.png" /></a></p>
+</div>
 <div class="section" id="box-plot-with-px-box">
-<h2>8.4.3 Box plot with <code class="docutils literal notranslate"><span class="pre">px.box()</span></code><a class="headerlink" href="#box-plot-with-px-box" title="Permalink to this headline">¶</a></h2>
+<h3>8.4.4 Box plot with <code class="docutils literal notranslate"><span class="pre">px.box()</span></code><a class="headerlink" href="#box-plot-with-px-box" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">po.box</span></code> lets you investigate distributions of data further. By default, <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> displays <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">quartiles</span></code> and some <code class="docutils literal notranslate"><span class="pre">outliers</span></code> for the different categories in the order that they appear in the dataset. In the following example we’ve included the argument <code class="docutils literal notranslate"><span class="pre">category_orders</span></code> to display means for each group in a decreasing manner.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 
@@ -1288,20 +1338,9 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/YzXfG.png"><img alt="enter image description here" src="https://i.stack.imgur.com/YzXfG.png" /></a></p>
 </div>
-<div class="section" id="histogram-with-px-histogram">
-<h2>8.4.4 Histogram with <code class="docutils literal notranslate"><span class="pre">px.histogram()</span></code><a class="headerlink" href="#histogram-with-px-histogram" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Asia&#39;</span><span class="p">,</span>  <span class="s1">&#39;Europe&#39;</span><span class="p">])]</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">nbins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">barmode</span> <span class="o">=</span> <span class="s1">&#39;overlay&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="https://i.stack.imgur.com/9sw4h.png"><img alt="enter image description here" src="https://i.stack.imgur.com/9sw4h.png" /></a></p>
-</div>
 <div class="section" id="facet-trellis-plots">
-<h2>8.4.5 Facet / Trellis plots<a class="headerlink" href="#facet-trellis-plots" title="Permalink to this headline">¶</a></h2>
-<p>This section uses a new argument that splits a dataset into several subplots; <code class="docutils literal notranslate"><span class="pre">facet_col</span></code>. This creates several subplots for the same dataset.</p>
+<h3>8.4.5 Facet / Trellis plots<a class="headerlink" href="#facet-trellis-plots" title="Permalink to this headline">¶</a></h3>
+<p>This section uses a new argument that splits a dataset into several subplots; <code class="docutils literal notranslate"><span class="pre">facet_col</span></code>. <code class="docutils literal notranslate"><span class="pre">facet_col_wrap</span></code> defines in how many columns you would like to organize your subplots.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 
@@ -1317,7 +1356,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 <p><a class="reference external" href="https://i.stack.imgur.com/gj6oW.png"><img alt="enter image description here" src="https://i.stack.imgur.com/gj6oW.png" /></a></p>
 </div>
 <div class="section" id="treemap-with-px-treemap">
-<h2>8.4.6 Treemap with <code class="docutils literal notranslate"><span class="pre">px.treemap()</span></code><a class="headerlink" href="#treemap-with-px-treemap" title="Permalink to this headline">¶</a></h2>
+<h3>8.4.6 Treemap with <code class="docutils literal notranslate"><span class="pre">px.treemap()</span></code><a class="headerlink" href="#treemap-with-px-treemap" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;year == 2007&quot;</span><span class="p">)</span>
@@ -1329,7 +1368,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 <p><a class="reference external" href="https://i.stack.imgur.com/6UVCx.png"><img alt="enter image description here" src="https://i.stack.imgur.com/6UVCx.png" /></a></p>
 </div>
 <div class="section" id="heatmap-with-px-density-heatmap">
-<h2>8.4.7 Heatmap with <code class="docutils literal notranslate"><span class="pre">px.density_heatmap()</span></code><a class="headerlink" href="#heatmap-with-px-density-heatmap" title="Permalink to this headline">¶</a></h2>
+<h3>8.4.7 Heatmap with <code class="docutils literal notranslate"><span class="pre">px.density_heatmap()</span></code><a class="headerlink" href="#heatmap-with-px-density-heatmap" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">60000</span><span class="p">]</span>
@@ -1341,7 +1380,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 <p><a class="reference external" href="https://i.stack.imgur.com/AJswk.png"><img alt="enter image description here" src="https://i.stack.imgur.com/AJswk.png" /></a></p>
 </div>
 <div class="section" id="choropleth-map-with-px-choropleth">
-<h2>8.4.8 Choropleth map with <code class="docutils literal notranslate"><span class="pre">px.choropleth()</span></code><a class="headerlink" href="#choropleth-map-with-px-choropleth" title="Permalink to this headline">¶</a></h2>
+<h3>8.4.8 Choropleth map with <code class="docutils literal notranslate"><span class="pre">px.choropleth()</span></code><a class="headerlink" href="#choropleth-map-with-px-choropleth" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">gapminder</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> 
                     <span class="n">animation_frame</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Plasma</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;natural earth&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1350,7 +1389,7 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 <p><a class="reference external" href="https://i.stack.imgur.com/mIUah.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/mIUah.gif" /></a></p>
 </div>
 <div class="section" id="timeline-with-px-timeline">
-<h2>8.4.9 Timeline with <code class="docutils literal notranslate"><span class="pre">px.timeline()</span></code><a class="headerlink" href="#timeline-with-px-timeline" title="Permalink to this headline">¶</a></h2>
+<h3>8.4.9 Timeline with <code class="docutils literal notranslate"><span class="pre">px.timeline()</span></code><a class="headerlink" href="#timeline-with-px-timeline" title="Permalink to this headline">¶</a></h3>
 <p>Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we’ve made a few changes to the gapminder dataset and removed some random dates. You can use this code snippet to illustrate what time periods that you have available data for a set of countries. Missing years <em>within</em> a time period are not taken into account.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1404,12 +1443,14 @@ PX also handles data of <a class="reference external" href="https://plotly.com/p
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="references-and-resources-more-links-at-end-of-document">
 <h2>8.5 References and resources (more links at end of document)<a class="headerlink" href="#references-and-resources-more-links-at-end-of-document" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook">https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook</a></p>
 <p><a class="reference external" href="https://cran.r-project.org/web/packages/gapminder/README.html">https://cran.r-project.org/web/packages/gapminder/README.html</a></p>
+<p><em><strong>More resources listed as links at the very end of the document</strong></em></p>
 <div class="admonition-summary admonition">
-<p class="admonition-title">Summary</p>
+<p class="admonition-title">Summary??</p>
 </div>
 <p>#########################################</p>
 </div>
