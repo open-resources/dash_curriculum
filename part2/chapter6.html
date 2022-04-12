@@ -406,32 +406,7 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-a-url">
-     6.2.2 Read data from a URL
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-dcc-upload">
-     6.2.3 Read data from dcc.Upload
-    </a>
-   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-wrangling-basics">
-   6.3 Data wrangling basics
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-data-in-the-app">
-   6.4 Using data in the App
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
  </li>
 </ul>
 
@@ -485,32 +460,7 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
     </ul>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-a-url">
-     6.2.2 Read data from a URL
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-dcc-upload">
-     6.2.3 Read data from dcc.Upload
-    </a>
-   </li>
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-wrangling-basics">
-   6.3 Data wrangling basics
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#using-data-in-the-app">
-   6.4 Using data in the App
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
-  </a>
  </li>
 </ul>
 
@@ -586,44 +536,51 @@ df = px.data.gapminder()</p>
 <li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator.</p></li>
 <li><p>We’ve also customised the columns to be uploaded, we selected a subset of all columns in the file, using the “usecols” argument.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="read-data-from-a-url">
-<h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
-<p>We will now upload the same data from above, but from (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>), which is containint a .txt file.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
-<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<p>url = ‘<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt</a>’
+df3 = pd.read_table(url, sep=’;’)
+df3.head()</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```{figure} ../ch6_files/data03.JPG
+---
+scale: 35%
+align: centre
+---
+URL uploaded data ```
+
+### 6.2.3 Read data from dcc.Upload
+
+XXX
+
+
+
+## 6.3 Data wrangling basics
+
+- Show some examples of basic data wrangling such as:
+groupby
+slicing in pandas
+filtering
+
+
+## 6.4 Using data in the App
+
+- Show an example of a Dropdown object, with the option list loaded from the dataframe
+
+dropdown = dcc.Dropdown(id=&#39;our-dropdown&#39;, options=[&#39;My First app&#39;, &#39;Welcome to the App&#39;, &#39;This is the title&#39;], value=&#39;My First app&#39;)
+
+note: show how to write data into csv
+
+
+## Summary
+
+
+App code at the end:
+dropdown with country data options
+
+At the end of this chapter, [here is a zipped file](https://sportsnet.ca) of what your app should look like.
 </pre></div>
 </div>
 </div>
-<div class="section" id="read-data-from-dcc-upload">
-<h3>6.2.3 Read data from dcc.Upload<a class="headerlink" href="#read-data-from-dcc-upload" title="Permalink to this headline">¶</a></h3>
-<p>XXX</p>
 </div>
-</div>
-<div class="section" id="data-wrangling-basics">
-<h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Show some examples of basic data wrangling such as:
-groupby
-slicing in pandas
-filtering</p></li>
-</ul>
-</div>
-<div class="section" id="using-data-in-the-app">
-<h2>6.4 Using data in the App<a class="headerlink" href="#using-data-in-the-app" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Show an example of a Dropdown object, with the option list loaded from the dataframe</p></li>
-</ul>
-<p>dropdown = dcc.Dropdown(id=’our-dropdown’, options=[‘My First app’, ‘Welcome to the App’, ‘This is the title’], value=’My First app’)</p>
-<p>note: show how to write data into csv</p>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>App code at the end:
-dropdown with country data options</p>
-<p>At the end of this chapter, <a class="reference external" href="https://sportsnet.ca">here is a zipped file</a> of what your app should look like.</p>
 </div>
 </div>
 

@@ -77,8 +77,7 @@ df2.head()
 scale: 35%
 align: centre
 ---
-csv uploaded data
-```
+csv uploaded data ```
 
 ### 6.2.2 Read data from a URL
 We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)), which is containint a .txt file.
@@ -94,8 +93,7 @@ df3.head()
 scale: 35%
 align: centre
 ---
-URL uploaded data
-```
+URL uploaded data ```
 
 ### 6.2.3 Read data from dcc.Upload
 
