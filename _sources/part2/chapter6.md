@@ -40,6 +40,8 @@ df = px.data.gapminder()
 ```
 
 ### 6.2.1 Read data from files (Excel or CSV)
+We will now upload an Excel file ([link](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)) - extracted from the Gapminder data - into a dataframe:
+
 
 
 
