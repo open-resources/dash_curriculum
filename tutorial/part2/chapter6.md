@@ -40,17 +40,22 @@ df = px.data.gapminder()
 ```
 
 ### 6.2.1 Read data from files (Excel or CSV)
+
+#### Excel files
 We will now upload an Excel file ([link](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)) - extracted from the Gapminder data - into a dataframe:
 
+```
+filepath = 'C:/Users/User1/Downloads/data_01.xlsx'
+excel_data = pd.ExcelFile(filepath)
+df1 = excel_data.parse('Sheet1')
+df1.head()
+```
+- We suppose the Excel file to be local, saved into the Downloads folder
+- When working with Excel files, we first need to create a parser ("excel_data" from the code below)
+- Finally, we import one Excel tab ("Sheet1") to a data frame.
 
+#### csv files
 
-
-- Show a sample file with few data in it
-- Upload data into the dataframe with read_csv explaining how to change properties such as: field separators, using or not using the field names)
-
-df = pd.read_csv()
-print(head())
-print(df.columns)
 
 
 ### 6.2.2 Read data from a URL
