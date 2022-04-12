@@ -612,21 +612,24 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Accordingly, the Input specifies the property of the component that will activate the callback; in this case, it’s the <code class="docutils literal notranslate"><span class="pre">value</span></code> property of the dropdown.</p></li>
 <li><p>Whenever the property of the Input component is changed by the user, it will immediately trigger the callback and update the property of the Output component, based on the returned value in the callback function. You might compare this behavior with two cells in excel which are linked together.</p></li>
 </ul>
-<p>The callback function takes as many arguments as there are Input components. The order remains stable. That is, the property of the component you enter first in the Input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p>
 </div>
 <div class="section" id="callback-function">
 <h3>4.2.2 Callback Function<a class="headerlink" href="#callback-function" title="Permalink to this headline">¶</a></h3>
-<p>The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.</p>
-<p>The function itself - like any arbitrary function in python - is composed into three different parts, namely</p>
+<p>The callback function makes up the second part of the callback. The function itself - like any arbitrary function in python - is composed of three different parts, namely</p>
 <ul class="simple">
 <li><p>The function argument(s)</p></li>
 <li><p>The function body</p></li>
 <li><p>The return or output of the function</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_drop</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">value_drop</span>
+    <span class="k">return</span> <span class="n">title</span>
+</pre></div>
+</div>
 <p>Let’s have a look at those in more detail.</p>
 <div class="admonition-the-function-argument admonition">
 <p class="admonition-title">The function argument</p>
-<p>The callback function takes as many arguments as there are input components. The order remains stable i.e., the property of the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p>
+<p>The callback function takes as many arguments as there are Input components. The order remains stable. That is, the property of the component you enter first in the Input argument of the callback decorator will be represented by the argument you enter first into the callback function.</p>
 </div>
 <div class="admonition-the-function-body admonition">
 <p class="admonition-title">The function body</p>
@@ -634,8 +637,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="admonition-the-return-or-output-of-the-function admonition">
 <p class="admonition-title">The return or output of the function</p>
-<p>At the end of the callback function, the object returned will be assigned to the component property of the Output.output In our example, the title is assigned to the children of the Markdown, thereby, updating the title of the page that has been prepared in the function body gets returned i.e., that’s the output of your function and therefore will be the output of your callback.</p>
-<p>Note, that you might work with multiple outputs in the callback decorator, in which case you would need to return the same amount of objects in the callback function.</p>
+<p>At the end of the callback function, the object returned will be assigned to the component property of the Output. In our example, the title is assigned to the children of the Markdown, thereby, updating the title of the page.
+Note, that you might work with multiple outputs in the callback decorator, in which case you would need to return the same number of objects in the callback function.</p>
 </div>
 </div>
 </div>

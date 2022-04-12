@@ -119,22 +119,24 @@ The meaning of the different arguments is straight forward.
   * Accordingly, the Input specifies the property of the component that will activate the callback; in this case, it's the `value` property of the dropdown. 
   * Whenever the property of the Input component is changed by the user, it will immediately trigger the callback and update the property of the Output component, based on the returned value in the callback function. You might compare this behavior with two cells in excel which are linked together. 
 
-The callback function takes as many arguments as there are Input components. The order remains stable. That is, the property of the component you enter first in the Input argument of the callback decorator will be represented by the argument you enter first into the callback function.
-
 ### 4.2.2 Callback Function
 
-The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.
-
-The function itself - like any arbitrary function in python - is composed into three different parts, namely
+The callback function makes up the second part of the callback. The function itself - like any arbitrary function in python - is composed of three different parts, namely
 
 - The function argument(s)
 - The function body
 - The return or output of the function
 
+```
+def update_markdown(value_drop):
+    title = value_drop
+    return title
+```
+
 Let's have a look at those in more detail.
 
 ```{admonition} The function argument
-The callback function takes as many arguments as there are input components. The order remains stable i.e., the property of the component you enter first in the input argument of the callback decorator will be represented by the argument you enter first into the callback function.
+The callback function takes as many arguments as there are Input components. The order remains stable. That is, the property of the component you enter first in the Input argument of the callback decorator will be represented by the argument you enter first into the callback function.
 ```
 
 ```{admonition} The function body
@@ -142,9 +144,8 @@ The function body is the place where you can work with the input data to build g
 ```
 
 ```{admonition} The return or output of the function
-At the end of the callback function, the object returned will be assigned to the component property of the Output.output In our example, the title is assigned to the children of the Markdown, thereby, updating the title of the page that has been prepared in the function body gets returned i.e., that’s the output of your function and therefore will be the output of your callback. 
-
-Note, that you might work with multiple outputs in the callback decorator, in which case you would need to return the same amount of objects in the callback function.
+At the end of the callback function, the object returned will be assigned to the component property of the Output. In our example, the title is assigned to the children of the Markdown, thereby, updating the title of the page. 
+Note, that you might work with multiple outputs in the callback decorator, in which case you would need to return the same number of objects in the callback function.
 ```
 
 ## 4.3 Callbacks in action
