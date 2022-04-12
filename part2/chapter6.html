@@ -572,8 +572,8 @@ df = px.data.gapminder()</p>
 <li><p>In the code above, we supposed the Excel file to be local, saved into the Downloads folder</p></li>
 <li><p>We importd one Excel tab (“Sheet1”) to a data frame.</p></li>
 </ul>
-<div class="highlight-{figure}&lt;img notranslate"><div class="highlight"><pre><span></span>---
-scale: 50%
+<div class="highlight-{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data01.JPG notranslate"><div class="highlight"><pre><span></span>---
+scale: 35%
 align: centre
 ---
 Excel uploaded data
@@ -593,8 +593,8 @@ Excel uploaded data
 <li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator.</p></li>
 <li><p>We’ve also customised the columns to be uploaded, we selected a subset of all columns in the file, using the “usecols” argument.</p></li>
 </ul>
-<div class="highlight-{figure}&lt;img notranslate"><div class="highlight"><pre><span></span>---
-scale: 50%
+<div class="highlight-{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data02.JPG notranslate"><div class="highlight"><pre><span></span>---
+scale: 35%
 align: centre
 ---
 csv uploaded data
@@ -604,12 +604,19 @@ csv uploaded data
 </div>
 <div class="section" id="read-data-from-a-url">
 <h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Show an URL with some data in it</p></li>
-<li><p>Upload data into the dataframe</p></li>
-</ul>
-<p>df = pd.read_csv(“<a class="reference external" href="https://www.website.com">https://www.website.com</a>”)
-print(head())</p>
+<p>We will now upload the same data from above, but from (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>), which is containint a .txt file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data03.JPG notranslate"><div class="highlight"><pre><span></span>---
+scale: 35%
+align: centre
+---
+URL uploaded data
+</pre></div>
+</div>
 </div>
 <div class="section" id="read-data-from-dcc-upload">
 <h3>6.2.3 Read data from dcc.Upload<a class="headerlink" href="#read-data-from-dcc-upload" title="Permalink to this headline">¶</a></h3>

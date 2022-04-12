@@ -52,9 +52,9 @@ df1
 - In the code above, we supposed the Excel file to be local, saved into the Downloads folder
 - We importd one Excel tab ("Sheet1") to a data frame.
 
-```{figure}<img src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data01.JPG">
+```{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data01.JPG
 ---
-scale: 50%
+scale: 35%
 align: centre
 ---
 Excel uploaded data
@@ -72,28 +72,35 @@ df2.head()
 - In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. We used the the backslash " \ " as an escape character in order to properly interpret the field separator.
 - We've also customised the columns to be uploaded, we selected a subset of all columns in the file, using the "usecols" argument.
 
-```{figure}<img src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data02.JPG">
+```{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data02.JPG
 ---
-scale: 50%
+scale: 35%
 align: centre
 ---
 csv uploaded data
 ```
 
 ### 6.2.2 Read data from a URL
+We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)), which is containint a .txt file.
 
+```
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
+df3 = pd.read_table(url, sep=';')
+df3.head()
+```
 
-
-- Show an URL with some data in it
-- Upload data into the dataframe
-
-df = pd.read_csv("https://www.website.com")
-print(head())
-
+```{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data03.JPG
+---
+scale: 35%
+align: centre
+---
+URL uploaded data
+```
 
 ### 6.2.3 Read data from dcc.Upload
 
 XXX
+
 
 
 ## 6.3 Data wrangling basics
