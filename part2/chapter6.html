@@ -393,6 +393,18 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#read-data-from-files-excel-or-csv">
      6.2.1 Read data from files (Excel or CSV)
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#excel-files">
+       Excel files
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#csv-files">
+       csv files
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#read-data-from-a-url">
@@ -460,6 +472,18 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#read-data-from-files-excel-or-csv">
      6.2.1 Read data from files (Excel or CSV)
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#excel-files">
+       Excel files
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#csv-files">
+       csv files
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#read-data-from-a-url">
@@ -536,14 +560,24 @@ df = px.data.gapminder()</p>
 </div>
 <div class="section" id="read-data-from-files-excel-or-csv">
 <h3>6.2.1 Read data from files (Excel or CSV)<a class="headerlink" href="#read-data-from-files-excel-or-csv" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="excel-files">
+<h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
 <p>We will now upload an Excel file (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">link</a>) - extracted from the Gapminder data - into a dataframe:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/User1/Downloads/data_01.xlsx&#39;</span>
+<span class="n">excel_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">excel_data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
+<span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>Show a sample file with few data in it</p></li>
-<li><p>Upload data into the dataframe with read_csv explaining how to change properties such as: field separators, using or not using the field names)</p></li>
+<li><p>We suppose the Excel file to be local, saved into the Downloads folder</p></li>
+<li><p>When working with Excel files, we first need to create a parser (“excel_data” from the code below)</p></li>
+<li><p>Finally, we import one Excel tab (“Sheet1”) to a data frame.</p></li>
 </ul>
-<p>df = pd.read_csv()
-print(head())
-print(df.columns)</p>
+</div>
+<div class="section" id="csv-files">
+<h4>csv files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
+</div>
 </div>
 <div class="section" id="read-data-from-a-url">
 <h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
