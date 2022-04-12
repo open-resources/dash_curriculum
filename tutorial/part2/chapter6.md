@@ -54,14 +54,17 @@ df1.head()
 
 #### csv files
 We will now upload the same data from above, but from a .csv file ([link](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv)).
-This time, we notice that the data has some different column separators '|?|'. We need to use the code below in order to properly process the data:
 
 ```
 filepath = 'C:/Users/User1/Downloads/data_02.csv'
-df2 = pd.read_csv(filepath, sep='\|\?\|')
+col_names = ['country','continent','year','pop']
+df2 = pd.read_csv(filepath, sep='\|\?\|', usecols=col_names)
 df2.head()
 ```
-- In the code above, the backslash "\" is used as an escape character
+- In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. We used the the backslash " \ " as an escape character in order to properly interpret the field separator.
+- We've also customised the columns to be uploaded, we selected a subset of all columns in the file, using the "usecols" argument.
+
+
 
 
 ### 6.2.2 Read data from a URL
