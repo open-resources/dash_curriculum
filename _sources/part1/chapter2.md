@@ -87,15 +87,13 @@ Dash is running on http://127.0.0.1:8050/
 ```
 - In order to display the app, open the browser and navigate to the URL shown in the console, in this case: http://127.0.0.1:8050/
 
-[.png with the App output from browser only]
+![alt txt](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c2/chap2-fig1.png)
 
 ---
 
 ## 2.2 Interacting with the App
 Once the app is launched and working, we can:
-  - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) on the console will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the app and we launch a different app, with the same port number, an error message will be displayed.
-
-[.png with the error message appearing when two apps are simultaneously launched]
+  - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) on the console will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.
 
   - **Update the app**: whenever we apply changes to the app code, we may first stop the app and re-launch it after making the changes in order to display the new version of the app. A quicker alternative can be to activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification to the app's code. This way, you don't need to stop the app prior to modifying the code. In order to activate this functionality, the statement to Launch the server should be modified to:
 ```

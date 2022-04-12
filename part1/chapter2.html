@@ -582,7 +582,7 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 <ul class="simple">
 <li><p>In order to display the app, open the browser and navigate to the URL shown in the console, in this case: <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a></p></li>
 </ul>
-<p>[.png with the App output from browser only]</p>
+<p><img alt="alt txt" src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c2/chap2-fig1.png" /></p>
 </div>
 </div>
 <hr class="docutils" />
@@ -590,10 +590,7 @@ This one line of code is pretty much static and fixed for any Dash app you may c
 <h2>2.2 Interacting with the App<a class="headerlink" href="#interacting-with-the-app" title="Permalink to this headline">¶</a></h2>
 <p>Once the app is launched and working, we can:</p>
 <ul class="simple">
-<li><p><strong>Stop the app</strong>: typing (‘Ctrl+C’ on Windows, ‘Command+C’ on Mac) on the console will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the app and we launch a different app, with the same port number, an error message will be displayed.</p></li>
-</ul>
-<p>[.png with the error message appearing when two apps are simultaneously launched]</p>
-<ul class="simple">
+<li><p><strong>Stop the app</strong>: typing (‘Ctrl+C’ on Windows, ‘Command+C’ on Mac) on the console will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.</p></li>
 <li><p><strong>Update the app</strong>: whenever we apply changes to the app code, we may first stop the app and re-launch it after making the changes in order to display the new version of the app. A quicker alternative can be to activate the “live updating”. Live update will refresh the app, from the browser, as you apply any modification to the app’s code. This way, you don’t need to stop the app prior to modifying the code. In order to activate this functionality, the statement to Launch the server should be modified to:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
