@@ -2,22 +2,22 @@
 
 ## What you will learn
 
-In this chapter we will explore Dash various **components** and how to position them within the app **layout**
+In this chapter we will explore various Dash **components** and how to position them within the app **layout**
 
-[ending_file.py](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py)
+[ending_file](./ch3_files/app.py)
 
 ## 3.1 Dash Components
 
 **Components** are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc...), slider bars, graphs, and many others.
 We will learn a few common components in this chapter.
 
-**Properties** are attributes of components such as their `id` or `children`.  We will learn more about properties in [chapter 4](./chapter4.md)
+**Properties** are attributes of components such as their `id` or `children`. 
 
 ````{dropdown} Buttons
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
-Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass in a **child** property to give the button a name in the dashboard.
+Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass the **children** property to give the button a name in the dashboard.
 
 
 ```python
@@ -44,10 +44,6 @@ if __name__ == '__main__':
 ```
 
 ![button](../assets/p1_c3/button.gif)
-
-```{admonition} Note
-- We will learn about `external_stylesheets` in later chapters
-```
 
 ````
 
@@ -95,8 +91,8 @@ if __name__ == '__main__':
 
   
 
-Radio items are lists of options that a user can only select one option.
-Similar to the checklst we will pass in a list of **options** when we create the component.
+Radio items are lists of options from which the user can select only one option.
+Similar to the checklist, we will pass in a list of **options** when creating the component.
 
 ```python
 # Import packages 
@@ -134,7 +130,7 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
     
-Dropdowns allow the user to select from a list of option. Similar to the checklst we will pass in a list of **options** when we create the component.
+Dropdowns allow the user to select from a list of options. Similar to the checklist, we will pass in a list of **options** when creating the component.
     
 ```python
 # Import packages 
@@ -212,18 +208,18 @@ if __name__ == '__main__':
 
 ## 3.2 Layout
 
-So far, we've only organized our app **layout** in a `dbc.Container()` component without any further specifications.  We've seen that this will place our app components sequentually in one single column.  To change the layout of components we will use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library components `dbc.Row()` and `dbc.Column()`.
+So far, we've only organized our app **layout** in a `dbc.Container()` without any further specifications. We've seen that this will place our app components sequentially in one single column.  To customise the layout, we will use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library components `dbc.Row()` and `dbc.Col()`.
 
 Best practices when constructing your layout using **Dash Bootstrap Components**:
 
-1. The entire app layout goes inside a `Containter`
-2. `Rows` go inside the `Container`
-3. `Cols` go inside `Rows`
-4. Components go inside `Cols`
+1. First, define the `Containter`, which will contain the entire app layout
+2. Then, inside the `dbc.Containter()`, define the `Rows`
+3. Then, inside each `dbc.Row()`, define the `Columns`
+4. Then, inside each `dbc.Col()`, insert the app `Components`
 
 ```{admonition} Note
-- There are **12 Columns** in each Row
-- In the code below we define the `width` property of the `Column`
+- The total `width` of columns in each row is 12
+- In the code below we define the `width` property for each `dbc.Col`
 ```
 
 ```python
@@ -245,20 +241,20 @@ slider = dcc.Slider(min=0, max=10, step=1)
 # App Layout 
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown, width=8)),
+        dbc.Row([dbc.Col([markdown], width=8)]),
         dbc.Row(
             [
-                dbc.Col(dropdown, width = 3), 
-                dbc.Col(slider, width = 9),
+                dbc.Col([dropdown], width = 3), 
+                dbc.Col([slider], width = 9),
             ]
         ),
         dbc.Row(
             [
-                dbc.Col(checklist, width = 6),
-                dbc.Col(radio, width = 6),
+                dbc.Col([checklist], width = 6),
+                dbc.Col([radio], width = 6),
             ]
         ),
-        dbc.Row(dbc.Col(button, width = 11)),
+        dbc.Row([dbc.Col([button], width = 11)]),
     ]
 )
 
@@ -269,7 +265,10 @@ if __name__ == '__main__':
 
 ![colored_app](../assets/p1_c3/app_colored.png)
 
-We see there are 4 rows with columns of various `widths` which contain components.  The `widths` of all components in a row should not be greater than **12 columns** or the components will overlap.  You can play around with the `width` value of the column to see how it changes the app layout.
+We see there are 4 rows with columns of various `widths` which contain components.  Make sure that the total amount of column `width` within each row **never surpasses 12**.  
+
+  * Play around with the `width` value of the column containing the dropdown and slider to see how it changes the app layout.
+  * Try to move the button to be in the same row as the Checklist and RadtioItem
 
 ```{admonition} Note
 - The colors above are for demonstration purposes, you will not see them in your local dashboard
