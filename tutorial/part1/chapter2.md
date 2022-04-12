@@ -1,7 +1,7 @@
 # Chapter 2: Getting Started with Dash
 
 ## What you will learn
-This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you'll understand the following code and know how to launch your first Dash App:
+This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you'll understand the following code and know how to launch your first Dash app:
 
 ```
 # (1) Import packages --------------------------------------------
@@ -26,7 +26,7 @@ if __name__ == '__main__':
 ---
 
 ## 2.1 Structure of a Dash App
-There are best practices to structure Dash Apps. Following these best practices will simplify the development of future applications. The recommended Dash App structure consists of the following sections:
+There are best practices to structure Dash apps. Following these best practices will simplify the development of future applications. The recommended Dash app structure consists of the following sections:
 1) Import packages
 2) Initialise the App
 3) App Layout
@@ -38,9 +38,9 @@ from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 ```
 Dash apps require some libraries to run, which we import in the above code. Let's examine each library, one by one:
-- **Dash** is the framework which is required to develop the App
+- **Dash** is the framework which is required to develop the app
 - **dcc** stands for dash_core_components which is a module that gives access to many interactive components that are used in Dash apps.
-- Via the **dash_bootstrap_components** module, it is possible to incorporate Boostrap components into the App making it easier to customise the app layout and giving you access to additional components not found in Dash Core Components
+- Via the **dash_bootstrap_components** module, it is possible to incorporate Boostrap components into the app making it easier to customise the app layout and giving you access to additional components not found in Dash Core Components
 
 ### 2.1.2 Initialise the App
 ```
@@ -67,7 +67,7 @@ if __name__ == '__main__':
 In order to display the app through the browser, we add these statements to "Launch the server". 
 
 ```{note}
-The "server" allows the App to run locally. It will be accessible from our laptop only. In Chapter 5 we will see how to deploy the app to the web so everyone could have access to it.
+The "server" allows the app to run locally. It will be accessible from our laptop only. In Chapter 5 we will see how to deploy the app to the web so everyone could have access to it.
 ```
 
 This section is pretty much static and fixed for any Dash app you may create.
@@ -102,14 +102,14 @@ if __name__ == '__main__':
 ```
 
 ```{attention}
-Make sure the live updating mode is deactivated (debug=False) before releasing/deploying the App. It is best practice to deactivate the debug mode, once the App is finalised
+Make sure the live updating mode is deactivated (debug=False) before deploying the app. It is best practice to deactivate the debug mode, once the app is finalised
 ```
 
-Now that you know how to create and launch your first basic App, try to play around with it:
-- Try to change the content of the Markdown in your App
+Now that you know how to create and launch your first basic app, try to play around with it:
+- Try to change the content of the Markdown in your app
 - Try to add a new Markdown with custom content
 
 ## Summary
-In this chapter we learned about what a Dash App is as well as its recommended structure. We have also explored each building block and their core properties, learning how to modify them.  Finally, we learned how to launch the App, stop and update the App.
+In this chapter we learned about what a Dash app is as well as its recommended structure. We have also explored each building block and their core properties, learning how to modify them.  Finally, we learned how to launch the app, stop and update the app.
 
 In the next chapter, we will discover additional Dash components and examine how to customise the layout.
