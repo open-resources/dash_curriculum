@@ -49,8 +49,8 @@ filepath = 'C:/Users/User1/Downloads/data_01.xlsx'
 df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 df1
 ```
-- In the code above, we supposed the Excel file to be local, saved into the Downloads folder
-- We importd one Excel tab ("Sheet1") to a data frame.
+- The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App
+- We uploaded one Excel tab (named "Sheet1") to a data frame.
 
 ```{figure} ../part2/ch6_files/data01.JPG
 ---
@@ -70,8 +70,8 @@ df2 = pd.read_csv(filepath, sep='\|\?\|', usecols=col_names)
 df2.head()
 ```
 
-- In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. We used the the backslash " \ " as an escape character in order to properly interpret the field separator.
-- We've also customised the columns to be uploaded, we selected a subset of all columns in the file, using the "usecols" argument.
+- In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. (We used the the backslash " \ " as an escape character in order to properly interpret the field separator).
+- We have also selected a subset of columns to be uploaded, with the "usecols" argument.
 
 ```{figure} ../part2/ch6_files/data02.JPG
 ---

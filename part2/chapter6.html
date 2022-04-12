@@ -519,8 +519,8 @@ df = px.data.gapminder()</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the code above, we supposed the Excel file to be local, saved into the Downloads folder</p></li>
-<li><p>We importd one Excel tab (“Sheet1”) to a data frame.</p></li>
+<li><p>The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App</p></li>
+<li><p>We uploaded one Excel tab (named “Sheet1”) to a data frame.</p></li>
 </ul>
 </div>
 <div class="section" id="csv-files">
@@ -533,8 +533,8 @@ df = px.data.gapminder()</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator.</p></li>
-<li><p>We’ve also customised the columns to be uploaded, we selected a subset of all columns in the file, using the “usecols” argument.</p></li>
+<li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. (We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator).</p></li>
+<li><p>We have also selected a subset of columns to be uploaded, with the “usecols” argument.</p></li>
 </ul>
 <p>url = ‘<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt</a>’
 df3 = pd.read_table(url, sep=’;’)
