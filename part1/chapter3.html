@@ -447,14 +447,14 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 3 - Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will explore Dash various <strong>components</strong> and how to position them within the app <strong>layout</strong></p>
-<p><a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py">ending_file.py</a></p>
+<p>In this chapter we will explore various Dash <strong>components</strong> and how to position them within the app <strong>layout</strong></p>
+<p><span class="xref myst">ending_file</span></p>
 </div>
 <div class="section" id="dash-components">
 <h2>3.1 Dash Components<a class="headerlink" href="#dash-components" title="Permalink to this headline">¶</a></h2>
 <p><strong>Components</strong> are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc…), slider bars, graphs, and many others.
 We will learn a few common components in this chapter.</p>
-<p><strong>Properties</strong> are attributes of components such as their <code class="docutils literal notranslate"><span class="pre">id</span></code> or <code class="docutils literal notranslate"><span class="pre">children</span></code>.  We will learn more about properties in <a class="reference internal" href="chapter4.html"><span class="doc std std-doc">chapter 4</span></a></p>
+<p><strong>Properties</strong> are attributes of components such as their <code class="docutils literal notranslate"><span class="pre">id</span></code> or <code class="docutils literal notranslate"><span class="pre">children</span></code>.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 Buttons<div class="summary-down docutils">
@@ -462,7 +462,7 @@ Buttons<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass in a <strong>child</strong> property to give the button a name in the dashboard.</p>
+<p class="card-text">Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass the <strong>children</strong> property to give the button a name in the dashboard.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -486,12 +486,6 @@ Buttons<div class="summary-down docutils">
 </pre></div>
 </div>
 <p class="card-text"><img alt="button" src="../_images/button.gif" /></p>
-<div class="admonition-note admonition">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p class="card-text">We will learn about <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code> in later chapters</p></li>
-</ul>
-</div>
 </div>
 </details><details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -536,8 +530,8 @@ Radio items<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Radio items are lists of options that a user can only select one option.
-Similar to the checklst we will pass in a list of <strong>options</strong> when we create the component.</p>
+<p class="card-text">Radio items are lists of options from which the user can select only one option.
+Similar to the checklist, we will pass in a list of <strong>options</strong> when creating the component.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -574,7 +568,7 @@ Dropdown<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Dropdowns allow the user to select from a list of option. Similar to the checklst we will pass in a list of <strong>options</strong> when we create the component.</p>
+<p class="card-text">Dropdowns allow the user to select from a list of options. Similar to the checklist, we will pass in a list of <strong>options</strong> when creating the component.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -649,19 +643,19 @@ Slider<div class="summary-down docutils">
 </details></div>
 <div class="section" id="layout">
 <h2>3.2 Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
-<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> component without any further specifications.  We’ve seen that this will place our app components sequentually in one single column.  To change the layout of components we will use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Column()</span></code>.</p>
+<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> without any further specifications. We’ve seen that this will place our app components sequentially in one single column.  To customise the layout, we will use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>.</p>
 <p>Best practices when constructing your layout using <strong>Dash Bootstrap Components</strong>:</p>
 <ol class="simple">
-<li><p>The entire app layout goes inside a <code class="docutils literal notranslate"><span class="pre">Containter</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Rows</span></code> go inside the <code class="docutils literal notranslate"><span class="pre">Container</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Cols</span></code> go inside <code class="docutils literal notranslate"><span class="pre">Rows</span></code></p></li>
-<li><p>Components go inside <code class="docutils literal notranslate"><span class="pre">Cols</span></code></p></li>
+<li><p>First, define the <code class="docutils literal notranslate"><span class="pre">Containter</span></code>, which will contain the entire app layout</p></li>
+<li><p>Then, inside the <code class="docutils literal notranslate"><span class="pre">dbc.Containter()</span></code>, define the <code class="docutils literal notranslate"><span class="pre">Rows</span></code></p></li>
+<li><p>Then, inside each <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code>, define the <code class="docutils literal notranslate"><span class="pre">Columns</span></code></p></li>
+<li><p>Then, inside each <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>, insert the app <code class="docutils literal notranslate"><span class="pre">Components</span></code></p></li>
 </ol>
 <div class="admonition-note admonition">
 <p class="admonition-title">Note</p>
 <ul class="simple">
-<li><p>There are <strong>12 Columns</strong> in each Row</p></li>
-<li><p>In the code below we define the <code class="docutils literal notranslate"><span class="pre">width</span></code> property of the <code class="docutils literal notranslate"><span class="pre">Column</span></code></p></li>
+<li><p>The total <code class="docutils literal notranslate"><span class="pre">width</span></code> of columns in each row is 12</p></li>
+<li><p>In the code below we define the <code class="docutils literal notranslate"><span class="pre">width</span></code> property for each <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code></p></li>
 </ul>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
@@ -682,20 +676,20 @@ Slider<div class="summary-down docutils">
 <span class="c1"># App Layout </span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">markdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">3</span><span class="p">),</span> 
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">9</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">3</span><span class="p">),</span> 
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">slider</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">9</span><span class="p">),</span>
             <span class="p">]</span>
         <span class="p">),</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">checklist</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span><span class="p">),</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">radio</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">checklist</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">radio</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span><span class="p">),</span>
             <span class="p">]</span>
         <span class="p">),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">button</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">11</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">button</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">11</span><span class="p">)]),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
@@ -705,7 +699,11 @@ Slider<div class="summary-down docutils">
 </pre></div>
 </div>
 <p><img alt="colored_app" src="../_images/app_colored.png" /></p>
-<p>We see there are 4 rows with columns of various <code class="docutils literal notranslate"><span class="pre">widths</span></code> which contain components.  The <code class="docutils literal notranslate"><span class="pre">widths</span></code> of all components in a row should not be greater than <strong>12 columns</strong> or the components will overlap.  You can play around with the <code class="docutils literal notranslate"><span class="pre">width</span></code> value of the column to see how it changes the app layout.</p>
+<p>We see there are 4 rows with columns of various <code class="docutils literal notranslate"><span class="pre">widths</span></code> which contain components.  Make sure that the total amount of column <code class="docutils literal notranslate"><span class="pre">width</span></code> within each row <strong>never surpasses 12</strong>.</p>
+<ul class="simple">
+<li><p>Play around with the <code class="docutils literal notranslate"><span class="pre">width</span></code> value of the column containing the dropdown and slider to see how it changes the app layout.</p></li>
+<li><p>Try to move the button to be in the same row as the Checklist and RadtioItem</p></li>
+</ul>
 <div class="admonition-note admonition">
 <p class="admonition-title">Note</p>
 <ul class="simple">
