@@ -73,12 +73,14 @@ df2.head()
 - In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. (We used the the backslash " \ " as an escape character in order to properly interpret the field separator).
 - We have also selected a subset of columns to be uploaded, with the "usecols" argument.
 
-```{figure} ../part2/ch6_files/data02.JPG
+```
+{figure} ../part2/ch6_files/data02.JPG
 ---
 scale: 35%
 align: centre
 ---
-csv uploaded data ```
+csv uploaded data 
+```
 
 ### 6.2.2 Read data from a URL
 We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)), which is containint a .txt file.
@@ -90,12 +92,14 @@ df3.head()
 ```
 
 The code above, will generate a dataframe that looks like:
-```{figure} ../part2/ch6_files/data03.JPG
+```
+{figure} ../part2/ch6_files/data03.JPG
 ---
 scale: 35%
 align: centre
 ---
-URL uploaded data ```
+URL uploaded data 
+```
 
 ### 6.2.3 Read data from dcc.Upload
 
