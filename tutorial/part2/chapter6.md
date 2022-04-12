@@ -39,23 +39,29 @@ import plotly.express as px
 df = px.data.gapminder()
 ```
 
-### 6.2.1 Read data from files (Excel or CSV)
+### 6.2.1 Read data from files
 
 #### Excel files
 We will now upload an Excel file ([link](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)) - extracted from the Gapminder data - into a dataframe:
 
 ```
 filepath = 'C:/Users/User1/Downloads/data_01.xlsx'
-excel_data = pd.ExcelFile(filepath)
-df1 = excel_data.parse('Sheet1')
+df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 df1.head()
 ```
-- We suppose the Excel file to be local, saved into the Downloads folder
-- When working with Excel files, we first need to create a parser ("excel_data" from the code below)
-- Finally, we import one Excel tab ("Sheet1") to a data frame.
+- In the code above, we supposed the Excel file to be local, saved into the Downloads folder
+- We importd one Excel tab ("Sheet1") to a data frame.
 
 #### csv files
+We will now upload the same data from above, but from a .csv file ([link](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv)).
+This time, we notice that the data has some different column separators '|?|'. We need to use the code below in order to properly process the data:
 
+```
+filepath = 'C:/Users/User1/Downloads/data_02.csv'
+df2 = pd.read_csv(filepath, sep='\|\?\|')
+df2.head()
+```
+- In the code above, the backslash "\" is used as an escape character
 
 
 ### 6.2.2 Read data from a URL
