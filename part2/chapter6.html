@@ -575,15 +575,16 @@ df = px.data.gapminder()</p>
 </div>
 <div class="section" id="csv-files">
 <h4>csv files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
-<p>We will now upload the same data from above, but from a .csv file (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv">link</a>).
-This time, we notice that the data has some different column separators ‘|?|’. We need to use the code below in order to properly process the data:</p>
+<p>We will now upload the same data from above, but from a .csv file (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv">link</a>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/User1/Downloads/data_02.csv&#39;</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\|\?\|&#39;</span><span class="p">)</span>
+<span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\|\?\|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
 <span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the code above, the backslash “” is used as an escape character</p></li>
+<li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator.</p></li>
+<li><p>We’ve also customised the columns to be uploaded, we selected a subset of all columns in the file, using the “usecols” argument.</p></li>
 </ul>
 </div>
 </div>
