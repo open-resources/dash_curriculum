@@ -69,6 +69,7 @@ col_names = ['country','continent','year','pop']
 df2 = pd.read_csv(filepath, sep='\|\?\|', usecols=col_names)
 df2.head()
 ```
+
 - In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. We used the the backslash " \ " as an escape character in order to properly interpret the field separator.
 - We've also customised the columns to be uploaded, we selected a subset of all columns in the file, using the "usecols" argument.
 
