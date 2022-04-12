@@ -89,6 +89,7 @@ df3 = pd.read_table(url, sep=';')
 df3.head()
 ```
 
+The code above, will generate a dataframe that looks like:
 ```{figure} ../part2/ch6_files/data03.JPG
 ---
 scale: 35%
