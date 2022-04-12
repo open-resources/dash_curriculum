@@ -73,7 +73,7 @@ The "server" allows the app to run locally. It will be accessible from our lapto
 This section is pretty much static and fixed for any Dash app you may create.
 
 Once we have the full code ready and saved in a .py file, we need to launch it:
-[.gif showing how to launch the .py file of this chapter via VS code, displaying the Console output]
+![alt txt](../assets/p1_c2/chap2-gif1.gif)
 
 After launching the app, we will see the following console output:
 ```
