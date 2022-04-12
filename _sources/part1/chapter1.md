@@ -1,5 +1,7 @@
 # Chapter 1
 
+Add bried note letting readers know that we will be using the word `dashboard` and `app` interchangeably throughout this curriculum.
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dui tortor, pharetra non ornare sit amet, blandit quis lorem.
 Sed euismod augue id est malesuada, ac semper turpis mollis. Donec eget gravida nunc.
 Aenean interdum mauris at ipsum volutpat, id iaculis nulla tempus.
