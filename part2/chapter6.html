@@ -388,35 +388,37 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#uploading-data-into-a-dataframe">
    6.2 Uploading data into a dataframe
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-data-from-files-excel-or-csv">
+     6.2.1 Read data from files (Excel or CSV)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-data-from-a-url">
+     6.2.2 Read data from a URL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-data-from-dcc-upload">
+     6.2.3 Read data from dcc.Upload
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-data-from-excel-or-csv">
-   Read data from Excel or CSV
+  <a class="reference internal nav-link" href="#data-wrangling-basics">
+   6.3 Data wrangling basics
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-data-from-a-url">
-   Load data from a URL
+  <a class="reference internal nav-link" href="#using-data-in-the-app">
+   6.4 Using data in the App
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connect-to-api-data">
-   Connect to API data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#use-of-data-in-the-app">
-   Use of data in the app
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-wrangling-in-dash">
-   Data wrangling in Dash
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-end">
-   App at the end
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
 </ul>
@@ -453,35 +455,37 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#uploading-data-into-a-dataframe">
    6.2 Uploading data into a dataframe
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-data-from-files-excel-or-csv">
+     6.2.1 Read data from files (Excel or CSV)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-data-from-a-url">
+     6.2.2 Read data from a URL
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#read-data-from-dcc-upload">
+     6.2.3 Read data from dcc.Upload
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#read-data-from-excel-or-csv">
-   Read data from Excel or CSV
+  <a class="reference internal nav-link" href="#data-wrangling-basics">
+   6.3 Data wrangling basics
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-data-from-a-url">
-   Load data from a URL
+  <a class="reference internal nav-link" href="#using-data-in-the-app">
+   6.4 Using data in the App
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connect-to-api-data">
-   Connect to API data
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#use-of-data-in-the-app">
-   Use of data in the app
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#data-wrangling-in-dash">
-   Data wrangling in Dash
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-end">
-   App at the end
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
 </ul>
@@ -523,23 +527,15 @@ For this reason, we recommend to import data before initialising any app. In thi
 </div>
 <div class="section" id="uploading-data-into-a-dataframe">
 <h2>6.2 Uploading data into a dataframe<a class="headerlink" href="#uploading-data-into-a-dataframe" title="Permalink to this headline">¶</a></h2>
-<p>There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash through the dcc.Upload component.</p>
+<p>There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash dcc.Upload component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you need some test dataset to play with, consider using the px pre-loaded data, such as Gapminder, which can be added to your App with this command
-<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">px.data.gapminder()</span></code></p>
+<p>If you need some test dataset to play with, consider using the Plotly Express pre-loaded data, such as Gapminder, which can be added to your App with these commands:
+import plotly.express as px
+df = px.data.gapminder()</p>
 </div>
-<div class="admonition-learning-intentions admonition">
-<p class="admonition-title">Learning Intentions</p>
-<ul class="simple">
-<li><p>how to read data from excel or csv files to a Pandas dataframe</p></li>
-<li><p>loading a dataframe from a URL</p></li>
-<li><p>creating your own Pandas dataframe from scratch in the Python app script</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="read-data-from-excel-or-csv">
-<h2>Read data from Excel or CSV<a class="headerlink" href="#read-data-from-excel-or-csv" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="read-data-from-files-excel-or-csv">
+<h3>6.2.1 Read data from files (Excel or CSV)<a class="headerlink" href="#read-data-from-files-excel-or-csv" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Show a sample file with few data in it</p></li>
 <li><p>Upload data into the dataframe with read_csv explaining how to change properties such as: field separators, using or not using the field names)</p></li>
@@ -548,8 +544,8 @@ For this reason, we recommend to import data before initialising any app. In thi
 print(head())
 print(df.columns)</p>
 </div>
-<div class="section" id="load-data-from-a-url">
-<h2>Load data from a URL<a class="headerlink" href="#load-data-from-a-url" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="read-data-from-a-url">
+<h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Show an URL with some data in it</p></li>
 <li><p>Upload data into the dataframe</p></li>
@@ -557,31 +553,32 @@ print(df.columns)</p>
 <p>df = pd.read_csv(“<a class="reference external" href="https://www.website.com">https://www.website.com</a>”)
 print(head())</p>
 </div>
-<div class="section" id="connect-to-api-data">
-<h2>Connect to API data<a class="headerlink" href="#connect-to-api-data" title="Permalink to this headline">¶</a></h2>
-<p>df =</p>
+<div class="section" id="read-data-from-dcc-upload">
+<h3>6.2.3 Read data from dcc.Upload<a class="headerlink" href="#read-data-from-dcc-upload" title="Permalink to this headline">¶</a></h3>
+<p>XXX</p>
 </div>
-<div class="section" id="use-of-data-in-the-app">
-<h2>Use of data in the app<a class="headerlink" href="#use-of-data-in-the-app" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="data-wrangling-basics">
+<h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Show some examples of basic data wrangling such as:
+groupby
+slicing in pandas
+filtering</p></li>
+</ul>
+</div>
+<div class="section" id="using-data-in-the-app">
+<h2>6.4 Using data in the App<a class="headerlink" href="#using-data-in-the-app" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Show an example of a Dropdown object, with the option list loaded from the dataframe</p></li>
 </ul>
 <p>dropdown = dcc.Dropdown(id=’our-dropdown’, options=[‘My First app’, ‘Welcome to the App’, ‘This is the title’], value=’My First app’)</p>
 <p>note: show how to write data into csv</p>
 </div>
-<div class="section" id="data-wrangling-in-dash">
-<h2>Data wrangling in Dash<a class="headerlink" href="#data-wrangling-in-dash" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Show some examples of basic data wrangling such as:
-groupby
-slicing in pandas
-filtering</p></li>
-<li><p>Show performances by performing data wrangling before the app and inside the app, to show the most convenient one.</p></li>
-</ul>
-</div>
-<div class="section" id="app-at-the-end">
-<h2>App at the end<a class="headerlink" href="#app-at-the-end" title="Permalink to this headline">¶</a></h2>
-<p>dropdown with country data options</p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>App code at the end:
+dropdown with country data options</p>
 <p>At the end of this chapter, <a class="reference external" href="https://sportsnet.ca">here is a zipped file</a> of what your app should look like.</p>
 </div>
 </div>
