@@ -52,13 +52,7 @@ df1
 - The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App
 - We uploaded one Excel tab (named "Sheet1") to a data frame.
 
-```{figure} ./ch6_files/data01.JPG
----
-scale: 35%
-align: centre
----
-Excel uploaded data
-```
+![Excel data 01](./ch6_files/data01.JPG)
 
 #### csv files
 We will now upload the same data from above, but from a .csv file ([link](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv)).
