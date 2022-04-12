@@ -52,7 +52,8 @@ df1
 - The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App
 - We uploaded one Excel tab (named "Sheet1") to a data frame.
 
-```{figure} ../part2/ch6_files/data01.JPG
+```{figure} 
+../part2/ch6_files/data01.JPG
 ---
 scale: 35%
 align: centre
@@ -73,8 +74,8 @@ df2.head()
 - In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. (We used the the backslash " \ " as an escape character in order to properly interpret the field separator).
 - We have also selected a subset of columns to be uploaded, with the "usecols" argument.
 
-```
-{figure} ../part2/ch6_files/data02.JPG
+```{figure}
+../part2/ch6_files/data02.JPG
 ---
 scale: 35%
 align: centre
@@ -93,7 +94,8 @@ df3.head()
 
 The code above, will generate a dataframe that looks like:
 ```
-{figure} ../part2/ch6_files/data03.JPG
+{figure}
+../part2/ch6_files/data03.JPG
 ---
 scale: 35%
 align: centre
