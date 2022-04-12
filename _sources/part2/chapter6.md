@@ -1,32 +1,60 @@
 # Chapter 6 - Working with Data in Dash
 
-Overview introduction placehoder.
+## What you will learn
+In this chapter we will introduce data into Dash Apps.
+We will show where to import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to aggregate data.
 
-## Learning Intentions
+By the end of the chapter you'll be comfortable with writing and editing this code, in order to use your own data into your Dash App:
 
-In this chapter we intend you to learn:
+```
+# Final code placeholder
+```
+[Download the file]
+
+---
+
+## 6.1 Where to import data within Dash apps
+The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, etc.
+For this reason, we recommend to import data before initialising any app. In this way, the data will be globally available to all objects that are created in the later parts of the code.
+
+There are several types of objects that can be used to save our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.
+
+An empty dataframe can be created in this way:
+```
+test_data = pd.DataFrame()
+```
+
+Some mock up data can be added using a dictionary, in this way:
+```
+test_data = pd.DataFrame({'Country':['United States','Norway','Italy','Sweden','France'],
+                         'Country Code':['US','NO','IT','SE','FR']})
+```
+
+## 6.2 Uploading data into a dataframe
+There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash through the dcc.Upload component.
+
+```{note}
+If you need some test dataset to play with, consider using the px pre-loaded data, such as Gapminder, which can be added to your App with this command
+```df = px.data.gapminder()```
+```
+
+
+
+
+
+
+
+
+
+
 
 ```{admonition} Learning Intentions
 
 - how to read data from excel or csv files to a Pandas dataframe
 - loading a dataframe from a URL
 - creating your own Pandas dataframe from scratch in the Python app script
-- using data from an Application Programming Interface (API)
-- perform minimal data wrangling inside the app, and learn the trade-offs with speed compared to working with pre-processed data
 ```
 
-## Incorporating data into Dash apps
-
-- Where to incorporate data within the app   (Make sure to incorporate data at the begiingn of the app, above the layout. This is considered global data. )
-- Creating pandas dataframes (briefly define dataframe and pandas and show the python statement to create an empty df)
-- Ways of uploading data into the dataframe (files, URL, API)
-
-## Create data into Pandas dataframes
-
-- Show how to include data into the dataframe using dictionaries
-
-df = pd.DataFrame([.....])
-print(head())
 
 ## Read data from Excel or CSV
 

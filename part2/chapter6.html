@@ -375,18 +375,18 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-intentions">
-   Learning Intentions
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#incorporating-data-into-dash-apps">
-   Incorporating data into Dash apps
+  <a class="reference internal nav-link" href="#where-to-import-data-within-dash-apps">
+   6.1 Where to import data within Dash apps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-data-into-pandas-dataframes">
-   Create data into Pandas dataframes
+  <a class="reference internal nav-link" href="#uploading-data-into-a-dataframe">
+   6.2 Uploading data into a dataframe
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -440,18 +440,18 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-intentions">
-   Learning Intentions
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#incorporating-data-into-dash-apps">
-   Incorporating data into Dash apps
+  <a class="reference internal nav-link" href="#where-to-import-data-within-dash-apps">
+   6.1 Where to import data within Dash apps
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-data-into-pandas-dataframes">
-   Create data into Pandas dataframes
+  <a class="reference internal nav-link" href="#uploading-data-into-a-dataframe">
+   6.2 Uploading data into a dataframe
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -495,36 +495,48 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-6-working-with-data-in-dash">
 <h1>Chapter 6 - Working with Data in Dash<a class="headerlink" href="#chapter-6-working-with-data-in-dash" title="Permalink to this headline">¶</a></h1>
-<p>Overview introduction placehoder.</p>
-<div class="section" id="learning-intentions">
-<h2>Learning Intentions<a class="headerlink" href="#learning-intentions" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we intend you to learn:</p>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we will introduce data into Dash Apps.
+We will show where to import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to aggregate data.</p>
+<p>By the end of the chapter you’ll be comfortable with writing and editing this code, in order to use your own data into your Dash App:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Final code placeholder</span>
+</pre></div>
+</div>
+<p>[Download the file]</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="where-to-import-data-within-dash-apps">
+<h2>6.1 Where to import data within Dash apps<a class="headerlink" href="#where-to-import-data-within-dash-apps" title="Permalink to this headline">¶</a></h2>
+<p>The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, etc.
+For this reason, we recommend to import data before initialising any app. In this way, the data will be globally available to all objects that are created in the later parts of the code.</p>
+<p>There are several types of objects that can be used to save our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.</p>
+<p>An empty dataframe can be created in this way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Some mock up data can be added using a dictionary, in this way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Country&#39;</span><span class="p">:[</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="s1">&#39;France&#39;</span><span class="p">],</span>
+                         <span class="s1">&#39;Country Code&#39;</span><span class="p">:[</span><span class="s1">&#39;US&#39;</span><span class="p">,</span><span class="s1">&#39;NO&#39;</span><span class="p">,</span><span class="s1">&#39;IT&#39;</span><span class="p">,</span><span class="s1">&#39;SE&#39;</span><span class="p">,</span><span class="s1">&#39;FR&#39;</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="uploading-data-into-a-dataframe">
+<h2>6.2 Uploading data into a dataframe<a class="headerlink" href="#uploading-data-into-a-dataframe" title="Permalink to this headline">¶</a></h2>
+<p>There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash through the dcc.Upload component.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you need some test dataset to play with, consider using the px pre-loaded data, such as Gapminder, which can be added to your App with this command
+<code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">px.data.gapminder()</span></code></p>
+</div>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
 <li><p>how to read data from excel or csv files to a Pandas dataframe</p></li>
 <li><p>loading a dataframe from a URL</p></li>
 <li><p>creating your own Pandas dataframe from scratch in the Python app script</p></li>
-<li><p>using data from an Application Programming Interface (API)</p></li>
-<li><p>perform minimal data wrangling inside the app, and learn the trade-offs with speed compared to working with pre-processed data</p></li>
 </ul>
 </div>
-</div>
-<div class="section" id="incorporating-data-into-dash-apps">
-<h2>Incorporating data into Dash apps<a class="headerlink" href="#incorporating-data-into-dash-apps" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Where to incorporate data within the app   (Make sure to incorporate data at the begiingn of the app, above the layout. This is considered global data. )</p></li>
-<li><p>Creating pandas dataframes (briefly define dataframe and pandas and show the python statement to create an empty df)</p></li>
-<li><p>Ways of uploading data into the dataframe (files, URL, API)</p></li>
-</ul>
-</div>
-<div class="section" id="create-data-into-pandas-dataframes">
-<h2>Create data into Pandas dataframes<a class="headerlink" href="#create-data-into-pandas-dataframes" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Show how to include data into the dataframe using dictionaries</p></li>
-</ul>
-<p>df = pd.DataFrame([…..])
-print(head())</p>
 </div>
 <div class="section" id="read-data-from-excel-or-csv">
 <h2>Read data from Excel or CSV<a class="headerlink" href="#read-data-from-excel-or-csv" title="Permalink to this headline">¶</a></h2>
