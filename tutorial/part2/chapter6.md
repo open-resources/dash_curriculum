@@ -47,10 +47,18 @@ We will now upload an Excel file ([link](https://github.com/open-resources/dash_
 ```
 filepath = 'C:/Users/User1/Downloads/data_01.xlsx'
 df1 = pd.read_excel(filepath, sheet_name='Sheet1')
-df1.head()
+df1
 ```
 - In the code above, we supposed the Excel file to be local, saved into the Downloads folder
 - We importd one Excel tab ("Sheet1") to a data frame.
+
+```{figure}<img src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data01.JPG">
+---
+scale: 50%
+align: centre
+---
+Excel uploaded data
+```
 
 #### csv files
 We will now upload the same data from above, but from a .csv file ([link](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv)).
@@ -64,12 +72,12 @@ df2.head()
 - In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. We used the the backslash " \ " as an escape character in order to properly interpret the field separator.
 - We've also customised the columns to be uploaded, we selected a subset of all columns in the file, using the "usecols" argument.
 
-```
-<img src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data02.JPG">
+```{figure}<img src="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data02.JPG">
 ---
 scale: 50%
 align: centre
 ---
+csv uploaded data
 ```
 
 ### 6.2.2 Read data from a URL
