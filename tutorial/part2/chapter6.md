@@ -31,32 +31,17 @@ test_data = pd.DataFrame({'Country':['United States','Norway','Italy','Sweden','
 ```
 
 ## 6.2 Uploading data into a dataframe
-There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash through the dcc.Upload component.
+There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash dcc.Upload component.
 
 ```{note}
-If you need some test dataset to play with, consider using the px pre-loaded data, such as Gapminder, which can be added to your App with this command
-```df = px.data.gapminder()```
+If you need some test dataset to play with, consider using the Plotly Express pre-loaded data, such as Gapminder, which can be added to your App with these commands:
+import plotly.express as px
+df = px.data.gapminder()
 ```
 
+### 6.2.1 Read data from files (Excel or CSV)
 
 
-
-
-
-
-
-
-
-
-```{admonition} Learning Intentions
-
-- how to read data from excel or csv files to a Pandas dataframe
-- loading a dataframe from a URL
-- creating your own Pandas dataframe from scratch in the Python app script
-```
-
-
-## Read data from Excel or CSV
 
 - Show a sample file with few data in it
 - Upload data into the dataframe with read_csv explaining how to change properties such as: field separators, using or not using the field names)
@@ -65,7 +50,10 @@ df = pd.read_csv()
 print(head())
 print(df.columns)
 
-## Load data from a URL
+
+### 6.2.2 Read data from a URL
+
+
 
 - Show an URL with some data in it
 - Upload data into the dataframe
@@ -73,29 +61,33 @@ print(df.columns)
 df = pd.read_csv("https://www.website.com")
 print(head())
 
-## Connect to API data
 
-df = 
+### 6.2.3 Read data from dcc.Upload
 
-## Use of data in the app
-- Show an example of a Dropdown object, with the option list loaded from the dataframe
+XXX
 
-dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
 
-note: show how to write data into csv
-
-## Data wrangling in Dash
+## 6.3 Data wrangling basics
 
 - Show some examples of basic data wrangling such as:
 groupby
 slicing in pandas
 filtering
 
-- Show performances by performing data wrangling before the app and inside the app, to show the most convenient one.
+
+## 6.4 Using data in the App
+
+- Show an example of a Dropdown object, with the option list loaded from the dataframe
+
+dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
+
+note: show how to write data into csv
 
 
-## App at the end
+## Summary
 
+
+App code at the end:
 dropdown with country data options
 
 At the end of this chapter, [here is a zipped file](https://sportsnet.ca) of what your app should look like.
