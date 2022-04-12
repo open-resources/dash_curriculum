@@ -13,11 +13,11 @@ slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown, width=8)),
+        dbc.Row([dbc.Col([markdown], width=8)]),
         dbc.Row(
             [
-                dbc.Col(dropdown, width=3),
-                dbc.Col(slider, width=9),
+                dbc.Col([dropdown], width=3),
+                dbc.Col([slider], width=9),
             ]
         ),
     ]
