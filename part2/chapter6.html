@@ -390,8 +390,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-files-excel-or-csv">
-     6.2.1 Read data from files (Excel or CSV)
+    <a class="reference internal nav-link" href="#read-data-from-files">
+     6.2.1 Read data from files
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -469,8 +469,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-files-excel-or-csv">
-     6.2.1 Read data from files (Excel or CSV)
+    <a class="reference internal nav-link" href="#read-data-from-files">
+     6.2.1 Read data from files
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -558,25 +558,33 @@ For this reason, we recommend to import data before initialising any app. In thi
 import plotly.express as px
 df = px.data.gapminder()</p>
 </div>
-<div class="section" id="read-data-from-files-excel-or-csv">
-<h3>6.2.1 Read data from files (Excel or CSV)<a class="headerlink" href="#read-data-from-files-excel-or-csv" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="read-data-from-files">
+<h3>6.2.1 Read data from files<a class="headerlink" href="#read-data-from-files" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
 <p>We will now upload an Excel file (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">link</a>) - extracted from the Gapminder data - into a dataframe:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/User1/Downloads/data_01.xlsx&#39;</span>
-<span class="n">excel_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">ExcelFile</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
-<span class="n">df1</span> <span class="o">=</span> <span class="n">excel_data</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
 <span class="n">df1</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>We suppose the Excel file to be local, saved into the Downloads folder</p></li>
-<li><p>When working with Excel files, we first need to create a parser (“excel_data” from the code below)</p></li>
-<li><p>Finally, we import one Excel tab (“Sheet1”) to a data frame.</p></li>
+<li><p>In the code above, we supposed the Excel file to be local, saved into the Downloads folder</p></li>
+<li><p>We importd one Excel tab (“Sheet1”) to a data frame.</p></li>
 </ul>
 </div>
 <div class="section" id="csv-files">
 <h4>csv files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
+<p>We will now upload the same data from above, but from a .csv file (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv">link</a>).
+This time, we notice that the data has some different column separators ‘|?|’. We need to use the code below in order to properly process the data:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/User1/Downloads/data_02.csv&#39;</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\|\?\|&#39;</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>In the code above, the backslash “” is used as an escape character</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="read-data-from-a-url">
