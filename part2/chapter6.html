@@ -572,13 +572,6 @@ df = px.data.gapminder()</p>
 <li><p>In the code above, we supposed the Excel file to be local, saved into the Downloads folder</p></li>
 <li><p>We importd one Excel tab (“Sheet1”) to a data frame.</p></li>
 </ul>
-<div class="highlight-{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data01.JPG notranslate"><div class="highlight"><pre><span></span>---
-scale: 35%
-align: centre
----
-Excel uploaded data
-</pre></div>
-</div>
 </div>
 <div class="section" id="csv-files">
 <h4>csv files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
@@ -593,13 +586,6 @@ Excel uploaded data
 <li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator.</p></li>
 <li><p>We’ve also customised the columns to be uploaded, we selected a subset of all columns in the file, using the “usecols” argument.</p></li>
 </ul>
-<div class="highlight-{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data02.JPG notranslate"><div class="highlight"><pre><span></span>---
-scale: 35%
-align: centre
----
-csv uploaded data
-</pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="read-data-from-a-url">
@@ -608,13 +594,6 @@ csv uploaded data
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="highlight-{figure}https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data03.JPG notranslate"><div class="highlight"><pre><span></span>---
-scale: 35%
-align: centre
----
-URL uploaded data
 </pre></div>
 </div>
 </div>
