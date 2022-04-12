@@ -53,7 +53,7 @@ df1
 - We uploaded one Excel tab (named "Sheet1") to a data frame.
 
 ```{figure} 
-../part2/ch6_files/data01.JPG
+./part2/ch6_files/data01.JPG
 ---
 scale: 35%
 align: centre
@@ -75,7 +75,7 @@ df2.head()
 - We have also selected a subset of columns to be uploaded, with the "usecols" argument.
 
 ```{figure}
-../part2/ch6_files/data02.JPG
+./ch6_files/data02.JPG
 ---
 scale: 35%
 align: centre
