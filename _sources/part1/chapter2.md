@@ -87,7 +87,7 @@ Dash is running on http://127.0.0.1:8050/
 ```
 - In order to display the app, open the browser and navigate to the URL shown in the console, in this case: http://127.0.0.1:8050/
 
-![alt txt](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/assets/p1_c2/chap2-fig1.png)
+![alt txt](../assets/p1_c2/chap2-fig1.png)
 
 ---
 
