@@ -39,7 +39,7 @@ import dash_bootstrap_components as dbc
 ```
 Dash apps require some libraries to run, which we import in the above code. Let's examine each library, one by one:
 - **Dash** is the framework which is required to develop the App
-- **dcc** stands for dash_core_components which is a module that gives access to many interactive components that are used in Dash apps and will be introduced in Chapter 3.
+- **dcc** stands for dash_core_components which is a module that gives access to many interactive components that are used in Dash apps.
 - Via the **dash_bootstrap_components** module, it is possible to incorporate Boostrap components into the App making it easier to customise the app layout and giving you access to additional components not found in Dash Core Components
 
 ### 2.1.2 Initialise the App
@@ -55,9 +55,9 @@ app.layout = dbc.Container([
     dcc.Markdown(children='My First App', style={'textAlign': 'center'})
 ])
 ```
-The app layout represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Component gives you access to a markup language that makes it easier to format text for web pages. This component has a few props, such as `children` and `style`:
-- **Children** : this is a common prop shared by many Dash components and it allows the adding of textual content. In a Markdown, the "My First App" will be the content displayed on the web page.
-- **Style** : this is another common prop shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
+The app layout represents what will be displayed on the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: the dcc.Markdown. This Dash Core Component gives you access to a markup language that makes it easier to format text for web pages. This component has a few properties, such as `children` and `style`:
+- **Children** : this is a common property shared by many Dash components and it allows the adding of textual content. In this Markdown, the "My First App" will be the content displayed on the web page.
+- **Style** : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
 
 ### 2.1.4 Run the App
 ```
@@ -67,7 +67,7 @@ if __name__ == '__main__':
 In order to display the app through the browser, we add these statements to "Launch the server". 
 
 ```{note}
-The "server" allows the App to run locally. It will be accessible from our laptop only. In Chapter 5 we will see how to deploy the app
+The "server" allows the App to run locally. It will be accessible from our laptop only. In Chapter 5 we will see how to deploy the app to the web so everyone could have access to it.
 ```
 
 This section is pretty much static and fixed for any Dash app you may create.
@@ -93,7 +93,7 @@ Dash is running on http://127.0.0.1:8050/
 
 ## 2.2 Interacting with the App
 Once the app is launched and working, we can:
-  - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) on the console will stop the app. This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the app and we launch a different app, with the same port number, an error message will be displayed.
+  - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) on the console will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the app and we launch a different app, with the same port number, an error message will be displayed.
 
 [.png with the error message appearing when two apps are simultaneously launched]
 
@@ -112,6 +112,6 @@ Now that you know how to create and launch your first basic App, try to play aro
 - Try to add a new Markdown with custom content
 
 ## Summary
-In this chapter we learned about what is a Dash App and what is its recommended sturture. We have also explored each building block and their core properties, learning how to modify them.  Finally, we learned how to launch the App, stop and update the App.
+In this chapter we learned about what a Dash App is as well as its recommended structure. We have also explored each building block and their core properties, learning how to modify them.  Finally, we learned how to launch the App, stop and update the App.
 
-In the next chapter, we will discover additional the Dash components and examine how to position them in the layout.
+In the next chapter, we will discover additional Dash components and examine how to customise the layout.
