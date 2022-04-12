@@ -2,7 +2,7 @@
 
 ## What you will learn
 
-After initializing your first app, learning about Dash components and the layout, this chapter will cover the callback. The callback will allow you to link the various components in your Dash app. In other words, app callbacks are necessary to build truly interactive apps.
+This chapter will cover the callback. The callback will allow you to link the various components in your Dash app. App callbacks are necessary to build truly interactive apps.
 
 To better understand the notation of a callback, there will be a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
 
@@ -13,7 +13,9 @@ To better understand the notation of a callback, there will be a short introduct
 - Simple examples for callbacks
 ```
 
-When we finish this chapter you'll have a fully-operational interactive app that links together different components. [Download the code](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch4_files/ch4_app.py)
+When we finish this chapter you'll have a fully-operational interactive app that links together multiple components. 
+
+[Download the code](./ch4_files/ch4_app.py)
 
 ## 4.1 Introduction to decorators in Python
 
@@ -25,7 +27,7 @@ For a comprehensive overview of the Python decorator, have a look at [Real Pytho
 
 ## 4.2 Structure of app callbacks
 
-Before we talk about the structure of a callback, let's briefly discuss how callbacks in general will fit into your app. Referring to the structure of an app that we have discussed so far your callbacks will always fit after your app layout and before you actually run the app. Your app gets the following structure:
+Before we talk about the structure of a callback, let’s briefly discuss how callbacks will fit into your app. The callbacks will always fit after your app layout but before you actually run the app. Here’s the complete structure:
 
 - Import packages
 - Initialise the App
@@ -51,8 +53,8 @@ dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to 
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown, width=8)),
-        dbc.Row(dbc.Col(dropdown, width=3)),
+        dbc.Row([dbc.Col([markdown], width=8)]),
+        dbc.Row([dbc.Col([dropdown], width=3)]),
     ]
 )
 
@@ -74,15 +76,15 @@ if __name__ == '__main__':
 
 **[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
 
-Let's go through this step by step. Note first, that linking components with each other, in general we have to be able to uniquely identify them in order to distinguish between different of the same components in an app e.g., different dropdowns. This way we can specify which components should influence each other. For this purpose for every component you want to add a component `id`.
+Let’s go through this step by step. Note that for linking components with each other, we have to uniquely identify them in order to distinguish between them. For this purpose, you should add the `id` property to each component, as we do above with the Dropdown and Markdown components.
 
-More general, the id of a component is also called a property of a component. Besides an id every component has multiple properties which can be used to specify the component. In the example above we introduce the `children` property for the markdown as well as the `options` and the `value` property for the dropdown.
+In addition to `id` property, we also include the `value` property for the dropdown. This will indicate the default value of the dropdown displayed on the page when loaded for the first time.
 
 ```{tip}
-For a comprehensive overview of all the different properties for the components of the dash core components library please have a look at the specific component in the [Official documentation](https://dash.plotly.com/dash-core-components).
+For a comprehensive overview of all the different properties of the Dash Core Components library, please have a look at the specific component in the [Official documentation](https://dash.plotly.com/dash-core-components).
 ```
 
-Now, that we have assigned different properties and ids to the components we can actually link them together. This is done within the callback. Despite the variety of usage of callbacks they all share the above structure and are composed of two main components, the callback decorator and the callback function:
+Now, let’s link the components together. This is done within the callback. Despite the variety of usage of callbacks, they all share the same structure and are composed of two main elements: the callback decorator and the callback function:
 
 ```
 # Configure callback
@@ -95,11 +97,16 @@ def update_markdown(value_drop):                                        ###-----
     return title                                                        ###---------------###
 ```
 
-Let's break further down these two components.
-
-### 4.2.1 Structure of Dash callback decorator
+### 4.2.1 Callback Decorator
 
 The callback decorator makes up the first part of the callback. Here you specify the components and their corresponding properties that you want to link together.
+
+```
+@app.callback(                                                          
+    Output(component_id='our-markdown', component_property='children'), 
+    Input(component_id='our-dropdown', component_property='value')      
+)   
+```
 
 The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.
 
@@ -107,11 +114,14 @@ The decorator itself takes up two different arguments: Output and Input. Both of
 Always make sure to import the packages 'Output' and 'Input' from the dash library at the beginning of your code when you are working with callbacks.
 ```
 
-The meaning of the different arguments is straight forward. The Output specifies what kind of property of which component of your app should be affected e.g., the `children` property of the markdown. Accordingly, the Input specifies what property of which other component of your app should trigger the Output e.g., the `value` property of the dropdown. Note, that linking two different components establishes a direct relationship between them i.e., whenever the property of the input component is changed it will immediately trigger the selected property of the output component to change accordingly. You might compare this behavior with two cells in excel which are linked together.
+The meaning of the different arguments is straight forward. 
+  * The Output specifies the property of the component that will be modified; in this case, it's the `children` property of the markdown. 
+  * Accordingly, the Input specifies the property of the component that will activate the callback; in this case, it's the `value` property of the dropdown. 
+  * Whenever the property of the Input component is changed by the user, it will immediately trigger the callback and update the property of the Output component, based on the returned value in the callback function. You might compare this behavior with two cells in excel which are linked together. 
 
-In order to build more complex applications with Dash later we will introduce a third argument called State, which in some sense will allow to circumvent this direct relationship. Also the arguments Output and Input can take on different components to allow for advanced functionality. However, we'll come back to this in [chapter 10](../part3/chapter10.md).
+The callback function takes as many arguments as there are Input components. The order remains stable. That is, the property of the component you enter first in the Input argument of the callback decorator will be represented by the argument you enter first into the callback function.
 
-### 4.2.2 Structure of Dash callback function
+### 4.2.2 Callback Function
 
 The callback function makes up the second part of the callback. Here you process the input the way you want the otuput to be affected by.
 
@@ -132,7 +142,9 @@ The function body is the place where you can work with the input data to build g
 ```
 
 ```{admonition} The return or output of the function
-At the end of the callback function the output that has been prepared in the function body gets returned i.e., that's the output of your function and therefore will be the output of your callback. Note, that later on when might working with multiple outputs in the callback decorator also the callback function needs to return the same amount of objects.
+At the end of the callback function, the object returned will be assigned to the component property of the Output.output In our example, the title is assigned to the children of the Markdown, thereby, updating the title of the page that has been prepared in the function body gets returned i.e., that’s the output of your function and therefore will be the output of your callback. 
+
+Note, that you might work with multiple outputs in the callback decorator, in which case you would need to return the same amount of objects in the callback function.
 ```
 
 ## 4.3 Callbacks in action
