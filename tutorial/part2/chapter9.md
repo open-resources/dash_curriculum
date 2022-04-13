@@ -4,7 +4,7 @@
 In this chapter you will learn about `Dash DataTables` and how to use them to explore and edit data.
 
 ## 9.1 Intro to DataTables
-`DataTables` are an interactive table designed for viewing, editing, and exploring large datasets.  Let's create a basic `DataTable` with the [gapminder dataset](https://www.gapminder.org/data/).
+`DataTables` are an interactive table designed for viewing, editing, and exploring large datasets.  Let's create a basic `DataTable` with the gapminder dataset.
 
 ```python
 # Import libraries
@@ -88,10 +88,8 @@ We also add a `Callback` function that will be triggered when data is changed or
 
 ```python
 # Import libraries
-from dash import Dash, dash_table
+from dash import Dash, dash_table, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-from dash.dependencies import Input, Output, State
 import pandas as pd
 import plotly.express as px
 
@@ -158,10 +156,8 @@ Let's explore the data further using a `Histogram` that we'll animate to show po
 
 ```python
 # Import libraries
-from dash import Dash, dash_table
+from dash import Dash, dash_table, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-from dash.dependencies import Input, Output, State
 import pandas as pd
 import plotly.express as px
 
