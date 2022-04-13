@@ -283,7 +283,7 @@ data_table = dash_table.DataTable(
         filter_action='native',
 )
 ```
-**TODO: gif of sorting**
+**TODO: gif of filtering**
 
 ### 9.3.3 Delete Columns
 Datasets will often contain much more data than we care about.  Let's allow the user to delete columns in the `DataTable` that they are not interested in:
@@ -301,8 +301,9 @@ data_table = dash_table.DataTable(
 ```
 **TODO: gif of deleting columns**
 
+### 9.3.4 Styling DataTable
 
-Now let's add some `styling`:
+Now let's add some `styling` to the DataTable
 
 ```python
 # Create a Dash DataTable
