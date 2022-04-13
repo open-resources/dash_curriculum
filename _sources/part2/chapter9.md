@@ -253,6 +253,7 @@ if __name__ == '__main__':
 
 Let's take a look at some useful `DataTable` props:
 
+### 9.3.1 Sorting
 First let's add `sorting`:
 ```python
 # Create a Dash DataTable
@@ -266,6 +267,40 @@ data_table = dash_table.DataTable(
 )
 ```
 **TODO: gif of sorting**
+
+### 9.3.2 Filtering
+We can also add the option to sort the columns of data
+
+```python
+# Create a Dash DataTable
+data_table = dash_table.DataTable(
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        sort_action='native',
+        filter_action='native',
+)
+```
+**TODO: gif of sorting**
+
+### 9.3.3 Delete Columns
+Datasets will often contain much more data than we care about.  Let's allow the user to delete columns in the `DataTable` that they are not interested in:
+```python
+# Create a Dash DataTable
+data_table = dash_table.DataTable(
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True, 'deletable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        sort_action='native',
+        filter_action='native',
+)
+```
+**TODO: gif of deleting columns**
+
 
 Now let's add some `styling`:
 
