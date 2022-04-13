@@ -80,6 +80,8 @@ if __name__ == '__main__':
 
 Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.
 
+### 9.2.1 Line Plot
+
 Creating the `DataTable` becomes more complicated because we need to make each column's `editable` and `selectable` property `true`.  We'll modify the `columns` and `columns_selectable` properties of the DataFrame.
 
 We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
@@ -149,6 +151,8 @@ if __name__ == '__main__':
 ```
 
 **TODO: picture of datatable and graph**
+
+### 9.2.2 Histogram
 
 Let's explore the data further using a `Histogram` that we'll animate to show population change over time:
 

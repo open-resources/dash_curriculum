@@ -388,6 +388,18 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#linking-datatable-to-a-graph">
    9.2 Linking DataTable to a Graph
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#line-plot">
+     9.2.1 Line Plot
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#histogram">
+     9.2.2 Histogram
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-important-datatable-props">
@@ -455,6 +467,18 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#linking-datatable-to-a-graph">
    9.2 Linking DataTable to a Graph
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#line-plot">
+     9.2.1 Line Plot
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#histogram">
+     9.2.2 Histogram
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-important-datatable-props">
@@ -575,6 +599,8 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="linking-datatable-to-a-graph">
 <h2>9.2 Linking DataTable to a Graph<a class="headerlink" href="#linking-datatable-to-a-graph" title="Permalink to this headline">¶</a></h2>
 <p>Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.</p>
+<div class="section" id="line-plot">
+<h3>9.2.1 Line Plot<a class="headerlink" href="#line-plot" title="Permalink to this headline">¶</a></h3>
 <p>Creating the <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> becomes more complicated because we need to make each column’s <code class="docutils literal notranslate"><span class="pre">editable</span></code> and <code class="docutils literal notranslate"><span class="pre">selectable</span></code> property <code class="docutils literal notranslate"><span class="pre">true</span></code>.  We’ll modify the <code class="docutils literal notranslate"><span class="pre">columns</span></code> and <code class="docutils literal notranslate"><span class="pre">columns_selectable</span></code> properties of the DataFrame.</p>
 <p>We also add a <code class="docutils literal notranslate"><span class="pre">Callback</span></code> function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
@@ -641,6 +667,9 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><strong>TODO: picture of datatable and graph</strong></p>
+</div>
+<div class="section" id="histogram">
+<h3>9.2.2 Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h3>
 <p>Let’s explore the data further using a <code class="docutils literal notranslate"><span class="pre">Histogram</span></code> that we’ll animate to show population change over time:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
@@ -737,6 +766,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="other-important-datatable-props">
