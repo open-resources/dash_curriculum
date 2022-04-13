@@ -409,6 +409,11 @@ const thebe_selector_output = ".output, .cell_output"
      9.3.3 Delete Columns
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#styling-datatable">
+     9.3.4 Styling DataTable
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -469,6 +474,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#delete-columns">
      9.3.3 Delete Columns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#styling-datatable">
+     9.3.4 Styling DataTable
     </a>
    </li>
   </ul>
@@ -763,7 +773,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>TODO: gif of sorting</strong></p>
+<p><strong>TODO: gif of filtering</strong></p>
 </div>
 <div class="section" id="delete-columns">
 <h3>9.3.3 Delete Columns<a class="headerlink" href="#delete-columns" title="Permalink to this headline">¶</a></h3>
@@ -781,7 +791,10 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><strong>TODO: gif of deleting columns</strong></p>
-<p>Now let’s add some <code class="docutils literal notranslate"><span class="pre">styling</span></code>:</p>
+</div>
+<div class="section" id="styling-datatable">
+<h3>9.3.4 Styling DataTable<a class="headerlink" href="#styling-datatable" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s add some <code class="docutils literal notranslate"><span class="pre">styling</span></code> to the DataTable</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
 <span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
         <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
