@@ -2,7 +2,7 @@
 
 ## What you will learn
 In this chapter we will introduce data into Dash Apps.
-We will show where to import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to aggregate data.
+We will show how to best import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to aggregate data.
 
 By the end of the chapter you'll be comfortable with writing and editing this code, in order to use your own data into your Dash App:
 
@@ -15,22 +15,24 @@ By the end of the chapter you'll be comfortable with writing and editing this co
 
 ## 6.1 Where to import data within Dash apps
 The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, etc.
-For this reason, we recommend to import data before initialising any app. In this way, the data will be globally available to all objects that are created in the later parts of the code.
+For this reason, we recommend to import data before initialising the app. In this way, the data will be globally available to all objects that are created in the code.
 
-There are several types of objects that can be used to save our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.
+There are several types of objects that can be used to store our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.
 
-An empty dataframe can be created in this way:
+An empty dataframe is created with the code below::
 ```
 test_data = pd.DataFrame()
 ```
 
-Some mock up data can be added using a dictionary, in this way:
+Some mock-up data can be added using a dictionary, in this way:
 ```
 test_data = pd.DataFrame({'Country':['United States','Norway','Italy','Sweden','France'],
                          'Country Code':['US','NO','IT','SE','FR']})
 ```
+(In the code above, the dictionary keys will be the field names of the Pandas dataframe).
 
 ## 6.2 Uploading data into a dataframe
+In case our data is available on files or on the internet, we will read the data from the source and upload it into the dataframe.
 There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash dcc.Upload component.
 
 ```{note}
@@ -39,7 +41,7 @@ import plotly.express as px
 df = px.data.gapminder()
 ```
 
-### 6.2.1 Read data from files
+### 6.2.1 Reading data from files
 
 #### Excel files
 We will now upload an Excel file ([link](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)) - extracted from the Gapminder data - into a dataframe:
@@ -50,7 +52,8 @@ df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 df1
 ```
 - The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App
-- We uploaded one Excel tab (named "Sheet1") to a data frame.
+- We uploaded one Excel tab (named "Sheet1") to a data frame called "df1".
+- After the data upload, the dataframe looks like the following:
 
 ![Excel data 01](./ch6_files/data01.JPG)
 
@@ -65,12 +68,13 @@ df2.head()
 ```
 
 - In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. (We used the the backslash " \ " as an escape character in order to properly interpret the field separator).
-- We have also selected a subset of columns to be uploaded, with the "usecols" argument.
+- We have also selected a subset of columns to be uploaded, with the "usecols" argument. With this argument, the remaining columns that are present in the file will be ignored
+- After the data upload, the dataframe looks like the following:
 
 ![csv data 02](./ch6_files/data02.JPG)
 
 ### 6.2.2 Read data from a URL
-We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)), which is containint a .txt file.
+We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)) (containing a raw .txt file).
 
 ```
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
@@ -89,6 +93,36 @@ XXX
 
 
 ## 6.3 Data wrangling basics
+Once we have our dataframe available, some transformations may be needed in order to use this data on our App.
+There is a vaste list of methods and functions that can be applied to Pandas dataframes ([link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) to Pandas documentation). In this section we'll cover some of the basic data wrangling techniques which are ofter necessary to do some data exploration, slice or filter our data and aggregate it.
+
+We'll show some data wrangling examples based on the "df3" dataframe that we created above, reading data from a URL.
+
+#### Unique values
+When exploring data, we may often need to identify the unique values in our columns:
+
+```
+df3.continent.unique()
+```
+With the above command, an array containing the unique values in the column will be displayed.
+
+#### Slicing
+The .loc method can be used on Pandas dataframes, allowing to slice or filter them based on boolean conditions. 
+The ```.loc[(), ()]``` method allows to filter based on row conditions (to be specified in the first bracket ()) and on column conditions (to be specified in the second bracket()).
+Let's see two examples:
+
+```
+df3_Slice1 = df3.loc[(df3['continent']=='Americas'), :]
+df3_Slice2 = df3.loc[(df3['continent']=='Americas') & (df3['year']>=2000), ['country','year','pop']]
+```
+- The first command will filter the df3 dataframe picking rows that have 'Americas' as continent. The ':' indicates that we don't want to specify any column-filtering conditions, selecting all columns for those rows.
+- The second command, adds more row-filtering conditions: rows will be filtered based on 'year' greater or equal then 2000. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:
+
+
+
+
+
+#### Grouping
 
 - Show some examples of basic data wrangling such as:
 groupby
