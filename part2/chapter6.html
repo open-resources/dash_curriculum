@@ -663,21 +663,27 @@ There is a vaste list of methods and functions that can be applied to Pandas dat
 The <code class="docutils literal notranslate"><span class="pre">.loc[(),</span> <span class="pre">()]</span></code> method allows to filter based on row conditions (to be specified in the first bracket ()) and on column conditions (to be specified in the second bracket()).
 Let’s see two examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3_Slice1</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">),</span> <span class="p">:]</span>
-<span class="n">df3_Slice2</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2000</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]]</span>
+
+<span class="n">df3_Slice2</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2002</span><span class="p">,</span><span class="mi">2007</span><span class="p">])),</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]]</span>
+<span class="n">df3_Slice2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>The first command will filter the df3 dataframe picking rows that have ‘Americas’ as continent. The ‘:’ indicates that we don’t want to specify any column-filtering conditions, selecting all columns for those rows.</p></li>
-<li><p>The second command, adds more row-filtering conditions: rows will be filtered based on ‘year’ greater or equal then 2000. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:</p></li>
+<li><p>The second command, adds more row-filtering conditions: rows will be filtered based on ‘year’ which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:</p></li>
 </ul>
+<p><img alt="df3_Slice2" src="../_images/df3_Slice2.JPG" /></p>
 </div>
 <div class="section" id="grouping">
 <h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
+<p>The .groupby method can be used on Pandas dataframes to aggregated data: data will be splitted according to the unique values in the grouped fields allowing to perform computations on each group.</p>
+<p>As an example, let’s calculate the yearly population by continent, summing up the country population by continent:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
 <ul class="simple">
-<li><p>Show some examples of basic data wrangling such as:
-groupby
-slicing in pandas
-filtering</p></li>
+<li><p>The data will be aggregated by continent and year, summing up ‘pop’ column. The result will look like:
+<img alt="df3_groupby1" src="../_images/df3_groupby1.JPG" /></p></li>
 </ul>
 </div>
 </div>

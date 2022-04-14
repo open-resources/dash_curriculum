@@ -113,22 +113,24 @@ Let's see two examples:
 
 ```
 df3_Slice1 = df3.loc[(df3['continent']=='Americas'), :]
-df3_Slice2 = df3.loc[(df3['continent']=='Americas') & (df3['year']>=2000), ['country','year','pop']]
+
+df3_Slice2 = df3.loc[(df3['continent']=='Americas') & (df3['year'].isin([2002,2007])), ['country','year','pop']]
+df3_Slice2.head()
 ```
 - The first command will filter the df3 dataframe picking rows that have 'Americas' as continent. The ':' indicates that we don't want to specify any column-filtering conditions, selecting all columns for those rows.
-- The second command, adds more row-filtering conditions: rows will be filtered based on 'year' greater or equal then 2000. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:
+- The second command, adds more row-filtering conditions: rows will be filtered based on 'year' which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:
 
-
-
-
+![df3_Slice2](./ch6_files/df3_Slice2.JPG)
 
 #### Grouping
+The .groupby method can be used on Pandas dataframes to aggregated data: data will be splitted according to the unique values in the grouped fields allowing to perform computations on each group. 
 
-- Show some examples of basic data wrangling such as:
-groupby
-slicing in pandas
-filtering
-
+As an example, let's calculate the yearly population by continent, summing up the country population by continent:
+```
+df3.groupby(['continent','year'])['pop'].sum()
+```
+- The data will be aggregated by continent and year, summing up 'pop' column. The result will look like:
+![df3_groupby1](./ch6_files/df3_groupby1.JPG)
 
 ## 6.4 Using data in the App
 
