@@ -560,7 +560,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter we will introduce data into Dash Apps.
-We will show how to best import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to aggregate data.</p>
+We will show how to import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to prepare data for reporting.</p>
 <p>By the end of the chapter you’ll be comfortable with writing and editing this code, in order to use your own data into your Dash App:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Final code placeholder</span>
 </pre></div>
@@ -587,11 +587,16 @@ For this reason, we recommend to import data before initialising the app. In thi
 <div class="section" id="uploading-data-into-a-dataframe">
 <h2>6.2 Uploading data into a dataframe<a class="headerlink" href="#uploading-data-into-a-dataframe" title="Permalink to this headline">¶</a></h2>
 <p>In case our data is available on files or on the internet, we will read the data from the source and upload it into the dataframe.
-There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash dcc.Upload component.</p>
+There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies:</p>
+<ul class="simple">
+<li><p>reading data from files (.xls, .csv)</p></li>
+<li><p>reading data from URL</p></li>
+<li><p>using Dash dcc.Upload component</p></li>
+</ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you need some test dataset to play with, consider using the Plotly Express pre-loaded data, such as Gapminder, which can be added to your App with these commands:
-import plotly.express as px
+<p>If you need some test dataset to play with, consider using the Plotly Express pre-loaded data, such as Gapminder, which can be added to your App with these commands:</p>
+<p>import plotly.express as px
 df = px.data.gapminder()</p>
 </div>
 <div class="section" id="reading-data-from-files">
@@ -655,12 +660,13 @@ There is a vaste list of methods and functions that can be applied to Pandas dat
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>With the above command, an array containing the unique values in the column will be displayed.</p>
+<p>With the above command, an array containing the unique values in the column will be displayed.
+<img alt="df3_unique" src="part2/ch6_files/df3_unique.JPG" /></p>
 </div>
 <div class="section" id="slicing">
 <h3>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h3>
 <p>The .loc method can be used on Pandas dataframes, allowing to slice or filter them based on boolean conditions.
-The <code class="docutils literal notranslate"><span class="pre">.loc[(),</span> <span class="pre">()]</span></code> method allows to filter based on row conditions (to be specified in the first bracket ()) and on column conditions (to be specified in the second bracket()).
+The <code class="docutils literal notranslate"><span class="pre">.loc[(),</span> <span class="pre">()]</span></code> method allows to filter based on row conditions (to be specified in the first bracket ()) and on column conditions (to be specified in the second bracket ()).
 Let’s see two examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3_Slice1</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">),</span> <span class="p">:]</span>
 
@@ -669,8 +675,8 @@ Let’s see two examples:</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The first command will filter the df3 dataframe picking rows that have ‘Americas’ as continent. The ‘:’ indicates that we don’t want to specify any column-filtering conditions, selecting all columns for those rows.</p></li>
-<li><p>The second command, adds more row-filtering conditions: rows will be filtered based on ‘year’ which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:</p></li>
+<li><p>The first command will filter the df3 dataframe picking rows that have ‘Americas’ as continent. The ‘:’ indicates that we don’t want to specify any column-filtering conditions, hence, all columns will be selected.</p></li>
+<li><p>The second command, adds more row-filtering conditions: rows will be filtered based on American continent and also on ‘year’, which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:</p></li>
 </ul>
 <p><img alt="df3_Slice2" src="../_images/df3_Slice2.JPG" /></p>
 </div>
