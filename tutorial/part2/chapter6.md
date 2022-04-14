@@ -252,7 +252,5 @@ The above code will generate the following App:
 
 
 ## Summary
-App code at the end:
-dropdown with country data options
-
-At the end of this chapter, [here is a zipped file](https://sportsnet.ca) of what your app should look like.
+In this chapter, we have explored several options to upload data into Pandas dataframes, that we intend to use in a Dash App. We went through some basic data wrangling techniques that allow to prepare our data in order to be used by the Dash components that we've seen in action in two examples.
+By the end of this chapter you should be able to import the data into a Dash App, transform it and use it into Dash components.
