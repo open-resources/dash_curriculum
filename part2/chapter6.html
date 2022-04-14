@@ -390,8 +390,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-files">
-     6.2.1 Read data from files
+    <a class="reference internal nav-link" href="#reading-data-from-files">
+     6.2.1 Reading data from files
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -422,6 +422,23 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#data-wrangling-basics">
    6.3 Data wrangling basics
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unique-values">
+     Unique values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slicing">
+     Slicing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grouping">
+     Grouping
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-data-in-the-app">
@@ -469,8 +486,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-files">
-     6.2.1 Read data from files
+    <a class="reference internal nav-link" href="#reading-data-from-files">
+     6.2.1 Reading data from files
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -501,6 +518,23 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#data-wrangling-basics">
    6.3 Data wrangling basics
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unique-values">
+     Unique values
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#slicing">
+     Slicing
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#grouping">
+     Grouping
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-data-in-the-app">
@@ -526,7 +560,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter we will introduce data into Dash Apps.
-We will show where to import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to aggregate data.</p>
+We will show how to best import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to aggregate data.</p>
 <p>By the end of the chapter you’ll be comfortable with writing and editing this code, in order to use your own data into your Dash App:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Final code placeholder</span>
 </pre></div>
@@ -537,29 +571,31 @@ We will show where to import data into the App code and we will go through diffe
 <div class="section" id="where-to-import-data-within-dash-apps">
 <h2>6.1 Where to import data within Dash apps<a class="headerlink" href="#where-to-import-data-within-dash-apps" title="Permalink to this headline">¶</a></h2>
 <p>The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, etc.
-For this reason, we recommend to import data before initialising any app. In this way, the data will be globally available to all objects that are created in the later parts of the code.</p>
-<p>There are several types of objects that can be used to save our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.</p>
-<p>An empty dataframe can be created in this way:</p>
+For this reason, we recommend to import data before initialising the app. In this way, the data will be globally available to all objects that are created in the code.</p>
+<p>There are several types of objects that can be used to store our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.</p>
+<p>An empty dataframe is created with the code below::</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Some mock up data can be added using a dictionary, in this way:</p>
+<p>Some mock-up data can be added using a dictionary, in this way:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Country&#39;</span><span class="p">:[</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="s1">&#39;France&#39;</span><span class="p">],</span>
                          <span class="s1">&#39;Country Code&#39;</span><span class="p">:[</span><span class="s1">&#39;US&#39;</span><span class="p">,</span><span class="s1">&#39;NO&#39;</span><span class="p">,</span><span class="s1">&#39;IT&#39;</span><span class="p">,</span><span class="s1">&#39;SE&#39;</span><span class="p">,</span><span class="s1">&#39;FR&#39;</span><span class="p">]})</span>
 </pre></div>
 </div>
+<p>(In the code above, the dictionary keys will be the field names of the Pandas dataframe).</p>
 </div>
 <div class="section" id="uploading-data-into-a-dataframe">
 <h2>6.2 Uploading data into a dataframe<a class="headerlink" href="#uploading-data-into-a-dataframe" title="Permalink to this headline">¶</a></h2>
-<p>There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash dcc.Upload component.</p>
+<p>In case our data is available on files or on the internet, we will read the data from the source and upload it into the dataframe.
+There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies: reading data from files (.xls, .csv), reading data from URL, using Dash dcc.Upload component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you need some test dataset to play with, consider using the Plotly Express pre-loaded data, such as Gapminder, which can be added to your App with these commands:
 import plotly.express as px
 df = px.data.gapminder()</p>
 </div>
-<div class="section" id="read-data-from-files">
-<h3>6.2.1 Read data from files<a class="headerlink" href="#read-data-from-files" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="reading-data-from-files">
+<h3>6.2.1 Reading data from files<a class="headerlink" href="#reading-data-from-files" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
 <p>We will now upload an Excel file (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">link</a>) - extracted from the Gapminder data - into a dataframe:</p>
@@ -570,7 +606,8 @@ df = px.data.gapminder()</p>
 </div>
 <ul class="simple">
 <li><p>The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App</p></li>
-<li><p>We uploaded one Excel tab (named “Sheet1”) to a data frame.</p></li>
+<li><p>We uploaded one Excel tab (named “Sheet1”) to a data frame called “df1”.</p></li>
+<li><p>After the data upload, the dataframe looks like the following:</p></li>
 </ul>
 <p><img alt="Excel data 01" src="../_images/data01.JPG" /></p>
 </div>
@@ -585,14 +622,15 @@ df = px.data.gapminder()</p>
 </div>
 <ul class="simple">
 <li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. (We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator).</p></li>
-<li><p>We have also selected a subset of columns to be uploaded, with the “usecols” argument.</p></li>
+<li><p>We have also selected a subset of columns to be uploaded, with the “usecols” argument. With this argument, the remaining columns that are present in the file will be ignored</p></li>
+<li><p>After the data upload, the dataframe looks like the following:</p></li>
 </ul>
 <p><img alt="csv data 02" src="../_images/data02.JPG" /></p>
 </div>
 </div>
 <div class="section" id="read-data-from-a-url">
 <h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
-<p>We will now upload the same data from above, but from (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>), which is containint a .txt file.</p>
+<p>We will now upload the same data from above, but from (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>) (containing a raw .txt file).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -608,12 +646,40 @@ df = px.data.gapminder()</p>
 </div>
 <div class="section" id="data-wrangling-basics">
 <h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
+<p>Once we have our dataframe available, some transformations may be needed in order to use this data on our App.
+There is a vaste list of methods and functions that can be applied to Pandas dataframes (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">link</a> to Pandas documentation). In this section we’ll cover some of the basic data wrangling techniques which are ofter necessary to do some data exploration, slice or filter our data and aggregate it.</p>
+<p>We’ll show some data wrangling examples based on the “df3” dataframe that we created above, reading data from a URL.</p>
+<div class="section" id="unique-values">
+<h3>Unique values<a class="headerlink" href="#unique-values" title="Permalink to this headline">¶</a></h3>
+<p>When exploring data, we may often need to identify the unique values in our columns:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>With the above command, an array containing the unique values in the column will be displayed.</p>
+</div>
+<div class="section" id="slicing">
+<h3>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h3>
+<p>The .loc method can be used on Pandas dataframes, allowing to slice or filter them based on boolean conditions.
+The <code class="docutils literal notranslate"><span class="pre">.loc[(),</span> <span class="pre">()]</span></code> method allows to filter based on row conditions (to be specified in the first bracket ()) and on column conditions (to be specified in the second bracket()).
+Let’s see two examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3_Slice1</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">),</span> <span class="p">:]</span>
+<span class="n">df3_Slice2</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="mi">2000</span><span class="p">),</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]]</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The first command will filter the df3 dataframe picking rows that have ‘Americas’ as continent. The ‘:’ indicates that we don’t want to specify any column-filtering conditions, selecting all columns for those rows.</p></li>
+<li><p>The second command, adds more row-filtering conditions: rows will be filtered based on ‘year’ greater or equal then 2000. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:</p></li>
+</ul>
+</div>
+<div class="section" id="grouping">
+<h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Show some examples of basic data wrangling such as:
 groupby
 slicing in pandas
 filtering</p></li>
 </ul>
+</div>
 </div>
 <div class="section" id="using-data-in-the-app">
 <h2>6.4 Using data in the App<a class="headerlink" href="#using-data-in-the-app" title="Permalink to this headline">¶</a></h2>
