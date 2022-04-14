@@ -140,17 +140,62 @@ df3.groupby(['continent','year'])['pop'].sum()
 
 
 ## 6.4 Using data in the App
+We will now show how to use the data we've uploaded with a couple of examples.
 
-- Show an example of a Dropdown object, with the option list loaded from the dataframe
+### Example 1
+In the below App, we have imported the "df3" dataframe that we created above, reading data from a URL and used the list of unique continent as "options" of a Dropdown component.
+Based on the selected option, via a callbacks, this is shown as an output message:
 
-dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
 
-note: show how to write data into csv
+# Import data
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
+df3 = pd.read_table(url, sep=';')
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+continent_dropdown = dcc.Dropdown(id='continent-dropdown', options=[c for c in df3.continent.unique()])
+continent_output = html.Div(id='continent-output')
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([continent_dropdown], width=8)]),
+        dbc.Row([dbc.Col([continent_output], width=8)])
+    ]
+)
+
+# Configure callback
+@app.callback(
+    Output(component_id='continent-output', component_property='children'),
+    Input(component_id='continent-dropdown', component_property='value')
+)
+def dropdown_sel(value_dropdown):
+    selection = ("You've selected: "+value_dropdown)
+    return selection
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+The above code will generate the following App:
+**Include gif to transition from code to App starting page, then selecting a continent and displaying the output**
+
+### Example 2
+We will now build upon the previous example, including a second dropdown, linked to the first one.
+The second dropdown will show the list of countries from the continent previously selected.
+Based on the selected country, the total population will be displayed.
+
+The above code will generate the following App:
+**Include gif to transition from code to App starting page, then selecting a continent, a country and displaying the output**
 
 
 ## Summary
-
-
 App code at the end:
 dropdown with country data options
 
