@@ -130,12 +130,14 @@ df3_Slice2.head()
 #### Grouping
 The .groupby method can be used on Pandas dataframes to aggregated data: data will be splitted according to the unique values in the grouped fields allowing to perform computations on each group. 
 
-As an example, let's calculate the yearly population by continent, summing up the country population by continent:
+As an example, let's calculate the yearly population by continent, summing up the populations from all countries within each continent:
 ```
 df3.groupby(['continent','year'])['pop'].sum()
 ```
 - The data will be aggregated by continent and year, summing up 'pop' column. The result will look like:
+
 ![df3_groupby1](./ch6_files/df3_groupby1.JPG)
+
 
 ## 6.4 Using data in the App
 
