@@ -184,6 +184,8 @@ if __name__ == '__main__':
     app.run_server()
 ```
 The above code will generate the following App:
+
+![Example 1](./ch6_files/Example01.JPG)
 **Include gif to transition from code to App starting page, then selecting a continent and displaying the output**
 
 ### Example 2
