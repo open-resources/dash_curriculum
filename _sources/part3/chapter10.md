@@ -6,6 +6,7 @@ You have already learned about callbacks in chapter 4. Now, it is time to upskil
 
 ```{admonition} Learning Intentions
 - Multiple outputs and inputs
+- Buttons in callbacks
 - States
 ```
 
@@ -17,7 +18,7 @@ You might want to have a graph that should be linked to more than one component,
 In addition to a much cleaner and shorter code, note that assigning two different callbacks the same component as an output argument is just not allowed by dash.
 ```
 
-Let us see multiple inputs in action. We take the final code from chapter 8 and add the markdown, some radio items and a slider, where both, the radio items as well as the slider, will affect the graph.
+Let us see multiple inputs in action. We take the final code from chapter 8 and add the markdown, some radio items and a slider, where both, the radio items as well as the slider, will affect the graph. Using multiple inputs we need to add them as arguments in the callback decorator as well as arguments in the callback function.
 
 ```
 # Import packages
@@ -92,7 +93,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu.
+Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu. Multiple outputs will be separated with a commata when returned by the callback function.
 
 ```
 # Import packages
@@ -153,9 +154,164 @@ if __name__ == '__main__':
 
 Feel free to practice and give your multiple inputs and outputs at the same time.
 
-## 10.2 States
+## 10.2 Buttons within a callback
 
-So far, we had linked components of your app together which immediately affected each other. In a more advanced setup it might be useful though to circumvent this direct relationship. You might first want to have all of the input arguments together before your outpout is triggered. This could be helpful for any kind of forms. For this purpose there is a third argument that can be used within the callback decorator, the state.
+Now, that you know how to implement multiple inputs and outputs it's worth to take a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.
+
+Besides the children and id property, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let's see both in one simple example.
+
+```
+# Import packages
+from dash import Dash, dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown')
+button = html.Button(id='our-button', children='Update title')
+
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(dbc.Col(button))
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-button', component_property='n_clicks'),
+)
+def update_title(n_clicks):
+    if n_clicks == 0:
+        title = 'My first app. The button has not been clicked yet.'
+    else:
+        title = 'My first app with a button, that I have clicked {} times.'.format(n_clicks)
+    return title
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+To give you some more flexibility on programming your future apps let's see two more facettes of how to use buttons within callbacks. First, let us see how to reset the n_clicks component property of a button. Herefore, let's adjust the above example by adding a second button.
+
+```
+# Import packages
+from dash import Dash, dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown')
+button = html.Button(id='our-button', children='Update title')
+button_reset = html.Button(id='reset-button', children='Reset')
+
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(
+            [
+                dbc.Col(button, width=2),
+                dbc.Col(button_reset, width=2)
+            ]
+        )
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-button', component_property='n_clicks'),
+)
+def update_title(n_clicks):
+    if n_clicks == 0:
+        title = 'My first app. The button has not been clicked yet.'
+    else:
+        title = 'My first app with a button, that I have clicked {} times.'.format(n_clicks)
+    return title
+
+
+@app.callback(
+    Output(component_id='our-button', component_property='n_clicks'),
+    Input(component_id='reset-button', component_property='n_clicks'),
+)
+def update_title(n_clicks):
+    if n_clicks >= 0:
+        clicks = 0
+    return clicks
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+To conclude this second part of the chapter, let us see how to implement a binary functionality of your button. This means you are triggering different outputs with clicking the button, depending if you have clicked it an even or an odd number of times. This can be easily handled with the modulo operator `%`.
+
+```{tip}
+For a comprehensive overview of the modulo operator and how to use it in Python, have a look at Real Python.
+```
+
+```
+# Import packages
+from dash import Dash, dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='My first app')
+button = html.Button(id='our-button', children='Update title')
+
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(dbc.Col(button))
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-button', component_property='n_clicks'),
+)
+def update_title(n_clicks):
+    if n_clicks % 2 == 0:
+        title = 'My first app'
+    else:
+        title = 'My first app, but with a changed title.'
+    return title
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+## 10.3 States
+
+So far, we had linked components of your app together which immediately affected each other. In a more advanced setup it might be useful though to circumvent this direct relationship. You might first want to have all of the input arguments together before your outpout is triggered. This could be helpful for any kind of forms. For this purpose there is a third argument that can be used within the callback decorator, the state. Formally, the state is used in the same way as the input argument is used, so let's start off with an example.
+
+```{attention}
+Note that you need to import the state argument the same way we are importing the input and output arguments at the beginning of your code.
+```
+
 
 ## Summary
 
