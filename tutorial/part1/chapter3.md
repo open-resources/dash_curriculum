@@ -2,16 +2,16 @@
 
 ## What you will learn
 
-In this chapter we will explore various Dash **components** and how to position them within the app **layout**
+In this chapter we will explore various Dash **components** and how to position them within the app **layout**.
 
-[ending_file](./ch3_files/app.py)
+[Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter3_app.py)
 
 ## 3.1 Dash Components
 
 **Components** are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc...), slider bars, graphs, and many others.
-We will learn a few common components in this chapter.
+In this chapter, we will learn about a few common and useful components.
 
-**Properties** are attributes of components such as their `id` or `children`. 
+**Properties** are attributes of components such as their `id` or `children`.
 
 ````{dropdown} Buttons
     :container: + shadow
@@ -34,8 +34,8 @@ button = html.Button(children="Button")
 
 # App Layout 
 app.layout = dbc.Container([
-                markdown,
-                button,
+    markdown,
+    button,
 ])
 
 # Run the App 
@@ -70,9 +70,9 @@ checklist = dcc.Checklist(options=['New York City', 'Montréal', 'San Francisco'
 
 # App Layout 
 app.layout = dbc.Container([
-                markdown,
-                button,
-                checklist,
+    markdown,
+    button,
+    checklist,
 ])
 
 # Run the App 
@@ -110,10 +110,10 @@ radio = dcc.RadioItems(options=['New York City', 'Montréal', 'San Francisco'])
 
 # App Layout 
 app.layout = dbc.Container([
-                markdown,
-                button,
-                checklist,
-                radio,
+    markdown,
+    button,
+    checklist,
+    radio,
 ])
 
 # Run the App 
@@ -149,11 +149,11 @@ dropdown = dcc.Dropdown(options=['NYC', 'MTL', 'SF'])
 
 # App Layout 
 app.layout = dbc.Container([
-                markdown,
-                button,
-                checklist,
-                radio,
-                dropdown,
+    markdown,
+    button,
+    checklist,
+    radio,
+    dropdown,
 ])
 
 # Run the App 
@@ -190,12 +190,12 @@ slider = dcc.Slider(min=0, max=10, step=1)
 
 # App Layout 
 app.layout = dbc.Container([
-                markdown,
-                button,
-                checklist,
-                radio,
-                dropdown,
-                slider,
+    markdown,
+    button,
+    checklist,
+    radio,
+    dropdown,
+    slider,
 ])
 
 # Run the App 
@@ -275,4 +275,4 @@ We see there are 4 rows with columns of various `widths` which contain component
 ```
 
 ## Summary
-In this chapter we learned about Dash **components** and **layout**. In the next chapter we will learn how to create an interactive app by linking the components together.
+In this chapter we learned about several useful Dash **components** and how to organize them in a **layout**. In the next chapter we will learn how to create an interactive app by linking the components together.
