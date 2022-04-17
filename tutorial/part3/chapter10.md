@@ -28,30 +28,27 @@ import plotly.express as px
 
 # Setup data
 df = px.data.gapminder()
-df = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
+dropdown_list = df['country'].unique()
 
 # Initialise the App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown(id='our-markdown', children='My First app')
+markdown = dcc.Markdown(id='our-markdown', children='My first app')
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
 radio = dcc.RadioItems(id='our-radio', options=['line', 'scatter'], value='line')
-slider = dcc.Slider(
-    id='our-slider',
-    min=df['year'].min(),
-    max=df['year'].max()-5,
-    value=df['year'].min(),
-    step=5,
-    marks={str(year): str(year) for year in df['year'].unique()}
-)
 
 # App Layout
 app.layout = dbc.Container(
     [
         dbc.Row(dbc.Col(markdown)),
-        dbc.Row(dbc.Col(radio)),
+        dbc.Row(
+            [
+                dbc.Col(dropdown, width=3),
+                dbc.Col(radio, width=1)
+            ]
+        ),
         dbc.Row(dbc.Col(dcc.Graph(id='our-figure'))),
-        dbc.Row(dbc.Col(slider)),
     ]
 )
 
@@ -59,11 +56,11 @@ app.layout = dbc.Container(
 # Configure callbacks
 @app.callback(
     Output(component_id='our-figure', component_property='figure'),
+    Input(component_id='our-dropdown', component_property='value'),
     Input(component_id='our-radio', component_property='value'),
-    Input(component_id='our-slider', component_property='value'),
 )
-def update_graph(value_radio, value_slider):
-    df_sub = df[df['year'] >= value_slider]
+def update_graph(value_dropdown, value_radio):
+    df_sub = df[df['country'].isin([value_dropdown])]
 
     if value_radio == 'scatter':
         fig = px.scatter(
@@ -85,6 +82,7 @@ def update_graph(value_radio, value_slider):
             title='PX {} plot'.format(value_radio),
             template='plotly_white'
         )
+
     return fig
 
 
@@ -111,7 +109,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Create app components
 markdown = dcc.Markdown(id='our-markdown', children='My First app')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
-data_table = dash_table.DataTable(id='our-data-table')
+data_table = dash_table.DataTable(id='our-data-table', page_size=10)
 
 # App Layout
 app.layout = dbc.Container(
@@ -152,8 +150,6 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-Feel free to practice and give your multiple inputs and outputs at the same time.
-
 ## 10.2 Buttons within a callback
 
 Now, that you know how to implement multiple inputs and outputs it's worth to take a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.
@@ -171,7 +167,6 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Create app components
 markdown = dcc.Markdown(id='our-markdown')
 button = html.Button(id='our-button', children='Update title')
-
 
 # App Layout
 app.layout = dbc.Container(
@@ -214,7 +209,6 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 markdown = dcc.Markdown(id='our-markdown')
 button = html.Button(id='our-button', children='Update title')
 button_reset = html.Button(id='reset-button', children='Reset')
-
 
 # App Layout
 app.layout = dbc.Container(
@@ -276,7 +270,6 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 markdown = dcc.Markdown(id='our-markdown', children='My first app')
 button = html.Button(id='our-button', children='Update title')
 
-
 # App Layout
 app.layout = dbc.Container(
     [
@@ -312,6 +305,84 @@ So far, we had linked components of your app together which immediately affected
 Note that you need to import the state argument the same way we are importing the input and output arguments at the beginning of your code.
 ```
 
+```
+# Import packages
+from dash import Dash, dash_table, dcc, html, Input, Output, State
+import dash_bootstrap_components as dbc
+import plotly.express as px
+
+# Setup data
+df = px.data.gapminder()
+dropdown_list = df['country'].unique()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='My first app')
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+radio = dcc.RadioItems(id='our-radio', options=['line', 'scatter'], value='line')
+button = html.Button(id='our-button', children='Update data', n_clicks=0)
+data_table = dash_table.DataTable(id='our-data-table', page_size=10)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(
+            [
+                dbc.Col(dropdown, width=3),
+                dbc.Col(radio, width=1),
+                dbc.Col(button, width=3)
+            ]
+        ),
+        dbc.Row(dbc.Col(dcc.Graph(id='our-figure'))),
+        dbc.Row(dbc.Col(data_table))
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-figure', component_property='figure'),
+    Output(component_id='our-data-table', component_property='data'),
+    Input(component_id='our-button', component_property='n_clicks'),
+    State(component_id='our-dropdown', component_property='value'),
+    State(component_id='our-radio', component_property='value'),
+)
+def update_graph(n_clicks, value_dropdown, value_radio):
+    if n_clicks >= 0:
+        df_sub = df[df['country'].isin([value_dropdown])]
+        data = df_sub.to_dict('records')
+
+        if value_radio == 'scatter':
+            fig = px.scatter(
+                df_sub,
+                x='year',
+                y='lifeExp',
+                color='country',
+                symbol='continent',
+                title='PX {} plot'.format(value_radio),
+                template='plotly_white'
+            )
+        else:
+            fig = px.line(
+                df_sub,
+                x='year',
+                y='lifeExp',
+                color='country',
+                symbol='continent',
+                title='PX {} plot'.format(value_radio),
+                template='plotly_white'
+            )
+
+    return fig, data
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
 
 ## Summary
 
