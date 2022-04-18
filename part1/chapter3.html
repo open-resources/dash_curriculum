@@ -447,13 +447,13 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 3 - Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will explore various Dash <strong>components</strong> and how to position them within the app <strong>layout</strong></p>
-<p><span class="xref myst">ending_file</span></p>
+<p>In this chapter we will explore various Dash <strong>components</strong> and how to position them within the app <strong>layout</strong>.</p>
+<p><a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter3_app.py">Click here to download the complete code file for this chapter</a></p>
 </div>
 <div class="section" id="dash-components">
 <h2>3.1 Dash Components<a class="headerlink" href="#dash-components" title="Permalink to this headline">¶</a></h2>
 <p><strong>Components</strong> are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc…), slider bars, graphs, and many others.
-We will learn a few common components in this chapter.</p>
+In this chapter, we will learn about a few common and useful components.</p>
 <p><strong>Properties</strong> are attributes of components such as their <code class="docutils literal notranslate"><span class="pre">id</span></code> or <code class="docutils literal notranslate"><span class="pre">children</span></code>.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -476,8 +476,8 @@ Buttons<div class="summary-down docutils">
 
 <span class="c1"># App Layout </span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
+    <span class="n">markdown</span><span class="p">,</span>
+    <span class="n">button</span><span class="p">,</span>
 <span class="p">])</span>
 
 <span class="c1"># Run the App </span>
@@ -510,9 +510,9 @@ We will pass in a list of <strong>options</strong> when we create the checklist 
 
 <span class="c1"># App Layout </span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
+    <span class="n">markdown</span><span class="p">,</span>
+    <span class="n">button</span><span class="p">,</span>
+    <span class="n">checklist</span><span class="p">,</span>
 <span class="p">])</span>
 
 <span class="c1"># Run the App </span>
@@ -547,10 +547,10 @@ Similar to the checklist, we will pass in a list of <strong>options</strong> whe
 
 <span class="c1"># App Layout </span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
+    <span class="n">markdown</span><span class="p">,</span>
+    <span class="n">button</span><span class="p">,</span>
+    <span class="n">checklist</span><span class="p">,</span>
+    <span class="n">radio</span><span class="p">,</span>
 <span class="p">])</span>
 
 <span class="c1"># Run the App </span>
@@ -585,11 +585,11 @@ Dropdown<div class="summary-down docutils">
 
 <span class="c1"># App Layout </span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
+    <span class="n">markdown</span><span class="p">,</span>
+    <span class="n">button</span><span class="p">,</span>
+    <span class="n">checklist</span><span class="p">,</span>
+    <span class="n">radio</span><span class="p">,</span>
+    <span class="n">dropdown</span><span class="p">,</span>
 <span class="p">])</span>
 
 <span class="c1"># Run the App </span>
@@ -625,12 +625,12 @@ Slider<div class="summary-down docutils">
 
 <span class="c1"># App Layout </span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
-                <span class="n">markdown</span><span class="p">,</span>
-                <span class="n">button</span><span class="p">,</span>
-                <span class="n">checklist</span><span class="p">,</span>
-                <span class="n">radio</span><span class="p">,</span>
-                <span class="n">dropdown</span><span class="p">,</span>
-                <span class="n">slider</span><span class="p">,</span>
+    <span class="n">markdown</span><span class="p">,</span>
+    <span class="n">button</span><span class="p">,</span>
+    <span class="n">checklist</span><span class="p">,</span>
+    <span class="n">radio</span><span class="p">,</span>
+    <span class="n">dropdown</span><span class="p">,</span>
+    <span class="n">slider</span><span class="p">,</span>
 <span class="p">])</span>
 
 <span class="c1"># Run the App </span>
@@ -713,7 +713,7 @@ Slider<div class="summary-down docutils">
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we learned about Dash <strong>components</strong> and <strong>layout</strong>. In the next chapter we will learn how to create an interactive app by linking the components together.</p>
+<p>In this chapter we learned about several useful Dash <strong>components</strong> and how to organize them in a <strong>layout</strong>. In the next chapter we will learn how to create an interactive app by linking the components together.</p>
 </div>
 </div>
 
