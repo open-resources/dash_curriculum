@@ -3,6 +3,10 @@
 ## What you will learn
 This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you'll understand the following code, and how to launch it as your first minimal Dash app:
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
 ```
 # 1. Import packages
 from dash import Dash, dcc
@@ -20,6 +24,8 @@ app.layout = dbc.Container([
 if __name__ == '__main__':
     app.run_server()
 ```
+
+````
 
 [Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter2_app.py)
 
