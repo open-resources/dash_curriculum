@@ -2,16 +2,68 @@
 
 ## What you will learn
 
-In this chapter we will explore various Dash **components** and how to position them within the app **layout**.
+In this chapter we will introduce you to the Dash Core and HTML components which are used to create rich app interfaces. These include the dropdown, the checklist, the button, and many more. We will also show you how to use Dash Bootstrap Components to design the layout of your app.
+
+```{admonition} Learning Intentions
+- Dash Core Components
+- Dash HTML Components
+- Desgining an App Layout 
+```
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# Import packages 
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App 
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(children='My First app')
+button = html.Button(children="Button")
+checklist = dcc.Checklist(options=['New York City', 'Montréal', 'San Francisco'])
+radio = dcc.RadioItems(options=['New York City', 'Montréal', 'San Francisco'])
+dropdown = dcc.Dropdown(options=['NYC', 'MTL', 'SF'])
+slider = dcc.Slider(min=0, max=10, step=1)
+
+# App Layout 
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([markdown], width=8)]),
+        dbc.Row(
+            [
+                dbc.Col([dropdown], width = 3), 
+                dbc.Col([slider], width = 9),
+            ]
+        ),
+        dbc.Row(
+            [
+                dbc.Col([checklist], width = 6),
+                dbc.Col([radio], width = 6),
+            ]
+        ),
+        dbc.Row([dbc.Col([button], width = 11)]),
+    ]
+)
+
+# Run the App 
+if __name__ == '__main__':
+    app.run_server()
+```
+
+````
 
 [Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py)
 
 ## 3.1 Dash Components
 
-**Components** are the building blocks of the app such as dropdown menus, buttons (radio, checkbox, etc...), slider bars, graphs, and many others.
-In this chapter, we will learn about a few common and useful components.
+**Components** are the building blocks of a Dash app. In this chapter, we will learn about a few common and useful components: Button, Checklist, RadioItems, Dropdown, and Slider. Check the Dash documentation for a full list of [Core components](https://dash.plotly.com/dash-core-components) and [HTML components](https://dash.plotly.com/dash-html-components).
 
-**Properties** are attributes of components such as their `id` or `children`.
+**Properties** are attributes of components, such as an `id` or `children`, which allow us to fully build the component.
 
 ````{dropdown} Buttons
     :container: + shadow
