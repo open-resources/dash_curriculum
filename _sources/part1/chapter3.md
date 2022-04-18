@@ -4,7 +4,7 @@
 
 In this chapter we will explore various Dash **components** and how to position them within the app **layout**.
 
-[Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter3_app.py)
+[Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py)
 
 ## 3.1 Dash Components
 
