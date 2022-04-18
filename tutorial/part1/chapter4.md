@@ -148,9 +148,9 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
 
 Now that we have already seen a simple callback and understand how it is implemented, let's see a more complex example.
 
-### 4.3.1 Change the style of a markdown by a slider
+### 4.3.1 Change the style of a Markdown component using a slider
 
-Here we will replace the dropdown from the previous example with a slider. Instead of the `children` property of the Markdown component we introduce another property called `style` which can be used for any kind of styling e.g., the color of size of the font. [Chapter 9](../part3/chapter9.md) will give you some more insights on this topic.
+Here we will replace the dropdown from the previous example with a slider. Instead of the `children` property of the Markdown component we introduce another property called `style` which can be used for any kind of styling e.g., the color or size of the font. [Chapter 9](../part3/chapter9.md) will give you some more insights on this topic.
 
 We equip the slider introduced in the previous chapter with an `id` and add the `value` property with a default value to it. The respective value of the slider will then be responsible for seizing the markdown. In this case, we change the font size of the markdown to be the default value added by twice the value chosen within the slider.
 
@@ -198,7 +198,7 @@ In action, you will now have programmed the following interactive app:
 
 ### 4.3.2 Bringing everything together
 
-To end this chapter, let's tie everything together. Especially, we want to show an example of how to use multiple callbacks in your app. In order to combine both callbacks implemented above, we specify them in sequence in the code. The order doesn't matter, just make sure you have all components defined and assigned the right ids and properties. Merging everything together will give you the final app for this chapter.
+To end this chapter, let's tie everything together. Particularly, we want to show an example of how to use multiple callbacks in your app. In order to combine both callbacks implemented in section 4.2 and 4.3, we specify them in sequence in the code. Note that you need to insert space between the two callbacks, but there is no space between the callback decorator and the callback function.
 
 ```
 # Import packages
@@ -255,6 +255,8 @@ if __name__ == '__main__':
 
 ## Summary
 
-Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. No matter if only one or multiple callbacks, you'll be able to manage your app linking different components together. 
+Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. Regardless if there is only one or multiple callbacks, you'll be able to manage your app linking different components together.
 
-Now it's your turn, try yourself to link other components you already know and build your own first interactive app.
+Now it's your turn, try to link some of the other components you learned in chapter 3 and build your own interactive app.
+In the next chapter we will learn how to deploy our app to the web.
+

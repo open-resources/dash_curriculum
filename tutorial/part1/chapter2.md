@@ -1,7 +1,7 @@
 # Chapter 2: Getting Started with Dash
 
 ## What you will learn
-This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you'll understand the following code of a minimal dash app, and know how you can launch it as your first Dash app:
+This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you'll understand the following code, and how to launch it as your first minimal Dash app:
 
 ```
 # 1. Import packages
@@ -24,7 +24,7 @@ if __name__ == '__main__':
 [Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter2_app.py)
 
 ## 2.1 Structure of a Dash App
-Structuring your dash app into the following sections will simplify the development of the app over time.
+Structuring your Dash app into the following sections will simplify the development of the app over time.
 1) Import packages
 2) Initialise the App
 3) App Layout
@@ -47,7 +47,7 @@ When creating Dash apps, we will almost always use the two import statements abo
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 ```
 In this section of the code, we initialise the app by creating a Dash instance, tell it to use Bootstrap for the design of the app, and assign it to a variable named "app".
-This one line of code is pretty much static for any Dash app you create. In later chapters, we'll talk more about external stylesheets and show you how to to specify more properties to create more complex apps. 
+This one line of code is pretty much static for any Dash app you create. In later chapters, we'll talk more about external stylesheets and show you how to specify more properties to create more complex apps. 
 
 ### 2.1.3 App Layout
 ```
@@ -55,7 +55,7 @@ app.layout = dbc.Container([
     dcc.Markdown(children='My First App', style={'textAlign': 'center'})
 ])
 ```
-The app layout represents what will be displayed in the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: `dcc.Markdown`. This Dash Core Component let's you use [Markdown syntax](https://commonmark.org/help/) to format the text that is displayed on the page. This component takes has a few properties, such as `children` and `style`:
+The app layout represents what will be displayed in the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: `dcc.Markdown`. This Dash Core Component let's you use [Markdown syntax](https://commonmark.org/help/) to format the text that is displayed on the page. This component has a few properties, such as `children` and `style`:
 - **Children** : this is a common property shared by many Dash components and it allows the adding of textual content. In this Markdown component, "My First App" will be the content displayed on the web page.
 - **Style** : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
 
@@ -64,7 +64,7 @@ The app layout represents what will be displayed in the web browser. There are a
 if __name__ == '__main__':
     app.run_server()
 ```
-These lines are for running your app. A Dash server is launched which is required to keep the app up and running. The `if` statement makes sure that the app is not launched if we were to import the app as a module and is a Python convention that you don't have have to understand fully.
+These lines are for running your app. A Dash server is launched which is required to keep the app up and running. The `if` statement makes sure that the app is not launched if we were to import the app as a module and is a Python convention for which an explanation goes beyond the scope of this curriculum.
 
 ```{note}
 The "server" is referring to a Python process that runs locally on your computer. It will be accessible from our laptop only. In Chapter 5 we will see how to start this Python process on a web server ("deployment"), which is a computer in the cloud that let's anyone access the page.
