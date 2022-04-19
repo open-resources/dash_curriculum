@@ -51,7 +51,7 @@ df = px.data.gapminder()
 ### 6.2.1 Reading data from files
 
 #### Excel files
-Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe
+Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe. 
 The file we'll be using is available here ([data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)): follow the link click on "download"; locate the file in your download folder.
 
 ```
