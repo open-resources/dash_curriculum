@@ -385,8 +385,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#uploading-data-into-a-dataframe">
-   6.2 Uploading data into a dataframe
+  <a class="reference internal nav-link" href="#uploading-data-into-an-app">
+   6.2 Uploading data into an app
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -493,8 +493,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#uploading-data-into-a-dataframe">
-   6.2 Uploading data into a dataframe
+  <a class="reference internal nav-link" href="#uploading-data-into-an-app">
+   6.2 Uploading data into an app
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -583,18 +583,27 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 6 - Working with Data in Dash<a class="headerlink" href="#chapter-6-working-with-data-in-dash" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will introduce data into Dash Apps.
-We will show how to import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to prepare data for reporting.</p>
-<p>By the end of the chapter you’ll be comfortable with writing and editing this code, in order to use your own data into your Dash App:
+<p>In this chapter we will introduce data into Dash Apps. We will show how to:</p>
+<ul class="simple">
+<li><p>import data into the app</p></li>
+<li><p>create and populate Pandas dataframes</p></li>
+<li><p>review basic data wrangling techniques often used to prepare data for reporting.</p></li>
+</ul>
+<p>By the end of the chapter, you’ll be comfortable with incorporating your own data into a Dash app:
 <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/chapter6_fin_app.py">Download the file</a></p>
 </div>
 <hr class="docutils" />
 <div class="section" id="where-to-import-data-within-dash-apps">
 <h2>6.1 Where to import data within Dash apps<a class="headerlink" href="#where-to-import-data-within-dash-apps" title="Permalink to this headline">¶</a></h2>
-<p>The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, etc.
-For this reason, we recommend to import data before initialising the app. In this way, the data will be globally available to all objects that are created in the code.</p>
-<p>There are several types of objects that can be used to store our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.</p>
-<p>An empty dataframe is created with the code below::</p>
+<p>The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, layout, etc.
+For this reason, we recommend importing the data before initialising the app, right above this line of code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data imported here</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>In this way, the data will be globally available to all objects that are created in the code.</p>
+<p>One of the easiest and most convenient methods to represent our data is through a Pandas dataframe.
+An empty dataframe is created with the code below::</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -603,20 +612,19 @@ For this reason, we recommend to import data before initialising the app. In thi
                          <span class="s1">&#39;Country Code&#39;</span><span class="p">:[</span><span class="s1">&#39;US&#39;</span><span class="p">,</span><span class="s1">&#39;NO&#39;</span><span class="p">,</span><span class="s1">&#39;IT&#39;</span><span class="p">,</span><span class="s1">&#39;SE&#39;</span><span class="p">,</span><span class="s1">&#39;FR&#39;</span><span class="p">]})</span>
 </pre></div>
 </div>
-<p>(In the code above, the dictionary keys will be the field names of the Pandas dataframe).</p>
+<p>(In the code above, the dictionary keys “Country” and “Country code” will be the column names of the Pandas dataframe).</p>
 </div>
-<div class="section" id="uploading-data-into-a-dataframe">
-<h2>6.2 Uploading data into a dataframe<a class="headerlink" href="#uploading-data-into-a-dataframe" title="Permalink to this headline">¶</a></h2>
-<p>In case our data is available on files or on the internet, we will read the data from the source and upload it into the dataframe.
-There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies:</p>
+<div class="section" id="uploading-data-into-an-app">
+<h2>6.2 Uploading data into an app<a class="headerlink" href="#uploading-data-into-an-app" title="Permalink to this headline">¶</a></h2>
+<p>In case our data is available on files or on the internet, we will read the data from the source and convert it into a Pandas dataframe.
+There are several ways of incorporating data into our app; we will focus on these methodologies:</p>
 <ul class="simple">
-<li><p>reading data from files (.xls, .csv)</p></li>
-<li><p>reading data from URL</p></li>
-<li><p>using Dash dcc.Upload component</p></li>
+<li><p>reading data from files (.xls, .csv, .json)</p></li>
+<li><p>reading data from a URL</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you need some test dataset to play with, consider using the Plotly Express pre-loaded data, such as Gapminder, which can be added to your App with these commands:</p>
+<p>If you need some test dataset to play with or test your code, consider using the Plotly Express built-in data sets, such as Gapminder, which can be added to your App with these commands:</p>
 <p>import plotly.express as px
 df = px.data.gapminder()</p>
 </div>
@@ -624,14 +632,27 @@ df = px.data.gapminder()</p>
 <h3>6.2.1 Reading data from files<a class="headerlink" href="#reading-data-from-files" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
-<p>We will now upload an Excel file (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">link</a>) - extracted from the Gapminder data - into a dataframe:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/User1/Downloads/data_01.xlsx&#39;</span>
+<p>Let’s see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe
+The file we’ll be using is available here (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">data_01</a>): follow the link click on “download”; locate the file in your download folder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\YourUser\Downloads\data_01.xlsx&#39;</span>
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
-<span class="n">df1</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App</p></li>
+<li><p>In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the “r” just before the string containing the path). This is done as VS code may trigger a warning when using a normal string.
+If your file is located directly into your working directory, the path is not required; you may only specify the filename and therefore the code would simply with
+<code class="docutils literal notranslate"><span class="pre">filepath</span> <span class="pre">=</span> <span class="pre">'data_01.xlsx'</span> </code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you experience any difficulties in finding your filepath, please check (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG">this</a> screenshot showing how to copy the path directly from WS code.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>In production versions, when apps get deployed, the best practice is to have a “data” folder, where all files are stored and therefore accessed by the app code.</p>
+</div>
+<ul class="simple">
 <li><p>We uploaded one Excel tab (named “Sheet1”) to a data frame called “df1”.</p></li>
 <li><p>After the data upload, the dataframe looks like the following:</p></li>
 </ul>
