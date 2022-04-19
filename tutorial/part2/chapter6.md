@@ -1,20 +1,28 @@
 # Chapter 6 - Working with Data in Dash
 
 ## What you will learn
-In this chapter we will introduce data into Dash Apps.
-We will show how to import data into the App code and we will go through different ways to create and populate Pandas dataframes. We will also show some basic data wrangling techniques that are often used to prepare data for reporting.
+In this chapter we will introduce data into Dash Apps. We will show how to:
+- import data into the app
+- create and populate Pandas dataframes
+- review basic data wrangling techniques often used to prepare data for reporting.
 
-By the end of the chapter you'll be comfortable with writing and editing this code, in order to use your own data into your Dash App:
+By the end of the chapter, you'll be comfortable with incorporating your own data into a Dash app:
 [Download the file](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/chapter6_fin_app.py)
 
 ---
 
 ## 6.1 Where to import data within Dash apps
-The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, etc.
-For this reason, we recommend to import data before initialising the app. In this way, the data will be globally available to all objects that are created in the code.
+The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, layout, etc.
+For this reason, we recommend importing the data before initialising the app, right above this line of code:
 
-There are several types of objects that can be used to store our data: numpy arrays, dictionaries, Pandas dataframes, etc. We will be using Pandas dataframes, that can be created in the following ways.
+```
+# Data imported here
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+```
 
+In this way, the data will be globally available to all objects that are created in the code.
+
+One of the easiest and most convenient methods to represent our data is through a Pandas dataframe.
 An empty dataframe is created with the code below::
 ```
 test_data = pd.DataFrame()
@@ -25,17 +33,16 @@ Some mock-up data can be added using a dictionary, in this way:
 test_data = pd.DataFrame({'Country':['United States','Norway','Italy','Sweden','France'],
                          'Country Code':['US','NO','IT','SE','FR']})
 ```
-(In the code above, the dictionary keys will be the field names of the Pandas dataframe).
+(In the code above, the dictionary keys "Country" and "Country code" will be the column names of the Pandas dataframe).
 
-## 6.2 Uploading data into a dataframe
-In case our data is available on files or on the internet, we will read the data from the source and upload it into the dataframe.
-There are several ways of uploading data to Pandas dataframes, we will be focusing on these methodologies:
-- reading data from files (.xls, .csv)
-- reading data from URL
-- using Dash dcc.Upload component
+## 6.2 Uploading data into an app
+In case our data is available on files or on the internet, we will read the data from the source and convert it into a Pandas dataframe.
+There are several ways of incorporating data into our app; we will focus on these methodologies:
+- reading data from files (.xls, .csv, .json)
+- reading data from a URL
 
 ```{note}
-If you need some test dataset to play with, consider using the Plotly Express pre-loaded data, such as Gapminder, which can be added to your App with these commands:
+If you need some test dataset to play with or test your code, consider using the Plotly Express built-in data sets, such as Gapminder, which can be added to your App with these commands:
 
 import plotly.express as px
 df = px.data.gapminder()
@@ -44,14 +51,23 @@ df = px.data.gapminder()
 ### 6.2.1 Reading data from files
 
 #### Excel files
-We will now upload an Excel file ([link](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)) - extracted from the Gapminder data - into a dataframe:
+Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe
+The file we'll be using is available here ([data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)): follow the link click on "download"; locate the file in your download folder.
 
 ```
-filepath = 'C:/Users/User1/Downloads/data_01.xlsx'
+filepath = r'C:\Users\YourUser\Downloads\data_01.xlsx'
 df1 = pd.read_excel(filepath, sheet_name='Sheet1')
-df1
+print(df1)
 ```
-- The code above would work in situations where you have some local files (e.g. into the Downloads folder) that you want to use in the App
+- In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the "r" just before the string containing the path). This is done as VS code may trigger a warning when using a normal string.
+If your file is located directly into your working directory, the path is not required; you may only specify the filename and therefore the code would simply with
+```filepath = 'data_01.xlsx' ```
+```{note}
+If you experience any difficulties in finding your filepath, please check ([this](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG) screenshot showing how to copy the path directly from WS code.
+```
+```{tip}
+In production versions, when apps get deployed, the best practice is to have a "data" folder, where all files are stored and therefore accessed by the app code.
+```
 - We uploaded one Excel tab (named "Sheet1") to a data frame called "df1".
 - After the data upload, the dataframe looks like the following:
 
