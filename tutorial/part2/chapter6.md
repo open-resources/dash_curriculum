@@ -59,9 +59,8 @@ filepath = r'C:\Users\YourUser\Downloads\data_01.xlsx'
 df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 print(df1)
 ```
-- In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the "r" just before the string containing the path). This is done as VS code may trigger a warning when using a normal string.
-If your file is located directly into your working directory, the path is not required; you may only specify the filename and therefore the code would simply with
-```filepath = 'data_01.xlsx' ```
+- In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the "r" just before the string containing the path. This is done as VS code may trigger a warning when using a normal string).
+If your file is located directly into your app folder (or within VS code working directory), the path is not required; you may only specify the filename: ```filepath = 'data_01.xlsx' ```
 ```{note}
 If you experience any difficulties in finding your filepath, please check ([this](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG) screenshot showing how to copy the path directly from WS code.
 ```
