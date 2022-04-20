@@ -698,7 +698,44 @@ Slider<div class="summary-down docutils">
 </details></div>
 <div class="section" id="layout">
 <h2>3.2 Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
-<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> without any further specifications. We’ve seen that this will place our app components sequentially in one single column.  To customise the layout, we will use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>.</p>
+<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> without any further specifications. We’ve seen that this will place our app components sequentially in one single column. To further customise the layout, we will use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>. This will allow us to declare the number of rows and columns in the layout as well as dictate the exact place where Dash components should appear (Markdown and Slider in our example).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App </span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">markdown</span>
+        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span>
+        
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">slider</span>
+        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="p">])</span>
+<span class="p">])</span>
+
+
+<span class="c1"># Run the App </span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="colored_initial_app_layout" src="../_images/app-layout1.png" /></p>
+<div class="admonition-note admonition">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>The colors above are for demonstration purposes, you will not see them in your local dashboard</p></li>
+</ul>
+</div>
 <p>Best practices when constructing your layout using <strong>Dash Bootstrap Components</strong>:</p>
 <ol class="simple">
 <li><p>First, define the <code class="docutils literal notranslate"><span class="pre">Containter</span></code>, which will contain the entire app layout</p></li>
@@ -706,13 +743,8 @@ Slider<div class="summary-down docutils">
 <li><p>Then, inside each <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code>, define the <code class="docutils literal notranslate"><span class="pre">Columns</span></code></p></li>
 <li><p>Then, inside each <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>, insert the app <code class="docutils literal notranslate"><span class="pre">Components</span></code></p></li>
 </ol>
-<div class="admonition-note admonition">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>The total <code class="docutils literal notranslate"><span class="pre">width</span></code> of columns in each row is 12</p></li>
-<li><p>In the code below we define the <code class="docutils literal notranslate"><span class="pre">width</span></code> property for each <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code></p></li>
-</ul>
-</div>
+<p>You can see from the code above that we define the <code class="docutils literal notranslate"><span class="pre">width</span></code> property for each <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> as 6. Note that the total width of columns inside the <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> is 12. Make sure that you never assign more than 12 columns within each Row.</p>
+<p>Let’s see another example of a layout with multiple rows and columns:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -754,17 +786,11 @@ Slider<div class="summary-down docutils">
 </pre></div>
 </div>
 <p><img alt="colored_app" src="../_images/app_colored.png" /></p>
-<p>We see there are 4 rows with columns of various <code class="docutils literal notranslate"><span class="pre">widths</span></code> which contain components.  Make sure that the total amount of column <code class="docutils literal notranslate"><span class="pre">width</span></code> within each row <strong>never surpasses 12</strong>.</p>
+<p>We see there are four rows with columns of various widths which contain components. Notice that the total column width in the first and last row is 8 and 11 respectively. Having less than 12 assigned to column width is fine, just remember that the total amount of column width within each row should <strong>never surpasses 12</strong>.</p>
 <ul class="simple">
 <li><p>Play around with the <code class="docutils literal notranslate"><span class="pre">width</span></code> value of the column containing the dropdown and slider to see how it changes the app layout.</p></li>
 <li><p>Try to move the button to be in the same row as the Checklist and RadtioItem</p></li>
 </ul>
-<div class="admonition-note admonition">
-<p class="admonition-title">Note</p>
-<ul class="simple">
-<li><p>The colors above are for demonstration purposes, you will not see them in your local dashboard</p></li>
-</ul>
-</div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
