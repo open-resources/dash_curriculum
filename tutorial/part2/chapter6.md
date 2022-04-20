@@ -52,7 +52,7 @@ df = px.data.gapminder()
 
 #### Excel files
 Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe. 
-The file we'll be using is available here ([data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx)): follow the link click on "download"; locate the file in your download folder.
+The file we'll be using is available here [data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx): follow the link click on "download"; locate the file in your download folder.
 
 ```
 filepath = r'C:\Users\YourUser\Downloads\data_01.xlsx'
@@ -73,7 +73,7 @@ In production versions, when apps get deployed, the best practice is to have a "
 ![Excel data 01](./ch6_files/data01.JPG)
 
 #### CSV files
-We will now upload the same data from above, but from a .csv file ([data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv)). Please follow the link and click on the "Copy raw contents" button, then paste the records into a new file on your laptop, saving it as "data_02.csv"
+We will now upload the same data from above, but from a .csv file [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click on the "Copy raw contents" button, then paste the records into a new file on your laptop, saving it as "data_02.csv"
 
 ```
 filepath = r'C:\Users\User1\Downloads\data_02.csv'
@@ -90,7 +90,7 @@ df2.head() # you can also use: print(df2.head()) -- VS Code supports both
 ![csv data 02](./ch6_files/data02.JPG)
 
 ### 6.2.2 Read data from a URL
-We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)).
+We will now upload the same data from above, but from [this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt).
 
 ```
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
@@ -107,7 +107,7 @@ The code above, will generate a dataframe that looks like:
 ![url data 03](./ch6_files/data03.JPG)
 
 ### 6.2.3 Read data from a json file
-We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we'll upload is available on ([this URL](https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json))
+We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we'll upload is available on [this URL](https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json)
 
 ```
 url = 'https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json'
@@ -122,7 +122,7 @@ df4.head()
 Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
 There is a vast list of methods and functions that can be applied to Pandas dataframes ([link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) to Pandas documentation). In this section we'll cover a few wrangling techniques that are most commonly used when building Dash apps.
 
-The below examples are based on the (["df3" dataframe](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url)) that we created above by reading data from a URL.
+The below examples are based on the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url) that we created above by reading data from a URL.
 
 #### Unique values
 When exploring data, we may often need to identify the unique values in each column:
@@ -171,7 +171,7 @@ The result will look like:
 We will now show how to use the data we've uploaded with a couple of examples.
 
 ### Example 1
-In the below app, we import the (["df3" dataframe](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url)) that we created above, and use the list of unique continents to create the "options" of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.
+In the below app, we import the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url) that we created above, and use the list of unique continents to create the "options" of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.
 
 ```
 # Import packages
@@ -221,7 +221,7 @@ We will now build upon the previous example, including a second dropdown, linked
 The second dropdown will show the list of countries from the continent selected in the first dropdown.
 Based on the selected country, the total population will be displayed.
 ```{note}
-This is often referred to as the chained callback. See ([Dash documentation](https://dash.plotly.com/basic-callbacks#dash-app-with-chained-callbacks)) for more examples.
+This is often referred to as the chained callback. See [Dash documentation](https://dash.plotly.com/basic-callbacks#dash-app-with-chained-callbacks) for more examples.
 ```
 
 ```
@@ -236,7 +236,7 @@ df3 = pd.read_table(url, sep=';')
 y=2007
 df3 = df3.loc[(df3['year']==y), :]
 
-# Initialise the App
+# Initialise the app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
@@ -245,7 +245,7 @@ continent_dropdown = dcc.Dropdown(id = 'continent-dropdown', placeholder = 'Sele
 country_dropdown = dcc.Dropdown(id = 'country-dropdown', placeholder = 'Select a country')
 _output = html.Div(id = 'final-output')
 
-# App Layout
+# app Layout
 app.layout = dbc.Container(
     [
         dbc.Row([dbc.Col([_header], width=8)]),
@@ -277,7 +277,7 @@ def pop_calculator(country_selection):
     output = ('The population in '+country_selection+' was: '+pop_value.astype(str))
     return output
 
-# Run the App
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -286,10 +286,10 @@ if __name__ == '__main__':
 In the code above, you may notice that in the second callback we have added this prop: `prevent_initial_call=True`. This was necessary here, since the 'country-dropdown' component doesn't have any default option (the options are in fact depending on the first dropdown selection). By default, Dash calls every callback when initialising the app: we want to prevent this initial call as Dash wouldn't find any input value for this callback.
 ```
 
-The above code will generate the following App:
+The above code will generate the following app:
 
 ![Example 2](./ch6_files/Example02.JPG)
-**Include gif to transition from code to App starting page, then selecting a continent, a country and displaying the output**
+**Include gif to transition from code to app starting page, then selecting a continent, a country and displaying the output**
 
 
 ## Summary
