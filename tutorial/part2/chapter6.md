@@ -150,20 +150,19 @@ df3_Slice2.head()
 ![df3_Slice2](./ch6_files/df3_Slice2.JPG)
 
 
-As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition:
+As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slice from above, can also be obtained via:
 ```
-# The first slice from above, can also be obtained via:
 df3[df3['continent']=='Americas']
 ```
 
 #### Grouping
-The .groupby method can be used on Pandas dataframes to aggregated data: data will be splitted according to the unique values in the grouped fields allowing to perform computations on each group. 
+The `.groupby` method can be used on Pandas dataframes to aggregate data: data will be split according to the unique values in the grouped fields, allowing to perform computations on each group. 
 
 As an example, let's calculate the yearly population by continent, summing up the populations from all countries within each continent:
 ```
 df3.groupby(['continent','year'])['pop'].sum()
 ```
-- The data will be aggregated by continent and year, summing up 'pop' column. The result will look like:
+The result will look like:
 
 ![df3_groupby1](./ch6_files/df3_groupby1.JPG)
 
@@ -172,8 +171,7 @@ df3.groupby(['continent','year'])['pop'].sum()
 We will now show how to use the data we've uploaded with a couple of examples.
 
 ### Example 1
-In the below App, we have imported the "df3" dataframe that we created above, reading data from a URL and used the list of unique continent as "options" of a Dropdown component.
-Based on the selected option, via a callbacks, this is shown as an output message:
+In the below app, we import the (["df3" dataframe](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url)) that we created above, and use the list of unique continents to create the "options" of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.
 
 ```
 # Import packages
@@ -220,9 +218,11 @@ The above code will generate the following App:
 
 ### Example 2
 We will now build upon the previous example, including a second dropdown, linked to the first one.
-The second dropdown will show the list of countries from the continent previously selected.
+The second dropdown will show the list of countries from the continent selected in the first dropdown.
 Based on the selected country, the total population will be displayed.
-
+```{note}
+This is often referred to as the chained callback. See ([Dash documentation](https://dash.plotly.com/basic-callbacks#dash-app-with-chained-callbacks)) for more examples.
+```
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output, html
@@ -267,10 +267,12 @@ def country_list(continent_selection):
 
 @app.callback(
     Output(component_id='final-output', component_property='children'),
-    Input(component_id='country-dropdown', component_property='value')
+    Input(component_id='country-dropdown', component_property='value'),
+prevent_initial_call=True
 )
 def pop_calculator(country_selection):
-    pop_value = df3.loc[df3['country']==country_selection, 'pop'].values[0]
+    pop_value = df3.loc[df3['country']==country_selection]
+    pop_value = pop_value.loc[:, 'pop'].values[0]  # select only first value in pop column
     output = ('The population in '+country_selection+' was: '+pop_value.astype(str))
     return output
 
@@ -285,5 +287,5 @@ The above code will generate the following App:
 
 
 ## Summary
-In this chapter, we have explored several options to upload data into Pandas dataframes, that we intend to use in a Dash App. We went through some basic data wrangling techniques that allow to prepare our data in order to be used by the Dash components that we've seen in action in two examples.
-By the end of this chapter you should be able to import the data into a Dash App, transform it and use it into Dash components.
+In this chapter, we have explored several options to upload data into a Pandas dataframe, that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
+In the next chapter, we will dive into data visualisation, exploring several figures available in px (Plotly express).
