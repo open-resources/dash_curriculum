@@ -708,15 +708,15 @@ If your file is located directly into your app folder (or within VS code working
 <h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
 <p>Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
 There is a vast list of methods and functions that can be applied to Pandas dataframes (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">link</a> to Pandas documentation). In this section we’ll cover a few wrangling techniques that are most commonly used when building Dash apps.</p>
-<p>The below examples are based on the “df3” dataframe that we created above by reading data from a URL.</p>
+<p>The below examples are based on the (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url">“df3” dataframe</a>) that we created above by reading data from a URL.</p>
 <div class="section" id="unique-values">
 <h3>Unique values<a class="headerlink" href="#unique-values" title="Permalink to this headline">¶</a></h3>
-<p>When exploring data, we may often need to identify the unique values in our columns:</p>
+<p>When exploring data, we may often need to identify the unique values in each column:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>With the above command, an array containing the unique values in the column will be displayed.
-<img alt="df3_unique" src="part2/ch6_files/df3_unique.JPG" /></p>
+<img alt="df3_unique" src="../_images/df3_unique.jpg" /></p>
 </div>
 <div class="section" id="slicing">
 <h3>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h3>
