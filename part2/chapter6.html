@@ -390,8 +390,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-data-from-files">
-     6.2.1 Reading data from files
+    <a class="reference internal nav-link" href="#reading-data-from-files-on-your-computer">
+     6.2.1 Reading data from files on your computer
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -401,7 +401,7 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#csv-files">
-       csv files
+       CSV files
       </a>
      </li>
     </ul>
@@ -412,8 +412,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-dcc-upload">
-     6.2.3 Read data from dcc.Upload
+    <a class="reference internal nav-link" href="#read-data-from-a-json-file">
+     6.2.3 Read data from a json file
     </a>
    </li>
   </ul>
@@ -498,8 +498,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-data-from-files">
-     6.2.1 Reading data from files
+    <a class="reference internal nav-link" href="#reading-data-from-files-on-your-computer">
+     6.2.1 Reading data from files on your computer
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -509,7 +509,7 @@ const thebe_selector_output = ".output, .cell_output"
      </li>
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#csv-files">
-       csv files
+       CSV files
       </a>
      </li>
     </ul>
@@ -520,8 +520,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-dcc-upload">
-     6.2.3 Read data from dcc.Upload
+    <a class="reference internal nav-link" href="#read-data-from-a-json-file">
+     6.2.3 Read data from a json file
     </a>
    </li>
   </ul>
@@ -628,8 +628,8 @@ There are several ways of incorporating data into our app; we will focus on thes
 <p>import plotly.express as px
 df = px.data.gapminder()</p>
 </div>
-<div class="section" id="reading-data-from-files">
-<h3>6.2.1 Reading data from files<a class="headerlink" href="#reading-data-from-files" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="reading-data-from-files-on-your-computer">
+<h3>6.2.1 Reading data from files on your computer<a class="headerlink" href="#reading-data-from-files-on-your-computer" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
 <p>Let’s see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe.
@@ -641,60 +641,74 @@ The file we’ll be using is available here (<a class="reference external" href=
 </div>
 <ul class="simple">
 <li><p>In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the “r” just before the string containing the path. This is done as VS code may trigger a warning when using a normal string).
-If your file is located directly into your app folder (or within VS code working directory), the path is not required; you may only specify the filename: <code class="docutils literal notranslate"><span class="pre">filepath</span> <span class="pre">=</span> <span class="pre">'data_01.xlsx'</span> </code></p></li>
+If your file is located directly into your app folder (or within VS code working directory), the path is not required; you may only specify the filename. The code will then become: <code class="docutils literal notranslate"><span class="pre">filepath</span> <span class="pre">=</span> <span class="pre">'data_01.xlsx'</span> </code></p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you experience any difficulties in finding your filepath, please check <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG">this</a> screenshot showing how to copy the path directly from WS code.</p>
+<p>If you experience any difficulties in finding your filepath, please check <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG">this screenshot</a>, showing how to find the filepath directly from WS code.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In production versions, when apps get deployed, the best practice is to have a “data” folder, where all files are stored and therefore accessed by the app code.</p>
+<p>In production versions, when apps get deployed, the best practice is to have a “data” folder, where all files are stored and therefore accessed by the app code. This will be covered in Chapter 14.</p>
 </div>
 <ul class="simple">
 <li><p>We uploaded one Excel tab (named “Sheet1”) to a data frame called “df1”.</p></li>
-<li><p>After the data upload, the dataframe looks like the following:</p></li>
+<li><p>After the data uploads, the dataframe would look like the following:</p></li>
 </ul>
 <p><img alt="Excel data 01" src="../_images/data01.JPG" /></p>
 </div>
 <div class="section" id="csv-files">
-<h4>csv files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
-<p>We will now upload the same data from above, but from a .csv file (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv">link</a>).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;C:/Users/User1/Downloads/data_02.csv&#39;</span>
+<h4>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
+<p>We will now upload the same data from above, but from a .csv file (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>). Please follow the link and click on the “Copy raw contents” button, then paste the records into a new file on your laptop, saving it as “data_02.csv”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\User1\Downloads\data_02.csv&#39;</span>
 <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;\|\?\|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
-<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># you can also use: print(df2.head()) -- VS Code supports both</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>In the .csv file used, the data has some different column separators: ‘|?|’. With the “sep” argument, we have defined which characters should be considered field separators. (We used the the backslash ” \ ” as an escape character in order to properly interpret the field separator).</p></li>
-<li><p>We have also selected a subset of columns to be uploaded, with the “usecols” argument. With this argument, the remaining columns that are present in the file will be ignored</p></li>
-<li><p>After the data upload, the dataframe looks like the following:</p></li>
+<li><p>Similarly to the previous example, we have accessed data outside the app folder, and therefore specified a filepath as a raw string.</p></li>
+<li><p>In most cases, you will see .csv files with comma column separators (hence the name, csv standing for “comma-separated values”). Here, we used some different separators: ‘|’. The “sep” argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.</p></li>
+<li><p>We have also selected a subset of columns to be uploaded, listed in the “usecols” argument. The remaining columns that are present in the file will be ignored</p></li>
+<li><p>After the data is uploaded, the dataframe looks like the following:</p></li>
 </ul>
 <p><img alt="csv data 02" src="../_images/data02.JPG" /></p>
 </div>
 </div>
 <div class="section" id="read-data-from-a-url">
 <h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
-<p>We will now upload the same data from above, but from (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>) (containing a raw .txt file).</p>
+<p>We will now upload the same data from above, but from (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above URL is a link to a .txt file that is online. The pd.read_table() function will work for other file formats too, such as: .txt, .csv</p>
+</div>
 <p>The code above, will generate a dataframe that looks like:</p>
 <p><img alt="url data 03" src="../_images/data03.JPG" /></p>
 </div>
-<div class="section" id="read-data-from-dcc-upload">
-<h3>6.2.3 Read data from dcc.Upload<a class="headerlink" href="#read-data-from-dcc-upload" title="Permalink to this headline">¶</a></h3>
-<p>XXX</p>
+<div class="section" id="read-data-from-a-json-file">
+<h3>6.2.3 Read data from a json file<a class="headerlink" href="#read-data-from-a-json-file" title="Permalink to this headline">¶</a></h3>
+<p>We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we’ll upload is available on (<a class="reference external" href="https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json&#64;74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json">this URL</a>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json&#39;</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">df4</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Pandas includes a specific function to process json files: pd.read_json()</p></li>
+</ul>
+<p><img alt="json_data_04" src="part2/ch6_files/data04.JPG" /></p>
 </div>
 </div>
 <div class="section" id="data-wrangling-basics">
 <h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
-<p>Once we have our dataframe available, some transformations may be needed in order to use this data on our App.
-There is a vaste list of methods and functions that can be applied to Pandas dataframes (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">link</a> to Pandas documentation). In this section we’ll cover some of the basic data wrangling techniques which are ofter necessary to do some data exploration, slice or filter our data and aggregate it.</p>
-<p>We’ll show some data wrangling examples based on the “df3” dataframe that we created above, reading data from a URL.</p>
+<p>Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
+There is a vast list of methods and functions that can be applied to Pandas dataframes (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">link</a> to Pandas documentation). In this section we’ll cover a few wrangling techniques that are most commonly used when building Dash apps.</p>
+<p>The below examples are based on the “df3” dataframe that we created above by reading data from a URL.</p>
 <div class="section" id="unique-values">
 <h3>Unique values<a class="headerlink" href="#unique-values" title="Permalink to this headline">¶</a></h3>
 <p>When exploring data, we may often need to identify the unique values in our columns:</p>
