@@ -73,7 +73,7 @@ In production versions, when apps get deployed, the best practice is to have a "
 ![Excel data 01](./ch6_files/data01.JPG)
 
 #### CSV files
-We will now upload the same data from above, but from a .csv file [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click on the "Copy raw contents" button, then paste the records into a new file on your laptop, saving it as "data_02.csv"
+We will now upload the same data from above, but from a .csv file named [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click on the "Copy raw contents" button, then paste the records into a new file on your laptop, saving it as "data_02.csv"
 
 ```
 filepath = r'C:\Users\User1\Downloads\data_02.csv'
@@ -83,13 +83,13 @@ df2.head() # you can also use: print(df2.head()) -- VS Code supports both
 ```
 
 - Similarly to the previous example, we have accessed data outside the app folder, and therefore specified a filepath as a raw string.
-- In most cases, you will see .csv files with comma column separators (hence the name, csv standing for "comma-separated values"). Here, we used some different separators: '|'. The "sep" argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.
-- We have also selected a subset of columns to be uploaded, listed in the "usecols" argument. The remaining columns that are present in the file will be ignored
+- In most cases, you will see .csv files with comma column separators (hence the name, csv standing for "comma-separated values"). Here, we used a different separator: '|'. The "sep" argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.
+- We have also selected a subset of columns to be uploaded, listed in the "usecols" argument. The remaining columns that are present in the file will be ignored.
 - After the data is uploaded, the dataframe looks like the following:
 
 ![csv data 02](./ch6_files/data02.JPG)
 
-### 6.2.2 Read data from a URL
+### 6.2.2 Reading data from a URL
 We will now upload the same data from above, but from [this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt).
 
 ```
@@ -106,21 +106,22 @@ The code above, will generate a dataframe that looks like:
 
 ![url data 03](./ch6_files/data03.JPG)
 
-### 6.2.3 Read data from a json file
-We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we'll upload is available on [this URL](https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json)
+### 6.2.3 Reading data from a json file
+We will now upload data stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we'll upload is available on [this URL](https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json).
+
+- Pandas includes a specific function to process json files: pd.read_json()
 
 ```
 url = 'https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json'
 df4 = pd.read_json(url)
 df4.head()
 ```
-- Pandas includes a specific function to process json files: pd.read_json()
 
 ![json_data_04](./ch6_files/json_data_04.JPG)
 
 ## 6.3 Data wrangling basics
-Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
-There is a vast list of methods and functions that can be applied to Pandas dataframes ([link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) to Pandas documentation). In this section we'll cover a few wrangling techniques that are most commonly used when building Dash apps.
+Once we have our dataframe available, some transformations may be needed in order to use the data in our app.
+There is a vast list of methods and functions that can be applied to Pandas dataframes (you may refer to [this documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) for more info). In this section we'll cover a few wrangling techniques that are most commonly used when building Dash apps.
 
 The below examples are based on the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url) that we created above by reading data from a URL.
 
@@ -131,6 +132,7 @@ When exploring data, we may often need to identify the unique values in each col
 df3.continent.unique()
 ```
 With the above command, an array containing the unique values in the column will be displayed.
+
 ![df3_unique](./ch6_files/df3_unique.jpg)
 
 #### Slicing
@@ -150,7 +152,7 @@ df3_Slice2.head()
 ![df3_Slice2](./ch6_files/df3_Slice2.JPG)
 
 
-As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slice from above, can also be obtained via:
+As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slicing criteria above, can also be obtained via:
 ```
 df3[df3['continent']=='Americas']
 ```
