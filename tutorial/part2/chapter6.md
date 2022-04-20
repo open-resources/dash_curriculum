@@ -48,7 +48,7 @@ import plotly.express as px
 df = px.data.gapminder()
 ```
 
-### 6.2.1 Reading data from files
+### 6.2.1 Reading data from files on your computer
 
 #### Excel files
 Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe. 
@@ -60,36 +60,37 @@ df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 print(df1)
 ```
 - In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the "r" just before the string containing the path. This is done as VS code may trigger a warning when using a normal string).
-If your file is located directly into your app folder (or within VS code working directory), the path is not required; you may only specify the filename: ```filepath = 'data_01.xlsx' ```
+If your file is located directly into your app folder (or within VS code working directory), the path is not required; you may only specify the filename. The code will then become: ```filepath = 'data_01.xlsx' ```
 ```{note}
-If you experience any difficulties in finding your filepath, please check [this](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG) screenshot showing how to copy the path directly from WS code.
+If you experience any difficulties in finding your filepath, please check [this screenshot](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG), showing how to find the filepath directly from WS code.
 ```
 ```{tip}
-In production versions, when apps get deployed, the best practice is to have a "data" folder, where all files are stored and therefore accessed by the app code.
+In production versions, when apps get deployed, the best practice is to have a "data" folder, where all files are stored and therefore accessed by the app code. This will be covered in Chapter 14.
 ```
 - We uploaded one Excel tab (named "Sheet1") to a data frame called "df1".
-- After the data upload, the dataframe looks like the following:
+- After the data uploads, the dataframe would look like the following:
 
 ![Excel data 01](./ch6_files/data01.JPG)
 
-#### csv files
-We will now upload the same data from above, but from a .csv file ([link](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_02.csv)).
+#### CSV files
+We will now upload the same data from above, but from a .csv file ([data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv)). Please follow the link and click on the "Copy raw contents" button, then paste the records into a new file on your laptop, saving it as "data_02.csv"
 
 ```
-filepath = 'C:/Users/User1/Downloads/data_02.csv'
+filepath = r'C:\Users\User1\Downloads\data_02.csv'
 col_names = ['country','continent','year','pop']
-df2 = pd.read_csv(filepath, sep='\|\?\|', usecols=col_names)
-df2.head()
+df2 = pd.read_csv(filepath, sep='|', usecols=col_names)
+df2.head() # you can also use: print(df2.head()) -- VS Code supports both
 ```
 
-- In the .csv file used, the data has some different column separators: '|?|'. With the "sep" argument, we have defined which characters should be considered field separators. (We used the the backslash " \ " as an escape character in order to properly interpret the field separator).
-- We have also selected a subset of columns to be uploaded, with the "usecols" argument. With this argument, the remaining columns that are present in the file will be ignored
-- After the data upload, the dataframe looks like the following:
+- Similarly to the previous example, we have accessed data outside the app folder, and therefore specified a filepath as a raw string.
+- In most cases, you will see .csv files with comma column separators (hence the name, csv standing for "comma-separated values"). Here, we used some different separators: '|'. The "sep" argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.
+- We have also selected a subset of columns to be uploaded, listed in the "usecols" argument. The remaining columns that are present in the file will be ignored
+- After the data is uploaded, the dataframe looks like the following:
 
 ![csv data 02](./ch6_files/data02.JPG)
 
 ### 6.2.2 Read data from a URL
-We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)) (containing a raw .txt file).
+We will now upload the same data from above, but from ([this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)).
 
 ```
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
@@ -97,21 +98,31 @@ df3 = pd.read_table(url, sep=';')
 df3.head()
 ```
 
+```{note}
+The above URL is a link to a .txt file that is online. The pd.read_table() function will work for other file formats too, such as: .txt, .csv
+```
+
 The code above, will generate a dataframe that looks like:
 
 ![url data 03](./ch6_files/data03.JPG)
 
-### 6.2.3 Read data from dcc.Upload
+### 6.2.3 Read data from a json file
+We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we'll upload is available on ([this URL](https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json))
 
-XXX
+```
+url = 'https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json'
+df4 = pd.read_json(url)
+df4.head()
+```
+- Pandas includes a specific function to process json files: pd.read_json()
 
-
+![json_data_04](./ch6_files/data04.JPG)
 
 ## 6.3 Data wrangling basics
-Once we have our dataframe available, some transformations may be needed in order to use this data on our App.
-There is a vaste list of methods and functions that can be applied to Pandas dataframes ([link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) to Pandas documentation). In this section we'll cover some of the basic data wrangling techniques which are ofter necessary to do some data exploration, slice or filter our data and aggregate it.
+Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
+There is a vast list of methods and functions that can be applied to Pandas dataframes ([link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) to Pandas documentation). In this section we'll cover a few wrangling techniques that are most commonly used when building Dash apps.
 
-We'll show some data wrangling examples based on the "df3" dataframe that we created above, reading data from a URL.
+The below examples are based on the "df3" dataframe that we created above by reading data from a URL.
 
 #### Unique values
 When exploring data, we may often need to identify the unique values in our columns:
