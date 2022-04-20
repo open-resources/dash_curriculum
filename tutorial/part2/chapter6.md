@@ -122,16 +122,16 @@ df4.head()
 Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
 There is a vast list of methods and functions that can be applied to Pandas dataframes ([link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) to Pandas documentation). In this section we'll cover a few wrangling techniques that are most commonly used when building Dash apps.
 
-The below examples are based on the "df3" dataframe that we created above by reading data from a URL.
+The below examples are based on the (["df3" dataframe](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url)) that we created above by reading data from a URL.
 
 #### Unique values
-When exploring data, we may often need to identify the unique values in our columns:
+When exploring data, we may often need to identify the unique values in each column:
 
 ```
 df3.continent.unique()
 ```
 With the above command, an array containing the unique values in the column will be displayed.
-![df3_unique](./ch6_files/df3_unique.JPG)
+![df3_unique](./ch6_files/df3_unique.jpg)
 
 #### Slicing
 The .loc method can be used on Pandas dataframes, allowing to slice or filter them based on boolean conditions. 
