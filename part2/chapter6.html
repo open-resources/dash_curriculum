@@ -633,7 +633,7 @@ df = px.data.gapminder()</p>
 <div class="section" id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
 <p>Let’s see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe.
-The file we’ll be using is available here (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">data_01</a>): follow the link click on “download”; locate the file in your download folder.</p>
+The file we’ll be using is available here <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">data_01</a>: follow the link click on “download”; locate the file in your download folder.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\YourUser\Downloads\data_01.xlsx&#39;</span>
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
@@ -659,7 +659,7 @@ If your file is located directly into your app folder (or within VS code working
 </div>
 <div class="section" id="csv-files">
 <h4>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
-<p>We will now upload the same data from above, but from a .csv file (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>). Please follow the link and click on the “Copy raw contents” button, then paste the records into a new file on your laptop, saving it as “data_02.csv”</p>
+<p>We will now upload the same data from above, but from a .csv file <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click on the “Copy raw contents” button, then paste the records into a new file on your laptop, saving it as “data_02.csv”</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\User1\Downloads\data_02.csv&#39;</span>
 <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
@@ -677,7 +677,7 @@ If your file is located directly into your app folder (or within VS code working
 </div>
 <div class="section" id="read-data-from-a-url">
 <h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
-<p>We will now upload the same data from above, but from (<a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>).</p>
+<p>We will now upload the same data from above, but from <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -692,7 +692,7 @@ If your file is located directly into your app folder (or within VS code working
 </div>
 <div class="section" id="read-data-from-a-json-file">
 <h3>6.2.3 Read data from a json file<a class="headerlink" href="#read-data-from-a-json-file" title="Permalink to this headline">¶</a></h3>
-<p>We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we’ll upload is available on (<a class="reference external" href="https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json&#64;74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json">this URL</a>)</p>
+<p>We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we’ll upload is available on <a class="reference external" href="https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json&#64;74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json">this URL</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json&#39;</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">df4</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -708,7 +708,7 @@ If your file is located directly into your app folder (or within VS code working
 <h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
 <p>Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
 There is a vast list of methods and functions that can be applied to Pandas dataframes (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">link</a> to Pandas documentation). In this section we’ll cover a few wrangling techniques that are most commonly used when building Dash apps.</p>
-<p>The below examples are based on the (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url">“df3” dataframe</a>) that we created above by reading data from a URL.</p>
+<p>The below examples are based on the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url">“df3” dataframe</a> that we created above by reading data from a URL.</p>
 <div class="section" id="unique-values">
 <h3>Unique values<a class="headerlink" href="#unique-values" title="Permalink to this headline">¶</a></h3>
 <p>When exploring data, we may often need to identify the unique values in each column:</p>
@@ -755,7 +755,7 @@ Let’s see two examples:</p>
 <p>We will now show how to use the data we’ve uploaded with a couple of examples.</p>
 <div class="section" id="example-1">
 <h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h3>
-<p>In the below app, we import the (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url">“df3” dataframe</a>) that we created above, and use the list of unique continents to create the “options” of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.</p>
+<p>In the below app, we import the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url">“df3” dataframe</a> that we created above, and use the list of unique continents to create the “options” of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -805,7 +805,7 @@ The second dropdown will show the list of countries from the continent selected 
 Based on the selected country, the total population will be displayed.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This is often referred to as the chained callback. See (<a class="reference external" href="https://dash.plotly.com/basic-callbacks#dash-app-with-chained-callbacks">Dash documentation</a>) for more examples.</p>
+<p>This is often referred to as the chained callback. See <a class="reference external" href="https://dash.plotly.com/basic-callbacks#dash-app-with-chained-callbacks">Dash documentation</a> for more examples.</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
@@ -818,7 +818,7 @@ Based on the selected country, the total population will be displayed.</p>
 <span class="n">y</span><span class="o">=</span><span class="mi">2007</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="p">:]</span>
 
-<span class="c1"># Initialise the App</span>
+<span class="c1"># Initialise the app</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
@@ -827,7 +827,7 @@ Based on the selected country, the total population will be displayed.</p>
 <span class="n">country_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a country&#39;</span><span class="p">)</span>
 <span class="n">_output</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
 
-<span class="c1"># App Layout</span>
+<span class="c1"># app Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_header</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
@@ -859,7 +859,7 @@ Based on the selected country, the total population will be displayed.</p>
     <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;The population in &#39;</span><span class="o">+</span><span class="n">country_selection</span><span class="o">+</span><span class="s1">&#39; was: &#39;</span><span class="o">+</span><span class="n">pop_value</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">output</span>
 
-<span class="c1"># Run the App</span>
+<span class="c1"># Run the app</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
@@ -868,9 +868,9 @@ Based on the selected country, the total population will be displayed.</p>
 <p class="admonition-title">Tip</p>
 <p>In the code above, you may notice that in the second callback we have added this prop: <code class="docutils literal notranslate"><span class="pre">prevent_initial_call=True</span></code>. This was necessary here, since the ‘country-dropdown’ component doesn’t have any default option (the options are in fact depending on the first dropdown selection). By default, Dash calls every callback when initialising the app: we want to prevent this initial call as Dash wouldn’t find any input value for this callback.</p>
 </div>
-<p>The above code will generate the following App:</p>
+<p>The above code will generate the following app:</p>
 <p><img alt="Example 2" src="../_images/Example02.JPG" />
-<strong>Include gif to transition from code to App starting page, then selecting a continent, a country and displaying the output</strong></p>
+<strong>Include gif to transition from code to app starting page, then selecting a continent, a country and displaying the output</strong></p>
 </div>
 </div>
 <div class="section" id="summary">
