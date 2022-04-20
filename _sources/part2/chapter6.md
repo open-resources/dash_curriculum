@@ -134,8 +134,8 @@ With the above command, an array containing the unique values in the column will
 ![df3_unique](./ch6_files/df3_unique.jpg)
 
 #### Slicing
-The .loc method can be used on Pandas dataframes, allowing to slice or filter them based on boolean conditions. 
-The ```.loc[(), ()]``` method allows to filter based on row conditions (to be specified in the first bracket ()) and on column conditions (to be specified in the second bracket ()).
+The .loc method can be used in Pandas dataframes to slice or filter the data based on boolean conditions (True, False). 
+The ```.loc[(), ()]``` method will filter based on row conditions (to be specified in the first bracket ()) and on column conditions (to be specified in the second bracket ()).
 Let's see two examples:
 
 ```
@@ -145,9 +145,16 @@ df3_Slice2 = df3.loc[(df3['continent']=='Americas') & (df3['year'].isin([2002,20
 df3_Slice2.head()
 ```
 - The first command will filter the df3 dataframe picking rows that have 'Americas' as continent. The ':' indicates that we don't want to specify any column-filtering conditions, hence, all columns will be selected.
-- The second command, adds more row-filtering conditions: rows will be filtered based on American continent and also on 'year', which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command resul will look like:
+- The second command adds more row-filtering conditions: rows will be filtered based on American continent and also on 'year', which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command results in:
 
 ![df3_Slice2](./ch6_files/df3_Slice2.JPG)
+
+
+As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition:
+```
+# The first slice from above, can also be obtained via:
+df3[df3['continent']=='Americas']
+```
 
 #### Grouping
 The .groupby method can be used on Pandas dataframes to aggregated data: data will be splitted according to the unique values in the grouped fields allowing to perform computations on each group. 
