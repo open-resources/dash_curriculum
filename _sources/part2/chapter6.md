@@ -116,7 +116,7 @@ df4.head()
 ```
 - Pandas includes a specific function to process json files: pd.read_json()
 
-![json_data_04](./ch6_files/data04.JPG)
+![json_data_04](./ch6_files/json_data_04.JPG)
 
 ## 6.3 Data wrangling basics
 Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
