@@ -11,10 +11,8 @@ After finishing this chapter you'll have a fully-operational interactive app tha
 - Decorators in Python
 - Structure of callbacks
 - Component ids & properties
-- Simple examples for callbacks
+- Additional examples of callbacks
 ```
-
-[Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter3_app.py)
 
 ## 4.1 Introduction to decorators in Python
 
@@ -35,7 +33,12 @@ Before we talk about the structure of a callback, let’s briefly discuss how ca
 - **Configure callback(s)**
 - Run the App
 
-Let's start off with an example of how our app will look after this chapter. For this purpose let's take the app from the previous chapter, containing a markdown and a dropdown component. Extending this code with a simple callback gives us an app that links these two components together.
+Let's take the app from the previous chapter, containing a markdown and a dropdown component. Extending this code with a simple callback gives us an app that links these two components together, where the selection of the dropdown value will update the title of the app.
+
+
+```{attention}
+Always make sure to import the packages 'Output' and 'Input' from the dash library at the beginning of your code when you are working with callbacks.
+```
 
 ```
 # Import packages
@@ -77,7 +80,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE DROPDOWN TO CHANGE THE TITLE OF THE PAGE]**
+![callbacks1](../assets/p1_c4/chap4-gif1.1.gif)
 
 Let’s go through this code step by step. Note that for linking components with each other, we have to uniquely identify them in order to distinguish between them. For this purpose, you should add the `id` property to each component, as we do above with the Dropdown and Markdown components. In addition to `id` property, we also include the `value` property for the dropdown. This will indicate the default value of the dropdown displayed on the page when loaded for the first time.
 
@@ -110,11 +113,7 @@ The callback decorator makes up the first part of the callback. Here you specify
 )
 ```
 
-The decorator itself takes up two different arguments: Output and Input. Both of them again will take two arguments, the component id and the component property.
-
-```{attention}
-Always make sure to import the packages 'Output' and 'Input' from the dash library at the beginning of your code when you are working with callbacks.
-```
+The decorator itself takes up two different arguments: `Output` and `Input`. Both of them again will take two arguments, the component id and the component property.
 
 The meaning of the different arguments is as follows: 
   * The `Output` specifies the property of the component that will be modified; in this case, it's the `children` property of the Markdown component.
@@ -150,11 +149,9 @@ Now that we have already seen a simple callback and understand how it is impleme
 
 ### 4.3.1 Change the style of a Markdown component using a slider
 
-Here we will replace the dropdown from the previous example with a slider. Instead of the `children` property of the Markdown component we introduce another property called `style` which can be used for any kind of styling e.g., the color or size of the font. [Chapter 9](../part3/chapter9.md) will give you some more insights on this topic.
+Here we will replace the dropdown from the previous example with a slider. In addition to the `children` property of the Markdown component we introduce another property called `style` which can be used for any kind of styling, e.g., the color or size of the font. [Chapter 9](../part3/chapter9.md) will give you some more insights on this topic.
 
-We equip the slider introduced in the previous chapter with an `id` and add the `value` property with a default value to it. The respective value of the slider will then be responsible for seizing the markdown. In this case, we change the font size of the markdown to be the default value added by twice the value chosen within the slider.
-
-The following snippet shows the corresponding code.
+We equip the slider introduced in the previous chapter with an `id` and add the `value` property with a default value to it. The respective value of the slider will then be responsible for modifying the size of the markdown. In this case, once the callback is triggered, we update the font size of the markdown to be the default value (12) plus twice the value chosen within the slider.
 
 ```
 # Import packages
@@ -171,8 +168,8 @@ slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown, width=8)),
-        dbc.Row(dbc.Col(slider, width=9)),
+        dbc.Row([dbc.Col([markdown], width=8)]),
+        dbc.Row([dbc.Col([slider], width=9)]),
     ]
 )
 
@@ -192,9 +189,9 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-In action, you will now have programmed the following interactive app:
+Notice that we return the `markdown_style` object which is a dictionary type. We do this because the `style` property of the Markdown is of dictionary type.
 
-**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER TO CHANGE THE FONT SIZE OF THE MARKDOWN]**
+![callbacks2](../assets/p1_c4/chap4-gif2.gif)
 
 ### 4.3.2 Bringing everything together
 
@@ -216,11 +213,11 @@ slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown, width=8)),
+        dbc.Row([dbc.Col([markdown], width=8)]),
         dbc.Row(
             [
-                dbc.Col(dropdown, width=3),
-                dbc.Col(slider, width=9),
+                dbc.Col([dropdown], width=3),
+                dbc.Col([slider], width=9),
             ]
         ),
     ]
@@ -251,11 +248,11 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-**[GIF, THAT SHOWS THE APP IN THE BROWSER IN ACTION I.E., SELECT A VALUE IN THE SLIDER AND DROPDOWN (AND OTHER WAY AROUND) TO CHANGE THE MARKDOWN]**
+![callbacks3](../assets/p1_c4/chap4-gif3.gif)
 
 ## Summary
 
-Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. Regardless if there is only one or multiple callbacks, you'll be able to manage your app linking different components together.
+Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. Regardless if there is only one or multiple callbacks, you'll be able to manage your app by linking different components together.
 
 Now it's your turn, try to link some of the other components you learned in chapter 3 and build your own interactive app.
 In the next chapter we will learn how to deploy our app to the web.
