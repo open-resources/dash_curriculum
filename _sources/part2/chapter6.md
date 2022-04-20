@@ -223,6 +223,7 @@ Based on the selected country, the total population will be displayed.
 ```{note}
 This is often referred to as the chained callback. See ([Dash documentation](https://dash.plotly.com/basic-callbacks#dash-app-with-chained-callbacks)) for more examples.
 ```
+
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output, html
@@ -280,6 +281,11 @@ def pop_calculator(country_selection):
 if __name__ == '__main__':
     app.run_server()
 ```
+
+```{tip}
+In the code above, you may notice that in the second callback we have added this prop: `prevent_initial_call=True`. This was necessary here, since the 'country-dropdown' component doesn't have any default option (the options are in fact depending on the first dropdown selection). By default, Dash calls every callback when initialising the app: we want to prevent this initial call as Dash wouldn't find any input value for this callback.
+```
+
 The above code will generate the following App:
 
 ![Example 2](./ch6_files/Example02.JPG)
