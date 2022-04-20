@@ -288,4 +288,4 @@ The above code will generate the following App:
 
 ## Summary
 In this chapter, we have explored several options to upload data into a Pandas dataframe, that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
-In the next chapter, we will dive into data visualisation, exploring several figures available in px (Plotly express).
+In the next chapter we will dive into data visualisation, exploring several figures available in px (Plotly express).
