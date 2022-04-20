@@ -1,7 +1,7 @@
 # Chapter 6 - Working with Data in Dash
 
 ## What you will learn
-In this chapter we will introduce data into Dash Apps. We will show how to:
+In this chapter we will introduce data into Dash apps. We will show how to:
 - import data into the app
 - create and populate Pandas dataframes
 - review basic data wrangling techniques often used to prepare data for reporting.
@@ -23,7 +23,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 In this way, the data will be globally available to all objects that are created in the code.
 
 One of the easiest and most convenient methods to represent our data is through a Pandas dataframe.
-An empty dataframe is created with the code below::
+An empty dataframe is created with the code below:
 ```
 test_data = pd.DataFrame()
 ```
@@ -60,12 +60,12 @@ df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 print(df1)
 ```
 - In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the "r" just before the string containing the path. This is done as VS code may trigger a warning when using a normal string).
-If your file is located directly into your app folder (or within VS code working directory), the path is not required; you may only specify the filename. The code will then become: ```filepath = 'data_01.xlsx' ```
+If your file is located directly into your app folder (or within VS code working directory), the full path is not required; you may only specify the filename. The code will then become: ```filepath = 'data_01.xlsx' ```
 ```{note}
 If you experience any difficulties in finding your filepath, please check [this screenshot](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG), showing how to find the filepath directly from WS code.
 ```
 ```{tip}
-In production versions, when apps get deployed, the best practice is to have a "data" folder, where all files are stored and therefore accessed by the app code. This will be covered in Chapter 14.
+In production versions, when apps get deployed, the best practice is to have a "data" folder, where all files are stored and therefore accessed by the app code. This will be covered in [Chapter 14](https://open-resources.github.io/dash_curriculum/part4/chapter14.html).
 ```
 - We uploaded one Excel tab (named "Sheet1") to a data frame called "df1".
 - After the data uploads, the dataframe would look like the following:
