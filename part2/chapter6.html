@@ -407,13 +407,13 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-a-url">
-     6.2.2 Read data from a URL
+    <a class="reference internal nav-link" href="#reading-data-from-a-url">
+     6.2.2 Reading data from a URL
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-a-json-file">
-     6.2.3 Read data from a json file
+    <a class="reference internal nav-link" href="#reading-data-from-a-json-file">
+     6.2.3 Reading data from a json file
     </a>
    </li>
   </ul>
@@ -515,13 +515,13 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-a-url">
-     6.2.2 Read data from a URL
+    <a class="reference internal nav-link" href="#reading-data-from-a-url">
+     6.2.2 Reading data from a URL
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#read-data-from-a-json-file">
-     6.2.3 Read data from a json file
+    <a class="reference internal nav-link" href="#reading-data-from-a-json-file">
+     6.2.3 Reading data from a json file
     </a>
    </li>
   </ul>
@@ -659,7 +659,7 @@ If your file is located directly into your app folder (or within VS code working
 </div>
 <div class="section" id="csv-files">
 <h4>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
-<p>We will now upload the same data from above, but from a .csv file <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click on the “Copy raw contents” button, then paste the records into a new file on your laptop, saving it as “data_02.csv”</p>
+<p>We will now upload the same data from above, but from a .csv file named <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click on the “Copy raw contents” button, then paste the records into a new file on your laptop, saving it as “data_02.csv”</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\User1\Downloads\data_02.csv&#39;</span>
 <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
@@ -668,15 +668,15 @@ If your file is located directly into your app folder (or within VS code working
 </div>
 <ul class="simple">
 <li><p>Similarly to the previous example, we have accessed data outside the app folder, and therefore specified a filepath as a raw string.</p></li>
-<li><p>In most cases, you will see .csv files with comma column separators (hence the name, csv standing for “comma-separated values”). Here, we used some different separators: ‘|’. The “sep” argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.</p></li>
-<li><p>We have also selected a subset of columns to be uploaded, listed in the “usecols” argument. The remaining columns that are present in the file will be ignored</p></li>
+<li><p>In most cases, you will see .csv files with comma column separators (hence the name, csv standing for “comma-separated values”). Here, we used a different separator: ‘|’. The “sep” argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.</p></li>
+<li><p>We have also selected a subset of columns to be uploaded, listed in the “usecols” argument. The remaining columns that are present in the file will be ignored.</p></li>
 <li><p>After the data is uploaded, the dataframe looks like the following:</p></li>
 </ul>
 <p><img alt="csv data 02" src="../_images/data02.JPG" /></p>
 </div>
 </div>
-<div class="section" id="read-data-from-a-url">
-<h3>6.2.2 Read data from a URL<a class="headerlink" href="#read-data-from-a-url" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="reading-data-from-a-url">
+<h3>6.2.2 Reading data from a URL<a class="headerlink" href="#reading-data-from-a-url" title="Permalink to this headline">¶</a></h3>
 <p>We will now upload the same data from above, but from <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
@@ -690,24 +690,24 @@ If your file is located directly into your app folder (or within VS code working
 <p>The code above, will generate a dataframe that looks like:</p>
 <p><img alt="url data 03" src="../_images/data03.JPG" /></p>
 </div>
-<div class="section" id="read-data-from-a-json-file">
-<h3>6.2.3 Read data from a json file<a class="headerlink" href="#read-data-from-a-json-file" title="Permalink to this headline">¶</a></h3>
-<p>We will now upload data from that is stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we’ll upload is available on <a class="reference external" href="https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json&#64;74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json">this URL</a></p>
+<div class="section" id="reading-data-from-a-json-file">
+<h3>6.2.3 Reading data from a json file<a class="headerlink" href="#reading-data-from-a-json-file" title="Permalink to this headline">¶</a></h3>
+<p>We will now upload data stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we’ll upload is available on <a class="reference external" href="https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json&#64;74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json">this URL</a>.</p>
+<ul class="simple">
+<li><p>Pandas includes a specific function to process json files: pd.read_json()</p></li>
+</ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json&#39;</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="n">df4</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Pandas includes a specific function to process json files: pd.read_json()</p></li>
-</ul>
 <p><img alt="json_data_04" src="../_images/json_data_04.JPG" /></p>
 </div>
 </div>
 <div class="section" id="data-wrangling-basics">
 <h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
-<p>Once we have our dataframe available, some transformations may be needed in order to use the data in our App.
-There is a vast list of methods and functions that can be applied to Pandas dataframes (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">link</a> to Pandas documentation). In this section we’ll cover a few wrangling techniques that are most commonly used when building Dash apps.</p>
+<p>Once we have our dataframe available, some transformations may be needed in order to use the data in our app.
+There is a vast list of methods and functions that can be applied to Pandas dataframes (you may refer to <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">this documentation</a> for more info). In this section we’ll cover a few wrangling techniques that are most commonly used when building Dash apps.</p>
 <p>The below examples are based on the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url">“df3” dataframe</a> that we created above by reading data from a URL.</p>
 <div class="section" id="unique-values">
 <h3>Unique values<a class="headerlink" href="#unique-values" title="Permalink to this headline">¶</a></h3>
@@ -715,8 +715,8 @@ There is a vast list of methods and functions that can be applied to Pandas data
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>With the above command, an array containing the unique values in the column will be displayed.
-<img alt="df3_unique" src="../_images/df3_unique.jpg" /></p>
+<p>With the above command, an array containing the unique values in the column will be displayed.</p>
+<p><img alt="df3_unique" src="../_images/df3_unique.jpg" /></p>
 </div>
 <div class="section" id="slicing">
 <h3>Slicing<a class="headerlink" href="#slicing" title="Permalink to this headline">¶</a></h3>
@@ -734,7 +734,7 @@ Let’s see two examples:</p>
 <li><p>The second command adds more row-filtering conditions: rows will be filtered based on American continent and also on ‘year’, which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command results in:</p></li>
 </ul>
 <p><img alt="df3_Slice2" src="../_images/df3_Slice2.JPG" /></p>
-<p>As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slice from above, can also be obtained via:</p>
+<p>As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slicing criteria above, can also be obtained via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
