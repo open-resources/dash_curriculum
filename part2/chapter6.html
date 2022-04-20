@@ -734,22 +734,19 @@ Let’s see two examples:</p>
 <li><p>The second command adds more row-filtering conditions: rows will be filtered based on American continent and also on ‘year’, which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command results in:</p></li>
 </ul>
 <p><img alt="df3_Slice2" src="../_images/df3_Slice2.JPG" /></p>
-<p>As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># The first slice from above, can also be obtained via:</span>
-<span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">]</span>
+<p>As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slice from above, can also be obtained via:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="grouping">
 <h3>Grouping<a class="headerlink" href="#grouping" title="Permalink to this headline">¶</a></h3>
-<p>The .groupby method can be used on Pandas dataframes to aggregated data: data will be splitted according to the unique values in the grouped fields allowing to perform computations on each group.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.groupby</span></code> method can be used on Pandas dataframes to aggregate data: data will be split according to the unique values in the grouped fields, allowing to perform computations on each group.</p>
 <p>As an example, let’s calculate the yearly population by continent, summing up the populations from all countries within each continent:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">])[</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>The data will be aggregated by continent and year, summing up ‘pop’ column. The result will look like:</p></li>
-</ul>
+<p>The result will look like:</p>
 <p><img alt="df3_groupby1" src="../_images/df3_groupby1.JPG" /></p>
 </div>
 </div>
@@ -758,8 +755,7 @@ Let’s see two examples:</p>
 <p>We will now show how to use the data we’ve uploaded with a couple of examples.</p>
 <div class="section" id="example-1">
 <h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h3>
-<p>In the below App, we have imported the “df3” dataframe that we created above, reading data from a URL and used the list of unique continent as “options” of a Dropdown component.
-Based on the selected option, via a callbacks, this is shown as an output message:</p>
+<p>In the below app, we import the (<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/chapter6.md#622-read-data-from-a-url">“df3” dataframe</a>) that we created above, and use the list of unique continents to create the “options” of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -805,8 +801,12 @@ Based on the selected option, via a callbacks, this is shown as an output messag
 <div class="section" id="example-2">
 <h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h3>
 <p>We will now build upon the previous example, including a second dropdown, linked to the first one.
-The second dropdown will show the list of countries from the continent previously selected.
+The second dropdown will show the list of countries from the continent selected in the first dropdown.
 Based on the selected country, the total population will be displayed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is often referred to as the chained callback. See (<a class="reference external" href="https://dash.plotly.com/basic-callbacks#dash-app-with-chained-callbacks">Dash documentation</a>) for more examples.</p>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -850,10 +850,12 @@ Based on the selected country, the total population will be displayed.</p>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;final-output&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">pop_calculator</span><span class="p">(</span><span class="n">country_selection</span><span class="p">):</span>
-    <span class="n">pop_value</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">country_selection</span><span class="p">,</span> <span class="s1">&#39;pop&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">pop_value</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">country_selection</span><span class="p">]</span>
+    <span class="n">pop_value</span> <span class="o">=</span> <span class="n">pop_value</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;pop&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># select only first value in pop column</span>
     <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;The population in &#39;</span><span class="o">+</span><span class="n">country_selection</span><span class="o">+</span><span class="s1">&#39; was: &#39;</span><span class="o">+</span><span class="n">pop_value</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">output</span>
 
@@ -869,8 +871,8 @@ Based on the selected country, the total population will be displayed.</p>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we have explored several options to upload data into Pandas dataframes, that we intend to use in a Dash App. We went through some basic data wrangling techniques that allow to prepare our data in order to be used by the Dash components that we’ve seen in action in two examples.
-By the end of this chapter you should be able to import the data into a Dash App, transform it and use it into Dash components.</p>
+<p>In this chapter, we have explored several options to upload data into a Pandas dataframe, that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
+In the next chapter, we will dive into data visualisation, exploring several figures available in px (Plotly express).</p>
 </div>
 </div>
 
