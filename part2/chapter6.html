@@ -583,7 +583,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 6 - Working with Data in Dash<a class="headerlink" href="#chapter-6-working-with-data-in-dash" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will introduce data into Dash Apps. We will show how to:</p>
+<p>In this chapter we will introduce data into Dash apps. We will show how to:</p>
 <ul class="simple">
 <li><p>import data into the app</p></li>
 <li><p>create and populate Pandas dataframes</p></li>
@@ -603,7 +603,7 @@ For this reason, we recommend importing the data before initialising the app, ri
 </div>
 <p>In this way, the data will be globally available to all objects that are created in the code.</p>
 <p>One of the easiest and most convenient methods to represent our data is through a Pandas dataframe.
-An empty dataframe is created with the code below::</p>
+An empty dataframe is created with the code below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -641,7 +641,7 @@ The file we’ll be using is available here <a class="reference external" href="
 </div>
 <ul class="simple">
 <li><p>In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the “r” just before the string containing the path. This is done as VS code may trigger a warning when using a normal string).
-If your file is located directly into your app folder (or within VS code working directory), the path is not required; you may only specify the filename. The code will then become: <code class="docutils literal notranslate"><span class="pre">filepath</span> <span class="pre">=</span> <span class="pre">'data_01.xlsx'</span> </code></p></li>
+If your file is located directly into your app folder (or within VS code working directory), the full path is not required; you may only specify the filename. The code will then become: <code class="docutils literal notranslate"><span class="pre">filepath</span> <span class="pre">=</span> <span class="pre">'data_01.xlsx'</span> </code></p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -649,7 +649,7 @@ If your file is located directly into your app folder (or within VS code working
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In production versions, when apps get deployed, the best practice is to have a “data” folder, where all files are stored and therefore accessed by the app code. This will be covered in Chapter 14.</p>
+<p>In production versions, when apps get deployed, the best practice is to have a “data” folder, where all files are stored and therefore accessed by the app code. This will be covered in <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part4/chapter14.html">Chapter 14</a>.</p>
 </div>
 <ul class="simple">
 <li><p>We uploaded one Excel tab (named “Sheet1”) to a data frame called “df1”.</p></li>
