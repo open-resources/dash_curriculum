@@ -260,7 +260,44 @@ if __name__ == '__main__':
 
 ## 3.2 Layout
 
-So far, we've only organized our app **layout** in a `dbc.Container()` without any further specifications. We've seen that this will place our app components sequentially in one single column.  To customise the layout, we will use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library components `dbc.Row()` and `dbc.Col()`.
+So far, we've only organized our app **layout** in a `dbc.Container()` without any further specifications. We've seen that this will place our app components sequentially in one single column. To further customise the layout, we will use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library components `dbc.Row()` and `dbc.Col()`. This will allow us to declare the number of rows and columns in the layout as well as dictate the exact place where Dash components should appear (Markdown and Slider in our example). 
+
+```
+# Import packages 
+from dash import Dash, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App 
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(children='My First app')
+slider = dcc.Slider(min=0, max=10, step=1)
+
+# App Layout
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            markdown
+        ], width=6),
+        
+        dbc.Col([
+            slider
+        ], width=6)
+    ])
+])
+
+
+# Run the App 
+if __name__ == '__main__':
+    app.run_server()
+```
+
+![colored_initial_app_layout](../assets/p1_c3/app-layout1.png)
+
+```{admonition} Note
+- The colors above are for demonstration purposes, you will not see them in your local dashboard
+```
 
 Best practices when constructing your layout using **Dash Bootstrap Components**:
 
@@ -269,10 +306,9 @@ Best practices when constructing your layout using **Dash Bootstrap Components**
 3. Then, inside each `dbc.Row()`, define the `Columns`
 4. Then, inside each `dbc.Col()`, insert the app `Components`
 
-```{admonition} Note
-- The total `width` of columns in each row is 12
-- In the code below we define the `width` property for each `dbc.Col`
-```
+You can see from the code above that we define the `width` property for each `dbc.Col` as 6. Note that the total width of columns inside the `dbc.Row()` is 12. Make sure that you never assign more than 12 columns within each Row. 
+
+Let's see another example of a layout with multiple rows and columns:
 
 ```python
 # Import packages 
@@ -317,14 +353,11 @@ if __name__ == '__main__':
 
 ![colored_app](../assets/p1_c3/app_colored.png)
 
-We see there are 4 rows with columns of various `widths` which contain components.  Make sure that the total amount of column `width` within each row **never surpasses 12**.  
+We see there are four rows with columns of various widths which contain components. Notice that the total column width in the first and last row is 8 and 11 respectively. Having less than 12 assigned to column width is fine, just remember that the total amount of column width within each row should **never surpasses 12**.  
 
   * Play around with the `width` value of the column containing the dropdown and slider to see how it changes the app layout.
   * Try to move the button to be in the same row as the Checklist and RadtioItem
 
-```{admonition} Note
-- The colors above are for demonstration purposes, you will not see them in your local dashboard
-```
 
 ## Summary
 In this chapter we learned about several useful Dash **components** and how to organize them in a **layout**. In the next chapter we will learn how to create an interactive app by linking the components together.
