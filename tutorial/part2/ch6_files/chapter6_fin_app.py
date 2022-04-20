@@ -41,10 +41,12 @@ def country_list(continent_selection):
 
 @app.callback(
     Output(component_id='final-output', component_property='children'),
-    Input(component_id='country-dropdown', component_property='value')
+    Input(component_id='country-dropdown', component_property='value'),
+prevent_initial_call=True
 )
 def pop_calculator(country_selection):
-    pop_value = df3.loc[df3['country']==country_selection, 'pop'].values[0]
+    pop_value = df3.loc[df3['country']==country_selection]
+    pop_value = pop_value.loc[:, 'pop'].values[0]  # select only first value in pop column
     output = ('The population in '+country_selection+' was: '+pop_value.astype(str))
     return output
 
