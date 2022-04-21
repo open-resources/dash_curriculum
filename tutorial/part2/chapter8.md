@@ -85,7 +85,7 @@ The following sections will show you how you can put almost any type of figure i
 
 ## 8.3 Introduction to the powers of Plotly Express
 
-The [plotly.express module][3] contains functions that can create entire figures at once, and is usually referred to as `px`. Plotly Express is a built-in part of the Plotly library, and is the recommended starting point for creating most common figures like [line][4], [scatter][5], [bar][6],  and [timeline][7] figures. We'll go through some of them in this chapter, and you can study more in the docs. But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple plotly express function like `px.line()`
+The plotly.express module contains functions that can create entire figures at once, and is usually referred to as `px`. Plotly Express is part of the Plotly library, and is the recommended starting point for creating some of the most common figures like the line, scatter, bar, and timeline figures. We'll go through some of them in this chapter, but you can learn about many other figures in the [documentation](https://plotly.com/python/). But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple Plotly Express function like `px.line()`
 
 ### 8.3.1 About the gapminder dataset
 
