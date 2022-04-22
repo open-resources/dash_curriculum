@@ -123,10 +123,10 @@
 
 - Advanced DBC
 - Advanced DCC
- - RangeSlider
- - Datepicker
- - Interval
- - Store
+   - RangeSlider
+   - Datepicker
+   - Interval
+   - Store
 
 ## Part IV: Polishing your Dash App
 
