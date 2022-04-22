@@ -542,11 +542,8 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="multiple-outputs-and-inputs">
 <h2>10.1 Multiple outputs and inputs<a class="headerlink" href="#multiple-outputs-and-inputs" title="Permalink to this headline">¶</a></h2>
 <p>You might want to have a graph that should be linked to more than one component, changing or affecting different dimensions of your graph. If you think the other way around, you might want to have several graphs that should be affected by the same component. Here is where multiple outputs and inputs come into play.</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>In addition to a much cleaner and shorter code, note that assigning two different callbacks the same component as an output argument is just not allowed by dash.</p>
-</div>
-<p>Let us see multiple inputs in action first. We take the final code from chapter 8 and add a markdown, some radio items and a slider, where both, the radio items as well as the slider, will affect the graph. Using multiple inputs we need to add them as arguments in the callback decorator as well as arguments in the callback function.</p>
+<p>Let us see multiple inputs in action first. We take the final code from chapter 8 and add a markdown, a dropdown and some radio items, where both, the dropdown as well as the radio items, will affect the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. Herefore, we apply the function <code class="docutils literal notranslate"><span class="pre">unique()</span></code> to the list of all countries. The radio items will be used to style the graph either as line chart or scatter.</p>
+<p>Now, using multiple inputs we need to add them as arguments in the callback decorator as well as arguments in the callback function. Also make sure that the order we enter the input arguments has to be the same.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -619,7 +616,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="add-gif-showing-the-above-code-in-action">
 <h3>[ADD GIF, SHOWING THE ABOVE CODE IN ACTION]<a class="headerlink" href="#add-gif-showing-the-above-code-in-action" title="Permalink to this headline">¶</a></h3>
-<p>Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu. Multiple outputs will be separated with a commata when returned by the callback function.</p>
+<p>Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu. Again, we want to be able to select one specific country of interest to us, which data then gets displayed within the graph and the table.</p>
+<p>Using multiple outputs we need to add them as arguments in the callback decorator as well as return arguments in the callback function. Also make sure that the order we enter the arguments has to be the same. Multiple outputs will be just separated with a commata when returned by the callback function.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -684,7 +682,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="buttons-within-a-callback">
 <h2>10.2 Buttons within a callback<a class="headerlink" href="#buttons-within-a-callback" title="Permalink to this headline">¶</a></h2>
 <p>Now, that you know how to implement multiple inputs and outputs it’s worth to take a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.</p>
-<p>Besides the children and id property, buttons come with a property called <code class="docutils literal notranslate"><span class="pre">n_clicks</span></code>, which represents the number of times that the button has been clicked on. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let’s see both in one simple example. Hereby, we are changing the title of our app depending if and how often the implemented button has been clicked.</p>
+<p>Besides the children and id property, buttons come with a property called <code class="docutils literal notranslate"><span class="pre">n_clicks</span></code>, which represents the number of times that the button has been clicked on. The n_clicks property therefore always is a non-negative integer. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let’s see both in one simple example. Hereby, we are changing the title of our app depending if and how often the implemented button has been clicked.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -725,7 +723,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="id2">
 <h3>[ADD GIF, SHOWING THE ABOVE CODE IN ACTION]<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<p>To give you some more flexibility on programming your future apps let’s see two more facettes of how to use buttons within callbacks. First, let us see how to reset the n_clicks component property of a button. Herefore, let’s adjust the above example by adding a second button. Whenever the second button will be clicked the component property n_clicks of the first button will be reset to 0.</p>
+<p>To give you some more flexibility on programming your future apps let us see two more facettes of how to use buttons within callbacks. First, we learn how to reset the n_clicks component property of a button. Herefore, we adjust the above example by adding a second button. Whenever the second button will be clicked the component property n_clicks of the first button will be reset to 0.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -834,7 +832,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="states">
 <h2>10.3 States<a class="headerlink" href="#states" title="Permalink to this headline">¶</a></h2>
 <p>So far, we had linked components of your app together which immediately affected each other. In a more advanced setup it might be useful though to circumvent this direct relationship. You might first want to have all of the input arguments together before your outpout is triggered. This could be helpful for any kind of forms. For this purpose there is a third argument that can be used within the callback decorator, the state. Formally, the state argument is used in the same way as the input argument.</p>
-<p>Let’s bring everything together in one final example. We will implement an app with a dropdown, some radio items and button which will trigger two output components, a graph and a table. However, we only want to trigger the output components when the button is clicked. This can be done with the state argument.</p>
+<p>Let us bring everything together in one final example. We will implement an app with a dropdown, some radio items and a button which will trigger two output components, a graph and a table. However, we only want to trigger the output components when the button is clicked. This can be done with the state argument. Herefore, we declare all arguments that should not directly trigger the output components as state arguments instead of input arguments in the callback decorator.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Note that you need to import the state argument the same way we are importing the input and output arguments at the beginning of your code.</p>
