@@ -437,8 +437,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figure-objects">
-     8.3.4 The interactivity of Plotly Figure Objects.
+    <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figures">
+     8.3.4 The interactivity of Plotly Figures
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -638,8 +638,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figure-objects">
-     8.3.4 The interactivity of Plotly Figure Objects.
+    <a class="reference internal nav-link" href="#the-interactivity-of-plotly-figures">
+     8.3.4 The interactivity of Plotly Figures
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -850,87 +850,73 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="introduction-to-the-powers-of-plotly-express">
 <h2>8.3 Introduction to the powers of Plotly Express<a class="headerlink" href="#introduction-to-the-powers-of-plotly-express" title="Permalink to this headline">¶</a></h2>
-<p>The [plotly.express module][3] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or <code class="docutils literal notranslate"><span class="pre">px</span></code>. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][4], [scatter][5], [bar][6],  and [timeline][7] figures. We’ll go through some of them in this chapter, and you can study more in the docs. But first, let’s unveil the powers you can unleash with a multi-dimensinal dataset like <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> and a simple plotly express function like <code class="docutils literal notranslate"><span class="pre">px.line()</span></code></p>
+<p>The Plotly Express module contains functions that can create entire figures at once and is usually referred to as <code class="docutils literal notranslate"><span class="pre">px</span></code>. Plotly Express is part of the Plotly library, and is the recommended starting point for creating some of the most common figures like the line, scatter, bar, and timeline figures. We’ll go through some of them in this chapter, but you can learn about many other figures in the <a class="reference external" href="https://plotly.com/python/">documentation</a>. But first, let’s unveil the powers you can unleash with a multi-dimensinal dataset like <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> and a simple Plotly Express function like <code class="docutils literal notranslate"><span class="pre">px.line()</span></code></p>
 <div class="section" id="about-the-gapminder-dataset">
 <h3>8.3.1 About the gapminder dataset<a class="headerlink" href="#about-the-gapminder-dataset" title="Permalink to this headline">¶</a></h3>
-<p>The gapminder dataset available through <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> is provided by [<a class="reference external" href="http://Gapminder.org">Gapminder.org</a>][8]. Here you’ll find <code class="docutils literal notranslate"><span class="pre">1704</span></code> rows of data and the following columns <code class="docutils literal notranslate"><span class="pre">['country',</span> <span class="pre">'continent',</span> <span class="pre">'year',</span> <span class="pre">'lifeExp',</span> <span class="pre">'pop',</span> <span class="pre">'gdpPercap'</span> <span class="pre">'iso_alpha',</span> <span class="pre">'iso_num']</span></code>. Life expectancy at birth is stored in <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code>, population by country is <code class="docutils literal notranslate"><span class="pre">pop</span></code>, and <code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code> is the per capita GDP. The data is an excerpt of data found in specific spreadsheets on [Gapminder][8] circa 2010. The data has a so-called long (or  tidy) format. Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data (more dimensions than 2).
-PX also handles data of [other formats][9].</p>
+<p>The gapminder dataset is a built-in Plotly Express dataset provided by <a class="reference external" href="https://www.gapminder.org/">Gapminder.org</a>. Here you’ll find <code class="docutils literal notranslate"><span class="pre">1704</span></code> rows of data and the following columns <code class="docutils literal notranslate"><span class="pre">['country',</span> <span class="pre">'continent',</span> <span class="pre">'year',</span> <span class="pre">'lifeExp',</span> <span class="pre">'pop',</span> <span class="pre">'gdpPercap'</span> <span class="pre">'iso_alpha',</span> <span class="pre">'iso_num']</span></code>. Life expectancy at birth is stored as <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code>, population by country is <code class="docutils literal notranslate"><span class="pre">pop</span></code>, and <code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code> is the per capita GDP. The data is a so-called long (or  tidy) form type. Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data (more dimensions than 2).
+Plotly Express also handles <a class="reference external" href="https://plotly.com/python/wide-form/">wide-form and mixed-form data</a>.</p>
 </div>
 <div class="section" id="a-basic-line-chart-with-px-line">
 <h3>8.3.2 A basic line chart with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code><a class="headerlink" href="#a-basic-line-chart-with-px-line" title="Permalink to this headline">¶</a></h3>
-<p>As a minimal example, consider life expectancies in Canada in a period from 1962 to 2007:</p>
-<p>[![enter image description here][10]][10]</p>
-<p>This figure is produced using only these lines of code where the most essential part is [<code class="docutils literal notranslate"><span class="pre">px.line()</span></code>][11]:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># sample data </span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
-
-<span class="c1"># data subset 1</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">])]</span>
-
-<span class="c1"># 8.1.1 line chart</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
-                  <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX Line plot&quot;</span><span class="p">,</span>
-                  <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span>
-                  <span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>Let’s look at the applied arguments of <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> one by one.</p>
-<ol class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">df</span></code> is a reference to the imported dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">x='year'</span></code> defines the <code class="docutils literal notranslate"><span class="pre">year</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to appear on the x-axis</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">y='lifeExp</span></code> defines the <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to appear on the y-axis</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">title</span> <span class="pre">=</span> <span class="pre">&quot;PX</span> <span class="pre">Line</span> <span class="pre">plot&quot;</span></code> is optional, and creates a title in the top left corner.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">=</span> <span class="pre">'plotly_white'</span></code> is also optional, and creates a minimal figure layout with a white background.</p></li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You do not <em>have</em> to use the setup above with <code class="docutils literal notranslate"><span class="pre">fig</span> <span class="pre">=</span> <span class="pre">px.line([...])</span></code>. Just calling <code class="docutils literal notranslate"><span class="pre">px.line([...])</span></code> without the assignment to <code class="docutils literal notranslate"><span class="pre">fig</span></code> will also produce a <a class="reference external" href="https://plotly.com/python/graph-objects/">Plotly Graph Object</a>. Depending on your IDE, this function call will also display the figure. However, running <code class="docutils literal notranslate"><span class="pre">fig</span> <span class="pre">=</span> <span class="pre">px.line([...])</span></code> is considered standard notation (?) and will make the figure available for further editing and methods like <code class="docutils literal notranslate"><span class="pre">fig.show()</span></code></p>
-</div>
-</div>
-<div class="section" id="adding-multiple-lines-with-different-colors">
-<h3>8.3.3 Adding multiple lines with different colors<a class="headerlink" href="#adding-multiple-lines-with-different-colors" title="Permalink to this headline">¶</a></h3>
-<p>So far so good, but the dataset includes data for a lot more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it’s also an important part of what makes Plotly Express so powerful and flexible. The following figure is produced by the snippet below where we’ve included some other countries in the dataset with <code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">df[df['country'].isin(['Canada',</span>&#160; <span class="pre">'Norway',</span> <span class="pre">'Germany'])]</span></code></p>
-<p>[![enter image description here][12]][12]</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<p>As a minimal example, consider life expectancies in Canada in a period from 1952 to 2007:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="c1"># sample data</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 
-<span class="c1"># data subset 2</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span>  <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
+<span class="c1"># data subset 1</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Canada&quot;</span><span class="p">])]</span>
 
-<span class="c1"># 8.2.1 Line chart</span>
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span> 
-                  <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;PX line plot&quot;</span><span class="p">,</span>
-                  <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span>
-                  <span class="p">)</span>
+<span class="c1"># Line chart</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PX Line plot&quot;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>In addition to the already existing arguments, we’ve added <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code>. And this is exactly what you need to make an addition of lines to a larger set of countries. What happens under the hood, is that Plotly Express assigns a color from a certain [color sequence][13] to each unique value in the <code class="docutils literal notranslate"><span class="pre">country</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code> which are: <code class="docutils literal notranslate"><span class="pre">['Canada',</span> <span class="pre">'Germany',</span> <span class="pre">'Norway']</span></code>.</p>
+<p><img alt="line_chart" src="../_images/chap8-8.3.2.png" /></p>
+<p>Let’s look at the applied attributes of <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> one by one.</p>
+<ol class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df</span></code> is a reference to the imported dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x='year'</span></code> instructs the <code class="docutils literal notranslate"><span class="pre">year</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to appear on the x-axis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y='lifeExp</span></code> instructs the <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code> to appear on the y-axis</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span> <span class="pre">=</span> <span class="pre">&quot;PX</span> <span class="pre">Line</span> <span class="pre">plot&quot;</span></code> is optional, and creates a title in the top left corner.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">template</span> <span class="pre">=</span> <span class="pre">'plotly_white'</span></code> is also optional, and creates a minimal figure layout with a white background.</p></li>
+</ol>
+</div>
+<div class="section" id="adding-multiple-lines-with-different-colors">
+<h3>8.3.3 Adding multiple lines with different colors<a class="headerlink" href="#adding-multiple-lines-with-different-colors" title="Permalink to this headline">¶</a></h3>
+<p>So far so good, but the dataset includes data for many more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it’s also an important part of what makes Plotly Express so powerful and flexible.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># sample data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># data subset 1</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
+
+<span class="c1"># line chart</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PX Line plot&quot;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="country_linechart2" src="../_images/newplot6.png" /></p>
+<p>In addition to the already existing attributes, we’ve added <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code>. This is exactly what you need to make an addition of lines representing a larger set of countries. What happens under the hood is that Plotly Express assigns a color to each unique value in the <code class="docutils literal notranslate"><span class="pre">country</span></code> column in <code class="docutils literal notranslate"><span class="pre">df</span></code>, which are: <code class="docutils literal notranslate"><span class="pre">['Canada',</span> <span class="pre">'Germany',</span> <span class="pre">'Norway']</span></code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Without the color argument, an assignment of the y-axis to a multivariable column will create a <a class="reference external" href="https://i.stack.imgur.com/uS3TP.png">mess of a chart</a> where all lines are blue, and the end-point of one line is connected to the starting point of another. How this appears is likely to be prone to changes for future versions of Plotly Express.</p>
+<p>Without the <code class="docutils literal notranslate"><span class="pre">color</span></code> attribute, an assignment of the y-axis to a multivariable column will create a <a class="reference external" href="https://i.stack.imgur.com/uS3TP.png">mess of a chart</a> where all lines are blue, and the end-point of one line is connected to the starting point of another.</p>
 </div>
 </div>
-<div class="section" id="the-interactivity-of-plotly-figure-objects">
-<h3>8.3.4 The interactivity of Plotly Figure Objects.<a class="headerlink" href="#the-interactivity-of-plotly-figure-objects" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-interactivity-of-plotly-figures">
+<h3>8.3.4 The interactivity of Plotly Figures<a class="headerlink" href="#the-interactivity-of-plotly-figures" title="Permalink to this headline">¶</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code> initialized, a legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.</p>
-<p>[![enter image description here][14]][14]</p>
-<p>Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the <code class="docutils literal notranslate"><span class="pre">y-axis</span></code>, the complete axis will slide when you move the mouse. If you grab the top of the axis, all other than the minumum value will change, and vice versa.</p>
-<p>[![enter image description here][15]][15]</p>
+<p>Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the <code class="docutils literal notranslate"><span class="pre">y-axis</span></code>, the complete axis will slide when you move the mouse. If you grab the top of the axis, everything else other than the minumum value will change.</p>
+<p><img alt="legendgif" src="../_images/chap8-gif8-3-4.gif" /></p>
 </div>
 <div class="section" id="multidimensional-data-with-lines-and-markers">
 <h3>8.3.5 Multidimensional data with lines and markers<a class="headerlink" href="#multidimensional-data-with-lines-and-markers" title="Permalink to this headline">¶</a></h3>
-<p>You can combine lines <em>and</em> markers in <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> to illustrate multiple dimensions of your dataset through the addition of the <code class="docutils literal notranslate"><span class="pre">symbol</span></code> argument. Below we’ve included <code class="docutils literal notranslate"><span class="pre">symbol</span> <span class="pre">=</span> <span class="pre">'continent'</span></code> to our previous <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> call. This works much like <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code>. But this time, we’re applying a symbol sequence to the unique values in <code class="docutils literal notranslate"><span class="pre">df['continent']</span></code> which are <code class="docutils literal notranslate"><span class="pre">'Americas'</span></code> and <code class="docutils literal notranslate"><span class="pre">'Europe'</span></code>. The symbols assigned are <code class="docutils literal notranslate"><span class="pre">['Circle',</span> <span class="pre">'Diamond']</span></code>:</p>
-<p>[![enter image description here][16]][16]</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<p>You can combine lines <em>and</em> markers in <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> to illustrate multiple dimensions of your dataset through the addition of the <code class="docutils literal notranslate"><span class="pre">symbol</span></code> attribute. This works much like <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code>. But this time, we’re applying a symbol sequence to the unique values in <code class="docutils literal notranslate"><span class="pre">df['continent']</span></code> which are <code class="docutils literal notranslate"><span class="pre">'Americas'</span></code> and <code class="docutils literal notranslate"><span class="pre">'Europe'</span></code>. The symbols assigned are <code class="docutils literal notranslate"><span class="pre">['Circle',</span> <span class="pre">'Diamond']</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="c1"># sample dataset from plotly express</span>
@@ -939,12 +925,12 @@ PX also handles data of [other formats][9].</p>
 <span class="c1"># subset 2</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span>  <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">])]</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span>
-                     <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Multidimensional data&quot;</span><span class="p">,</span>
-                     <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span>
+              <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Multidimensional data&quot;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><img alt="country_linechart_legend" src="../_images/chap8.3.5.png" /></p>
 </div>
 <div class="section" id="scatter-charts-with-px-scatter">
 <h3>8.3.6 Scatter Charts with <code class="docutils literal notranslate"><span class="pre">px.scatter</span></code><a class="headerlink" href="#scatter-charts-with-px-scatter" title="Permalink to this headline">¶</a></h3>
