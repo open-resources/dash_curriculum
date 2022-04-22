@@ -671,7 +671,7 @@ and remove columns we’re not interested in:</p>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="data table with line plot" src="../_images/datatable_line_plot.png" /></p>
+<p><img alt="data table with line plot" src="../_images/datatable_plot_link.gif" /></p>
 </div>
 <div class="section" id="histogram">
 <h3>9.2.2 Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h3>
@@ -705,6 +705,7 @@ and remove columns we’re not interested in:</p>
 <span class="c1"># Create a line graph of life expectancy over time</span>
 <span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
+
 <span class="c1"># Create an animated histogram of population growth</span>
 <span class="n">fig_bar</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
                  <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">animation_group</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
@@ -773,6 +774,7 @@ and remove columns we’re not interested in:</p>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><img alt="datatable histogram link" src="../_images/datatable_hist_link.gif" /></p>
 </div>
 </div>
 <div class="section" id="other-important-datatable-props">
@@ -792,7 +794,7 @@ and remove columns we’re not interested in:</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>TODO: gif of sorting</strong></p>
+<p><img alt="data table sorting" src="../_images/datatable_sort.gif" /></p>
 </div>
 <div class="section" id="filtering">
 <h3>9.3.2 Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
