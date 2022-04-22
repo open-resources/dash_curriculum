@@ -14,11 +14,9 @@ You have already learned about callbacks in chapter 4. Now, it is time to upskil
 
 You might want to have a graph that should be linked to more than one component, changing or affecting different dimensions of your graph. If you think the other way around, you might want to have several graphs that should be affected by the same component. Here is where multiple outputs and inputs come into play.
 
-```{attention}
-In addition to a much cleaner and shorter code, note that assigning two different callbacks the same component as an output argument is just not allowed by dash.
-```
+Let us see multiple inputs in action first. We take the final code from chapter 8 and add a markdown, a dropdown and some radio items, where both, the dropdown as well as the radio items, will affect the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. Herefore, we apply the function `unique()` to the list of all countries. The radio items will be used to style the graph either as line chart or scatter.
 
-Let us see multiple inputs in action first. We take the final code from chapter 8 and add a markdown, some radio items and a slider, where both, the radio items as well as the slider, will affect the graph. Using multiple inputs we need to add them as arguments in the callback decorator as well as arguments in the callback function.
+Now, using multiple inputs we need to add them as arguments in the callback decorator as well as arguments in the callback function. Also make sure that the order we enter the input arguments has to be the same.
 
 ```
 # Import packages
@@ -90,9 +88,11 @@ def update_graph(value_dropdown, value_radio):
 if __name__ == '__main__':
     app.run_server()
 ```
-### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
-Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu. Multiple outputs will be separated with a commata when returned by the callback function.
+Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu. Again, we want to be able to select one specific country of interest to us, which data then gets displayed within the graph and the table.
+
+Using multiple outputs we need to add them as arguments in the callback decorator as well as return arguments in the callback function. Also make sure that the order we enter the arguments has to be the same. Multiple outputs will be just separated with a commata when returned by the callback function.
 
 ```
 # Import packages
@@ -150,13 +150,13 @@ def update_graph(value_dropdown):
 if __name__ == '__main__':
     app.run_server()
 ```
-### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
 ## 10.2 Buttons within a callback
 
 Now, that you know how to implement multiple inputs and outputs it's worth to take a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.
 
-Besides the children and id property, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let's see both in one simple example. Hereby, we are changing the title of our app depending if and how often the implemented button has been clicked.
+Besides the children and id property, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. The n_clicks property therefore always is a non-negative integer. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let's see both in one simple example. Hereby, we are changing the title of our app depending if and how often the implemented button has been clicked.
 
 ```
 # Import packages
@@ -196,9 +196,9 @@ def update_title(n_clicks):
 if __name__ == '__main__':
     app.run_server()
 ```
-### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
-To give you some more flexibility on programming your future apps let's see two more facettes of how to use buttons within callbacks. First, let us see how to reset the n_clicks component property of a button. Herefore, let's adjust the above example by adding a second button. Whenever the second button will be clicked the component property n_clicks of the first button will be reset to 0.
+To give you some more flexibility on programming your future apps let us see two more facettes of how to use buttons within callbacks. First, we learn how to reset the n_clicks component property of a button. Herefore, we adjust the above example by adding a second button. Whenever the second button will be clicked the component property n_clicks of the first button will be reset to 0.
 
 ```
 # Import packages
@@ -254,7 +254,7 @@ def update_title(n_clicks):
 if __name__ == '__main__':
     app.run_server()
 ```
-### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
 To conclude this second part of the chapter, let us see how to implement a binary functionality of your button. This means you are triggering different outputs with clicking the button, depending if you have clicked it an even or an odd number of times. This can be easily handled with the modulo operator `%`.
 
@@ -300,13 +300,13 @@ def update_title(n_clicks):
 if __name__ == '__main__':
     app.run_server()
 ```
-### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
 ## 10.3 States
 
 So far, we had linked components of your app together which immediately affected each other. In a more advanced setup it might be useful though to circumvent this direct relationship. You might first want to have all of the input arguments together before your outpout is triggered. This could be helpful for any kind of forms. For this purpose there is a third argument that can be used within the callback decorator, the state. Formally, the state argument is used in the same way as the input argument.
 
-Let's bring everything together in one final example. We will implement an app with a dropdown, some radio items and button which will trigger two output components, a graph and a table. However, we only want to trigger the output components when the button is clicked. This can be done with the state argument.
+Let us bring everything together in one final example. We will implement an app with a dropdown, some radio items and a button which will trigger two output components, a graph and a table. However, we only want to trigger the output components when the button is clicked. This can be done with the state argument. Herefore, we declare all arguments that should not directly trigger the output components as state arguments instead of input arguments in the callback decorator.
 
 ```{attention}
 Note that you need to import the state argument the same way we are importing the input and output arguments at the beginning of your code.
@@ -390,7 +390,7 @@ def update_graph(n_clicks, value_dropdown, value_radio):
 if __name__ == '__main__':
     app.run_server()
 ```
-### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
 ## Summary
 
