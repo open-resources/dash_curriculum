@@ -1,13 +1,13 @@
 # Chapter 6 - Working with Data in Dash
 
 ## What you will learn
-In this chapter we will introduce data into Dash apps. We will show how to:
+In this chapter we will show you how to incorporate data into Dash apps. There are many ways one could add data to an app, but we will focus on a few of the most common ways when working with Dash. 
+
+```{admonition} Learning Intentions
 - import data into the app
 - create and populate Pandas dataframes
-- review basic data wrangling techniques often used to prepare data for reporting.
-
-By the end of the chapter, you'll be comfortable with incorporating your own data into a Dash app:
-[Download the file](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/chapter6_fin_app.py)
+- review basic data wrangling techniques often used to prepare data for reporting
+```
 
 ---
 
@@ -17,75 +17,91 @@ For this reason, we recommend importing the data before initialising the app, ri
 
 ```
 # Data imported here
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Initialise app
+app = Dash(__name__)
 ```
 
 In this way, the data will be globally available to all objects that are created in the code.
 
-One of the easiest and most convenient methods to represent our data is through a Pandas dataframe.
-An empty dataframe is created with the code below:
+One of the most common cases for incorporating data into our app is when we need to quickly test out a piece of code. In those cases, we can build our own data set through a pandas dataframe. An empty dataframe is created with the code below:
+
 ```
+# Data imported here
 test_data = pd.DataFrame()
+
+# Initialise app
+app = Dash(__name__)
 ```
 
-Some mock-up data can be added using a dictionary, in this way:
+Then, some mock-up data can be added using a dictionary:
 ```
 test_data = pd.DataFrame({'Country':['United States','Norway','Italy','Sweden','France'],
                          'Country Code':['US','NO','IT','SE','FR']})
 ```
-(In the code above, the dictionary keys "Country" and "Country code" will be the column names of the Pandas dataframe).
-
-## 6.2 Uploading data into an app
-In case our data is available on files or on the internet, we will read the data from the source and convert it into a Pandas dataframe.
-There are several ways of incorporating data into our app; we will focus on these methodologies:
-- reading data from files (.xls, .csv, .json)
-- reading data from a URL
+The dictionary keys `Country` and `Country code` will represent the column names of the pandas dataframe.
 
 ```{note}
-If you need some test dataset to play with or test your code, consider using the Plotly Express built-in data sets, such as Gapminder, which can be added to your App with these commands:
+If you need access to pre-built data sets to test your code, consider using the Plotly Express built-in data, such as Gapminder or [other data](https://plotly.com/python-api-reference/generated/plotly.express.data.html), which can be added to your app with these commands:
 
-import plotly.express as px
 df = px.data.gapminder()
 ```
+
+## 6.2 Uploading data into an app
+Whether our data is located on our computer or on the internet, we need to read the data from the source and convert it into a pandas dataframe. There are several ways of uploading data into our app; we will focus on these methodologies, as they are commonly used by Dash-app creators:
+
+- reading data from files on our computer (.xls, .csv, .json)
+- reading data from a URL
 
 ### 6.2.1 Reading data from files on your computer
 
 #### Excel files
 Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe. 
-The file we'll be using is available here [data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx): follow the link click on "download"; locate the file in your download folder.
+The file we'll be using is available here [data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx): follow the link and click on "Download"; find the folder where the file was downloaded and copy the path. Note that you will need to `pip install openpyxl` into your terminal in order to work with `.xlsx` files
 
 ```
+import pandas as pd
 filepath = r'C:\Users\YourUser\Downloads\data_01.xlsx'
 df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 print(df1)
 ```
-- In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the "r" just before the string containing the path. This is done as VS code may trigger a warning when using a normal string).
-If your file is located directly into your app folder (or within VS code working directory), the full path is not required; you may only specify the filename. The code will then become: ```filepath = 'data_01.xlsx' ```
+
+In this example, we have accessed the data (Excel file) outside the folder where our main app is located; therefore, we specified a filepath. The path is saved as a raw string (hence the "r" just before the string containing the path. This is done because VS Code may trigger a warning when using a normal string).
+
+If the data file is located directly inside the folder where your main app file is (or within the VS Code working directory), the full path is not required; you may only specify the filename. The code will then become: 
+
+```
+import pandas as pd
+filepath = 'data_01.xlsx' 
+df1 = pd.read_excel(filepath, sheet_name='Sheet1')
+print(df1)
+```
+
 ```{note}
-If you experience any difficulties in finding your filepath, please check [this screenshot](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG), showing how to find the filepath directly from WS code.
+If you experience any difficulties in finding your filepath, please check [this screenshot](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG), showing how to find the filepath directly from VS Code.
 ```
 ```{tip}
-In production versions, when apps get deployed, the best practice is to have a "data" folder, where all files are stored and therefore accessed by the app code. This will be covered in [Chapter 14](https://open-resources.github.io/dash_curriculum/part4/chapter14.html).
+In production versions, when apps get deployed, the best practice is to have a "data" folder, where all data files are stored and therefore accessed by the app code. This will be covered in [Chapter 14](https://open-resources.github.io/dash_curriculum/part4/chapter14.html).
 ```
-- We uploaded one Excel tab (named "Sheet1") to a data frame called "df1".
-- After the data uploads, the dataframe would look like the following:
+
+We uploaded one Excel tab (named "Sheet1") to a data frame called "df1". After the data uploads, the dataframe would look like the following:
 
 ![Excel data 01](./ch6_files/data01.JPG)
 
 #### CSV files
-We will now upload the same data from above, but from a .csv file named [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click on the "Copy raw contents" button, then paste the records into a new file on your laptop, saving it as "data_02.csv"
+We will now upload the same data from above, but from a .csv file named [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click on the "Copy raw contents" button, select all, then paste the records into a new Excel file on your laptop, saving it as "data_02.csv"
 
 ```
+import pandas as pd
 filepath = r'C:\Users\User1\Downloads\data_02.csv'
 col_names = ['country','continent','year','pop']
 df2 = pd.read_csv(filepath, sep='|', usecols=col_names)
 df2.head() # you can also use: print(df2.head()) -- VS Code supports both
 ```
 
-- Similarly to the previous example, we have accessed data outside the app folder, and therefore specified a filepath as a raw string.
-- In most cases, you will see .csv files with comma column separators (hence the name, csv standing for "comma-separated values"). Here, we used a different separator: '|'. The "sep" argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.
-- We have also selected a subset of columns to be uploaded, listed in the "usecols" argument. The remaining columns that are present in the file will be ignored.
-- After the data is uploaded, the dataframe looks like the following:
+- Similarly to the previous example, we have accessed the data located outside the app folder, and therefore specified a filepath as a raw string.
+- In most cases, you will see .csv files with comma column separators (hence the name, csv standing for "comma-separated values"). Here, we used a different separator: '|'. The `sep` argument allows to specify whatever characters should be considered field separators: pandas will separate data into different columns any time it encounters these characters.
+- We have also selected a subset of columns to be uploaded, listed in the `usecols` argument. The remaining columns that are present in the file will be ignored.
 
 ![csv data 02](./ch6_files/data02.JPG)
 
@@ -93,20 +109,22 @@ df2.head() # you can also use: print(df2.head()) -- VS Code supports both
 We will now upload the same data from above, but from [this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt).
 
 ```
+import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
 df3 = pd.read_table(url, sep=';')
 df3.head()
 ```
 
 ```{note}
-The above URL is a link to a .txt file that is online. The pd.read_table() function will work for other file formats too, such as: .txt, .csv
+The above URL is a link to a .txt file that is online. The pd.read_table() function will work for other file formats too, such as .csv files.
 ```
 
 The code above, will generate a dataframe that looks like:
 
 ![url data 03](./ch6_files/data03.JPG)
 
-### 6.2.3 Reading data from a json file
+#### Reading data from a json file
+
 We will now upload data stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we'll upload is available on [this URL](https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json).
 
 - Pandas includes a specific function to process json files: pd.read_json()
@@ -146,13 +164,14 @@ df3_Slice1 = df3.loc[(df3['continent']=='Americas'), :]
 df3_Slice2 = df3.loc[(df3['continent']=='Americas') & (df3['year'].isin([2002,2007])), ['country','year','pop']]
 df3_Slice2.head()
 ```
-- The first command will filter the df3 dataframe picking rows that have 'Americas' as continent. The ':' indicates that we don't want to specify any column-filtering conditions, hence, all columns will be selected.
-- The second command adds more row-filtering conditions: rows will be filtered based on American continent and also on 'year', which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command results in:
+The first command will filter the df3 dataframe picking rows that have 'Americas' as continent. The `:` indicates that we don't want to specify any column-filtering conditions, hence, all columns will be selected.
+
+The second command adds more row-filtering conditions: rows will be filtered based on American continent and also on 'year', which must be either 2002 or 2007. Additionally, only three columns will be saved into `df3_Slice2`, namely: country, year, pop. The second command results in:
 
 ![df3_Slice2](./ch6_files/df3_Slice2.JPG)
 
 
-As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slicing criteria above, can also be obtained via:
+As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slicing criteria above can also be obtained via:
 ```
 df3[df3['continent']=='Americas']
 ```
@@ -170,7 +189,7 @@ The result will look like:
 
 
 ## 6.4 Using data in the App
-We will now show how to use the data we've uploaded with a couple of examples.
+Let's now see how to use the data we've uploaded through a couple of examples.
 
 ### Example 1
 In the below app, we import the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url) that we created above, and use the list of unique continents to create the "options" of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.
@@ -216,7 +235,6 @@ if __name__ == '__main__':
 The above code will generate the following App:
 
 ![Example 1](./ch6_files/Example01.JPG)
-**Include gif to transition from code to App starting page, then selecting a continent and displaying the output**
 
 ### Example 2
 We will now build upon the previous example, including a second dropdown, linked to the first one.
@@ -285,7 +303,7 @@ if __name__ == '__main__':
 ```
 
 ```{tip}
-In the code above, you may notice that in the second callback we have added this prop: `prevent_initial_call=True`. This was necessary here, since the 'country-dropdown' component doesn't have any default option (the options are in fact depending on the first dropdown selection). By default, Dash calls every callback when initialising the app: we want to prevent this initial call as Dash wouldn't find any input value for this callback.
+In the code above, you may notice that in the second callback we have added this prop: `prevent_initial_call=True`. This was necessary, since the 'country-dropdown' component doesn't have any default option (the options, in fact, depend on the first dropdown selection). By default, Dash calls every callback when initialising the app. We want to prevent this initial call, as Dash wouldn't find any input value for this callback.
 ```
 
 The above code will generate the following app:
@@ -295,5 +313,6 @@ The above code will generate the following app:
 
 
 ## Summary
-In this chapter, we have explored several options to upload data into a Pandas dataframe, that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
-In the next chapter we will dive into data visualisation, exploring several figures available in px (Plotly express).
+In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
+
+In the next chapter we will dive into data visualisation, exploring the Plotly Express graphing library.
