@@ -154,7 +154,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![data table with line plot](../assets/p2_c9/datatable_line_plot.png)
+![data table with line plot](../assets/p2_c9/datatable_plot_link.gif)
 
 ### 9.2.2 Histogram
 
@@ -190,6 +190,7 @@ data_table = dash_table.DataTable(
 # Create a line graph of life expectancy over time
 fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
 graph1 = dcc.Graph(id='figure1', figure=fig1)
+
 # Create an animated histogram of population growth
 fig_bar = px.histogram(df, x="country", y="pop", color="country",
                  animation_frame="year", animation_group="country", 
@@ -258,6 +259,8 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
+![datatable histogram link](../assets/p2_c9/datatable_hist_link.gif)
+
 ## 9.3 Other Important DataTable props
 
 Let's take a look at some useful `DataTable` props:
@@ -275,7 +278,7 @@ data_table = dash_table.DataTable(
         sort_action='native',
 )
 ```
-**TODO: gif of sorting**
+![data table sorting](../assets/p2_c9/datatable_sort.gif)
 
 ### 9.3.2 Filtering
 We can also add the option to sort the columns of data
