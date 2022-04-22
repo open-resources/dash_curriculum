@@ -799,7 +799,24 @@ and remove columns we’re not interested in:</p>
 <div class="section" id="filtering">
 <h3>9.3.2 Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
 <p>We can also add the option to sort the columns of data</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+
+<span class="c1"># Import data into Pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
+<span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Filter columns we want to use</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a Dash DataTable</span>
 <span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
         <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
         <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
@@ -809,9 +826,109 @@ and remove columns we’re not interested in:</p>
         <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
         <span class="n">filter_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
 <span class="p">)</span>
+
+<span class="c1"># Create a line graph of life expectancy over time</span>
+<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
+
+<span class="c1"># Create an animated histogram of population growth</span>
+<span class="n">fig_bar</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
+                 <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">animation_group</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
+                 <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200000000</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">graph2</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure2&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig_bar</span><span class="p">)</span>
+
+
+<span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create the app layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">graph1</span><span class="p">,</span>
+        <span class="p">]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">graph2</span><span class="p">,</span>
+        <span class="p">]),</span>
+    <span class="p">]),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">data_table</span><span class="p">,</span>
+        <span class="p">]),</span>
+    <span class="p">]),</span>  
+<span class="p">])</span>
+
+<span class="c1"># Take a filter string and apply it to a dataframe. Return a Plotly figure</span>
+<span class="k">def</span> <span class="nf">parse_filter</span><span class="p">(</span><span class="nb">filter</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+    <span class="c1"># Parse the string to get the filter and target column</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">filter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+    <span class="n">col_name</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">op</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="c1"># perform &gt; or &lt; filter of df column</span>
+    <span class="k">if</span> <span class="n">op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&gt;&quot;</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">op</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> 
+    <span class="k">elif</span> <span class="n">op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">&lt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">op</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> 
+        
+    <span class="c1"># Create a new figure to replace previous figure</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col_name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+<span class="c1"># Link DataTable edits to the plot with a callback function</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s2">&quot;filter_query&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">sel_col</span><span class="p">,</span> <span class="n">flter</span><span class="p">):</span>
+
+    <span class="c1"># Create data frame from data table </span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
+
+    <span class="c1"># Apply the filter if selected</span>
+    <span class="k">if</span> <span class="n">flter</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">parse_filter</span><span class="p">(</span><span class="n">flter</span><span class="p">,</span><span class="n">df</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+    <span class="c1"># Use the selected column if the user chose one</span>
+    <span class="k">elif</span> <span class="n">sel_col</span><span class="p">:</span>
+        <span class="c1"># Create a new figure to replace previous figure</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sel_col</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Create a new figure to replace previous figure</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+        <span class="k">return</span> <span class="n">fig</span>
+
+
+<span class="c1"># Link DataTable edits to the plot with a callback function</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure2&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">sel_col</span><span class="p">):</span>
+    <span class="c1"># Create data frame from data table </span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
+    <span class="c1"># Create a new figure to replace previous figure</span>
+    <span class="c1"># Create an animated histogram of population growth</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
+                    <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">animation_group</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
+                    <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200000000</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+<span class="c1"># Launch the app server</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>TODO: gif of filtering</strong></p>
+<p><img alt="datatable filter" src="../_images/datatable_filter.gif" /></p>
 </div>
 <div class="section" id="delete-columns">
 <h3>9.3.3 Delete Columns<a class="headerlink" href="#delete-columns" title="Permalink to this headline">¶</a></h3>
