@@ -85,104 +85,82 @@ The following sections will show you how you can put almost any type of figure i
 
 ## 8.3 Introduction to the powers of Plotly Express
 
-The [plotly.express module][3] (usually imported as px) contains functions that can create entire figures at once, and is referred to as Plotly Express or `px`. Plotly Express is a built-in part of the plotly library, and is the recommended starting point for creating most common figures like [line][4], [scatter][5], [bar][6],  and [timeline][7] figures. We'll go through some of them in this chapter, and you can study more in the docs. But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple plotly express function like `px.line()`
+The Plotly Express module contains functions that can create entire figures at once and is usually referred to as `px`. Plotly Express is part of the Plotly library, and is the recommended starting point for creating some of the most common figures like the line, scatter, bar, and timeline figures. We'll go through some of them in this chapter, but you can learn about many other figures in the [documentation](https://plotly.com/python/). But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple Plotly Express function like `px.line()`
 
 ### 8.3.1 About the gapminder dataset
 
-The gapminder dataset available through `px.data.gapminder()` is provided by [Gapminder.org][8]. Here you'll find `1704` rows of data and the following columns `['country', 'continent', 'year', 'lifeExp', 'pop', 'gdpPercap' 'iso_alpha', 'iso_num']`. Life expectancy at birth is stored in `lifeExp`, population by country is `pop`, and `gdpPercap` is the per capita GDP. The data is an excerpt of data found in specific spreadsheets on [Gapminder][8] circa 2010. The data has a so-called long (or  tidy) format. Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data (more dimensions than 2). 
-PX also handles data of [other formats][9].
+The gapminder dataset is a built-in Plotly Express dataset provided by [Gapminder.org](https://www.gapminder.org/). Here you'll find `1704` rows of data and the following columns `['country', 'continent', 'year', 'lifeExp', 'pop', 'gdpPercap' 'iso_alpha', 'iso_num']`. Life expectancy at birth is stored as `lifeExp`, population by country is `pop`, and `gdpPercap` is the per capita GDP. The data is a so-called long (or  tidy) form type. Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data (more dimensions than 2). 
+Plotly Express also handles [wide-form and mixed-form data](https://plotly.com/python/wide-form/).
 
 
 ### 8.3.2 A basic line chart with `px.line()`
 
+As a minimal example, consider life expectancies in Canada in a period from 1952 to 2007:
 
-As a minimal example, consider life expectancies in Canada in a period from 1962 to 2007:
-
-[![enter image description here][10]][10]
-
-
-This figure is produced using only these lines of code where the most essential part is [`px.line()`][11]:
-
-```python
-import plotly.express as px
-import pandas as pd
-
-# sample data 
-df = px.data.gapminder()
-
-# data subset 1
-df = df[df['country'].isin(['Canada'])]
-
-# 8.1.1 line chart
-fig = px.line(df, x= 'year', y = 'lifeExp',
-                  title = "PX Line plot",
-                  template = 'plotly_white'
-                  )
-fig.show()
 ```
-
-Let's look at the applied arguments of `px.line()` one by one.
-
-1. `df` is a reference to the imported dataset.
-2. `x='year'` defines the `year` column in `df` to appear on the x-axis
-3. `y='lifeExp` defines the `lifeExp` column in `df` to appear on the y-axis
-4.  `title = "PX Line plot"` is optional, and creates a title in the top left corner.
-5. `template = 'plotly_white'` is also optional, and creates a minimal figure layout with a white background.
-
-```{tip}
-You do not *have* to use the setup above with `fig = px.line([...])`. Just calling `px.line([...])` without the assignment to `fig` will also produce a [Plotly Graph Object](https://plotly.com/python/graph-objects/). Depending on your IDE, this function call will also display the figure. However, running `fig = px.line([...])` is considered standard notation (?) and will make the figure available for further editing and methods like `fig.show()`
-```
-
-
-### 8.3.3 Adding multiple lines with different colors
-So far so good, but the dataset includes data for a lot more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it's also an important part of what makes Plotly Express so powerful and flexible. The following figure is produced by the snippet below where we've included some other countries in the dataset with `df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]`
-
-[![enter image description here][12]][12]
-
-```python
 import plotly.express as px
-import plotly.graph_objects as go
 import pandas as pd
 
 # sample data
 df = px.data.gapminder()
 
-# data subset 2
-df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]
+# data subset 1
+df = df[df["country"].isin(["Canada"])]
 
-# 8.2.1 Line chart
-fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country' 
-                  title = "PX line plot",
-                  template = 'plotly_white'
-                  )
+# Line chart
+fig = px.line(df, x="year", y="lifeExp", title="PX Line plot", template="plotly_white")
 fig.show()
 ```
 
-In addition to the already existing arguments, we've added `color = 'country'`. And this is exactly what you need to make an addition of lines to a larger set of countries. What happens under the hood, is that Plotly Express assigns a color from a certain [color sequence][13] to each unique value in the `country` column in `df` which are: `['Canada', 'Germany', 'Norway']`.
+![line_chart](../assets/p2_c8/chap8-8.3.2.png)
 
+Let's look at the applied attributes of `px.line()` one by one.
+
+1. `df` is a reference to the imported dataset.
+2. `x='year'` instructs the `year` column in `df` to appear on the x-axis
+3. `y='lifeExp` instructs the `lifeExp` column in `df` to appear on the y-axis
+4. `title = "PX Line plot"` is optional, and creates a title in the top left corner.
+5. `template = 'plotly_white'` is also optional, and creates a minimal figure layout with a white background.
+
+### 8.3.3 Adding multiple lines with different colors
+So far so good, but the dataset includes data for many more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it's also an important part of what makes Plotly Express so powerful and flexible. 
+
+```
+import plotly.express as px
+import pandas as pd
+
+# sample data
+df = px.data.gapminder()
+
+# data subset 1
+df = df[df['country'].isin(['Canada', 'Norway', 'Germany'])]
+
+# line chart
+fig = px.line(df, x="year", y="lifeExp", color='country', title="PX Line plot", template="plotly_white")
+fig.show()
+```
+
+![country_linechart2](../assets/p2_c8/newplot6.png)
+
+In addition to the already existing attributes, we've added `color = 'country'`. This is exactly what you need to make an addition of lines representing a larger set of countries. What happens under the hood is that Plotly Express assigns a color to each unique value in the `country` column in `df`, which are: `['Canada', 'Germany', 'Norway']`.
 
 
 ```{warning}
-Without the color argument, an assignment of the y-axis to a multivariable column will create a [mess of a chart](https://i.stack.imgur.com/uS3TP.png) where all lines are blue, and the end-point of one line is connected to the starting point of another. How this appears is likely to be prone to changes for future versions of Plotly Express.
+Without the `color` attribute, an assignment of the y-axis to a multivariable column will create a [mess of a chart](https://i.stack.imgur.com/uS3TP.png) where all lines are blue, and the end-point of one line is connected to the starting point of another.
 ```
 
-### 8.3.4 The interactivity of Plotly Figure Objects.
+### 8.3.4 The interactivity of Plotly Figures
 With `color = 'country'` initialized, a legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.
 
-[![enter image description here][14]][14]
+Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the `y-axis`, the complete axis will slide when you move the mouse. If you grab the top of the axis, everything else other than the minumum value will change.
 
-Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the `y-axis`, the complete axis will slide when you move the mouse. If you grab the top of the axis, all other than the minumum value will change, and vice versa.
-
-[![enter image description here][15]][15]
-
+![legendgif](../assets/p2_c8/chap8-gif8-3-4.gif)
 
 ### 8.3.5 Multidimensional data with lines and markers
 
-You can combine lines *and* markers in `px.line()` to illustrate multiple dimensions of your dataset through the addition of the `symbol` argument. Below we've included `symbol = 'continent'` to our previous `px.line()` call. This works much like `color = 'country'`. But this time, we're applying a symbol sequence to the unique values in `df['continent']` which are `'Americas'` and `'Europe'`. The symbols assigned are `['Circle', 'Diamond']`:
+You can combine lines *and* markers in `px.line()` to illustrate multiple dimensions of your dataset through the addition of the `symbol` attribute. This works much like `color = 'country'`. But this time, we're applying a symbol sequence to the unique values in `df['continent']` which are `'Americas'` and `'Europe'`. The symbols assigned are `['Circle', 'Diamond']`:
 
-[![enter image description here][16]][16] 
-
-```python
+```
 import plotly.express as px
 import pandas as pd
 
@@ -192,11 +170,12 @@ df = px.data.gapminder()
 # subset 2
 df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]
 
-fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent',
-                     title = "Multidimensional data",
-                     template = 'plotly_white')
+fig = px.line(df, x='year', y='lifeExp', color='country', symbol='continent',
+              title="Multidimensional data", template='plotly_white')
 fig.show()
 ```
+
+![country_linechart_legend](../assets/p2_c8/chap8.3.5.png)
 
 ### 8.3.6 Scatter Charts with `px.scatter`
 
