@@ -6,7 +6,7 @@ In this chapter you will learn about `Dash DataTables` and how to use them to ex
 ## 9.1 Intro to DataTables
 `DataTables` are an interactive table designed for viewing, editing, and exploring large datasets.  Let's create a basic `DataTable` with the gapminder dataset.
 
-![intro datatable](ch9_files/datatable_intro.png)
+![intro datatable](ch9_files/img/datatable_intro.png)
 
 ```python
 # Import libraries
@@ -42,7 +42,7 @@ if __name__ == '__main__':
 We see that this dataset is huge so let's use the `page_size` property of `DataTables` to limit the rows shown to 10.  We'll also filter the dataset to only look at a few countries
 and remove columns we're not interested in:
 
-![filtered datatable](ch9_files/datatable_filtered.png)
+![filtered datatable](ch9_files/img/datatable_filtered.png)
 
 ```python
 # Import libraries
@@ -91,7 +91,7 @@ Creating the `DataTable` becomes more complicated because we need to make each c
 
 We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
 
-![data table with line plot](ch9_files/datatable_plot_link.gif)
+![data table with line plot](ch9_files/img/datatable_plot_link.gif)
 
 
 ```python
@@ -164,7 +164,7 @@ if __name__ == '__main__':
 
 Let's explore the data further using a `Histogram` that we'll animate to show population change over time:
 
-![datatable histogram link](ch9_files/datatable_hist_link.gif)
+![datatable histogram link](ch9_files/img/datatable_hist_link.gif)
 
 
 ```python
@@ -274,7 +274,7 @@ Let's take a look at some useful `DataTable` props:
 ### 9.3.1 Sorting
 First let's add `sorting`:
 
-![data table sorting](ch9_files/datatable_sort.gif)
+![data table sorting](ch9_files/img/datatable_sort.gif)
 
 
 ```python
@@ -292,7 +292,7 @@ data_table = dash_table.DataTable(
 ### 9.3.2 Filtering
 We can also add the option to filter the columns of data.  In this example we will only use **>** or **<**:
 
-![datatable filter](ch9_files/datatable_filter.gif)
+![datatable filter](ch9_files/img/datatable_filter.gif)
 
 ```python
 # Import libraries
