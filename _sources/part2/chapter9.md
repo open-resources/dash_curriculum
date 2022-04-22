@@ -6,6 +6,8 @@ In this chapter you will learn about `Dash DataTables` and how to use them to ex
 ## 9.1 Intro to DataTables
 `DataTables` are an interactive table designed for viewing, editing, and exploring large datasets.  Let's create a basic `DataTable` with the gapminder dataset.
 
+![intro datatable](../assets/p2_c9/datatable_intro.png)
+
 ```python
 # Import libraries
 from dash import Dash, dash_table
@@ -36,10 +38,11 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![intro datatable](../assets/p2_c9/datatable_intro.png)
 
 We see that this dataset is huge so let's use the `page_size` property of `DataTables` to limit the rows shown to 10.  We'll also filter the dataset to only look at a few countries
 and remove columns we're not interested in:
+
+![filtered datatable](../assets/p2_c9/datatable_filtered.png)
 
 ```python
 # Import libraries
@@ -78,7 +81,6 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![filtered datatable](../assets/p2_c9/datatable_filtered.png)
 ## 9.2 Linking DataTable to a Graph
 
 Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.
@@ -88,6 +90,9 @@ Now we will link the DataTable to a Graph and see that the graph changes when we
 Creating the `DataTable` becomes more complicated because we need to make each column's `editable` and `selectable` property `true`.  We'll modify the `columns` and `columns_selectable` properties of the DataFrame.
 
 We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
+
+![data table with line plot](../assets/p2_c9/datatable_plot_link.gif)
+
 
 ```python
 # Import libraries
@@ -154,11 +159,13 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![data table with line plot](../assets/p2_c9/datatable_plot_link.gif)
 
 ### 9.2.2 Histogram
 
 Let's explore the data further using a `Histogram` that we'll animate to show population change over time:
+
+![datatable histogram link](../assets/p2_c9/datatable_hist_link.gif)
+
 
 ```python
 # Import libraries
@@ -259,7 +266,6 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![datatable histogram link](../assets/p2_c9/datatable_hist_link.gif)
 
 ## 9.3 Other Important DataTable props
 
@@ -267,6 +273,10 @@ Let's take a look at some useful `DataTable` props:
 
 ### 9.3.1 Sorting
 First let's add `sorting`:
+
+![data table sorting](../assets/p2_c9/datatable_sort.gif)
+
+
 ```python
 # Create a Dash DataTable
 data_table = dash_table.DataTable(
@@ -278,7 +288,6 @@ data_table = dash_table.DataTable(
         sort_action='native',
 )
 ```
-![data table sorting](../assets/p2_c9/datatable_sort.gif)
 
 ### 9.3.2 Filtering
 We can also add the option to filter the columns of data.  In this example we will only use **>** or **<**:
