@@ -281,7 +281,9 @@ data_table = dash_table.DataTable(
 ![data table sorting](../assets/p2_c9/datatable_sort.gif)
 
 ### 9.3.2 Filtering
-We can also add the option to sort the columns of data
+We can also add the option to filter the columns of data.  In this example we will only use **>** or **<**:
+
+![datatable filter](../assets/p2_c9/datatable_filter.gif)
 
 ```python
 # Import libraries
@@ -412,7 +414,7 @@ def display_output(rows, columns, sel_col):
 if __name__ == '__main__':
     app.run_server()
 ```
-![datatable filter](../assets/p2_c9/datatable_filter.gif)
+
 
 ### 9.3.3 Delete Columns
 Datasets will often contain much more data than we care about.  Let's allow the user to delete columns in the `DataTable` that they are not interested in:
