@@ -559,8 +559,9 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>TODO: picture of datatable</strong></p>
-<p>We see that this dataset is huge so let’s use the <code class="docutils literal notranslate"><span class="pre">page_size</span></code> property of <code class="docutils literal notranslate"><span class="pre">DataTables</span></code> to limit the rows shown to 10.  We’ll also filter the dataset to only look at a few countries:</p>
+<p><img alt="intro datatable" src="../_images/datatable_intro.png" /></p>
+<p>We see that this dataset is huge so let’s use the <code class="docutils literal notranslate"><span class="pre">page_size</span></code> property of <code class="docutils literal notranslate"><span class="pre">DataTables</span></code> to limit the rows shown to 10.  We’ll also filter the dataset to only look at a few countries
+and remove columns we’re not interested in:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -573,6 +574,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
 <span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Filter columns we want to use</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Create a Dash DataTable</span>
 <span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;dataTable1&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -594,7 +598,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>TODO: picture of filtered datatable</strong></p>
+<p><img alt="filtered datatable" src="../_images/datatable_filtered.png" /></p>
 </div>
 <div class="section" id="linking-datatable-to-a-graph">
 <h2>9.2 Linking DataTable to a Graph<a class="headerlink" href="#linking-datatable-to-a-graph" title="Permalink to this headline">¶</a></h2>
@@ -616,6 +620,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
 <span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Filter columns we want to use</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Create a Dash DataTable</span>
 <span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
@@ -664,7 +671,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><strong>TODO: picture of datatable and graph</strong></p>
+<p><img alt="data table with line plot" src="../_images/datatable_line_plot.png" /></p>
 </div>
 <div class="section" id="histogram">
 <h3>9.2.2 Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h3>
@@ -682,6 +689,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
 <span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Filter columns we want to use</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Create a Dash DataTable</span>
 <span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
