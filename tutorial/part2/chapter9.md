@@ -36,9 +36,10 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-**TODO: picture of datatable**
+![intro datatable](../assets/p2_c9/datatable_intro.png)
 
-We see that this dataset is huge so let's use the `page_size` property of `DataTables` to limit the rows shown to 10.  We'll also filter the dataset to only look at a few countries:
+We see that this dataset is huge so let's use the `page_size` property of `DataTables` to limit the rows shown to 10.  We'll also filter the dataset to only look at a few countries
+and remove columns we're not interested in:
 
 ```python
 # Import libraries
@@ -53,6 +54,9 @@ df = px.data.gapminder()
 # Filter data with a list of countries we're interested in exploring
 country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
 df = df[df['country'].isin(country_list)]
+
+# Filter columns we want to use
+df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
 
 # Create a Dash DataTable
 data_table = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'), page_size=10)
@@ -74,8 +78,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-**TODO: picture of filtered datatable**
-
+![filtered datatable](../assets/p2_c9/datatable_filtered.png)
 ## 9.2 Linking DataTable to a Graph
 
 Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.
@@ -100,6 +103,9 @@ df = px.data.gapminder()
 # Filter data with a list of countries we're interested in exploring
 country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
 df = df[df['country'].isin(country_list)]
+
+# Filter columns we want to use
+df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
 
 # Create a Dash DataTable
 data_table = dash_table.DataTable(
@@ -148,7 +154,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-**TODO: picture of datatable and graph**
+![data table with line plot](../assets/p2_c9/datatable_line_plot.png)
 
 ### 9.2.2 Histogram
 
@@ -168,6 +174,9 @@ df = px.data.gapminder()
 # Filter data with a list of countries we're interested in exploring
 country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
 df = df[df['country'].isin(country_list)]
+
+# Filter columns we want to use
+df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
 
 # Create a Dash DataTable
 data_table = dash_table.DataTable(
