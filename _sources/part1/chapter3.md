@@ -10,6 +10,11 @@ In this chapter we will introduce you to the Dash Core and HTML components which
 - Desgining an App Layout 
 ```
 
+By the end of this chapter you will know how to build this app:
+
+![final-app](./ch3_files/final-app.gif)
+
+
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -57,7 +62,7 @@ if __name__ == '__main__':
 
 ````
 
-[Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch3_files/app.py)
+[Click to download the complete code file for this chapter](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch3_files/app.py)
 
 ## 3.1 Dash Components
 
@@ -95,7 +100,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![button](../assets/p1_c3/button.gif)
+![button](./ch3_files/button.gif)
 
 ````
 
@@ -133,7 +138,7 @@ if __name__ == '__main__':
 
 ```
 
-![checklist](../assets/p1_c3/checklist.gif)
+![checklist](./ch3_files/checklist.gif)
   
 ````
 
@@ -174,7 +179,7 @@ if __name__ == '__main__':
 
 ```
 
-![radio_item](../assets/p1_c3/radio.gif)
+![radio_item](./ch3_files/radio.gif)
 
 ````
 
@@ -214,7 +219,7 @@ if __name__ == '__main__':
 
 ```
 
-![drop_down](../assets/p1_c3/dropdown.gif)
+![drop_down](./ch3_files/dropdown.gif)
   
 ````
 
@@ -255,7 +260,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![slider](../assets/p1_c3/slider.gif)
+![slider](./ch3_files/slider.gif)
 ````
 
 ## 3.2 Layout
@@ -293,7 +298,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![colored_initial_app_layout](../assets/p1_c3/app-layout1.png)
+![colored_initial_app_layout](./ch3_files/app-layout1.png)
 
 ```{admonition} Note
 - The colors above are for demonstration purposes, you will not see them in your local dashboard
@@ -351,7 +356,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![colored_app](../assets/p1_c3/app_colored.png)
+![colored_app](./ch3_files/app_colored.png)
 
 We see there are four rows with columns of various widths which contain components. Notice that the total column width in the first and last row is 8 and 11 respectively. Having less than 12 assigned to column width is fine, just remember that the total amount of column width within each row should **never surpasses 12**.  
 
