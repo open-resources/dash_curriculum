@@ -1,7 +1,7 @@
 # Chapter 0 - Stack Installation
 ## What you will learn
 
-In this chapter we will set up the tech stack used in this course.  A **tech stack** is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applicatoins.
+In this chapter we will set up the tech stack used in this course.  A **tech stack** is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applications.
 
 - **Visual Studio Code**
   - VScode is a program that we will use to edit and debug our code
@@ -49,7 +49,7 @@ Lastly, open the newly cloned folder in VScode\
 
 
 ## Test the stack
-Let's make sure everything is installed correctly.  Open VScode and create a new file called **main.py**.  Copy and paste this code:
+Let's make sure everything is installed correctly.  Open VScode and create a new file called **`main.py`**.  Copy and paste this code:
 ```
 import dash 
 import dash_bootstrap_components as dbc
@@ -58,17 +58,22 @@ import pandas
 
 print("Hello World!")
 ```
-Then press **F5** to debug/run the file.  If we see **Hello World!** printed out in the console then we know the Python code is working properly with all libraries installed. 
-**gif:  Code working in VScode**
+Click the **Run** tab, then click **Run Without Debugging** to run the file.  If we see **Hello World!** printed out in the terminal, we know the Python code is working properly with all libraries installed. 
 
-Now that we have our **main.py** file running let's use ```git``` to track the file in our repository.  Go to the terminal in VScode and type ```git status```.  We see that there is a new **Untracked file** called **main.py**:
-**gif: Git status**
+![img-vscode](./ch0_files/run_the_code.png)
+
+Now that we have our **`main.py`** file running let's use ```git``` to track the file in our repository.  Go to the terminal in VScode and type ```git status```.  We see that there is a new **Untracked file** called **`main.py`**:
+
+![img-status](./ch0_files/git_status.png)
+
 
 We'll **add** that file to the git **staging area** with ```git add main.py```:
-**gif: Git add**
 
-Then we need to **commit** the changes.  Type in ```git commit -m "This is a commit message"```.  Every commit needs a message and this is a good opportunity to include a short reminder of what this commit changed:
-**gif: Git commit**
+![img-add](./ch0_files/git_add.png)
+
+Then we need to **commit** the changes. Type in ```git commit -m "This is a commit message"```.  Every commit needs a message and this is a good opportunity to include a short reminder of what this commit changed:
+
+![img-commit](./ch0_files/git_commit.png)
 
 Lastly, we will push the changes to our Github repo with ```git push```
 **gif:  succesful git push**

@@ -447,7 +447,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 0 - Stack Installation<a class="headerlink" href="#chapter-0-stack-installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will set up the tech stack used in this course.  A <strong>tech stack</strong> is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applicatoins.</p>
+<p>In this chapter we will set up the tech stack used in this course.  A <strong>tech stack</strong> is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applications.</p>
 <ul class="simple">
 <li><p><strong>Visual Studio Code</strong></p>
 <ul>
@@ -511,7 +511,7 @@ Lastly, open the newly cloned folder in VScode<br />
 </div>
 <div class="section" id="test-the-stack">
 <h2>Test the stack<a class="headerlink" href="#test-the-stack" title="Permalink to this headline">¶</a></h2>
-<p>Let’s make sure everything is installed correctly.  Open VScode and create a new file called <strong><a class="reference external" href="http://main.py">main.py</a></strong>.  Copy and paste this code:</p>
+<p>Let’s make sure everything is installed correctly.  Open VScode and create a new file called <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong>.  Copy and paste this code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span> 
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">pandas</span>
@@ -520,14 +520,14 @@ Lastly, open the newly cloned folder in VScode<br />
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then press <strong>F5</strong> to debug/run the file.  If we see <strong>Hello World!</strong> printed out in the console then we know the Python code is working properly with all libraries installed.
-<strong>gif:  Code working in VScode</strong></p>
-<p>Now that we have our <strong><a class="reference external" href="http://main.py">main.py</a></strong> file running let’s use <code class="docutils literal notranslate"><span class="pre">git</span></code> to track the file in our repository.  Go to the terminal in VScode and type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>.  We see that there is a new <strong>Untracked file</strong> called <strong><a class="reference external" href="http://main.py">main.py</a></strong>:
-<strong>gif: Git status</strong></p>
-<p>We’ll <strong>add</strong> that file to the git <strong>staging area</strong> with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">main.py</span></code>:
-<strong>gif: Git add</strong></p>
-<p>Then we need to <strong>commit</strong> the changes.  Type in <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">commit</span> <span class="pre">message&quot;</span></code>.  Every commit needs a message and this is a good opportunity to include a short reminder of what this commit changed:
-<strong>gif: Git commit</strong></p>
+<p>Click the <strong>Run</strong> tab, then click <strong>Run Without Debugging</strong> to run the file.  If we see <strong>Hello World!</strong> printed out in the terminal, we know the Python code is working properly with all libraries installed.</p>
+<p><img alt="img-vscode" src="../_images/run_the_code.png" /></p>
+<p>Now that we have our <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong> file running let’s use <code class="docutils literal notranslate"><span class="pre">git</span></code> to track the file in our repository.  Go to the terminal in VScode and type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>.  We see that there is a new <strong>Untracked file</strong> called <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong>:</p>
+<p><img alt="img-status" src="../_images/git_status.png" /></p>
+<p>We’ll <strong>add</strong> that file to the git <strong>staging area</strong> with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">main.py</span></code>:</p>
+<p><img alt="img-add" src="../_images/git_add.png" /></p>
+<p>Then we need to <strong>commit</strong> the changes. Type in <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">commit</span> <span class="pre">message&quot;</span></code>.  Every commit needs a message and this is a good opportunity to include a short reminder of what this commit changed:</p>
+<p><img alt="img-commit" src="../_images/git_commit.png" /></p>
 <p>Lastly, we will push the changes to our Github repo with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>
 <strong>gif:  succesful git push</strong></p>
 </div>
