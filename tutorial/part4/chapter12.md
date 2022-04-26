@@ -6,7 +6,6 @@
  - Horizontal alignment
  - Container Fluid prop
  - adjusting columns by screen size:
- - 
 ```
       app.layout = dbc.Container([
           dbc.Row(
