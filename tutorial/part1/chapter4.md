@@ -14,13 +14,74 @@ After finishing this chapter you'll have a fully-operational interactive app tha
 - Additional examples of callbacks
 ```
 
+By the end of this chapter you will know how to build this app:
+
+![gif4-3](./ch4_files/gif-chap4-3.gif)
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='My First app', style={'fontSize': 12})
+dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
+slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([markdown], width=8)]),
+        dbc.Row(
+            [
+                dbc.Col([dropdown], width=3),
+                dbc.Col([slider], width=9),
+            ]
+        ),
+    ]
+)
+
+
+# Callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value')
+)
+def update_markdown(value_dropdown):
+    title = value_dropdown
+    return title
+
+
+@app.callback(
+    Output(component_id='our-markdown', component_property='style'),
+    Input(component_id='our-slider', component_property='value')
+)
+def update_markdown(value_slider):
+    title_size = {'fontSize': 12+2*value_slider}
+    return title_size
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+````
+
+[Click to download the complete code file for this chapter](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch4_files/ch4_app.py)
+
 ## 4.1 Introduction to decorators in Python
 
-Decorators can extend the behavior of a Python function without directly modifying the function's code.
+Decorators can extend the behavior of a Python function without directly modifying the function's code. They "decorate" functions, that is, they wrap code around a function to enhance the function's capabilities. Decorators are usually called before defining the function that you want to decorate. 
 
-```{tip}
 For a comprehensive overview of the Python decorator, have a look at [Real Python](https://realpython.com/primer-on-python-decorators/).
-```
 
 ## 4.2 Structure of app callbacks
 
@@ -80,7 +141,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![callbacks1](../assets/p1_c4/chap4-gif1.1.gif)
+![gif4-1](./ch4_files/gif-chap4.1.gif)
 
 Let’s go through this code step by step. Note that for linking components with each other, we have to uniquely identify them in order to distinguish between them. For this purpose, you should add the `id` property to each component, as we do above with the Dropdown and Markdown components. In addition to `id` property, we also include the `value` property for the dropdown. This will indicate the default value of the dropdown displayed on the page when loaded for the first time.
 
@@ -191,7 +252,7 @@ if __name__ == '__main__':
 
 Notice that we return the `markdown_style` object which is a dictionary type. We do this because the `style` property of the Markdown is of dictionary type.
 
-![callbacks2](../assets/p1_c4/chap4-gif2.gif)
+![gif4-2](./ch4_files/gif-chap4-2.gif)
 
 ### 4.3.2 Bringing everything together
 
@@ -248,7 +309,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![callbacks3](../assets/p1_c4/chap4-gif3.gif)
+![gif4-3](./ch4_files/gif-chap4-3.gif)
 
 ## Summary
 
