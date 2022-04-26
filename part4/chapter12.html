@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 12 &#8212; Dash Tutorial</title>
+    <title>Chapter 12 Advanced Layout and Styling &#8212; Dash Tutorial</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -367,6 +367,34 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-layout-with-dash-bootstrap-components">
+   Advanced Layout with Dash Bootstrap Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-styling-with-dash-bootstrap-components">
+   Advanced Styling with Dash Bootstrap Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-layout-component-inside-a-callback">
+   Creating a layout component inside a callback
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-app-layout">
+   Dynamic app layout
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -374,19 +402,101 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 12</h1>
+                <h1>Chapter 12  Advanced Layout and Styling</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-layout-with-dash-bootstrap-components">
+   Advanced Layout with Dash Bootstrap Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-styling-with-dash-bootstrap-components">
+   Advanced Styling with Dash Bootstrap Components
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-layout-component-inside-a-callback">
+   Creating a layout component inside a callback
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dynamic-app-layout">
+   Dynamic app layout
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-12">
-<h1>Chapter 12<a class="headerlink" href="#chapter-12" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-12-advanced-layout-and-styling">
+<h1>Chapter 12  Advanced Layout and Styling<a class="headerlink" href="#chapter-12-advanced-layout-and-styling" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="advanced-layout-with-dash-bootstrap-components">
+<h2>Advanced Layout with Dash Bootstrap Components<a class="headerlink" href="#advanced-layout-with-dash-bootstrap-components" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Vertical alignment</p></li>
+<li><p>Horizontal alignment</p></li>
+<li><p>Container Fluid prop</p></li>
+<li><p>adjusting columns by screen size:</p></li>
+<li></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+          <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+              <span class="p">[</span>
+              <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                  <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;left div&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-primary&quot;</span><span class="p">),</span>
+              <span class="n">xs</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sm</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">md</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">lg</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">xl</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="c1"># This sets the column width for different screen sizes</span>
+              <span class="p">),</span>
+              <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                  <span class="n">my_table</span><span class="p">,</span>
+                  <span class="n">xs</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sm</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">md</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">lg</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">xl</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="c1"># This sets the column width for different screen sizes</span>
+              <span class="p">),</span>
+              <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                  <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;right div&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-primary&quot;</span><span class="p">),</span>
+              <span class="n">xs</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">sm</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">md</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">lg</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">xl</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="c1"># This sets the column width for different screen sizes</span>
+              <span class="p">),</span>
+
+              <span class="p">]</span> <span class="p">,</span><span class="n">className</span><span class="o">=</span><span class="s2">&quot;g-0&quot;</span> <span class="c1">#This allows to have no space between the columns. Delete if you want to have that breathing space</span>
+          <span class="p">)</span>
+      <span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="advanced-styling-with-dash-bootstrap-components">
+<h2>Advanced Styling with Dash Bootstrap Components<a class="headerlink" href="#advanced-styling-with-dash-bootstrap-components" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Introduction to <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/">Dash Bootstrap themes</a></p></li>
+<li><p>Most common <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">styling components</a></p>
+<ul>
+<li><p>me, ms, mt, nb</p></li>
+<li><p>text color, background color, border color</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+<li><p>Dark them or light theme app</p></li>
+</ul>
+</div>
+<div class="section" id="creating-a-layout-component-inside-a-callback">
+<h2>Creating a layout component inside a callback<a class="headerlink" href="#creating-a-layout-component-inside-a-callback" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="dynamic-app-layout">
+<h2>Dynamic app layout<a class="headerlink" href="#dynamic-app-layout" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dash.plotly.com/live-updates#updates-on-page-load">https://dash.plotly.com/live-updates#updates-on-page-load</a></p></li>
+</ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
