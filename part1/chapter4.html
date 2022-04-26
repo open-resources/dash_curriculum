@@ -517,14 +517,72 @@ After finishing this chapter you’ll have a fully-operational interactive app t
 <li><p>Additional examples of callbacks</p></li>
 </ul>
 </div>
+<p>By the end of this chapter you will know how to build this app:</p>
+<p><img alt="gif4-3" src="../_images/gif-chap4-3.gif" /></p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to the App&#39;</span><span class="p">,</span> <span class="s1">&#39;This is the title&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">markdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">slider</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">value_dropdown</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;style&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">title_size</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">value_slider</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">title_size</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch4_files/ch4_app.py">Click to download the complete code file for this chapter</a></p>
 </div>
 <div class="section" id="introduction-to-decorators-in-python">
 <h2>4.1 Introduction to decorators in Python<a class="headerlink" href="#introduction-to-decorators-in-python" title="Permalink to this headline">¶</a></h2>
-<p>Decorators can extend the behavior of a Python function without directly modifying the function’s code.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
+<p>Decorators can extend the behavior of a Python function without directly modifying the function’s code. They “decorate” functions, that is, they wrap code around a function to enhance the function’s capabilities. Decorators are usually called before defining the function that you want to decorate.</p>
 <p>For a comprehensive overview of the Python decorator, have a look at <a class="reference external" href="https://realpython.com/primer-on-python-decorators/">Real Python</a>.</p>
-</div>
 </div>
 <div class="section" id="structure-of-app-callbacks">
 <h2>4.2 Structure of app callbacks<a class="headerlink" href="#structure-of-app-callbacks" title="Permalink to this headline">¶</a></h2>
@@ -581,7 +639,7 @@ After finishing this chapter you’ll have a fully-operational interactive app t
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="callbacks1" src="assets/p1_c4/chap4-gif1.1.gif" /></p>
+<p><img alt="gif4-1" src="../_images/gif-chap4.1.gif" /></p>
 <p>Let’s go through this code step by step. Note that for linking components with each other, we have to uniquely identify them in order to distinguish between them. For this purpose, you should add the <code class="docutils literal notranslate"><span class="pre">id</span></code> property to each component, as we do above with the Dropdown and Markdown components. In addition to <code class="docutils literal notranslate"><span class="pre">id</span></code> property, we also include the <code class="docutils literal notranslate"><span class="pre">value</span></code> property for the dropdown. This will indicate the default value of the dropdown displayed on the page when loaded for the first time.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -679,7 +737,7 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
 </pre></div>
 </div>
 <p>Notice that we return the <code class="docutils literal notranslate"><span class="pre">markdown_style</span></code> object which is a dictionary type. We do this because the <code class="docutils literal notranslate"><span class="pre">style</span></code> property of the Markdown is of dictionary type.</p>
-<p><img alt="callbacks2" src="assets/p1_c4/chap4-gif2.gif" /></p>
+<p><img alt="gif4-2" src="../_images/gif-chap4-2.gif" /></p>
 </div>
 <div class="section" id="bringing-everything-together">
 <h3>4.3.2 Bringing everything together<a class="headerlink" href="#bringing-everything-together" title="Permalink to this headline">¶</a></h3>
@@ -734,7 +792,7 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="callbacks3" src="assets/p1_c4/chap4-gif3.gif" /></p>
+<p><img alt="gif4-3" src="../_images/gif-chap4-3.gif" /></p>
 </div>
 </div>
 <div class="section" id="summary">
