@@ -410,11 +410,13 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#reading-data-from-a-url">
      6.2.2 Reading data from a URL
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-data-from-a-json-file">
-     6.2.3 Reading data from a json file
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reading-data-from-a-json-file">
+       Reading data from a json file
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -518,11 +520,13 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#reading-data-from-a-url">
      6.2.2 Reading data from a URL
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reading-data-from-a-json-file">
-     6.2.3 Reading data from a json file
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#reading-data-from-a-json-file">
+       Reading data from a json file
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -583,14 +587,15 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 6 - Working with Data in Dash<a class="headerlink" href="#chapter-6-working-with-data-in-dash" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will introduce data into Dash apps. We will show how to:</p>
+<p>In this chapter we will show you how to incorporate data into Dash apps. There are many ways one could add data to an app, but we will focus on a few of the most common ways when working with Dash.</p>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
 <li><p>import data into the app</p></li>
 <li><p>create and populate Pandas dataframes</p></li>
-<li><p>review basic data wrangling techniques often used to prepare data for reporting.</p></li>
+<li><p>review basic data wrangling techniques often used to prepare data for reporting</p></li>
 </ul>
-<p>By the end of the chapter, you’ll be comfortable with incorporating your own data into a Dash app:
-<a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/chapter6_fin_app.py">Download the file</a></p>
+</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="where-to-import-data-within-dash-apps">
@@ -598,79 +603,84 @@ const thebe_selector_output = ".output, .cell_output"
 <p>The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, layout, etc.
 For this reason, we recommend importing the data before initialising the app, right above this line of code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data imported here</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Initialise app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In this way, the data will be globally available to all objects that are created in the code.</p>
-<p>One of the easiest and most convenient methods to represent our data is through a Pandas dataframe.
-An empty dataframe is created with the code below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+<p>One of the most common cases for incorporating data into our app is when we need to quickly test out a piece of code. In those cases, we can build our own data set through a pandas dataframe. An empty dataframe is created with the code below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data imported here</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="c1"># Initialise app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Some mock-up data can be added using a dictionary, in this way:</p>
+<p>Then, some mock-up data can be added using a dictionary:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Country&#39;</span><span class="p">:[</span><span class="s1">&#39;United States&#39;</span><span class="p">,</span><span class="s1">&#39;Norway&#39;</span><span class="p">,</span><span class="s1">&#39;Italy&#39;</span><span class="p">,</span><span class="s1">&#39;Sweden&#39;</span><span class="p">,</span><span class="s1">&#39;France&#39;</span><span class="p">],</span>
                          <span class="s1">&#39;Country Code&#39;</span><span class="p">:[</span><span class="s1">&#39;US&#39;</span><span class="p">,</span><span class="s1">&#39;NO&#39;</span><span class="p">,</span><span class="s1">&#39;IT&#39;</span><span class="p">,</span><span class="s1">&#39;SE&#39;</span><span class="p">,</span><span class="s1">&#39;FR&#39;</span><span class="p">]})</span>
 </pre></div>
 </div>
-<p>(In the code above, the dictionary keys “Country” and “Country code” will be the column names of the Pandas dataframe).</p>
+<p>The dictionary keys <code class="docutils literal notranslate"><span class="pre">Country</span></code> and <code class="docutils literal notranslate"><span class="pre">Country</span> <span class="pre">code</span></code> will represent the column names of the pandas dataframe.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you need access to pre-built data sets to test your code, consider using the Plotly Express built-in data, such as Gapminder or <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.data.html">other data</a>, which can be added to your app with these commands:</p>
+<p>df = px.data.gapminder()</p>
+</div>
 </div>
 <div class="section" id="uploading-data-into-an-app">
 <h2>6.2 Uploading data into an app<a class="headerlink" href="#uploading-data-into-an-app" title="Permalink to this headline">¶</a></h2>
-<p>In case our data is available on files or on the internet, we will read the data from the source and convert it into a Pandas dataframe.
-There are several ways of incorporating data into our app; we will focus on these methodologies:</p>
+<p>Whether our data is located on our computer or on the internet, we need to read the data from the source and convert it into a pandas dataframe. There are several ways of uploading data into our app; we will focus on these methodologies, as they are commonly used by Dash-app creators:</p>
 <ul class="simple">
-<li><p>reading data from files (.xls, .csv, .json)</p></li>
+<li><p>reading data from files on our computer (.xls, .csv, .json)</p></li>
 <li><p>reading data from a URL</p></li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you need some test dataset to play with or test your code, consider using the Plotly Express built-in data sets, such as Gapminder, which can be added to your App with these commands:</p>
-<p>import plotly.express as px
-df = px.data.gapminder()</p>
-</div>
 <div class="section" id="reading-data-from-files-on-your-computer">
 <h3>6.2.1 Reading data from files on your computer<a class="headerlink" href="#reading-data-from-files-on-your-computer" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
 <p>Let’s see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe.
-The file we’ll be using is available here <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">data_01</a>: follow the link click on “download”; locate the file in your download folder.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\YourUser\Downloads\data_01.xlsx&#39;</span>
+The file we’ll be using is available here <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">data_01</a>: follow the link and click on “Download”; find the folder where the file was downloaded and copy the path. Note that you will need to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">openpyxl</span></code> into your terminal in order to work with <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> files</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\YourUser\Downloads\data_01.xlsx&#39;</span>
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>In this example, we have accessed data outside the app folder, and therefore specified a filepath. The path is here saved as a raw string (hence the “r” just before the string containing the path. This is done as VS code may trigger a warning when using a normal string).
-If your file is located directly into your app folder (or within VS code working directory), the full path is not required; you may only specify the filename. The code will then become: <code class="docutils literal notranslate"><span class="pre">filepath</span> <span class="pre">=</span> <span class="pre">'data_01.xlsx'</span> </code></p></li>
-</ul>
+<p>In this example, we have accessed the data (Excel file) outside the folder where our main app is located; therefore, we specified a filepath. The path is saved as a raw string (hence the “r” just before the string containing the path. This is done because VS Code may trigger a warning when using a normal string).</p>
+<p>If the data file is located directly inside the folder where your main app file is (or within the VS Code working directory), the full path is not required; you may only specify the filename. The code will then become:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="s1">&#39;data_01.xlsx&#39;</span> 
+<span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you experience any difficulties in finding your filepath, please check <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG">this screenshot</a>, showing how to find the filepath directly from WS code.</p>
+<p>If you experience any difficulties in finding your filepath, please check <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG">this screenshot</a>, showing how to find the filepath directly from VS Code.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In production versions, when apps get deployed, the best practice is to have a “data” folder, where all files are stored and therefore accessed by the app code. This will be covered in <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part4/chapter14.html">Chapter 14</a>.</p>
+<p>In production versions, when apps get deployed, the best practice is to have a “data” folder, where all data files are stored and therefore accessed by the app code. This will be covered in <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part4/chapter14.html">Chapter 14</a>.</p>
 </div>
-<ul class="simple">
-<li><p>We uploaded one Excel tab (named “Sheet1”) to a data frame called “df1”.</p></li>
-<li><p>After the data uploads, the dataframe would look like the following:</p></li>
-</ul>
+<p>We uploaded one Excel tab (named “Sheet1”) to a data frame called “df1”. After the data uploads, the dataframe would look like the following:</p>
 <p><img alt="Excel data 01" src="../_images/data01.JPG" /></p>
 </div>
 <div class="section" id="csv-files">
 <h4>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
-<p>We will now upload the same data from above, but from a .csv file named <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click on the “Copy raw contents” button, then paste the records into a new file on your laptop, saving it as “data_02.csv”</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\User1\Downloads\data_02.csv&#39;</span>
+<p>We will now upload the same data from above, but from a .csv file named <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click on the “Copy raw contents” button, select all, then paste the records into a new Excel file on your laptop, saving it as “data_02.csv”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\User1\Downloads\data_02.csv&#39;</span>
 <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
 <span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># you can also use: print(df2.head()) -- VS Code supports both</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Similarly to the previous example, we have accessed data outside the app folder, and therefore specified a filepath as a raw string.</p></li>
-<li><p>In most cases, you will see .csv files with comma column separators (hence the name, csv standing for “comma-separated values”). Here, we used a different separator: ‘|’. The “sep” argument allows to specify whatever characters should be considered field separators: Pandas will separate data into different columns any time it encounters these characters.</p></li>
-<li><p>We have also selected a subset of columns to be uploaded, listed in the “usecols” argument. The remaining columns that are present in the file will be ignored.</p></li>
-<li><p>After the data is uploaded, the dataframe looks like the following:</p></li>
+<li><p>Similarly to the previous example, we have accessed the data located outside the app folder, and therefore specified a filepath as a raw string.</p></li>
+<li><p>In most cases, you will see .csv files with comma column separators (hence the name, csv standing for “comma-separated values”). Here, we used a different separator: ‘|’. The <code class="docutils literal notranslate"><span class="pre">sep</span></code> argument allows to specify whatever characters should be considered field separators: pandas will separate data into different columns any time it encounters these characters.</p></li>
+<li><p>We have also selected a subset of columns to be uploaded, listed in the <code class="docutils literal notranslate"><span class="pre">usecols</span></code> argument. The remaining columns that are present in the file will be ignored.</p></li>
 </ul>
 <p><img alt="csv data 02" src="../_images/data02.JPG" /></p>
 </div>
@@ -678,20 +688,20 @@ If your file is located directly into your app folder (or within VS code working
 <div class="section" id="reading-data-from-a-url">
 <h3>6.2.2 Reading data from a URL<a class="headerlink" href="#reading-data-from-a-url" title="Permalink to this headline">¶</a></h3>
 <p>We will now upload the same data from above, but from <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The above URL is a link to a .txt file that is online. The pd.read_table() function will work for other file formats too, such as: .txt, .csv</p>
+<p>The above URL is a link to a .txt file that is online. The pd.read_table() function will work for other file formats too, such as .csv files.</p>
 </div>
 <p>The code above, will generate a dataframe that looks like:</p>
 <p><img alt="url data 03" src="../_images/data03.JPG" /></p>
-</div>
 <div class="section" id="reading-data-from-a-json-file">
-<h3>6.2.3 Reading data from a json file<a class="headerlink" href="#reading-data-from-a-json-file" title="Permalink to this headline">¶</a></h3>
+<h4>Reading data from a json file<a class="headerlink" href="#reading-data-from-a-json-file" title="Permalink to this headline">¶</a></h4>
 <p>We will now upload data stored in json format. You may encounter this file format when working with API or web services as it is mostly used to interchange data among applications. In our case, the json data we’ll upload is available on <a class="reference external" href="https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json&#64;74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json">this URL</a>.</p>
 <ul class="simple">
 <li><p>Pandas includes a specific function to process json files: pd.read_json()</p></li>
@@ -702,6 +712,7 @@ If your file is located directly into your app folder (or within VS code working
 </pre></div>
 </div>
 <p><img alt="json_data_04" src="../_images/json_data_04.JPG" /></p>
+</div>
 </div>
 </div>
 <div class="section" id="data-wrangling-basics">
@@ -729,12 +740,10 @@ Let’s see two examples:</p>
 <span class="n">df3_Slice2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>The first command will filter the df3 dataframe picking rows that have ‘Americas’ as continent. The ‘:’ indicates that we don’t want to specify any column-filtering conditions, hence, all columns will be selected.</p></li>
-<li><p>The second command adds more row-filtering conditions: rows will be filtered based on American continent and also on ‘year’, which must be either 2002 or 2007. Additionally, only three columns will be saved into df3_Slice2, namely: country, year, pop. The second command results in:</p></li>
-</ul>
+<p>The first command will filter the df3 dataframe picking rows that have ‘Americas’ as continent. The <code class="docutils literal notranslate"><span class="pre">:</span></code> indicates that we don’t want to specify any column-filtering conditions, hence, all columns will be selected.</p>
+<p>The second command adds more row-filtering conditions: rows will be filtered based on American continent and also on ‘year’, which must be either 2002 or 2007. Additionally, only three columns will be saved into <code class="docutils literal notranslate"><span class="pre">df3_Slice2</span></code>, namely: country, year, pop. The second command results in:</p>
 <p><img alt="df3_Slice2" src="../_images/df3_Slice2.JPG" /></p>
-<p>As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slicing criteria above, can also be obtained via:</p>
+<p>As an alternative to the .loc method, this is another powerful way to access rows that match a certain condition. The first slicing criteria above can also be obtained via:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -752,7 +761,7 @@ Let’s see two examples:</p>
 </div>
 <div class="section" id="using-data-in-the-app">
 <h2>6.4 Using data in the App<a class="headerlink" href="#using-data-in-the-app" title="Permalink to this headline">¶</a></h2>
-<p>We will now show how to use the data we’ve uploaded with a couple of examples.</p>
+<p>Let’s now see how to use the data we’ve uploaded through a couple of examples.</p>
 <div class="section" id="example-1">
 <h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h3>
 <p>In the below app, we import the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url">“df3” dataframe</a> that we created above, and use the list of unique continents to create the “options” of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.</p>
@@ -795,8 +804,7 @@ Let’s see two examples:</p>
 </pre></div>
 </div>
 <p>The above code will generate the following App:</p>
-<p><img alt="Example 1" src="../_images/Example01.JPG" />
-<strong>Include gif to transition from code to App starting page, then selecting a continent and displaying the output</strong></p>
+<p><img alt="Example 1" src="../_images/Example01.JPG" /></p>
 </div>
 <div class="section" id="example-2">
 <h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h3>
@@ -866,7 +874,7 @@ Based on the selected country, the total population will be displayed.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In the code above, you may notice that in the second callback we have added this prop: <code class="docutils literal notranslate"><span class="pre">prevent_initial_call=True</span></code>. This was necessary here, since the ‘country-dropdown’ component doesn’t have any default option (the options are in fact depending on the first dropdown selection). By default, Dash calls every callback when initialising the app: we want to prevent this initial call as Dash wouldn’t find any input value for this callback.</p>
+<p>In the code above, you may notice that in the second callback we have added this prop: <code class="docutils literal notranslate"><span class="pre">prevent_initial_call=True</span></code>. This was necessary, since the ‘country-dropdown’ component doesn’t have any default option (the options, in fact, depend on the first dropdown selection). By default, Dash calls every callback when initialising the app. We want to prevent this initial call, as Dash wouldn’t find any input value for this callback.</p>
 </div>
 <p>The above code will generate the following app:</p>
 <p><img alt="Example 2" src="../_images/Example02.JPG" />
@@ -875,8 +883,8 @@ Based on the selected country, the total population will be displayed.</p>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we have explored several options to upload data into a Pandas dataframe, that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
-In the next chapter we will dive into data visualisation, exploring several figures available in px (Plotly express).</p>
+<p>In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.</p>
+<p>In the next chapter we will dive into data visualisation, exploring the Plotly Express graphing library.</p>
 </div>
 </div>
 
