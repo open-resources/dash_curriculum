@@ -37,7 +37,8 @@
     - etc. 
   - Dark them or light theme app
 
-## Creating a layout component inside a callback
+## Creating a component inside a callback
+  - suppress_callback_exceptions
 
 ## Dynamic app layout
   - https://dash.plotly.com/live-updates#updates-on-page-load
