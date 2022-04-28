@@ -491,7 +491,17 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 2: Getting Started with Dash<a class="headerlink" href="#chapter-2-getting-started-with-dash" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we’ll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you’ll understand the following code, and how to launch it as your first minimal Dash app:</p>
+<p>This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we’ll explain the structure of a Dash app and demonstrate how to set up your first app.</p>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
+<ul class="simple">
+<li><p>Structuring of Dash app</p></li>
+<li><p>Running a Dash app</p></li>
+<li><p>Interacting and updating an app</p></li>
+</ul>
+</div>
+<p>By the end of this chapter you will know how to build and launch this inital app on your local browser:</p>
+<p><img alt="first_app" src="../_images/chap2-1.png" /></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -517,7 +527,7 @@ See Code<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details><p><a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter2_app.py">Click here to download the complete code file for this chapter</a></p>
+</details><p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch2_files/chapter2_app.py">Click to download the complete code file for this chapter</a></p>
 </div>
 <div class="section" id="structure-of-a-dash-app">
 <h2>2.1 Structure of a Dash App<a class="headerlink" href="#structure-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
@@ -575,7 +585,7 @@ This one line of code is pretty much static for any Dash app you create. In late
 <p>The “server” is referring to a Python process that runs locally on your computer. It will be accessible from our laptop only. In Chapter 5 we will see how to start this Python process on a web server (“deployment”), which is a computer in the cloud that let’s anyone access the page.</p>
 </div>
 <p>Once we have the full code ready and saved in a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file (conventionally <code class="docutils literal notranslate"><span class="pre">app.py</span></code> but any name works), we need to launch it:
-<img alt="alt txt" src="../_images/chap2-gif1.gif" /></p>
+<img alt="runapp-gif" src="../_images/chap2-gif1.gif" /></p>
 <p>After launching the app, we will see the following console output:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dash</span> <span class="ow">is</span> <span class="n">running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8050</span><span class="o">/</span>
 
@@ -589,7 +599,7 @@ This one line of code is pretty much static for any Dash app you create. In late
 <ul class="simple">
 <li><p>In order to display the app, click the URL shown in the console, or open the browser and navigate to the URL manually, in this case: <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a></p></li>
 </ul>
-<p><img alt="alt txt" src="assets/p1_c2/chap2-fig1.png" /></p>
+<p><img alt="first_app" src="../_images/chap2-1.png" /></p>
 </div>
 </div>
 <hr class="docutils" />
