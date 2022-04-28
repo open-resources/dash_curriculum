@@ -44,4 +44,30 @@
   - https://dash.plotly.com/live-updates#updates-on-page-load
 
 
+## Styling DataTable
 
+Now let's add some `styling` to the DataTable
+
+```python
+# Create a Dash DataTable
+data_table = dash_table.DataTable(
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        sort_action='native',
+        style_cell={'padding': '5px'},
+        style_data_conditional=[
+            {
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(204, 230, 255)'},
+            ],
+
+        style_header={
+            'backgroundColor': 'rgb(230, 230, 230)',
+            'fontWeight': 'bold'}
+)
+```
+
+**TODO: picture of datatable**
