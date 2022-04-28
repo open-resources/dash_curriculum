@@ -4,7 +4,7 @@
 In this chapter you will learn about `Dash DataTables` and how to use them to explore and edit data.
 
 ## 9.1 Intro to DataTables
-`DataTables` are an interactive table designed for viewing, editing, and exploring large datasets.  Let's create a basic `DataTable` with the gapminder dataset.
+`DataTables` are an interactive table designed for viewing, editing, and exploring large datasets like with Microsoft Excel or Google Sheets.  Let's create a basic `DataTable` with the gapminder dataset.
 
 ![intro datatable](ch9_files/img/datatable_intro.png)
 
@@ -87,7 +87,7 @@ Now we will link the DataTable to a Graph and see that the graph changes when we
 
 ### 9.2.1 Line Plot
 
-Creating the `DataTable` becomes more complicated because we need to make each column's `editable` and `selectable` property `true`.  We'll modify the `columns` and `columns_selectable` properties of the DataFrame.
+Creating the `DataTable` becomes more complicated because we need to make each column's `selectable` property `true`.  We'll modify the `columns` and `columns_selectable` properties of the DataFrame.
 
 We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
 
@@ -116,7 +116,7 @@ df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
 data_table = dash_table.DataTable(
         id='dataTable1', 
         data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        columns=[{'name': i, 'id': i,'selectable':True} for i in df.columns],
         page_size=10,
         column_selectable="single",
 )
@@ -189,7 +189,7 @@ df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
 data_table = dash_table.DataTable(
         id='dataTable1', 
         data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        columns=[{'name': i, 'id': i, 'selectable':True} for i in df.columns],
         page_size=10,
         column_selectable="single",
 )
@@ -282,7 +282,7 @@ First let's add `sorting`:
 data_table = dash_table.DataTable(
         id='dataTable1', 
         data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        columns=[{'name': i, 'id': i, 'selectable':True} for i in df.columns],
         page_size=10,
         column_selectable="single",
         sort_action='native',
@@ -316,7 +316,7 @@ df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
 data_table = dash_table.DataTable(
         id='dataTable1', 
         data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        columns=[{'name': i, 'id': i, 'selectable':True} for i in df.columns],
         page_size=10,
         column_selectable="single",
         sort_action='native',
@@ -432,7 +432,7 @@ Datasets will often contain much more data than we care about.  Let's allow the 
 data_table = dash_table.DataTable(
         id='dataTable1', 
         data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True, 'deletable':True} for i in df.columns],
+        columns=[{'name': i, 'id': i, 'selectable':True, 'deletable':True} for i in df.columns],
         page_size=10,
         column_selectable="single",
         sort_action='native',
