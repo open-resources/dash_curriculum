@@ -442,5 +442,22 @@ data_table = dash_table.DataTable(
 **TODO: gif of deleting columns**
 
 
+### 9.3.4 Delete Rows
+Sometimes we'd like to remove a datapoint from our plot.  Let's allow the user to delete rows in the `DataTable`:
+# Create a Dash DataTable
+data_table = dash_table.DataTable(
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'selectable':True, 'deletable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        sort_action='native',
+        filter_action='native',
+        row_deletable=True,
+
+)
+```
+**TODO: gif of deleting columns**
+
 ## Summary
 In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about **Advanced Callbacks**.
