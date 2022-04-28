@@ -1,7 +1,17 @@
 # Chapter 2: Getting Started with Dash
 
 ## What you will learn
-This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app, how to interact with it, and how to update it. By the end of the chapter, you'll understand the following code, and how to launch it as your first minimal Dash app:
+This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app and demonstrate how to set up your first app. 
+
+```{admonition} Learning Intentions
+- Structuring of Dash app
+- Running a Dash app
+- Interacting and updating an app
+```
+
+By the end of this chapter you will know how to build and launch this inital app on your local browser:
+
+![first_app](./ch2_files/chap2-1.png)
 
 ````{dropdown} See Code
     :container: + shadow
@@ -27,7 +37,7 @@ if __name__ == '__main__':
 
 ````
 
-[Click here to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part1/ch2_files/chapter2_app.py)
+[Click to download the complete code file for this chapter](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch2_files/chapter2_app.py)
 
 ## 2.1 Structure of a Dash App
 Structuring your Dash app into the following sections will simplify the development of the app over time.
@@ -77,7 +87,7 @@ The "server" is referring to a Python process that runs locally on your computer
 ```
 
 Once we have the full code ready and saved in a `.py` file (conventionally `app.py` but any name works), we need to launch it:
-![alt txt](../assets/p1_c2/chap2-gif1.gif)
+![runapp-gif](./ch2_files/chap2-gif1.gif)
 
 After launching the app, we will see the following console output:
 ```
@@ -91,7 +101,7 @@ Dash is running on http://127.0.0.1:8050/
 ```
 - In order to display the app, click the URL shown in the console, or open the browser and navigate to the URL manually, in this case: http://127.0.0.1:8050/
 
-![alt txt](../assets/p1_c2/chap2-fig1.png)
+![first_app](./ch2_files/chap2-1.png)
 
 ---
 
