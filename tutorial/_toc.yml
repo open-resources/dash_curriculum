@@ -49,12 +49,13 @@ parts:
 
   - file: part3/chapter10
   - file: part3/chapter11
-  - file: part3/chapter12
+
 
 - caption: Part 4. Publishing your Dash Application
   chapters:
   - file: part4/summary
     title: Introduction
+  - file: part4/chapter12
   - file: part4/chapter13
   - file: part4/chapter14
   - file: part4/chapter15
