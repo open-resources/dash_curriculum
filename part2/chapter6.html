@@ -593,11 +593,78 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="simple">
 <li><p>import data into the app</p></li>
 <li><p>create and populate Pandas dataframes</p></li>
-<li><p>review basic data wrangling techniques often used to prepare data for reporting</p></li>
+<li><p>basic data wrangling techniques to prepare data for reporting</p></li>
 </ul>
 </div>
+<p>By the end of this chapter you will know how to build this app:</p>
+<p><img alt="fina-app" src="../_images/chap6-final-app.gif" /></p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Import data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="mi">2007</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="p">:]</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span> <span class="o">=</span> <span class="s1">&#39;Population by country in 2007&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">continent_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;continent-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a continent&#39;</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
+<span class="n">country_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a country&#39;</span><span class="p">)</span>
+<span class="n">_output</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_header</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">continent_dropdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">country_dropdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_output</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;options&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;continent-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">country_list</span><span class="p">(</span><span class="n">continent_selection</span><span class="p">):</span>
+    <span class="n">country_options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">continent_selection</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+    <span class="k">return</span> <span class="n">country_options</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;final-output&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">pop_calculator</span><span class="p">(</span><span class="n">country_selection</span><span class="p">):</span>
+    <span class="n">pop_value</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">country_selection</span><span class="p">]</span>
+    <span class="n">pop_value</span> <span class="o">=</span> <span class="n">pop_value</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;pop&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># select only first value in pop column</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;The population in &#39;</span><span class="o">+</span><span class="n">country_selection</span><span class="o">+</span><span class="s1">&#39; was: &#39;</span><span class="o">+</span><span class="n">pop_value</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
 </div>
-<hr class="docutils" />
+</div>
+</details><p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/chapter6_fin_app.py">Click to download the complete code file for this chapter</a></p>
+</div>
 <div class="section" id="where-to-import-data-within-dash-apps">
 <h2>6.1 Where to import data within Dash apps<a class="headerlink" href="#where-to-import-data-within-dash-apps" title="Permalink to this headline">¶</a></h2>
 <p>The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, layout, etc.
@@ -669,12 +736,12 @@ The file we’ll be using is available here <a class="reference external" href="
 </div>
 <div class="section" id="csv-files">
 <h4>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
-<p>We will now upload the same data from above, but from a .csv file named <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click on the “Copy raw contents” button, select all, then paste the records into a new Excel file on your laptop, saving it as “data_02.csv”</p>
+<p>We will now upload the same data from above, but from a .csv file named <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click the “Copy raw contents” button (next to the pencil edit button), then paste the records into a new Notepad file (Windows) or TextEdit file (MacOS), and save it as “data_02.csv”. Find the path of your file to update the <code class="docutils literal notranslate"><span class="pre">filename</span></code> in the code below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\User1\Downloads\data_02.csv&#39;</span>
 <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
-<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># you can also use: print(df2.head()) -- VS Code supports both</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -691,7 +758,7 @@ The file we’ll be using is available here <a class="reference external" href="
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
-<span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df3</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -708,7 +775,7 @@ The file we’ll be using is available here <a class="reference external" href="
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json&#39;</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">df4</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df4</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 <p><img alt="json_data_04" src="../_images/json_data_04.JPG" /></p>
@@ -719,7 +786,7 @@ The file we’ll be using is available here <a class="reference external" href="
 <h2>6.3 Data wrangling basics<a class="headerlink" href="#data-wrangling-basics" title="Permalink to this headline">¶</a></h2>
 <p>Once we have our dataframe available, some transformations may be needed in order to use the data in our app.
 There is a vast list of methods and functions that can be applied to Pandas dataframes (you may refer to <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">this documentation</a> for more info). In this section we’ll cover a few wrangling techniques that are most commonly used when building Dash apps.</p>
-<p>The below examples are based on the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url">“df3” dataframe</a> that we created above by reading data from a URL.</p>
+<p>The below examples are based on the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#reading-data-from-a-url">“df3” dataframe</a> that we created above by reading data from a URL.</p>
 <div class="section" id="unique-values">
 <h3>Unique values<a class="headerlink" href="#unique-values" title="Permalink to this headline">¶</a></h3>
 <p>When exploring data, we may often need to identify the unique values in each column:</p>
@@ -737,7 +804,7 @@ Let’s see two examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df3_Slice1</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">),</span> <span class="p">:]</span>
 
 <span class="n">df3_Slice2</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Americas&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="mi">2002</span><span class="p">,</span><span class="mi">2007</span><span class="p">])),</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]]</span>
-<span class="n">df3_Slice2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df3_Slice2</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>The first command will filter the df3 dataframe picking rows that have ‘Americas’ as continent. The <code class="docutils literal notranslate"><span class="pre">:</span></code> indicates that we don’t want to specify any column-filtering conditions, hence, all columns will be selected.</p>
@@ -764,7 +831,7 @@ Let’s see two examples:</p>
 <p>Let’s now see how to use the data we’ve uploaded through a couple of examples.</p>
 <div class="section" id="example-1">
 <h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h3>
-<p>In the below app, we import the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url">“df3” dataframe</a> that we created above, and use the list of unique continents to create the “options” of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.</p>
+<p>In the below app, we import the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter6.html#reading-data-from-a-url">“df3” dataframe</a> that we created above, and use the list of unique continents to create the “options” of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -877,8 +944,7 @@ Based on the selected country, the total population will be displayed.</p>
 <p>In the code above, you may notice that in the second callback we have added this prop: <code class="docutils literal notranslate"><span class="pre">prevent_initial_call=True</span></code>. This was necessary, since the ‘country-dropdown’ component doesn’t have any default option (the options, in fact, depend on the first dropdown selection). By default, Dash calls every callback when initialising the app. We want to prevent this initial call, as Dash wouldn’t find any input value for this callback.</p>
 </div>
 <p>The above code will generate the following app:</p>
-<p><img alt="Example 2" src="part2/ch6_files/Example02.JPG" />
-<strong>Include gif to transition from code to app starting page, then selecting a continent, a country and displaying the output</strong></p>
+<p><img alt="fina-app" src="../_images/chap6-final-app.gif" /></p>
 </div>
 </div>
 <div class="section" id="summary">
