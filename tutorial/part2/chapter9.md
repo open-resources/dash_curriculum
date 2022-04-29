@@ -439,7 +439,8 @@ data_table = dash_table.DataTable(
         filter_action='native',
 )
 ```
-**TODO: gif of deleting columns**
+
+![delete columns](ch9_files/img/datatable_del_col.gif)
 
 
 ### 9.3.4 Delete Rows
@@ -458,7 +459,7 @@ data_table = dash_table.DataTable(
 
 )
 ```
-**TODO: gif of deleting columns**
+![delete columns](ch9_files/img/datatable_del_row.gif)
 
 ## Summary
 In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about **Advanced Callbacks**.
