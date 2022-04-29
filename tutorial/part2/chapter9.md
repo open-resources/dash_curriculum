@@ -444,7 +444,8 @@ data_table = dash_table.DataTable(
 
 ### 9.3.4 Delete Rows
 Sometimes we'd like to remove a datapoint from our plot.  Let's allow the user to delete rows in the `DataTable`:
-# Create a Dash DataTable
+
+```python
 data_table = dash_table.DataTable(
         id='dataTable1', 
         data=df.to_dict('records'), 
