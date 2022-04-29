@@ -17,67 +17,114 @@
 
 ## 8.2 Incorporting Plotly Figures in a Dash app
 
-We've earlier talked about how a `dbc.Col` component resides in a `dbc.Row` component and serves as a wrapper for other components. One such component can be a `dcc.Graph()` component, which in turn is a wrapper (is this a correct description?) for a Plotly figure object in `figure = fig`:
-
-```python
-app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig), width = 4))])
-```
-
-There's almost no end to what such a figure object can be as we'll describe in more detail in a bit. But as an example of how to include figures in your dash APP, consider the following snippet where we load a dataset from `px.data.gapminder()` and make a figure with `px.line()`. The function call `px.line()` in this snippet will contain attributes and arguments that you will learn more about in the following subsections.
+As an example of how to include Plotly figures in your Dash app, first we need to create the Plotly figure. Consider the following code snippet where we load the gapminder dataset from `px.data.gapminder()`, filter the data to only four countries, and make a line chart with `px.line()`. The function call `px.line()` in this snippet will contain attributes that you will learn more about in the section 8.3.
 
 ### 8.2.1 How to create a Plotly Express Figure for your Dash APP
 
 ```python
+import plotly.express as px
+import pandas as pd
+
 df = px.data.gapminder()
-df = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
+df_filtered = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
 
 # figure
-fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country',
-                  symbol = 'continent',
-                  title = "PX line plot",
-                  template = 'plotly_white'
-                  )
+fig = px.line(df_filtered, x= 'year', y = 'lifeExp', color = 'country')
 fig.show()
+
 ```
 
 [![enter image description here][1]][1]
 
 ### 8.2.2 How to incorporate the Figure in your Dash APP
 
-This figure can then be incorporated in the following snippet that loads a dataset, creates a Plotly Figure object, and displays it in a Dash app.
+To display the line chart in our Dash app, we need to assign it to the `figure` property of the `dcc.Graph` component as shown below. 
 
 ### Complete code
 
 ```python
 import pandas as pd
-import dash
-from dash import dcc
-from dash import html
+from dash import Dash, dcc, html
 import plotly.express as px
 import dash_bootstrap_components as dbc
 
 # data
 df = px.data.gapminder()
-df = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
+df_filtered = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
 
 # figure
-fig = px.line(df, x= 'year', y = 'lifeExp', color = 'country', symbol = 'continent',
-                  title = "PX line plot",
-                  template = 'plotly_white'
-                  )
+fig = px.line(df_filtered, x= 'year', y = 'lifeExp', color = 'country')
 
 # Dash App
-app = dash.Dash()
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # App Layout 
-app.layout = dbc.Container([dbc.Row(dbc.Col(dcc.Graph(id='figure1', figure=fig), width = 4))])
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            dcc.Graph(id='figure1', figure=fig)
+        ], width = 8)
+    ])
+])
 
-app.run_server(debug=True, use_reloader=False)
+if __name__== '__main__':
+    app.run_server(debug=True, use_reloader=False)
 ```
 
-### App
+### 8.2.3 Adding figure into an interactive Dash App
+
+Although we created a beautiful app with a line chart, the app was static. One consequence is that the app user cannot interact with the data to change the elements of the graph. To create an interactive app, let’s use the callback to allow the user to update the countries displayed in the figure through a dropdown.
+
+```python
+
+import pandas as pd
+from dash import Dash, dcc, html, Output, Input
+import plotly.express as px
+import dash_bootstrap_components as dbc
+
+# Data
+df = px.data.gapminder()
+
+# Instantiate the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# App Layout
+app.layout = dbc.Container([
+    dcc.Markdown("# Interactive Dash App with Line Chart"),
+    dbc.Row([
+        dbc.Col([
+            dcc.Dropdown(id='country-dropdown',
+                         options=[x for x in df.country.unique()],
+                         multi=True,
+                         value=['Canada', 'Brazil'])
+        ], width=8)
+    ]),
+    dbc.Row([
+        dbc.Col([
+            dcc.Graph(id='figure1')
+        ], width = 8)
+    ])
+])
+
+# Callback
+@app.callback(
+    Output('figure1','figure'),
+    Input('country-dropdown', 'value')
+)
+def udpate_graph(countries_selected):
+    df_filtered = df[df.country.isin(countries_selected)]
+    fig = px.line(df_filtered, x='year', y='lifeExp', color='country')
+
+    return fig
+
+if __name__=='__main__':
+    app.run_server(debug=True)
+
+```
 
 [![enter image description here][2]][2]
+
+As you can see from the code above, the callback is triggered as soon as the user selects a country from the dropdown; then, we filter the dataframe based on the countries selected; then, we build the line chart and return it as the object assigned to the `figure` property of the `dcc.Graph`.
 
 The following sections will show you how you can put almost any type of figure in a Dash App using Plotly Express
 
