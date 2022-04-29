@@ -6,10 +6,78 @@ In this chapter we will show you how to incorporate data into Dash apps. There a
 ```{admonition} Learning Intentions
 - import data into the app
 - create and populate Pandas dataframes
-- review basic data wrangling techniques often used to prepare data for reporting
+- basic data wrangling techniques to prepare data for reporting
 ```
 
----
+By the end of this chapter you will know how to build this app:
+
+![fina-app](./ch6_files/chap6-final-app.gif)
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# Import packages
+from dash import Dash, dcc, Input, Output, html
+import dash_bootstrap_components as dbc
+import pandas as pd
+
+# Import data
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
+df3 = pd.read_table(url, sep=';')
+y=2007
+df3 = df3.loc[(df3['year']==y), :]
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+_header = html.H1(children = 'Population by country in 2007', style = {'textAlign' : 'center'})
+continent_dropdown = dcc.Dropdown(id = 'continent-dropdown', placeholder = 'Select a continent', options = [c for c in df3.continent.unique()])
+country_dropdown = dcc.Dropdown(id = 'country-dropdown', placeholder = 'Select a country')
+_output = html.Div(id = 'final-output')
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([_header], width=8)]),
+        dbc.Row([dbc.Col([continent_dropdown], width=8)]),
+        dbc.Row([dbc.Col([country_dropdown], width=6)]),
+        dbc.Row([dbc.Col([_output], width=6)])
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='country-dropdown', component_property='options'),
+    Input(component_id='continent-dropdown', component_property='value')
+)
+def country_list(continent_selection):
+    country_options = [c for c in df3.loc[df3['continent']==continent_selection, 'country'].unique()]
+    return country_options
+
+
+@app.callback(
+    Output(component_id='final-output', component_property='children'),
+    Input(component_id='country-dropdown', component_property='value'),
+prevent_initial_call=True
+)
+def pop_calculator(country_selection):
+    pop_value = df3.loc[df3['country']==country_selection]
+    pop_value = pop_value.loc[:, 'pop'].values[0]  # select only first value in pop column
+    output = ('The population in '+country_selection+' was: '+pop_value.astype(str))
+    return output
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+````
+
+[Click to download the complete code file for this chapter](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/chapter6_fin_app.py)
 
 ## 6.1 Where to import data within Dash apps
 The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, layout, etc.
@@ -89,14 +157,14 @@ We uploaded one Excel tab (named "Sheet1") to a data frame called "df1". After t
 ![Excel data 01](./ch6_files/data01.JPG)
 
 #### CSV files
-We will now upload the same data from above, but from a .csv file named [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click on the "Copy raw contents" button, select all, then paste the records into a new Excel file on your laptop, saving it as "data_02.csv"
+We will now upload the same data from above, but from a .csv file named [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click the "Copy raw contents" button (next to the pencil edit button), then paste the records into a new Notepad file (Windows) or TextEdit file (MacOS), and save it as "data_02.csv". Find the path of your file to update the `filename` in the code below.
 
 ```
 import pandas as pd
 filepath = r'C:\Users\User1\Downloads\data_02.csv'
 col_names = ['country','continent','year','pop']
 df2 = pd.read_csv(filepath, sep='|', usecols=col_names)
-df2.head() # you can also use: print(df2.head()) -- VS Code supports both
+print(df2.head())
 ```
 
 - Similarly to the previous example, we have accessed the data located outside the app folder, and therefore specified a filepath as a raw string.
@@ -112,7 +180,7 @@ We will now upload the same data from above, but from [this ULR](https://raw.git
 import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
 df3 = pd.read_table(url, sep=';')
-df3.head()
+print(df3.head())
 ```
 
 ```{note}
@@ -132,7 +200,7 @@ We will now upload data stored in json format. You may encounter this file forma
 ```
 url = 'https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json'
 df4 = pd.read_json(url)
-df4.head()
+print(df4.head())
 ```
 
 ![json_data_04](./ch6_files/json_data_04.JPG)
@@ -141,7 +209,7 @@ df4.head()
 Once we have our dataframe available, some transformations may be needed in order to use the data in our app.
 There is a vast list of methods and functions that can be applied to Pandas dataframes (you may refer to [this documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html) for more info). In this section we'll cover a few wrangling techniques that are most commonly used when building Dash apps.
 
-The below examples are based on the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url) that we created above by reading data from a URL.
+The below examples are based on the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#reading-data-from-a-url) that we created above by reading data from a URL.
 
 #### Unique values
 When exploring data, we may often need to identify the unique values in each column:
@@ -162,7 +230,7 @@ Let's see two examples:
 df3_Slice1 = df3.loc[(df3['continent']=='Americas'), :]
 
 df3_Slice2 = df3.loc[(df3['continent']=='Americas') & (df3['year'].isin([2002,2007])), ['country','year','pop']]
-df3_Slice2.head()
+print(df3_Slice2.head())
 ```
 The first command will filter the df3 dataframe picking rows that have 'Americas' as continent. The `:` indicates that we don't want to specify any column-filtering conditions, hence, all columns will be selected.
 
@@ -192,7 +260,7 @@ The result will look like:
 Let's now see how to use the data we've uploaded through a couple of examples.
 
 ### Example 1
-In the below app, we import the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#read-data-from-a-url) that we created above, and use the list of unique continents to create the "options" of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.
+In the below app, we import the ["df3" dataframe](https://open-resources.github.io/dash_curriculum/part2/chapter6.html#reading-data-from-a-url) that we created above, and use the list of unique continents to create the "options" of a Dropdown component. Using the callback, an output message is shown based on the selected dropdown value.
 
 ```
 # Import packages
@@ -308,9 +376,7 @@ In the code above, you may notice that in the second callback we have added this
 
 The above code will generate the following app:
 
-![Example 2](./ch6_files/Example02.JPG)
-**Include gif to transition from code to app starting page, then selecting a continent, a country and displaying the output**
-
+![fina-app](./ch6_files/chap6-final-app.gif)
 
 ## Summary
 In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
