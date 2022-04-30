@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 12 Advanced Layout and Styling &#8212; Dash Tutorial</title>
+    <title>Chapter 12 Advanced Styling and Layout &#8212; Dash Tutorial</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -274,7 +274,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 12  Advanced Layout and Styling
+   Chapter 12  Advanced Styling and Layout
   </a>
  </li>
  <li class="toctree-l1">
@@ -380,28 +380,23 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advanced-layout-with-dash-bootstrap-components">
-   Advanced Layout with Dash Bootstrap Components
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#advanced-styling-with-dash-bootstrap-components">
    Advanced Styling with Dash Bootstrap Components
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-component-inside-a-callback">
-   Creating a component inside a callback
+  <a class="reference internal nav-link" href="#advanced-styling-of-dash-datatable">
+   Advanced Styling of Dash DataTable
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dynamic-app-layout">
-   Dynamic app layout
+  <a class="reference internal nav-link" href="#advanced-layout-with-dash-bootstrap-components">
+   Advanced Layout with Dash Bootstrap Components
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#styling-datatable">
-   Styling DataTable
+  <a class="reference internal nav-link" href="#dynamic-app-layout-i-can-help-write-this-part-arne-once-you-re-done-with-the-first-draft-of-this-chapter">
+   Dynamic app layout (I can help write this part, Arne, once you’re done with the first draft of this chapter)
   </a>
  </li>
 </ul>
@@ -414,7 +409,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 12  Advanced Layout and Styling</h1>
+                <h1>Chapter 12  Advanced Styling and Layout</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -425,28 +420,23 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#advanced-layout-with-dash-bootstrap-components">
-   Advanced Layout with Dash Bootstrap Components
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#advanced-styling-with-dash-bootstrap-components">
    Advanced Styling with Dash Bootstrap Components
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-a-component-inside-a-callback">
-   Creating a component inside a callback
+  <a class="reference internal nav-link" href="#advanced-styling-of-dash-datatable">
+   Advanced Styling of Dash DataTable
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#dynamic-app-layout">
-   Dynamic app layout
+  <a class="reference internal nav-link" href="#advanced-layout-with-dash-bootstrap-components">
+   Advanced Layout with Dash Bootstrap Components
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#styling-datatable">
-   Styling DataTable
+  <a class="reference internal nav-link" href="#dynamic-app-layout-i-can-help-write-this-part-arne-once-you-re-done-with-the-first-draft-of-this-chapter">
+   Dynamic app layout (I can help write this part, Arne, once you’re done with the first draft of this chapter)
   </a>
  </li>
 </ul>
@@ -458,8 +448,47 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-12-advanced-layout-and-styling">
-<h1>Chapter 12  Advanced Layout and Styling<a class="headerlink" href="#chapter-12-advanced-layout-and-styling" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-12-advanced-styling-and-layout">
+<h1>Chapter 12  Advanced Styling and Layout<a class="headerlink" href="#chapter-12-advanced-styling-and-layout" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="advanced-styling-with-dash-bootstrap-components">
+<h2>Advanced Styling with Dash Bootstrap Components<a class="headerlink" href="#advanced-styling-with-dash-bootstrap-components" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Introduction to <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/">Dash Bootstrap themes</a></p></li>
+<li><p>Most common <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">styling components</a></p>
+<ul>
+<li><p>me, ms, mt, nb</p></li>
+<li><p>text color, background color, border color</p></li>
+<li><p>etc.</p></li>
+</ul>
+</li>
+<li><p>Styling beyond DBC (“dbc offers you a lot, but for more customized styling you can use the <code class="docutils literal notranslate"><span class="pre">style</span></code> property in each dash component. For example <code class="docutils literal notranslate"><span class="pre">dcc.Markdown(&quot;App</span> <span class="pre">Title&quot;,</span> <span class="pre">style={'textAlign':'center'})</span></code>. To learn more go to this property see dash <a class="reference external" href="https://dash.plotly.com/layout#more-about-html-components">docs</a></p></li>
+</ul>
+</div>
+<div class="section" id="advanced-styling-of-dash-datatable">
+<h2>Advanced Styling of Dash DataTable<a class="headerlink" href="#advanced-styling-of-dash-datatable" title="Permalink to this headline">¶</a></h2>
+<p>Recognizing that the DataTable is one of the most common Dash components, we’d like to show you a few examples on styling the DataTable, using a few DataTable properties, such as <code class="docutils literal notranslate"><span class="pre">style_cell</span></code>, <code class="docutils literal notranslate"><span class="pre">style_data_conditional</span></code>, <code class="docutils literal notranslate"><span class="pre">style_header</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
+<span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
+        <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
+        <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;editable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+        <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+        <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
+        <span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">},</span>
+        <span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[</span>
+            <span class="p">{</span>
+            <span class="s1">&#39;if&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="s1">&#39;odd&#39;</span><span class="p">},</span>
+            <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(204, 230, 255)&#39;</span><span class="p">},</span>
+            <span class="p">],</span>
+
+        <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(230, 230, 230)&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="advanced-layout-with-dash-bootstrap-components">
 <h2>Advanced Layout with Dash Bootstrap Components<a class="headerlink" href="#advanced-layout-with-dash-bootstrap-components" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -490,57 +519,11 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 </div>
-<div class="section" id="advanced-styling-with-dash-bootstrap-components">
-<h2>Advanced Styling with Dash Bootstrap Components<a class="headerlink" href="#advanced-styling-with-dash-bootstrap-components" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Introduction to <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/">Dash Bootstrap themes</a></p></li>
-<li><p>Most common <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">styling components</a></p>
-<ul>
-<li><p>me, ms, mt, nb</p></li>
-<li><p>text color, background color, border color</p></li>
-<li><p>etc.</p></li>
-</ul>
-</li>
-<li><p>Dark them or light theme app</p></li>
-</ul>
-</div>
-<div class="section" id="creating-a-component-inside-a-callback">
-<h2>Creating a component inside a callback<a class="headerlink" href="#creating-a-component-inside-a-callback" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>suppress_callback_exceptions</p></li>
-</ul>
-</div>
-<div class="section" id="dynamic-app-layout">
-<h2>Dynamic app layout<a class="headerlink" href="#dynamic-app-layout" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dynamic-app-layout-i-can-help-write-this-part-arne-once-you-re-done-with-the-first-draft-of-this-chapter">
+<h2>Dynamic app layout (I can help write this part, Arne, once you’re done with the first draft of this chapter)<a class="headerlink" href="#dynamic-app-layout-i-can-help-write-this-part-arne-once-you-re-done-with-the-first-draft-of-this-chapter" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://dash.plotly.com/live-updates#updates-on-page-load">https://dash.plotly.com/live-updates#updates-on-page-load</a></p></li>
 </ul>
-</div>
-<div class="section" id="styling-datatable">
-<h2>Styling DataTable<a class="headerlink" href="#styling-datatable" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s add some <code class="docutils literal notranslate"><span class="pre">styling</span></code> to the DataTable</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
-<span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
-        <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
-        <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;editable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
-        <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
-        <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
-        <span class="n">style_cell</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;padding&#39;</span><span class="p">:</span> <span class="s1">&#39;5px&#39;</span><span class="p">},</span>
-        <span class="n">style_data_conditional</span><span class="o">=</span><span class="p">[</span>
-            <span class="p">{</span>
-            <span class="s1">&#39;if&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;row_index&#39;</span><span class="p">:</span> <span class="s1">&#39;odd&#39;</span><span class="p">},</span>
-            <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(204, 230, 255)&#39;</span><span class="p">},</span>
-            <span class="p">],</span>
-
-        <span class="n">style_header</span><span class="o">=</span><span class="p">{</span>
-            <span class="s1">&#39;backgroundColor&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(230, 230, 230)&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;fontWeight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>TODO: picture of datatable</strong></p>
 </div>
 </div>
 
