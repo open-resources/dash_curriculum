@@ -18,6 +18,6 @@ In this chapter we will set up the tech stack used in this course.  A **tech sta
 
 
 ## Installation Instructions
-[**Windows**](chapter0_windows.md)\
 [**Mac**](chapter0_mac.md)\
+[**Windows**](chapter0_windows.md)\
 [**Linux**](chapter0_linux.md)
