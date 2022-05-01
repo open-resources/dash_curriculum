@@ -1,4 +1,4 @@
-## Github Installation Instructions
+# Github Installation Instructions
 - If you don't have a GitHub account, navigate to https://github.com/ and follow the prompts. A free account is enough for this curriculum.
   - [Video - How to Create Github account](https://www.youtube.com/watch?v=QUtk-Uuq9nE)
 - After you create an account, you need to make a Public repository that will store your code:
