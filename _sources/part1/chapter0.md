@@ -69,7 +69,7 @@ git config --global user.email mailtobolaji@gmail.com
 
 
 ## Install the necessary Python libraries
-To enusre our Dash apps can run, you need to install a few libraries. Go to the VScode terminal and type: `pip install dash` 
+To enusre our Dash apps can run, you need to install a few libraries if you have not done so in the previous chapter. Go to the VScode terminal and type: `pip install dash` 
 
 ![img-install-dash](./ch0_files/install-dash.png)
 
