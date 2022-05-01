@@ -385,38 +385,40 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-intentions">
-   Learning Intentions
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-start">
-   App at the Start
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#check-your-python-version-compatibility">
-   5.1 Check your Python version compatibility
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#turn-off-debugging-mode">
-   5.2 Turn off Debugging mode
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#log-in-to-heroku-user-account">
-   5.3 Log in to Heroku user account
+  <a class="reference internal nav-link" href="#prepare-your-app-for-deployment">
+   5.1 Prepare your app for deployment
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-the-heroku-command-line-interface-cli">
-     5.3.1 Install the Heroku Command Line Interface (CLI).
+    <a class="reference internal nav-link" href="#turn-off-debugging-mode">
+     5.1.1 Turn off Debugging mode
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#declare-server-for-heroku-deplpoyment">
+     5.1.2 Declare server for Heroku deplpoyment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-heroku-user-account">
+   5.2 Create a Heroku user account
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-the-heroku-command-line-interface-cli">
+   5.3 Install the Heroku Command Line Interface (CLI)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#connect-the-heroku-cli-to-your-heroku-account">
-     5.3.2 Connect the Heroku CLI to your Heroku account
+     5.3.1 Connect the Heroku CLI to your Heroku account
     </a>
    </li>
   </ul>
@@ -433,31 +435,27 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prepare-the-necessary-additional-files-for-deployment">
-   5.5 Prepare the necessary additional files for deployment.
+  <a class="reference internal nav-link" href="#add-necessary-files-for-deployment">
+   5.5 Add necessary files for deployment
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#make-a-procfile-without-a-file-extension-this-file-tells-heroku-all-the-commands-that-must-be-executed-by-the-app-on-startup">
+    <a class="reference internal nav-link" href="#make-a-procfile">
      5.5.1 Make a
      <strong>
       Procfile
      </strong>
-     <em>
-      without a file extension
-     </em>
-     . This file tells Heroku all the commands that must be executed by the app on startup.
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#make-a-requirements-txt-text-file-describing-your-python-dependencies">
+    <a class="reference internal nav-link" href="#make-a-requirements-txt-text-file">
      5.5.2 Make a
      <code class="docutils literal notranslate">
       <span class="pre">
        requirements.txt
       </span>
      </code>
-     text file describing your Python dependencies.
+     text file
     </a>
    </li>
   </ul>
@@ -473,8 +471,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deploy">
-   5.8 Deploy
+  <a class="reference internal nav-link" href="#deploy-to-heroku">
+   5.8 Deploy to Heroku
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -483,8 +481,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-end">
-   App at the end
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
 </ul>
@@ -508,38 +506,40 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#learning-intentions">
-   Learning Intentions
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-start">
-   App at the Start
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#check-your-python-version-compatibility">
-   5.1 Check your Python version compatibility
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#turn-off-debugging-mode">
-   5.2 Turn off Debugging mode
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#log-in-to-heroku-user-account">
-   5.3 Log in to Heroku user account
+  <a class="reference internal nav-link" href="#prepare-your-app-for-deployment">
+   5.1 Prepare your app for deployment
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-the-heroku-command-line-interface-cli">
-     5.3.1 Install the Heroku Command Line Interface (CLI).
+    <a class="reference internal nav-link" href="#turn-off-debugging-mode">
+     5.1.1 Turn off Debugging mode
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#declare-server-for-heroku-deplpoyment">
+     5.1.2 Declare server for Heroku deplpoyment
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-heroku-user-account">
+   5.2 Create a Heroku user account
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-the-heroku-command-line-interface-cli">
+   5.3 Install the Heroku Command Line Interface (CLI)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#connect-the-heroku-cli-to-your-heroku-account">
-     5.3.2 Connect the Heroku CLI to your Heroku account
+     5.3.1 Connect the Heroku CLI to your Heroku account
     </a>
    </li>
   </ul>
@@ -556,31 +556,27 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#prepare-the-necessary-additional-files-for-deployment">
-   5.5 Prepare the necessary additional files for deployment.
+  <a class="reference internal nav-link" href="#add-necessary-files-for-deployment">
+   5.5 Add necessary files for deployment
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#make-a-procfile-without-a-file-extension-this-file-tells-heroku-all-the-commands-that-must-be-executed-by-the-app-on-startup">
+    <a class="reference internal nav-link" href="#make-a-procfile">
      5.5.1 Make a
      <strong>
       Procfile
      </strong>
-     <em>
-      without a file extension
-     </em>
-     . This file tells Heroku all the commands that must be executed by the app on startup.
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#make-a-requirements-txt-text-file-describing-your-python-dependencies">
+    <a class="reference internal nav-link" href="#make-a-requirements-txt-text-file">
      5.5.2 Make a
      <code class="docutils literal notranslate">
       <span class="pre">
        requirements.txt
       </span>
      </code>
-     text file describing your Python dependencies.
+     text file
     </a>
    </li>
   </ul>
@@ -596,8 +592,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deploy">
-   5.8 Deploy
+  <a class="reference internal nav-link" href="#deploy-to-heroku">
+   5.8 Deploy to Heroku
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -606,8 +602,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-at-the-end">
-   App at the end
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
 </ul>
@@ -621,78 +617,56 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-5-app-deployment">
 <h1>Chapter 5 - App Deployment<a class="headerlink" href="#chapter-5-app-deployment" title="Permalink to this headline">¶</a></h1>
-<p>Using your Dash app on your computer is great, but the magic happens when you deploy your app so you can share it with your friends! <strong>Heroku</strong> is a platform as a service (PaaS) that supports Python where you can deploy and manage public Dash applications. Heroku uses containers called “dynos” to deploy your app by packaging its code and dependencies and executing it in a virtualized environment in a way that’s scalable according to the changing resource needs of your application.</p>
-<p>This example uses Visual Studio Code, a Heroku account, and Git. It’s free to create a Heroku user account, and a Free tier is available for a basic app. Additional tier options support the needs of more complex apps or those requiring additional memory (RAM), and you can read more about <a class="reference external" href="https://www.heroku.com/pricing">Heroku pricing</a>.</p>
-<div class="section" id="learning-intentions">
-<h2>Learning Intentions<a class="headerlink" href="#learning-intentions" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we intend you to learn:</p>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<p>Running your Dash app on your computer is great, but the magic happens when you deploy your app to the web so you can share it with your friends! <strong>Heroku</strong> is a platform as a service (PaaS) that supports Python; it can be used to deploy and manage public Dash applications. Heroku uses containers called “dynos” to deploy your app by packaging its code and dependencies and executing it in a virtualized environment in a way that’s scalable, according to the changing resource-needs of your application.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
-<li><p>how to check Python version compatibility with Heroku</p></li>
-<li><p>how to turn off interactive debugging mode</p></li>
+<li><p>Prepare your app for deployment</p></li>
 <li><p>how to install Heroku Command Line Interface (CLI)</p></li>
 <li><p>how to deploy your Dash application to the web publicly using CLI</p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="app-at-the-start">
-<h2>App at the Start<a class="headerlink" href="#app-at-the-start" title="Permalink to this headline">¶</a></h2>
-<p>As a framework for this chapter, <span class="xref myst">here is a file</span> of what your app should look like when you start.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Make sure you have set up Git version control on your project folder directory by following those steps in Git documentation from chapter 0, and that you’ve successfully tested your Dash app locally on your computer.</p>
-</div>
-</div>
-<div class="section" id="check-your-python-version-compatibility">
-<h2>5.1 Check your Python version compatibility<a class="headerlink" href="#check-your-python-version-compatibility" title="Permalink to this headline">¶</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Heroku has specific requires for what Python version you are using locally to ensure your app can be deployed properly.Check Heroku’s website for its <a class="reference external" href="https://devcenter.heroku.com/articles/getting-started-with-python">current Python requirements</a>, and upgrade your Python version before deploying.</p>
-</div>
-<p>Open Visual Studio Code (VS Code), and in its Terminal window, type this command.
-<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code></p>
-<p>The output returns your Python version, for example:
-<code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.10.0</span></code></p>
-<p>If you are using Python3, but also have an instance of Python2 installed which is common on some computers, then <code class="docutils literal notranslate"><span class="pre">python</span></code> commands will by default return results for the Python2 version. Use the <code class="docutils literal notranslate"><span class="pre">python3</span></code> command instead to check your Python3 version.
-<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">--version</span></code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For help with installing or upgrading Python, refer to chapter 0 for your operating system which includes links to helpful resources.</p>
-</div>
+<div class="section" id="prepare-your-app-for-deployment">
+<h2>5.1 Prepare your app for deployment<a class="headerlink" href="#prepare-your-app-for-deployment" title="Permalink to this headline">¶</a></h2>
+<p>As a framework for this chapter, we will be using the <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch4_files/ch4_app.py">previous app</a> created at the end of chapter 4. Save this app as <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code>. This is what your app should look like when you run it on your computer.</p>
+<p><img alt="gif4-3" src="../_images/gif-chap4-3.gif" /></p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Before continuing, make sure you have already set up a <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git version control</a> and a <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part1/chapter0_GitHub.html">GitHub repository</a>. Also, ensure that your Dash app runs locally on your computer successfully.</p>
 </div>
 <div class="section" id="turn-off-debugging-mode">
-<h2>5.2 Turn off Debugging mode<a class="headerlink" href="#turn-off-debugging-mode" title="Permalink to this headline">¶</a></h2>
-<p>In VS Code, open your <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> script file and turn off the interactive debugging mode by changing your run statement from <code class="docutils literal notranslate"><span class="pre">debug=True</span></code> to <code class="docutils literal notranslate"><span class="pre">debug=False</span></code>.</p>
-<p>Your last lines of code should now look like this.</p>
+<h3>5.1.1 Turn off Debugging mode<a class="headerlink" href="#turn-off-debugging-mode" title="Permalink to this headline">¶</a></h3>
+<p>In VScode, open your <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> script file and turn off the interactive debugging mode with <code class="docutils literal notranslate"><span class="pre">debug=False</span></code>, as such:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the app</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here is a view of the updated run statement showing this change in your Visual Studio Code (VS Code) editor’s main window.</p>
+<p>Here is a view of the updated file showing this change in the VScode editor’s main window.</p>
 <p><img alt="screen_shot_debug" src="../_images/ch5_screen_shot_debug.png" /></p>
+</div>
+<div class="section" id="declare-server-for-heroku-deplpoyment">
+<h3>5.1.2 Declare server for Heroku deplpoyment<a class="headerlink" href="#declare-server-for-heroku-deplpoyment" title="Permalink to this headline">¶</a></h3>
+<p>Add the following line of code <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> under the line of code that instantiates your Dash app, as such:</p>
+<p><img alt="screen_shot_server" src="../_images/server-add.png" /></p>
 <p>Save and close the <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file.</p>
 </div>
-<div class="section" id="log-in-to-heroku-user-account">
-<h2>5.3 Log in to Heroku user account<a class="headerlink" href="#log-in-to-heroku-user-account" title="Permalink to this headline">¶</a></h2>
-<p>From a web browser, <a class="reference external" href="https://id.heroku.com/login">log in</a> or sign up if you are new to Heroku.</p>
-<ul class="simple">
-<li><p>Follow the prompts to verify your identity for security purposes using one of Heroku’s available verifaction methods.</p></li>
-<li><p>This takes you to your user account dashboard in your web browser.</p></li>
-</ul>
-<div class="section" id="install-the-heroku-command-line-interface-cli">
-<h3>5.3.1 Install the Heroku Command Line Interface (CLI).<a class="headerlink" href="#install-the-heroku-command-line-interface-cli" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://devcenter.heroku.com/articles/heroku-cli">The Heroku CLI</a> article provides instructions for installation and first time setup on multiple computer platforms (macOS, Windows, or Ubuntu).</p>
 </div>
+<div class="section" id="create-a-heroku-user-account">
+<h2>5.2 Create a Heroku user account<a class="headerlink" href="#create-a-heroku-user-account" title="Permalink to this headline">¶</a></h2>
+<p>If you have a Heroku account, you can skip to the next section: <strong>Install the Heroku Command Line Interface</strong>. If you don’t have a Heroku account, navigate to <a class="reference external" href="https://signup.heroku.com/dc">Heroku Signup</a> and follow the prompts to create your account.</p>
+<p>It’s free to create a Heroku user account, and a Free tier will suffice for the apps in this curriculum.</p>
+</div>
+<div class="section" id="install-the-heroku-command-line-interface-cli">
+<h2>5.3 Install the Heroku Command Line Interface (CLI)<a class="headerlink" href="#install-the-heroku-command-line-interface-cli" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli">The Heroku CLI</a> article provides instructions for installation and first time setup on multiple computer platforms (macOS, Windows, or Linux).</p>
 <div class="section" id="connect-the-heroku-cli-to-your-heroku-account">
-<h3>5.3.2 Connect the Heroku CLI to your Heroku account<a class="headerlink" href="#connect-the-heroku-cli-to-your-heroku-account" title="Permalink to this headline">¶</a></h3>
-<p>In your VS Code Terminal window, type the command <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code>.</p>
-<p>This will return the output:
-<code class="docutils literal notranslate"><span class="pre">heroku:</span> <span class="pre">Press</span> <span class="pre">any</span> <span class="pre">key</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">up</span> <span class="pre">the</span> <span class="pre">browser</span> <span class="pre">to</span> <span class="pre">login</span> <span class="pre">or</span> <span class="pre">q</span> <span class="pre">to</span> <span class="pre">exit:</span></code></p>
-<p>Press any key.</p>
-<p>Here is a view of entering this command in a VS Code Terminal window.
-<img alt="screen_shot_heroku_login" src="part1/ch5_files/ch5_screen_shot_heroku_login.png" /></p>
+<h3>5.3.1 Connect the Heroku CLI to your Heroku account<a class="headerlink" href="#connect-the-heroku-cli-to-your-heroku-account" title="Permalink to this headline">¶</a></h3>
+<p>Open a VScode Terminal window and type the command: <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code>.</p>
+<p><img alt="screen_shot_heroku_login" src="../_images/heroku-login.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you have not already logged into your Heroku user account, this will open a new window in your web browser where you can follow the prompts to log in.</p>
@@ -704,79 +678,57 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="install-the-green-unicorn-gunicorn-web-server-gateway-interface-wsgi">
 <h2>5.4 Install the Green Unicorn <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> Web Server Gateway Interface (WSGI)<a class="headerlink" href="#install-the-green-unicorn-gunicorn-web-server-gateway-interface-wsgi" title="Permalink to this headline">¶</a></h2>
-<p>For UNIX systems, you will need an additional dependency called <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> which is a Python WSGI HTTP Server that handles Python web application traffic for UNIX systems.</p>
+<p>For your app to successfully be deployed to Heroku you will need an additional dependency called <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code>.</p>
 <p>Type the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">gunicorn</span></code> command in your VS Code Terminal window.</p>
-<p>This should return output indicating that it was successfully installed showing the most current stable version.
-<code class="docutils literal notranslate"><span class="pre">Successfully</span> <span class="pre">installed</span> <span class="pre">gunicorn</span></code></p>
-<p>Here’s a view of installing <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> in your VS Code Terminal successfully.
-<img alt="screen_shot_install_gunicorn" src="part1/ch5_files/ch5_screen_shot_install_gunicorn.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want to learn more about the Gunicorn server, visit <a class="reference external" href="https://gunicorn.org/">gunicorn.org</a>.</p>
+<p><img alt="screen_shot_install_gunicorn" src="../_images/gunicorn.png" /></p>
 </div>
-</div>
-<div class="section" id="prepare-the-necessary-additional-files-for-deployment">
-<h2>5.5 Prepare the necessary additional files for deployment.<a class="headerlink" href="#prepare-the-necessary-additional-files-for-deployment" title="Permalink to this headline">¶</a></h2>
-<p>Create the following new files in the root directory of your project, in other words at the same folder or directory level where the main app file <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file is saved.</p>
-<div class="section" id="make-a-procfile-without-a-file-extension-this-file-tells-heroku-all-the-commands-that-must-be-executed-by-the-app-on-startup">
-<h3>5.5.1 Make a <strong>Procfile</strong> <em>without a file extension</em>. This file tells Heroku all the commands that must be executed by the app on startup.<a class="headerlink" href="#make-a-procfile-without-a-file-extension-this-file-tells-heroku-all-the-commands-that-must-be-executed-by-the-app-on-startup" title="Permalink to this headline">¶</a></h3>
-<p>From the VS Code Explorer pane select the New File icon icon or use a corresponding key command.</p>
-<p>You will be promted to name the file in the Explorer pane.<br />
-By default, an icon appears beside the empty File Name box indicating Plain Text file format by default.</p>
-<p>Name the file <code class="docutils literal notranslate"><span class="pre">Procfile</span></code>. Press the return key on your keyboard.</p>
-<p>The icon beside the file name will change to a purple Heroku icon, indicating that the nature and use of your file has been recognized. No file extension will be added as is required.</p>
-<p>Open the file. Type the following single line of text in the first line of the file.</p>
-<p><code class="docutils literal notranslate"><span class="pre">web:</span> <span class="pre">gunicorn</span> <span class="pre">app:server</span></code></p>
+<div class="section" id="add-necessary-files-for-deployment">
+<h2>5.5 Add necessary files for deployment<a class="headerlink" href="#add-necessary-files-for-deployment" title="Permalink to this headline">¶</a></h2>
+<p>To create the required files, you need to be in the root directory of your project, which is the same directory level where the <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file is located. In this example, the root directory is named <code class="docutils literal notranslate"><span class="pre">MyDashApps</span></code>.</p>
+<div class="section" id="make-a-procfile">
+<h3>5.5.1 Make a <strong>Procfile</strong><a class="headerlink" href="#make-a-procfile" title="Permalink to this headline">¶</a></h3>
+<p>This file tells Heroku all the commands that must be executed by the app on startup.</p>
+<p>Right-click on the root directory, click <strong>New File</strong> and name it <strong>Procfile</strong> without a file extension (no Procfile.txt or <a class="reference external" href="http://Procfile.py">Procfile.py</a>, etc.). Make sure to use an upper case P when you name the file.</p>
+<p>Open the Procfile. Type the following single line of text in the first line of the file.</p>
+<p><code class="docutils literal notranslate"><span class="pre">web:</span> <span class="pre">gunicorn</span> <span class="pre">ch5_app:server</span></code></p>
+<p><img alt="screen_shot_procfile" src="../_images/add-procfile.png" /></p>
 <p>Save and close the <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> file.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Make sure the first letter ‘<em>P</em>’ is capitalized in <em>Procfile</em> and that you spell it exactly that way or Heroku cannot recognize it.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>There are alternate ways to create this file. If you instead select New File from the Toolbar File Menu in VS Code, you may be prompted to <code class="docutils literal notranslate"><span class="pre">Select</span> <span class="pre">the</span> <span class="pre">Language</span></code>. Select <code class="docutils literal notranslate"><span class="pre">Plain</span> <span class="pre">Text</span></code>. Once you have completed the file, if you see a file ending, remove it using the Rename menu option from the Explorer pane, which you can access such as by right-clicking a mouse or keypad on the file name itself.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Make sure the first letter ‘<em>P</em>’ is capitalized in <em>Procfile</em> and that you spell it exactly that way or Heroku will not recognize it.<br />
+Also, if your app name is not ch5_app, make sure to replace the text inside the Procfile</p>
 </div>
 </div>
-<div class="section" id="make-a-requirements-txt-text-file-describing-your-python-dependencies">
-<h3>5.5.2 Make a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> text file describing your Python dependencies.<a class="headerlink" href="#make-a-requirements-txt-text-file-describing-your-python-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>From the VS Code Explorer pane select the New File icon icon or use a corresponding key command.</p>
-<p>In the Explorer pane, type the file name <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> in the empty name box that appears. Press the return key on your keyboard.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file should have a .txt file ending. Otherwise it is similar to the Procfile steps, and you can follow alternate steps to create a plain text file if you prefer, such as using the Toolbar File Menu options.</p>
-</div>
-<p>Open the file. Type the package names and version numbers of all of the packages your app requires to run, in a list with each package on its own single line. Type nothing else in this file.</p>
-<p>Include all packages listed in your import statements in your <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file, and <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code></p>
-<p>Your file should look similar to the following text, replacing the explicitly specified version numbers to match the package versions that you have installed and are using with your app.</p>
+<div class="section" id="make-a-requirements-txt-text-file">
+<h3>5.5.2 Make a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> text file<a class="headerlink" href="#make-a-requirements-txt-text-file" title="Permalink to this headline">¶</a></h3>
+<p>Heroku uses the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file to know what Python libraries it needs to install in order to run your app.</p>
+<p>Create a new file and name it <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p>
+<p>Open the file. Type the package names and version numbers of all of the packages your app requires to run. Each package should be its own single line. Include all packages listed in your import statements in your <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file, as well as <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dash</span><span class="o">==</span><span class="mf">2.3.1</span>
 <span class="n">dash_bootstrap_components</span><span class="o">==</span><span class="mf">1.0.3</span>
 <span class="n">gunicorn</span><span class="o">==</span><span class="mf">20.1.0</span>
 </pre></div>
 </div>
+<p>Your file should look similar to the above text. Make sure to replace the specified version numbers to match the package versions that you have installed and are using with your app.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>An easy way to check the versions of Python packages you are using is to enter the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">list</span></code> command in your VS Code Terminal window. In this example, you are working in a base system wide Python environment, and the output will show any and all Python packages you have installed there.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are deploying an app with Plotly Express graphs, include the Pandas library and Plotly Express in your requirements list. Pandas is required by Plotly Express, and both were installed in chapter 0.</p>
+<p>An easy way to check the versions of Python packages you are using is to type the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">list</span></code> command in your VS Code Terminal window.<br />
+If you are deploying an app with Plotly Express graphs, include the Pandas library and Plotly Express in your requirements list.</p>
 </div>
 <p>Save and close the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In a later chapter as part of a more complex deployment process, you will learn how to create this file automatically with the command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span> <span class="pre">&gt;</span> <span class="pre">requirements.txt</span></code> while working in a virtual environment.</p>
-</div>
 </div>
 </div>
 <div class="section" id="add-files-to-git">
 <h2>5.6 Add files to Git<a class="headerlink" href="#add-files-to-git" title="Permalink to this headline">¶</a></h2>
 <p>Type these commands in your VS Code Terminal window to update changes——added and updated files——with git version control tracking.</p>
-<p>See all the changed files available.</p>
+<p>First, to ensure you are in the root directory of your project, type the following command replacing <code class="docutils literal notranslate"><span class="pre">MyDashApps</span></code> with the name of your directory.</p>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.\MyDashApps\</span></code></p>
+<p>Once you’re in the root directory, type the following command to see all the new and modified files available.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">status</span>
 </pre></div>
 </div>
-<p>Add all of the listed files to git to be tracked. <code class="docutils literal notranslate"><span class="pre">-a</span></code> means all in this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">-</span><span class="n">a</span>
+<p>Add all of the listed files to git to be tracked.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">add</span> <span class="o">.</span>
 </pre></div>
 </div>
 <p>Commit file changes to git. <code class="docutils literal notranslate"><span class="pre">-m</span></code> means message in this command.</p>
@@ -790,32 +742,26 @@ By default, an icon appears beside the empty File Name box indicating Plain Text
 </div>
 <div class="section" id="create-and-initialize-heroku-remote-application">
 <h2>5.7 Create and initialize Heroku Remote application<a class="headerlink" href="#create-and-initialize-heroku-remote-application" title="Permalink to this headline">¶</a></h2>
-<p>From your app’s root directory in your VS Code Terminal window, type the following command replacing <code class="docutils literal notranslate"><span class="pre">my-dash-ch5-app</span></code> with a specific name for your app.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">create</span> <span class="o">-</span><span class="n">a</span> <span class="n">app</span> <span class="n">my</span><span class="o">-</span><span class="n">dash</span><span class="o">-</span><span class="n">ch5</span><span class="o">-</span><span class="n">app</span>
+<p>From the same root directory in your VS Code Terminal window, type the following command replacing <code class="docutils literal notranslate"><span class="pre">my-dash-ch5-app</span></code> with a specific name for your new app that will live on Heroku. Try to use a name that you don’t think is taken by anyone. If you get a notification that the app name you chose is taken, try using a different name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">create</span> <span class="o">-</span><span class="n">a</span> <span class="n">my</span><span class="o">-</span><span class="n">dash</span><span class="o">-</span><span class="n">ch5</span><span class="o">-</span><span class="n">app</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you want more information, see Heroku’s <a class="reference external" href="https://devcenter.heroku.com/articles/git">Deploying with Git</a> documentation.</p>
 </div>
-</div>
-<div class="section" id="deploy">
-<h2>5.8 Deploy<a class="headerlink" href="#deploy" title="Permalink to this headline">¶</a></h2>
-<p>Type the following command in your shell to deploy your app to Heroku using the default Python Buildpack.</p>
+<div class="section" id="deploy-to-heroku">
+<h2>5.8 Deploy to Heroku<a class="headerlink" href="#deploy-to-heroku" title="Permalink to this headline">¶</a></h2>
+<p>Type the following command in your terminal to deploy your app to Heroku.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">main</span>
 </pre></div>
 </div>
-<p>This should return the following result.
-<em>Initializing repository, done.</em></p>
-<p>You should now be able to view your app at <code class="docutils literal notranslate"><span class="pre">http://my-dash-ch5-app.herokuapp.com</span></code> (changing <code class="docutils literal notranslate"><span class="pre">my-dash-ch5-app</span></code> to the name you used when you created your Heroku remote app in the step above.</p>
+<p>You should now be able to view your app at <code class="docutils literal notranslate"><span class="pre">http://my-dash-ch5-app.herokuapp.com</span></code> (changing <code class="docutils literal notranslate"><span class="pre">my-dash-ch5-app</span></code> to the app name you created in the step above).</p>
 </div>
 <div class="section" id="common-errors">
 <h2>5.9 Common errors<a class="headerlink" href="#common-errors" title="Permalink to this headline">¶</a></h2>
 <p>Common deployment errors you could encounter for this example app include:</p>
 <ul class="simple">
 <li><p>Missing a package dependency in your requirements file</p></li>
-<li><p>Mispelling the <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> preventing Heroku from finding it</p></li>
-<li><p>Using a Python version that is not compatible with Heroku</p></li>
+<li><p>Mispelling the <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> or the app name inside the <code class="docutils literal notranslate"><span class="pre">Procfile</span></code></p></li>
+<li><p>Forgetting to add <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> to your main app file</p></li>
 </ul>
 <p>Refer to the Heroku documentation articles for <a class="reference external" href="https://devcenter.heroku.com/articles/error-codes">common error codes</a> and <a class="reference external" href="https://devcenter.heroku.com/categories/troubleshooting">troubleshooting &amp; support</a>.</p>
 <div class="admonition note">
@@ -823,9 +769,9 @@ By default, an icon appears beside the empty File Name box indicating Plain Text
 <p>In addition to minimum requirements, some new Python versions may not yet be supported on Heroku. For example, if Heroku supports Python 3.10.0, and your app is running a newer 3.11 version.</p>
 </div>
 </div>
-<div class="section" id="app-at-the-end">
-<h2>App at the end<a class="headerlink" href="#app-at-the-end" title="Permalink to this headline">¶</a></h2>
-<p>At the end of this chapter, <span class="xref myst">here is a zipped file</span> of what your app should look like.</p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Congratulations! You are now able to share your app with anyone around the world. In the next chapter we will learn how to incorporate data into our Dash app.</p>
 </div>
 </div>
 
