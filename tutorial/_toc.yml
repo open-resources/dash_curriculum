@@ -21,6 +21,7 @@ parts:
   - file: part1/chapter0_mac
   - file: part1/chapter0_windows
   - file: part1/chapter0_linux
+  - file: part1/chapter0_GitHub
 
 - caption: Part 1. Introduction to Dashboards in Dash
   chapters:
