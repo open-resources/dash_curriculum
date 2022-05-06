@@ -1,8 +1,10 @@
 # Chapter 12  Advanced Styling and Layout
       
+## I - Outline:      
 ## Advanced Styling with Dash Bootstrap Components
 
   - Introduction to [Dash Bootstrap themes](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/)
+  - [Plotly Dash Theme Explorer App by Ann Marie](https://hellodash.pythonanywhere.com/)
   - Most common [styling components](https://dashcheatsheet.pythonanywhere.com/)
     - me, ms, mt, nb
     - text color, background color, border color
@@ -66,3 +68,227 @@ data_table = dash_table.DataTable(
 ## Dynamic app layout (I can help write this part, Arne, once you're done with the first draft of this chapter)
   - https://dash.plotly.com/live-updates#updates-on-page-load
 
+# II - Content:
+
+There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` when you set up an app like this:
+
+```python
+JupyterDash(external_stylesheets=[dbc.themes.SLATE])
+```
+
+This chapter will use `SLATE`, but you can study other options in the [themes explorer](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/)
+
+When you've first defined a theme like the one above, you can edit the visual properties of, for example, a dropdown button like text color, background and text orientation through the `className` attribute of the dropdown.
+
+# III - Theme Tester App
+
+```python
+
+import plotly.graph_objects as go
+import plotly.express as px
+from jupyter_dash import JupyterDash
+
+import dash_core_components as dcc
+import dash_html_components as html
+
+app = JupyterDash(__name__)
+
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+from dash import State, Input, Output, Dash, html, dcc
+import dash_bootstrap_components as dbc
+import plotly.express as px
+import json
+
+# Initialise the App 
+# app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+
+app = JupyterDash(external_stylesheets=[dbc.themes.SLATE])
+
+
+
+# data
+df = px.data.gapminder()#.query('year == 2007')
+
+# selections and specifications
+    
+colors = ['blue', 'green', 'red', 'black', 'yellow']
+symbols = ['circle', 'circle-open', 'square', 'square-open', 'diamond', 'diamond-open', 'cross', 'x']
+
+opts_columns_df = list(df.columns[:6])
+
+opts_continent = [{'label': k, 'value': k} for k in list(df.continent.unique())]
+
+opts_size = ['year', 'lifeExp', 'pop', 'gdpPercap'] + ['None']
+
+opts_years = list(df.year.unique()) + ['All']
+
+# opts_continent.extend([{'label': 'All', 'value': list(df.continent.unique())}])
+# opts_continent.extend([{'label': 'All', 'value': ', '.join(list(df.continent.unique()))}])
+opts_continent.extend([{'label': 'All', 'value': 'All'}])
+
+# Set up well organized controls in a dbc.Card()
+controls = dbc.Card([dbc.Row([dbc.Label("Continent"),
+                                    dcc.Dropdown(id='ctrl_continent',
+                                                 options= opts_continent,
+                                                  value='All',
+                                                  className = "text-danger"
+                                                ),
+                                   ],),
+                     
+                    dbc.Row([dbc.Label("X axis"),
+                                   dcc.Dropdown(id='ctrl_xaxis',
+                                                options=[{'label': k, 'value': k} for k in  opts_columns_df],
+                                                value=df.columns[:6][0],
+                                                ),
+                                    ],),
+                     
+                    dbc.Row([dbc.Label("Y axis"),
+                                   dcc.Dropdown(id='ctrl_yaxis',
+                                                # options=[{'label': k, 'value': k} for k in [8,10,12,14,16]],
+                                                options=[{'label': k, 'value': k} for k in  list(df.columns[:6])],
+                                                value=list(df.columns[:6])[3],
+                                                ),
+                                    ],),
+                     
+                 
+                    dbc.Row([dbc.Label("Size"),
+                                   dcc.Dropdown(id='ctrl_size',
+                                                # options=[{'label': k, 'value': k} for k in [8,10,12,14,16]],
+                                                options=[{'label': k, 'value': k} for k in  opts_size],
+                                                value=None,
+                                                ),
+                                    ],),
+                     
+                    dbc.Row([dbc.Label("Color"),
+                                   dcc.Dropdown(id='ctrl_color',
+                                                options=[{'label': k, 'value': k} for k in  list(df.columns[:6])],
+                                                value=df.columns[:6][2],
+                                                ),
+                                    ],),
+                     
+                    dbc.Row([dbc.Label("Year"),
+                                   dcc.Dropdown(id='ctrl_year',
+                                                options=[{'label': k, 'value': k} for k in opts_years],
+                                                value=df.year.max(),
+                                                ),
+                                    ],),
+                    ],
+                    body=True,
+                    style = {'font-size': 'large'}
+                    )
+
+# controls_layout
+opts_title_main = [{'label': k, 'value': k} for k in ["text-primary", "text-secondary", "text-success",
+                                                      "text-danger", "text-warning"]]
+
+controls_layout = dbc.Card([dbc.Row([dbc.Label("Color main title"),
+                                     dcc.Dropdown(id='ctrl_dsgn_title_1',
+                                                  options= opts_title_main,
+                                                  # value='All'
+                                                ),
+                                     
+                                     dcc.Dropdown(id='ctrl_dsgn_button',
+                                                  options= opts_title_main,
+                                                  # value='All'
+                                                ),
+                                     
+                                   ],),
+                    ],
+                    body=True,
+                    style = {'font-size': 'large'}
+                    )
+
+# Set up the app layout using dbc.Container(), dbc.Row(), and dbc.Col()
+app.layout = dbc.Container([html.H1("Data selection and figure design", id='dsgn_title_1',  className="text-primary"),
+                            html.Hr(),
+                            dbc.Row([dbc.Col([controls],xs = 4),
+                                     dbc.Col([dbc.Row([dbc.Col(dcc.Graph(id="fig_scatter_1")),])]),
+                                    ]),
+                            html.H1("Layout design", id='dsgn_title_2',  className="text-primary"),
+                            html.Hr(),
+                            dbc.Row([dbc.Col([controls_layout],xs = 4),
+                                     # dbc.Col([dbc.Row([dbc.Col(dcc.Graph(id="fig_scatter_1")),])]),
+                                    ]),
+                            html.Br(),
+                            ],
+                            fluid=True,
+                            )
+# FIGURE 1 interactivity
+@app.callback(
+    Output("fig_scatter_1", "figure"),
+    [   Input("ctrl_xaxis", "value"),
+        Input("ctrl_yaxis", "value"),
+        Input("ctrl_continent", "value"),
+        Input("ctrl_size", "value"),
+        Input("ctrl_color", "value"),
+        Input("ctrl_year", "value"),
+        # Input("ctrl_opac", "value"),
+    ],
+)
+def history_graph(xval, yval, continent, size, color, year):
+    df = px.data.gapminder()#.query('year == 2007')
+    
+    # handle subsetting of some or all continents
+    if continent == 'All':
+        df = df
+    else:
+        df = df[df.continent.isin([continent])] 
+    
+    # handle subsetting of one or all years
+    if year == 'All':
+        df = df
+    else:
+        df = df[df.year == year]
+                  
+    # df
+    # global yval
+    # print(yval)
+    fig = px.scatter(df, x=xval, y=yval, size = None if size == 'None' else size,
+                     color = color
+                    )
+    return fig
+
+
+# MAIN TITLE interactivity
+@app.callback(
+    [Output("dsgn_title_1", "className"),Output("dsgn_title_2", "className")],
+    # Output("dsgn_title_2", "className"),
+    [   Input("ctrl_dsgn_title_1", "value"),
+        # Input("ctrl_opac", "value"),
+    ],
+)
+def title_main(text_color):
+    print(text_color)
+    # global fig
+
+    return [text_color, text_color]
+
+# Button design
+@app.callback(
+    Output("ctrl_continent", "className"),
+    # Output("dsgn_title_2", "className"),
+    [   Input("ctrl_dsgn_title_1", "value"),
+        # Input("ctrl_opac", "value"),
+    ],
+)
+def continent_button_style(text_color):
+    print(text_color)
+    # global fig
+
+    return text_color
+
+
+app.run_server(mode='external', port = 8011)
+
+
+```
+
+## Image of APP
+
+[![enter image description here][1]][1]
+
+
+  [1]: https://i.stack.imgur.com/NGfOi.png
