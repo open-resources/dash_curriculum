@@ -360,25 +360,52 @@ if __name__ == '__main__':
 
 ## 9.3 Other Important DataTable properties
 
-Let's take a look at some useful `DataTable` properties:
+We've seen how to create a DataTable and how to connect it to Plotly Graphs. Let's take a look at some more useful `DataTable` properties:
 
 ### 9.3.1 Sorting
-First let's add `sorting`:
-
-![data table sorting](ch9_files/img/datatable_sort.gif)
-
+First let's add a sorting capability with `sort_action`, which enables data to be sorted on a per-column basis. 
 
 ```python
-# Create a Dash DataTable
-data_table = dash_table.DataTable(
-        id='dataTable1', 
-        data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'selectable':True} for i in df.columns],
-        page_size=10,
-        column_selectable="single",
-        sort_action='native',
+# Import libraries
+from dash import Dash, dash_table
+import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
+
+# Import data into Pandas dataframe
+df = px.data.gapminder()
+
+# Create a Dash DataTable: add sorting capability
+data_table = dash_table.DataTable(id="dataTable1",
+                                  data=df.to_dict('records'),
+                                  page_size=20,
+                                  sort_action='native')
+
+# Create the Dash application with Bootstrap CSS stylesheet
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create the app layout
+app.layout = dbc.Container(
+    dbc.Row([
+        dbc.Col([
+            data_table
+        ])
+    ])
 )
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
 ```
+
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![data table sorting](ch9_files/img/datatable_sort.gif)
+````
+
+**Update gif in dropdown**
 
 ### 9.3.2 Filtering
 We can also add the option to filter the columns of data.  In this example we will only use **>** or **<**:
