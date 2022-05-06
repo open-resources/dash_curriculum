@@ -142,6 +142,7 @@
 
 - Callback graphs to asses speed
 - Actions to improve app speed
+  - Sharing data between callbacks(?)
 - Efficiency
 
 ### Chapter 14: Multi-page apps
