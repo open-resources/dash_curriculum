@@ -20,3 +20,6 @@
 - Navbar
 - Tabs
 - Carousel
+
+### DMC components
+[Mantine](https://mantine.dev/getting-started/)
