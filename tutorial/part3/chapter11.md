@@ -7,13 +7,13 @@
 - Components for media content (carousel…)
 
 ## Individual components we're thinking to add
-- DCC components
+### DCC components
 - RangeSlider (required)
 - Datepicker (required)
 - Interval (required)
 - Store (required)
 - Upload
-- DBC components
+### DBC components
 - Drop down
 - Modal
 - Offcanvas too?
