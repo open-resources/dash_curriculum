@@ -22,4 +22,4 @@
 - Carousel
 
 ### DMC components
-[Mantine](https://mantine.dev/getting-started/)
+[Mantine](https://www.dash-mantine-components.com/)
