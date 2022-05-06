@@ -4,9 +4,7 @@
 In this chapter you will learn about `Dash DataTables` and how to use them to explore and edit data.
 
 ## 9.1 Intro to DataTables
-`DataTables` are an interactive table designed for viewing, editing, and exploring large datasets like with Microsoft Excel or Google Sheets.  Let's create a basic `DataTable` with the gapminder dataset.
-
-![intro datatable](ch9_files/img/datatable_intro.png)
+`Dash DataTable` is an interactive table designed for viewing, editing, and exploring large datasets similar to Microsoft Excel or Google Sheets.  To create a basic `DataTable` all we need to do is define the `data` property by assigning the dataframe to it.
 
 ```python
 # Import libraries
@@ -38,11 +36,14 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![intro datatable](ch9_files/img/datatable_intro.png)
+````
 
-We see that this dataset is huge so let's use the `page_size` property of `DataTables` to limit the rows shown to 10.  We'll also filter the dataset to only look at a few countries
-and remove columns we're not interested in:
-
-![filtered datatable](ch9_files/img/datatable_filtered.png)
+If you run the code above, you'll see that this dataset is huge and the first page is very long. We can limit the amount of rows displayed per page, by using the `page_size` property. But that would create 171 pages of `DataTables`. To limit the size of the dataset, we'll filter it before building the DataTable to only look at a few countries and remove columns we're not interested in:
 
 ```python
 # Import libraries
@@ -80,19 +81,24 @@ app.layout = dbc.Container(
 if __name__ == '__main__':
     app.run_server()
 ```
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![filtered datatable](ch9_files/img/datatable_filtered.png)
+````
 
 ## 9.2 Linking DataTable to a Graph
 
-Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.
+Now we will link the DataTable to a Graph and see that the graph changes as we interact with the DataTable.
 
 ### 9.2.1 Line Plot
 
-Creating the `DataTable` becomes more complicated because we need to make each column's `selectable` property `true`.  We'll modify the `columns` and `columns_selectable` properties of the DataFrame.
+When the `columns` property of the `DataTable` is not provided, columns are auto-generated based on the first row in data. However, in this example, we will define the `columns` property because we want to allow the user to select columns with `selectable:True`
 
-We also add a `Callback` function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.
+We'll also restrict selection to only one column at a time with `column_selectable`, and we'll predefine the initial selected column with `selected_columns`. 
 
-![data table with line plot](ch9_files/img/datatable_plot_link.gif)
-
+The Callback will connect the DataTable to the graph by being triggered whenever the user selects a column. 
 
 ```python
 # Import libraries
@@ -119,6 +125,83 @@ data_table = dash_table.DataTable(
         columns=[{'name': i, 'id': i,'selectable':True} for i in df.columns],
         page_size=10,
         column_selectable="single",
+        selected_columns=['lifeExp']
+)
+
+# Create a line graph of life expectancy over time
+fig = px.line(df, x='year', y='lifeExp', color='country', markers=True)
+graph1 = dcc.Graph(id='figure1', figure=fig)
+
+# Create the Dash application with Bootstrap CSS stylesheet
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create the app layout
+app.layout = dbc.Container(
+    dbc.Row([
+        dbc.Col([
+            graph1,
+            data_table,
+        ])
+    ])
+)
+
+
+# Link DataTable edits to the plot with a callback function
+@app.callback(
+    Output('figure1', 'figure'),
+    Input('dataTable1', 'selected_columns')
+)
+def display_output(sel_col):
+    # Create a new figure to replace previous figure
+    fig = px.line(df, x='year', y=sel_col[0], color='country', markers=True)
+
+    return fig
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+```
+
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![data table with line plot](ch9_files/img/datatable_plot_link.gif)
+````
+
+### 9.2.2 Line Plot with Editable DataTable
+
+Now let's allow the user to update the data inside the DataTable and have the graph update accordingly. To do that, we need to define the `editable` property as such: `editable=True`.
+
+We also need to update the callabck decorator and body of the callback function. In the previous code above, the line chart always plotted the same global DataFrame, `df`, because the data never changed. In cases were the DataTable data can be edited, we need to create a new DataFrame inside the callback function to reflect the updated DataTable. Then, we use the udpated DataFrame to plot the graph. 
+
+```python
+# Import libraries
+from dash import Dash, dash_table, dcc, Input, Output, State
+import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
+
+
+# Import data into Pandas dataframe
+df = px.data.gapminder()
+
+# Filter data with a list of countries we're interested in exploring
+country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
+df = df[df['country'].isin(country_list)]
+
+# Filter columns we want to use
+df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
+
+# Create a Dash DataTable
+data_table = dash_table.DataTable(
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i,'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        selected_columns=['lifeExp'],
+        editable=True
 )
 
 # Create a line graph of life expectancy over time
@@ -159,8 +242,16 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![data table with line plot](ch9_files/img/datatable_plot_link.gif)
+````
 
-### 9.2.2 Histogram
+**Update gif in dropdown**
+
+### 9.2.3 Histogram
 
 Let's explore the data further using a `Histogram` that we'll animate to show population change over time:
 
@@ -267,9 +358,9 @@ if __name__ == '__main__':
 ```
 
 
-## 9.3 Other Important DataTable props
+## 9.3 Other Important DataTable properties
 
-Let's take a look at some useful `DataTable` props:
+Let's take a look at some useful `DataTable` properties:
 
 ### 9.3.1 Sorting
 First let's add `sorting`:
