@@ -98,7 +98,7 @@ When the `columns` property of the `DataTable` is not provided, columns are auto
 
 We'll also restrict selection to only one column at a time with `column_selectable`, and we'll predefine the initial selected column with `selected_columns`. 
 
-The Callback will connect the DataTable to the graph by being triggered whenever the user selects a column. 
+The Callback will connect the DataTable to the graph and update its y-axis by being triggered whenever the user selects a column. 
 
 ```python
 # Import libraries
@@ -166,8 +166,9 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
-![data table with line plot](ch9_files/img/datatable_plot_link.gif)
+![data table with line plot](ch9_files/img/colum-select.gif)
 ````
+
 
 ### 9.2.2 Line Plot with Editable DataTable
 
@@ -246,117 +247,8 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
-![data table with line plot](ch9_files/img/datatable_plot_link.gif)
+![data table with line plot](ch9_files/img/datatable_editing.gif)
 ````
-
-**Update gif in dropdown**
-
-### 9.2.3 Histogram
-
-Let's explore the data further using a `Histogram` that we'll animate to show population change over time:
-
-![datatable histogram link](ch9_files/img/datatable_hist_link.gif)
-
-
-```python
-# Import libraries
-from dash import Dash, dash_table, dcc, Input, Output, State
-import dash_bootstrap_components as dbc
-import pandas as pd
-import plotly.express as px
-
-
-# Import data into Pandas dataframe
-df = px.data.gapminder()
-
-# Filter data with a list of countries we're interested in exploring
-country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
-df = df[df['country'].isin(country_list)]
-
-# Filter columns we want to use
-df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
-
-# Create a Dash DataTable
-data_table = dash_table.DataTable(
-        id='dataTable1', 
-        data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'selectable':True} for i in df.columns],
-        page_size=10,
-        column_selectable="single",
-)
-
-# Create a line graph of life expectancy over time
-fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
-graph1 = dcc.Graph(id='figure1', figure=fig1)
-
-# Create an animated histogram of population growth
-fig_bar = px.histogram(df, x="country", y="pop", color="country",
-                 animation_frame="year", animation_group="country", 
-                 range_y=[0,200000000],
-)
-graph2 = dcc.Graph(id='figure2', figure=fig_bar)
-
-
-# Create the Dash application with Bootstrap CSS stylesheet
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Create the app layout
-app.layout = dbc.Container([
-    dbc.Row([
-        dbc.Col([
-            graph1,
-        ]),
-        dbc.Col([
-            graph2,
-        ]),
-    ]),
-    dbc.Row([
-        dbc.Col([
-            data_table,
-        ]),
-    ]),  
-])
-
-
-# Link DataTable edits to the plot with a callback function
-@app.callback(
-    Output('figure1', 'figure'),
-    Input('dataTable1', 'data'),
-    Input('dataTable1', 'columns'),
-    Input('dataTable1', 'selected_columns')
-)
-def display_output(rows, columns, sel_col):
-    # Create data frame from data table 
-    df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
-    # Create a new figure to replace previous figure
-    fig = px.line(df, x='year', y=sel_col[0], color='country', markers=True)
-
-    return fig
-
-
-# Link DataTable edits to the plot with a callback function
-@app.callback(
-    Output('figure2', 'figure'),
-    Input('dataTable1', 'data'),
-    Input('dataTable1', 'columns'),
-    Input('dataTable1', 'selected_columns')
-)
-def display_output(rows, columns, sel_col):
-    # Create data frame from data table 
-    df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
-    # Create a new figure to replace previous figure
-    # Create an animated histogram of population growth
-    fig = px.histogram(df, x="country", y="pop", color="country",
-                    animation_frame="year", animation_group="country", 
-                    range_y=[0,200000000],
-    )
-
-    return fig
-# Launch the app server
-if __name__ == '__main__':
-    app.run_server()
-```
-
 
 ## 9.3 Other Important DataTable properties
 
@@ -402,15 +294,11 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
-![data table sorting](ch9_files/img/datatable_sort.gif)
+![data table sorting](ch9_files/img/sorting.gif)
 ````
 
-**Update gif in dropdown**
-
 ### 9.3.2 Filtering
-We can also add the option to filter the columns of data.  In this example we will only use **>** or **<**:
-
-![datatable filter](ch9_files/img/datatable_filter.gif)
+We can also add the option to filter the columns of data with the `filter_action` property. 
 
 ```python
 # Import libraries
@@ -445,13 +333,6 @@ data_table = dash_table.DataTable(
 fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
 graph1 = dcc.Graph(id='figure1', figure=fig1)
 
-# Create an animated histogram of population growth
-fig_bar = px.histogram(df, x="country", y="pop", color="country",
-                 animation_frame="year", animation_group="country", 
-                 range_y=[0,200000000],
-)
-graph2 = dcc.Graph(id='figure2', figure=fig_bar)
-
 
 # Create the Dash application with Bootstrap CSS stylesheet
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -460,92 +341,49 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            graph1,
-        ]),
-        dbc.Col([
-            graph2,
-        ]),
-    ]),
-    dbc.Row([
-        dbc.Col([
             data_table,
         ]),
     ]),  
 ])
 
-# Take a filter string and apply it to a dataframe. Return a Plotly figure
-def parse_filter(filter, df):
-    # Parse the string to get the filter and target column
-    lst = filter.split("s")
-    col_name = lst[0][1:-2]
-    op = lst[1].split(" ")
-    # perform > or < filter of df column
-    if op[0] == ">":
-        df = df[df[col_name]> float(op[1])] 
-    elif op[0] == "<":
-        df = df[df[col_name]< float(op[1])] 
-        
-    # Create a new figure to replace previous figure
-    fig = px.line(df, x='year', y=col_name, color='country', markers=True)
 
-    return fig
-
-
-# Link DataTable edits to the plot with a callback function
-@app.callback(
-    Output('figure1', 'figure'),
-    Input('dataTable1', 'data'),
-    Input('dataTable1', 'columns'),
-    Input('dataTable1', 'selected_columns'),
-    Input('dataTable1', "filter_query")
-)
-def display_output(rows, columns, sel_col, flter):
-
-    # Create data frame from data table 
-    df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
-
-    # Apply the filter if selected
-    if flter:
-        fig = parse_filter(flter,df)
-        return fig
-    # Use the selected column if the user chose one
-    elif sel_col:
-        # Create a new figure to replace previous figure
-        fig = px.line(df, x='year', y=sel_col[0], color='country', markers=True)
-        return fig
-    else:
-        # Create a new figure to replace previous figure
-        fig = px.line(df, x='year', y='lifeExp', color='country', markers=True) 
-        return fig
-
-
-# Link DataTable edits to the plot with a callback function
-@app.callback(
-    Output('figure2', 'figure'),
-    Input('dataTable1', 'data'),
-    Input('dataTable1', 'columns'),
-    Input('dataTable1', 'selected_columns')
-)
-def display_output(rows, columns, sel_col):
-    # Create data frame from data table 
-    df = pd.DataFrame(rows, columns=[c['name'] for c in columns])
-    # Create a new figure to replace previous figure
-    # Create an animated histogram of population growth
-    fig = px.histogram(df, x="country", y="pop", color="country",
-                    animation_frame="year", animation_group="country", 
-                    range_y=[0,200000000],
-    )
-
-    return fig
 # Launch the app server
 if __name__ == '__main__':
     app.run_server()
+
 ```
 
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![data table sorting](ch9_files/img/filtering.gif)
+
+In this example we use the filtering operators ">", "<", "=". If you'd like learn more, see the documentation on [filtering operators](https://dash.plotly.com/datatable/filtering#operators).
+
+````
 
 ### 9.3.3 Delete Columns
-Datasets will often contain much more data than we care about.  Let's allow the user to delete columns in the `DataTable` that they are not interested in:
+Datasets will often contain much more data than we care about. Let's allow the user to delete columns in the `DataTable` that they are not interested in. To do that, we need to activate the `deletable` key inside the `columns` property.
+
 ```python
+# Import libraries
+from dash import Dash, dash_table, dcc, Input, Output, State
+import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
+
+
+# Import data into Pandas dataframe
+df = px.data.gapminder()
+
+# Filter data with a list of countries we're interested in exploring
+country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
+df = df[df['country'].isin(country_list)]
+
+# Filter columns we want to use
+df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
+
 # Create a Dash DataTable
 data_table = dash_table.DataTable(
         id='dataTable1', 
@@ -556,15 +394,62 @@ data_table = dash_table.DataTable(
         sort_action='native',
         filter_action='native',
 )
+
+# Create a line graph of life expectancy over time
+fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
+graph1 = dcc.Graph(id='figure1', figure=fig1)
+
+
+# Create the Dash application with Bootstrap CSS stylesheet
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create the app layout
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            data_table,
+        ]),
+    ]),  
+])
+
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+
 ```
 
-![delete columns](ch9_files/img/datatable_del_col.gif)
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![delete columns](ch9_files/img/deletable_col.gif)
+
+````
 
 
 ### 9.3.4 Delete Rows
-Sometimes we'd like to remove a datapoint from our plot.  Let's allow the user to delete rows in the `DataTable`:
+Sometimes we'd like to remove a datapoint from our plot.  Let's allow the user to delete rows in the DataTable with the `row_deletable`property:
 
 ```python
+# Import libraries
+from dash import Dash, dash_table, dcc, Input, Output, State
+import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
+
+
+# Import data into Pandas dataframe
+df = px.data.gapminder()
+
+# Filter data with a list of countries we're interested in exploring
+country_list = ['Canada', 'Brazil', 'Norway', 'Germany']
+df = df[df['country'].isin(country_list)]
+
+# Filter columns we want to use
+df.drop(['continent', 'iso_alpha', 'iso_num'], axis=1, inplace=True)
+
+# Create a Dash DataTable
 data_table = dash_table.DataTable(
         id='dataTable1', 
         data=df.to_dict('records'), 
@@ -576,8 +461,38 @@ data_table = dash_table.DataTable(
         row_deletable=True,
 
 )
+
+# Create a line graph of life expectancy over time
+fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
+graph1 = dcc.Graph(id='figure1', figure=fig1)
+
+
+# Create the Dash application with Bootstrap CSS stylesheet
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create the app layout
+app.layout = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            data_table,
+        ]),
+    ]),  
+])
+
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+
 ```
-![delete columns](ch9_files/img/datatable_del_row.gif)
+
+````{dropdown} See Table
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+![delete rows](ch9_files/img/deletable_row.gif)
+
+````
 
 ## Summary
-In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about **Advanced Callbacks**.
+In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about Advanced callbacks, multiple outputs, and `State`.
