@@ -707,7 +707,7 @@ See Table<div class="summary-down docutils">
 <div class="section" id="line-plot-with-editable-datatable">
 <h3>9.2.2 Line Plot with Editable DataTable<a class="headerlink" href="#line-plot-with-editable-datatable" title="Permalink to this headline">¶</a></h3>
 <p>Now let’s allow the user to update the data inside the DataTable and have the graph update accordingly. To do that, we need to define the <code class="docutils literal notranslate"><span class="pre">editable</span></code> property as such: <code class="docutils literal notranslate"><span class="pre">editable=True</span></code>.</p>
-<p>We also need to update the callabck decorator and body of the callback function. In the previous code above, the line chart always plotted the same global DataFrame, <code class="docutils literal notranslate"><span class="pre">df</span></code>, because the data never changed. In cases were the DataTable data can be edited, we need to create a new DataFrame inside the callback function to reflect the updated DataTable. Then, we use the udpated DataFrame to plot the graph.</p>
+<p>We also need to update the callabck decorator and body of the callback function. In the previous code above, the line chart always plotted the same global DataFrame, <code class="docutils literal notranslate"><span class="pre">df</span></code>, because the data never changed. In cases where the DataTable data can be edited, we need to create a new DataFrame inside the callback function to reflect the updated DataTable. Then, we use the udpated DataFrame to plot the graph.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -966,7 +966,7 @@ See Table<div class="summary-down docutils">
 </details></div>
 <div class="section" id="delete-rows">
 <h3>9.3.4 Delete Rows<a class="headerlink" href="#delete-rows" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes we’d like to remove a datapoint from our plot.  Let’s allow the user to delete rows in the DataTable with the <code class="docutils literal notranslate"><span class="pre">row_deletable</span></code>property:</p>
+<p>Sometimes we’d like to remove a datapoint from our plot.  Let’s allow the user to delete rows in the DataTable with the <code class="docutils literal notranslate"><span class="pre">row_deletable</span></code> property:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -1034,7 +1034,7 @@ See Table<div class="summary-down docutils">
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we learned about <code class="docutils literal notranslate"><span class="pre">Dash</span> <span class="pre">DataTables</span></code>.  In the next chapter we will learn about Advanced callbacks, multiple outputs, and <code class="docutils literal notranslate"><span class="pre">State</span></code>.</p>
+<p>In this chapter we learned about <code class="docutils literal notranslate"><span class="pre">Dash</span> <span class="pre">DataTables</span></code>.  In the next chapter we will learn about advanced callbacks, multiple outputs, and <code class="docutils literal notranslate"><span class="pre">State</span></code>.</p>
 </div>
 </div>
 
