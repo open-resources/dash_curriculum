@@ -174,7 +174,7 @@ if __name__ == '__main__':
 
 Now let's allow the user to update the data inside the DataTable and have the graph update accordingly. To do that, we need to define the `editable` property as such: `editable=True`.
 
-We also need to update the callabck decorator and body of the callback function. In the previous code above, the line chart always plotted the same global DataFrame, `df`, because the data never changed. In cases were the DataTable data can be edited, we need to create a new DataFrame inside the callback function to reflect the updated DataTable. Then, we use the udpated DataFrame to plot the graph. 
+We also need to update the callabck decorator and body of the callback function. In the previous code above, the line chart always plotted the same global DataFrame, `df`, because the data never changed. In cases where the DataTable data can be edited, we need to create a new DataFrame inside the callback function to reflect the updated DataTable. Then, we use the udpated DataFrame to plot the graph. 
 
 ```python
 # Import libraries
@@ -429,7 +429,7 @@ if __name__ == '__main__':
 
 
 ### 9.3.4 Delete Rows
-Sometimes we'd like to remove a datapoint from our plot.  Let's allow the user to delete rows in the DataTable with the `row_deletable`property:
+Sometimes we'd like to remove a datapoint from our plot.  Let's allow the user to delete rows in the DataTable with the `row_deletable` property:
 
 ```python
 # Import libraries
@@ -495,4 +495,4 @@ if __name__ == '__main__':
 ````
 
 ## Summary
-In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about Advanced callbacks, multiple outputs, and `State`.
+In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about advanced callbacks, multiple outputs, and `State`.
