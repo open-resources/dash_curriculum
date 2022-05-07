@@ -405,15 +405,15 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram">
-     9.2.2 Histogram
+    <a class="reference internal nav-link" href="#line-plot-with-editable-datatable">
+     9.2.2 Line Plot with Editable DataTable
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-important-datatable-props">
-   9.3 Other Important DataTable props
+  <a class="reference internal nav-link" href="#other-important-datatable-properties">
+   9.3 Other Important DataTable properties
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -484,15 +484,15 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#histogram">
-     9.2.2 Histogram
+    <a class="reference internal nav-link" href="#line-plot-with-editable-datatable">
+     9.2.2 Line Plot with Editable DataTable
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-important-datatable-props">
-   9.3 Other Important DataTable props
+  <a class="reference internal nav-link" href="#other-important-datatable-properties">
+   9.3 Other Important DataTable properties
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -539,8 +539,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="intro-to-datatables">
 <h2>9.1 Intro to DataTables<a class="headerlink" href="#intro-to-datatables" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">DataTables</span></code> are an interactive table designed for viewing, editing, and exploring large datasets like with Microsoft Excel or Google Sheets.  Let’s create a basic <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> with the gapminder dataset.</p>
-<p><img alt="intro datatable" src="../_images/datatable_intro.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">Dash</span> <span class="pre">DataTable</span></code> is an interactive table designed for viewing, editing, and exploring large datasets similar to Microsoft Excel or Google Sheets.  To create a basic <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> all we need to do is define the <code class="docutils literal notranslate"><span class="pre">data</span></code> property by assigning the dataframe to it.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -570,9 +569,16 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>We see that this dataset is huge so let’s use the <code class="docutils literal notranslate"><span class="pre">page_size</span></code> property of <code class="docutils literal notranslate"><span class="pre">DataTables</span></code> to limit the rows shown to 10.  We’ll also filter the dataset to only look at a few countries
-and remove columns we’re not interested in:</p>
-<p><img alt="filtered datatable" src="../_images/datatable_filtered.png" /></p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="intro datatable" src="../_images/datatable_intro.png" /></p>
+</div>
+</details><p>If you run the code above, you’ll see that this dataset is huge and the first page is very long. We can limit the amount of rows displayed per page, by using the <code class="docutils literal notranslate"><span class="pre">page_size</span></code> property. But that would create 171 pages of <code class="docutils literal notranslate"><span class="pre">DataTables</span></code>. To limit the size of the dataset, we’ll filter it before building the DataTable to only look at a few countries and remove columns we’re not interested in:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -609,15 +615,24 @@ and remove columns we’re not interested in:</p>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="filtered datatable" src="../_images/datatable_filtered.png" /></p>
 </div>
+</details></div>
 <div class="section" id="linking-datatable-to-a-graph">
 <h2>9.2 Linking DataTable to a Graph<a class="headerlink" href="#linking-datatable-to-a-graph" title="Permalink to this headline">¶</a></h2>
-<p>Now we will link the DataTable to a Graph and see that the graph changes when we edit data in the DataTable.</p>
+<p>Now we will link the DataTable to a Graph and see that the graph changes as we interact with the DataTable.</p>
 <div class="section" id="line-plot">
 <h3>9.2.1 Line Plot<a class="headerlink" href="#line-plot" title="Permalink to this headline">¶</a></h3>
-<p>Creating the <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> becomes more complicated because we need to make each column’s <code class="docutils literal notranslate"><span class="pre">selectable</span></code> property <code class="docutils literal notranslate"><span class="pre">true</span></code>.  We’ll modify the <code class="docutils literal notranslate"><span class="pre">columns</span></code> and <code class="docutils literal notranslate"><span class="pre">columns_selectable</span></code> properties of the DataFrame.</p>
-<p>We also add a <code class="docutils literal notranslate"><span class="pre">Callback</span></code> function that will be triggered when data is changed or the user selects a column.  The callback then takes in all the data from the table and return an updated figure.</p>
-<p><img alt="data table with line plot" src="part2/ch9_files/img/datatable_plot_link.gif" /></p>
+<p>When the <code class="docutils literal notranslate"><span class="pre">columns</span></code> property of the <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> is not provided, columns are auto-generated based on the first row in data. However, in this example, we will define the <code class="docutils literal notranslate"><span class="pre">columns</span></code> property because we want to allow the user to select columns with <code class="docutils literal notranslate"><span class="pre">selectable:True</span></code></p>
+<p>We’ll also restrict selection to only one column at a time with <code class="docutils literal notranslate"><span class="pre">column_selectable</span></code>, and we’ll predefine the initial selected column with <code class="docutils literal notranslate"><span class="pre">selected_columns</span></code>.</p>
+<p>The Callback will connect the DataTable to the graph and update its y-axis by being triggered whenever the user selects a column.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -642,6 +657,83 @@ and remove columns we’re not interested in:</p>
         <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span><span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
         <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
         <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+        <span class="n">selected_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Create a line graph of life expectancy over time</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">)</span>
+
+<span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create the app layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">graph1</span><span class="p">,</span>
+            <span class="n">data_table</span><span class="p">,</span>
+        <span class="p">])</span>
+    <span class="p">])</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Link DataTable edits to the plot with a callback function</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">sel_col</span><span class="p">):</span>
+    <span class="c1"># Create a new figure to replace previous figure</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sel_col</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Launch the app server</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="data table with line plot" src="../_images/colum-select.gif" /></p>
+</div>
+</details></div>
+<div class="section" id="line-plot-with-editable-datatable">
+<h3>9.2.2 Line Plot with Editable DataTable<a class="headerlink" href="#line-plot-with-editable-datatable" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s allow the user to update the data inside the DataTable and have the graph update accordingly. To do that, we need to define the <code class="docutils literal notranslate"><span class="pre">editable</span></code> property as such: <code class="docutils literal notranslate"><span class="pre">editable=True</span></code>.</p>
+<p>We also need to update the callabck decorator and body of the callback function. In the previous code above, the line chart always plotted the same global DataFrame, <code class="docutils literal notranslate"><span class="pre">df</span></code>, because the data never changed. In cases were the DataTable data can be edited, we need to create a new DataFrame inside the callback function to reflect the updated DataTable. Then, we use the udpated DataFrame to plot the graph.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+
+<span class="c1"># Import data into Pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
+<span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Filter columns we want to use</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a Dash DataTable</span>
+<span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
+        <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
+        <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span><span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+        <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
+        <span class="n">selected_columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">],</span>
+        <span class="n">editable</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 
 <span class="c1"># Create a line graph of life expectancy over time</span>
@@ -682,134 +774,68 @@ and remove columns we’re not interested in:</p>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="data table with line plot" src="../_images/datatable_editing.gif" /></p>
 </div>
-<div class="section" id="histogram">
-<h3>9.2.2 Histogram<a class="headerlink" href="#histogram" title="Permalink to this headline">¶</a></h3>
-<p>Let’s explore the data further using a <code class="docutils literal notranslate"><span class="pre">Histogram</span></code> that we’ll animate to show population change over time:</p>
-<p><img alt="datatable histogram link" src="part2/ch9_files/img/datatable_hist_link.gif" /></p>
+</details></div>
+</div>
+<div class="section" id="other-important-datatable-properties">
+<h2>9.3 Other Important DataTable properties<a class="headerlink" href="#other-important-datatable-properties" title="Permalink to this headline">¶</a></h2>
+<p>We’ve seen how to create a DataTable and how to connect it to Plotly Graphs. Let’s take a look at some more useful <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> properties:</p>
+<div class="section" id="sorting">
+<h3>9.3.1 Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
+<p>First let’s add a sorting capability with <code class="docutils literal notranslate"><span class="pre">sort_action</span></code>, which enables data to be sorted on a per-column basis.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 
-
 <span class="c1"># Import data into Pandas dataframe</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 
-<span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
-<span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
-
-<span class="c1"># Filter columns we want to use</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># Create a Dash DataTable</span>
-<span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
-        <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
-        <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
-        <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Create a line graph of life expectancy over time</span>
-<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
-
-<span class="c1"># Create an animated histogram of population growth</span>
-<span class="n">fig_bar</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
-                 <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">animation_group</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
-                 <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200000000</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">graph2</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure2&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig_bar</span><span class="p">)</span>
-
+<span class="c1"># Create a Dash DataTable: add sorting capability</span>
+<span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;dataTable1&quot;</span><span class="p">,</span>
+                                  <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span>
+                                  <span class="n">page_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                  <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">)</span>
 
 <span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create the app layout</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-            <span class="n">graph1</span><span class="p">,</span>
-        <span class="p">]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-            <span class="n">graph2</span><span class="p">,</span>
-        <span class="p">]),</span>
-    <span class="p">]),</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-            <span class="n">data_table</span><span class="p">,</span>
-        <span class="p">]),</span>
-    <span class="p">]),</span>  
-<span class="p">])</span>
-
-
-<span class="c1"># Link DataTable edits to the plot with a callback function</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">)</span>
+            <span class="n">data_table</span>
+        <span class="p">])</span>
+    <span class="p">])</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">sel_col</span><span class="p">):</span>
-    <span class="c1"># Create data frame from data table </span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
-    <span class="c1"># Create a new figure to replace previous figure</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sel_col</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">fig</span>
-
-
-<span class="c1"># Link DataTable edits to the plot with a callback function</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure2&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">sel_col</span><span class="p">):</span>
-    <span class="c1"># Create data frame from data table </span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
-    <span class="c1"># Create a new figure to replace previous figure</span>
-    <span class="c1"># Create an animated histogram of population growth</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
-                    <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">animation_group</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
-                    <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200000000</span><span class="p">],</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">fig</span>
 <span class="c1"># Launch the app server</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="data table sorting" src="../_images/sorting.gif" /></p>
 </div>
-</div>
-<div class="section" id="other-important-datatable-props">
-<h2>9.3 Other Important DataTable props<a class="headerlink" href="#other-important-datatable-props" title="Permalink to this headline">¶</a></h2>
-<p>Let’s take a look at some useful <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> props:</p>
-<div class="section" id="sorting">
-<h3>9.3.1 Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h3>
-<p>First let’s add <code class="docutils literal notranslate"><span class="pre">sorting</span></code>:</p>
-<p><img alt="data table sorting" src="part2/ch9_files/img/datatable_sort.gif" /></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
-<span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
-        <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
-        <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
-        <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
-        <span class="n">page_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-        <span class="n">column_selectable</span><span class="o">=</span><span class="s2">&quot;single&quot;</span><span class="p">,</span>
-        <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
+</details></div>
 <div class="section" id="filtering">
 <h3>9.3.2 Filtering<a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h3>
-<p>We can also add the option to filter the columns of data.  In this example we will only use <strong>&gt;</strong> or <strong>&lt;</strong>:</p>
-<p><img alt="datatable filter" src="part2/ch9_files/img/datatable_filter.gif" /></p>
+<p>We can also add the option to filter the columns of data with the <code class="docutils literal notranslate"><span class="pre">filter_action</span></code> property.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -842,13 +868,6 @@ and remove columns we’re not interested in:</p>
 <span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
 
-<span class="c1"># Create an animated histogram of population growth</span>
-<span class="n">fig_bar</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
-                 <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">animation_group</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
-                 <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200000000</span><span class="p">],</span>
-<span class="p">)</span>
-<span class="n">graph2</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure2&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig_bar</span><span class="p">)</span>
-
 
 <span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
@@ -857,93 +876,50 @@ and remove columns we’re not interested in:</p>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
     <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-            <span class="n">graph1</span><span class="p">,</span>
-        <span class="p">]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-            <span class="n">graph2</span><span class="p">,</span>
-        <span class="p">]),</span>
-    <span class="p">]),</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
             <span class="n">data_table</span><span class="p">,</span>
         <span class="p">]),</span>
     <span class="p">]),</span>  
 <span class="p">])</span>
 
-<span class="c1"># Take a filter string and apply it to a dataframe. Return a Plotly figure</span>
-<span class="k">def</span> <span class="nf">parse_filter</span><span class="p">(</span><span class="nb">filter</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
-    <span class="c1"># Parse the string to get the filter and target column</span>
-    <span class="n">lst</span> <span class="o">=</span> <span class="nb">filter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
-    <span class="n">col_name</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
-    <span class="n">op</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
-    <span class="c1"># perform &gt; or &lt; filter of df column</span>
-    <span class="k">if</span> <span class="n">op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&gt;&quot;</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">&gt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">op</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> 
-    <span class="k">elif</span> <span class="n">op</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;&lt;&quot;</span><span class="p">:</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">&lt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">op</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span> 
-        
-    <span class="c1"># Create a new figure to replace previous figure</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">col_name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">fig</span>
-
-
-<span class="c1"># Link DataTable edits to the plot with a callback function</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s2">&quot;filter_query&quot;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">sel_col</span><span class="p">,</span> <span class="n">flter</span><span class="p">):</span>
-
-    <span class="c1"># Create data frame from data table </span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
-
-    <span class="c1"># Apply the filter if selected</span>
-    <span class="k">if</span> <span class="n">flter</span><span class="p">:</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">parse_filter</span><span class="p">(</span><span class="n">flter</span><span class="p">,</span><span class="n">df</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fig</span>
-    <span class="c1"># Use the selected column if the user chose one</span>
-    <span class="k">elif</span> <span class="n">sel_col</span><span class="p">:</span>
-        <span class="c1"># Create a new figure to replace previous figure</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">sel_col</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fig</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Create a new figure to replace previous figure</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-        <span class="k">return</span> <span class="n">fig</span>
-
-
-<span class="c1"># Link DataTable edits to the plot with a callback function</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure2&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> <span class="s1">&#39;selected_columns&#39;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">display_output</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">sel_col</span><span class="p">):</span>
-    <span class="c1"># Create data frame from data table </span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">])</span>
-    <span class="c1"># Create a new figure to replace previous figure</span>
-    <span class="c1"># Create an animated histogram of population growth</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
-                    <span class="n">animation_frame</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">animation_group</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> 
-                    <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">200000000</span><span class="p">],</span>
-    <span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">fig</span>
 <span class="c1"># Launch the app server</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+
 </pre></div>
 </div>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="data table sorting" src="../_images/filtering.gif" /></p>
+<p class="card-text">In this example we use the filtering operators “&gt;”, “&lt;”, “=”. If you’d like learn more, see the documentation on <a class="reference external" href="https://dash.plotly.com/datatable/filtering#operators">filtering operators</a>.</p>
 </div>
+</details></div>
 <div class="section" id="delete-columns">
 <h3>9.3.3 Delete Columns<a class="headerlink" href="#delete-columns" title="Permalink to this headline">¶</a></h3>
-<p>Datasets will often contain much more data than we care about.  Let’s allow the user to delete columns in the <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> that they are not interested in:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a Dash DataTable</span>
+<p>Datasets will often contain much more data than we care about. Let’s allow the user to delete columns in the <code class="docutils literal notranslate"><span class="pre">DataTable</span></code> that they are not interested in. To do that, we need to activate the <code class="docutils literal notranslate"><span class="pre">deletable</span></code> key inside the <code class="docutils literal notranslate"><span class="pre">columns</span></code> property.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+
+<span class="c1"># Import data into Pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
+<span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Filter columns we want to use</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a Dash DataTable</span>
 <span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
         <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
         <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
@@ -953,14 +929,63 @@ and remove columns we’re not interested in:</p>
         <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
         <span class="n">filter_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
 <span class="p">)</span>
+
+<span class="c1"># Create a line graph of life expectancy over time</span>
+<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
+
+
+<span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create the app layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">data_table</span><span class="p">,</span>
+        <span class="p">]),</span>
+    <span class="p">]),</span>  
+<span class="p">])</span>
+
+
+<span class="c1"># Launch the app server</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+
 </pre></div>
 </div>
-<p><img alt="delete columns" src="part2/ch9_files/img/datatable_del_col.gif" /></p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="delete columns" src="../_images/deletable_col.gif" /></p>
 </div>
+</details></div>
 <div class="section" id="delete-rows">
 <h3>9.3.4 Delete Rows<a class="headerlink" href="#delete-rows" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes we’d like to remove a datapoint from our plot.  Let’s allow the user to delete rows in the <code class="docutils literal notranslate"><span class="pre">DataTable</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
+<p>Sometimes we’d like to remove a datapoint from our plot.  Let’s allow the user to delete rows in the DataTable with the <code class="docutils literal notranslate"><span class="pre">row_deletable</span></code>property:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import libraries</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+
+<span class="c1"># Import data into Pandas dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># Filter data with a list of countries we&#39;re interested in exploring</span>
+<span class="n">country_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">,</span> <span class="s1">&#39;Germany&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">country_list</span><span class="p">)]</span>
+
+<span class="c1"># Filter columns we want to use</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="s1">&#39;iso_num&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a Dash DataTable</span>
+<span class="n">data_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
         <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dataTable1&#39;</span><span class="p">,</span> 
         <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">),</span> 
         <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;selectable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;deletable&#39;</span><span class="p">:</span><span class="kc">True</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
@@ -971,14 +996,45 @@ and remove columns we’re not interested in:</p>
         <span class="n">row_deletable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 
 <span class="p">)</span>
+
+<span class="c1"># Create a line graph of life expectancy over time</span>
+<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
+
+
+<span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create the app layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">data_table</span><span class="p">,</span>
+        <span class="p">]),</span>
+    <span class="p">]),</span>  
+<span class="p">])</span>
+
+
+<span class="c1"># Launch the app server</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+
 </pre></div>
 </div>
-<p><img alt="delete columns" src="part2/ch9_files/img/datatable_del_row.gif" /></p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Table<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text"><img alt="delete rows" src="../_images/deletable_row.gif" /></p>
 </div>
+</details></div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we learned about <code class="docutils literal notranslate"><span class="pre">Dash</span> <span class="pre">DataTables</span></code>.  In the next chapter we will learn about <strong>Advanced Callbacks</strong>.</p>
+<p>In this chapter we learned about <code class="docutils literal notranslate"><span class="pre">Dash</span> <span class="pre">DataTables</span></code>.  In the next chapter we will learn about Advanced callbacks, multiple outputs, and <code class="docutils literal notranslate"><span class="pre">State</span></code>.</p>
 </div>
 </div>
 
