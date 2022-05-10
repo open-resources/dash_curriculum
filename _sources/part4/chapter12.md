@@ -3,6 +3,11 @@
 ## Unclear:
 
 - how to change *complete* theme through callbacks on `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`?
+- can you set `order` of `dbc.Row()` conponents as you can with `dbc.Col()`
+
+## Resources:
+
+https://bootswatch.com/
       
 ## I - Outline:      
 ## Advanced Styling with Dash Bootstrap Components
