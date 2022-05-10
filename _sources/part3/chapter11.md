@@ -20,9 +20,6 @@ All advanced components that will be presented come from these three very common
 
 In the links above, it is possible to search for keywords and find the components we need. Once we've identified the components that we want to include in our app, [this cheatsheet](https://dashcheatsheet.pythonanywhere.com/) is another powerful tool that helps us understanding how components can be customised.
 
-```{note}
-Remember that not all components require callbacks. In this chapter, we'll be focusing on the components functionalities, independently from the user interaction that is controlled by callbacks. 
-```
 
 ## 11.2 Data Display Components
 
