@@ -1,4 +1,4 @@
-# Chapter 11
+# Chapter 11: Advanced Components
 
 ## What you will learn
 In this chapter we will introduce several advanced components that go beyond what we have seen so far, but that are necessary for advanced apps.
