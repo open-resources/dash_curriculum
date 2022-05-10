@@ -3,7 +3,8 @@
 ## Unclear:
 
 - how to change *complete* theme through callbacks on `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`?
-- can you set `order` of `dbc.Row()` conponents as you can with `dbc.Col()`
+- can you set `order` of `dbc.Row()` co,ponents as you can with `dbc.Col()`. `align`?
+- `external_stylesheets=[dbc.themes.SLATE]` < `className` < `style`?
 
 ## Resources:
 
