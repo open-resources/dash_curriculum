@@ -1,5 +1,9 @@
 # Chapter 12  Advanced Styling and Layout
       
+## Unclear:
+
+- how to change *complete* theme through callbacks on `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`?
+      
 ## I - Outline:      
 ## Advanced Styling with Dash Bootstrap Components
 
