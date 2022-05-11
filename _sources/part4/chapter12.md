@@ -6,6 +6,19 @@
 - can you set `order` of `dbc.Row()` co,ponents as you can with `dbc.Col()`. `align`?
 - `external_stylesheets=[dbc.themes.SLATE]` < `className` < `style`?
 
+## className details
+
+### className elements
+
+### className combinations:
+
+- " opacity-75 p-2 m-1 bg-success bg-opacity-25 text-light rounded-bottom "
+
+### className gotchas
+
+Without a leading `space`, the first element `opacity-75` is ignored
+Without a trailing `space`, the last element `rounded-bottom` will also likely be ignored, ***but*** the `bottom` property seems to be globally set by `[dbc.themes.SLATE]` and is unediable???
+
 ## Resources:
 
 https://bootswatch.com/
