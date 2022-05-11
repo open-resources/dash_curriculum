@@ -408,6 +408,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#filtering-input-components">
    11.4 Filtering &amp; Input Components
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datepicker">
+     DatePicker
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#navigation-components">
@@ -495,6 +502,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#filtering-input-components">
    11.4 Filtering &amp; Input Components
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#datepicker">
+     DatePicker
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#navigation-components">
@@ -580,6 +594,61 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="filtering-input-components">
 <h2>11.4 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="datepicker">
+<h3>DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Import data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span>
+    <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;start date&#39;</span><span class="p">,</span>
+    <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;end date&#39;</span><span class="p">,</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">display_format</span><span class="o">=</span><span class="s1">&#39;DD-MMM-YYYY&#39;</span><span class="p">,</span>
+    <span class="n">first_day_of_week</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">date_range</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;stock-line&#39;</span><span class="p">)],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">))</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Configure callback</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;stock-line&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;start_date&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot_dt</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
+    <span class="n">df_plot</span> <span class="o">=</span> <span class="n">df</span>
+    <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df_plot</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_plot</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start_date</span><span class="p">),</span> <span class="p">:]</span>
+    <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">df_plot</span> <span class="o">=</span> <span class="n">df_plot</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df_plot</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_date</span><span class="p">),</span> <span class="p">:]</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df_plot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">,</span><span class="s1">&#39;AMZN&#39;</span><span class="p">,</span><span class="s1">&#39;FB&#39;</span><span class="p">,</span><span class="s1">&#39;NFLX&#39;</span><span class="p">,</span><span class="s1">&#39;MSFT&#39;</span><span class="p">],</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="navigation-components">
 <h2>11.5 Navigation Components<a class="headerlink" href="#navigation-components" title="Permalink to this headline">¶</a></h2>
