@@ -12,6 +12,8 @@
 
 ### className combinations:
 
+- `" opacity-25 p-2 m-1 bg-primary text-light fw-bold rounded "`
+
 - `" opacity-75 p-2 m-1 bg-success bg-opacity-25 text-light rounded-bottom "`
 
 ### className gotchas
