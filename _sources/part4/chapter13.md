@@ -6,6 +6,12 @@
 the main idea is to give two examples on data wrangling. Once where the data wrangling takes place before initializing the app, once after or during a callback. The plan is to show some difference in processing time.
 
 ## Higher Performing Plotly graphs
+So far, we have used the plotly.express library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, plotly.js has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Three WebGL alternatives are the follwing:
+
+- [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets): A webgl implementation of the scatter chart type.
+- [Pointcloud](https://plotly.com/python/reference/#pointcloud): A lightweight version of scattergl with limited customizability but even faster rendering.
+- [Datashader](https://plotly.com/python/datashader/): A webgl implementation of the heatmap chart type.
+
 [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets)
 
 [Pointcloud](https://plotly.com/python/reference/#pointcloud)

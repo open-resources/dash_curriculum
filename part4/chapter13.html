@@ -484,6 +484,12 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="higher-performing-plotly-graphs">
 <h2>Higher Performing Plotly graphs<a class="headerlink" href="#higher-performing-plotly-graphs" title="Permalink to this headline">¶</a></h2>
+<p>So far, we have used the plotly.express library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, plotly.js has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Three WebGL alternatives are the follwing:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a>: A webgl implementation of the scatter chart type.</p></li>
+<li><p><a class="reference external" href="https://plotly.com/python/reference/#pointcloud">Pointcloud</a>: A lightweight version of scattergl with limited customizability but even faster rendering.</p></li>
+<li><p><a class="reference external" href="https://plotly.com/python/datashader/">Datashader</a>: A webgl implementation of the heatmap chart type.</p></li>
+</ul>
 <p><a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a></p>
 <p><a class="reference external" href="https://plotly.com/python/reference/#pointcloud">Pointcloud</a></p>
 <p><a class="reference external" href="https://plotly.com/python/datashader/">Datashader</a></p>
