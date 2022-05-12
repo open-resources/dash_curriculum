@@ -28,6 +28,20 @@ In the links above, it is possible to search for keywords and find the component
 ## 11.4 Filtering & Input Components
 
 ### DatePicker
+The DatePicker component allows the user of the app to select a date, that can then be used in our callbacks.
+There are two types of date pickers, both part of the DCC library:
+- ```DatePickerSingle``` consists of one single date selection that the user can input. By clicking on the object a calendar will pop-up, allowing the user to pick a date
+- ```DatePickerRange``` is similar to the previous component, but includes two date selections, which should be read as "start" and "end" dates.
+
+The two components have very similar properties - the complete list is available [here](https://dash.plotly.com/dash-core-components/datepickerrange); the main ones are:
+- min_date_allowed : minimum date the user can choose from
+- max_date_allowed : maximum date the user can choose from
+- start_date : default start date, before the user makes any selection
+- end_date : default end date, before the user makes any selection
+
+Let's see an example of this component in action. In the following app a DatePickerRange is used as a filter for a line chart.
+Based on the user selection, a dataframe will be filtered and the chart updated.
+As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been selected.
 
 ```
 # Import packages
