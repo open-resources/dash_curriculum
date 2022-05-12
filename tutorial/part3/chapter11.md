@@ -95,7 +95,7 @@ def plot_dt(start_date, end_date):
 if __name__ == '__main__':
     app.run_server()
 ```
-
+![DatePickerRange_Example](./ch11_files/chap11-DatePicker.jpg)
 ## 11.5 Navigation Components
 
 ## 11.6 Layout Components
