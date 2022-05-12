@@ -596,6 +596,22 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>11.4 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datepicker">
 <h3>DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
+<p>The DatePicker component allows the user of the app to select a date, that can then be used in our callbacks.
+There are two types of date pickers, both part of the DCC library:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">DatePickerSingle</span></code> consists of one single date selection that the user can input. By clicking on the object a calendar will pop-up, allowing the user to pick a date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> is similar to the previous component, but includes two date selections, which should be read as “start” and “end” dates.</p></li>
+</ul>
+<p>The two components have very similar properties - the complete list is available <a class="reference external" href="https://dash.plotly.com/dash-core-components/datepickerrange">here</a>; the main ones are:</p>
+<ul class="simple">
+<li><p>min_date_allowed : minimum date the user can choose from</p></li>
+<li><p>max_date_allowed : maximum date the user can choose from</p></li>
+<li><p>start_date : default start date, before the user makes any selection</p></li>
+<li><p>end_date : default end date, before the user makes any selection</p></li>
+</ul>
+<p>Let’s see an example of this component in action. In the following app a DatePickerRange is used as a filter for a line chart.
+Based on the user selection, a dataframe will be filtered and the chart updated.
+As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been selected.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
