@@ -390,18 +390,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preprocessing-data-compared-to-live-processing">
-   Preprocessing data compared to live processing:
+  <a class="reference internal nav-link" href="#preprocessing-data">
+   13.1 Preprocessing data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#higher-performing-plotly-graphs">
-   Higher Performing Plotly graphs
+   13.2 Higher Performing Plotly graphs
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#caching">
-   Caching
+   13.3 Caching
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -440,18 +440,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preprocessing-data-compared-to-live-processing">
-   Preprocessing data compared to live processing:
+  <a class="reference internal nav-link" href="#preprocessing-data">
+   13.1 Preprocessing data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#higher-performing-plotly-graphs">
-   Higher Performing Plotly graphs
+   13.2 Higher Performing Plotly graphs
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#caching">
-   Caching
+   13.3 Caching
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -477,25 +477,31 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 13: Improving app performance<a class="headerlink" href="#chapter-13-improving-app-performance" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<p>By now, you have everything together to get your first app up and running using even advanced components, layouts and callbacks. As dashboards are designed for data analysis and visualisations at some point you might run into efficiency constraints when the amount of data you are working with gets growing. To circumvent any possible performance lacking this chapter will give you some insights on improving your app performance.</p>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
+<ul class="simple">
+<li><p>Preprocessing data</p></li>
+<li><p>Higher Performing Plotly graphs</p></li>
+<li><p>Caching</p></li>
+</ul>
 </div>
-<div class="section" id="preprocessing-data-compared-to-live-processing">
-<h2>Preprocessing data compared to live processing:<a class="headerlink" href="#preprocessing-data-compared-to-live-processing" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="preprocessing-data">
+<h2>13.1 Preprocessing data<a class="headerlink" href="#preprocessing-data" title="Permalink to this headline">¶</a></h2>
 <p>the main idea is to give two examples on data wrangling. Once where the data wrangling takes place before initializing the app, once after or during a callback. The plan is to show some difference in processing time.</p>
 </div>
 <div class="section" id="higher-performing-plotly-graphs">
-<h2>Higher Performing Plotly graphs<a class="headerlink" href="#higher-performing-plotly-graphs" title="Permalink to this headline">¶</a></h2>
-<p>So far, we have used the plotly.express library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, plotly.js has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Three WebGL alternatives are the follwing:</p>
+<h2>13.2 Higher Performing Plotly graphs<a class="headerlink" href="#higher-performing-plotly-graphs" title="Permalink to this headline">¶</a></h2>
+<p>So far, we have used the <code class="docutils literal notranslate"><span class="pre">plotly.express</span></code> library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, <code class="docutils literal notranslate"><span class="pre">plotly.js</span></code> has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Three WebGL alternatives are the follwing:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a>: A webgl implementation of the scatter chart type.</p></li>
-<li><p><a class="reference external" href="https://plotly.com/python/reference/#pointcloud">Pointcloud</a>: A lightweight version of scattergl with limited customizability but even faster rendering.</p></li>
-<li><p><a class="reference external" href="https://plotly.com/python/datashader/">Datashader</a>: A webgl implementation of the heatmap chart type.</p></li>
+<li><p><a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets"><code class="docutils literal notranslate"><span class="pre">ScatterGL</span></code></a>: A webgl implementation of the scatter chart type.</p></li>
+<li><p><a class="reference external" href="https://plotly.com/python/reference/#pointcloud"><code class="docutils literal notranslate"><span class="pre">Pointcloud</span></code></a>: A lightweight version of scattergl with limited customizability but even faster rendering.</p></li>
+<li><p><a class="reference external" href="https://plotly.com/python/datashader/"><code class="docutils literal notranslate"><span class="pre">Datashader</span></code></a>: A webgl implementation of the heatmap chart type.</p></li>
 </ul>
-<p><a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a></p>
-<p><a class="reference external" href="https://plotly.com/python/reference/#pointcloud">Pointcloud</a></p>
-<p><a class="reference external" href="https://plotly.com/python/datashader/">Datashader</a></p>
 </div>
 <div class="section" id="caching">
-<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<h2>13.3 Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://dash.plotly.com/performance#memoization">memoization</a></p>
 </div>
 <div class="section" id="other-potential-ideas-if-need-be">
