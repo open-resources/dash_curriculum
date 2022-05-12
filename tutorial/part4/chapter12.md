@@ -19,7 +19,7 @@
 ### className gotchas
 
 Without a leading `space`, the first element `opacity-75` is ignored
-Without a trailing `space`, the last element `rounded-bottom` will also likely be ignored, ***but*** the `bottom` property seems to be globally set by `[dbc.themes.SLATE]` and is unediable???
+Without a trailing `space`, the last element `rounded-bottom` will also likely be ignored, ***but*** the `bottom` property seems to be globally set by `[dbc.themes.SLATE]` and is uneditable???
 
 ## Resources:
 
@@ -100,6 +100,17 @@ There are many different ways you can change the layout and add themes to your P
 ```python
 JupyterDash(external_stylesheets=[dbc.themes.SLATE])
 ```
+
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will set your layout properties when running the line above. A part of the file looks like this:
+
+```
+*/:root{--bs-blue:#007bff;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#e83e8c;--bs-red:#ee5f5b;--bs-orange:#fd7e14;--bs-yellow:#f89406;--bs-green:#62c462;--bs-teal:#20c997;--bs-cyan:#5bc0de;--bs-white:#fff;--bs-gray:#7a8288;--bs-gray-dark:#3a3f44;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#999;
+```
+
+And all those little details is what sets the colors, shapes and behaviour of your app. But all that is not written in stone. With a setup with this as a starting point, you can edit the layout and change the behaviour through two main ways:
+
+1. The `className` attribute of the app components
+2. The `style` attribute of the app components
 
 This chapter will use `SLATE`, but you can study other options in the [themes explorer](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/)
 
