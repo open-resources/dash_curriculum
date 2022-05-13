@@ -403,17 +403,7 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#unclear">
      Unclear:
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#classname-details">
-     className details
-    </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#classname-elements">
-       className elements
-      </a>
-     </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#classname-combinations">
        className combinations:
@@ -514,17 +504,7 @@ const thebe_selector_output = ".output, .cell_output"
     <a class="reference internal nav-link" href="#unclear">
      Unclear:
     </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#classname-details">
-     className details
-    </a>
     <ul class="nav section-nav flex-column">
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#classname-elements">
-       className elements
-      </a>
-     </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#classname-combinations">
        className combinations:
@@ -616,8 +596,7 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/XHoFx.png"><img alt="enter image description here" src="https://i.stack.imgur.com/XHoFx.png" /></a></p>
-<p>Now we know how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.SLATE]</span></code>, and we know that …
-The next section will describe how to edit these properties through <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code></p>
+<p>The next section will describe how to edit these properties through <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code></p>
 </div>
 <div class="section" id="id1">
 <h2>12.2<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -626,20 +605,15 @@ The next section will describe how to edit these properties through <code class=
 <div class="section" id="unclear">
 <h2>Unclear:<a class="headerlink" href="#unclear" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>how to change <em>complete</em> theme through callbacks on <code class="docutils literal notranslate"><span class="pre">JupyterDash(external_stylesheets=[dbc.themes.SLATE])</span></code>?</p></li>
-<li><p>can you set <code class="docutils literal notranslate"><span class="pre">order</span></code> of <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> co,ponents as you can with <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>. <code class="docutils literal notranslate"><span class="pre">align</span></code>?</p></li>
+<li><p>how to change <em>complete</em> theme through callbacks on <code class="docutils literal notranslate"><span class="pre">JupyterDash(external_stylesheets=[dbc.themes.SLATE])</span></code>? =&gt; Only via clientside callback</p></li>
+<li><p>can you set <code class="docutils literal notranslate"><span class="pre">order</span></code> of <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> components as you can with <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>. <code class="docutils literal notranslate"><span class="pre">align</span></code>?</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.SLATE]</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">className</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">style</span></code>?</p></li>
+<li><p>when you set background color through <code class="docutils literal notranslate"><span class="pre">style={&quot;height&quot;:</span> <span class="pre">&quot;100%&quot;,</span> <span class="pre">&quot;background-color&quot;:</span> <span class="pre">&quot;grey&quot;}</span></code>, where do the changes go? Directly in the component? Or through the css?</p></li>
 </ul>
-</div>
-<div class="section" id="classname-details">
-<h2>className details<a class="headerlink" href="#classname-details" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="classname-elements">
-<h3>className elements<a class="headerlink" href="#classname-elements" title="Permalink to this headline">¶</a></h3>
-</div>
 <div class="section" id="classname-combinations">
 <h3>className combinations:<a class="headerlink" href="#classname-combinations" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">opacity-25</span> <span class="pre">p-2</span> <span class="pre">m-1</span> <span class="pre">bg-primary</span> <span class="pre">text-light</span> <span class="pre">fw-bold</span> <span class="pre">rounded</span> <span class="pre">&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">opacity-25</span> <span class="pre">p-2</span> <span class="pre">m-1</span> <span class="pre">bg-primary</span> <span class="pre">bg-gradient</span> <span class="pre">text-light</span> <span class="pre">fw-bold</span> <span class="pre">rounded</span> <span class="pre">&quot;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&quot;</span> <span class="pre">opacity-75</span> <span class="pre">p-2</span> <span class="pre">m-1</span> <span class="pre">bg-success</span> <span class="pre">bg-opacity-25</span> <span class="pre">text-light</span> <span class="pre">rounded-bottom</span> <span class="pre">&quot;</span></code></p></li>
 </ul>
 </div>
@@ -652,6 +626,10 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <div class="section" id="resources">
 <h2>Resources:<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://bootswatch.com/">https://bootswatch.com/</a></p>
+<p>RGB</p>
+<p><a class="reference external" href="https://www.rapidtables.com/web/color/RGB_Color.html">https://www.rapidtables.com/web/color/RGB_Color.html</a></p>
+<p>Dash component row height</p>
+<p><a class="reference external" href="https://github.com/facultyai/dash-bootstrap-components/issues/286">https://github.com/facultyai/dash-bootstrap-components/issues/286</a></p>
 </div>
 <div class="section" id="i-outline">
 <h2>I - Outline:<a class="headerlink" href="#i-outline" title="Permalink to this headline">¶</a></h2>
@@ -749,15 +727,15 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="iii-theme-tester-app">
 <h1>III - Theme Tester App<a class="headerlink" href="#iii-theme-tester-app" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
 
 <span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="c1"># app = JupyterDash(__name__)</span>
 
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -772,6 +750,7 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">SLATE</span><span class="p">])</span>
+<span class="c1"># app = JupyterDash()</span>
 
 
 
@@ -794,20 +773,28 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <span class="c1"># opts_continent.extend([{&#39;label&#39;: &#39;All&#39;, &#39;value&#39;: list(df.continent.unique())}])</span>
 <span class="c1"># opts_continent.extend([{&#39;label&#39;: &#39;All&#39;, &#39;value&#39;: &#39;, &#39;.join(list(df.continent.unique()))}])</span>
 <span class="n">opts_continent</span><span class="o">.</span><span class="n">extend</span><span class="p">([{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;All&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;All&#39;</span><span class="p">}])</span>
+<span class="n">opts_fig_template</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">pio</span><span class="o">.</span><span class="n">templates</span><span class="p">)]</span>
+
+<span class="n">card_cols_width</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">card_cols_offset</span> <span class="o">=</span> <span class="mi">2</span>
 
 <span class="c1"># Set up well organized controls in a dbc.Card()</span>
-<span class="n">controls</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Continent&quot;</span><span class="p">),</span>
-                                    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ctrl_continent&#39;</span><span class="p">,</span>
+<span class="n">controls</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Continent&quot;</span><span class="p">),</span>
+                                      <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ctrl_continent&#39;</span><span class="p">,</span>
                                                  <span class="n">options</span><span class="o">=</span> <span class="n">opts_continent</span><span class="p">,</span>
                                                   <span class="n">value</span><span class="o">=</span><span class="s1">&#39;All&#39;</span><span class="p">,</span>
-                                                  <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;text-danger&quot;</span>
-                                                <span class="p">),</span>
-                                   <span class="p">],),</span>
+                                                  <span class="c1"># className = &quot;text-danger&quot;</span>
+                                                <span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span><span class="n">card_cols_width</span><span class="p">,</span> <span class="s1">&#39;offset&#39;</span><span class="p">:</span><span class="n">card_cols_offset</span><span class="p">}</span>
+                                      
+                                      <span class="p">)</span>
+                             <span class="p">],</span> <span class="c1">#width=2</span>
+                            <span class="p">),</span>
                      
                     <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;X axis&quot;</span><span class="p">),</span>
                                    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ctrl_xaxis&#39;</span><span class="p">,</span>
                                                 <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span>  <span class="n">opts_columns_df</span><span class="p">],</span>
                                                 <span class="n">value</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[:</span><span class="mi">6</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                                                
                                                 <span class="p">),</span>
                                     <span class="p">],),</span>
                      
@@ -841,8 +828,52 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
                                                 <span class="n">value</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
                                                 <span class="p">),</span>
                                     <span class="p">],),</span>
+<span class="c1">#                     dbc.Row([dbc.Label(&quot;Button 1&quot;),</span>
+<span class="c1">#                                    dbc.Button(id=&#39;btn1&#39;,</span>
+<span class="c1">#                                                 # # options=[{&#39;label&#39;: k, &#39;value&#39;: k} for k in opts_years],</span>
+<span class="c1">#                                               color = &#39;warning&#39;,</span>
+<span class="c1">#                                               className = &#39;rounded&#39;</span>
+<span class="c1">#                                                 # value=df.year.max(),</span>
+                                              
+<span class="c1">#                                                 ),</span>
+<span class="c1">#                                     ],),</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Figure template&quot;</span><span class="p">),</span>
+                                   <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;fg_template&#39;</span><span class="p">,</span>
+                                                <span class="c1"># # options=[{&#39;label&#39;: k, &#39;value&#39;: k} for k in opts_years],</span>
+                                              <span class="c1"># color = &#39;warning&#39;,</span>
+                                              <span class="c1"># className = &#39;rounded&#39;&#39;</span>
+                                              
+                                              <span class="n">options</span> <span class="o">=</span> <span class="n">opts_fig_template</span><span class="p">,</span>
+                                              <span class="c1"># value=opts_fig_template[0]</span>
+                                              
+                                                <span class="p">),</span>
+                                    <span class="p">],),</span>
+                     
+                        <span class="c1">#  paper_bgcolor=&#39;rgba(0,0,0,0)&#39;,</span>
+                        <span class="c1"># plot_bgcolor=&#39;rgba(0,0,0,0)&#39;</span>
+                     
+                     
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Figure transparency&quot;</span><span class="p">),</span>
+                                   <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;fg_bg_transparency&#39;</span><span class="p">,</span>
+                                                <span class="c1"># # options=[{&#39;label&#39;: k, &#39;value&#39;: k} for k in opts_years],</span>
+                                              <span class="c1"># color = &#39;warning&#39;,</span>
+                                              <span class="c1"># className = &#39;rounded&#39;&#39;</span>
+                                              <span class="nb">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                                              <span class="nb">max</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
+                                              <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> 
+                                              <span class="c1"># options = opts_fig_template,</span>
+                                              <span class="n">marks</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">10</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">)}</span>
+                                              <span class="c1"># value=opts_fig_template[0]</span>
+                                              
+                                                <span class="p">),</span>
+                                    <span class="p">],),</span>
+                     
+                     
                     <span class="p">],</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;card_1&#39;</span><span class="p">,</span> 
                     <span class="n">body</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="c1"># width = 2,</span>
+                    <span class="c1"># className = &quot;opacity-25 p-2 m-1 bg-primary text-light fw-bold rounded&quot;,</span>
                     <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="s1">&#39;large&#39;</span><span class="p">}</span>
                     <span class="p">)</span>
 
@@ -856,10 +887,25 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
                                                   <span class="c1"># value=&#39;All&#39;</span>
                                                 <span class="p">),</span>
                                      
-                                     <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ctrl_dsgn_button&#39;</span><span class="p">,</span>
-                                                  <span class="n">options</span><span class="o">=</span> <span class="n">opts_title_main</span><span class="p">,</span>
+                                     <span class="c1"># dcc.Dropdown(id=&#39;ctrl_dsgn_button&#39;,</span>
+                                     <span class="c1">#              options= opts_title_main,</span>
+                                     <span class="c1">#              # value=&#39;All&#39;</span>
+                                     <span class="c1">#            ),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;dbc.Card className&quot;</span><span class="p">),</span>
+                                     <span class="n">dcc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ctrl_dsgn_button&#39;</span><span class="p">,</span>
+                                                  <span class="c1"># options= opts_title_main,</span>
+                                                  <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+                                                  <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;rounded&#39;</span>
                                                   <span class="c1"># value=&#39;All&#39;</span>
                                                 <span class="p">),</span>
+                                     
+                                     <span class="c1"># dbc.Label(&quot;Figure template&quot;),</span>
+                                     <span class="c1"># dcc.Dropdown(id=&#39;fg&#39;,</span>
+                                     <span class="c1">#              options= list(pio.templates),</span>
+                                     <span class="c1">#              type = &#39;text&#39;,</span>
+                                     <span class="c1">#              # className = &#39;rounded&#39;</span>
+                                     <span class="c1">#              # value=&#39;All&#39;</span>
+                                     <span class="c1">#            ),</span>
                                      
                                    <span class="p">],),</span>
                     <span class="p">],</span>
@@ -870,17 +916,25 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <span class="c1"># Set up the app layout using dbc.Container(), dbc.Row(), and dbc.Col()</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Data selection and figure design&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dsgn_title_1&#39;</span><span class="p">,</span>  <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-primary&quot;</span><span class="p">),</span>
                             <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
-                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">controls</span><span class="p">],</span><span class="n">xs</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
-                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;fig_scatter_1&quot;</span><span class="p">)),])]),</span>
-                                    <span class="p">]),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">controls</span><span class="p">],</span><span class="n">xs</span> <span class="o">=</span> <span class="mi">3</span><span class="p">),</span>
+                                     <span class="c1"># dbc.Col([dbc.Row([dbc.Col(dcc.Graph(id=&quot;fig_scatter_1&quot;)),])]),</span>
+                                     <span class="c1"># dbc.Col([(dcc.Graph(id=&quot;fig_scatter_1&quot;)),],style={&quot;height&quot;: &quot;100%&quot;, &quot;background-color&quot;: &quot;red&quot;}),</span>
+                                       <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;fig_scatter_1&quot;</span><span class="p">,</span>
+                                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">,</span> <span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span><span class="p">}</span>
+                                                          <span class="p">)),],</span>
+                                               <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">,</span>
+                                                      <span class="c1"># &quot;background-color&quot;: &quot;red&quot;</span>
+                                                     <span class="p">},</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span><span class="p">),</span>
+                                    <span class="p">],</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;55vh&quot;</span><span class="p">}),</span> <span class="c1"># (vh is &quot;viewport height&quot;, so 100vh means &quot;100% of screen height&quot;, see</span>
                             <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Layout design&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;dsgn_title_2&#39;</span><span class="p">,</span>  <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-primary&quot;</span><span class="p">),</span>
                             <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
-                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">controls_layout</span><span class="p">],</span><span class="n">xs</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">controls_layout</span><span class="p">],</span><span class="n">xs</span> <span class="o">=</span> <span class="mi">3</span><span class="p">),</span>
                                      <span class="c1"># dbc.Col([dbc.Row([dbc.Col(dcc.Graph(id=&quot;fig_scatter_1&quot;)),])]),</span>
                                     <span class="p">]),</span>
                             <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
                             <span class="p">],</span>
                             <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                            <span class="c1"># style={&quot;height&quot;: &quot;75vh&quot;}</span>
                             <span class="p">)</span>
 <span class="c1"># FIGURE 1 interactivity</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
@@ -891,10 +945,12 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
         <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ctrl_size&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
         <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ctrl_color&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
         <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ctrl_year&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+        <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;fg_template&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+        <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;fg_bg_transparency&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">)</span>
         <span class="c1"># Input(&quot;ctrl_opac&quot;, &quot;value&quot;),</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">history_graph</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="n">continent</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">history_graph</span><span class="p">(</span><span class="n">xval</span><span class="p">,</span> <span class="n">yval</span><span class="p">,</span> <span class="n">continent</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">year</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">transparency</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span><span class="c1">#.query(&#39;year == 2007&#39;)</span>
     
     <span class="c1"># handle subsetting of some or all continents</span>
@@ -909,12 +965,12 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
     <span class="k">else</span><span class="p">:</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="n">year</span><span class="p">]</span>
                   
-    <span class="c1"># df</span>
-    <span class="c1"># global yval</span>
-    <span class="c1"># print(yval)</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">xval</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">yval</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span> <span class="k">else</span> <span class="n">size</span><span class="p">,</span>
                      <span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
                     <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">template</span> <span class="o">=</span> <span class="n">template</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">paper_bgcolor</span><span class="o">=</span><span class="s1">&#39;rgba(0,0,0,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">transparency</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">plot_bgcolor</span><span class="o">=</span><span class="s1">&#39;rgba(0,0,0,&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">transparency</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fig</span>
 
 
@@ -934,22 +990,20 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 
 <span class="c1"># Button design</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ctrl_continent&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;card_1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
     <span class="c1"># Output(&quot;dsgn_title_2&quot;, &quot;className&quot;),</span>
-    <span class="p">[</span>   <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ctrl_dsgn_title_1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+    <span class="p">[</span>   <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ctrl_dsgn_button&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
         <span class="c1"># Input(&quot;ctrl_opac&quot;, &quot;value&quot;),</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">continent_button_style</span><span class="p">(</span><span class="n">text_color</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">continent_dropdown_style</span><span class="p">(</span><span class="n">text_color</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">text_color</span><span class="p">)</span>
     <span class="c1"># global fig</span>
 
     <span class="k">return</span> <span class="n">text_color</span>
 
 
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8011</span><span class="p">)</span>
-
-
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8031</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="section" id="image-of-app">
