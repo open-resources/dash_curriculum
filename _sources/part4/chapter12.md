@@ -101,7 +101,28 @@ There are many different ways you can change the layout and add themes to your P
 JupyterDash(external_stylesheets=[dbc.themes.SLATE])
 ```
 
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will set your layout properties when running the line above. A part of the file looks like this:
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a dark grey type (need specifics)? In the context of the theme, this particular color is categorized as `text-primary`. And if you do a little search in the link above, you'll find *one* occurence of `text-primary`:
+
+    text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}
+    
+ When it comes to the color, the element we're interested in is this:
+ 
+     var(--bs-primary-rgb)
+     
+     
+This points to a setting at the start of the document that reveals the `rgb()` code udes by `text-warning`:
+
+    bs-primary-rgb:58,63,68;
+    
+[![enter image description here][1]][1]
+     
+
+    
+     
+ 
+
+
+A part of the file looks like this:
 
 ```
 */:root{--bs-blue:#007bff;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#e83e8c;--bs-red:#ee5f5b;--bs-orange:#fd7e14;--bs-yellow:#f89406;--bs-green:#62c462;--bs-teal:#20c997;--bs-cyan:#5bc0de;--bs-white:#fff;--bs-gray:#7a8288;--bs-gray-dark:#3a3f44;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#999;
@@ -324,7 +345,8 @@ app.run_server(mode='external', port = 8011)
 
 ## Image of APP
 
-[![enter image description here][1]][1]
+[![enter image description here][2]][2]
 
 
-  [1]: https://i.stack.imgur.com/NGfOi.png
+  [1]: https://i.stack.imgur.com/htjkN.png
+  [2]: https://i.stack.imgur.com/NGfOi.png

@@ -693,7 +693,20 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">SLATE</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>What hides behind <code class="docutils literal notranslate"><span class="pre">dbc.themes.SLATE</span></code> is the link <code class="docutils literal notranslate"><span class="pre">https://cdn.jsdelivr.net/npm/bootswatch&#64;5.1.3/dist/slate/bootstrap.min.css</span></code>. And the contents of that link is what will set your layout properties when running the line above. A part of the file looks like this:</p>
+<p>What hides behind <code class="docutils literal notranslate"><span class="pre">dbc.themes.SLATE</span></code> is the link <code class="docutils literal notranslate"><span class="pre">https://cdn.jsdelivr.net/npm/bootswatch&#64;5.1.3/dist/slate/bootstrap.min.css</span></code>. And the contents of that link is what will define the design of the components in your app. One such component can be a header <code class="docutils literal notranslate"><span class="pre">html.H1()</span></code>. If you use the <code class="docutils literal notranslate"><span class="pre">Slate</span></code> theme, the default font color of your heading will be of a dark grey type (need specifics)? In the context of the theme, this particular color is categorized as <code class="docutils literal notranslate"><span class="pre">text-primary</span></code>. And if you do a little search in the link above, you’ll find <em>one</em> occurence of <code class="docutils literal notranslate"><span class="pre">text-primary</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}
+</pre></div>
+</div>
+<p>When it comes to the color, the element we’re interested in is this:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> var(--bs-primary-rgb)
+</pre></div>
+</div>
+<p>This points to a setting at the start of the document that reveals the <code class="docutils literal notranslate"><span class="pre">rgb()</span></code> code udes by <code class="docutils literal notranslate"><span class="pre">text-warning</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bs-primary-rgb:58,63,68;
+</pre></div>
+</div>
+<p><a class="reference external" href="https://i.stack.imgur.com/htjkN.png"><img alt="enter image description here" src="https://i.stack.imgur.com/htjkN.png" /></a></p>
+<p>A part of the file looks like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*/</span><span class="p">:</span><span class="n">root</span><span class="p">{</span><span class="o">--</span><span class="n">bs</span><span class="o">-</span><span class="n">blue</span><span class="p">:</span><span class="c1">#007bff;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#e83e8c;--bs-red:#ee5f5b;--bs-orange:#fd7e14;--bs-yellow:#f89406;--bs-green:#62c462;--bs-teal:#20c997;--bs-cyan:#5bc0de;--bs-white:#fff;--bs-gray:#7a8288;--bs-gray-dark:#3a3f44;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#999;</span>
 </pre></div>
 </div>
