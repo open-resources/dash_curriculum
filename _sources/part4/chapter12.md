@@ -1,5 +1,35 @@
 # Chapter 12  Advanced Styling and Layout
-      
+
+## 12.1 The theme of a Dash app
+
+There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` when you set up an app like this:
+
+```python
+JupyterDash(external_stylesheets=[dbc.themes.SLATE])
+```
+
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a dark grey type (need specifics)? In the context of the theme, this particular color is categorized as `text-primary`. And if you do a little search in the link above, you'll find *one* occurence of `text-primary`:
+
+    text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}
+    
+ When it comes to the color, the element we're interested in is this:
+ 
+     var(--bs-primary-rgb)
+     
+     
+This points to a setting at the start of the document that reveals the `rgb()` code udes by `text-primary`:
+
+    bs-primary-rgb:58,63,68;
+    
+[![enter image description here][1]][1]2
+
+Now we know how to set a theme with `external_stylesheets=[dbc.themes.SLATE]`, and we know that ...
+The next section will describe how to edit these properties through `className` and `style`
+     
+## 12.2
+    
+---
+
 ## Unclear:
 
 - how to change *complete* theme through callbacks on `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`?
@@ -93,31 +123,9 @@ data_table = dash_table.DataTable(
 ## Dynamic app layout (I can help write this part, Arne, once you're done with the first draft of this chapter)
   - https://dash.plotly.com/live-updates#updates-on-page-load
 
-# II - Content:
+# II - Outtakes:
 
-There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` when you set up an app like this:
 
-```python
-JupyterDash(external_stylesheets=[dbc.themes.SLATE])
-```
-
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a dark grey type (need specifics)? In the context of the theme, this particular color is categorized as `text-primary`. And if you do a little search in the link above, you'll find *one* occurence of `text-primary`:
-
-    text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}
-    
- When it comes to the color, the element we're interested in is this:
- 
-     var(--bs-primary-rgb)
-     
-     
-This points to a setting at the start of the document that reveals the `rgb()` code udes by `text-warning`:
-
-    bs-primary-rgb:58,63,68;
-    
-[![enter image description here][1]][1]
-     
-
-    
      
  
 
