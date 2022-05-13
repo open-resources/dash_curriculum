@@ -398,6 +398,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#data-display-components">
    11.2 Data Display Components
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#upload">
+     11.2.1 Upload
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#feedback-components">
@@ -411,7 +418,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datepicker">
-     DatePicker
+     11.4.1 DatePicker
     </a>
    </li>
   </ul>
@@ -492,6 +499,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#data-display-components">
    11.2 Data Display Components
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#upload">
+     11.2.1 Upload
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#feedback-components">
@@ -505,7 +519,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datepicker">
-     DatePicker
+     11.4.1 DatePicker
     </a>
    </li>
   </ul>
@@ -588,6 +602,71 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="data-display-components">
 <h2>11.2 Data Display Components<a class="headerlink" href="#data-display-components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="upload">
+<h3>11.2.1 Upload<a class="headerlink" href="#upload" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Upload</span></code> component allows us to upload a file to the dashboard.  For this example we will upload a <a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV file</a> and plot the data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">from</span> <span class="nn">dash.dash</span> <span class="kn">import</span> <span class="n">no_update</span>
+
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">upload</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Upload</span><span class="p">(</span>
+                    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;upload-data&#39;</span><span class="p">,</span>
+                    <span class="n">children</span><span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+                        <span class="s1">&#39;Drag &amp; Drop or Click to Select CSV file&#39;</span>
+                    <span class="p">]),</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span>
+                        <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;10%&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;lineHeight&#39;</span><span class="p">:</span> <span class="s1">&#39;60px&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;borderStyle&#39;</span><span class="p">:</span> <span class="s1">&#39;dashed&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;graph1&#39;</span><span class="p">)</span>
+
+
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">upload</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;graph1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;upload-data&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">if</span> <span class="s1">&#39;csv&#39;</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">time_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">time_col</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">time_col</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">col</span><span class="p">))</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Time (ms)&quot;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Degrees rotation&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fig</span>
+    <span class="k">return</span> <span class="n">no_update</span>
+
+
+<span class="c1"># Launch the app server</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p><img alt="upload component" src="part3/ch11_files/img/upload.gif" /></p>
+</div>
 </div>
 <div class="section" id="feedback-components">
 <h2>11.3 Feedback Components<a class="headerlink" href="#feedback-components" title="Permalink to this headline">¶</a></h2>
@@ -595,7 +674,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="filtering-input-components">
 <h2>11.4 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datepicker">
-<h3>DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
+<h3>11.4.1 DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
 <p>The DatePicker component allows the user of the app to select a date, that can then be used in our callbacks.
 There are two types of date pickers, both part of the DCC library:</p>
 <ul class="simple">
@@ -612,7 +691,7 @@ There are two types of date pickers, both part of the DCC library:</p>
 <p>Let’s see an example of this component in action. In the following app a DatePickerRange is used as a filter for a line chart.
 Based on the user selection, a dataframe will be filtered and the chart updated.
 As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been selected.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>

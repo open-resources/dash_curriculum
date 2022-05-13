@@ -23,11 +23,77 @@ In the links above, it is possible to search for keywords and find the component
 
 ## 11.2 Data Display Components
 
+### 11.2.1 Upload
+The `Upload` component allows us to upload a file to the dashboard.  For this example we will upload a [CSV file](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) and plot the data:
+
+```python
+from dash import Dash, dcc, html
+import dash_bootstrap_components as dbc
+from dash.dependencies import Input, Output, State
+import pandas as pd
+import plotly.graph_objects as go
+import base64
+import io
+from dash.dash import no_update
+
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+upload = dcc.Upload(
+                    id='upload-data',
+                    children=html.Div([
+                        'Drag & Drop or Click to Select CSV file'
+                    ]),
+                    style={
+                        'width': '100%',
+                        'height': '10%',
+                        'lineHeight': '60px',
+                        'borderStyle': 'dashed',
+                        'textAlign': 'center',
+                    }
+                )
+graph = dcc.Graph(id='graph1')
+
+
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(upload)),
+        dbc.Row(dbc.Col(graph))
+    ]
+)
+
+@app.callback(Output('graph1', 'figure'),
+              Input('upload-data', 'filename'))
+def update_output(filename):
+    if 'csv' in filename:
+        fig = go.Figure()
+        df = pd.read_csv(filename)
+        time_col = df.columns[0]
+        for col in df.columns:
+            if time_col in col:
+                pass
+            else:
+                fig.add_trace(go.Scattergl(x=df[time_col], y=df[col], mode='lines+markers', name=col))
+        fig.update_layout(xaxis_title="Time (ms)", yaxis_title="Degrees rotation")
+        return fig
+    return no_update
+
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+
+```
+
+![upload component](ch11_files/img/upload.gif)
+
 ## 11.3 Feedback Components
 
 ## 11.4 Filtering & Input Components
 
-### DatePicker
+### 11.4.1 DatePicker
 The DatePicker component allows the user of the app to select a date, that can then be used in our callbacks.
 There are two types of date pickers, both part of the DCC library:
 - ```DatePickerSingle``` consists of one single date selection that the user can input. By clicking on the object a calendar will pop-up, allowing the user to pick a date
@@ -43,7 +109,7 @@ Let's see an example of this component in action. In the following app a DatePic
 Based on the user selection, a dataframe will be filtered and the chart updated.
 As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been selected.
 
-```
+```python
 # Import packages
 from dash import Dash, dcc, Input, Output, html
 import dash_bootstrap_components as dbc
