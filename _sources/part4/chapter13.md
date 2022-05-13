@@ -19,16 +19,24 @@ So far, we have used the `plotly.express` library to implement our graphs. This 
 - [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets): A webgl implementation of the scatter chart type.
 - [Pointcloud](https://plotly.com/python/reference/#pointcloud): A lightweight version of scattergl with limited customizability but even faster rendering.
 
-Another high performing way of exploring correlations of large data sets is is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
+Another high performing way of exploring correlations of large data sets is is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
 
 ### 13.2.1 ScatterGL
 
 ### 13.2.2 Datashader
 
 ## 13.3 Caching
-[memoization](https://dash.plotly.com/performance#memoization)
 
-## other potential ideas if need be:
+Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way repeated function calls are made with the same parameters won't have to be calculated multiple times. One popular use case are recurvise functions.
+
+```{admonition} Memoization
+For an exemplary introduction to memoization and the implementation in Python also have a look at [Towards Data Science](https://towardsdatascience.com/memoization-in-python-57c0a738179a) or [Real Python](https://realpython.com/lru-cache-python/).
+```
+
+When working with callbacks, the easiest way implementing memoization is using the `flask_caching` module. See the [official documentation](https://dash.plotly.com/performance#memoization) for further reference.
+
+## Other potential ideas if need be:
+
 https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197
 
 https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10
