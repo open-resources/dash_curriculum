@@ -8,7 +8,7 @@ There are many different ways you can change the layout and add themes to your P
 JupyterDash(external_stylesheets=[dbc.themes.SLATE])
 ```
 
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a light grey type (need specifics)? In the context of the theme, this particular color is mapped to `text-body`. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file in the link above:
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a light grey type with the RGB code `(170, 170, 170)`. In the context of the theme, this particular color is mapped to `text-body`. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file in the link above:
 
     text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
     
@@ -17,7 +17,7 @@ What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/b
      var(--bs-body-color-rgb)
      
      
-This points to a setting at the start of the document that reveals the `rgb()` code udes by `text-body`:
+This points to a setting at the start of the document that reveals the `rgb()` code used by `text-body`:
 
     bs-body-color-rgb:170,170,170
     
