@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
 ```
 
-![upload component](ch11_files/img/upload.gif)
+![upload component](ch11_files/upload.gif)
 
 ## 11.3 Feedback Components
 
