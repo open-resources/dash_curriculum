@@ -23,7 +23,6 @@ This points to a setting at the start of the document that reveals the `rgb()` c
     
 [![enter image description here][1]][1]
 
-Now we know how to set a theme with `external_stylesheets=[dbc.themes.SLATE]`, and we know that ...
 The next section will describe how to edit these properties through `className` and `style`
      
 ## 12.2
@@ -32,17 +31,14 @@ The next section will describe how to edit these properties through `className` 
 
 ## Unclear:
 
-- how to change *complete* theme through callbacks on `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`?
-- can you set `order` of `dbc.Row()` co,ponents as you can with `dbc.Col()`. `align`?
+- how to change *complete* theme through callbacks on `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`? => Only via clientside callback
+- can you set `order` of `dbc.Row()` components as you can with `dbc.Col()`. `align`?
 - `external_stylesheets=[dbc.themes.SLATE]` < `className` < `style`?
-
-## className details
-
-### className elements
+- when you set background color through `style={"height": "100%", "background-color": "grey"}`, where do the changes go? Directly in the component? Or through the css?
 
 ### className combinations:
 
-- `" opacity-25 p-2 m-1 bg-primary text-light fw-bold rounded "`
+- `" opacity-25 p-2 m-1 bg-primary bg-gradient text-light fw-bold rounded "`
 
 - `" opacity-75 p-2 m-1 bg-success bg-opacity-25 text-light rounded-bottom "`
 
@@ -54,6 +50,14 @@ Without a trailing `space`, the last element `rounded-bottom` will also likely b
 ## Resources:
 
 https://bootswatch.com/
+
+RGB
+
+https://www.rapidtables.com/web/color/RGB_Color.html
+
+Dash component row height
+
+https://github.com/facultyai/dash-bootstrap-components/issues/286
       
 ## I - Outline:      
 ## Advanced Styling with Dash Bootstrap Components
@@ -148,15 +152,15 @@ When you've first defined a theme like the one above, you can edit the visual pr
 # III - Theme Tester App
 
 ```python
-
 import plotly.graph_objects as go
 import plotly.express as px
 from jupyter_dash import JupyterDash
+import plotly.io as pio
 
 import dash_core_components as dcc
 import dash_html_components as html
 
-app = JupyterDash(__name__)
+# app = JupyterDash(__name__)
 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -171,6 +175,7 @@ import json
 
 
 app = JupyterDash(external_stylesheets=[dbc.themes.SLATE])
+# app = JupyterDash()
 
 
 
@@ -193,20 +198,28 @@ opts_years = list(df.year.unique()) + ['All']
 # opts_continent.extend([{'label': 'All', 'value': list(df.continent.unique())}])
 # opts_continent.extend([{'label': 'All', 'value': ', '.join(list(df.continent.unique()))}])
 opts_continent.extend([{'label': 'All', 'value': 'All'}])
+opts_fig_template = [{'label': k, 'value': k} for k in list(pio.templates)]
+
+card_cols_width = 2
+card_cols_offset = 2
 
 # Set up well organized controls in a dbc.Card()
-controls = dbc.Card([dbc.Row([dbc.Label("Continent"),
-                                    dcc.Dropdown(id='ctrl_continent',
+controls = dbc.Card([dbc.Row([dbc.Col([dbc.Label("Continent"),
+                                      dcc.Dropdown(id='ctrl_continent',
                                                  options= opts_continent,
                                                   value='All',
-                                                  className = "text-danger"
-                                                ),
-                                   ],),
+                                                  # className = "text-danger"
+                                                )], width = {'size':card_cols_width, 'offset':card_cols_offset}
+                                      
+                                      )
+                             ], #width=2
+                            ),
                      
                     dbc.Row([dbc.Label("X axis"),
                                    dcc.Dropdown(id='ctrl_xaxis',
                                                 options=[{'label': k, 'value': k} for k in  opts_columns_df],
                                                 value=df.columns[:6][0],
+                                                
                                                 ),
                                     ],),
                      
@@ -240,8 +253,52 @@ controls = dbc.Card([dbc.Row([dbc.Label("Continent"),
                                                 value=df.year.max(),
                                                 ),
                                     ],),
+#                     dbc.Row([dbc.Label("Button 1"),
+#                                    dbc.Button(id='btn1',
+#                                                 # # options=[{'label': k, 'value': k} for k in opts_years],
+#                                               color = 'warning',
+#                                               className = 'rounded'
+#                                                 # value=df.year.max(),
+                                              
+#                                                 ),
+#                                     ],),
+                    dbc.Row([dbc.Label("Figure template"),
+                                   dcc.Dropdown(id='fg_template',
+                                                # # options=[{'label': k, 'value': k} for k in opts_years],
+                                              # color = 'warning',
+                                              # className = 'rounded''
+                                              
+                                              options = opts_fig_template,
+                                              # value=opts_fig_template[0]
+                                              
+                                                ),
+                                    ],),
+                     
+                        #  paper_bgcolor='rgba(0,0,0,0)',
+                        # plot_bgcolor='rgba(0,0,0,0)'
+                     
+                     
+                    dbc.Row([dbc.Label("Figure transparency"),
+                                   dcc.Slider(id='fg_bg_transparency',
+                                                # # options=[{'label': k, 'value': k} for k in opts_years],
+                                              # color = 'warning',
+                                              # className = 'rounded''
+                                              min = 0,
+                                              max = 100,
+                                              value = 0, 
+                                              # options = opts_fig_template,
+                                              marks = {i*10: str(i*10) for i in range(11)}
+                                              # value=opts_fig_template[0]
+                                              
+                                                ),
+                                    ],),
+                     
+                     
                     ],
+                    id='card_1', 
                     body=True,
+                    # width = 2,
+                    # className = "opacity-25 p-2 m-1 bg-primary text-light fw-bold rounded",
                     style = {'font-size': 'large'}
                     )
 
@@ -255,10 +312,25 @@ controls_layout = dbc.Card([dbc.Row([dbc.Label("Color main title"),
                                                   # value='All'
                                                 ),
                                      
-                                     dcc.Dropdown(id='ctrl_dsgn_button',
-                                                  options= opts_title_main,
+                                     # dcc.Dropdown(id='ctrl_dsgn_button',
+                                     #              options= opts_title_main,
+                                     #              # value='All'
+                                     #            ),
+                                     dbc.Label("dbc.Card className"),
+                                     dcc.Input(id='ctrl_dsgn_button',
+                                                  # options= opts_title_main,
+                                                  type = 'text',
+                                                  className = 'rounded'
                                                   # value='All'
                                                 ),
+                                     
+                                     # dbc.Label("Figure template"),
+                                     # dcc.Dropdown(id='fg',
+                                     #              options= list(pio.templates),
+                                     #              type = 'text',
+                                     #              # className = 'rounded'
+                                     #              # value='All'
+                                     #            ),
                                      
                                    ],),
                     ],
@@ -269,17 +341,25 @@ controls_layout = dbc.Card([dbc.Row([dbc.Label("Color main title"),
 # Set up the app layout using dbc.Container(), dbc.Row(), and dbc.Col()
 app.layout = dbc.Container([html.H1("Data selection and figure design", id='dsgn_title_1',  className="text-primary"),
                             html.Hr(),
-                            dbc.Row([dbc.Col([controls],xs = 4),
-                                     dbc.Col([dbc.Row([dbc.Col(dcc.Graph(id="fig_scatter_1")),])]),
-                                    ]),
+                            dbc.Row([dbc.Col([controls],xs = 3),
+                                     # dbc.Col([dbc.Row([dbc.Col(dcc.Graph(id="fig_scatter_1")),])]),
+                                     # dbc.Col([(dcc.Graph(id="fig_scatter_1")),],style={"height": "100%", "background-color": "red"}),
+                                       dbc.Col([(dcc.Graph(id="fig_scatter_1",
+                                                          style={"height": "100%", "background-color": "yellow"}
+                                                          )),],
+                                               style={"height": "100%",
+                                                      # "background-color": "red"
+                                                     }, width = 6),
+                                    ],style={"height": "55vh"}), # (vh is "viewport height", so 100vh means "100% of screen height", see
                             html.H1("Layout design", id='dsgn_title_2',  className="text-primary"),
                             html.Hr(),
-                            dbc.Row([dbc.Col([controls_layout],xs = 4),
+                            dbc.Row([dbc.Col([controls_layout],xs = 3),
                                      # dbc.Col([dbc.Row([dbc.Col(dcc.Graph(id="fig_scatter_1")),])]),
                                     ]),
                             html.Br(),
                             ],
                             fluid=True,
+                            # style={"height": "75vh"}
                             )
 # FIGURE 1 interactivity
 @app.callback(
@@ -290,10 +370,12 @@ app.layout = dbc.Container([html.H1("Data selection and figure design", id='dsgn
         Input("ctrl_size", "value"),
         Input("ctrl_color", "value"),
         Input("ctrl_year", "value"),
+        Input("fg_template", "value"),
+        Input("fg_bg_transparency", "value")
         # Input("ctrl_opac", "value"),
     ],
 )
-def history_graph(xval, yval, continent, size, color, year):
+def history_graph(xval, yval, continent, size, color, year, template, transparency):
     df = px.data.gapminder()#.query('year == 2007')
     
     # handle subsetting of some or all continents
@@ -308,12 +390,12 @@ def history_graph(xval, yval, continent, size, color, year):
     else:
         df = df[df.year == year]
                   
-    # df
-    # global yval
-    # print(yval)
     fig = px.scatter(df, x=xval, y=yval, size = None if size == 'None' else size,
                      color = color
                     )
+    fig.update_layout(template = template)
+    fig.update_layout(paper_bgcolor='rgba(0,0,0,' + str(transparency / 100) + ')')
+    fig.update_layout(plot_bgcolor='rgba(0,0,0,' + str(transparency / 100) + ')')
     return fig
 
 
@@ -333,22 +415,20 @@ def title_main(text_color):
 
 # Button design
 @app.callback(
-    Output("ctrl_continent", "className"),
+    Output("card_1", "className"),
     # Output("dsgn_title_2", "className"),
-    [   Input("ctrl_dsgn_title_1", "value"),
+    [   Input("ctrl_dsgn_button", "value"),
         # Input("ctrl_opac", "value"),
     ],
 )
-def continent_button_style(text_color):
+def continent_dropdown_style(text_color):
     print(text_color)
     # global fig
 
     return text_color
 
 
-app.run_server(mode='external', port = 8011)
-
-
+app.run_server(mode='external', port = 8031)
 ```
 
 ## Image of APP
