@@ -643,26 +643,30 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="p">)</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;graph1&#39;</span><span class="p">,</span> <span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;upload-data&#39;</span><span class="p">,</span> <span class="s1">&#39;filename&#39;</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="k">if</span> <span class="s1">&#39;csv&#39;</span> <span class="ow">in</span> <span class="n">filename</span><span class="p">:</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-        <span class="n">time_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">time_col</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span>
-                <span class="k">pass</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">time_col</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">col</span><span class="p">))</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Time (ms)&quot;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Degrees rotation&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">fig</span>
+            <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;upload-data&#39;</span><span class="p">,</span> <span class="s1">&#39;contents&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">update_output</span><span class="p">(</span><span class="n">contents</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">contents</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">content_type</span><span class="p">,</span> <span class="n">content_data</span> <span class="o">=</span> <span class="n">contents</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+        <span class="c1"># Check if data is CSV</span>
+        <span class="k">if</span> <span class="s1">&#39;csv&#39;</span> <span class="ow">in</span> <span class="n">content_type</span><span class="p">:</span>
+            <span class="n">decoded_data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">content_data</span><span class="p">)</span> <span class="c1"># decode data </span>
+            <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">decoded_data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span> <span class="c1"># read data into dataframe</span>
+            <span class="n">time_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># assume the first column is the time column</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span> <span class="c1"># make a blank figure</span>
+            <span class="c1"># Go through each column in the dataframe and make a trace for it</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">time_col</span> <span class="ow">in</span> <span class="n">col</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">time_col</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">col</span><span class="p">))</span>
+            <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">xaxis_title</span><span class="o">=</span><span class="s2">&quot;Time (ms)&quot;</span><span class="p">,</span> <span class="n">yaxis_title</span><span class="o">=</span><span class="s2">&quot;Degrees rotation&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">fig</span>
     <span class="k">return</span> <span class="n">no_update</span>
 
 
 <span class="c1"># Launch the app server</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
-
 </pre></div>
 </div>
 <p><img alt="upload component" src="../_images/upload.gif" /></p>

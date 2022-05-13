@@ -65,26 +65,30 @@ app.layout = dbc.Container(
 )
 
 @app.callback(Output('graph1', 'figure'),
-              Input('upload-data', 'filename'))
-def update_output(filename):
-    if 'csv' in filename:
-        fig = go.Figure()
-        df = pd.read_csv(filename)
-        time_col = df.columns[0]
-        for col in df.columns:
-            if time_col in col:
-                pass
-            else:
-                fig.add_trace(go.Scattergl(x=df[time_col], y=df[col], mode='lines+markers', name=col))
-        fig.update_layout(xaxis_title="Time (ms)", yaxis_title="Degrees rotation")
-        return fig
+            Input('upload-data', 'contents'))
+def update_output(contents):
+    if contents is not None:
+        content_type, content_data = contents.split(',')
+        # Check if data is CSV
+        if 'csv' in content_type:
+            decoded_data = base64.b64decode(content_data) # decode data 
+            df = pd.read_csv(io.StringIO(decoded_data.decode('utf-8'))) # read data into dataframe
+            time_col = df.columns[0] # assume the first column is the time column
+            fig = go.Figure() # make a blank figure
+            # Go through each column in the dataframe and make a trace for it
+            for col in df.columns:
+                if time_col in col:
+                    pass
+                else:
+                    fig.add_trace(go.Scattergl(x=df[time_col], y=df[col], mode='lines+markers', name=col))
+            fig.update_layout(xaxis_title="Time (ms)", yaxis_title="Degrees rotation")
+            return fig
     return no_update
 
 
 # Launch the app server
 if __name__ == '__main__':
     app.run_server()
-
 ```
 
 ![upload component](ch11_files/upload.gif)
