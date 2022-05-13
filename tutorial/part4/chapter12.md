@@ -8,20 +8,20 @@ There are many different ways you can change the layout and add themes to your P
 JupyterDash(external_stylesheets=[dbc.themes.SLATE])
 ```
 
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a dark grey type (need specifics)? In the context of the theme, this particular color is categorized as `text-primary`. And if you do a little search in the link above, you'll find *one* occurence of `text-primary`:
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a light grey type (need specifics)? In the context of the theme, this particular color is mapped to `text-body`. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file in the link above:
 
-    text-primary{--bs-text-opacity:1;color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important}
+    text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
     
  When it comes to the color, the element we're interested in is this:
  
-     var(--bs-primary-rgb)
+     var(--bs-body-color-rgb)
      
      
-This points to a setting at the start of the document that reveals the `rgb()` code udes by `text-primary`:
+This points to a setting at the start of the document that reveals the `rgb()` code udes by `text-body`:
 
-    bs-primary-rgb:58,63,68;
+    bs-body-color-rgb:170,170,170
     
-[![enter image description here][1]][1]2
+[![enter image description here][1]][1]
 
 Now we know how to set a theme with `external_stylesheets=[dbc.themes.SLATE]`, and we know that ...
 The next section will describe how to edit these properties through `className` and `style`
@@ -356,5 +356,5 @@ app.run_server(mode='external', port = 8011)
 [![enter image description here][2]][2]
 
 
-  [1]: https://i.stack.imgur.com/htjkN.png
+  [1]: https://i.stack.imgur.com/XHoFx.png
   [2]: https://i.stack.imgur.com/NGfOi.png
