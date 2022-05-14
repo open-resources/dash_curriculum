@@ -90,7 +90,7 @@ if __name__ == '__main__':
 
 Similarly, we are able to define **multiple outputs** in one callback. For this, let us take another example, where we want to trigger a graph and a table at the same time through one dropdown. Again, we want to be able to select one specific country of interest to us, whose data then get displayed within the graph and the table.
 
-Because we are using multiple outputs we need to add them as component properties in the callback decorator as well as return multiple variables in the callback function (in this example `fig` and `data`), separated by a comma. Also, make sure that the order you enter the variables reflects the order of the component properties: first component property is tied to the first returned variable. 
+Because we are using multiple outputs we need to add them as component properties in the callback decorator as well as return the same number of variables in the callback function (in this example `fig` and `data` separated by a comma). Also, make sure that the order you enter the variables reflects the order of the component properties: first component property is tied to the first returned variable. 
 
 ```
 # Import packages
@@ -151,7 +151,7 @@ if __name__ == '__main__':
 
 ## 10.2 Buttons within a callback
 
-Now, that you know how to implement multiple inputs and outputs it's worth to take a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.
+Now, that you know how to implement multiple inputs and outputs it's worth taking a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.
 
 Besides the children and id property, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. The n_clicks property therefore always is a non-negative integer. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let's see both in one simple example. Hereby, we are changing the title of our app depending if and how often the implemented button has been clicked.
 
