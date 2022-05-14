@@ -151,9 +151,7 @@ if __name__ == '__main__':
 
 ## 10.2 Buttons within a callback
 
-Now, that you know how to implement multiple inputs and outputs it's worth taking a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.
-
-Besides the children and id property, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. The n_clicks property therefore always is a non-negative integer. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let's see both in one simple example. Hereby, we are changing the title of our app depending if and how often the implemented button has been clicked.
+Now, that you know how to implement multiple inputs and outputs it's worth taking a closer look at buttons and how to approach them within callbacks. Besides the `children` and `id` properties, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. The `n_clicks` property therefore always is a non-negative integer. You would typically use this property to trigger the callback and return output components whenever the button is clicked. In the example below, we change the title of our app depending on if, and how often, the button has been clicked.
 
 ```
 # Import packages
@@ -185,7 +183,7 @@ def update_title(n_clicks):
     if n_clicks == 0:
         title = 'My first app. The button has not been clicked yet.'
     else:
-        title = 'My first app with a button, that I have clicked {} times.'.format(n_clicks)
+        title = 'My first app with a button that I have clicked {} times.'.format(n_clicks)
     return title
 
 
@@ -193,9 +191,10 @@ def update_title(n_clicks):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
-To give you some more flexibility on programming your future apps let us see two more facettes of how to use buttons within callbacks. First, we learn how to reset the n_clicks component property of a button. Herefore, we adjust the above example by adding a second button. Whenever the second button will be clicked the component property n_clicks of the first button will be reset to 0.
+![button clicked gif](./ch10_files/button-click-gif.gif)
+
+To give you some more flexibility on programming your future apps, let us see how to reset the `n_clicks` component property of one button through another button. For this, we adjust the above example by adding a second button. Whenever the second button is clicked, the component property `n_clicks` of the first button will be reset to 0.
 
 ```
 # Import packages
@@ -251,7 +250,13 @@ def update_title(n_clicks):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+![button clicked gif](./ch10_files/button-reset-click-gif.gif)
+
+## 10.3 Callback Context
+
+In the previous example each button belonged to a separate callback. However, you might want to create apps where multiple buttons exist in the same callback as two Inputs. One button would update  
+
+# Consider deleting this section
 
 To conclude this second part of the chapter, let us see how to implement a binary functionality of your button. This means you are triggering different outputs with clicking the button, depending if you have clicked it an even or an odd number of times. This can be easily handled with the modulo operator `%`.
 
@@ -299,7 +304,7 @@ if __name__ == '__main__':
 ```
 ##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
-## 10.3 States
+## 10.4 States
 
 So far, we had linked components of your app together which immediately affected each other. In a more advanced setup it might be useful though to circumvent this direct relationship. You might first want to have all of the input arguments together before your outpout is triggered. This could be helpful for any kind of forms. For this purpose there is a third argument that can be used within the callback decorator, the state. Formally, the state argument is used in the same way as the input argument.
 
