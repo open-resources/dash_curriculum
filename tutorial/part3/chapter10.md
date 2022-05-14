@@ -2,7 +2,7 @@
 
 ## What you will learn
 
-You have already learned about callbacks in chapter 4. Now, it is time to upskill and deal with more advanced callbacks. You will learn how to circumvent different components to trigger a callback action immediately as well as how to handle multiple outputs and inputs in one callback. Furthermore, we will see how to operate with buttons within a callback.
+You have already learned about callbacks in chapter 4. Now, it is time to enhance our skill set and deal with more advanced callbacks. You will learn how to circumvent different components to trigger a callback action immediately as well as how to handle multiple outputs and inputs in one callback. Furthermore, we will see how to operate with buttons within a callback.
 
 ```{admonition} Learning Intentions
 - Multiple outputs and inputs
@@ -10,13 +10,13 @@ You have already learned about callbacks in chapter 4. Now, it is time to upskil
 - States
 ```
 
-## 10.1 Multiple outputs and inputs
+## 10.1 Multiple Outputs and Inputs
 
-You might want to have a graph that should be linked to more than one component, changing or affecting different dimensions of your graph. If you think the other way around, you might want to have several graphs that should be affected by the same component. Here is where multiple outputs and inputs come into play.
+You might want to have a graph that is linked to more than one component that update different dimensions of your graph (multiple Inputs). If you think the other way around, you might want to have several graphs that are updated by the same component (multiple Outputs). Here is where multiple outputs and inputs come into play.
 
-Let us see multiple inputs in action first. We take the final code from chapter 8 and add a markdown, a dropdown and some radio items, where both, the dropdown as well as the radio items, will affect the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. Herefore, we apply the function `unique()` to the list of all countries. The radio items will be used to style the graph either as line chart or scatter.
+Let us see **multiple inputs** in action first. Let's build an app that has a dropdown and radio buttons, both of which will modify the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. The radio buttons will be used to build either a line chart or a scatter plot.
 
-Now, using multiple inputs we need to add them as arguments in the callback decorator as well as arguments in the callback function. Also make sure that the order we enter the input arguments has to be the same.
+Now, since we are using 2 Inputs in the callback decorator, we have 2 component properties. Each components property must be represented as callback function arguments (in this example `value_dropdown` and `value_radio`). Also, make sure that the order in which you write the component properties reflects the order of the function arguments: first Input component property is tied to the first function argument (top to bottom, left to right).
 
 ```
 # Import packages
@@ -32,14 +32,12 @@ dropdown_list = df['country'].unique()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown(id='our-markdown', children='My first app')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
 radio = dcc.RadioItems(id='our-radio', options=['line', 'scatter'], value='line')
 
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown)),
         dbc.Row(
             [
                 dbc.Col(dropdown, width=3),
@@ -88,11 +86,11 @@ def update_graph(value_dropdown, value_radio):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+![multiple input gif](./ch10_files/multiple-input-gif.gif)
 
-Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu. Again, we want to be able to select one specific country of interest to us, which data then gets displayed within the graph and the table.
+Similarly, we are able to define **multiple outputs** in one callback. For this, let us take another example, where we want to trigger a graph and a table at the same time through one dropdown. Again, we want to be able to select one specific country of interest to us, whose data then get displayed within the graph and the table.
 
-Using multiple outputs we need to add them as arguments in the callback decorator as well as return arguments in the callback function. Also make sure that the order we enter the arguments has to be the same. Multiple outputs will be just separated with a commata when returned by the callback function.
+Because we are using multiple outputs we need to add them as component properties in the callback decorator as well as return multiple variables in the callback function (in this example `fig` and `data`), separated by a comma. Also, make sure that the order you enter the variables reflects the order of the component properties: first component property is tied to the first returned variable. 
 
 ```
 # Import packages
@@ -108,16 +106,15 @@ dropdown_list = df['country'].unique()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown(id='our-markdown', children='My First app')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
 data_table = dash_table.DataTable(id='our-data-table', page_size=10)
+graph = dcc.Graph(id='our-figure')
 
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown)),
         dbc.Row(dbc.Col(dropdown, width=6)),
-        dbc.Row(dbc.Col(dcc.Graph(id='our-figure'))),
+        dbc.Row(dbc.Col(graph)),
         dbc.Row(dbc.Col(data_table)),
     ]
 )
@@ -150,7 +147,7 @@ def update_graph(value_dropdown):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+![multiple output gif](./ch10_files/multiple-output-gif.gif)
 
 ## 10.2 Buttons within a callback
 
