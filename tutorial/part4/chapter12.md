@@ -435,6 +435,210 @@ app.run_server(mode='external', port = 8031)
 
 [![enter image description here][2]][2]
 
+# IV - APP / Dashboard CSS IN ACTION
+
+```python
+################################
+# APP/DASHBOARD: CSS IN ACTION #
+################################
+
+import plotly.graph_objects as go
+import plotly.express as px
+from jupyter_dash import JupyterDash
+import plotly.io as pio
+
+import dash_core_components as dcc
+import dash_html_components as html
+
+# app = JupyterDash(__name__)
+
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+from dash import State, Input, Output, Dash, html, dcc
+import dash_bootstrap_components as dbc
+import plotly.express as px
+import json
+
+# I - APP SETUP AND THEME SELECTION
+app = JupyterDash(external_stylesheets=[dbc.themes.SLATE])
+
+# options for control components (ctrls_crd1) in Card 1 (id = 'crd_1')
+opts_ddn_main_title = [{'label': 'Set text color', 'value': 'text-primary'},
+                       {'label': 'Set background color', 'value': 'bg-primary'},
+                       {'label': 'Set component margin', 'value': 'm-1'},
+                       {'label': 'Set component padding', 'value': 'p-1'},
+                      ]
+
+opts_ddn_scnd_title = [{'label': 'Set text color', 'value': 'text-primary'},
+                       {'label': 'Set background color', 'value': 'bg-primary'},
+                       {'label': 'Set component margin', 'value': 'm-1'},
+                       {'label': 'Set component padding', 'value': 'p-1'},
+                      ]
+
+opts_ddn_crd_1 = [{'label': 'Set card margins', 'value': 'm-1'},
+                  {'label': 'Set card padding', 'value': 'p-1'},
+                 ]
+
+opts_ddn_crd_2 = [{'label': 'Set card margins', 'value': 'm-1'},
+                  {'label': 'Set card padding', 'value': 'p-1'},
+                 ]
+
+
+
+# control components in Card 1 ()
+ctrls_crd1 = [dbc.Row([dbc.Col([dbc.Label("Component"),
+                                dcc.Markdown('Main title',
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('Secondary titles'),
+                                dcc.Markdown('Layout card'),
+                                dcc.Markdown('Figure card'),
+                               ],
+                              width = 2),
+                       
+                       dbc.Col([dbc.Label("Action"),
+                                dcc.Dropdown(id='ddn_main_title',
+                                             options = opts_ddn_main_title,
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                dcc.Dropdown(id='ddn_scnd_title',
+                                             options = opts_ddn_scnd_title,
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                dcc.Dropdown(id='ddn_crd_1',
+                                             options = opts_ddn_crd_1,
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                dcc.Dropdown(id='ddn_crd_2',
+                                             options = opts_ddn_crd_2,
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                
+                               ],
+                              width = 4),
+                       
+                       dbc.Col([dbc.Label("CSS / className"),
+                                dbc.Input(id = 'ipt_main_title',
+                                          placeholder="Ready for action",
+                                          type="text",
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '200px'},
+                                         ),
+                                dbc.Input(id = 'ipt_scnd_title',
+                                          placeholder="Ready for action",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '200px'},
+                                         ),
+                                dbc.Input(id = 'ipt_crd_1',
+                                          placeholder="Ready for action",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '200px'},
+                                         ),
+                                dbc.Input(id = 'ipt_crd_2',
+                                          placeholder="Ready for action",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '200px'},
+                                         ),
+                               ],
+                              width = 4)
+                      ])]
+
+# Resources for previous section
+#
+# dcc.Markdown: https://dash.plotly.com/dash-core-components/markdown
+# dbc.Label: no direct link, but info available here: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/input/
+# dcc.Dropdown: https://dash.plotly.com/dash-core-components/dropdown
+# dcc.Dropdown, change height: https://community.plotly.com/t/dcc-dropdown-change-height/17464
+
+# II - APP LAYOUT
+app.layout = dbc.Container(dbc.Row([dcc.Markdown('# CSS in action',
+                                                 id = 'title_1',
+                                                 className = 'text-body'),
+                                    
+                                    dbc.Col([dcc.Markdown('### Layout controls',
+                                                          id = 'crd_concrol_title',
+                                                          className = 'text-body'),
+                                             dbc.Card(ctrls_crd1,
+                                                      id = 'crd_1',
+                                                      # className = 'bg-danger'
+                                                     ),
+                                            ],
+                                            width = 6
+                                           ),
+                                    
+                                    dbc.Col([dcc.Markdown('### Figure',
+                                                          id = 'crd_figure_title',
+                                                          className = 'text-secondary'),
+                                             dbc.Card([dcc.Graph()],
+                                                      id = 'crd_2')
+                                            ],
+                                            width = 6
+                                           ),
+                                   ]))
+
+# Resources for previous section
+#
+# dbc.Card: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/
+
+# III - CALLBACKS
+
+# Callback group 1: 
+# Set main title className through main_title_css chained to main_title_layout():
+@app.callback(Output("ipt_main_title", "value"),
+              [Input("ddn_main_title", "value"),]
+             )
+def main_title_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("title_1", "className"),
+              [Input("ipt_main_title", "value"),]
+             )
+def main_title_css(cName_element):
+    return cName_element
+
+# Callback group 2:
+# Set card title classNames through scnd_title_css chained to scnd_title_layout():
+@app.callback(Output("ipt_scnd_title", "value"),
+              [Input("ddn_scnd_title", "value"),]
+             )
+def scnd_title_layout(cName_element):
+    return cName_element
+
+@app.callback([Output("crd_concrol_title", "className"),
+               Output("crd_figure_title", "className")],
+              [Input("ipt_scnd_title", "value"),]
+             )
+def scnd_title_css(cName_element):
+    return cName_element, cName_element
+
+# Callback group 3:
+# Set Layout card component classNames through crd1_css chained to crd1_layout():
+@app.callback(Output("ipt_crd_1", "value"),
+              [Input("ddn_crd_1", "value"),]
+             )
+def crd1_layout(cName_element):
+    return cName_element
+@app.callback(Output("crd_1", "className"),
+              [Input("ipt_crd_1", "value"),]
+             )
+def crd1_css(cName_element):
+    return cName_element
+
+# Callback group 4:
+# Set Figure 1 card component classNames through crd2_css chained to crd2_layout():
+@app.callback(Output("ipt_crd_2", "value"),
+              [Input("ddn_crd_2", "value"),]
+             )
+def crd2_layout(cName_element):
+    return cName_element
+@app.callback(Output("crd_2", "className"),
+              [Input("ipt_crd_2", "value"),]
+             )
+def crd2_css(cName_element):
+    return cName_element
+                         
+app.run_server(mode='external', port = 8031)                         
+
+```
+
 
   [1]: https://i.stack.imgur.com/XHoFx.png
   [2]: https://i.stack.imgur.com/NGfOi.png
