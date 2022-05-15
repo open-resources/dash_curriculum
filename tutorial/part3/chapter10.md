@@ -2,21 +2,112 @@
 
 ## What you will learn
 
-You have already learned about callbacks in chapter 4. Now, it is time to upskill and deal with more advanced callbacks. You will learn how to circumvent different components to trigger a callback action immediately as well as how to handle multiple outputs and inputs in one callback. Furthermore, we will see how to operate with buttons within a callback.
+You have already learned about callbacks in chapter 4. Now, it is time to enhance our skill set and deal with more advanced callbacks. 
 
 ```{admonition} Learning Intentions
-- Multiple outputs and inputs
+- Multiple Outputs and Inputs
 - Buttons in callbacks
+- Callback Context to determine triggers
 - States
 ```
+By the end of this chapter you will know how to build this app:
 
-## 10.1 Multiple outputs and inputs
+![state gif](./ch10_files/final-app-state-gif.gif)
 
-You might want to have a graph that should be linked to more than one component, changing or affecting different dimensions of your graph. If you think the other way around, you might want to have several graphs that should be affected by the same component. Here is where multiple outputs and inputs come into play.
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# Import packages
+from dash import Dash, dash_table, dcc, html, Input, Output, State
+import dash_bootstrap_components as dbc
+import plotly.express as px
 
-Let us see multiple inputs in action first. We take the final code from chapter 8 and add a markdown, a dropdown and some radio items, where both, the dropdown as well as the radio items, will affect the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. Herefore, we apply the function `unique()` to the list of all countries. The radio items will be used to style the graph either as line chart or scatter.
+# Setup data
+df = px.data.gapminder()
+dropdown_list = df['country'].unique()
 
-Now, using multiple inputs we need to add them as arguments in the callback decorator as well as arguments in the callback function. Also make sure that the order we enter the input arguments has to be the same.
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='# My first app')
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+radio = dcc.RadioItems(id='our-radio', options=['line', 'scatter'], value='line')
+button = html.Button(id='our-button', children='Update data', n_clicks=0)
+data_table = dash_table.DataTable(id='our-data-table', page_size=10)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(
+            [
+                dbc.Col(dropdown, width=3),
+                dbc.Col(radio, width=3),
+                dbc.Col(button, width=3)
+            ]
+        ),
+        dbc.Row(dbc.Col(dcc.Graph(id='our-figure'))),
+        dbc.Row(dbc.Col(data_table))
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-figure', component_property='figure'),
+    Output(component_id='our-data-table', component_property='data'),
+    Input(component_id='our-button', component_property='n_clicks'),
+    State(component_id='our-dropdown', component_property='value'),
+    State(component_id='our-radio', component_property='value'),
+)
+def update_graph(n_clicks, value_dropdown, value_radio):
+    if n_clicks >= 0:
+        df_sub = df[df['country'].isin([value_dropdown])]
+        data = df_sub.to_dict('records')
+
+        if value_radio == 'scatter':
+            fig = px.scatter(
+                df_sub,
+                x='year',
+                y='lifeExp',
+                color='country',
+                symbol='continent',
+                title='PX {} plot'.format(value_radio),
+                template='plotly_white'
+            )
+        else:
+            fig = px.line(
+                df_sub,
+                x='year',
+                y='lifeExp',
+                color='country',
+                symbol='continent',
+                title='PX {} plot'.format(value_radio),
+                template='plotly_white'
+            )
+
+    return fig, data
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+````
+
+[Click to download the complete code file for this chapter](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch10_files/chapter10_fin_app.py)
+
+## 10.1 Multiple Outputs and Inputs
+
+You might want to have a graph that is linked to more than one component that update different dimensions of your graph (multiple Inputs). If you think the other way around, you might want to have several graphs that are updated by the same component (multiple Outputs). Here is where multiple outputs and inputs come into play.
+
+Let us see **multiple inputs** in action first. Let's build an app that has a dropdown and radio buttons, both of which will modify the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. The radio buttons will be used to build either a line chart or a scatter plot.
+
+Now, since we are using 2 Inputs in the callback decorator, we have 2 component properties. Each components property must be represented as callback function arguments (in this example `value_dropdown` and `value_radio`). Also, make sure that the order in which you write the component properties reflects the order of the function arguments: first Input component property is tied to the first function argument (top to bottom, left to right).
 
 ```
 # Import packages
@@ -32,14 +123,12 @@ dropdown_list = df['country'].unique()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown(id='our-markdown', children='My first app')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
 radio = dcc.RadioItems(id='our-radio', options=['line', 'scatter'], value='line')
 
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown)),
         dbc.Row(
             [
                 dbc.Col(dropdown, width=3),
@@ -88,11 +177,11 @@ def update_graph(value_dropdown, value_radio):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+![multiple input gif](./ch10_files/multiple-input-gif.gif)
 
-Similarly, we are able to define multiple outputs in one callback. Herefore, let us take another example, where we want to trigger a graph and a table at the same time by a dropdown menu. Again, we want to be able to select one specific country of interest to us, which data then gets displayed within the graph and the table.
+Similarly, we are able to define **multiple outputs** in one callback. For this, let us take another example, where we want to trigger a graph and a table at the same time through one dropdown. Again, we want to be able to select one specific country of interest to us, whose data then get displayed within the graph and the table.
 
-Using multiple outputs we need to add them as arguments in the callback decorator as well as return arguments in the callback function. Also make sure that the order we enter the arguments has to be the same. Multiple outputs will be just separated with a commata when returned by the callback function.
+Because we are using multiple outputs we need to add them as component properties in the callback decorator as well as return the same number of variables in the callback function (in this example `fig` and `data` separated by a comma). Also, make sure that the order you enter the variables reflects the order of the component properties: first component property is tied to the first returned variable. 
 
 ```
 # Import packages
@@ -108,16 +197,15 @@ dropdown_list = df['country'].unique()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown(id='our-markdown', children='My First app')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
 data_table = dash_table.DataTable(id='our-data-table', page_size=10)
+graph = dcc.Graph(id='our-figure')
 
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(markdown)),
         dbc.Row(dbc.Col(dropdown, width=6)),
-        dbc.Row(dbc.Col(dcc.Graph(id='our-figure'))),
+        dbc.Row(dbc.Col(graph)),
         dbc.Row(dbc.Col(data_table)),
     ]
 )
@@ -150,13 +238,11 @@ def update_graph(value_dropdown):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+![multiple output gif](./ch10_files/multiple-output-gif.gif)
 
 ## 10.2 Buttons within a callback
 
-Now, that you know how to implement multiple inputs and outputs it's worth to take a closer look at buttons and how to approach them within a callback as you need to access different component properties than we have seen so far. Furthermore, we will see how to track how often a button has been clicked.
-
-Besides the children and id property, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. The n_clicks property therefore always is a non-negative integer. You can use this property either to count how many times a button has been clicked or to trigger one or multiple output components whenever the button is clicked. Let's see both in one simple example. Hereby, we are changing the title of our app depending if and how often the implemented button has been clicked.
+Now, that you know how to implement multiple inputs and outputs it's worth taking a closer look at buttons and how to approach them within callbacks. Besides the `children` and `id` properties, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. The `n_clicks` property therefore always is a non-negative integer. You would typically use this property to trigger the callback and return output components whenever the button is clicked. In the example below, we change the title of our app depending on if, and how often, the button has been clicked.
 
 ```
 # Import packages
@@ -188,7 +274,7 @@ def update_title(n_clicks):
     if n_clicks == 0:
         title = 'My first app. The button has not been clicked yet.'
     else:
-        title = 'My first app with a button, that I have clicked {} times.'.format(n_clicks)
+        title = 'My first app with a button that I have clicked {} times.'.format(n_clicks)
     return title
 
 
@@ -196,9 +282,10 @@ def update_title(n_clicks):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
-To give you some more flexibility on programming your future apps let us see two more facettes of how to use buttons within callbacks. First, we learn how to reset the n_clicks component property of a button. Herefore, we adjust the above example by adding a second button. Whenever the second button will be clicked the component property n_clicks of the first button will be reset to 0.
+![button clicked gif](./ch10_files/button-click-gif.gif)
+
+To give you some more flexibility on programming your future apps, let us see how to reset the `n_clicks` component property of one button through another button. For this, we adjust the above example by adding a second button. Whenever the second button is clicked, the component property `n_clicks` of the first button will be reset to 0.
 
 ```
 # Import packages
@@ -254,7 +341,109 @@ def update_title(n_clicks):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+![button reset gif](./ch10_files/button-reset-click-gif.gif)
+
+## 10.3 Callback Context - determine which Input was fired
+
+In the previous example each button belonged to a separate callback. However, eventually you might want to create apps where multiple buttons exist in the same callback as two Inputs. For example, one button would create a scatter graph, whereas the other button would reset that same graph. Given that these two actions are mutually exclusive, we need to determine which button triggered the callback, thereby allowing the right action to take place. For this, there exists a global variable called the Dash Callback Context (`dash.ctx`), available only inside a callback. 
+
+```
+from dash import Dash, Input, Output, html, dcc, ctx
+import plotly.express as px
+import plotly.graph_objects as go
+import dash_bootstrap_components as dbc
+
+#Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# App Layout
+app.layout = dbc.Container([
+    html.Button('Draw Graph', id='draw'),
+    html.Button('Reset Graph', id='reset'),
+    dcc.Graph(id='graph')
+])
+
+
+# Configure callbacks
+@app.callback(
+    Output('graph', 'figure'),
+    Input(component_id='reset', component_property='n_clicks'),
+    Input(component_id='draw', component_property='n_clicks'),
+    prevent_initial_call=True
+)
+def update_graph(b1, b2):
+    triggered_id = ctx.triggered_id
+    print(triggered_id)
+
+    if triggered_id == 'reset':
+        return go.Figure()
+
+    elif triggered_id == 'draw':
+        df = px.data.iris()
+        return px.scatter(df, x=df.columns[0], y=df.columns[1])
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+
+```
+
+![ctx gif](./ch10_files/ctx-gif.gif)
+
+Notice in the code above that we imported `ctx` from `dash`. Then, we used its property `triggered_id` inside the callback function to determine the ID of the button that was triggered.
+
+Another useful property of the callback context is the **`triggered_prop_ids`**. This is a dictionary of the component IDs and props that triggered the callback. It is benefitial to use when multiple properties of the same component (ID) can trigger the callback. For example, let's build a scatter graph and display on the page data generated from the `selectedData` and the `clickData` properties of the graph.
+
+```
+from dash import Dash, Input, Output, html, dcc, ctx
+import plotly.express as px
+import plotly.graph_objects as go
+import dash_bootstrap_components as dbc
+
+#Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+df = px.data.iris()
+fig = px.scatter(df, x=df.columns[0], y=df.columns[1])
+
+# App Layout
+app.layout = dbc.Container([
+    dcc.Markdown(id='content'),
+    dcc.Graph(id='graph', figure=fig)
+])
+
+
+# Configure callbacks
+@app.callback(
+    Output('content', 'children'),
+    Input(component_id='graph', component_property='selectedData'),
+    Input(component_id='graph', component_property='clickData'),
+    prevent_initial_call=True
+)
+def update_graph(selected, clicked):
+    triggered_prop_id = ctx.triggered_prop_ids
+    print(triggered_prop_id)
+
+    if 'graph.selectedData' in triggered_prop_id:
+        print(selected)
+        return 'The x range of the seclected data starts from {}'.format(selected['range']['x'][0])
+
+    elif 'graph.clickData' in triggered_prop_id:
+        print(clicked)
+        return 'The Sepal width of the clicked data is {}'.format(clicked['points'][0]['y'])
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+![ctx triggered id prop gif](./ch10_files/more-ctx-gif.gif)
+
+To read more about the callback context, see the [Advanced callback](https://dash.plotly.com/advanced-callbacks#determining-which-input-has-fired-with-dash.callback_context) in the Dash documentation.
+
+# Consider deleting this section
 
 To conclude this second part of the chapter, let us see how to implement a binary functionality of your button. This means you are triggering different outputs with clicking the button, depending if you have clicked it an even or an odd number of times. This can be easily handled with the modulo operator `%`.
 
@@ -302,11 +491,11 @@ if __name__ == '__main__':
 ```
 ##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
-## 10.3 States
+## 10.4 States
 
-So far, we had linked components of your app together which immediately affected each other. In a more advanced setup it might be useful though to circumvent this direct relationship. You might first want to have all of the input arguments together before your outpout is triggered. This could be helpful for any kind of forms. For this purpose there is a third argument that can be used within the callback decorator, the state. Formally, the state argument is used in the same way as the input argument.
+So far, we have seen how all Input components of an app trigger the callback. In a more advanced setup it might be useful to wait for the app users to update all the Inputs before the callback is actually triggered. For this purpose there is a third argument that can be used within the callback decorator, the `State`. Formally, the State argument is written in the same manner as the Input argument, but the difference is that the component properties inside State will not trigger the callack.
 
-Let us bring everything together in one final example. We will implement an app with a dropdown, some radio items and a button which will trigger two output components, a graph and a table. However, we only want to trigger the output components when the button is clicked. This can be done with the state argument. Herefore, we declare all arguments that should not directly trigger the output components as state arguments instead of input arguments in the callback decorator.
+Let us bring everything together in one final example. We will implement an app with a dropdown, radio items, and a button which will trigger the callback, thereby updating a graph and a DataTable. We only want to trigger the callabck when the button is clicked. For this, we declare all arguments that should not trigger the callback (dropdown and radio buttons) as State arguments instead of Input arguments in the callback decorator.
 
 ```{attention}
 Note that you need to import the state argument the same way we are importing the input and output arguments at the beginning of your code.
@@ -326,7 +515,7 @@ dropdown_list = df['country'].unique()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown(id='our-markdown', children='My first app')
+markdown = dcc.Markdown(id='our-markdown', children='# My first app')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
 radio = dcc.RadioItems(id='our-radio', options=['line', 'scatter'], value='line')
 button = html.Button(id='our-button', children='Update data', n_clicks=0)
@@ -339,7 +528,7 @@ app.layout = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(dropdown, width=3),
-                dbc.Col(radio, width=1),
+                dbc.Col(radio, width=3),
                 dbc.Col(button, width=3)
             ]
         ),
@@ -390,8 +579,12 @@ def update_graph(n_clicks, value_dropdown, value_radio):
 if __name__ == '__main__':
     app.run_server()
 ```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
+
+![state gif](./ch10_files/final-app-state-gif.gif)
+
 
 ## Summary
 
-We have learned about how to link multiple input components with multiple output components. Furthermore, you know how to trigger certain inputs running after using the state argument in a callback. With the third learning on how to deal with buttons within callbacks you are now well equipped to build even more complex, fully interactive apps.
+We have learned about how to link multiple input components with multiple output components. Furthermore, you now know how to use the button inside the callback and how to identify which Input triggered the callback with callback context. Additionally, with the understanding of the State argument, you are now well equipped to build even more complex, fully interactive apps.
+
+In the next chapter you will learn about several additional components that can be used to enhance your Dash app.
