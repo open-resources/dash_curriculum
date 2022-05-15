@@ -465,6 +465,11 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iv-app-dashboard-css-in-action">
+   IV - APP / Dashboard CSS IN ACTION
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -565,6 +570,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iv-app-dashboard-css-in-action">
+   IV - APP / Dashboard CSS IN ACTION
+  </a>
  </li>
 </ul>
 
@@ -1009,6 +1019,210 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <div class="section" id="image-of-app">
 <h2>Image of APP<a class="headerlink" href="#image-of-app" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://i.stack.imgur.com/NGfOi.png"><img alt="enter image description here" src="https://i.stack.imgur.com/NGfOi.png" /></a></p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="iv-app-dashboard-css-in-action">
+<h1>IV - APP / Dashboard CSS IN ACTION<a class="headerlink" href="#iv-app-dashboard-css-in-action" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">################################</span>
+<span class="c1"># APP/DASHBOARD: CSS IN ACTION #</span>
+<span class="c1">################################</span>
+
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
+
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_html_components</span> <span class="k">as</span> <span class="nn">html</span>
+
+<span class="c1"># app = JupyterDash(__name__)</span>
+
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="c1"># I - APP SETUP AND THEME SELECTION</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">SLATE</span><span class="p">])</span>
+
+<span class="c1"># options for control components (ctrls_crd1) in Card 1 (id = &#39;crd_1&#39;)</span>
+<span class="n">opts_ddn_main_title</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set text color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;text-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set background color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;bg-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set component margin&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set component padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
+                      <span class="p">]</span>
+
+<span class="n">opts_ddn_scnd_title</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set text color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;text-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set background color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;bg-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set component margin&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set component padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
+                      <span class="p">]</span>
+
+<span class="n">opts_ddn_crd_1</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card margins&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                  <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
+                 <span class="p">]</span>
+
+<span class="n">opts_ddn_crd_2</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card margins&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                  <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
+                 <span class="p">]</span>
+
+
+
+<span class="c1"># control components in Card 1 ()</span>
+<span class="n">ctrls_crd1</span> <span class="o">=</span> <span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Component&quot;</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Main title&#39;</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Secondary titles&#39;</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Layout card&#39;</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Figure card&#39;</span><span class="p">),</span>
+                               <span class="p">],</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">),</span>
+                       
+                       <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Action&quot;</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_main_title&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_main_title</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_scnd_title&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_scnd_title</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_crd_1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_crd_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_crd_2&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_crd_2</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                
+                               <span class="p">],</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                       
+                       <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;CSS / className&quot;</span><span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_main_title&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready for action&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_scnd_title&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready for action&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_crd_1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready for action&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_crd_2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready for action&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                               <span class="p">],</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+                      <span class="p">])]</span>
+
+<span class="c1"># Resources for previous section</span>
+<span class="c1">#</span>
+<span class="c1"># dcc.Markdown: https://dash.plotly.com/dash-core-components/markdown</span>
+<span class="c1"># dbc.Label: no direct link, but info available here: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/input/</span>
+<span class="c1"># dcc.Dropdown: https://dash.plotly.com/dash-core-components/dropdown</span>
+<span class="c1"># dcc.Dropdown, change height: https://community.plotly.com/t/dcc-dropdown-change-height/17464</span>
+
+<span class="c1"># II - APP LAYOUT</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# CSS in action&#39;</span><span class="p">,</span>
+                                                 <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;title_1&#39;</span><span class="p">,</span>
+                                                 <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;text-body&#39;</span><span class="p">),</span>
+                                    
+                                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;### Layout controls&#39;</span><span class="p">,</span>
+                                                          <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;crd_concrol_title&#39;</span><span class="p">,</span>
+                                                          <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;text-body&#39;</span><span class="p">),</span>
+                                             <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">ctrls_crd1</span><span class="p">,</span>
+                                                      <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;crd_1&#39;</span><span class="p">,</span>
+                                                      <span class="c1"># className = &#39;bg-danger&#39;</span>
+                                                     <span class="p">),</span>
+                                            <span class="p">],</span>
+                                            <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span>
+                                           <span class="p">),</span>
+                                    
+                                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;### Figure&#39;</span><span class="p">,</span>
+                                                          <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;crd_figure_title&#39;</span><span class="p">,</span>
+                                                          <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;text-secondary&#39;</span><span class="p">),</span>
+                                             <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">()],</span>
+                                                      <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;crd_2&#39;</span><span class="p">)</span>
+                                            <span class="p">],</span>
+                                            <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span>
+                                           <span class="p">),</span>
+                                   <span class="p">]))</span>
+
+<span class="c1"># Resources for previous section</span>
+<span class="c1">#</span>
+<span class="c1"># dbc.Card: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/</span>
+
+<span class="c1"># III - CALLBACKS</span>
+
+<span class="c1"># Callback group 1: </span>
+<span class="c1"># Set main title className through main_title_css chained to main_title_layout():</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_main_title&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_main_title&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">main_title_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;title_1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_main_title&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">main_title_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Callback group 2:</span>
+<span class="c1"># Set card title classNames through scnd_title_css chained to scnd_title_layout():</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_scnd_title&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_scnd_title&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">scnd_title_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">([</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;crd_concrol_title&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+               <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;crd_figure_title&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">)],</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_scnd_title&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">scnd_title_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span><span class="p">,</span> <span class="n">cName_element</span>
+
+<span class="c1"># Callback group 3:</span>
+<span class="c1"># Set Layout card component classNames through crd1_css chained to crd1_layout():</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_crd_1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_crd_1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">crd1_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;crd_1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_crd_1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">crd1_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Callback group 4:</span>
+<span class="c1"># Set Figure 1 card component classNames through crd2_css chained to crd2_layout():</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">crd2_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">crd2_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+                         
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8031</span><span class="p">)</span>                         
+
+</pre></div>
 </div>
 </div>
 
