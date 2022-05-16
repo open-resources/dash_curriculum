@@ -1,14 +1,15 @@
 # Chapter 8: Data Visualization
 
+In this chapter we will learn to use the Plotly graphing library as it is the leading Python library for data visualization. 
+
 ```{admonition} What you will learn
 
 - Principles of Effective Visualizations
-- How to incorporate a Plotly Figure Object in your Dash App.
-- How Plotly Express (`px`) is the preferred way to create a Plotly Figure Object.
-- An introduction to the powers of `px`.
-- How `px` uses attributes such as `color` and `symbol` to illustrate multiple dimensions of a dataset.
-- How `px` uses the attributes `animation_frame` and `animation_group` to create animations.
-- How to create chart types like  `line`, `scatter`, `bar`, `histogram`, `box`, `facet`, `maps` and`treemap`.
+- How to incorporate a Plotly Figure Object in your Dash App
+- An introduction to the powers of Plotly Express (`px`)
+- How `px` uses attributes such as `color` and `symbol` to illustrate multiple dimensions of a dataset
+- How `px` uses the attributes `animation_frame` and `animation_group` to create animations
+- How to create chart types like  `line`, `scatter`, `bar`, `histogram`, `box`, `facet`, `maps` and`treemap`
 
 ```
 ## 8.1 Principles of Effective Visualizations
@@ -17,9 +18,9 @@
 
 ## 8.2 Incorporting Plotly Figures in a Dash app
 
-As an example of how to include Plotly figures in your Dash app, first we need to create the Plotly figure. Consider the following code snippet where we load the gapminder dataset from `px.data.gapminder()`, filter the data to only four countries, and make a line chart with `px.line()`. The function call `px.line()` in this snippet will contain attributes that you will learn more about in the section 8.3.
+As an example of how to include Plotly figures in your Dash app, first we need to create the Plotly figure. Consider the following code snippet where we load the gapminder dataset from `px.data.gapminder()`, filter the data to consist of only four countries, and make a line chart with `px.line()`. The function call `px.line()` in this snippet will contain attributes that you will learn more about in the section 8.3.
 
-### 8.2.1 How to create a Plotly Express Figure for your Dash APP
+### 8.2.1 How to create a Plotly Express Figure
 
 ```python
 import plotly.express as px
@@ -29,7 +30,7 @@ df = px.data.gapminder()
 df_filtered = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
 
 # figure
-fig = px.line(df_filtered, x= 'year', y = 'lifeExp', color = 'country')
+fig = px.line(df_filtered, x='year', y='lifeExp', color='country')
 fig.show()
 
 ```
