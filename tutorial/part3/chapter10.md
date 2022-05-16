@@ -443,7 +443,7 @@ if __name__ == '__main__':
 
 To read more about the callback context, see the [Advanced callback](https://dash.plotly.com/advanced-callbacks#determining-which-input-has-fired-with-dash.callback_context) in the Dash documentation.
 
-# Consider deleting this section
+## Consider deleting this section
 
 To conclude this second part of the chapter, let us see how to implement a binary functionality of your button. This means you are triggering different outputs with clicking the button, depending if you have clicked it an even or an odd number of times. This can be easily handled with the modulo operator `%`.
 
