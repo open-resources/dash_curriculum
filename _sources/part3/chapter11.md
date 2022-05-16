@@ -1,4 +1,4 @@
-# Chapter 11: Advanced Components
+# Chapter 11: Additional Components
 
 ## What you will learn
 In this chapter we will introduce several advanced components that go beyond what we have seen so far, but that are necessary for advanced apps.
@@ -13,10 +13,9 @@ Dash libraries include a lot of components that serves multiple purposes. It may
 
 We will broke down components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.
 
-All advanced components that will be presented come from these three very common libraries. By clicking on the links, you'll be able to access to each library documentation:
+All advanced components that will be presented come from these very common libraries. By clicking on the links, you'll be able to access to each library documentation:
 - dcc : [Dash core components](https://dash.plotly.com/dash-core-components)
 - dbc : [Dash boostrap components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/)
-- dmc : [Dash mantine components](https://dash-mantine-components.herokuapp.com/)
 
 In the links above, it is possible to search for keywords and find the components we need. Once we've identified the components that we want to include in our app, [this cheatsheet](https://dashcheatsheet.pythonanywhere.com/) is another powerful tool that helps us understanding how components can be customised.
 
@@ -113,6 +112,10 @@ Let's see an example of this component in action. In the following app a DatePic
 Based on the user selection, a dataframe will be filtered and the chart updated.
 As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been selected.
 
+```{note}
+In the following app, instead of using the gapminder dataset, we have used a dataset based on stock prices, as it includes a datetime field.
+```
+
 ```python
 # Import packages
 from dash import Dash, dcc, Input, Output, html
@@ -171,7 +174,9 @@ if __name__ == '__main__':
 
 ## 11.6 Layout Components
 
-
+## 11.7 Additional Content
+In addition to all the components present in the libraries introduces above, it is possible to find additional components by exploring third party libraries.
+An example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
 
 ---
 ---
