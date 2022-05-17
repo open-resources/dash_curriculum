@@ -1,15 +1,13 @@
 # Chapter 8: Data Visualization
 
-In this chapter we will learn to use the Plotly graphing library as it is the leading Python library for data visualization. 
+In this chapter we will learn to use the Plotly graphing library given that it is the leading Python library for data visualization. 
 
 ```{admonition} What you will learn
 
 - Principles of Effective Visualizations
-- How to incorporate a Plotly Figure Object in your Dash App
-- Introduction to the powers of Plotly Express
-- How `px` uses attributes such as `color` and `symbol` to illustrate multiple dimensions of a dataset
-- How `px` uses the attributes `animation_frame` and `animation_group` to create animations
-- How to create chart types like  `line`, `scatter`, `bar`, `histogram`, `box`, `facet`, `maps` and`treemap`
+- How to incorporate a Plotly Figure Object in a Dash App
+- The power behind of Plotly Express
+- How to create common Plotly chart types
 
 ```
 ## 8.1 Principles of effective visualizations
@@ -126,7 +124,9 @@ As you can see from the code above, the callback is triggered as soon as the use
 
 ## 8.3 Introduction to the powers of Plotly Express
 
-The Plotly Express module contains functions that can create entire figures at once and is usually referred to as `px`. Plotly Express is part of the Plotly library and it is the recommended starting point for creating some of the most common figures like the line, scatter, bar, and timeline figures. We'll go through some of them in this chapter, but you can learn about many other figures in the [documentation](https://plotly.com/python/). But first, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple Plotly Express function like `px.line()`
+The Plotly Express module contains functions that can create entire figures at once and is usually referred to as `px`. Plotly Express is part of the Plotly library and it is the recommended starting point for creating some of the most common figures like the line, scatter, bar, and timeline figures. We'll go through some of them in this chapter, but you can learn about many other figures in the [documentation](https://plotly.com/python/). 
+
+First, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple Plotly Express function like `px.line()`
 
 ### 8.3.1 About the gapminder dataset
 
@@ -161,6 +161,8 @@ Let's look at the applied attributes of `px.line()` one by one.
 3. `y='lifeExp` instructs the `lifeExp` column in `df` to appear on the y-axis
 4. `title="PX Line plot"` is optional, and creates a title in the top left corner.
 5. `template='plotly_white'` is also optional, and creates a minimal figure layout with a white background.
+
+See the [line chart page](https://plotly.com/python-api-reference/generated/plotly.express.line.html#plotly.express.line) of the Plotly Express high-level interface to read more about the line chart attributes
 
 ### 8.3.3 Adding multiple lines with different colors
 So far so good, but the data set includes data for many more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it's also an important part of what makes Plotly Express so powerful and flexible. 
@@ -233,7 +235,7 @@ fig = px.scatter(df, x='year', y='lifeExp', color='country',
 fig.show()
 ```
 
-![scatter plot](./ch8_files/scatter-plot.png)
+![scatter plot](./ch8_files/scatter.png)
 
 ### 8.3.7 Animated scatter / bubble charts
 
@@ -252,98 +254,79 @@ fig.show()
 
 ![animated bubble plot](./ch8_files/annimated-bubble.gif)
 
-```{tip}
-The snippet above introduces several new methods of the `fig` object. We won't go more into details here, but you can use them closer with `help(px.scatter)` and in the [docs](https://plotly.com/python/px-arguments/)
+```{note}
 
-```
-
-```{tip}
-
-Some IDEs from time to time encounter probblems with running the animations of Plotly even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at [this post](https://github.com/microsoft/vscode-jupyter/issues/4364) for more details: 
+Certain IDEs from time to time encounter probblems when running Plotly animations, even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at [this post](https://github.com/microsoft/vscode-jupyter/issues/4364) for more details: 
 
 ```python
 import plotly.io as pio
 pio.renderers.default = 'notebook_connected'
 ```
 
-## 8.4 A variety of Plotly Express figures
-
-Now that you've got a sense of the powers hidden in all Plotly figures, the time has come to introduce more categries than line and scatter plots. We will not go into the details of every argument of every function call since you already know the main principles:
-
-
-```{admonition} Main principles of PX
-1. Defining a dataset `df` let's you reference all available variables in the function arguments
-2. You can illustrate multiple dimensions of the dataset through variables like `color`, `symbol`.
-3. You can create animations through arguments like `animation_frame` and `animation_group`
+```{tip}
+The animatoin snippet above introduced several new methods of the `fig` object. You can learn more about these methods in the [docs](https://plotly.com/python-api-reference/generated/plotly.express.scatter.html#plotly.express.scatter)
 ```
 
-One thing all following chart types have in common, is that we're using the very same dataset and that very little data wrangling is required. The few data wrangling techniques that are used are only there because some chart types require a specific data format, or simply look better with a smaller subset of the gapminder dataset.
+## 8.4 Exploring additional Plotly Express figures
 
-### 8.4.1 Stacked bar chart with `px.bar()`
+Now that you've got a sense of the powers hidden in all Plotly figures, the time has come to introduce additional categories to line and scatter plots.
 
-`px.bar()` works similarly to `px.line()` in that it uses `color = country` the very same way. By default, each colored category is stacked on top of eachother for each unique occurence of `year` on the `x-axis`.
+One thing all of the following chart types have in common is that they use the very same data set and that very little data wrangling is required. The few data wrangling techniques that are used are only there because some chart types require a specific data format, or simply look better with a smaller subset of the gapminder data set.
+
+### 8.4.1 Stacked Bar chart
+
+`px.bar()` works similarly to `px.line()` in that it uses `color="country"` in the same way. By default, each colored category is stacked on top of one another for each unique occurence of `year` on the `x-axis`.
 
 ```python
 import plotly.express as px
 df = px.data.gapminder()
 
-fig = px.bar(df, x= 'year', y = 'pop', color = 'country',
-                     title = 'PX scatter plot',
-                     template = 'plotly_white')
+fig = px.bar(df, x='year', y='pop', color='country',
+             title='PX scatter plot',
+             template='plotly_white')
 fig.show()
 ```
 
-[![enter image description here][19]][19]
-
-
+![bar plot](./ch8_files/bar-plot.png)
 
 ### 8.4.2 Grouped bar chart
-Stacking the bars makes sense to illustrate accumulations for data such as `population`. But not so much for life expectancies. In order to group subcategories next to eachother instead, simply include `barmode = 'group'` in the function call.
+Stacking the bars makes sense to illustrate accumulations for data such as `population`, but not so much for life expectancies. In order to group subcategories next to each other, simply include `barmode='group'` in the function call.
 
-```{tip}
-
-Not all Plotly Express functions produce perfect layout for every dataset every time. Below we've used antoher method of the `fig` object before `fig.show()` to adjust the range of the y-axis; `fig.update_yaxes(range=[50, 80])`. Try the code snippet without that particular line and see if you agree with our design choices.
-
+```{note}
+Not all Plotly Express functions produce perfect layout for every data set. Below, we've used antoher method of the `fig` object called `range` to adjust the range of the y-axis; `fig.update_yaxes(range=[60, 80])`. Try the code snippet without that particular line, and see if you agree with our design choices.
 ```
 
 ```python
 import plotly.express as px
 df = px.data.gapminder()
-df = df[df['country'].isin([
-    #    'France', 'Germany', 
+df = df[df['country'].isin(['Spain', 'United Kingdom'])]
 
-    #    'Italy',
-       'Spain', 'United Kingdom'])]
-
-fig = px.bar(df, x= 'year', y = 'lifeExp', color = 'country',
-                     barmode = 'group' ,
-                     title = 'Grouped Bar Chart',
-                     template = 'plotly_white')
+fig = px.bar(df, x='year', y='lifeExp', color='country',
+             barmode='group', title='Grouped Bar Chart',
+             template='plotly_white')
 fig.update_yaxes(range=[60, 80])
 fig.show()
 ```
 
-[![enter image description here][20]][20]
+![barmode group](./ch8_files/bar-group.png)
 
+### 8.4.3 Histograms
 
-
-### 8.4.3 Histogram with `px.histogram()`
-
-Histograms can be considered as a special kind of bar chart where the bars represent  groups of data instead of individual observations. By default, `px.histogram()` will also stack categories on top of eachother. To prevent that, and rather display distributions of data individually, jsut inclue `barmode = 'overlay'` as you can see in the snippet below.
+Histograms can be considered a special kind of bar chart where the bars represent groups of data instead of individual observations. By default, `px.histogram()` will also stack categories on top of one another. To prevent that and display distributions of data individually, just inclue `barmode='overlay'` as seen in the snippet below.
 
 ```python
 import plotly.express as px
 df = px.data.gapminder()
 df = df[df['continent'].isin(['Asia',  'Europe'])]
-fig = px.histogram(df, x='lifeExp', nbins = 20, color = 'continent', barmode = 'overlay')
+fig = px.histogram(df, x='lifeExp', nbins=20, color='continent', barmode='overlay')
 fig.show()
 ```
 
-[![enter image description here][22]][22]
+![histogram](./ch8_files/hist-plot.png)
 
-### 8.4.4 Box plot with `px.box()`
+### 8.4.4 Box plot
 
-`po.box` lets you investigate distributions of data further. By default, `px.bar()` displays `mean`, `quartiles` and some `outliers` for the different categories in the order that they appear in the dataset. In the following example we've included the argument `category_orders` to display means for each group in a decreasing manner.
+`px.box` lets you investigate distributions of data even further. By default, `px.box()` displays `mean`, `quartiles`, and some `outliers` for the different categories in the order that they appear in the data set. In the following example we've included the argument `category_orders` to display mean values for each group in a decreasing manner.
 
 ```python
 import plotly.express as px
@@ -353,15 +336,13 @@ fig = px.box(df, x="continent", y="lifeExp",
              category_orders = {'continent': ['Oceania', 'Europe', 'Americas', 'Asia', 'Asia', 'Africa']})
 fig.update_traces(quartilemethod="exclusive") # or "inclusive", or "linear" by default
 fig.show()
-
 ```
 
-[![enter image description here][21]][21]
-
+![box1](./ch8_files/box1.png)
 
 ### 8.4.5 Facet / Trellis plots
 
-This section uses a new argument that splits a dataset into several subplots; `facet_col`. `facet_col_wrap` defines in how many columns you would like to organize your subplots.
+This section uses a new attribute that splits a data set into several subplots: `facet_col`. Then, we use `facet_col_wrap` to define the number of columns in which we would like to organize the subplots.
 
 ```python
 import plotly.express as px
@@ -376,9 +357,11 @@ fig = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop',
 fig.show()
 ```
 
-[![enter image description here][23]][23]
+![facet](./ch8_files/facet.png)
 
-### 8.4.6 Treemap with `px.treemap()`
+### 8.4.6 Treemaps
+
+Treemap charts visualize hierarchical data using nested rectangles. The hierarchy is defined by labels (names for px.treemap) and parents attributes. Another way to define the hierarchy is through the attribute `path`: list of columns names or columns of a rectangular dataframe defining the hierarchy of sectors, from root to leaves.
 
 ```python
 import plotly.express as px
@@ -389,10 +372,12 @@ fig = px.treemap(df, path=[px.Constant('world'), 'continent', 'country'], values
 fig.show()
 ```
 
-[![enter image description here][24]][24]
+![treemap](./ch8_files/treemap.png)
 
 
-### 8.4.7 Heatmap with `px.density_heatmap()`
+### 8.4.7 Heatmaps
+
+The term "heatmap" usually refers to a cartesian plot with data visualized as colored rectangular tiles.
 
 ```python
 import plotly.express as px
@@ -403,24 +388,11 @@ fig = px.density_heatmap(df, x="gdpPercap", y="lifeExp",
 fig.show()
 ```
 
-[![enter image description here][25]][25]
+![heatmap](./ch8_files/heatmap.png)
 
+### 8.4.8 Timeline charts
 
-
-### 8.4.8 Choropleth map with `px.choropleth()`
-
-```python
-fig = px.choropleth(gapminder, locations='iso_alpha', color='lifeExp', hover_name='country', 
-                    animation_frame='year', color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
-fig.show()
-```
-
-[![enter image description here][26]][26]
-
-
-### 8.4.9 Timeline with `px.timeline()`
-
-Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we've made a few changes to the gapminder dataset and removed some random dates. You can use this code snippet to illustrate what time periods that you have available data for a set of countries. Missing years *within* a time period are not taken into account.
+Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we've made a few changes to the gapminder data set and removed some random dates. You can use this code snippet to illustrate the available time period data for each country. Missing years within a time period are not taken into account.
 
 ```python
 import plotly.express as px
@@ -454,7 +426,7 @@ fig.update_yaxes(autorange="reversed") # otherwise tasks are listed from the bot
 fig.show()
 ```
 
-[![enter image description here][27]][27]
+![timeline](./ch8_files/timeline.png)
 
 ```{tip}
 You can set Plotly to be the [plotting backend for pandas](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937), and produce Plotly Figures with `df.plot(kind)` where `kind` can be any of ` ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']`. This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.
@@ -475,17 +447,8 @@ for k in kinds[:-1]:
     fig.show()
 ```
 
+# Summary
 
-## 8.5 References and resources (more links at end of document)
+In this chapter you've learned the effective principles of data visualization and how to use Plotly graphs within Dash. You've also learned to plot common Plotly figures using the gapminder data set. [This notebook](https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook) offers additional data analysis of the Gapminder data set with Plotly. 
 
-https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook
-
-https://cran.r-project.org/web/packages/gapminder/README.html
-
-***More resources listed as links at the very end of the document***
-
-
-```{admonition} Summary??
-
-
-```
+In the next chapter we will do a deep dive into the Dash DataTable.
