@@ -421,6 +421,11 @@ const thebe_selector_output = ".output, .cell_output"
      11.3.1 Modal
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alert">
+     11.3.2 Alert
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -544,6 +549,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modal">
      11.3.1 Modal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alert">
+     11.3.2 Alert
     </a>
    </li>
   </ul>
@@ -805,6 +815,88 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><img alt="modal" src="../_images/modal.gif" /></p>
+</div>
+<div class="section" id="alert">
+<h3>11.3.2 Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Alerts</span></code> are boxes that provide user messages according to the user interaction with the app.
+With callbacks it is possible to change many props of this component (full list <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">here</a>), such as: color, fading animation, duration of appearence.</p>
+<p>In the example below, we have created alerts depending on the GTP Per Capita trend of a selected country and year:</p>
+<ul class="simple">
+<li><p>If the trend is positive, meaning the GTP per Capita of the selected year is above the previous 10 year average, the alert message will have a green color</p></li>
+<li><p>If the trend is stable, the alert message will have a yellow color</p></li>
+<li><p>Otherwise a red color</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Import data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Alerts by GDP Per Capita&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">_text1</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;The below alert will adapt depending on GDP 10y trend for the selected country and year&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">year_sel</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;year-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a year&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
+<span class="n">country_sel</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a country&#39;</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
+<span class="n">gpd_line</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span> <span class="n">range_y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50000</span><span class="p">])</span>
+<span class="n">alert_msg</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Alert</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;alert-gdp&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Select some year and country to display info&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_header</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_text1</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>        
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">gpd_line</span><span class="p">)],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">year_sel</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">country_sel</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="p">]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">alert_msg</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Configure callback</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;alert-gdp&quot;</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;alert-gdp&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;year-dropdown&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;country-dropdown&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+    <span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_alert</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="n">threshold</span> <span class="o">=</span> <span class="mf">.05</span><span class="p">;</span> <span class="n">previous_y</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="n">gdp_sel</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span> <span class="c1">#Filter for selection</span>
+    <span class="n">gdp_avg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">y</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">y</span><span class="o">-</span><span class="n">previous_y</span><span class="p">),</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span> <span class="c1">#Slice previous years gdpPercap</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">gdp_sel</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gdp_avg</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">gdp_sel_v</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">gdp_sel</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">gdp_avg_v</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">gdp_avg</span><span class="o">.</span><span class="n">values</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">new_children</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;The GDP per Capita in &#39;</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="s1">&#39; in &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; was: &#39;</span><span class="o">+</span><span class="n">gdp_sel_v</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">+</span>
+                        <span class="s1">&#39;; The average GDP from previous &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">previous_y</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; years was: &#39;</span><span class="o">+</span><span class="n">gdp_avg_v</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)]</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">((</span><span class="n">gdp_sel_v</span><span class="o">/</span><span class="n">gdp_avg_v</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">:</span>
+            <span class="n">new_color</span> <span class="o">=</span> <span class="s1">&#39;warning&#39;</span> 
+        <span class="k">elif</span> <span class="p">(</span><span class="n">gdp_sel_v</span><span class="o">/</span><span class="n">gdp_avg_v</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">new_color</span> <span class="o">=</span> <span class="s1">&#39;danger&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_color</span> <span class="o">=</span> <span class="s1">&#39;success&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">new_color</span> <span class="o">=</span> <span class="s2">&quot;dark&quot;</span>
+        <span class="n">new_children</span> <span class="o">=</span> <span class="s1">&#39;Insufficient Data. Try new selection&#39;</span>
+
+    <span class="k">return</span> <span class="n">new_color</span><span class="p">,</span> <span class="n">new_children</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="Alert Example" src="../_images/alert.gif" /></p>
 </div>
 </div>
 <div class="section" id="filtering-input-components">
