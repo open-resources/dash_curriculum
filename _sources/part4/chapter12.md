@@ -438,6 +438,7 @@ app.run_server(mode='external', port = 8031)
 # IV - APP / Dashboard CSS IN ACTION
 
 ```python
+
 ################################
 # APP/DASHBOARD: CSS IN ACTION #
 ################################
@@ -484,7 +485,7 @@ opts_ddn_crd_2 = [{'label': 'Set card margins', 'value': 'm-1'},
                   {'label': 'Set card padding', 'value': 'p-1'},
                  ]
 
-
+print(opts_ddn_crd_2)
 
 # control components in Card 1 ()
 ctrls_crd1 = [dbc.Row([dbc.Col([dbc.Label("Component"),
@@ -499,16 +500,20 @@ ctrls_crd1 = [dbc.Row([dbc.Col([dbc.Label("Component"),
                        dbc.Col([dbc.Label("Action"),
                                 dcc.Dropdown(id='ddn_main_title',
                                              options = opts_ddn_main_title,
-                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'},
+                                             clearable = True),
                                 dcc.Dropdown(id='ddn_scnd_title',
                                              options = opts_ddn_scnd_title,
-                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'},
+                                             clearable = True),
                                 dcc.Dropdown(id='ddn_crd_1',
                                              options = opts_ddn_crd_1,
-                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'},
+                                             clearable = True),
                                 dcc.Dropdown(id='ddn_crd_2',
                                              options = opts_ddn_crd_2,
-                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'}),
+                                             style={'marginTop' : '10px', 'height': '30px', 'width': '200px'},
+                                             clearable = True),
                                 
                                ],
                               width = 4),
@@ -635,8 +640,7 @@ def crd2_layout(cName_element):
 def crd2_css(cName_element):
     return cName_element
                          
-app.run_server(mode='external', port = 8031)                         
-
+app.run_server(mode='external', port = 8032)                         
 ```
 [![enter image description here][3]][3]
 

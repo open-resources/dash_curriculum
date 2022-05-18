@@ -1023,7 +1023,8 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="iv-app-dashboard-css-in-action">
 <h1>IV - APP / Dashboard CSS IN ACTION<a class="headerlink" href="#iv-app-dashboard-css-in-action" title="Permalink to this headline">¶</a></h1>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">################################</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="c1">################################</span>
 <span class="c1"># APP/DASHBOARD: CSS IN ACTION #</span>
 <span class="c1">################################</span>
 
@@ -1069,7 +1070,7 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
                   <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
                  <span class="p">]</span>
 
-
+<span class="nb">print</span><span class="p">(</span><span class="n">opts_ddn_crd_2</span><span class="p">)</span>
 
 <span class="c1"># control components in Card 1 ()</span>
 <span class="n">ctrls_crd1</span> <span class="o">=</span> <span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Component&quot;</span><span class="p">),</span>
@@ -1084,16 +1085,20 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Action&quot;</span><span class="p">),</span>
                                 <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_main_title&#39;</span><span class="p">,</span>
                                              <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_main_title</span><span class="p">,</span>
-                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
                                 <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_scnd_title&#39;</span><span class="p">,</span>
                                              <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_scnd_title</span><span class="p">,</span>
-                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
                                 <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_crd_1&#39;</span><span class="p">,</span>
                                              <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_crd_1</span><span class="p">,</span>
-                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
                                 <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_crd_2&#39;</span><span class="p">,</span>
                                              <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_crd_2</span><span class="p">,</span>
-                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
                                 
                                <span class="p">],</span>
                               <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
@@ -1220,8 +1225,7 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <span class="k">def</span> <span class="nf">crd2_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">cName_element</span>
                          
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8031</span><span class="p">)</span>                         
-
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8032</span><span class="p">)</span>                         
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/EJw6S.png"><img alt="enter image description here" src="https://i.stack.imgur.com/EJw6S.png" /></a></p>
