@@ -25,6 +25,10 @@ In the links above, it is possible to search for keywords and find the component
 ### 11.2.1 Upload
 The `Upload` component allows us to upload a file to the dashboard.  For this example we will upload a [CSV file](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) and plot the data.  Download [this](ch11_files/rotation_angle.csv) CSV file and run the follwing code to try it out:
 
+```{attention}
+Note that the `update_fig()` callback is design for a specific type of data.  Different data wrangling will be required based on the type of data you are importing.
+```
+
 ```python
 from dash import Dash, dcc, html
 import dash_bootstrap_components as dbc
@@ -65,22 +69,17 @@ app.layout = dbc.Container(
 
 @app.callback(Output('graph1', 'figure'),
             Input('upload-data', 'contents'))
-def update_output(contents):
+def update_fig(contents):
     if contents is not None:
         content_type, content_data = contents.split(',')
         # Check if data is CSV
         if 'csv' in content_type:
-            decoded_data = base64.b64decode(content_data) # decode data 
-            df = pd.read_csv(io.StringIO(decoded_data.decode('utf-8'))) # read data into dataframe
-            time_col = df.columns[0] # assume the first column is the time column
-            fig = go.Figure() # make a blank figure
+            decoded_data = base64.b64decode(content_data)
+            df = pd.read_csv(io.StringIO(decoded_data.decode('utf-8')))
+            fig = go.Figure()
             # Go through each column in the dataframe and make a trace for it
             for col in df.columns:
-                if time_col in col:
-                    pass
-                else:
-                    fig.add_trace(go.Scattergl(x=df[time_col], y=df[col], mode='lines+markers', name=col))
-            fig.update_layout(xaxis_title="Time (ms)", yaxis_title="Degrees rotation")
+                fig.add_trace(go.Scattergl(y=df[col], mode='lines+markers', name=col))
             return fig
     return no_update
 
