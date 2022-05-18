@@ -182,13 +182,14 @@ if __name__ == '__main__':
 ![modal](ch11_files/img/modal.gif)
 
 ### 11.3.2 Alert
-`Alerts` are boxes that provide user messages according to the user interaction with the app.
-With callbacks it is possible to change many props of this component (full list [here](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/)), such as: color, fading animation, duration of appearence.
+`Alerts` are boxes that provide messages according to the user interaction with the app.
+Via callbacks it is possible to change several props of this component (full list [here](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/)), such as: color, fading animation, duration of appearence.
 
-In the example below, we have created alerts depending on the GTP Per Capita trend of a selected country and year:
-- If the trend is positive, meaning the GTP per Capita of the selected year is above the previous 10 year average, the alert message will have a green color
-- If the trend is stable, the alert message will have a yellow color
-- Otherwise a red color
+In the example below, we have created alerts depending on the GTP Per Capita trend of a user-selected country and year:
+- If the trend is positive, meaning the GTP per Capita of the selected year is above the average GTP of the previous 10 years, the alert message will have a green background
+- If the trend is stable, the alert message will turn yellow color
+- Otherwise the message will become red
+The message content summarises the results (i.e. GTP per Capita) obtained via the user selection.
 
 ```python
 # Import packages
