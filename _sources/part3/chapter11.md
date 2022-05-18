@@ -91,6 +91,46 @@ if __name__ == '__main__':
 
 ![upload component](ch11_files/img/upload.gif)
 
+
+### 11.2.2 Card
+The `Card` component provides a container in which we can place content.
+
+```python
+from dash import Dash
+import dash_bootstrap_components as dbc
+from dash import html
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+card = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                html.H4("DBC card", className="card-title"),
+                html.P(
+                    "We can add some text here",
+                    className="card-text",
+                )
+            ]
+        ),
+    ],
+    style={"width": "18rem"},
+)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(card)),
+    ]
+)
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+```
+![card](ch11_files/img/card.png)
+
+
 ## 11.3 Feedback Components
 
 ## 11.4 Filtering & Input Components
