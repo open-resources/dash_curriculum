@@ -133,6 +133,54 @@ if __name__ == '__main__':
 
 ## 11.3 Feedback Components
 
+### 11.3.1 Modal
+`Modals` are pop-up boxes that allow for user notification, input, or other content to be displayed.
+
+```python
+from dash import Dash, Input, Output, State, html
+import dash_bootstrap_components as dbc
+from dash import html
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+open_button = dbc.Button("Open", id="open_modal")
+close_button = dbc.Button("Close", id="close_modal")
+
+
+modal = dbc.Modal(
+            [
+                dbc.ModalHeader(dbc.ModalTitle("Title")),
+                dbc.ModalBody("This is the content of the modal"),
+                dbc.ModalFooter(close_button),
+            ],
+            id="modal",
+            is_open=False,
+        )
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(open_button)),
+        dbc.Row(dbc.Col(modal)),
+    ]
+)
+
+@app.callback(
+    Output("modal", "is_open"),
+    [Input("open_modal", "n_clicks"), Input("close_modal", "n_clicks")],
+    [State("modal", "is_open")],
+)
+def toggle_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+```
+![modal](ch11_files/img/modal.gif)
+
 ## 11.4 Filtering & Input Components
 
 ### 11.4.1 DatePicker
