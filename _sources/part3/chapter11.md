@@ -90,7 +90,7 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-![upload component](ch11_files/upload.gif)
+![upload component](ch11_files/img/upload.gif)
 
 ## 11.3 Feedback Components
 
@@ -168,7 +168,7 @@ def plot_dt(start_date, end_date):
 if __name__ == '__main__':
     app.run_server()
 ```
-![DatePickerRange_Example](./ch11_files/chap11-DatePicker.JPG)
+![DatePickerRange_Example](./ch11_files/img/chap11-DatePicker.JPG)
 
 ## 11.5 Navigation Components
 
