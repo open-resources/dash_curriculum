@@ -181,6 +181,87 @@ if __name__ == '__main__':
 ```
 ![modal](ch11_files/img/modal.gif)
 
+### 11.3.2 Alert
+`Alerts` are boxes that provide user messages according to the user interaction with the app.
+With callbacks it is possible to change many props of this component (full list [here](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/)), such as: color, fading animation, duration of appearence.
+
+In the example below, we have created alerts depending on the GTP Per Capita trend of a selected country and year:
+- If the trend is positive, meaning the GTP per Capita of the selected year is above the previous 10 year average, the alert message will have a green color
+- If the trend is stable, the alert message will have a yellow color
+- Otherwise a red color
+
+```python
+# Import packages
+from dash import Dash, dcc, Input, Output, html
+import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
+import numpy as np
+
+# Import data
+df = px.data.gapminder()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+_header = html.H1(children='Alerts by GDP Per Capita', style = {'textAlign' : 'center'})
+_text1 = html.P(children='The below alert will adapt depending on GDP 10y trend for the selected country and year', style = {'textAlign' : 'center'})
+year_sel = dcc.Dropdown(id='year-dropdown', placeholder = 'Select a year', options= [c for c in df.year.unique()])
+country_sel = dcc.Dropdown(id='country-dropdown', placeholder = 'Select a country', options = [c for c in df.country.unique()])
+gpd_line = px.line(df, x='year', y='gdpPercap', color='country', template='plotly_white', range_y = [0, 50000])
+alert_msg = dbc.Alert(id='alert-gdp', children="Select some year and country to display info", color="info")
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([_header], width=8)]),
+        dbc.Row([dbc.Col([_text1], width=8)]),        
+        dbc.Row([dbc.Col([dcc.Graph(figure=gpd_line)], width=8)]),
+        dbc.Row([
+            dbc.Col([year_sel], width=4),
+            dbc.Col([country_sel], width=4)
+        ]),
+        dbc.Row([dbc.Col([alert_msg], width=8)])
+    ]
+)
+
+# Configure callback
+@app.callback(
+    Output("alert-gdp", "color"),
+    Output("alert-gdp", "children"),
+    Input("year-dropdown", "value"),
+    Input("country-dropdown", "value"),
+    prevent_initial_call=True
+)
+def update_alert(y, c):
+    threshold = .05; previous_y = 10
+    gdp_sel = df.loc[(df['country']==c) & (df['year']==y), 'gdpPercap'] #Filter for selection
+    gdp_avg = df.loc[(df['country']==c) & (df['year']<y) & (df['year']>=y-previous_y), 'gdpPercap'] #Slice previous years gdpPercap
+
+    if (gdp_sel.values.size > 0) & (gdp_avg.values.size > 0):
+        gdp_sel_v = round(gdp_sel.values[0],2)
+        gdp_avg_v = round(np.mean(gdp_avg.values),2)
+        new_children = ['The GDP per Capita in '+c+' in '+str(y)+' was: '+gdp_sel_v.astype(str)+
+                        '; The average GDP from previous '+str(previous_y)+' years was: '+gdp_avg_v.astype(str)]
+        if np.abs((gdp_sel_v/gdp_avg_v)-1) < threshold:
+            new_color = 'warning' 
+        elif (gdp_sel_v/gdp_avg_v) < 1:
+            new_color = 'danger'
+        else:
+            new_color = 'success'
+    else:
+        new_color = "dark"
+        new_children = 'Insufficient Data. Try new selection'
+
+    return new_color, new_children
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+![Alert Example](ch11_files/img/alert.gif)
+
 ## 11.4 Filtering & Input Components
 
 ### 11.4.1 DatePicker
