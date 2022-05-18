@@ -211,6 +211,65 @@ if __name__ == '__main__':
 
 ## 11.5 Navigation Components
 
+### 11.5.1 Tabs
+`Tabs` allow for easy navigation between different pages of our app.
+
+```python
+from dash import Dash
+import dash_bootstrap_components as dbc
+from dash import html
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+tab1_content = dbc.Card(
+    dbc.CardBody(
+        [
+            html.P("This is tab 1", className="card-text"),
+            dbc.Button("Click here", color="success"),
+        ]
+    ),
+)
+
+tab2_content = dbc.Card(
+    dbc.CardBody(
+        [
+            html.P("This is tab 2", className="card-text"),
+            dbc.Button("Don't click here", color="danger"),
+        ]
+    ),
+)
+
+tab3_content = dbc.Card(
+    dbc.CardBody(
+        [
+            html.P("This is tab 3", className="card-text"),
+            dbc.Button("Maybe click here", color="warning"),
+        ]
+    ),
+)
+
+
+tabs = dbc.Tabs(
+    [
+        dbc.Tab(tab1_content, label="Tab 1"),
+        dbc.Tab(tab2_content, label="Tab 2"),
+        dbc.Tab(tab3_content, label="Tab 3"),
+    ]
+)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(tabs)),
+    ]
+)
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+```
+![tabs](ch11_files/img/tabs.gif)
+
 ## 11.6 Layout Components
 
 ## 11.7 Additional Content
