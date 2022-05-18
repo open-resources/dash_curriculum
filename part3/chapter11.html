@@ -818,13 +818,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="alert">
 <h3>11.3.2 Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Alerts</span></code> are boxes that provide user messages according to the user interaction with the app.
-With callbacks it is possible to change many props of this component (full list <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">here</a>), such as: color, fading animation, duration of appearence.</p>
-<p>In the example below, we have created alerts depending on the GTP Per Capita trend of a selected country and year:</p>
+<p><code class="docutils literal notranslate"><span class="pre">Alerts</span></code> are boxes that provide messages according to the user interaction with the app.
+Via callbacks it is possible to change several props of this component (full list <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">here</a>), such as: color, fading animation, duration of appearence.</p>
+<p>In the example below, we have created alerts depending on the GTP Per Capita trend of a user-selected country and year:</p>
 <ul class="simple">
-<li><p>If the trend is positive, meaning the GTP per Capita of the selected year is above the previous 10 year average, the alert message will have a green color</p></li>
-<li><p>If the trend is stable, the alert message will have a yellow color</p></li>
-<li><p>Otherwise a red color</p></li>
+<li><p>If the trend is positive, meaning the GTP per Capita of the selected year is above the average GTP of the previous 10 years, the alert message will have a green background</p></li>
+<li><p>If the trend is stable, the alert message will turn yellow color</p></li>
+<li><p>Otherwise the message will become red
+The message content summarises the results (i.e. GTP per Capita) obtained via the user selection.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
