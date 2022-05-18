@@ -1,19 +1,19 @@
 # Chapter 11: Additional Components
 
 ## What you will learn
-In this chapter we will introduce several advanced components that go beyond what we have seen so far, but that are necessary for advanced apps.
+In this chapter we will introduce several additional components that go beyond what we have seen so far, but that are necessary to further customise apps.
 
 ```{admonition} Learning Intentions
 - How to look for additional components
-- Familiarize with some of the most common advanced components
+- Familiarize with some of the most common additional components
 ```
 
-## 11.1 Introducing advanced components
+## 11.1 Introducing additional components
 Dash libraries include a lot of components that serves multiple purposes. It may be a bit overwhelming to navigate through all components, in search for the one that works for our needs. In this chapter we will provide some structure around the components you may include in your app.
 
 We will broke down components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.
 
-All advanced components that will be presented come from these very common libraries. By clicking on the links, you'll be able to access to each library documentation:
+All additional components that will be presented come from these very common libraries. By clicking on the links, you'll be able to access to each library documentation:
 - dcc : [Dash core components](https://dash.plotly.com/dash-core-components)
 - dbc : [Dash boostrap components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/)
 
