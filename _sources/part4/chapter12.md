@@ -13,8 +13,8 @@
   - rounded edges
   - opacity `opacity-25`
 - Special layout attributes for `dbc.Col()`
-- `no_gutters = bool` !!!=> is this removed for newer versions?
-- `justify = 'start'` # or center, end, between, around 
+  - `no_gutters = bool` !!!=> is this removed for newer versions?
+  - `justify = 'start'` # or center, end, between, around 
 - Special layout attributes for `dbc.Container()`
   - `fluid = True`
 - How to change the layout of a component directly with `style`
