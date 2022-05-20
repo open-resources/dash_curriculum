@@ -587,6 +587,33 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-12-advanced-styling-and-layout">
 <h1>Chapter 12  Advanced Styling and Layout<a class="headerlink" href="#chapter-12-advanced-styling-and-layout" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-what-you-will-learn admonition">
+<p class="admonition-title">What you will learn</p>
+<ul class="simple">
+<li><p>How to set a theme with a CSS stylesheet using <code class="docutils literal notranslate"><span class="pre">JupyterDash(external_stylesheets=[dbc.themes.SLATE])</span></code></p></li>
+<li><p>How elements of a theme are styled through references to the stylesheet</p></li>
+<li><p>How you can change component layout through changing references to your stylesheet with <code class="docutils literal notranslate"><span class="pre">className</span></code> or <code class="docutils literal notranslate"><span class="pre">class_name</span></code>.</p></li>
+<li><p>A variety of classnames</p>
+<ul>
+<li><p>text color | <code class="docutils literal notranslate"><span class="pre">text-primary</span></code></p></li>
+<li><p>background color <code class="docutils literal notranslate"><span class="pre">bc-success</span></code></p></li>
+<li><p>margin <code class="docutils literal notranslate"><span class="pre">m-1</span></code></p></li>
+<li><p>padding <code class="docutils literal notranslate"><span class="pre">p-1</span></code></p></li>
+<li><p>rounded edges</p></li>
+<li><p>opacity <code class="docutils literal notranslate"><span class="pre">opacity-25</span></code></p></li>
+</ul>
+</li>
+<li><p>Special layout attributes for <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no_gutters</span> <span class="pre">=</span> <span class="pre">bool</span></code> !!!=&gt; is this removed for newer versions?</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'start'</span></code> # or center, end, between, around</p></li>
+<li><p>Special layout attributes for <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">fluid</span> <span class="pre">=</span> <span class="pre">True</span></code></p></li>
+</ul>
+</li>
+<li><p>How to change the layout of a component directly with <code class="docutils literal notranslate"><span class="pre">style</span></code></p></li>
+</ul>
+</div>
 <div class="section" id="the-theme-of-a-dash-app">
 <h2>12.1 The theme of a Dash app<a class="headerlink" href="#the-theme-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
 <p>There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.&lt;theme&gt;]</span></code> when you set up an app like this:</p>
@@ -619,7 +646,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>can you set <code class="docutils literal notranslate"><span class="pre">order</span></code> of <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> components as you can with <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>. <code class="docutils literal notranslate"><span class="pre">align</span></code>?</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.SLATE]</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">className</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">style</span></code>?</p></li>
 <li><p>when you set background color through <code class="docutils literal notranslate"><span class="pre">style={&quot;height&quot;:</span> <span class="pre">&quot;100%&quot;,</span> <span class="pre">&quot;background-color&quot;:</span> <span class="pre">&quot;grey&quot;}</span></code>, where do the changes go? Directly in the component? Or through the css?</p></li>
+<li><p>Why isn’t <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> affected by <code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'center'</span> </code> here ?:</p></li>
 </ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# CSS in action&#39;</span><span class="p">,</span>
+                                                 <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;title_1&#39;</span><span class="p">,</span>
+                                                 <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;text-body&#39;</span><span class="p">),</span>
+                                    
+                                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;### Layout controls&#39;</span><span class="p">,</span>
+                                                          <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;crd_concrol_title&#39;</span><span class="p">,</span>
+                                                          <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;text-body&#39;</span><span class="p">),</span>
+
+
+</pre></div>
+</div>
 <div class="section" id="classname-combinations">
 <h3>className combinations:<a class="headerlink" href="#classname-combinations" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -1028,6 +1067,11 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <span class="c1"># APP/DASHBOARD: CSS IN ACTION #</span>
 <span class="c1">################################</span>
 
+
+<span class="c1">################################</span>
+<span class="c1"># APP/DASHBOARD: CSS IN ACTION #</span>
+<span class="c1">################################</span>
+
 <span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
@@ -1128,8 +1172,11 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
                                           <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">},</span>
                                          <span class="p">),</span>
                                <span class="p">],</span>
-                              <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-                      <span class="p">])]</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="p">)</span>
+                      <span class="p">],</span>
+                     <span class="c1"># </span>
+                     <span class="p">),</span>
+             <span class="p">]</span>
 
 <span class="c1"># Resources for previous section</span>
 <span class="c1">#</span>
@@ -1151,7 +1198,8 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
                                                       <span class="c1"># className = &#39;bg-danger&#39;</span>
                                                      <span class="p">),</span>
                                             <span class="p">],</span>
-                                            <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span>
+                                            <span class="n">width</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+                                            
                                            <span class="p">),</span>
                                     
                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;### Figure&#39;</span><span class="p">,</span>
@@ -1160,9 +1208,10 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
                                              <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">()],</span>
                                                       <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;crd_2&#39;</span><span class="p">)</span>
                                             <span class="p">],</span>
-                                            <span class="n">width</span> <span class="o">=</span> <span class="mi">6</span>
-                                           <span class="p">),</span>
-                                   <span class="p">]))</span>
+                                            <span class="n">width</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
+                                           <span class="p">)</span>
+                                   <span class="p">],</span> <span class="n">justify</span> <span class="o">=</span> <span class="s1">&#39;around&#39;</span><span class="p">,</span> <span class="c1"># end, center, between, around</span>
+                                  <span class="p">),</span> <span class="n">fluid</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># Resources for previous section</span>
 <span class="c1">#</span>
@@ -1225,7 +1274,7 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <span class="k">def</span> <span class="nf">crd2_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">cName_element</span>
                          
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8032</span><span class="p">)</span>                         
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8032</span><span class="p">)</span>                                              
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/EJw6S.png"><img alt="enter image description here" src="https://i.stack.imgur.com/EJw6S.png" /></a></p>

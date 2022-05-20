@@ -1,5 +1,27 @@
 # Chapter 12  Advanced Styling and Layout
 
+```{admonition} What you will learn
+
+- How to set a theme with a CSS stylesheet using `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`
+- How elements of a theme are styled through references to the stylesheet
+- How you can change component layout through changing references to your stylesheet with `className` or `class_name`.
+- A variety of classnames
+  - text color | `text-primary`
+  - background color `bc-success`
+  - margin `m-1`
+  - padding `p-1`
+  - rounded edges
+  - opacity `opacity-25`
+- Special layout attributes for `dbc.Col()`
+- `no_gutters = bool` !!!=> is this removed for newer versions?
+- `justify = 'start'` # or center, end, between, around 
+- Special layout attributes for `dbc.Container()`
+  - `fluid = True`
+- How to change the layout of a component directly with `style`
+
+
+```
+
 ## 12.1 The theme of a Dash app
 
 There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` when you set up an app like this:
@@ -35,6 +57,20 @@ The next section will describe how to edit these properties through `className` 
 - can you set `order` of `dbc.Row()` components as you can with `dbc.Col()`. `align`?
 - `external_stylesheets=[dbc.themes.SLATE]` < `className` < `style`?
 - when you set background color through `style={"height": "100%", "background-color": "grey"}`, where do the changes go? Directly in the component? Or through the css?
+
+- Why isn't `dcc.Markdown()` affected by `justify = 'center' ` here ?:
+
+```python
+app.layout = dbc.Container(dbc.Row([dcc.Markdown('# CSS in action',
+                                                 id = 'title_1',
+                                                 className = 'text-body'),
+                                    
+                                    dbc.Col([dcc.Markdown('### Layout controls',
+                                                          id = 'crd_concrol_title',
+                                                          className = 'text-body'),
+
+
+```
 
 ### className combinations:
 
@@ -443,6 +479,11 @@ app.run_server(mode='external', port = 8031)
 # APP/DASHBOARD: CSS IN ACTION #
 ################################
 
+
+################################
+# APP/DASHBOARD: CSS IN ACTION #
+################################
+
 import plotly.graph_objects as go
 import plotly.express as px
 from jupyter_dash import JupyterDash
@@ -543,8 +584,11 @@ ctrls_crd1 = [dbc.Row([dbc.Col([dbc.Label("Component"),
                                           style={'marginTop' : '8px', 'height': '35px', 'width': '200px'},
                                          ),
                                ],
-                              width = 4)
-                      ])]
+                              width = 4, )
+                      ],
+                     # 
+                     ),
+             ]
 
 # Resources for previous section
 #
@@ -566,7 +610,8 @@ app.layout = dbc.Container(dbc.Row([dcc.Markdown('# CSS in action',
                                                       # className = 'bg-danger'
                                                      ),
                                             ],
-                                            width = 6
+                                            width = {'size': 4},
+                                            
                                            ),
                                     
                                     dbc.Col([dcc.Markdown('### Figure',
@@ -575,9 +620,10 @@ app.layout = dbc.Container(dbc.Row([dcc.Markdown('# CSS in action',
                                              dbc.Card([dcc.Graph()],
                                                       id = 'crd_2')
                                             ],
-                                            width = 6
-                                           ),
-                                   ]))
+                                            width = {'size': 4},
+                                           )
+                                   ], justify = 'around', # end, center, between, around
+                                  ), fluid = True)
 
 # Resources for previous section
 #
@@ -640,7 +686,7 @@ def crd2_layout(cName_element):
 def crd2_css(cName_element):
     return cName_element
                          
-app.run_server(mode='external', port = 8032)                         
+app.run_server(mode='external', port = 8032)                                              
 ```
 [![enter image description here][3]][3]
 
