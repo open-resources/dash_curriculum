@@ -155,13 +155,7 @@
 - What you will learn in this part
 - Learning Intentions
 
-### Chapter 15: Continuous Integration/Deployment
-
-- Testing
-- Setting up a pipeline
-- Github Actions
-
-### Chapter 16: Full Deployment
+### Chapter 15: Full Deployment
 
 - Components of deployment
   - Procfile
@@ -169,6 +163,12 @@
   - Dockerfile
   - Heroku build pipeline 
 - Deploying to Pythoanywhere ? (Optional)
+
+### Chapter 16: Continuous Integration/Deployment
+
+- Testing
+- Setting up a pipeline
+- Github Actions
 
 ## Appendix
 
