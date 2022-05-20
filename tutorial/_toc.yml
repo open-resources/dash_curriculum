@@ -43,20 +43,25 @@ parts:
   - file: part2/chapter8
   - file: part2/chapter9
 
-- caption: Part 3. Polishing your Dash application
+- caption: Part 3. Advanced Dash
   chapters:
   - file: part3/summary
     title: Introduction
-
   - file: part3/chapter10
   - file: part3/chapter11
 
-
-- caption: Part 4. Publishing your Dash Application
+- caption: Part 4. Polishing your Dash App
   chapters:
   - file: part4/summary
     title: Introduction
   - file: part4/chapter12
   - file: part4/chapter13
   - file: part4/chapter14
-  - file: part4/chapter15
+  
+- caption: Part 5. Automations and Deployments
+  chapters:
+  - file: part5/summary
+    title: Introduction
+  - file: part5/chapter15
+  - file: part5/chapter16
+
