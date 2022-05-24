@@ -400,9 +400,7 @@ if __name__ == '__main__':
 ```
 ![tabs](ch11_files/img/tabs.gif)
 
-## 11.6 Layout Components
-
-## 11.7 Additional Content
+## 11.6 Additional Content
 In addition to all the components present in the libraries introduces above, it is possible to find additional components by exploring third party libraries.
 An example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
 
