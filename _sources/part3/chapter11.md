@@ -343,7 +343,7 @@ if __name__ == '__main__':
 ```Store``` component allows to use the browser memory in order to store app data.
 When using this component, it is important to pay attention to the following:
 - this component can only store data in the following formats: json, list, dictionary data types. With the ```data``` prop, we can access to the content stored in the memory.
-- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory and they are cleared by three different events. ```memory```: in this case the memory will be cleared when we refresh the browser page; ```session```: in this case the memory will be cleared when we close the browser; ```local```: in this case the memory will be cleared when we empty the browser cache.
+- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory and they are cleared by three different events. ```memory```: in this case the memory will be cleared when we refresh the browser page; ```session```: in this case the memory will be cleared when we close the browser; ```local```: in this case the memory will be cleared when we remove the browser cookies.
 - this is an invisible component: although it won't affect app layout, the component must be part included in the ```app.layout``` in order to work properly.
 
 In the following example, the dropdown selection is stored in memory. We've generated three different store components, one for each storage type. The three graphs will plot life expectancy for the countries that are in the corresponding memory.
