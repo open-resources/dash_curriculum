@@ -60,6 +60,6 @@ Assuming you are using `pip`, paste the following commands one at a time into th
 
 ![img-install-dash](./ch0_files/install-dash.png)
 
-```{caution} text
+```{caution}
 You may need be asked to install some dependencies, and you should agree to have those dependencies installed.
 ```
