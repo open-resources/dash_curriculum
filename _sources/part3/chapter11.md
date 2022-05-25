@@ -266,7 +266,7 @@ if __name__ == '__main__':
 ## 11.4 Filtering & Input Components
 
 ### 11.4.1 DatePicker
-The DatePicker component allows the user of the app to select a date, that can then be used in our callbacks.
+The ```DatePicker``` component allows the user of the app to select a date, that can then be used in our callbacks.
 There are two types of date pickers, both part of the DCC library:
 - ```DatePickerSingle``` consists of one single date selection that the user can input. By clicking on the object a calendar will pop-up, allowing the user to pick a date
 - ```DatePickerRange``` is similar to the previous component, but includes two date selections, which should be read as "start" and "end" dates.
@@ -338,6 +338,18 @@ if __name__ == '__main__':
     app.run_server()
 ```
 ![DatePickerRange_Example](./ch11_files/img/datepicker.gif)
+
+### 11.4.2 Store
+```Store``` component allows to use the browser memory, to store app data.
+When using this component, it is important to pay attention to the following:
+- the data format supported by the memory : this component can only accept: json, list, dictionary data types. With the ```data``` prop, we can access to the content stored in the memory.
+- how long the data will be stored : we can use three different types of memory and they are cleared by three different events. The type of memory used is defined by the ```storage_type``` prop, which can assume the following values: ```memory``` - in this case the memory will be cleared when we refresh the browser page; ```local``` in this case the memory will be cleared when we close the browser; ```session``` in this case the memory will be cleared when we empty the browser cache.
+- how to include this component in our app layout : this is an invisible component. Although nothing will be shown in the app layout, the component must be part of the app.layout in order to work properly.
+
+In the following example, the dropdown selection is stored in memory. We've generated three different store components, one for each storage type. The corresponding graphs, will plot life expectancy for the countries that are in the memory.
+```python
+```
+![Store_Example](./ch11_files/img/store.gif)
 
 ## 11.5 Navigation Components
 

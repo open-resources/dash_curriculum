@@ -455,6 +455,11 @@ const thebe_selector_output = ".output, .cell_output"
      11.4.1 DatePicker
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#store">
+     11.4.2 Store
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -578,6 +583,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datepicker">
      11.4.1 DatePicker
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#store">
+     11.4.2 Store
     </a>
    </li>
   </ul>
@@ -911,7 +921,7 @@ The message content summarises the results (i.e. GTP per Capita) obtained via th
 <h2>11.4 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datepicker">
 <h3>11.4.1 DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
-<p>The DatePicker component allows the user of the app to select a date, that can then be used in our callbacks.
+<p>The <code class="docutils literal notranslate"><span class="pre">DatePicker</span></code> component allows the user of the app to select a date, that can then be used in our callbacks.
 There are two types of date pickers, both part of the DCC library:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">DatePickerSingle</span></code> consists of one single date selection that the user can input. By clicking on the object a calendar will pop-up, allowing the user to pick a date</p></li>
@@ -984,6 +994,21 @@ As min_date_allowed and max_date_allowed, the min and max dates from the datafra
 </pre></div>
 </div>
 <p><img alt="DatePickerRange_Example" src="../_images/datepicker.gif" /></p>
+</div>
+<div class="section" id="store">
+<h3>11.4.2 Store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory, to store app data.
+When using this component, it is important to pay attention to the following:</p>
+<ul class="simple">
+<li><p>the data format supported by the memory : this component can only accept: json, list, dictionary data types. With the <code class="docutils literal notranslate"><span class="pre">data</span></code> prop, we can access to the content stored in the memory.</p></li>
+<li><p>how long the data will be stored : we can use three different types of memory and they are cleared by three different events. The type of memory used is defined by the <code class="docutils literal notranslate"><span class="pre">storage_type</span></code> prop, which can assume the following values: <code class="docutils literal notranslate"><span class="pre">memory</span></code> - in this case the memory will be cleared when we refresh the browser page; <code class="docutils literal notranslate"><span class="pre">local</span></code> in this case the memory will be cleared when we close the browser; <code class="docutils literal notranslate"><span class="pre">session</span></code> in this case the memory will be cleared when we empty the browser cache.</p></li>
+<li><p>how to include this component in our app layout : this is an invisible component. Although nothing will be shown in the app layout, the component must be part of the app.layout in order to work properly.</p></li>
+</ul>
+<p>In the following example, the dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. The corresponding graphs, will plot life expectancy for the countries that are in the memory.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p><img alt="Store_Example" src="part3/ch11_files/img/store.gif" /></p>
 </div>
 </div>
 <div class="section" id="navigation-components">
