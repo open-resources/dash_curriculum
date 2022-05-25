@@ -997,14 +997,14 @@ As min_date_allowed and max_date_allowed, the min and max dates from the datafra
 </div>
 <div class="section" id="store">
 <h3>11.4.2 Store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory, to store app data.
+<p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory in order to store app data.
 When using this component, it is important to pay attention to the following:</p>
 <ul class="simple">
-<li><p>the data format supported by the memory : this component can only accept: json, list, dictionary data types. With the <code class="docutils literal notranslate"><span class="pre">data</span></code> prop, we can access to the content stored in the memory.</p></li>
-<li><p>how long the data will be stored : we can use three different types of memory and they are cleared by three different events. The type of memory used is defined by the <code class="docutils literal notranslate"><span class="pre">storage_type</span></code> prop, which can assume the following values: <code class="docutils literal notranslate"><span class="pre">memory</span></code> - in this case the memory will be cleared when we refresh the browser page; <code class="docutils literal notranslate"><span class="pre">local</span></code> in this case the memory will be cleared when we close the browser; <code class="docutils literal notranslate"><span class="pre">session</span></code> in this case the memory will be cleared when we empty the browser cache.</p></li>
-<li><p>how to include this component in our app layout : this is an invisible component. Although nothing will be shown in the app layout, the component must be part of the app.layout in order to work properly.</p></li>
+<li><p>this component can only store data in the following formats: json, list, dictionary data types. With the <code class="docutils literal notranslate"><span class="pre">data</span></code> prop, we can access to the content stored in the memory.</p></li>
+<li><p>how long the data is going to be stored is a customizable property called <code class="docutils literal notranslate"><span class="pre">storage_type</span></code>. We can use three different types of memory and they are cleared by three different events. <code class="docutils literal notranslate"><span class="pre">memory</span></code>: in this case the memory will be cleared when we refresh the browser page; <code class="docutils literal notranslate"><span class="pre">session</span></code>: in this case the memory will be cleared when we close the browser; <code class="docutils literal notranslate"><span class="pre">local</span></code>: in this case the memory will be cleared when we empty the browser cache.</p></li>
+<li><p>this is an invisible component: although it won’t affect app layout, the component must be part included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p></li>
 </ul>
-<p>In the following example, the dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. The corresponding graphs, will plot life expectancy for the countries that are in the memory.</p>
+<p>In the following example, the dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. The three graphs will plot life expectancy for the countries that are in the corresponding memory.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
