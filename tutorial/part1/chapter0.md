@@ -1,23 +1,30 @@
-# Chapter 0 - Stack Installation
+# Chapter 0 - Tech Stack
+
+In this chapter we will set up the tech stack used in this guide.
+
+```{tip}   
+A **tech stack** is a combination of tools and technologies needed to do accomplish a particular task. In our case, it's all the items we need installed to run and create a Dash application.
+```
+
+We have chosen some popular tools for this guide, but if you already have an established workflow, you should be able to follow along with your own tools.
+
 ## What you will learn
 
-In this chapter we will set up the tech stack used in this course.  A **tech stack** is a combination of tools used to build and run an application.  For this course we have chosen the most popular professional tools to develop our applications.
+After deliberate review of this lesson, consideration of supplementary content, and sufficient practice, I intend for you to be able to:
 
-- **Visual Studio Code**
-  - VScode is a program that we will use to edit and debug our code
-  - VScode Extensions help us to code and improve productivity
-  - **Note**: There are many different [IDE](https://www.codecademy.com/article/what-is-an-ide) options but using VScode will make for a smoother learning experience for this course
-- **Python**
-  - Python is the programming language we will use to build our applications
-  - We will use various Python [libraries](https://www.geeksforgeeks.org/libraries-in-python/) (such as Dash and Pandas) as the primary building blocks for our application
-- **Git**
-  - Git is a [version control systems](https://www.geeksforgeeks.org/version-control-systems/) that is used to track and manage changes to our code over time in a [repository](https://www.geeksforgeeks.org/what-is-a-git-repository/)
-  - [Learn Git in 15 minutes](https://youtu.be/USjZcfj8yxE)
-- **Github**
-  -  Github is a website that hosts Git repositories, which we will use to store our code.
-
+- Install Python, Git, VS Code on your computer
+- Install necessary python packages
+- Create and access your GitHub account
+- Link your GitHub account to your computer
 
 ## Installation Instructions
-[**Mac**](chapter0_mac.md)\
-[**Windows**](chapter0_windows.md)\
-[**Linux**](chapter0_linux.md)
+
+The installation instructions are split by your computer's operating system:
+
+- [**Mac**](chapter0_mac.md)
+- [**Windows**](chapter0_windows.md)
+- [**Linux**](chapter0_linux.md)
+
+Once you have completed the installation instructions for your system, you should then complete the configuration by linking your GitHub account to your computer.
+
+- [**Complete GitHub setup**](chapter0_GitHub.md)
