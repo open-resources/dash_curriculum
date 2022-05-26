@@ -5,7 +5,8 @@
 By now, you have everything together to get your first app up and running using even advanced components, layouts and callbacks. As dashboards are designed for data analysis and visualisations at some point you might run into efficiency constraints when the amount of data you are working with gets growing. To circumvent any possible performance lacking this chapter will give you some insights on improving your app performance.
 
 ```{admonition} Learning Intentions
-- Preprocessing data
+- Dash Developer Tools
+- (Pre)Processing data
 - Higher Performing Plotly graphs
 - Caching
 ```
@@ -13,16 +14,33 @@ By now, you have everything together to get your first app up and running using 
 ## 13.1 Dash Developer Tools
 Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code. For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
 
-The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph. This includes:
+The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph.
+
+### [ADD SCREENSHOT, THAT SHOWS THE DASH DEV TOOLS]
+
+This includes:
 
 - The rounded green boxes represent your callback functions.
-- Click on a green box to see the detailed view about the callback.
+    - The top number represents the number of times the function has been called.
+    - The bottom number represents how long the request took. This includes the network time (sending the data from the browser client to the backend and       back) and the compute time (the total time minus the network time or how long the function spent in Python).
+- Click on a green box to see the detailed view about the callback. This includes:
+    - `type` Whether the callback was a clientside callback or a serverside callback.
+    - `call count` The number of times the callback was called during your session.
+    - `status` Whether the callback was successful or not.
+    - `time (avg milliseconds)` How long the request took. This is the same as the summary on the green box and is basically split up into the components       `total`, `compute` and `network`.
+    - `data transfer (avg bytes)`
+    - `outputs` A JSON representation of the data that was returned from the callback.
+    - `inputs` A JSON representation of the data that was passed to your callback function as Input.
+    - `state` A JSON representation of the data that was passed to your callback function as State.
 - The blue boxes represent the input and output properties. Click on the box to see a JSON representation of their current values.
 - The dashed arrows (not visible in the screenshot) represent State.
 - The dropdown in the top right corner enables you to switch layouts
 
-## 13.2 Preprocessing data
-the main idea is to give two examples on data wrangling. Once where the data wrangling takes place before initializing the app, once after or during a callback. The plan is to show some difference in processing time.
+## 13.2 (Pre)Processing data
+Work in Progress:
+
+- Transfer the example of section ''Let go of dataframes in request/response'' from the article [https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b](https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b) to the gapminder data set? Does this enhance performance? Need to restructure the gapminder data set?
+- Using numpy for (numerical) calculations, examples on performance?
 
 ## 13.3 Higher Performing Plotly graphs
 So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Two WebGL alternatives are the following:
@@ -34,7 +52,7 @@ Another high performing way of exploring correlations of large data sets is to u
 
 ### 13.3.1 ScatterGL
 
-Let us have a closer look at the ScatterGL plot, which is a scatter plot. Against the scatter plots we have seen so far, the ScatterGL plot is a plotly `graph object`, in comparison to the plotly express scatter plot implemented in the previous chapters. The following App let's you compare the different duration for data loading.
+Let us have a closer look at the ScatterGL plot, which is a scatter plot. Against the scatter plots we have seen so far, the ScatterGL plot is a plotly `graph object`, in comparison to the plotly express scatter plot implemented in the previous chapters. The following App let's you compare the different durations for data loading.
 
 ```
 # Import packages
@@ -136,12 +154,156 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server()
 ```
+### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
 
 ### 13.3.2 Datashader
 
 ### 13.3.3 Plotly Resampler
 
-See the [documenatation on Github](https://github.com/predict-idlab/plotly-resampler).
+Even though the ScatterGL outperformes the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the package `plotly_resampler` comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
+
+```{admonition} Learning Intentions
+See also the [documenatation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
+```
+
+The following App let's you compare the different durations for data loading.
+
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+from datetime import datetime
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly_resampler import FigureResampler
+
+# Setup data
+df = px.data.gapminder()[['country', 'year', 'lifeExp']]
+dropdown_list = df['country'].unique()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown')
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+markdown_scatter = dcc.Markdown(id='markdown-scatter')
+markdown_gl = dcc.Markdown(id='markdown-gl')
+markdown_resampler = dcc.Markdown(id='markdown-resample')
+slider = dcc.Slider(id='our-slider', min=0, max=50000, marks=None, value=0)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col(dropdown, width=3), dbc.Col(markdown, width=9)]),
+        dbc.Row([dbc.Col(dcc.Graph(id='our-figure')),
+                 dbc.Col(dcc.Graph(id='our-gl-figure')),
+                 dbc.Col(dcc.Graph(id='our-resample-figure'))]),
+        dbc.Row([dbc.Col(markdown_scatter),
+                 dbc.Col(markdown_gl),
+                 dbc.Col(markdown_resampler)]),
+        dbc.Row(dbc.Col(slider)),
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_markdown(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    title = 'Data points displayed: {:,}'.format(len(df_sub.index) * value_slider)
+    return title
+
+
+@app.callback(
+    Output(component_id='our-figure', component_property='figure'),
+    Output(component_id='markdown-scatter', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_graph(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
+    start_time = datetime.now()
+    fig = px.scatter(
+        df_new,
+        x='year',
+        y='lifeExp',
+        title='PX scatter plot',
+        template='plotly_white',
+    )
+    fig.update_traces(marker=dict(size=5 + (value_slider / 30000) * 25))
+    end_time = datetime.now()
+    subtitle = 'Duration for scatter plot loading: {} s'.format(round((end_time - start_time).total_seconds(), 2))
+    return fig, subtitle
+
+
+@app.callback(
+    Output(component_id='our-gl-figure', component_property='figure'),
+    Output(component_id='markdown-gl', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_graph(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
+    start_time = datetime.now()
+    fig = go.Figure()
+    fig.add_trace(go.Scattergl(
+        x=df_new['year'],
+        y=pd.to_numeric(df_new['lifeExp']),
+        mode='markers',
+        marker=dict(colorscale='Viridis', size=5 + (value_slider / 30000) * 25),
+    ))
+    fig.update_layout(
+        title='GO gl-scatter plot',
+        xaxis_title='year',
+        yaxis_title='lifeExp',
+    )
+    end_time = datetime.now()
+    subtitle = 'Duration for gl-scatter plot loading: {} s'.format(round((end_time - start_time).total_seconds(), 2))
+    return fig, subtitle
+
+
+@app.callback(
+    Output(component_id='our-resample-figure', component_property='figure'),
+    Output(component_id='markdown-resample', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_graph(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
+    start_time = datetime.now()
+    fig = FigureResampler(go.Figure())
+    fig.add_trace(go.Scattergl(
+        x=df_new['year'],
+        y=pd.to_numeric(df_new['lifeExp']),
+        mode='markers',
+        marker=dict(colorscale='Viridis', size=5 + (value_slider / 30000) * 25),
+    ))
+    fig.update_layout(
+        title='Plotly Resampler scatter plot',
+        xaxis_title='year',
+        yaxis_title='lifeExp',
+    )
+    end_time = datetime.now()
+    subtitle = 'Duration for Plotly Resampler scatter plot loading: {} s'.format(round((end_time - start_time).total_seconds(), 2))
+    return fig, subtitle
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
 
 ## 13.4 Caching
 
