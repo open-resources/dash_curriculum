@@ -10,10 +10,21 @@ By now, you have everything together to get your first app up and running using 
 - Caching
 ```
 
-## 13.1 Preprocessing data
+## 13.1 Dash Developer Tools
+Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code. For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
+
+The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph. This includes:
+
+- The rounded green boxes represent your callback functions.
+- Click on a green box to see the detailed view about the callback.
+- The blue boxes represent the input and output properties. Click on the box to see a JSON representation of their current values.
+- The dashed arrows (not visible in the screenshot) represent State.
+- The dropdown in the top right corner enables you to switch layouts
+
+## 13.2 Preprocessing data
 the main idea is to give two examples on data wrangling. Once where the data wrangling takes place before initializing the app, once after or during a callback. The plan is to show some difference in processing time.
 
-## 13.2 Higher Performing Plotly graphs
+## 13.3 Higher Performing Plotly graphs
 So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Two WebGL alternatives are the following:
 
 - [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets): A webgl implementation of the scatter chart type.
@@ -21,7 +32,7 @@ So far, we have used the `plotly.express` library to implement our graphs. This 
 
 Another high performing way of exploring correlations of large data sets is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
 
-### 13.2.1 ScatterGL
+### 13.3.1 ScatterGL
 
 Let us have a closer look at the ScatterGL plot, which is a scatter plot. Against the scatter plots we have seen so far, the ScatterGL plot is a plotly `graph object`, in comparison to the plotly express scatter plot implemented in the previous chapters. The following App let's you compare the different duration for data loading.
 
@@ -126,9 +137,13 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-### 13.2.2 Datashader
+### 13.3.2 Datashader
 
-## 13.3 Caching
+### 13.3.3 Plotly Resampler
+
+See the [documenatation on Github](https://github.com/predict-idlab/plotly-resampler).
+
+## 13.4 Caching
 
 Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way repeated function calls are made with the same parameters won't have to be calculated multiple times. One popular use case are recurvise functions.
 
