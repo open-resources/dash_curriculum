@@ -15,8 +15,7 @@ By now, you have everything together to get your first app up and running using 
 Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code. For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
 
 The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph.
-
-### [ADD SCREENSHOT, THAT SHOWS THE DASH DEV TOOLS]
+#### [ADD SCREENSHOT, THAT SHOWS THE DASH DEV TOOLS]
 
 This includes:
 
@@ -154,7 +153,7 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server()
 ```
-### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
 
 ### 13.3.2 Datashader
 
@@ -302,8 +301,7 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-
-### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
 
 ## 13.4 Caching
 
