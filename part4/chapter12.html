@@ -412,8 +412,19 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     12.2
+    <a class="reference internal nav-link" href="#theme-and-the-cascading-style-sheet-or-css">
+     12.2 Theme and the cascading style sheet, or CSS
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-classname-attribute">
+     12.3 The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       className
+      </span>
+     </code>
+     attribute
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -518,8 +529,19 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id1">
-     12.2
+    <a class="reference internal nav-link" href="#theme-and-the-cascading-style-sheet-or-css">
+     12.2 Theme and the cascading style sheet, or CSS
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-classname-attribute">
+     12.3 The
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       className
+      </span>
+     </code>
+     attribute
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -636,11 +658,22 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="the-theme-of-a-dash-app">
 <h2>12.1 The theme of a Dash app<a class="headerlink" href="#the-theme-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
-<p>There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.&lt;theme&gt;]</span></code> when you set up an app like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">SLATE</span><span class="p">])</span>
+<p>There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.&lt;theme&gt;]</span></code> where <code class="docutils literal notranslate"><span class="pre">'&lt;theme&gt;'</span></code> can by any on of <code class="docutils literal notranslate"><span class="pre">['BOOTSTRAP',</span>&#160; <span class="pre">'CERULEAN',</span>&#160; <span class="pre">'COSMO',</span>&#160; <span class="pre">'CYBORG',</span>&#160; <span class="pre">'DARKLY',</span>&#160; <span class="pre">'FLATLY',</span>&#160; <span class="pre">'GRID',</span>&#160; <span class="pre">'JOURNAL',</span>&#160; <span class="pre">'LITERA',</span>&#160; <span class="pre">'LUMEN',</span>&#160; <span class="pre">'LUX',</span>&#160; <span class="pre">'MATERIA',</span>&#160; <span class="pre">'MINTY',</span>&#160; <span class="pre">'MORPH',</span>&#160; <span class="pre">'PULSE',</span>&#160; <span class="pre">'QUARTZ',</span>&#160; <span class="pre">'SANDSTONE',</span>&#160; <span class="pre">'SIMPLEX',</span>&#160; <span class="pre">'SKETCHY',</span>&#160; <span class="pre">'SLATE',</span>&#160; <span class="pre">'SOLAR',</span>&#160; <span class="pre">'SPACELAB',</span>&#160; <span class="pre">'SUPERHERO',</span>&#160; <span class="pre">'UNITED',</span>&#160; <span class="pre">'VAPOR',</span>&#160; <span class="pre">'YETI',</span>&#160; <span class="pre">'ZEPHYR']</span></code></p>
+<p>Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of cards or the size of each component for different screen sizes.</p>
+<p>Here’s how some elements will look like with <code class="docutils literal notranslate"><span class="pre">'BOOTSTRAP'</span></code>:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/Vunbd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/Vunbd.png" /></a></p>
+<p>And here’s how the same elemets will look like with <code class="docutils literal notranslate"><span class="pre">'SLATE'</span></code>:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/EvbEU.png"><img alt="enter image description here" src="https://i.stack.imgur.com/EvbEU.png" /></a></p>
+<p>You can study more themes and more components in <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/">dash-bootstrap-components</a></p>
+</div>
+<div class="section" id="theme-and-the-cascading-style-sheet-or-css">
+<h2>12.2 Theme and the cascading style sheet, or CSS<a class="headerlink" href="#theme-and-the-cascading-style-sheet-or-css" title="Permalink to this headline">¶</a></h2>
+<p>You set up your Dash app and select a theme like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">SLATE</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>What hides behind <code class="docutils literal notranslate"><span class="pre">dbc.themes.SLATE</span></code> is the link <code class="docutils literal notranslate"><span class="pre">https://cdn.jsdelivr.net/npm/bootswatch&#64;5.1.3/dist/slate/bootstrap.min.css</span></code>. And the contents of that link is what will define the design of the components in your app. One such component can be a header <code class="docutils literal notranslate"><span class="pre">html.H1()</span></code>. If you use the <code class="docutils literal notranslate"><span class="pre">Slate</span></code> theme, the default font color of your heading will be of a light grey type with the RGB code <code class="docutils literal notranslate"><span class="pre">(170,</span> <span class="pre">170,</span> <span class="pre">170)</span></code>. In the context of the theme, this particular color is mapped to <code class="docutils literal notranslate"><span class="pre">text-body</span></code>. And if you do a little search in the link above, you’ll find <em>one</em> occurence of <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">css</span></code> file in the link above:</p>
+<p>What hides behind <code class="docutils literal notranslate"><span class="pre">dbc.themes.SLATE</span></code> is the link <code class="docutils literal notranslate"><span class="pre">https://cdn.jsdelivr.net/npm/bootswatch&#64;5.1.3/dist/slate/bootstrap.min.css</span></code> which points to a cascading styleshett or CSS. In genereal <code class="docutils literal notranslate"><span class="pre">HTML</span></code> is a language that let’s you build web pages. In short, Plotly Dash is a set of tools that let’s you produce <code class="docutils literal notranslate"><span class="pre">HTML</span></code> components that look nice and act well togehter. And a <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file defines how these components look and behave with regards to the layout.</p>
+<p>One such component can be a header <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> that you can use as a title for your app or dashboard. If you use the <code class="docutils literal notranslate"><span class="pre">Slate</span></code> theme, the default font color of your heading will be of a light grey type with the RGB code <code class="docutils literal notranslate"><span class="pre">(170,</span> <span class="pre">170,</span> <span class="pre">170)</span></code>. In the context of the theme, this particular color is mapped to <code class="docutils literal notranslate"><span class="pre">text-body</span></code>. And if you do a little search in the link above, you’ll find <em>one</em> occurence of <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">css</span></code> file in the link above:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
 </pre></div>
 </div>
@@ -653,10 +686,11 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/XHoFx.png"><img alt="enter image description here" src="https://i.stack.imgur.com/XHoFx.png" /></a></p>
-<p>The next section will describe how to edit these properties through <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code></p>
+<p>The next section will describe how to edit these properties through the <code class="docutils literal notranslate"><span class="pre">className</span></code> attribute. At the end of the chapter you’ll also learn how to design specific details through the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute of your compoenents.</p>
 </div>
-<div class="section" id="id1">
-<h2>12.2<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-classname-attribute">
+<h2>12.3 The <code class="docutils literal notranslate"><span class="pre">className</span></code> attribute<a class="headerlink" href="#the-classname-attribute" title="Permalink to this headline">¶</a></h2>
+<p>After setting <code class="docutils literal notranslate"><span class="pre">'SLATE'</span></code> as your theme, a <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> component with the text <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> will look like this:</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="unclear">

@@ -24,13 +24,59 @@
 
 ## 12.1 The theme of a Dash app
 
-There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` when you set up an app like this:
+There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by any on of `['BOOTSTRAP',
+ 'CERULEAN',
+ 'COSMO',
+ 'CYBORG',
+ 'DARKLY',
+ 'FLATLY',
+ 'GRID',
+ 'JOURNAL',
+ 'LITERA',
+ 'LUMEN',
+ 'LUX',
+ 'MATERIA',
+ 'MINTY',
+ 'MORPH',
+ 'PULSE',
+ 'QUARTZ',
+ 'SANDSTONE',
+ 'SIMPLEX',
+ 'SKETCHY',
+ 'SLATE',
+ 'SOLAR',
+ 'SPACELAB',
+ 'SUPERHERO',
+ 'UNITED',
+ 'VAPOR',
+ 'YETI',
+ 'ZEPHYR']`
+ 
+Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of cards or the size of each component for different screen sizes.
+
+Here's how some elements will look like with `'BOOTSTRAP'`:
+
+[![enter image description here][1]][1]
+
+And here's how the same elemets will look like with `'SLATE'`:
+
+[![enter image description here][2]][2]
+
+You can study more themes and more components in [dash-bootstrap-components][3]
+ 
+
+## 12.2 Theme and the cascading style sheet, or CSS
+
+
+You set up your Dash app and select a theme like this:
 
 ```python
-JupyterDash(external_stylesheets=[dbc.themes.SLATE])
+Dash(external_stylesheets=[dbc.themes.SLATE])
 ```
 
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css`. And the contents of that link is what will define the design of the components in your app. One such component can be a header `html.H1()`. If you use the `Slate` theme, the default font color of your heading will be of a light grey type with the RGB code `(170, 170, 170)`. In the context of the theme, this particular color is mapped to `text-body`. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file in the link above:
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css` which points to a cascading styleshett or CSS. In genereal `HTML` is a language that let's you build web pages. In short, Plotly Dash is a set of tools that let's you produce `HTML` components that look nice and act well togehter. And a `CSS` file defines how these components look and behave with regards to the layout.
+
+One such component can be a header `dcc.Markdown()` that you can use as a title for your app or dashboard. If you use the `Slate` theme, the default font color of your heading will be of a light grey type with the RGB code `(170, 170, 170)`. In the context of the theme, this particular color is mapped to `text-body`. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file in the link above:
 
     text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
     
@@ -43,11 +89,16 @@ This points to a setting at the start of the document that reveals the `rgb()` c
 
     bs-body-color-rgb:170,170,170
     
-[![enter image description here][1]][1]
+[![enter image description here][4]][4]
 
-The next section will describe how to edit these properties through `className` and `style`
+The next section will describe how to edit these properties through the `className` attribute. At the end of the chapter you'll also learn how to design specific details through the `style` attribute of your compoenents.
      
-## 12.2
+## 12.3 The `className` attribute
+
+After setting `'SLATE'` as your theme, a `dcc.Markdown()` component with the text `Dashboard title` will look like this:
+
+
+
     
 ---
 
@@ -469,7 +520,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][2]][2]
+[![enter image description here][5]][5]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -688,10 +739,15 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][3]][3]
+[![enter image description here][6]][6]
 
 
  
-  [1]: https://i.stack.imgur.com/XHoFx.png
-  [2]: https://i.stack.imgur.com/NGfOi.png
-  [3]: https://i.stack.imgur.com/EJw6S.png
+
+
+  [1]: https://i.stack.imgur.com/Vunbd.png
+  [2]: https://i.stack.imgur.com/EvbEU.png
+  [3]: https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/
+  [4]: https://i.stack.imgur.com/XHoFx.png
+  [5]: https://i.stack.imgur.com/NGfOi.png
+  [6]: https://i.stack.imgur.com/EJw6S.png
