@@ -472,6 +472,11 @@ const thebe_selector_output = ".output, .cell_output"
      11.5.1 Tabs
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offcanvas">
+     11.5.2 OffCanvas
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -600,6 +605,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#tabs">
      11.5.1 Tabs
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#offcanvas">
+     11.5.2 OffCanvas
     </a>
    </li>
   </ul>
@@ -1178,6 +1188,61 @@ When using this component, it is important to pay attention to the following:</p
 </pre></div>
 </div>
 <p><img alt="tabs" src="../_images/tabs.gif" /></p>
+</div>
+<div class="section" id="offcanvas">
+<h3>11.5.2 OffCanvas<a class="headerlink" href="#offcanvas" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Offcanvas</span></code> component allows us to display a sidebar overlay on the app.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">image_filename</span> <span class="o">=</span> <span class="s1">&#39;plotly.png&#39;</span> <span class="c1"># replace with your own image</span>
+<span class="n">encoded_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;data:image/png;base64,</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">encoded_image</span><span class="o">.</span><span class="n">decode</span><span class="p">()))</span>
+
+<span class="n">offcanvas</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Open Offcanvas&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Offcanvas</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">img</span><span class="p">],</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Off-Canvas&quot;</span><span class="p">,</span>
+            <span class="n">is_open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">toggle_offcanvas</span><span class="p">(</span><span class="n">n1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="offcanvas" src="part3/ch11_files/img/offcanvas.gif" /></p>
 </div>
 </div>
 <div class="section" id="additional-content">
