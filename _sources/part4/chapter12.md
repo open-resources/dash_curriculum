@@ -114,6 +114,13 @@ In order to be able to change the layout through `class_name`, a stylesheet *mus
 Some alternatives to `body` in `text-body` are `primary`, `secondary`, `success`, `danger`,  `warning`,  `info`,  `light`,  and `warning`. For other options, take a look at the cheatsheet at [pythonanywhere.com][5]. Now, let's see how you can actually change the look of your `dcc.Markdown()` component through `class_name`.
 
 
+## 12.3.1 How to change font color of your title with `class_name = "text-primary"`
+
+## 12.3.2 How to change the background color of your title with `class_name = "text-primary"`
+
+## 12.3.3 How to change font *and* bakcground color
+
+## 
 
 
 
