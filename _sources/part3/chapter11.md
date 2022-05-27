@@ -467,15 +467,33 @@ if __name__ == '__main__':
 ```python
 from dash import Dash
 import dash_bootstrap_components as dbc
+import dash_core_components as dcc
 from dash import html
+import plotly_express as px
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+
+df = px.data.gapminder()
+
+df_2007 = df[df.year ==2007]
+
+fig1 = px.scatter(df_2007, x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=60)
+graph1 = dcc.Graph(id='figure1', figure=fig1)
+
+fig2 = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=40, 
+                hover_name='country', log_x=True, animation_frame='year',
+                 animation_group='country', range_x=[100, 100000], range_y=[25,90])
+graph2 = dcc.Graph(id='figure2', figure=fig2)
+
+fig3 = px.choropleth(df, locations='iso_alpha', color='lifeExp', hover_name='country', 
+                    animation_frame='year', color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
+graph3 = dcc.Graph(id='figure3', figure=fig3)
 
 tab1_content = dbc.Card(
     dbc.CardBody(
         [
-            html.P("This is tab 1", className="card-text"),
-            dbc.Button("Click here", color="success"),
+            graph1
         ]
     ),
 )
@@ -483,8 +501,7 @@ tab1_content = dbc.Card(
 tab2_content = dbc.Card(
     dbc.CardBody(
         [
-            html.P("This is tab 2", className="card-text"),
-            dbc.Button("Don't click here", color="danger"),
+            graph2
         ]
     ),
 )
@@ -492,12 +509,10 @@ tab2_content = dbc.Card(
 tab3_content = dbc.Card(
     dbc.CardBody(
         [
-            html.P("This is tab 3", className="card-text"),
-            dbc.Button("Maybe click here", color="warning"),
+            graph3
         ]
     ),
 )
-
 
 tabs = dbc.Tabs(
     [
@@ -516,7 +531,7 @@ app.layout = dbc.Container(
 
 # Launch the app server
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True)
 ```
 ![tabs](ch11_files/img/tabs.gif)
 
