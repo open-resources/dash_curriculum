@@ -520,6 +520,62 @@ if __name__ == '__main__':
 ```
 ![tabs](ch11_files/img/tabs.gif)
 
+### 11.5.2 OffCanvas
+The `Offcanvas` component allows us to display a sidebar overlay on the app.
+
+```python
+# Import packages
+from dash import Dash, Input, Output, State, html
+import dash_bootstrap_components as dbc
+import base64
+
+
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+image_filename = 'plotly.png' # replace with your own image
+encoded_image = base64.b64encode(open(image_filename, 'rb').read())
+img = html.Img(src='data:image/png;base64,{}'.format(encoded_image.decode()))
+
+offcanvas = html.Div(
+    [
+        dbc.Button("Open Offcanvas", id="open-offcanvas", n_clicks=0),
+        dbc.Offcanvas(
+            [img],
+            id="offcanvas",
+            title="Off-Canvas",
+            is_open=False,
+        ),
+    ]
+)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col(offcanvas)])
+    ]
+)
+
+
+
+@app.callback(
+    Output("offcanvas", "is_open"),
+    Input("open-offcanvas", "n_clicks"),
+)
+def toggle_offcanvas(n1):
+    if n1:
+        return True
+    
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+![offcanvas](ch11_files/img/offcanvas.gif)
+
+
 ## 11.6 Additional Content
 In addition to all the components present in the libraries introduces above, it is possible to find additional components by exploring third party libraries.
 An example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
