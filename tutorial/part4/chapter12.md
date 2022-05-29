@@ -24,33 +24,7 @@
 
 ## 12.1 The theme of a Dash app
 
-There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by any of `['BOOTSTRAP',
- 'CERULEAN',
- 'COSMO',
- 'CYBORG',
- 'DARKLY',
- 'FLATLY',
- 'GRID',
- 'JOURNAL',
- 'LITERA',
- 'LUMEN',
- 'LUX',
- 'MATERIA',
- 'MINTY',
- 'MORPH',
- 'PULSE',
- 'QUARTZ',
- 'SANDSTONE',
- 'SIMPLEX',
- 'SKETCHY',
- 'SLATE',
- 'SOLAR',
- 'SPACELAB',
- 'SUPERHERO',
- 'UNITED',
- 'VAPOR',
- 'YETI',
- 'ZEPHYR']`
+There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by any of `['BOOTSTRAP',  'CERULEAN', 'COSMO', 'CYBORG', 'DARKLY', 'FLATLY', 'GRID'. For an exhaustive list, run `dir(dbc.themes)` and see which are available for your current versions of Dash Bootstrap components.
  
 Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of cards or the size of each component for different sizes of your device screen.
 
@@ -101,26 +75,103 @@ The reason this whole thing is structured this way, is that you can use the same
      
 ## 12.3 The `class_name` attribute
 
-All Dash components have an attribute `class_name`. And as you might have already guessed, this attribute will let us change the layout of a component through selecting other class names than, for example, the default `text-body` for `dcc.Markdown()`.
+Most (or all?) Dash components have an attribute `class_name` that let's you reference the name of a class in a `CSS` file. This attribute will also let you change other layout features through selecting other class names than, for example, the default `text-body` for `dcc.Markdown()`.
 
 ```{warning}
 
 In order to be able to change the layout through `class_name`, a stylesheet *must*  be specified in 
 
-    app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+    app = Dash(external_stylesheets=[dbc.themes.<theme>])
 
 ```
 
-Some alternatives to `body` in `text-body` are `primary`, `secondary`, `success`, `danger`,  `warning`,  `info`,  `light`,  and `warning`. For other options, take a look at the cheatsheet at [pythonanywhere.com][5]. Now, let's see how you can actually change the look of your `dcc.Markdown()` component through `class_name`.
 
+## 12.3.1 How to change font color
 
-## 12.3.1 How to change font color of your title with `class_name = "text-primary"`
+Some alternatives to `body` in `text-body` are `primary`, `secondary`, `success`, `danger`, and `info`. For other options, take a look at the cheatsheet at [pythonanywhere.com][5]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.
 
-## 12.3.2 How to change the background color of your title with `class_name = "text-primary"`
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary")], width = 10)])])
+
+app.run_server(mode='inline', port = 9000) 
+
+```
+
+[![enter image description here][6]][6]
+
+Below is the output with `Dasboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS`-file. In order to change the color, just incldue, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call:
+
+```python
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info")], width = 10)])])
+
+app.run_server(mode='inline', port = 9000)  
+```
+
+[![enter image description here][7]][7]
+
+```{admonition} Why all the extra components?
+
+You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn holds all our tables, figures and callbacks etc.
+
+Also, all these components can offer slightly different functionalities on how to apply `className` and `style` depending on what you'd like to do. But we'll come back to that later.
+
+```
+
+## 12.3.2 How to change background 
+
+Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but points to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example as well as all other Dash components, like background color. The following snippet changes the white background of the BOOTSTRAP theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
+
+```python
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="bg-primary")], width = 10)])])
+
+app.run_server(mode='inline', port = 9000) 
+
+```
+
+[![enter image description here][8]][8]
+
+Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to do edit multiple features at the same time.
 
 ## 12.3.3 How to change font *and* bakcground color
 
-## 
+So far, the whole `CSS` thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` in `className`:
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary")], width = 10)])])
+
+app.run_server(mode='inline', port = 9000)  
+
+
+```
+
+[![enter image description here][9]][9]
+
+
 
 
 
@@ -551,7 +602,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][6]][6]
+[![enter image description here][10]][10]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -770,7 +821,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][7]][7]
+[![enter image description here][11]][11]
 
 
  
@@ -781,5 +832,9 @@ app.run_server(mode='external', port = 8032)
   [3]: https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/
   [4]: https://i.stack.imgur.com/BFgvm.png
   [5]: https://dashcheatsheet.pythonanywhere.com/
-  [6]: https://i.stack.imgur.com/NGfOi.png
-  [7]: https://i.stack.imgur.com/EJw6S.png
+  [6]: https://i.stack.imgur.com/iCkRA.png
+  [7]: https://i.stack.imgur.com/d9pqj.png
+  [8]: https://i.stack.imgur.com/vLWvz.png
+  [9]: https://i.stack.imgur.com/dfjKw.png
+  [10]: https://i.stack.imgur.com/NGfOi.png
+  [11]: https://i.stack.imgur.com/EJw6S.png
