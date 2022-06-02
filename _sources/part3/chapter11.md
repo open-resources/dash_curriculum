@@ -185,16 +185,16 @@ if __name__ == '__main__':
 `Alerts` are boxes that provide messages according to the user interaction with the app.
 Via callbacks it is possible to change several props of this component (full list [here](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/)), such as: color, fading animation, duration of appearence.
 
-In the example below, we have created alerts depending on the GTP Per Capita trend of a user-selected country and year:
-- If the trend is positive, meaning the GTP per Capita of the selected year is above the average GTP of the previous 10 years, the alert message will have a green background
-- If the trend is stable, the alert message will turn yellow color
+In the example below, we have created alerts depending on the GTP Per Capita of a user-selected country and year compared to the world's average:
+- If the country's GTP Per Capita is greater than the world's average, the alert message will have a green background
+- If the value is the same as than the average, the alert message will turn yellow color
 - Otherwise the message will become red
 The message content summarises the results (i.e. GTP per Capita) obtained via the user selection.
 
 ```python
-# Import packages
 from dash import Dash, dcc, Input, Output, html
 import dash_bootstrap_components as dbc
+import plotly.graph_objects as go
 import pandas as pd
 import plotly.express as px
 import numpy as np
@@ -207,7 +207,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 _header = html.H1(children='Alerts by GDP Per Capita', style = {'textAlign' : 'center'})
-_text1 = html.P(children='The below alert will adapt depending on GDP 10y trend for the selected country and year', style = {'textAlign' : 'center'})
+_text1 = html.P(children='The below alert will adapt depending on GDP for the selected country and year compared to the world\'s average', style = {'textAlign' : 'center'})
 year_sel = dcc.Dropdown(id='year-dropdown', placeholder = 'Select a year', options= [c for c in df.year.unique()])
 country_sel = dcc.Dropdown(id='country-dropdown', placeholder = 'Select a country', options = [c for c in df.country.unique()])
 alert_msg = dbc.Alert(id='alert-gdp', children="Select some year and country to display info", color="info")
@@ -235,18 +235,17 @@ app.layout = dbc.Container(
     prevent_initial_call=True
 )
 def update_alert(y, c):
-    threshold = .05; previous_y = 10
     gdp_sel = df.loc[(df['country']==c) & (df['year']==y), 'gdpPercap'] #Filter for selection
-    gdp_avg = df.loc[(df['country']==c) & (df['year']<y) & (df['year']>=y-previous_y), 'gdpPercap'] #Slice previous years gdpPercap
+    gdp_avg = df.loc[(df['year']==y), 'gdpPercap'] #Calculate world avg for the same yeara
 
     if (gdp_sel.values.size > 0) & (gdp_avg.values.size > 0):
         gdp_sel_v = round(gdp_sel.values[0],2)
         gdp_avg_v = round(np.mean(gdp_avg.values),2)
         new_children = ['The GDP per Capita in '+c+' in '+str(y)+' was: '+gdp_sel_v.astype(str)+
-                        '; The average GDP from previous '+str(previous_y)+' years was: '+gdp_avg_v.astype(str)]
-        if np.abs((gdp_sel_v/gdp_avg_v)-1) < threshold:
+                        '; The world average was: '+gdp_avg_v.astype(str)]
+        if gdp_sel_v == gdp_avg_v:
             new_color = 'warning' 
-        elif (gdp_sel_v/gdp_avg_v) < 1:
+        elif gdp_sel_v < gdp_avg_v:
             new_color = 'danger'
         else:
             new_color = 'success'
@@ -265,7 +264,9 @@ def update_graph(country_sel):
     fig = px.line()
     if country_sel is not None:
         df_plot = df.loc[(df['country']==country_sel), :]
+        df_avg = df.groupby(['year']).agg({'gdpPercap':'mean'}).reset_index()
         fig = px.line(df_plot, x='year', y='gdpPercap', color='country', template='plotly_white')
+        fig.add_trace(go.Scatter(x=df_avg['year'], y=df_avg['gdpPercap'], line = {'color':'firebrick', 'width':4, 'dash':'dot'}, name = 'Wold Average'))
     return fig
 
 # Run the App
