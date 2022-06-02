@@ -189,7 +189,6 @@ In the example below, we have created alerts depending on the GTP Per Capita of 
 - If the country's GTP Per Capita is greater than the world's average, the alert message will have a green background
 - If the value is the same as than the average, the alert message will turn yellow color
 - Otherwise the message will become red
-The message content summarises the results (i.e. GTP per Capita) obtained via the user selection.
 
 ```python
 from dash import Dash, dcc, Input, Output, html
