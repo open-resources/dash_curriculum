@@ -438,12 +438,42 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-change-font-and-bakcground-color">
+    <a class="reference internal nav-link" href="#how-to-change-font-and-background-color">
      12.3.3 How to change font
      <em>
       and
      </em>
-     bakcground color
+     background color
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spacing-margins-and-padding">
+     12.3.4 Spacing, margins and padding
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#component-placement">
+     12.3.5 Component placement
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-handle-layout-challenges-with-style">
+     12.3.6 How to handle layout challenges with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       style
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-rounded-transparent-card">
+     12.3.5 A rounded, transparent card
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     12.3.6
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -574,12 +604,42 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-change-font-and-bakcground-color">
+    <a class="reference internal nav-link" href="#how-to-change-font-and-background-color">
      12.3.3 How to change font
      <em>
       and
      </em>
-     bakcground color
+     background color
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#spacing-margins-and-padding">
+     12.3.4 Spacing, margins and padding
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#component-placement">
+     12.3.5 Component placement
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-handle-layout-challenges-with-style">
+     12.3.6 How to handle layout challenges with
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       style
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-rounded-transparent-card">
+     12.3.5 A rounded, transparent card
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     12.3.6
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -792,8 +852,8 @@ const thebe_selector_output = ".output, .cell_output"
 <p><a class="reference external" href="https://i.stack.imgur.com/vLWvz.png"><img alt="enter image description here" src="https://i.stack.imgur.com/vLWvz.png" /></a></p>
 <p>Above we’ve only changed the background color, and let the text color remain <code class="docutils literal notranslate"><span class="pre">text-body</span></code>. The following sections will demonstrate how to do edit multiple features at the same time.</p>
 </div>
-<div class="section" id="how-to-change-font-and-bakcground-color">
-<h2>12.3.3 How to change font <em>and</em> bakcground color<a class="headerlink" href="#how-to-change-font-and-bakcground-color" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-to-change-font-and-background-color">
+<h2>12.3.3 How to change font <em>and</em> background color<a class="headerlink" href="#how-to-change-font-and-background-color" title="Permalink to this headline">¶</a></h2>
 <p>So far, the whole <code class="docutils literal notranslate"><span class="pre">CSS</span></code> thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both <code class="docutils literal notranslate"><span class="pre">text-info</span></code> and <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> separated by <code class="docutils literal notranslate"><span class="pre">space</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
@@ -808,7 +868,90 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
+<p>And you do not in any way have to stop there. In the next subchapters you’ll learn how to add controls that are contained in a <code class="docutils literal notranslate"><span class="pre">dbc.Card()</span></code> component, how to style that component, and how to make room for the different elements using padding <code class="docutils literal notranslate"><span class="pre">p-1</span></code>, and margin <code class="docutils literal notranslate"><span class="pre">m-1</span></code> in the <code class="docutils literal notranslate"><span class="pre">className</span></code> attribute. By “controls”, we mean anything from buttons to dropdowns and input fields, as well as accompanying labels to describe what they do.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/dfjKw.png"><img alt="enter image description here" src="https://i.stack.imgur.com/dfjKw.png" /></a></p>
+</div>
+<div class="section" id="spacing-margins-and-padding">
+<h2>12.3.4 Spacing, margins and padding<a class="headerlink" href="#spacing-margins-and-padding" title="Permalink to this headline">¶</a></h2>
+<p>Often, a <code class="docutils literal notranslate"><span class="pre">HTML</span></code> child component will take on the same size as its parent. This should mean that a <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code> contained by a <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component would span the entire height and width of the former. This is however not the case. If we add a color such as <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> to the <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component you’ll see that there are margins on the right and left hand sides as well as at the bottom.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/muWaZ.png"><img alt="enter image description here" src="https://i.stack.imgur.com/muWaZ.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary mt-0&quot;</span><span class="p">)</span>
+                                             <span class="p">]</span>
+                                            <span class="p">)</span>
+                                    <span class="p">],</span><span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary&#39;</span><span class="p">)])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>If we were to put this is <code class="docutils literal notranslate"><span class="pre">className</span></code> terms, this means the the default setting of the <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> margin is <code class="docutils literal notranslate"><span class="pre">mt-0</span></code>. This follows a naming convention <code class="docutils literal notranslate"><span class="pre">property-side-size</span></code>, where <code class="docutils literal notranslate"><span class="pre">property</span></code>, when it comes to <a class="reference external" href="https://mdbootstrap.com/docs/standard/utilities/spacing/">spacing</a>, can be one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">m</span></code> - <code class="docutils literal notranslate"><span class="pre">margin</span></code>, the space between a parent and a child component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> -  <code class="docutils literal notranslate"><span class="pre">padding</span></code>, component and features of that component such as text.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">side</span></code> can be one of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">t</span></code> - <code class="docutils literal notranslate"><span class="pre">top</span></code> for classes that set margin-top or padding-top</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code> - <code class="docutils literal notranslate"><span class="pre">bottom</span></code> for classes that set margin-bottom or padding-bottom</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">s</span></code> - <code class="docutils literal notranslate"><span class="pre">start</span></code> for classes that set margin-left or padding-left</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">e</span></code> - <code class="docutils literal notranslate"><span class="pre">end</span></code> for classes that set margin-right or padding-right</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">x</span></code> - for classes that set both *-left and *-right</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> - for classes that set both *-top and *-bottom</p></li>
+<li><p><em><code class="docutils literal notranslate"><span class="pre">blank</span></code></em> - for classes that set a margin or padding on all 4 sides of the element</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">size</span></code> can be one of <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code> where <code class="docutils literal notranslate"><span class="pre">0</span></code> eliminates the margin or padding. Take a look at <a class="reference external" href="https://mdbootstrap.com/docs/standard/utilities/spacing/">mdbootstrap.com</a> for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing <code class="docutils literal notranslate"><span class="pre">m-0</span></code> with <code class="docutils literal notranslate"><span class="pre">m-1</span></code> or <code class="docutils literal notranslate"><span class="pre">m-2</span></code> in the <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> className:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/PkwOL.png"><img alt="enter image description here" src="https://i.stack.imgur.com/PkwOL.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary m-2&quot;</span><span class="p">)</span>
+                                             <span class="p">]</span>
+                                            <span class="p">)</span>
+                                    <span class="p">],</span><span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary&#39;</span><span class="p">)])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="component-placement">
+<h2>12.3.5 Component placement<a class="headerlink" href="#component-placement" title="Permalink to this headline">¶</a></h2>
+<p>You should expect that different components from different libraries such as <code class="docutils literal notranslate"><span class="pre">dcc</span></code>, <code class="docutils literal notranslate"><span class="pre">dbc</span></code> and <code class="docutils literal notranslate"><span class="pre">HTML</span></code> come with different default settings with regards to margins, paddings and other features such as text alignment. This section will not go through all default settings for all relevant components, but rather demonstrate how to handle different settings and make sure your layout turns out the way you want it to. So lets take the setup that we’ve already got, and add a row with a <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component. Without defining any margins or padding, but with some background color to discern the different elements, the snippet below will produce the dashboard illustrated in this image:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/Uu0Ee.png"><img alt="enter image description here" src="https://i.stack.imgur.com/Uu0Ee.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary&quot;</span><span class="p">)])],</span> <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary&#39;</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Label 1&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-warning&quot;</span><span class="p">)])],</span><span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary&#39;</span><span class="p">)])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9008</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>As it now stands, the dashboard isn’t exaclty very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span different widths. In addition, the paddings for “Dashboard title” and “Label 1” look very different. In this case, we could overcome these obstacles by using the same component in both instances. But when you’re going to build dashboards out in the wild, you’re very likely going to need different components with different properties to align nicely. So let’s take a look at the details on how to make it all visually pleasing. For the remainder of this section, we will only show the changes we’ve made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.</p>
+<p>The first thing we’ll do is add <code class="docutils literal notranslate"><span class="pre">p-1</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=&quot;text-info</span> <span class="pre">bg-primary</span> <span class="pre">p-1&quot;)</span></code> for the <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code> component and <code class="docutils literal notranslate"><span class="pre">p-2</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning</span> <span class="pre">p-2&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component. This way we’ll get approximately the same space around the texts <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">1</span></code>, while the font sizes provide different emphasis to the content:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/UWulS.png"><img alt="enter image description here" src="https://i.stack.imgur.com/UWulS.png" /></a></p>
+</div>
+<div class="section" id="how-to-handle-layout-challenges-with-style">
+<h2>12.3.6 How to handle layout challenges with <code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#how-to-handle-layout-challenges-with-style" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="a-rounded-transparent-card">
+<h2>12.3.5 A rounded, transparent card<a class="headerlink" href="#a-rounded-transparent-card" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id1">
+<h2>12.3.6<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 </div>
 <hr class="docutils" />
 <div class="section" id="unclear">
