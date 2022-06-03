@@ -53,7 +53,6 @@ What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/b
 One such component can be a header `dcc.Markdown()` that you can use as a title for your app or dashboard. If you use the `BOOTSTRAP` theme, the default font color of your heading will be of a dark grey type with the RGB code `(33, 37, 47)` and look like this:
 
 
-
  In the context of the theme, this particular color is mapped to `text-body`. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file:
 
     .text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
@@ -151,7 +150,7 @@ app.run_server(mode='inline', port = 9000)
 
 Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to do edit multiple features at the same time.
 
-## 12.3.3 How to change font *and* bakcground color
+## 12.3.3 How to change font *and* background color
 
 So far, the whole `CSS` thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` in `className`:
 
@@ -169,10 +168,116 @@ app.run_server(mode='inline', port = 9000)
 
 ```
 
+And you do not in any way have to stop there. In the next subchapters you'll learn how to add controls that are contained in a `dbc.Card()` component, how to style that component, and how to make room for the different elements using padding `p-1`, and margin `m-1` in the `className` attribute. By "controls", we mean anything from buttons to dropdowns and input fields, as well as accompanying labels to describe what they do.
+
 [![enter image description here][9]][9]
 
 
+## 12.3.4 Spacing, margins and padding
 
+Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col()` contained by a `dbc.Row()` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
+
+[![enter image description here][10]][10]
+
+
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary mt-0")
+                                             ]
+                                            )
+                                    ],className = 'bg-secondary')])
+
+app.run_server(mode='inline', port = 9000)
+
+```
+
+If we were to put this is `className` terms, this means the the default setting of the `dbc.Row` margin is `mt-0`. This follows a naming convention `property-side-size`, where `property`, when it comes to [spacing][11], can be one of:
+
+- `m` - `margin`, the space between a parent and a child component.
+- `p` -  `padding`, component and features of that component such as text.
+
+
+`side` can be one of:
+
+- `t` - `top` for classes that set margin-top or padding-top
+- `b` - `bottom` for classes that set margin-bottom or padding-bottom
+- `s` - `start` for classes that set margin-left or padding-left
+- `e` - `end` for classes that set margin-right or padding-right
+- `x` - for classes that set both *-left and *-right
+- `y` - for classes that set both *-top and *-bottom
+- *`blank`* - for classes that set a margin or padding on all 4 sides of the element
+
+`size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][11] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className:
+
+[![enter image description here][12]][12]
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary m-2")
+                                             ]
+                                            )
+                                    ],className = 'bg-secondary')])
+
+app.run_server(mode='inline', port = 9000)
+
+```
+
+## 12.3.5 Component placement
+
+You should expect that different components from different libraries such as `dcc`, `dbc` and `HTML` come with different default settings with regards to margins, paddings and other features such as text alignment. This section will not go through all default settings for all relevant components, but rather demonstrate how to handle different settings and make sure your layout turns out the way you want it to. So lets take the setup that we've already got, and add a row with a `dbc.Label` component. Without defining any margins or padding, but with some background color to discern the different elements, the snippet below will produce the dashboard illustrated in this image:
+
+[![enter image description here][13]][13]
+
+
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary")])], className = 'bg-secondary'),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning")])],className = 'bg-secondary')])
+
+app.run_server(mode='inline', port = 9008)
+
+```
+
+As it now stands, the dashboard isn't exaclty very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span different widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing. For the remainder of this section, we will only show the changes we've made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.
+
+The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1")` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same space around the texts `Dashboard title` and `Label 1`, while the font sizes provide different emphasis to the content:
+
+[![enter image description here][14]][14]
+
+
+## 12.3.6 How to handle layout challenges with `style`
+
+
+
+
+
+
+
+
+
+
+
+
+## 12.3.5 A rounded, transparent card
+
+## 12.3.6 
 
 
 
@@ -602,7 +707,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][10]][10]
+[![enter image description here][15]][15]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -821,7 +926,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][11]][11]
+[![enter image description here][16]][16]
 
 
  
@@ -836,5 +941,10 @@ app.run_server(mode='external', port = 8032)
   [7]: https://i.stack.imgur.com/d9pqj.png
   [8]: https://i.stack.imgur.com/vLWvz.png
   [9]: https://i.stack.imgur.com/dfjKw.png
-  [10]: https://i.stack.imgur.com/NGfOi.png
-  [11]: https://i.stack.imgur.com/EJw6S.png
+  [10]: https://i.stack.imgur.com/muWaZ.png
+  [11]: https://mdbootstrap.com/docs/standard/utilities/spacing/
+  [12]: https://i.stack.imgur.com/PkwOL.png
+  [13]: https://i.stack.imgur.com/Uu0Ee.png
+  [14]: https://i.stack.imgur.com/UWulS.png
+  [15]: https://i.stack.imgur.com/NGfOi.png
+  [16]: https://i.stack.imgur.com/EJw6S.png
