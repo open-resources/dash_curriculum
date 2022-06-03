@@ -261,6 +261,8 @@ The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1")
 
 [![enter image description here][14]][14]
 
+Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through the either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component
+
 
 ## 12.3.6 How to handle layout challenges with `style`
 
