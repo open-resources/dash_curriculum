@@ -464,8 +464,54 @@ This component is usually used when the app is connected to an API to download d
 - `interval` is a prop that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased
 - `max_intervals` can be configured to set a cap to the number of times the refresh happen. By default, this prop is set to -1, meaning that refreshes will never stop
 - `n_intervals` represent the counter, i.e. the number of times the interval has passed
+Also note that, this is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
 
-In the following example, we will keep refreshing the current time each 3 seconds.
+In the following example, the current time in New York keeps being refreshed.
+```
+# Import packages
+from dash import Dash, dcc, Input, Output, html
+import dash_bootstrap_components as dbc
+from dash.exceptions import PreventUpdate
+from datetime import datetime
+import pytz
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+_header1 = html.H1(children='Current Time', style = {'textAlign' : 'center'})
+_header4 = html.H4(children='The New York time below is refreshed based on an interval component', style = {'textAlign' : 'center'})
+_p = html.P(children='', id='livet', style = {'textAlign' : 'center', 'font-family' : 'Courier New', 'font-size' : '250%'})
+_interval = dcc.Interval(id = 'int1', disabled = False, interval = 5)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        _interval,
+        dbc.Row([dbc.Col([_header1], width=12)]),
+        dbc.Row([dbc.Col([_header4], width=12)]),
+        dbc.Row([dbc.Col([_p], width=12)])
+    ]
+)
+
+# Configure callback
+@app.callback(
+    Output("livet", "children"),
+    Output("int1", "n_intervals"),
+    Input("int1", "n_intervals")
+)
+def refresh_time(i):
+    if i == 0:
+        raise PreventUpdate # Condition to stop the interval to refresh
+    else:
+        tz = pytz.timezone('America/New_York')
+        now = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
+    
+    return now, i
+
+# Launch the app server
+if __name__ == '__main__':
+    app.run_server()
+```
+![Interval_Example](./ch11_files/img/interval.gif)
 
 ## 11.5 Navigation Components
 
