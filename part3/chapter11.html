@@ -1079,9 +1079,55 @@ This component is usually used when the app is connected to an API to download d
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code> is a prop that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_intervals</span></code> can be configured to set a cap to the number of times the refresh happen. By default, this prop is set to -1, meaning that refreshes will never stop</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed
+Also note that, this is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p></li>
 </ul>
-<p>In the following example, we will keep refreshing the current time each 3 seconds.</p>
+<p>In the following example, the current time in New York keeps being refreshed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">pytz</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">_header1</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Current Time&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">_header4</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;The New York time below is refreshed based on an interval component&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">_p</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;livet&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;font-family&#39;</span> <span class="p">:</span> <span class="s1">&#39;Courier New&#39;</span><span class="p">,</span> <span class="s1">&#39;font-size&#39;</span> <span class="p">:</span> <span class="s1">&#39;250%&#39;</span><span class="p">})</span>
+<span class="n">_interval</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;int1&#39;</span><span class="p">,</span> <span class="n">disabled</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">_interval</span><span class="p">,</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_header1</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_header4</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_p</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Configure callback</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;livet&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;int1&quot;</span><span class="p">,</span> <span class="s2">&quot;n_intervals&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;int1&quot;</span><span class="p">,</span> <span class="s2">&quot;n_intervals&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">refresh_time</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">PreventUpdate</span> <span class="c1"># Condition to stop the interval to refresh</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">)</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">now</span><span class="p">,</span> <span class="n">i</span>
+
+<span class="c1"># Launch the app server</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="Interval_Example" src="part3/ch11_files/img/interval.gif" /></p>
 </div>
 </div>
 <div class="section" id="navigation-components">
