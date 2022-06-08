@@ -463,8 +463,9 @@ if __name__ == '__main__':
 This component is usually used when the app is connected to an API to download data that is recurrently updated (e.g. stock market data). By adjusting props, it is possible to configure the following:
 - `interval` is a prop that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased
 - `max_intervals` can be configured to set a cap to the number of times the refresh happen. By default, this prop is set to -1, meaning that refreshes will never stop
-- `n_intervals` represent the counter, i.e. the number of times the interval has passed
-Also note that, this is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
+- `n_intervals` represent the counter, i.e. the number of times the interval has passed.
+
+This is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
 
 In the following example, the current time in New York keeps being refreshed.
 ```

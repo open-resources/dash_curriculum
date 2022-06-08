@@ -1079,9 +1079,9 @@ This component is usually used when the app is connected to an API to download d
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code> is a prop that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_intervals</span></code> can be configured to set a cap to the number of times the refresh happen. By default, this prop is set to -1, meaning that refreshes will never stop</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed
-Also note that, this is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed.</p></li>
 </ul>
+<p>This is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p>
 <p>In the following example, the current time in New York keeps being refreshed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
