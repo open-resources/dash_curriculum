@@ -480,41 +480,9 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#additional-content">
-   11.6 Additional Content
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#previous-notes-to-be-removed">
-   Previous Notes (To be removed)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#topics-to-cover">
-   Topics to cover
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#individual-components-we-re-thinking-to-add">
-   Individual components we’re thinking to add
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dcc-components">
-     DCC components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dbc-components">
-     DBC components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dmc-components">
-     DMC components
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -615,41 +583,9 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#additional-content">
-   11.6 Additional Content
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#previous-notes-to-be-removed">
-   Previous Notes (To be removed)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#topics-to-cover">
-   Topics to cover
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#individual-components-we-re-thinking-to-add">
-   Individual components we’re thinking to add
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dcc-components">
-     DCC components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dbc-components">
-     DBC components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#dmc-components">
-     DMC components
-    </a>
-   </li>
-  </ul>
  </li>
 </ul>
 
@@ -664,7 +600,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 11: Additional Components<a class="headerlink" href="#chapter-11-additional-components" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will introduce several additional components that go beyond what we have seen so far, but that are necessary to further customise apps.</p>
+<p>In this chapter we will introduce several additional components that go beyond what we have seen so far, but that are necessary to further customise apps. In this chapter you’ll learn:</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
@@ -675,20 +611,20 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="introducing-additional-components">
 <h2>11.1 Introducing additional components<a class="headerlink" href="#introducing-additional-components" title="Permalink to this headline">¶</a></h2>
-<p>Dash libraries include a lot of components that serves multiple purposes. It may be a bit overwhelming to navigate through all components, in search for the one that works for our needs. In this chapter we will provide some structure around the components you may include in your app.</p>
+<p>Dash libraries include a lot of components that serve multiple purposes. It may be a bit overwhelming to navigate through all components, in search for the one that meets our needs. In this chapter we will provide some structure around the components you may need to include in your app.</p>
 <p>We will broke down components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.</p>
-<p>All additional components that will be presented come from these very common libraries. By clicking on the links, you’ll be able to access to each library documentation:</p>
+<p>All components below come from these very common libraries:</p>
 <ul class="simple">
 <li><p>dcc : <a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash core components</a></p></li>
 <li><p>dbc : <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/">Dash boostrap components</a></p></li>
 </ul>
-<p>In the links above, it is possible to search for keywords and find the components we need. Once we’ve identified the components that we want to include in our app, <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">this cheatsheet</a> is another powerful tool that helps us understanding how components can be customised.</p>
+<p>In the above links to the library documentation, it is possible to search for keywords and find the components we need. Once we’ve identified the components that we want to include in our app, <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">this cheatsheet</a> is another powerful tool that helps us understanding how components can be customised.</p>
 </div>
 <div class="section" id="data-display-components">
 <h2>11.2 Data Display Components<a class="headerlink" href="#data-display-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="upload">
 <h3>11.2.1 Upload<a class="headerlink" href="#upload" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Upload</span></code> component allows us to upload a file to the dashboard.  For this example we will upload a <a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV file</a> and plot the data.  Download <span class="xref myst">this</span> CSV file and run the follwing code to try it out:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Upload</span></code> component allows us to upload a file to the dashboard. For this example we will upload a <a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV file</a> and plot the data. Download <span class="xref myst">this</span> CSV file and run the follwing code to try it out:</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">update_fig()</span></code> callback is design for a specific type of data.  Different data wrangling will be required based on the type of data you are importing.</p>
@@ -845,7 +781,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="alert">
 <h3>11.3.2 Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Alerts</span></code> are boxes that provide messages according to the user interaction with the app.
+<p><code class="docutils literal notranslate"><span class="pre">Alerts</span></code> are boxes that provide messages depending on the user interaction with the app.
 Via callbacks it is possible to change several props of this component (full list <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">here</a>), such as: color, fading animation, duration of appearence.</p>
 <p>In the example below, we have created alerts depending on the GTP Per Capita of a user-selected country and year compared to the world’s average:</p>
 <ul class="simple">
@@ -942,10 +878,10 @@ Via callbacks it is possible to change several props of this component (full lis
 <h2>11.4 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datepicker">
 <h3>11.4.1 DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">DatePicker</span></code> component allows the user of the app to select a date, that can then be used in our callbacks.
+<p>The <code class="docutils literal notranslate"><span class="pre">DatePicker</span></code> component allows the user to select a single date or a date range, that can then be used in our callbacks.
 There are two types of date pickers, both part of the DCC library:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">DatePickerSingle</span></code> consists of one single date selection that the user can input. By clicking on the object a calendar will pop-up, allowing the user to pick a date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DatePickerSingle</span></code> consists of one single date selection: by clicking on the object a calendar will pop-up, allowing the user to pick a date</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> is similar to the previous component, but includes two date selections, which should be read as “start” and “end” dates.</p></li>
 </ul>
 <p>The two components have very similar properties - the complete list is available <a class="reference external" href="https://dash.plotly.com/dash-core-components/datepickerrange">here</a>; the main ones are:</p>
@@ -955,12 +891,11 @@ There are two types of date pickers, both part of the DCC library:</p>
 <li><p>start_date : default start date, before the user makes any selection</p></li>
 <li><p>end_date : default end date, before the user makes any selection</p></li>
 </ul>
-<p>Let’s see an example of this component in action. In the following app a DatePickerRange is used as a filter for a line chart.
-Based on the user selection, a dataframe will be filtered and the chart updated.
-As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been selected.</p>
+<p>In the following app a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered and the chart updated.
+As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been configured.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the following app, instead of using the gapminder dataset, we have used a dataset based on stock prices, as it includes a datetime field.</p>
+<p>In the following app, instead of using the gapminder dataset, we have used a dataset based on stock prices, as it includes a full date field.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
@@ -1018,14 +953,14 @@ As min_date_allowed and max_date_allowed, the min and max dates from the datafra
 </div>
 <div class="section" id="store">
 <h3>11.4.2 Store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory in order to store app data.
+<p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:</p>
 <ul class="simple">
 <li><p>this component can only store data in the following formats: json, list, dictionary data types. With the <code class="docutils literal notranslate"><span class="pre">data</span></code> prop, we can access to the content stored in the memory.</p></li>
-<li><p>how long the data is going to be stored is a customizable property called <code class="docutils literal notranslate"><span class="pre">storage_type</span></code>. We can use three different types of memory and they are cleared by three different events. <code class="docutils literal notranslate"><span class="pre">memory</span></code>: in this case the memory will be cleared when we refresh the browser page; <code class="docutils literal notranslate"><span class="pre">session</span></code>: in this case the memory will be cleared when we close the browser; <code class="docutils literal notranslate"><span class="pre">local</span></code>: in this case the memory will be cleared when we remove the browser cookies.</p></li>
-<li><p>this is an invisible component: although it won’t affect app layout, the component must be part included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p></li>
+<li><p>how long the data is going to be stored is a customizable property called <code class="docutils literal notranslate"><span class="pre">storage_type</span></code>. We can use three different types of memory and they are cleared by three different events. <code class="docutils literal notranslate"><span class="pre">memory</span></code>: in this case the memory will be cleared when we refresh the browser page; <code class="docutils literal notranslate"><span class="pre">session</span></code>: in this case the memory will be cleared when we close the browser; <code class="docutils literal notranslate"><span class="pre">local</span></code>: in this case the memory will be cleared when we clean the browser cookies.</p></li>
+<li><p>this is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p></li>
 </ul>
-<p>In the following example, the dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. The three graphs will plot life expectancy for the countries that are in the corresponding memory.</p>
+<p>In the following example, a dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. This should clarify the difference among the three memory tupes. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
@@ -1272,53 +1207,10 @@ When using this component, it is important to pay attention to the following:</p
 <p><img alt="offcanvas" src="../_images/offcanvas.gif" /></p>
 </div>
 </div>
-<div class="section" id="additional-content">
-<h2>11.6 Additional Content<a class="headerlink" href="#additional-content" title="Permalink to this headline">¶</a></h2>
-<p>In addition to all the components present in the libraries introduces above, it is possible to find additional components by exploring third party libraries.
-An example is the Mantine library, whose components can be found <a class="reference external" href="https://dash-mantine-components.herokuapp.com/">here</a>.</p>
-<hr class="docutils" />
-<hr class="docutils" />
-</div>
-<hr class="docutils" />
-<div class="section" id="previous-notes-to-be-removed">
-<h2>Previous Notes (To be removed)<a class="headerlink" href="#previous-notes-to-be-removed" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="topics-to-cover">
-<h2>Topics to cover<a class="headerlink" href="#topics-to-cover" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Components to unveil additional content</p></li>
-<li><p>Components for filtering (e.g. date picker)</p></li>
-<li><p>Components for navigation</p></li>
-<li><p>Components for media content (carousel…)</p></li>
-</ul>
-</div>
-<div class="section" id="individual-components-we-re-thinking-to-add">
-<h2>Individual components we’re thinking to add<a class="headerlink" href="#individual-components-we-re-thinking-to-add" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="dcc-components">
-<h3>DCC components<a class="headerlink" href="#dcc-components" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>RangeSlider (required)</p></li>
-<li><p>Datepicker (required)</p></li>
-<li><p>Interval (required)</p></li>
-<li><p>Store (required)</p></li>
-<li><p>Upload</p></li>
-</ul>
-</div>
-<div class="section" id="dbc-components">
-<h3>DBC components<a class="headerlink" href="#dbc-components" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Drop down</p></li>
-<li><p>Modal</p></li>
-<li><p>Offcanvas too?</p></li>
-<li><p>Navbar</p></li>
-<li><p>Tabs</p></li>
-<li><p>Carousel</p></li>
-</ul>
-</div>
-<div class="section" id="dmc-components">
-<h3>DMC components<a class="headerlink" href="#dmc-components" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://www.dash-mantine-components.com/">Mantine</a></p>
-</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter, we have gone through many additional components that can add many functionalities to our app. As a closing remark, there are many more existing components that can be found exploring the mentioned libraries as well as third party libraries (an example is the Mantine library, whose components can be found <a class="reference external" href="https://dash-mantine-components.herokuapp.com/">here</a>.</p>
+<p>In the next part, we will focus on polishing our app, in terms of: style, performance and enhancing its structure via multiple pages.</p>
 </div>
 </div>
 
