@@ -24,7 +24,7 @@
 
 ## 12.1 The theme of a Dash app
 
-There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by any of `['BOOTSTRAP',  'CERULEAN', 'COSMO', 'CYBORG', 'DARKLY', 'FLATLY', 'GRID'. For an exhaustive list, run `dir(dbc.themes)` and see which are available for your current versions of Dash Bootstrap components.
+There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by any of `['BOOTSTRAP',  'CERULEAN', 'COSMO', 'CYBORG', 'DARKLY', 'FLATLY', 'GRID'`. For an exhaustive list, run `dir(dbc.themes)` and see which are available for your current versions of Dash Bootstrap components.
  
 Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of cards or the size of each component for different sizes of your device screen.
 
@@ -48,12 +48,14 @@ You set up your Dash app and select a theme like this:
 Dash(external_stylesheets=[dbc.themes.SLATE])
 ```
 
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css` which points to a cascading styleshett or `CSS`. For most web applicatoins, `CSS` goes hand in hand with `HTML`. In genereal, `HTML` is a language that let's you build web pages. In short, Plotly Dash is a set of tools that let's you produce `HTML` components that look nice and act well togehter. And a `CSS` file defines how these components look and behave with regards to the layout.
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css` which points to a cascading styleshett or, `CSS`. For most web applicatoins, `CSS` goes hand in hand with `HTML`. In genereal, `HTML` is a language that let's you build web pages. In short, Plotly Dash is a set of tools that let's you produce `HTML` components that look nice and act well togehter. And a `CSS` file defines how these components look and behave with regards to the layout.
 
 One such component can be a header `dcc.Markdown()` that you can use as a title for your app or dashboard. If you use the `BOOTSTRAP` theme, the default font color of your heading will be of a dark grey type with the RGB code `(33, 37, 47)` and look like this:
 
+[![enter image description here][4]][4]
 
- In the context of the theme, this particular color is mapped to `text-body`. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file:
+
+ In the context of the theme, this particular color is mapped to `text-body` in the `CSS` file. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `css` file:
 
     .text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
 
@@ -68,7 +70,7 @@ This points to a setting at the start of the document that reveals the `rgb()` c
     bs-body-color-rgb:33,37,43
 
     
-[![enter image description here][4]][4]
+[![enter image description here][5]][5]
 
 The reason this whole thing is structured this way, is that you can use the same color code through a unique variable across several sections of the `CSS`. The next section in this chapter will describe how to edit these properties through the `class_name` attribute. At the end of the chapter you'll also learn how to design specific details through the `style` attribute of your components.
      
@@ -87,7 +89,7 @@ In order to be able to change the layout through `class_name`, a stylesheet *mus
 
 ## 12.3.1 How to change font color
 
-Some alternatives to `body` in `text-body` are `primary`, `secondary`, `success`, `danger`, and `info`. For other options, take a look at the cheatsheet at [pythonanywhere.com][5]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.
+Some alternatives to `body` in `text-body` are `primary`, `secondary`, `success`, `danger`, and `info`. For other options, take a look at the cheatsheet at [pythonanywhere.com][6]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.
 
 ```python
 
@@ -103,7 +105,7 @@ app.run_server(mode='inline', port = 9000)
 
 ```
 
-[![enter image description here][6]][6]
+[![enter image description here][7]][7]
 
 Below is the output with `Dasboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS`-file. In order to change the color, just incldue, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call:
 
@@ -119,11 +121,11 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', 
 app.run_server(mode='inline', port = 9000)  
 ```
 
-[![enter image description here][7]][7]
+[![enter image description here][8]][8]
 
 ```{admonition} Why all the extra components?
 
-You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn holds all our tables, figures and callbacks etc.
+You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn holds all our tables, figures and controls etc.
 
 Also, all these components can offer slightly different functionalities on how to apply `className` and `style` depending on what you'd like to do. But we'll come back to that later.
 
@@ -131,7 +133,7 @@ Also, all these components can offer slightly different functionalities on how t
 
 ## 12.3.2 How to change background 
 
-Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but points to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example as well as all other Dash components, like background color. The following snippet changes the white background of the BOOTSTRAP theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
+Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but point to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
 
 ```python
 from jupyter_dash import JupyterDash
@@ -146,7 +148,7 @@ app.run_server(mode='inline', port = 9000)
 
 ```
 
-[![enter image description here][8]][8]
+[![enter image description here][9]][9]
 
 Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to do edit multiple features at the same time.
 
@@ -168,16 +170,16 @@ app.run_server(mode='inline', port = 9000)
 
 ```
 
-And you do not in any way have to stop there. In the next subchapters you'll learn how to add controls that are contained in a `dbc.Card()` component, how to style that component, and how to make room for the different elements using padding `p-1`, and margin `m-1` in the `className` attribute. By "controls", we mean anything from buttons to dropdowns and input fields, as well as accompanying labels to describe what they do.
+And you do not have to stop there. In the next subchapters you'll learn how to add controls that are contained in a `dbc.Card()` component, how to style that component, and how to make room for the different elements using padding `p-1`, and margin `m-1` in the `className` attribute. By "controls", we mean anything from buttons to dropdowns and input fields, as well as accompanying labels to describe what they do.
 
-[![enter image description here][9]][9]
+[![enter image description here][10]][10]
 
 
 ## 12.3.4 Spacing, margins and padding
 
 Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col()` contained by a `dbc.Row()` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
 
-[![enter image description here][10]][10]
+[![enter image description here][11]][11]
 
 
 
@@ -197,7 +199,7 @@ app.run_server(mode='inline', port = 9000)
 
 ```
 
-If we were to put this is `className` terms, this means the the default setting of the `dbc.Row` margin is `mt-0`. This follows a naming convention `property-side-size`, where `property`, when it comes to [spacing][11], can be one of:
+If we were to put this is `className` terms, this means the the default setting of the `dbc.Row` margin is `mt-0` which translates to `margin at top is zero`. This follows a naming convention `property-side-size`, where `property`, when it comes to [spacing][12], can be one of:
 
 - `m` - `margin`, the space between a parent and a child component.
 - `p` -  `padding`, component and features of that component such as text.
@@ -213,9 +215,9 @@ If we were to put this is `className` terms, this means the the default setting 
 - `y` - for classes that set both *-top and *-bottom
 - *`blank`* - for classes that set a margin or padding on all 4 sides of the element
 
-`size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][11] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className:
+`size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][12] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className:
 
-[![enter image description here][12]][12]
+[![enter image description here][13]][13]
 
 ```python
 
@@ -237,7 +239,7 @@ app.run_server(mode='inline', port = 9000)
 
 You should expect that different components from different libraries such as `dcc`, `dbc` and `HTML` come with different default settings with regards to margins, paddings and other features such as text alignment. This section will not go through all default settings for all relevant components, but rather demonstrate how to handle different settings and make sure your layout turns out the way you want it to. So lets take the setup that we've already got, and add a row with a `dbc.Label` component. Without defining any margins or padding, but with some background color to discern the different elements, the snippet below will produce the dashboard illustrated in this image:
 
-[![enter image description here][13]][13]
+[![enter image description here][14]][14]
 
 
 
@@ -255,20 +257,51 @@ app.run_server(mode='inline', port = 9008)
 
 ```
 
-As it now stands, the dashboard isn't exaclty very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span different widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing. For the remainder of this section, we will only show the changes we've made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.
+As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span different widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing. For the remainder of this section, we will only show the changes we've made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.
 
 The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1")` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same space around the texts `Dashboard title` and `Label 1`, while the font sizes provide different emphasis to the content:
 
-[![enter image description here][14]][14]
+[![enter image description here][15]][15]
 
-Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through the either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component
+Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through the either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
 
+[![enter image description here][16]][16]
+
+```python
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary")])], className = 'bg-secondary'),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning p-1 mt-2")])],className = 'bg-secondary')])
+
+app.run_server(mode='inline', port = 9008)
+
+```
 
 ## 12.3.6 How to handle layout challenges with `style`
 
+Again, notice how `className ="text-info` is set for `dcc.Markdown` and `className = "bg-warning` is set for `dbc.Label` with very different results for the layout. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. if you run `help(dcc.Markdown)` and `help(dbc.Label` you'll see that neither component has got a `width` attribute. And if you'd like to align your components in a more visually pleasing way, this is where the `style` attribute comes into play. With this, you can set the components widths to fill any percentage of the parent component, or to a set amount of pixels. For the latter you'll use `{'widht':'100px'}`, and for the former you can use either `{'widht':'100%}` or `{'widht':'100pc}`. Here's the same layout with `{'widt':'75%}` for both components:
+
+[![enter image description here][17]][17]
 
 
+```python
 
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary m-0",
+                                                           style = {'width':'75%'})])], className = 'bg-secondary '),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning",
+                                                        style = {'width':'75%'})])],className = 'bg-secondary')])
+
+app.run_server(mode='inline', port = 9008)
+
+```
 
 
 
@@ -709,7 +742,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][15]][15]
+[![enter image description here][18]][18]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -928,7 +961,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][16]][16]
+[![enter image description here][19]][19]
 
 
  
@@ -937,16 +970,19 @@ app.run_server(mode='external', port = 8032)
   [1]: https://i.stack.imgur.com/Vunbd.png
   [2]: https://i.stack.imgur.com/EvbEU.png
   [3]: https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/
-  [4]: https://i.stack.imgur.com/BFgvm.png
-  [5]: https://dashcheatsheet.pythonanywhere.com/
-  [6]: https://i.stack.imgur.com/iCkRA.png
-  [7]: https://i.stack.imgur.com/d9pqj.png
-  [8]: https://i.stack.imgur.com/vLWvz.png
-  [9]: https://i.stack.imgur.com/dfjKw.png
-  [10]: https://i.stack.imgur.com/muWaZ.png
-  [11]: https://mdbootstrap.com/docs/standard/utilities/spacing/
-  [12]: https://i.stack.imgur.com/PkwOL.png
-  [13]: https://i.stack.imgur.com/Uu0Ee.png
-  [14]: https://i.stack.imgur.com/UWulS.png
-  [15]: https://i.stack.imgur.com/NGfOi.png
-  [16]: https://i.stack.imgur.com/EJw6S.png
+  [4]: https://i.stack.imgur.com/pHvGO.png
+  [5]: https://i.stack.imgur.com/BFgvm.png
+  [6]: https://dashcheatsheet.pythonanywhere.com/
+  [7]: https://i.stack.imgur.com/iCkRA.png
+  [8]: https://i.stack.imgur.com/d9pqj.png
+  [9]: https://i.stack.imgur.com/vLWvz.png
+  [10]: https://i.stack.imgur.com/dfjKw.png
+  [11]: https://i.stack.imgur.com/muWaZ.png
+  [12]: https://mdbootstrap.com/docs/standard/utilities/spacing/
+  [13]: https://i.stack.imgur.com/PkwOL.png
+  [14]: https://i.stack.imgur.com/Uu0Ee.png
+  [15]: https://i.stack.imgur.com/UWulS.png
+  [16]: https://i.stack.imgur.com/RylgH.png
+  [17]: https://i.stack.imgur.com/jRrsW.png
+  [18]: https://i.stack.imgur.com/NGfOi.png
+  [19]: https://i.stack.imgur.com/EJw6S.png
