@@ -460,6 +460,11 @@ const thebe_selector_output = ".output, .cell_output"
      11.4.2 Store
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interval">
+     11.4.3 Interval
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -561,6 +566,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#store">
      11.4.2 Store
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interval">
+     11.4.3 Interval
     </a>
    </li>
   </ul>
@@ -1061,6 +1071,17 @@ When using this component, it is important to pay attention to the following:</p
 </pre></div>
 </div>
 <p><img alt="Store_Example" src="../_images/store.gif" /></p>
+</div>
+<div class="section" id="interval">
+<h3>11.4.3 Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Interval</span></code> enables automatic recurrent updates of the app, by triggering callbacks periodically.
+This component is usually used when the app is connected to an API to download data that is recurrently updated (e.g. stock market data). By adjusting props, it is possible to configure the following:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code> is a prop that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_intervals</span></code> can be configured to set a cap to the number of times the refresh happen</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed</p></li>
+</ul>
+<p>In the following example, we will keep refreshing the current time each 3 seconds.</p>
 </div>
 </div>
 <div class="section" id="navigation-components">
