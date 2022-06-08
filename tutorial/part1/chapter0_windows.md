@@ -1,6 +1,6 @@
 # Installation on Windows
 
-```{admonition} Editing TODO
+System requirements for Python and Git are minimal. Therefore, the minimal system requirements for setup will be based on the [requirements for Visual Studio Code](https://code.visualstudio.com/docs/supporting/requirements). 
 :class: error
 Minimum system and operating system requirements should be added here.
 ```
