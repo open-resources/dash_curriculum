@@ -462,7 +462,7 @@ if __name__ == '__main__':
 `Interval` enables automatic recurrent updates of the app, by triggering callbacks periodically.
 This component is usually used when the app is connected to an API to download data that is recurrently updated (e.g. stock market data). By adjusting props, it is possible to configure the following:
 - `interval` is a prop that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased
-- `max_intervals` can be configured to set a cap to the number of times the refresh happen
+- `max_intervals` can be configured to set a cap to the number of times the refresh happen. By default, this prop is set to -1, meaning that refreshes will never stop
 - `n_intervals` represent the counter, i.e. the number of times the interval has passed
 
 In the following example, we will keep refreshing the current time each 3 seconds.
