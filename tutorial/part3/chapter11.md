@@ -1,29 +1,28 @@
 # Chapter 11: Additional Components
 
 ## What you will learn
-In this chapter we will introduce several additional components that go beyond what we have seen so far, but that are necessary to further customise apps.
-
+In this chapter we will introduce several additional components that go beyond what we have seen so far, but that are necessary to further customise apps. In this chapter you'll learn:
 ```{admonition} Learning Intentions
 - How to look for additional components
 - Familiarize with some of the most common additional components
 ```
 
 ## 11.1 Introducing additional components
-Dash libraries include a lot of components that serves multiple purposes. It may be a bit overwhelming to navigate through all components, in search for the one that works for our needs. In this chapter we will provide some structure around the components you may include in your app.
+Dash libraries include a lot of components that serve multiple purposes. It may be a bit overwhelming to navigate through all components, in search for the one that meets our needs. In this chapter we will provide some structure around the components you may need to include in your app.
 
 We will broke down components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.
 
-All additional components that will be presented come from these very common libraries. By clicking on the links, you'll be able to access to each library documentation:
+All components below come from these very common libraries:
 - dcc : [Dash core components](https://dash.plotly.com/dash-core-components)
 - dbc : [Dash boostrap components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/)
 
-In the links above, it is possible to search for keywords and find the components we need. Once we've identified the components that we want to include in our app, [this cheatsheet](https://dashcheatsheet.pythonanywhere.com/) is another powerful tool that helps us understanding how components can be customised.
+In the above links to the library documentation, it is possible to search for keywords and find the components we need. Once we've identified the components that we want to include in our app, [this cheatsheet](https://dashcheatsheet.pythonanywhere.com/) is another powerful tool that helps us understanding how components can be customised.
 
 
 ## 11.2 Data Display Components
 
 ### 11.2.1 Upload
-The `Upload` component allows us to upload a file to the dashboard.  For this example we will upload a [CSV file](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) and plot the data.  Download [this](ch11_files/rotation_angle.csv) CSV file and run the follwing code to try it out:
+The `Upload` component allows us to upload a file to the dashboard. For this example we will upload a [CSV file](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) and plot the data. Download [this](ch11_files/rotation_angle.csv) CSV file and run the follwing code to try it out:
 
 ```{attention}
 Note that the `update_fig()` callback is design for a specific type of data.  Different data wrangling will be required based on the type of data you are importing.
@@ -182,7 +181,7 @@ if __name__ == '__main__':
 ![modal](ch11_files/img/modal.gif)
 
 ### 11.3.2 Alert
-`Alerts` are boxes that provide messages according to the user interaction with the app.
+`Alerts` are boxes that provide messages depending on the user interaction with the app.
 Via callbacks it is possible to change several props of this component (full list [here](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/)), such as: color, fading animation, duration of appearence.
 
 In the example below, we have created alerts depending on the GTP Per Capita of a user-selected country and year compared to the world's average:
@@ -277,9 +276,9 @@ if __name__ == '__main__':
 ## 11.4 Filtering & Input Components
 
 ### 11.4.1 DatePicker
-The ```DatePicker``` component allows the user of the app to select a date, that can then be used in our callbacks.
+The ```DatePicker``` component allows the user to select a single date or a date range, that can then be used in our callbacks.
 There are two types of date pickers, both part of the DCC library:
-- ```DatePickerSingle``` consists of one single date selection that the user can input. By clicking on the object a calendar will pop-up, allowing the user to pick a date
+- ```DatePickerSingle``` consists of one single date selection: by clicking on the object a calendar will pop-up, allowing the user to pick a date
 - ```DatePickerRange``` is similar to the previous component, but includes two date selections, which should be read as "start" and "end" dates.
 
 The two components have very similar properties - the complete list is available [here](https://dash.plotly.com/dash-core-components/datepickerrange); the main ones are:
@@ -288,12 +287,11 @@ The two components have very similar properties - the complete list is available
 - start_date : default start date, before the user makes any selection
 - end_date : default end date, before the user makes any selection
 
-Let's see an example of this component in action. In the following app a DatePickerRange is used as a filter for a line chart.
-Based on the user selection, a dataframe will be filtered and the chart updated.
-As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been selected.
+In the following app a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered and the chart updated.
+As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been configured.
 
 ```{note}
-In the following app, instead of using the gapminder dataset, we have used a dataset based on stock prices, as it includes a datetime field.
+In the following app, instead of using the gapminder dataset, we have used a dataset based on stock prices, as it includes a full date field.
 ```
 
 ```python
@@ -350,14 +348,15 @@ if __name__ == '__main__':
 ```
 ![DatePickerRange_Example](./ch11_files/img/datepicker.gif)
 
+
 ### 11.4.2 Store
-```Store``` component allows to use the browser memory in order to store app data.
+```Store``` component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:
 - this component can only store data in the following formats: json, list, dictionary data types. With the ```data``` prop, we can access to the content stored in the memory.
-- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory and they are cleared by three different events. ```memory```: in this case the memory will be cleared when we refresh the browser page; ```session```: in this case the memory will be cleared when we close the browser; ```local```: in this case the memory will be cleared when we remove the browser cookies.
-- this is an invisible component: although it won't affect app layout, the component must be part included in the ```app.layout``` in order to work properly.
+- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory and they are cleared by three different events. ```memory```: in this case the memory will be cleared when we refresh the browser page; ```session```: in this case the memory will be cleared when we close the browser; ```local```: in this case the memory will be cleared when we clean the browser cookies.
+- this is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
 
-In the following example, the dropdown selection is stored in memory. We've generated three different store components, one for each storage type. The three graphs will plot life expectancy for the countries that are in the corresponding memory.
+In the following example, a dropdown selection is stored in memory. We've generated three different store components, one for each storage type. This should clarify the difference among the three memory tupes. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.
 ```python
 # Import packages
 from dash import Dash, dcc, Input, Output, html
@@ -603,35 +602,7 @@ if __name__ == '__main__':
 ![offcanvas](ch11_files/img/offcanvas.gif)
 
 
-## 11.6 Additional Content
-In addition to all the components present in the libraries introduces above, it is possible to find additional components by exploring third party libraries.
-An example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
+## Summary
+In this chapter, we have gone through many additional components that can add many functionalities to our app. As a closing remark, there are many more existing components that can be found exploring the mentioned libraries as well as third party libraries (an example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
 
----
----
----
-## Previous Notes (To be removed)
-
-## Topics to cover
-- Components to unveil additional content
-- Components for filtering (e.g. date picker)
-- Components for navigation
-- Components for media content (carousel…)
-
-## Individual components we're thinking to add
-### DCC components
-- RangeSlider (required)
-- Datepicker (required)
-- Interval (required)
-- Store (required)
-- Upload
-### DBC components
-- Drop down
-- Modal
-- Offcanvas too?
-- Navbar
-- Tabs
-- Carousel
-
-### DMC components
-[Mantine](https://www.dash-mantine-components.com/)
+In the next part, we will focus on polishing our app, in terms of: style, performance and enhancing its structure via multiple pages.
