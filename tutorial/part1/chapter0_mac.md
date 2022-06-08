@@ -33,7 +33,7 @@ To install Git onto your computer, follow the instructions below:
 
 ## Installing Python
 
-Check which version of Python you have installed by typing ```python --version``` in the VS Code terminal.
+Check which version of Python you have installed by typing ```python --version``` in the VS Code terminal. **Python version 3.9 or above is highly encouraged**.
 
 If you see Python installed, skip to section named **"Install additional libraries"**. If you do not have Python installed, follow the installation instructions below first:
 - [Text based instruction](https://www.python.org/downloads/)
