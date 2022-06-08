@@ -603,6 +603,6 @@ if __name__ == '__main__':
 
 
 ## Summary
-In this chapter, we have gone through many additional components that can add many functionalities to our app. As a closing remark, there are many more existing components that can be found exploring the mentioned libraries as well as third party libraries (an example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
+In this chapter, we have gone through several components that can add functionalities to our app. As a closing remark, there are more existing components that can be found exploring the mentioned libraries as well as third party libraries (an example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
 
-In the next part, we will focus on polishing our app, in terms of: style, performance and enhancing its structure via multiple pages.
+This is the end of part 3. In the next part, we will focus on polishing our app: enhancing style, performance and the app structure with multiple pages.
