@@ -14,6 +14,10 @@ By now, you have everything together to get your first app up and running using 
 Let's kick off with a simple examplary app where for a selected country we want to display the life expectation over the years as a scatter plot. To better understand how a growing data set affects the app performance we duplicate the underlying data set by a value of our choice using a range slider. With the growth of the underlying data set also the data points in the scatter plot will be resized. Last, we use the `datetime` package to stop the time our app is loading. All in all, we receive the following app:
 #### [ADD GIF, THAT SHOWS THE APP IN ACTION SELECTING THREE DIFFERENT VALUES IN THE RANGE SLIDER]
 
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output
@@ -86,6 +90,8 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
+
+````
 
 When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse up to 120 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes in with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
 

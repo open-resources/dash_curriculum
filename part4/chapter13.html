@@ -621,6 +621,13 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Let’s kick off with a simple examplary app where for a selected country we want to display the life expectation over the years as a scatter plot. To better understand how a growing data set affects the app performance we duplicate the underlying data set by a value of our choice using a range slider. With the growth of the underlying data set also the data points in the scatter plot will be resized. Last, we use the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> package to stop the time our app is loading. All in all, we receive the following app:</p>
 <div class="section" id="add-gif-that-shows-the-app-in-action-selecting-three-different-values-in-the-range-slider">
 <h3>[ADD GIF, THAT SHOWS THE APP IN ACTION SELECTING THREE DIFFERENT VALUES IN THE RANGE SLIDER]<a class="headerlink" href="#add-gif-that-shows-the-app-in-action-selecting-three-different-values-in-the-range-slider" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -693,7 +700,8 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse up to 120 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes in with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let’s go!</p>
+</div>
+</details><p>When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse up to 120 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes in with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let’s go!</p>
 </div>
 </div>
 <div class="section" id="dash-developer-tools">
