@@ -2,7 +2,7 @@
 
 ## What you will learn
 
-By now, you have everything together to get your first app up and running using even advanced components, layouts and callbacks. As dashboards are designed for data analysis and visualisations at some point you might run into efficiency constraints when the amount of data you are working with gets growing. To circumvent any possible performance lacking this chapter will give you some insights on improving your app performance.
+By now, you have everything together to get your first app up and running using even advanced components, layouts and callbacks. As dashboards are designed for data analysis and visualisations at some point you might run into efficiency constraints when the amount of data you are working with gets growing. To circumvent any possible performance lacking this chapter will give you some insights on improving your app performance. You'll learn about the built-in Dash Developer Tools, how to plot massive amount of data with higher performing plotly graphs and how to use caching for improving the performance of your app. 
 
 ```{admonition} Learning Intentions
 - Dash Developer Tools
@@ -46,8 +46,6 @@ So far, we have used the `plotly.express` library to implement our graphs. This 
 
 - [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets): A webgl implementation of the scatter chart type.
 - [Pointcloud](https://plotly.com/python/reference/#pointcloud): A lightweight version of scattergl with limited customizability but even faster rendering.
-
-Another high performing way of exploring correlations of large data sets is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
 
 ### 13.3.1 ScatterGL
 
@@ -155,13 +153,11 @@ if __name__ == '__main__':
 ```
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
 
-### 13.3.2 Datashader
-
-### 13.3.3 Plotly Resampler
+### 13.3.2 Plotly Resampler
 
 Even though the ScatterGL outperformes the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the package `plotly_resampler` comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
 
-```{admonition} Learning Intentions
+```{admonition}
 See also the [documenatation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
 ```
 
@@ -302,6 +298,87 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 ```
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
+
+### 13.3.3 Datashader
+
+Another high performing way of exploring correlations of large data sets is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
+
+Compared to the two plots above, the datashader differentiates not only in speed but in the method of visualisation of data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation of your data set really fast. We stay with the introduced example above to introduce the datashader. Before use, make sure to install the datashader package.
+
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+import datashader as ds
+from datetime import datetime
+import numpy as np
+import pandas as pd
+import plotly.express as px
+
+# Setup data
+df = px.data.gapminder()[['country', 'year', 'lifeExp']]
+dropdown_list = df['country'].unique()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown')
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+markdown_scatter = dcc.Markdown(id='markdown-scatter')
+slider = dcc.Slider(id='our-slider', min=0, max=50000, marks=None, value=0)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col(dropdown, width=3), dbc.Col(markdown, width=9)]),
+        dbc.Row([dbc.Col(dcc.Graph(id='our-figure'))]),
+        dbc.Row([dbc.Col(markdown_scatter)]),
+        dbc.Row(dbc.Col(slider)),
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_markdown(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    title = 'Data points displayed: {:,}'.format(len(df_sub.index) * value_slider)
+    return title
+
+
+@app.callback(
+    Output(component_id='our-figure', component_property='figure'),
+    Output(component_id='markdown-scatter', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_graph(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
+    df_new['year'] = pd.to_numeric(df_new['year'])
+    df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
+    start_time = datetime.now()
+    cvs = ds.Canvas(plot_width=100, plot_height=100)
+    agg = cvs.points(df_new, 'year', 'lifeExp')
+    zero_mask = agg.values == 0
+    agg.values = np.log10(agg.values, where=np.logical_not(zero_mask))
+    agg.values[zero_mask] = np.nan
+    fig = px.imshow(agg, origin='lower', labels={'color': 'Log10(count)'})
+    end_time = datetime.now()
+    subtitle = 'Duration for scatter plot loading: {} s'.format(round((end_time - start_time).total_seconds(), 2))
+    return fig, subtitle
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT COUTNRIES FOR A HIGH SLIDER VALUE]
 
 ## 13.4 Caching
 
