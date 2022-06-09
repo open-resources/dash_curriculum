@@ -303,7 +303,13 @@ if __name__ == '__main__':
 
 Another high performing way of exploring correlations of large data sets is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
 
-Compared to the two plots above, the datashader differentiates not only in speed but in the method of visualisation of data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation of your data set really fast. We stay with the introduced example above to introduce the datashader. Before use, make sure to install the datashader package.
+Compared to the two methods above, the datashader differentiates not only in speed but in the way it visualises data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation especially any accumulations of your data set really fast. We stay with the introduced example above to introduce the datashader but change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before use, make sure to install the datashader package.
+
+```{attention}
+As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the pandas package for the input years and life expectation i.e., we will set
+df_new['year'] = pd.to_numeric(df_new['year'])
+df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
+```
 
 ```
 # Import packages
@@ -316,8 +322,8 @@ import pandas as pd
 import plotly.express as px
 
 # Setup data
-df = px.data.gapminder()[['country', 'year', 'lifeExp']]
-dropdown_list = df['country'].unique()
+df = px.data.gapminder()[['continent', 'year', 'lifeExp']]
+dropdown_list = df['continent'].unique()
 
 # Initialise the App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
@@ -346,8 +352,8 @@ app.layout = dbc.Container(
     Input(component_id='our-slider', component_property='value'),
 )
 def update_markdown(value_dropdown, value_slider):
-    df_sub = df[df['country'].isin([value_dropdown])]
-    title = 'Data points displayed: {:,}'.format(len(df_sub.index) * value_slider)
+    df_sub = df[df['continent'].isin([value_dropdown])]
+    title = 'Data points aggregated: {:,}'.format(len(df_sub.index) * value_slider)
     return title
 
 
@@ -358,7 +364,7 @@ def update_markdown(value_dropdown, value_slider):
     Input(component_id='our-slider', component_property='value'),
 )
 def update_graph(value_dropdown, value_slider):
-    df_sub = df[df['country'].isin([value_dropdown])]
+    df_sub = df[df['continent'].isin([value_dropdown])]
     df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
     df_new['year'] = pd.to_numeric(df_new['year'])
     df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
@@ -390,6 +396,8 @@ For an exemplary introduction to memoization and the implementation in Python al
 
 When working with callbacks, the easiest way implementing memoization is using the `flask_caching` module. See the [official documentation](https://dash.plotly.com/performance#memoization) for further reference.
 
+## Summary
+
 ## Other potential ideas if need be:
 
 https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197
@@ -397,5 +405,3 @@ https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197
 https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10
 
 https://github.com/ijl/orjson
-
-## Summary
