@@ -11,6 +11,84 @@ By now, you have everything together to get your first app up and running using 
 - Caching
 ```
 
+Let's kick off with a simple examplary app where for a selected country we want to display the life expectation over the years as a scatter plot. To better understand how a growing data set affects the app performance we duplicate the underlying data set by a value of our choice using a range slider. With the growth of the underlying data set also the data points in the scatter plot will be resized. Last, we use the `datetime` package to stop the time our app is loading. All in all, we receive the following app:
+#### [ADD GIF, THAT SHOWS THE APP IN ACTION SELECTING THREE DIFFERENT VALUES IN THE RANGE SLIDER]
+
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+from datetime import datetime
+import numpy as np
+import pandas as pd
+import plotly.express as px
+
+# Setup data
+df = px.data.gapminder()[['country', 'year', 'lifeExp']]
+dropdown_list = df['country'].unique()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown')
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+markdown_scatter = dcc.Markdown(id='markdown-scatter')
+slider = dcc.Slider(id='our-slider', min=0, max=8500, marks=None, value=0)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col(dropdown, width=3), dbc.Col(markdown, width=9)]),
+        dbc.Row([dbc.Col(dcc.Graph(id='our-figure'))]),
+        dbc.Row([dbc.Col(markdown_scatter)]),
+        dbc.Row(dbc.Col(slider)),
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_markdown(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    title = 'Data points displayed: {:,}'.format(len(df_sub.index) * value_slider)
+    return title
+
+
+@app.callback(
+    Output(component_id='our-figure', component_property='figure'),
+    Output(component_id='markdown-scatter', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_graph(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
+    start_time = datetime.now()
+    fig = px.scatter(
+        df_new,
+        x='year',
+        y='lifeExp',
+        title='PX scatter plot',
+        template='plotly_white',
+    )
+    fig.update_traces(marker=dict(size=5 + (value_slider / 10000) * 25))
+    end_time = datetime.now()
+    subtitle = 'Duration for scatter plot loading: {} s'.format(round((end_time - start_time).total_seconds(), 2))
+    return fig, subtitle
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse up to 120 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes in with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
+
 ## 13.1 Dash Developer Tools
 Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code. For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
 
@@ -303,12 +381,12 @@ if __name__ == '__main__':
 
 Another high performing way of exploring correlations of large data sets is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
 
-Compared to the two methods above, the datashader differentiates not only in speed but in the way it visualises data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation especially any accumulations of your data set really fast. We stay with the introduced example above to introduce the datashader but change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before use, make sure to install the datashader package.
+Compared to the two methods above, the datashader differentiates not only in speed but in the way it visualises data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation, especially any accumulations of your data set really fast. We stay with the bespoken example above to introduce the datashader but change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before use, make sure to install the datashader package.
 
 ```{attention}
 As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the pandas package for the input years and life expectation i.e., we will set
-df_new['year'] = pd.to_numeric(df_new['year'])
-df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
+- df_new['year'] = pd.to_numeric(df_new['year'])
+- df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
 ```
 
 ```
@@ -388,15 +466,107 @@ if __name__ == '__main__':
 
 ## 13.4 Caching
 
-Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way repeated function calls are made with the same parameters won't have to be calculated multiple times. One popular use case are recurvise functions.
+Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way repeated function calls are made with the same parameters won't have to be calculated multiple times. One popular use case may be recurvise functions. More general, whenever you process repititive but difficult or time-consuming calculations within your app you might want to use caching as it allows you to store calculations to speed up your app performance.
 
 ```{admonition} Memoization
 For an exemplary introduction to memoization and the implementation in Python also have a look at [Towards Data Science](https://towardsdatascience.com/memoization-in-python-57c0a738179a) or [Real Python](https://realpython.com/lru-cache-python/).
 ```
 
+Let's stick with the example that we have used throughout this chapter but adding a repititve, time consuming functionality. Defining our own function `counting_string` we assure that whenever the callback for the graph gets triggered we delay the app performance by as many seconds as the selected country's name size. Here is when caching comes into play. By storing the functions' values for the selected countries, they do not have to be recalculated the next time.
+
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+from datetime import datetime
+from functools import lru_cache
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import time
+
+# Setup data
+df = px.data.gapminder()[['country', 'year', 'lifeExp']]
+dropdown_list = df['country'].unique()
+
+
+@lru_cache(maxsize=len(dropdown_list))
+def counting_string(string):
+    time.sleep(len(string))
+    return string
+
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown')
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+markdown_scatter = dcc.Markdown(id='markdown-scatter')
+slider = dcc.Slider(id='our-slider', min=0, max=50000, marks=None, value=0)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col(dropdown, width=3), dbc.Col(markdown, width=9)]),
+        dbc.Row([dbc.Col(dcc.Graph(id='our-figure'))]),
+        dbc.Row([dbc.Col(markdown_scatter)]),
+        dbc.Row(dbc.Col(slider)),
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_markdown(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    title = 'Data points displayed: {:,}'.format(len(df_sub.index) * value_slider)
+    return title
+
+
+@app.callback(
+    Output(component_id='our-figure', component_property='figure'),
+    Output(component_id='markdown-scatter', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+)
+def update_graph(value_dropdown, value_slider):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
+    start_time = datetime.now()
+    country = counting_string(value_dropdown)
+    end_time = datetime.now()
+    time_country = round((end_time - start_time).total_seconds(), 0)
+    start_time = datetime.now()
+    fig = px.scatter(
+        df_new,
+        x='year',
+        y='lifeExp',
+        title='PX scatter plot',
+        template='plotly_white',
+    )
+    fig.update_traces(marker=dict(size=5 + (value_slider / 30000) * 25))
+    end_time = datetime.now()
+    subtitle = 'Duration for scatter plot loading: {} s. Duration to identify the country {}: {} s'.format(round((end_time - start_time).total_seconds(), 2), country, time_country)
+    return fig, subtitle
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
+```{admonition}
 When working with callbacks, the easiest way implementing memoization is using the `flask_caching` module. See the [official documentation](https://dash.plotly.com/performance#memoization) for further reference.
+```
 
 ## Summary
+
+This chapter gave an introduction on how to analyse large data sets with Dash as you will have to face performance issues at some point in time. The first functionality that will help you to understand the performance of your app are the built-in Dash Developer Tools. When it comes to implementing higher performance within your app you have learned about different ways of higher performing packages: ScatterGL, Plotly Resampler and the Datashader. Last, memorising difficult as well as repetitive calculations can be handled storing the results in the cache. Combining everything you have learned so far you will be able to build dash apps not just functional but performant.
 
 ## Other potential ideas if need be:
 
