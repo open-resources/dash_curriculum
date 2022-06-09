@@ -472,13 +472,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-potential-ideas-if-need-be">
-   Other potential ideas if need be:
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
+  <a class="reference internal nav-link" href="#other-potential-ideas-if-need-be">
+   Other potential ideas if need be:
   </a>
  </li>
 </ul>
@@ -572,13 +572,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-potential-ideas-if-need-be">
-   Other potential ideas if need be:
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#summary">
-   Summary
+  <a class="reference internal nav-link" href="#other-potential-ideas-if-need-be">
+   Other potential ideas if need be:
   </a>
  </li>
 </ul>
@@ -904,7 +904,13 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="datashader">
 <h3>13.3.3 Datashader<a class="headerlink" href="#datashader" title="Permalink to this headline">¶</a></h3>
 <p>Another high performing way of exploring correlations of large data sets is to use <a class="reference external" href="https://plotly.com/python/datashader/">datashader</a> in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.</p>
-<p>Compared to the two plots above, the datashader differentiates not only in speed but in the method of visualisation of data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation of your data set really fast. We stay with the introduced example above to introduce the datashader. Before use, make sure to install the datashader package.</p>
+<p>Compared to the two methods above, the datashader differentiates not only in speed but in the way it visualises data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation especially any accumulations of your data set really fast. We stay with the introduced example above to introduce the datashader but change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before use, make sure to install the datashader package.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the pandas package for the input years and life expectation i.e., we will set
+df_new[‘year’] = pd.to_numeric(df_new[‘year’])
+df_new[‘lifeExp’] = pd.to_numeric(df_new[‘lifeExp’])</p>
+</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -915,8 +921,8 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 
 <span class="c1"># Setup data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]]</span>
-<span class="n">dropdown_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()[[</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]]</span>
+<span class="n">dropdown_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 
 <span class="c1"># Initialise the App</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
@@ -945,8 +951,8 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
-    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Data points displayed: </span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">*</span> <span class="n">value_slider</span><span class="p">)</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Data points aggregated: </span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">*</span> <span class="n">value_slider</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">title</span>
 
 
@@ -957,7 +963,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
-    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
     <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
     <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
     <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">])</span>
@@ -992,14 +998,14 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>When working with callbacks, the easiest way implementing memoization is using the <code class="docutils literal notranslate"><span class="pre">flask_caching</span></code> module. See the <a class="reference external" href="https://dash.plotly.com/performance#memoization">official documentation</a> for further reference.</p>
 </div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="other-potential-ideas-if-need-be">
 <h2>Other potential ideas if need be:<a class="headerlink" href="#other-potential-ideas-if-need-be" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197">https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197</a></p>
 <p><a class="reference external" href="https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10">https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10</a></p>
 <p><a class="reference external" href="https://github.com/ijl/orjson">https://github.com/ijl/orjson</a></p>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
