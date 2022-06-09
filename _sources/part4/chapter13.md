@@ -11,6 +11,8 @@ By now, you have everything together to get your first app up and running using 
 - Caching
 ```
 
+## 13.1 Introduction
+
 Let's kick off with a simple examplary app where for a selected country we want to display the life expectation over the years as a scatter plot. To better understand how a growing data set affects the app performance we duplicate the underlying data set by a value of our choice using a range slider. With the growth of the underlying data set also the data points in the scatter plot will be resized. Last, we use the `datetime` package to stop the time our app is loading. All in all, we receive the following app:
 #### [ADD GIF, THAT SHOWS THE APP IN ACTION SELECTING THREE DIFFERENT VALUES IN THE RANGE SLIDER]
 
@@ -93,9 +95,9 @@ if __name__ == '__main__':
 
 ````
 
-When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse up to 120 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes in with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
+When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse about 100 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes in with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
 
-## 13.1 Dash Developer Tools
+## 13.2 Dash Developer Tools
 Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code. For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
 
 The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph.
@@ -119,19 +121,19 @@ This includes:
 - The dashed arrows (not visible in the screenshot) represent State.
 - The dropdown in the top right corner enables you to switch layouts
 
-## 13.2 (Pre)Processing data
+## 13.3 (Pre)Processing data
 Work in Progress:
 
 - Transfer the example of section ''Let go of dataframes in request/response'' from the article [https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b](https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b) to the gapminder data set? Does this enhance performance? Need to restructure the gapminder data set?
 - Using numpy for (numerical) calculations, examples on performance?
 
-## 13.3 Higher Performing Plotly graphs
+## 13.4 Higher Performing Plotly graphs
 So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Two WebGL alternatives are the following:
 
 - [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets): A webgl implementation of the scatter chart type.
 - [Pointcloud](https://plotly.com/python/reference/#pointcloud): A lightweight version of scattergl with limited customizability but even faster rendering.
 
-### 13.3.1 ScatterGL
+### 13.4.1 ScatterGL
 
 Let us have a closer look at the ScatterGL plot, which is a scatter plot. Against the scatter plots we have seen so far, the ScatterGL plot is a plotly `graph object`, in comparison to the plotly express scatter plot implemented in the previous chapters. The following App let's you compare the different durations for data loading.
 
@@ -237,7 +239,7 @@ if __name__ == '__main__':
 ```
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
 
-### 13.3.2 Plotly Resampler
+### 13.4.2 Plotly Resampler
 
 Even though the ScatterGL outperformes the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the package `plotly_resampler` comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
 
@@ -383,7 +385,7 @@ if __name__ == '__main__':
 ```
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
 
-### 13.3.3 Datashader
+### 13.4.3 Datashader
 
 Another high performing way of exploring correlations of large data sets is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
 
@@ -470,7 +472,7 @@ if __name__ == '__main__':
 ```
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT COUTNRIES FOR A HIGH SLIDER VALUE]
 
-## 13.4 Caching
+## 13.5 Caching
 
 Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way repeated function calls are made with the same parameters won't have to be calculated multiple times. One popular use case may be recurvise functions. More general, whenever you process repititive but difficult or time-consuming calculations within your app you might want to use caching as it allows you to store calculations to speed up your app performance.
 
