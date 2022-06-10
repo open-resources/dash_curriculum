@@ -6,7 +6,6 @@ By now, you have everything together to get your first app up and running using 
 
 ```{admonition} Learning Intentions
 - Dash Developer Tools
-- (Pre)Processing data
 - Higher Performing Plotly graphs
 - Caching
 ```
@@ -95,15 +94,19 @@ if __name__ == '__main__':
 
 ````
 
-When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse about 100 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes in with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
+When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse about 100 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
 
 ## 13.2 Dash Developer Tools
-Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code. For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
+Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.
 
-The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph.
+```{admonition}
+For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
+```
+
+The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph and looks as follows:
 #### [ADD SCREENSHOT, THAT SHOWS THE DASH DEV TOOLS]
 
-This includes:
+Let's go through the different items in more detail:
 
 - The rounded green boxes represent your callback functions.
     - The top number represents the number of times the function has been called.
@@ -121,21 +124,18 @@ This includes:
 - The dashed arrows (not visible in the screenshot) represent State.
 - The dropdown in the top right corner enables you to switch layouts
 
-## 13.3 (Pre)Processing data
-Work in Progress:
+Now, that you know how to check for the performance of your app, let us learn about different higher performing graphs and how to incorporate them into you app.
 
-- Transfer the example of section ''Let go of dataframes in request/response'' from the article [https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b](https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b) to the gapminder data set? Does this enhance performance? Need to restructure the gapminder data set?
-- Using numpy for (numerical) calculations, examples on performance?
+## 13.3 Higher Performing Plotly graphs
+So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for larger datasets as we have noticed in the first section. To overcome this limitation, in this section we explore the three most popular methods that will speed up your app when working with larger data sets.
 
-## 13.4 Higher Performing Plotly graphs
-So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for large datasets (like those with more than 15k points). To overcome this limitation, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Two WebGL alternatives are the following:
+`plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Two WebGL alternatives are the following:
 
 - [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets): A webgl implementation of the scatter chart type.
-- [Pointcloud](https://plotly.com/python/reference/#pointcloud): A lightweight version of scattergl with limited customizability but even faster rendering.
 
-### 13.4.1 ScatterGL
+### 13.3.1 ScatterGL
 
-Let us have a closer look at the ScatterGL plot, which is a scatter plot. Against the scatter plots we have seen so far, the ScatterGL plot is a plotly `graph object`, in comparison to the plotly express scatter plot implemented in the previous chapters. The following App let's you compare the different durations for data loading.
+First, let us have a look at the ScatterGL plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package. The following app let's you compare the different durations for data loading when using a ScatterGL plot.
 
 ```
 # Import packages
@@ -239,15 +239,15 @@ if __name__ == '__main__':
 ```
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
 
-### 13.4.2 Plotly Resampler
+### 13.3.2 Plotly Resampler
 
-Even though the ScatterGL outperformes the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the package `plotly_resampler` comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
+Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
 
 ```{admonition}
 See also the [documenatation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
 ```
 
-The following App let's you compare the different durations for data loading.
+The following app let's you compare the different durations for data loading when working with the plotly resampler.
 
 ```
 # Import packages
@@ -385,17 +385,19 @@ if __name__ == '__main__':
 ```
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
 
-### 13.4.3 Datashader
+### 13.3.3 Datashader
 
-Another high performing way of exploring correlations of large data sets is to use [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
+Another high performing way of exploring correlations of large data sets is to use the [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
 
-Compared to the two methods above, the datashader differentiates not only in speed but in the way it visualises data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation, especially any accumulations of your data set really fast. We stay with the bespoken example above to introduce the datashader but change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before use, make sure to install the datashader package.
+Compared to the two methods above, the datashader differentiates not only in speed but in the way it visualises data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation, especially any accumulations of your data set really fast. We stay with the bespoken example above to introduce the datashader but change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before use, make sure to install the `datashader` package.
 
 ```{attention}
-As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the pandas package for the input years and life expectation i.e., we will set
-- df_new['year'] = pd.to_numeric(df_new['year'])
-- df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
+As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the `pandas` package for the input years and life expectation i.e., we will set
+- ``df_new['year'] = pd.to_numeric(df_new['year'])``
+- ``df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])``
 ```
+
+Test the datashader in action with the following code:
 
 ```
 # Import packages
@@ -470,9 +472,9 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT COUTNRIES FOR A HIGH SLIDER VALUE]
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]
 
-## 13.5 Caching
+## 13.4 Caching
 
 Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way repeated function calls are made with the same parameters won't have to be calculated multiple times. One popular use case may be recurvise functions. More general, whenever you process repititive but difficult or time-consuming calculations within your app you might want to use caching as it allows you to store calculations to speed up your app performance.
 
@@ -480,7 +482,7 @@ Caching, also known as Memoization, is a method used in computer science to spee
 For an exemplary introduction to memoization and the implementation in Python also have a look at [Towards Data Science](https://towardsdatascience.com/memoization-in-python-57c0a738179a) or [Real Python](https://realpython.com/lru-cache-python/).
 ```
 
-Let's stick with the example that we have used throughout this chapter but adding a repititve, time consuming functionality. Defining our own function `counting_string` we assure that whenever the callback for the graph gets triggered we delay the app performance by as many seconds as the selected country's name size. Here is when caching comes into play. By storing the functions' values for the selected countries, they do not have to be recalculated the next time.
+Let's stick with the example that we have used throughout this chapter but adding a repititve, time consuming functionality. Defining our own function `counting_string` we assure that whenever the callback for the graph gets triggered we delay the app performance by as many seconds as the selected country's name size. Here is when caching comes into play. By storing the functions' values for the selected countries, they do not have to be recalculated the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.
 
 ```
 # Import packages
@@ -567,14 +569,11 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-
-```{admonition}
-When working with callbacks, the easiest way implementing memoization is using the `flask_caching` module. See the [official documentation](https://dash.plotly.com/performance#memoization) for further reference.
-```
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
 
 ## Summary
 
-This chapter gave an introduction on how to analyse large data sets with Dash as you will have to face performance issues at some point in time. The first functionality that will help you to understand the performance of your app are the built-in Dash Developer Tools. When it comes to implementing higher performance within your app you have learned about different ways of higher performing packages: ScatterGL, Plotly Resampler and the Datashader. Last, memorising difficult as well as repetitive calculations can be handled storing the results in the cache. Combining everything you have learned so far you will be able to build dash apps not just functional but performant.
+This chapter gave an introduction on how to analyse large data sets with Dash as you will have to face performance issues at some point in time. The first functionality that will help you to understand the performance of your app are the built-in Dash Developer Tools. When it comes to implementing higher performance within your app you have learned about different ways of higher performing graphs: ScatterGL, Plotly Resampler and the Datashader. Last, memorising difficult as well as repetitive calculations can be handled storing the results in the cache. Combining everything you have learned so far you will be able to build dash apps not just functional but performant.
 
 ## Other potential ideas if need be:
 
@@ -583,3 +582,9 @@ https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197
 https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10
 
 https://github.com/ijl/orjson
+
+## (Pre)Processing data
+Work in Progress:
+
+- Transfer the example of section ''Let go of dataframes in request/response'' from the article [https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b](https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b) to the gapminder data set? Does this enhance performance? Need to restructure the gapminder data set?
+- Using numpy for (numerical) calculations, examples on performance?
