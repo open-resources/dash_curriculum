@@ -240,7 +240,7 @@ if __name__ == '__main__':
 Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
 
 ```{admonition} Plotly Resampler
-See also the [documenatation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
+See also the [documentation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
 ```
 
 The following app let's you compare the different durations for data loading when working with the plotly resampler.
