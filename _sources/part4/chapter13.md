@@ -129,13 +129,9 @@ Now, that you know how to check for the performance of your app, let us learn ab
 ## 13.3 Higher Performing Plotly graphs
 So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for larger datasets as we have noticed in the first section. To overcome this limitation, in this section we explore the three most popular methods that will speed up your app when working with larger data sets.
 
-`plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. Two WebGL alternatives are the following:
-
-- [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets): A webgl implementation of the scatter chart type.
-
 ### 13.3.1 ScatterGL
 
-First, let us have a look at the ScatterGL plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package. The following app let's you compare the different durations for data loading when using a ScatterGL plot.
+First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package. The following app let's you compare the different durations for data loading when using a ScatterGL plot.
 
 ```
 # Import packages
