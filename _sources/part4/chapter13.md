@@ -12,7 +12,7 @@ By now, you have everything together to get your first app up and running using 
 
 ## 13.1 Introduction
 
-Let's kick off with a simple examplary app where for a selected country we want to display the life expectation over the years as a scatter plot. To better understand how a growing data set affects the app performance we duplicate the underlying data set by a value of our choice using a range slider. With the growth of the underlying data set also the data points in the scatter plot will be resized. Last, we use the `datetime` package to stop the time our app is loading. All in all, we receive the following app:
+Let's kick off with a simple app where for a selected country we want to display the life expectation over the years as a scatter plot. To better understand how a growing data set affects the app performance we duplicate the underlying data set by a value of our choice using a range slider. With the growth of the underlying data set also the data points in the scatter plot will be resized. Last, we use the `datetime` package to stop the time our app is loading. All in all, we receive the following app:
 #### [ADD GIF, THAT SHOWS THE APP IN ACTION SELECTING THREE DIFFERENT VALUES IN THE RANGE SLIDER]
 
 ````{dropdown} See the code
