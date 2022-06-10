@@ -733,6 +733,10 @@ See the code<div class="summary-down docutils">
 <div class="section" id="dash-developer-tools">
 <h2>13.2 Dash Developer Tools<a class="headerlink" href="#dash-developer-tools" title="Permalink to this headline">¶</a></h2>
 <p>Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive &amp; pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.</p>
+<div class="admonition-dash-dev-tools admonition">
+<p class="admonition-title">Dash Dev Tools</p>
+<p>For an overview over the other tools look at the <a class="reference external" href="https://dash.plotly.com/devtools">official documentation</a>.</p>
+</div>
 <p>The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph and looks as follows:</p>
 <div class="section" id="add-screenshot-that-shows-the-dash-dev-tools">
 <h3>[ADD SCREENSHOT, THAT SHOWS THE DASH DEV TOOLS]<a class="headerlink" href="#add-screenshot-that-shows-the-dash-dev-tools" title="Permalink to this headline">¶</a></h3>
@@ -876,6 +880,10 @@ See the code<div class="summary-down docutils">
 <div class="section" id="plotly-resampler">
 <h3>13.3.2 Plotly Resampler<a class="headerlink" href="#plotly-resampler" title="Permalink to this headline">¶</a></h3>
 <p>Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That’s where the <code class="docutils literal notranslate"><span class="pre">plotly_resampler</span></code> package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, …), callbacks are used to aggregate data and update the figure.</p>
+<div class="admonition-plotly-resampler admonition">
+<p class="admonition-title">Plotly Resampler</p>
+<p>See also the <a class="reference external" href="https://github.com/predict-idlab/plotly-resampler">documenatation on Github</a> for the plotly resampler package.</p>
+</div>
 <p>The following app let’s you compare the different durations for data loading when working with the plotly resampler.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>

@@ -99,7 +99,7 @@ When adjusting the range slider we obtain already huge performance differences. 
 ## 13.2 Dash Developer Tools
 Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.
 
-```{admonition}
+```{admonition} Dash Dev Tools
 For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
 ```
 
@@ -239,7 +239,7 @@ if __name__ == '__main__':
 
 Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
 
-```{admonition}
+```{admonition} Plotly Resampler
 See also the [documenatation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
 ```
 
