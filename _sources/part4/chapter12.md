@@ -308,7 +308,7 @@ With the previous basic principles in place, all you'll need to put together a w
 
 ## 12.4.1 A button and a card
 
-For a more comprehensive list of boostrap components, refer to [this source][18]. For now we'll just add a `dbc.Button` in a new `dbc.Col` component next to our already existing `dbc.Label`. In ddition, we'll include a `dbc.Card` in a `dbc.Col` component in a new `dbc.Row`.
+For a more comprehensive list of boostrap components, refer to [this source][18]. For now we'll just add a `dbc.Button` in a new `dbc.Col` component next to our already existing `dbc.Label`. In addition, we'll include a `dbc.Card` in a `dbc.Col` component in a new `dbc.Row`.
 
 [![enter image description here][19]][19]
 
@@ -340,18 +340,238 @@ app.run_server(mode='inline', port = 9008)
 ```
 
 ## 12.4.2 Justify row components
+In the snippet above, we'ved used `width = 4` for both the `label` and `button` component. By default, these components are placed at the start of the parent `row` component. To change this, you can include `justify = '<option>'` in the `row` component where your options are `start`, `center`, `end`, `around`, `between` and `evenly`. The image below shows the result for `justify = 'evenly'`. In additon we've included some margins and padding to make the title, label and button look a little nicer.
+
+[![enter image description here][20]][20]
 
 
+```python
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary p-2",
+                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
+                                                        style = {'width':'100%', 'height':'65%'},
+                                                       )], width = 4),
+                                     dbc.Col(dbc.Button('Click me', className = "m-2",
+                                                       ), width = 4),
+
+                                    ], className = "bg-secondary m-0",
+                                       justify = 'evenly'),
+                            
+                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
+                                                     className = "",)
+                                            , width = 12))
+                           ],
+                           className = 'mt-2')
+
+app.run_server(mode='inline', port = 9008)
+
+```
 
 ## 12.4.3 Increase card height with `style = {'height':'200px'}`
 
+Notice how we've cheated a bit by adding `'height':'65%'` for the `label` component style to make it align a bit better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
+
+[![enter image description here][21]][21]
+
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary p-2",
+                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
+                                                        style = {'width':'100%', 'height':'65%'},
+                                                       )], width = 4),
+                                     dbc.Col(dbc.Button('Click me', className = "m-2",
+                                                       ), width = 4),
+                                    ], className = "bg-secondary m-0",
+                                       justify = 'evenly'),
+
+                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
+                                                     className = " mt-2",
+                                                     style = {'height':'200px'})
+                                            , width = 12))
+                           ],
+                           className = 'bg-mt-2')
+
+app.run_server(mode='inline', port = 9008)
+
+
+```
+
 ## 12.4.4 `Rounded` edges
 
-## 12.4.5 Opacity
+If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner`, for example, can be `top`, `bottom`, `start` and `end`. But you can also go for `round` and `pill` which will turn the border of your card into an oval `circle` or `pill` shape.
 
-## 12.4.6 Gradient
+```warning{Override defaults}
+When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`
 
-## 12.4.7 `darker` `dark` and `lighter` `light`
+```
+
+In the snippet below, we've rounded off the bottom of the card only, and set the weight to `3`.
+
+[![enter image description here][22]][22]
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary p-2",
+                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
+                                                        style = {'width':'100%', 'height':'65%'},
+                                                       )], width = 4),
+                                     dbc.Col(dbc.Button('Click me', className = "m-2",
+                                                       ), width = 4),
+                                    ], className = "bg-secondary m-0",
+                                       justify = 'evenly'),
+
+                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
+                                                     className = " mt-2 rounded-0 rounded-bottom rounded-4",
+                                                     style = {'height':'200px'})
+                                            , width = 12))
+                           ],
+                           className = 'mt-1')
+
+app.run_server(mode='inline', port = 9008)
+
+
+```
+
+## 12.4.5 Borders
+
+So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let's drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with `border-{size}` where `size` can range from `1` to `5`. As with `rounded` you can set the position of the border with `border-{direction}` where `direction` can be `top`, `end`, `bottom` and `start`. In the snippet below we've added a thick grey border line below the title by adding `className = "border-top border-secondary border-3"` to the second `dbc.Row` component. We've also dropped the background colors for some of the components, and rather added a background color and some margin and padding to the `dbc.Container` itself with `className = 'bg-secondary mt-1 p-3'`
+
+[![enter image description here][23]][23]
+
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info p-2",
+                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
+                                                        style = {'width':'100%', 'height':'65%'},
+                                                       )], width = 4),
+                                     dbc.Col(dbc.Button('Click me', className = "m-2",
+                                                       ), width = 4),
+                                    ], className = "border-top border-white border-3 m-0",
+                                       justify = 'evenly'),
+
+                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
+                                                     className = " mt-2 rounded-0 rounded-bottom rounded-4",
+                                                     style = {'height':'200px'})
+                                            , width = 12))
+                           ],
+                           className = 'bg-secondary mt-1 p-3')
+
+app.run_server(mode='inline', port = 9008)
+
+
+```
+
+## 12.4.6 Opacity
+
+If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
+
+[![enter image description here][24]][24]
+
+
+## 12.4.7 Shadow
+
+You can add a bit of depth to your dashboard by adding a shadow to your components with `shadow-{size}` where `size` can be left out all together, or set to `none`, `sm` or `large`, where the last two stand for `small` and `large`. Below we've included `shadow-lg` for the `dbc.Container` component.
+
+[![enter image description here][25]][25]
+
+```python
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info p-2",
+                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info m-0"),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
+                                                        style = {'width':'100%', 'height':'65%'},
+                                                       )], width = 4),
+                                     dbc.Col(dbc.Button('Click me', className = "m-2",
+                                                       ), width = 4),
+                                    ], className = "border-top border-white border-3 m-0",
+                                       justify = 'evenly'),
+
+                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
+                                                     className = " mt-2 rounded-0 rounded-bottom rounded-4",
+                                                     style = {'height':'200px'})
+                                            , width = 12))
+                           ],
+                           className = 'bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3')
+
+app.run_server(mode='inline', port = 9008)
+
+```
+
+## 12.4.8 Overflow
+
+So far we haven't filled any of the components with too much information. If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default setting of `dbc.Label` is to let the content flow over the component.
+
+[![enter image description here][26]][26]
+
+
+
+To change this behavior, include `overflow-{option}` in `className` where `option` can be. Below is the same setup with `overflow-auto` included. You can see that a slider with arrows has been added to the label component.
+
+[![enter image description here][27]][27]
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info p-2",
+                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info m-0"),
+                            dbc.Row([dbc.Col([dbc.Label('Very important information that is too long for the component',
+                                                        className = "bg-warning mt-2 p-2 overflow-auto",
+                                                        style = {'width':'100%', 'height':'45px'},
+                                                       )], width = 4),
+                                     dbc.Col(dbc.Button('Click me', className = "m-2",
+                                                       ), width = 4),
+                                    ], className = "border-top border-white border-3 m-0",
+                                       justify = 'evenly'),
+
+                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
+                                                     className = " mt-2 rounded-0 rounded-bottom rounded-4",
+                                                     style = {'height':'200px'})
+                                            , width = 12))
+                           ],
+                           className = 'bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3 bg-gradient')
+
+app.run_server(mode='inline', port = 9008)
+
+```
+
+
+
+
+
+
 
 
 
@@ -776,7 +996,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][20]][20]
+[![enter image description here][28]][28]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -985,7 +1205,7 @@ def crd1_css(cName_element):
 @app.callback(Output("ipt_crd_2", "value"),
               [Input("ddn_crd_2", "value"),]
              )
-def crd2_layout(cName_element):
+def crd2_layout(cName_element)
     return cName_element
 @app.callback(Output("crd_2", "className"),
               [Input("ipt_crd_2", "value"),]
@@ -995,7 +1215,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][21]][21]
+[![enter image description here][29]][29]
 
 
  
@@ -1020,5 +1240,13 @@ app.run_server(mode='external', port = 8032)
   [17]: https://i.stack.imgur.com/jRrsW.png
   [18]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/
   [19]: https://i.stack.imgur.com/kTRZ4.png
-  [20]: https://i.stack.imgur.com/NGfOi.png
-  [21]: https://i.stack.imgur.com/EJw6S.png
+  [20]: https://i.stack.imgur.com/UrTWh.png
+  [21]: https://i.stack.imgur.com/B77Zv.png
+  [22]: https://i.stack.imgur.com/xFYRI.png
+  [23]: https://i.stack.imgur.com/PM6BH.png
+  [24]: https://i.stack.imgur.com/UpEZe.png
+  [25]: https://i.stack.imgur.com/cZQps.png
+  [26]: https://i.stack.imgur.com/aph13.png
+  [27]: https://i.stack.imgur.com/ISWZK.png
+  [28]: https://i.stack.imgur.com/NGfOi.png
+  [29]: https://i.stack.imgur.com/EJw6S.png

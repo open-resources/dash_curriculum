@@ -509,39 +509,23 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#borders">
+     12.4.5 Borders
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#opacity">
-     12.4.5 Opacity
+     12.4.6 Opacity
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gradient">
-     12.4.6 Gradient
+    <a class="reference internal nav-link" href="#shadow">
+     12.4.7 Shadow
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#darker-dark-and-lighter-light">
-     12.4.7
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       darker
-      </span>
-     </code>
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dark
-      </span>
-     </code>
-     and
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       lighter
-      </span>
-     </code>
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       light
-      </span>
-     </code>
+    <a class="reference internal nav-link" href="#overflow">
+     12.4.8 Overflow
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -743,39 +727,23 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#borders">
+     12.4.5 Borders
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#opacity">
-     12.4.5 Opacity
+     12.4.6 Opacity
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#gradient">
-     12.4.6 Gradient
+    <a class="reference internal nav-link" href="#shadow">
+     12.4.7 Shadow
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#darker-dark-and-lighter-light">
-     12.4.7
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       darker
-      </span>
-     </code>
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       dark
-      </span>
-     </code>
-     and
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       lighter
-      </span>
-     </code>
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       light
-      </span>
-     </code>
+    <a class="reference internal nav-link" href="#overflow">
+     12.4.8 Overflow
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
@@ -1121,7 +1089,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="a-button-and-a-card">
 <h2>12.4.1 A button and a card<a class="headerlink" href="#a-button-and-a-card" title="Permalink to this headline">¶</a></h2>
-<p>For a more comprehensive list of boostrap components, refer to <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">this source</a>. For now we’ll just add a <code class="docutils literal notranslate"><span class="pre">dbc.Button</span></code> in a new <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component next to our already existing <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code>. In ddition, we’ll include a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code> in a <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component in a new <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code>.</p>
+<p>For a more comprehensive list of boostrap components, refer to <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">this source</a>. For now we’ll just add a <code class="docutils literal notranslate"><span class="pre">dbc.Button</span></code> in a new <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component next to our already existing <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code>. In addition, we’ll include a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code> in a <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component in a new <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code>.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/kTRZ4.png"><img alt="enter image description here" src="https://i.stack.imgur.com/kTRZ4.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
@@ -1152,21 +1120,209 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="justify-row-components">
 <h2>12.4.2 Justify row components<a class="headerlink" href="#justify-row-components" title="Permalink to this headline">¶</a></h2>
+<p>In the snippet above, we’ved used <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">=</span> <span class="pre">4</span></code> for both the <code class="docutils literal notranslate"><span class="pre">label</span></code> and <code class="docutils literal notranslate"><span class="pre">button</span></code> component. By default, these components are placed at the start of the parent <code class="docutils literal notranslate"><span class="pre">row</span></code> component. To change this, you can include <code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'&lt;option&gt;'</span></code> in the <code class="docutils literal notranslate"><span class="pre">row</span></code> component where your options are <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">around</span></code>, <code class="docutils literal notranslate"><span class="pre">between</span></code> and <code class="docutils literal notranslate"><span class="pre">evenly</span></code>. The image below shows the result for <code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'evenly'</span></code>. In additon we’ve included some margins and padding to make the title, label and button look a little nicer.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/UrTWh.png"><img alt="enter image description here" src="https://i.stack.imgur.com/UrTWh.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary p-2&quot;</span><span class="p">,</span>
+                                                          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">})],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;mt-2&quot;</span><span class="p">)],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;text-info bg-secondary m-0&quot;</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Label 1&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-warning mt-2 p-2&quot;</span><span class="p">,</span>
+                                                        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;65%&#39;</span><span class="p">},</span>
+                                                       <span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Click me&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                                                       <span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+
+                                    <span class="p">],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-secondary m-0&quot;</span><span class="p">,</span>
+                                       <span class="n">justify</span> <span class="o">=</span> <span class="s1">&#39;evenly&#39;</span><span class="p">),</span>
+                            
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;Put your card content here&#39;</span><span class="p">,</span>
+                                                     <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,)</span>
+                                            <span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">))</span>
+                           <span class="p">],</span>
+                           <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;mt-2&#39;</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9008</span><span class="p">)</span>
+
+</pre></div>
+</div>
 </div>
 <div class="section" id="increase-card-height-with-style-height-200px">
 <h2>12.4.3 Increase card height with <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'height':'200px'}</span></code><a class="headerlink" href="#increase-card-height-with-style-height-200px" title="Permalink to this headline">¶</a></h2>
+<p>Notice how we’ve cheated a bit by adding <code class="docutils literal notranslate"><span class="pre">'height':'65%'</span></code> for the <code class="docutils literal notranslate"><span class="pre">label</span></code> component style to make it align a bit better to the <code class="docutils literal notranslate"><span class="pre">button</span></code>. Before you’re ready to fill your <code class="docutils literal notranslate"><span class="pre">card</span></code> with more components, it’s often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we’ve included <code class="docutils literal notranslate"><span class="pre">'height':'200px'</span></code> for the <code class="docutils literal notranslate"><span class="pre">label</span></code> style attribute.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/B77Zv.png"><img alt="enter image description here" src="https://i.stack.imgur.com/B77Zv.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary p-2&quot;</span><span class="p">,</span>
+                                                          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">})],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;mt-2&quot;</span><span class="p">)],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;text-info bg-secondary m-0&quot;</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Label 1&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-warning mt-2 p-2&quot;</span><span class="p">,</span>
+                                                        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;65%&#39;</span><span class="p">},</span>
+                                                       <span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Click me&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                                                       <span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                    <span class="p">],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-secondary m-0&quot;</span><span class="p">,</span>
+                                       <span class="n">justify</span> <span class="o">=</span> <span class="s1">&#39;evenly&#39;</span><span class="p">),</span>
+
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;Put your card content here&#39;</span><span class="p">,</span>
+                                                     <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot; mt-2&quot;</span><span class="p">,</span>
+                                                     <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;200px&#39;</span><span class="p">})</span>
+                                            <span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">))</span>
+                           <span class="p">],</span>
+                           <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-mt-2&#39;</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9008</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
 </div>
 <div class="section" id="rounded-edges">
 <h2>12.4.4 <code class="docutils literal notranslate"><span class="pre">Rounded</span></code> edges<a class="headerlink" href="#rounded-edges" title="Permalink to this headline">¶</a></h2>
+<p>If you look closely at the edges of the <code class="docutils literal notranslate"><span class="pre">card</span></code>, you’ll see that they are rounded by default. In order to apply rounded edges to other components, just include <code class="docutils literal notranslate"><span class="pre">&quot;rounded&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. You can adjust the “weight” of the rounding by setting <code class="docutils literal notranslate"><span class="pre">rounded-{size}</span></code> where size can range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">3</span></code>. You can also specify which corners to round through <code class="docutils literal notranslate"><span class="pre">rounded-{corner}</span></code>, where <code class="docutils literal notranslate"><span class="pre">corner</span></code>, for example, can be <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code>. But you can also go for <code class="docutils literal notranslate"><span class="pre">round</span></code> and <code class="docutils literal notranslate"><span class="pre">pill</span></code> which will turn the border of your card into an oval <code class="docutils literal notranslate"><span class="pre">circle</span></code> or <code class="docutils literal notranslate"><span class="pre">pill</span></code> shape.</p>
+<div class="highlight-warning{Override notranslate"><div class="highlight"><pre><span></span>When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`
+
+</pre></div>
+</div>
+<p>In the snippet below, we’ve rounded off the bottom of the card only, and set the weight to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/xFYRI.png"><img alt="enter image description here" src="https://i.stack.imgur.com/xFYRI.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary p-2&quot;</span><span class="p">,</span>
+                                                          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">})],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;mt-2&quot;</span><span class="p">)],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;text-info bg-secondary m-0&quot;</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Label 1&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-warning mt-2 p-2&quot;</span><span class="p">,</span>
+                                                        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;65%&#39;</span><span class="p">},</span>
+                                                       <span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Click me&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                                                       <span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                    <span class="p">],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-secondary m-0&quot;</span><span class="p">,</span>
+                                       <span class="n">justify</span> <span class="o">=</span> <span class="s1">&#39;evenly&#39;</span><span class="p">),</span>
+
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;Put your card content here&#39;</span><span class="p">,</span>
+                                                     <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-4&quot;</span><span class="p">,</span>
+                                                     <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;200px&#39;</span><span class="p">})</span>
+                                            <span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">))</span>
+                           <span class="p">],</span>
+                           <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;mt-1&#39;</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9008</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="borders">
+<h2>12.4.5 Borders<a class="headerlink" href="#borders" title="Permalink to this headline">¶</a></h2>
+<p>So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let’s drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with <code class="docutils literal notranslate"><span class="pre">border-{size}</span></code> where <code class="docutils literal notranslate"><span class="pre">size</span></code> can range from <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code>. As with <code class="docutils literal notranslate"><span class="pre">rounded</span></code> you can set the position of the border with <code class="docutils literal notranslate"><span class="pre">border-{direction}</span></code> where <code class="docutils literal notranslate"><span class="pre">direction</span></code> can be <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code> and <code class="docutils literal notranslate"><span class="pre">start</span></code>. In the snippet below we’ve added a thick grey border line below the title by adding <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;border-top</span> <span class="pre">border-secondary</span> <span class="pre">border-3&quot;</span></code> to the second <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component. We’ve also dropped the background colors for some of the components, and rather added a background color and some margin and padding to the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> itself with <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">'bg-secondary</span> <span class="pre">mt-1</span> <span class="pre">p-3'</span></code></p>
+<p><a class="reference external" href="https://i.stack.imgur.com/PM6BH.png"><img alt="enter image description here" src="https://i.stack.imgur.com/PM6BH.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info p-2&quot;</span><span class="p">,</span>
+                                                          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">})],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;mt-2&quot;</span><span class="p">)],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;text-info bg-secondary m-0&quot;</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Label 1&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-warning mt-2 p-2&quot;</span><span class="p">,</span>
+                                                        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;65%&#39;</span><span class="p">},</span>
+                                                       <span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Click me&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                                                       <span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                    <span class="p">],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;border-top border-white border-3 m-0&quot;</span><span class="p">,</span>
+                                       <span class="n">justify</span> <span class="o">=</span> <span class="s1">&#39;evenly&#39;</span><span class="p">),</span>
+
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;Put your card content here&#39;</span><span class="p">,</span>
+                                                     <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-4&quot;</span><span class="p">,</span>
+                                                     <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;200px&#39;</span><span class="p">})</span>
+                                            <span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">))</span>
+                           <span class="p">],</span>
+                           <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary mt-1 p-3&#39;</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9008</span><span class="p">)</span>
+
+
+</pre></div>
+</div>
 </div>
 <div class="section" id="opacity">
-<h2>12.4.5 Opacity<a class="headerlink" href="#opacity" title="Permalink to this headline">¶</a></h2>
+<h2>12.4.6 Opacity<a class="headerlink" href="#opacity" title="Permalink to this headline">¶</a></h2>
+<p>If you find that <code class="docutils literal notranslate"><span class="pre">bg-secondary</span></code> for the <code class="docutils literal notranslate"><span class="pre">db.Container</span></code> comes off as a bit too dominating, you can adjust the opacity of the background color with <code class="docutils literal notranslate"><span class="pre">opacity-{number}</span></code> where <code class="docutils literal notranslate"><span class="pre">number</span></code> can be <code class="docutils literal notranslate"><span class="pre">25</span></code>, <code class="docutils literal notranslate"><span class="pre">50</span></code> or <code class="docutils literal notranslate"><span class="pre">75</span></code>. Below we’ve used <code class="docutils literal notranslate"><span class="pre">bg-opacity-75</span></code> and also rounded off the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> corners with <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">'bg-secondary</span> <span class="pre">bg-opacity-75</span> <span class="pre">rounded-3</span> <span class="pre">mt-1</span> <span class="pre">p-3'</span></code>.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/UpEZe.png"><img alt="enter image description here" src="https://i.stack.imgur.com/UpEZe.png" /></a></p>
 </div>
-<div class="section" id="gradient">
-<h2>12.4.6 Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="shadow">
+<h2>12.4.7 Shadow<a class="headerlink" href="#shadow" title="Permalink to this headline">¶</a></h2>
+<p>You can add a bit of depth to your dashboard by adding a shadow to your components with <code class="docutils literal notranslate"><span class="pre">shadow-{size}</span></code> where <code class="docutils literal notranslate"><span class="pre">size</span></code> can be left out all together, or set to <code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">sm</span></code> or <code class="docutils literal notranslate"><span class="pre">large</span></code>, where the last two stand for <code class="docutils literal notranslate"><span class="pre">small</span></code> and <code class="docutils literal notranslate"><span class="pre">large</span></code>. Below we’ve included <code class="docutils literal notranslate"><span class="pre">shadow-lg</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> component.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/cZQps.png"><img alt="enter image description here" src="https://i.stack.imgur.com/cZQps.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info p-2&quot;</span><span class="p">,</span>
+                                                          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">})],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;mt-2&quot;</span><span class="p">)],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;text-info m-0&quot;</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Label 1&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-warning mt-2 p-2&quot;</span><span class="p">,</span>
+                                                        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;65%&#39;</span><span class="p">},</span>
+                                                       <span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Click me&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                                                       <span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                    <span class="p">],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;border-top border-white border-3 m-0&quot;</span><span class="p">,</span>
+                                       <span class="n">justify</span> <span class="o">=</span> <span class="s1">&#39;evenly&#39;</span><span class="p">),</span>
+
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;Put your card content here&#39;</span><span class="p">,</span>
+                                                     <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-4&quot;</span><span class="p">,</span>
+                                                     <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;200px&#39;</span><span class="p">})</span>
+                                            <span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">))</span>
+                           <span class="p">],</span>
+                           <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3&#39;</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9008</span><span class="p">)</span>
+
+</pre></div>
 </div>
-<div class="section" id="darker-dark-and-lighter-light">
-<h2>12.4.7 <code class="docutils literal notranslate"><span class="pre">darker</span></code> <code class="docutils literal notranslate"><span class="pre">dark</span></code> and <code class="docutils literal notranslate"><span class="pre">lighter</span></code> <code class="docutils literal notranslate"><span class="pre">light</span></code><a class="headerlink" href="#darker-dark-and-lighter-light" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="overflow">
+<h2>12.4.8 Overflow<a class="headerlink" href="#overflow" title="Permalink to this headline">¶</a></h2>
+<p>So far we haven’t filled any of the components with too much information. If we set the label to a fixed height of <code class="docutils literal notranslate"><span class="pre">45px</span></code> and add a text that’s a bit too long, you’ll see that the default setting of <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> is to let the content flow over the component.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/aph13.png"><img alt="enter image description here" src="https://i.stack.imgur.com/aph13.png" /></a></p>
+<p>To change this behavior, include <code class="docutils literal notranslate"><span class="pre">overflow-{option}</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code> where <code class="docutils literal notranslate"><span class="pre">option</span></code> can be. Below is the same setup with <code class="docutils literal notranslate"><span class="pre">overflow-auto</span></code> included. You can see that a slider with arrows has been added to the label component.</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/ISWZK.png"><img alt="enter image description here" src="https://i.stack.imgur.com/ISWZK.png" /></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info p-2&quot;</span><span class="p">,</span>
+                                                          <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">})],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;mt-2&quot;</span><span class="p">)],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;text-info m-0&quot;</span><span class="p">),</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s1">&#39;Very important information that is too long for the component&#39;</span><span class="p">,</span>
+                                                        <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;bg-warning mt-2 p-2 overflow-auto&quot;</span><span class="p">,</span>
+                                                        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="s1">&#39;100%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;45px&#39;</span><span class="p">},</span>
+                                                       <span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s1">&#39;Click me&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                                                       <span class="p">),</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                                    <span class="p">],</span> <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot;border-top border-white border-3 m-0&quot;</span><span class="p">,</span>
+                                       <span class="n">justify</span> <span class="o">=</span> <span class="s1">&#39;evenly&#39;</span><span class="p">),</span>
+
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;Put your card content here&#39;</span><span class="p">,</span>
+                                                     <span class="n">className</span> <span class="o">=</span> <span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-4&quot;</span><span class="p">,</span>
+                                                     <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;height&#39;</span><span class="p">:</span><span class="s1">&#39;200px&#39;</span><span class="p">})</span>
+                                            <span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">))</span>
+                           <span class="p">],</span>
+                           <span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3 bg-gradient&#39;</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9008</span><span class="p">)</span>
+
+</pre></div>
+</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="unclear">
@@ -1796,7 +1952,7 @@ Without a trailing <code class="docutils literal notranslate"><span class="pre">
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
               <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
              <span class="p">)</span>
-<span class="k">def</span> <span class="nf">crd2_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">crd2_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cName_element</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
               <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_crd_2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
