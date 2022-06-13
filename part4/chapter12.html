@@ -956,10 +956,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/vLWvz.png"><img alt="enter image description here" src="https://i.stack.imgur.com/vLWvz.png" /></a></p>
 <p>Above we’ve only changed the background color, and let the text color remain <code class="docutils literal notranslate"><span class="pre">text-body</span></code>. The following sections will demonstrate how to edit multiple features at the same time.</p>
-<div class="highlight-warning notranslate"><div class="highlight"><pre><span></span>
-Misspellings in `className` will *not* raise any errors. Any additions to `className` that can not be interpreted are simply ignored.
-
-</pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Misspellings in <code class="docutils literal notranslate"><span class="pre">className</span></code> will <em>not</em> raise any errors. Any additions to <code class="docutils literal notranslate"><span class="pre">className</span></code> that can not be interpreted are simply ignored.</p>
 </div>
 </div>
 <div class="section" id="how-to-change-font-and-background-color">
@@ -1190,9 +1189,9 @@ Misspellings in `className` will *not* raise any errors. Any additions to `class
 <div class="section" id="rounded-edges">
 <h2>12.4.4 <code class="docutils literal notranslate"><span class="pre">Rounded</span></code> edges<a class="headerlink" href="#rounded-edges" title="Permalink to this headline">¶</a></h2>
 <p>If you look closely at the edges of the <code class="docutils literal notranslate"><span class="pre">card</span></code>, you’ll see that they are rounded by default. In order to apply rounded edges to other components, just include <code class="docutils literal notranslate"><span class="pre">&quot;rounded&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. You can adjust the “weight” of the rounding by setting <code class="docutils literal notranslate"><span class="pre">rounded-{size}</span></code> where size can range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">3</span></code>. You can also specify which corners to round through <code class="docutils literal notranslate"><span class="pre">rounded-{corner}</span></code>, where <code class="docutils literal notranslate"><span class="pre">corner</span></code>, for example, can be <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">end</span></code>. But you can also go for <code class="docutils literal notranslate"><span class="pre">round</span></code> and <code class="docutils literal notranslate"><span class="pre">pill</span></code> which will turn the border of your card into an oval <code class="docutils literal notranslate"><span class="pre">circle</span></code> or <code class="docutils literal notranslate"><span class="pre">pill</span></code> shape.</p>
-<div class="highlight-warning{Override notranslate"><div class="highlight"><pre><span></span>When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`
-
-</pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When components come with rounded edges by default, you will sometimg have to include <code class="docutils literal notranslate"><span class="pre">rouned-0</span></code> before including <code class="docutils literal notranslate"><span class="pre">rounded-top</span></code> to round off the top <em>only</em>. This is the case with <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code></p>
 </div>
 <p>In the snippet below, we’ve rounded off the bottom of the card only, and set the weight to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/xFYRI.png"><img alt="enter image description here" src="https://i.stack.imgur.com/xFYRI.png" /></a></p>
