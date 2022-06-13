@@ -152,7 +152,7 @@ app.run_server(mode='inline', port = 9000)
 
 Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
 
-```warning
+```{warning}
 
 Misspellings in `className` will *not* raise any errors. Any additions to `className` that can not be interpreted are simply ignored.
 
@@ -418,7 +418,7 @@ app.run_server(mode='inline', port = 9008)
 
 If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner`, for example, can be `top`, `bottom`, `start` and `end`. But you can also go for `round` and `pill` which will turn the border of your card into an oval `circle` or `pill` shape.
 
-```warning{Override defaults}
+```{warning}
 When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`
 
 ```
