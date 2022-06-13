@@ -152,6 +152,12 @@ app.run_server(mode='inline', port = 9000)
 
 Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
 
+```warning
+
+Misspellings in `className` will *not* raise any errors. Any additions to `className` that can not be interpreted are simply ignored.
+
+```
+
 ## 12.3.3 How to change font *and* background color
 
 So far, the whole `CSS` thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` in `className`:
