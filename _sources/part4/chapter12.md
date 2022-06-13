@@ -150,7 +150,7 @@ app.run_server(mode='inline', port = 9000)
 
 [![enter image description here][9]][9]
 
-Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to do edit multiple features at the same time.
+Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
 
 ## 12.3.3 How to change font *and* background color
 
@@ -263,7 +263,7 @@ The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1")
 
 [![enter image description here][15]][15]
 
-Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through the either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
+Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
 
 [![enter image description here][16]][16]
 
@@ -282,7 +282,7 @@ app.run_server(mode='inline', port = 9008)
 
 ## 12.3.6 How to handle layout challenges with `style`
 
-Again, notice how `className ="text-info` is set for `dcc.Markdown` and `className = "bg-warning` is set for `dbc.Label` with very different results for the layout. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. if you run `help(dcc.Markdown)` and `help(dbc.Label` you'll see that neither component has got a `width` attribute. And if you'd like to align your components in a more visually pleasing way, this is where the `style` attribute comes into play. With this, you can set the components widths to fill any percentage of the parent component, or to a set amount of pixels. For the latter you'll use `{'widht':'100px'}`, and for the former you can use either `{'widht':'100%}` or `{'widht':'100pc}`. Here's the same layout with `{'widt':'75%}` for both components:
+Again, notice how `className ="text-info` is set for `dcc.Markdown` and `className = "bg-warning` is set for `dbc.Label` with very different results for the layout. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. If you run `help(dcc.Markdown)` and `help(dbc.Label` you'll see that neither component has got a `width` attribute. And if you'd like to align your components in a more visually pleasing way, this is where the `style` attribute comes into play. With this, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `{'width':'100px'}`, and for the former you can use either `{'width':'100%}` or `{'width':'100pc}`. Here's the same layout with `{'widt':'75%}` for both components:
 
 [![enter image description here][17]][17]
 
@@ -302,22 +302,56 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
 app.run_server(mode='inline', port = 9008)
 
 ```
+## 12.4 
+
+With the previous basic principles in place, all you'll need to put together a working and nice looking app is to increase the number of components in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous example and approach something that looks more like a complete Dashboard by adding a `dbc.Button` component and a `dbc.Card` to nicely contain even more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
+
+## 12.4.1 A button and a card
+
+For a more comprehensive list of boostrap components, refer to [this source][18]. For now we'll just add a `dbc.Button` in a new `dbc.Col` component next to our already existing `dbc.Label`. In ddition, we'll include a `dbc.Card` in a `dbc.Col` component in a new `dbc.Row`.
+
+[![enter image description here][19]][19]
+
+```python
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary",
+                                                          style = {'width':'100%'})])], className = "text-info bg-secondary m-0"),
+                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning m-0",
+                                                        style = {'width':'100%'},
+                                                       )], width = 4),
+                                     dbc.Col(dbc.Button('Click me', className = "",
+                                                       ), width = 4),
+
+                                    ], className = "bg-secondary m-0"),
+                            
+                            dbc.Row(dbc.Col(dbc.Card('Put your content here',
+                                                     className = "",)
+                                            , width = 12))
+                           ],
+                           className = '')
+
+app.run_server(mode='inline', port = 9008)
+
+
+```
+
+## 12.4.2 Justify row components
 
 
 
+## 12.4.3 Increase card height with `style = {'height':'200px'}`
 
+## 12.4.4 `Rounded` edges
 
+## 12.4.5 Opacity
 
+## 12.4.6 Gradient
 
-
-## 12.3.5 A rounded, transparent card
-
-## 12.3.6 
-
-
-
-
-
+## 12.4.7 `darker` `dark` and `lighter` `light`
 
 
 
@@ -742,7 +776,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][18]][18]
+[![enter image description here][20]][20]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -961,7 +995,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][19]][19]
+[![enter image description here][21]][21]
 
 
  
@@ -984,5 +1018,7 @@ app.run_server(mode='external', port = 8032)
   [15]: https://i.stack.imgur.com/UWulS.png
   [16]: https://i.stack.imgur.com/RylgH.png
   [17]: https://i.stack.imgur.com/jRrsW.png
-  [18]: https://i.stack.imgur.com/NGfOi.png
-  [19]: https://i.stack.imgur.com/EJw6S.png
+  [18]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/
+  [19]: https://i.stack.imgur.com/kTRZ4.png
+  [20]: https://i.stack.imgur.com/NGfOi.png
+  [21]: https://i.stack.imgur.com/EJw6S.png
