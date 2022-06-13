@@ -302,7 +302,7 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
 app.run_server(mode='inline', port = 9008)
 
 ```
-## 12.4 
+## 12.4 More components and more attributes
 
 With the previous basic principles in place, all you'll need to put together a working and nice looking app is to increase the number of components in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous example and approach something that looks more like a complete Dashboard by adding a `dbc.Button` component and a `dbc.Card` to nicely contain even more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
 
