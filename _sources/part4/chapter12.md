@@ -567,7 +567,7 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
                                                      style = {'height':'200px'})
                                             , width = 12))
                            ],
-                           className = 'bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3 bg-gradient')
+                           className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3 bg-gradient')
 
 app.run_server(mode='inline', port = 9008)
 
@@ -1252,7 +1252,7 @@ app.run_server(mode='external', port = 8032)
   [23]: https://i.stack.imgur.com/PM6BH.png
   [24]: https://i.stack.imgur.com/UpEZe.png
   [25]: https://i.stack.imgur.com/4H9h8.png
-  [26]: https://i.stack.imgur.com/aph13.png
-  [27]: https://i.stack.imgur.com/ISWZK.png
+  [26]: https://i.stack.imgur.com/fkHbn.png
+  [27]: https://i.stack.imgur.com/BdGEE.png
   [28]: https://i.stack.imgur.com/NGfOi.png
   [29]: https://i.stack.imgur.com/EJw6S.png
