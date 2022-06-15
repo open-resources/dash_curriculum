@@ -540,7 +540,7 @@ So far we haven't filled any of the components with too much information. If we 
 
 
 
-To change this behavior, include `overflow-{option}` in `className` where `option` can be. Below is the same setup with `overflow-auto` included. You can see that a slider with arrows has been added to the label component.
+To change this behavior, include `overflow-{option}` in `className` where `option` can be `auto`, `hidden`, `visible`, or scroll `scroll`. Below is the same setup with `overflow-scroll` included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `atuo` and `scroll` in this case is that the latter adds both vertical and horizontal sliders by default.
 
 [![enter image description here][27]][27]
 
