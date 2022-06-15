@@ -1251,7 +1251,7 @@ app.run_server(mode='external', port = 8032)
   [22]: https://i.stack.imgur.com/xFYRI.png
   [23]: https://i.stack.imgur.com/PM6BH.png
   [24]: https://i.stack.imgur.com/UpEZe.png
-  [25]: https://i.stack.imgur.com/OMQvD.png
+  [25]: https://i.stack.imgur.com/uIdeF.png
   [26]: https://i.stack.imgur.com/aph13.png
   [27]: https://i.stack.imgur.com/ISWZK.png
   [28]: https://i.stack.imgur.com/NGfOi.png
