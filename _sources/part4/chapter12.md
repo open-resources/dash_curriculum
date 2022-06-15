@@ -24,7 +24,7 @@
 
 ## 12.1 The theme of a Dash app
 
-There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by any of `['BOOTSTRAP',  'CERULEAN', 'COSMO', 'CYBORG', 'DARKLY', 'FLATLY', 'GRID'`. For an exhaustive list, run `dir(dbc.themes)` and see which are available for your current versions of Dash Bootstrap components.
+There are many different ways you can change the layout and add themes to your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by any of `BOOTSTRAP, COSMO, CYBORG, DARKLY, FLATLY, GRID`. For an exhaustive list, run `dir(dbc.themes)` and see which are available for your current versions of Dash Bootstrap Components (`dbc`).
  
 Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of cards or the size of each component for different sizes of your device screen.
 
