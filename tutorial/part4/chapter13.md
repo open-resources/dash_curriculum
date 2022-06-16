@@ -581,7 +581,7 @@ import time
 df = px.data.gapminder()[['country', 'year', 'lifeExp']]
 dropdown_list = df['country'].unique()
 
-
+# Define own functionality and initialise cache
 @lru_cache(maxsize=len(dropdown_list))
 def calculation_function(string):
     time.sleep(3)
