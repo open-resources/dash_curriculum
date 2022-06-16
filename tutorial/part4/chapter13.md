@@ -469,11 +469,11 @@ Compared to the two methods above, the datashader differentiates not only in spe
 
 ```{attention}
 As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the `pandas` package for the input years and life expectation i.e., we will set
-- ``df_new['year'] = pd.to_numeric(df_new['year'])``
-- ``df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])``
+- df_new['year'] = pd.to_numeric(df_new['year'])
+- df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
 ```
 
-Test the datashader in action with the following code:
+The following app shows the datashader in action. Use the code below to make it work also on your computer. 
 
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]
 
@@ -546,7 +546,7 @@ def update_graph(value_dropdown, value_slider):
     agg.values[zero_mask] = np.nan
     fig = px.imshow(agg, origin='lower', labels={'color': 'Log10(count)'})
     end_time = datetime.now()
-    subtitle = 'Duration for scatter plot loading: {} s'.format(round((end_time - start_time).total_seconds(), 2))
+    subtitle = 'Duration for datashader loading: {} s'.format(round((end_time - start_time).total_seconds(), 2))
     return fig, subtitle
 
 
