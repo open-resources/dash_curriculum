@@ -97,7 +97,7 @@ if __name__ == '__main__':
 When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse about 100 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
 
 ## 13.2 Dash Developer Tools
-The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production i.e., in order to make use of the Dash Developer Tools you must run your app with `debug=True`. When you do this your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grand you access to error messages or information on your callbacks.
+The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production i.e., in order to make use of the Dash Developer Tools you must run your app with `debug=True`. When you do this, your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grand you access to error messages or information on your callbacks.
 
 In this tutorial we focus on the Callback Graph. The Dash Developer Tools display a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.
 
@@ -105,16 +105,16 @@ In this tutorial we focus on the Callback Graph. The Dash Developer Tools displa
 For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
 ```
 
-The Dash Developer Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph and looks as follows:
+The Dash Developer Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph. Herefore, click on the bottom right circular blue button and then on the most left button in grey of the three buttons that will open up. You will get the following view:
 
 ![Dash Developer Tools](./ch13_files/dash-dev-tools.png)
 
 Let's go through the different items in more detail:
 
-- The rounded green boxes represent your callback functions.
+- The rounded green boxes with the numbers in it which show up in the middle represent your callback functions.
     - The top number represents the number of times the function has been called.
-    - The bottom number represents how long the request took. This includes the network time (sending the data from the browser client to the backend and       back) and the compute time (the total time minus the network time or how long the function spent in Python).
-- Click on a green box to see the detailed view about the callback. This includes:
+    - The bottom number represents how long the request took on average. This includes the network time (sending the data from the browser client to the backend and back) and the compute time (the total time minus the network time or how long the function spent in Python).
+- You are also able to click on a green box to see the detailed information about the callback which would open up in the bottom left of the view. This includes:
     - `type` Whether the callback was a clientside callback or a serverside callback.
     - `call count` The number of times the callback was called during your session.
     - `status` Whether the callback was successful or not.
@@ -123,9 +123,9 @@ Let's go through the different items in more detail:
     - `outputs` A JSON representation of the data that was returned from the callback.
     - `inputs` A JSON representation of the data that was passed to your callback function as Input.
     - `state` A JSON representation of the data that was passed to your callback function as State.
-- The blue boxes represent the input and output properties. Click on the box to see a JSON representation of their current values.
-- The dashed arrows (not visible in the screenshot) represent State.
-- The dropdown in the top right corner enables you to switch layouts
+- The blue boxes with a light grey frame around it that are positioned at the top and bottom represent the input and output properties. Click on the box to see a JSON representation of their current values.
+- The dashed arrows (not visible in the screenshot) would represent State.
+- The dropdown in the top right corner enables you to switch layouts.
 
 Now, that you know how to check for the performance of your app, let us learn about different higher performing graphs and how to incorporate them into you app.
 
