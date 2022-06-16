@@ -472,8 +472,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider">
-     [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
+    <a class="reference internal nav-link" href="#add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected">
+     [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO DIFFERENT COUNTRIES AND THEN RETURNS TO A COUNTRY ALREADY ONCE SELECTED]
     </a>
    </li>
   </ul>
@@ -574,8 +574,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider">
-     [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
+    <a class="reference internal nav-link" href="#add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected">
+     [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO DIFFERENT COUNTRIES AND THEN RETURNS TO A COUNTRY ALREADY ONCE SELECTED]
     </a>
    </li>
   </ul>
@@ -1173,8 +1173,8 @@ See the code<div class="summary-down docutils">
 <p>Let’s stick with a minimal example of the one that we have used throughout this chapter i.e., only a dropdown with a graph, but adding a repititve, time consuming functionality. Defining our own function <code class="docutils literal notranslate"><span class="pre">calculation_function</span></code>, we assure that whenever the callback for the graph gets triggered by selecting another country we delay the app performance by three seconds.</p>
 <p>Here is when caching comes into play. By storing the functions’ values for the selected countries i.e., remembering the country in the cache, the respective calculation do not has to be executed the next time. We will use the <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> (LRU for Least Recently Used) decorator from the <code class="docutils literal notranslate"><span class="pre">functools</span></code> package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.</p>
 <p>The app below with the respective code gives you a minimal example on how to implement caching.</p>
-<div class="section" id="add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider">
-<h3>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected">
+<h3>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO DIFFERENT COUNTRIES AND THEN RETURNS TO A COUNTRY ALREADY ONCE SELECTED]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
