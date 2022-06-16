@@ -698,23 +698,23 @@ See the code<div class="summary-down docutils">
 </div>
 <div class="section" id="dash-developer-tools">
 <h2>13.2 Dash Developer Tools<a class="headerlink" href="#dash-developer-tools" title="Permalink to this headline">¶</a></h2>
-<p>The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production i.e., in order to make use of the Dash Developer Tools you must run your app with <code class="docutils literal notranslate"><span class="pre">debug=True</span></code>. When you do this your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grand you access to error messages or information on your callbacks.</p>
+<p>The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production i.e., in order to make use of the Dash Developer Tools you must run your app with <code class="docutils literal notranslate"><span class="pre">debug=True</span></code>. When you do this, your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grand you access to error messages or information on your callbacks.</p>
 <p>In this tutorial we focus on the Callback Graph. The Dash Developer Tools display a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.</p>
 <div class="admonition-dash-developer-tools admonition">
 <p class="admonition-title">Dash Developer Tools</p>
 <p>For an overview over the other tools look at the <a class="reference external" href="https://dash.plotly.com/devtools">official documentation</a>.</p>
 </div>
-<p>The Dash Developer Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph and looks as follows:</p>
+<p>The Dash Developer Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph. Herefore, click on the bottom right circular blue button and then on the most left button in grey of the three buttons that will open up. You will get the following view:</p>
 <p><img alt="Dash Developer Tools" src="../_images/dash-dev-tools.png" /></p>
 <p>Let’s go through the different items in more detail:</p>
 <ul class="simple">
-<li><p>The rounded green boxes represent your callback functions.</p>
+<li><p>The rounded green boxes with the numbers in it which show up in the middle represent your callback functions.</p>
 <ul>
 <li><p>The top number represents the number of times the function has been called.</p></li>
-<li><p>The bottom number represents how long the request took. This includes the network time (sending the data from the browser client to the backend and       back) and the compute time (the total time minus the network time or how long the function spent in Python).</p></li>
+<li><p>The bottom number represents how long the request took on average. This includes the network time (sending the data from the browser client to the backend and back) and the compute time (the total time minus the network time or how long the function spent in Python).</p></li>
 </ul>
 </li>
-<li><p>Click on a green box to see the detailed view about the callback. This includes:</p>
+<li><p>You are also able to click on a green box to see the detailed information about the callback which would open up in the bottom left of the view. This includes:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">type</span></code> Whether the callback was a clientside callback or a serverside callback.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">call</span> <span class="pre">count</span></code> The number of times the callback was called during your session.</p></li>
@@ -726,9 +726,9 @@ See the code<div class="summary-down docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">state</span></code> A JSON representation of the data that was passed to your callback function as State.</p></li>
 </ul>
 </li>
-<li><p>The blue boxes represent the input and output properties. Click on the box to see a JSON representation of their current values.</p></li>
-<li><p>The dashed arrows (not visible in the screenshot) represent State.</p></li>
-<li><p>The dropdown in the top right corner enables you to switch layouts</p></li>
+<li><p>The blue boxes with a light grey frame around it that are positioned at the top and bottom represent the input and output properties. Click on the box to see a JSON representation of their current values.</p></li>
+<li><p>The dashed arrows (not visible in the screenshot) would represent State.</p></li>
+<li><p>The dropdown in the top right corner enables you to switch layouts.</p></li>
 </ul>
 <p>Now, that you know how to check for the performance of your app, let us learn about different higher performing graphs and how to incorporate them into you app.</p>
 </div>
