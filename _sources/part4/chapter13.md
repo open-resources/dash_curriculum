@@ -97,17 +97,17 @@ if __name__ == '__main__':
 When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse about 100 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
 
 ## 13.2 Dash Developer Tools
-Dash Dev Tools is a set of tools to make debugging and developing Dash apps more productive & pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In this tutorial we focus on the Callback Graph. Dash displays a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.
+The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production i.e., in order to make use of the Dash Developer Tools you must run your app with `debug=True`. When you do this your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grand you access to error messages or information on your callbacks.
 
-```{admonition} Dash Dev Tools
+In this tutorial we focus on the Callback Graph. The Dash Developer Tools display a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.
+
+```{admonition} Dash Developer Tools
 For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
 ```
 
-The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph and looks as follows:
+The Dash Developer Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph and looks as follows:
 
 ![Dash Developer Tools](./ch13_files/dash-dev-tools.png)
-
-#### [ADD SCREENSHOT, THAT SHOWS THE DASH DEV TOOLS]
 
 Let's go through the different items in more detail:
 
