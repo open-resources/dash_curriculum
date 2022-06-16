@@ -1170,23 +1170,13 @@ See the code<div class="summary-down docutils">
 <p class="admonition-title">Memoization</p>
 <p>For an exemplary introduction to memoization and the implementation in Python also have a look at <a class="reference external" href="https://towardsdatascience.com/memoization-in-python-57c0a738179a">Towards Data Science</a> or <a class="reference external" href="https://realpython.com/lru-cache-python/">Real Python</a>.</p>
 </div>
-<p>Let’s stick with the example that we have used throughout this chapter but adding a repititve, time consuming functionality. Defining our own function <code class="docutils literal notranslate"><span class="pre">counting_string</span></code> we assure that whenever the callback for the graph gets triggered we delay the app performance by as many seconds as the selected country’s name size. Here is when caching comes into play. By storing the functions’ values for the selected countries, they do not have to be recalculated the next time. We will use the <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> (LRU for Least Recently Used) decorator from the <code class="docutils literal notranslate"><span class="pre">functools</span></code> package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.</p>
+<p>Let’s stick with a minimal example of the one that have used throughout this chapter i.e., only a dropdown with a graph, but adding a repititve, time consuming functionality. Defining our own function <code class="docutils literal notranslate"><span class="pre">calculation_function</span></code>, we assure that whenever the callback for the graph gets triggered by selecting another country we delay the app performance by three seconds. Here is when caching comes into play. By storing the functions’ values for the selected countries i.e., remembering the country in the cache, the respective calculation do not has to be executed the next time. We will use the <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> (LRU for Least Recently Used) decorator from the <code class="docutils literal notranslate"><span class="pre">functools</span></code> package that goes infront our function and takes in the maximal size of values that can be stored as a parameter. See the app below with the respective code for a minimal example.</p>
 <div class="section" id="add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider">
 <h3>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider" title="Permalink to this headline">¶</a></h3>
-<details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header bg-primary text-white font-weight-bold">
-See the code<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
@@ -1196,8 +1186,8 @@ See the code<div class="summary-down docutils">
 
 
 <span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">dropdown_list</span><span class="p">))</span>
-<span class="k">def</span> <span class="nf">counting_string</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
-    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">calculation_function</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">string</span>
 
 
@@ -1205,59 +1195,34 @@ See the code<div class="summary-down docutils">
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
-<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">)</span>
 <span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">markdown_scatter</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">)</span>
-<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">))]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_scatter</span><span class="p">)]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Spinner</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">)))]),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
 
 <span class="c1"># Configure callbacks</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
-    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Data points displayed: </span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">*</span> <span class="n">value_slider</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">title</span>
-
-
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">):</span>
+    <span class="n">calculation_function</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">)</span>
     <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
-    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="n">country</span> <span class="o">=</span> <span class="n">counting_string</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">)</span>
-    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="n">time_country</span> <span class="o">=</span> <span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-        <span class="n">df_new</span><span class="p">,</span>
+        <span class="n">df_sub</span><span class="p">,</span>
         <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
         <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
         <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PX scatter plot&#39;</span><span class="p">,</span>
         <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_slider</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">25</span><span class="p">))</span>
-    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for scatter plot loading: </span><span class="si">{}</span><span class="s1"> s. Duration to identify the country </span><span class="si">{}</span><span class="s1">: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">),</span> <span class="n">country</span><span class="p">,</span> <span class="n">time_country</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span>
 
 
 <span class="c1"># Run the App</span>
@@ -1266,7 +1231,6 @@ See the code<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
