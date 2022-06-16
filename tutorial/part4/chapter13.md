@@ -134,7 +134,11 @@ So far, we have used the `plotly.express` library to implement our graphs. This 
 
 ### 13.3.1 ScatterGL
 
-First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package. The following app let's you compare the different durations for data loading when using a ScatterGL plot.
+First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package. The following app let's you compare the different durations for data loading when using a ScatterGL plot. Even though the duration will vary, you see how the use of ScatterGL might improve your app performance.
+
+```{admonition} ScatterGL
+See the [official documentation](https://plotly.com/python/line-and-scatter/#large-data-sets) on how to implement the ScatterGL plot.
+```
 
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
 
