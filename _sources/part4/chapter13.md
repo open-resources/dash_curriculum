@@ -104,6 +104,9 @@ For an overview over the other tools look at the [official documentation](https:
 ```
 
 The Dash Dev Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph and looks as follows:
+
+![Dash Developer Tools](./ch13_files/dash-dev-tools.png)
+
 #### [ADD SCREENSHOT, THAT SHOWS THE DASH DEV TOOLS]
 
 Let's go through the different items in more detail:
