@@ -565,22 +565,15 @@ Caching, also known as Memoization, is a method used in computer science to spee
 For an exemplary introduction to memoization and the implementation in Python also have a look at [Towards Data Science](https://towardsdatascience.com/memoization-in-python-57c0a738179a) or [Real Python](https://realpython.com/lru-cache-python/).
 ```
 
-Let's stick with the example that we have used throughout this chapter but adding a repititve, time consuming functionality. Defining our own function `counting_string` we assure that whenever the callback for the graph gets triggered we delay the app performance by as many seconds as the selected country's name size. Here is when caching comes into play. By storing the functions' values for the selected countries, they do not have to be recalculated the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.
+Let's stick with a minimal example of the one that have used throughout this chapter i.e., only a dropdown with a graph, but adding a repititve, time consuming functionality. Defining our own function `calculation_function`, we assure that whenever the callback for the graph gets triggered by selecting another country we delay the app performance by three seconds. Here is when caching comes into play. By storing the functions' values for the selected countries i.e., remembering the country in the cache, the respective calculation do not has to be executed the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter. See the app below with the respective code for a minimal example.
 
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
 
-````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
-  
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output
 import dash_bootstrap_components as dbc
-from datetime import datetime
 from functools import lru_cache
-import numpy as np
-import pandas as pd
 import plotly.express as px
 import time
 
@@ -590,8 +583,8 @@ dropdown_list = df['country'].unique()
 
 
 @lru_cache(maxsize=len(dropdown_list))
-def counting_string(string):
-    time.sleep(len(string))
+def calculation_function(string):
+    time.sleep(3)
     return string
 
 
@@ -599,67 +592,40 @@ def counting_string(string):
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-markdown = dcc.Markdown(id='our-markdown')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
-markdown_scatter = dcc.Markdown(id='markdown-scatter')
-slider = dcc.Slider(id='our-slider', min=0, max=50000, marks=None, value=0)
 
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row([dbc.Col(dropdown, width=3), dbc.Col(markdown, width=9)]),
-        dbc.Row([dbc.Col(dcc.Graph(id='our-figure'))]),
-        dbc.Row([dbc.Col(markdown_scatter)]),
-        dbc.Row(dbc.Col(slider)),
+        dbc.Row([dbc.Col(dropdown)]),
+        dbc.Row([dbc.Col(dbc.Spinner(children=dcc.Graph(id='our-figure')))]),
     ]
 )
 
 
 # Configure callbacks
 @app.callback(
-    Output(component_id='our-markdown', component_property='children'),
-    Input(component_id='our-dropdown', component_property='value'),
-    Input(component_id='our-slider', component_property='value'),
-)
-def update_markdown(value_dropdown, value_slider):
-    df_sub = df[df['country'].isin([value_dropdown])]
-    title = 'Data points displayed: {:,}'.format(len(df_sub.index) * value_slider)
-    return title
-
-
-@app.callback(
     Output(component_id='our-figure', component_property='figure'),
-    Output(component_id='markdown-scatter', component_property='children'),
     Input(component_id='our-dropdown', component_property='value'),
-    Input(component_id='our-slider', component_property='value'),
 )
-def update_graph(value_dropdown, value_slider):
+def update_graph(value_dropdown):
+    calculation_function(value_dropdown)
     df_sub = df[df['country'].isin([value_dropdown])]
-    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), value_slider, axis=0), columns=df_sub.columns)
-    start_time = datetime.now()
-    country = counting_string(value_dropdown)
-    end_time = datetime.now()
-    time_country = round((end_time - start_time).total_seconds(), 0)
-    start_time = datetime.now()
     fig = px.scatter(
-        df_new,
+        df_sub,
         x='year',
         y='lifeExp',
         title='PX scatter plot',
         template='plotly_white',
     )
-    fig.update_traces(marker=dict(size=5 + (value_slider / 30000) * 25))
-    end_time = datetime.now()
-    subtitle = 'Duration for scatter plot loading: {} s. Duration to identify the country {}: {} s'.format(round((end_time - start_time).total_seconds(), 2), country, time_country)
-    return fig, subtitle
+    fig.update_traces(marker=dict(size=20))
+    return fig
 
 
 # Run the App
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-
-````
 
 ## Summary
 
