@@ -490,16 +490,6 @@ const thebe_selector_output = ".output, .cell_output"
    Summary
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-potential-ideas-if-need-be">
-   Other potential ideas if need be:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pre-processing-data">
-   (Pre)Processing data
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -607,16 +597,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
    Summary
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#other-potential-ideas-if-need-be">
-   Other potential ideas if need be:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pre-processing-data">
-   (Pre)Processing data
   </a>
  </li>
 </ul>
@@ -773,6 +753,15 @@ See the code<div class="summary-down docutils">
 <div class="section" id="scattergl">
 <h3>13.3.1 ScatterGL<a class="headerlink" href="#scattergl" title="Permalink to this headline">¶</a></h3>
 <p>First, let us have a look at the <a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a> plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, <code class="docutils literal notranslate"><span class="pre">plotly.js</span></code> has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the <code class="docutils literal notranslate"><span class="pre">plotly.graph_objects</span></code> package. The following app let’s you compare the different durations for data loading when using a ScatterGL plot.</p>
+<div class="section" id="add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-two-scatter-plots-for-two-different-slider-values">
+<h4>[ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-two-scatter-plots-for-two-different-slider-values" title="Permalink to this headline">¶</a></h4>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -873,9 +862,8 @@ See the code<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="section" id="add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-two-scatter-plots-for-two-different-slider-values">
-<h4>[ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-two-scatter-plots-for-two-different-slider-values" title="Permalink to this headline">¶</a></h4>
 </div>
+</details></div>
 </div>
 <div class="section" id="plotly-resampler">
 <h3>13.3.2 Plotly Resampler<a class="headerlink" href="#plotly-resampler" title="Permalink to this headline">¶</a></h3>
@@ -885,6 +873,15 @@ See the code<div class="summary-down docutils">
 <p>See also the <a class="reference external" href="https://github.com/predict-idlab/plotly-resampler">documentation on Github</a> for the plotly resampler package.</p>
 </div>
 <p>The following app let’s you compare the different durations for data loading when working with the plotly resampler.</p>
+<div class="section" id="add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-scatter-plots-for-two-different-slider-values-as-well-as-how-to-zoom-in">
+<h4>[ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-scatter-plots-for-two-different-slider-values-as-well-as-how-to-zoom-in" title="Permalink to this headline">¶</a></h4>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -1019,9 +1016,8 @@ See the code<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-scatter-plots-for-two-different-slider-values-as-well-as-how-to-zoom-in">
-<h4>[ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-scatter-plots-for-two-different-slider-values-as-well-as-how-to-zoom-in" title="Permalink to this headline">¶</a></h4>
 </div>
+</details></div>
 </div>
 <div class="section" id="datashader">
 <h3>13.3.3 Datashader<a class="headerlink" href="#datashader" title="Permalink to this headline">¶</a></h3>
@@ -1036,6 +1032,15 @@ See the code<div class="summary-down docutils">
 </ul>
 </div>
 <p>Test the datashader in action with the following code:</p>
+<div class="section" id="add-gif-that-shows-app-in-action-and-selects-two-or-three-different-continents-for-a-high-slider-value">
+<h4>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-two-or-three-different-continents-for-a-high-slider-value" title="Permalink to this headline">¶</a></h4>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -1109,9 +1114,8 @@ See the code<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="add-gif-that-shows-app-in-action-and-selects-two-or-three-different-continents-for-a-high-slider-value">
-<h4>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-two-or-three-different-continents-for-a-high-slider-value" title="Permalink to this headline">¶</a></h4>
 </div>
+</details></div>
 </div>
 </div>
 <div class="section" id="caching">
@@ -1122,6 +1126,15 @@ See the code<div class="summary-down docutils">
 <p>For an exemplary introduction to memoization and the implementation in Python also have a look at <a class="reference external" href="https://towardsdatascience.com/memoization-in-python-57c0a738179a">Towards Data Science</a> or <a class="reference external" href="https://realpython.com/lru-cache-python/">Real Python</a>.</p>
 </div>
 <p>Let’s stick with the example that we have used throughout this chapter but adding a repititve, time consuming functionality. Defining our own function <code class="docutils literal notranslate"><span class="pre">counting_string</span></code> we assure that whenever the callback for the graph gets triggered we delay the app performance by as many seconds as the selected country’s name size. Here is when caching comes into play. By storing the functions’ values for the selected countries, they do not have to be recalculated the next time. We will use the <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> (LRU for Least Recently Used) decorator from the <code class="docutils literal notranslate"><span class="pre">functools</span></code> package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.</p>
+<div class="section" id="add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider">
+<h3>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -1207,27 +1220,12 @@ See the code<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider">
-<h3>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-a-country-and-then-wihtin-the-same-country-a-different-value-on-the-range-slider" title="Permalink to this headline">¶</a></h3>
 </div>
+</details></div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>This chapter gave an introduction on how to analyse large data sets with Dash as you will have to face performance issues at some point in time. The first functionality that will help you to understand the performance of your app are the built-in Dash Developer Tools. When it comes to implementing higher performance within your app you have learned about different ways of higher performing graphs: ScatterGL, Plotly Resampler and the Datashader. Last, memorising difficult as well as repetitive calculations can be handled storing the results in the cache. Combining everything you have learned so far you will be able to build dash apps not just functional but performant.</p>
-</div>
-<div class="section" id="other-potential-ideas-if-need-be">
-<h2>Other potential ideas if need be:<a class="headerlink" href="#other-potential-ideas-if-need-be" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197">https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197</a></p>
-<p><a class="reference external" href="https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10">https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10</a></p>
-<p><a class="reference external" href="https://github.com/ijl/orjson">https://github.com/ijl/orjson</a></p>
-</div>
-<div class="section" id="pre-processing-data">
-<h2>(Pre)Processing data<a class="headerlink" href="#pre-processing-data" title="Permalink to this headline">¶</a></h2>
-<p>Work in Progress:</p>
-<ul class="simple">
-<li><p>Transfer the example of section ‘’Let go of dataframes in request/response’’ from the article <a class="reference external" href="https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b">https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b</a> to the gapminder data set? Does this enhance performance? Need to restructure the gapminder data set?</p></li>
-<li><p>Using numpy for (numerical) calculations, examples on performance?</p></li>
-</ul>
 </div>
 </div>
 

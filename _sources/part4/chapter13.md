@@ -133,6 +133,12 @@ So far, we have used the `plotly.express` library to implement our graphs. This 
 
 First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package. The following app let's you compare the different durations for data loading when using a ScatterGL plot.
 
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output
@@ -233,7 +239,8 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server()
 ```
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
+
+````
 
 ### 13.3.2 Plotly Resampler
 
@@ -244,6 +251,12 @@ See also the [documentation on Github](https://github.com/predict-idlab/plotly-r
 ```
 
 The following app let's you compare the different durations for data loading when working with the plotly resampler.
+
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```
 # Import packages
@@ -379,7 +392,8 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
+
+````
 
 ### 13.3.3 Datashader
 
@@ -395,6 +409,12 @@ As the datashader needs real numbers to process properly, we will use the numeri
 
 Test the datashader in action with the following code:
 
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output
@@ -468,7 +488,8 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]
+
+````
 
 ## 13.4 Caching
 
@@ -480,6 +501,12 @@ For an exemplary introduction to memoization and the implementation in Python al
 
 Let's stick with the example that we have used throughout this chapter but adding a repititve, time consuming functionality. Defining our own function `counting_string` we assure that whenever the callback for the graph gets triggered we delay the app performance by as many seconds as the selected country's name size. Here is when caching comes into play. By storing the functions' values for the selected countries, they do not have to be recalculated the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.
 
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output
@@ -565,22 +592,9 @@ def update_graph(value_dropdown, value_slider):
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
+
+````
 
 ## Summary
 
 This chapter gave an introduction on how to analyse large data sets with Dash as you will have to face performance issues at some point in time. The first functionality that will help you to understand the performance of your app are the built-in Dash Developer Tools. When it comes to implementing higher performance within your app you have learned about different ways of higher performing graphs: ScatterGL, Plotly Resampler and the Datashader. Last, memorising difficult as well as repetitive calculations can be handled storing the results in the cache. Combining everything you have learned so far you will be able to build dash apps not just functional but performant.
-
-## Other potential ideas if need be:
-
-https://community.plotly.com/t/how-to-improve-the-loading-speed-of-my-page/17197
-
-https://community.plotly.com/t/is-there-a-way-to-increate-the-performance-of-my-dash-web-app/23117/10
-
-https://github.com/ijl/orjson
-
-## (Pre)Processing data
-Work in Progress:
-
-- Transfer the example of section ''Let go of dataframes in request/response'' from the article [https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b](https://strange-quark.medium.com/improving-performance-of-python-dash-dashboards-54547d68f86b) to the gapminder data set? Does this enhance performance? Need to restructure the gapminder data set?
-- Using numpy for (numerical) calculations, examples on performance?
