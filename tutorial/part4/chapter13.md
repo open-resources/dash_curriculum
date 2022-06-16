@@ -571,7 +571,7 @@ Here is when caching comes into play. By storing the functions' values for the s
 
 The app below with the respective code gives you a minimal example on how to implement caching.
 
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
+#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO DIFFERENT COUNTRIES AND THEN RETURNS TO A COUNTRY ALREADY ONCE SELECTED]
 
 ```
 # Import packages
