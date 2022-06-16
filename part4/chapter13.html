@@ -1072,11 +1072,11 @@ See the code<div class="summary-down docutils">
 <p class="admonition-title">Attention</p>
 <p>As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> package for the input years and life expectation i.e., we will set</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">df_new['year']</span> <span class="pre">=</span> <span class="pre">pd.to_numeric(df_new['year'])</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">df_new['lifeExp']</span> <span class="pre">=</span> <span class="pre">pd.to_numeric(df_new['lifeExp'])</span></code></p></li>
+<li><p>df_new[‘year’] = pd.to_numeric(df_new[‘year’])</p></li>
+<li><p>df_new[‘lifeExp’] = pd.to_numeric(df_new[‘lifeExp’])</p></li>
 </ul>
 </div>
-<p>Test the datashader in action with the following code:</p>
+<p>The following app shows the datashader in action. Use the code below to make it work also on your computer.</p>
 <div class="section" id="add-gif-that-shows-app-in-action-and-selects-two-or-three-different-continents-for-a-high-slider-value">
 <h4>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-two-or-three-different-continents-for-a-high-slider-value" title="Permalink to this headline">¶</a></h4>
 <details class="sphinx-bs dropdown card mb-3 shadow">
@@ -1150,7 +1150,7 @@ See the code<div class="summary-down docutils">
     <span class="n">agg</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">zero_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;Log10(count)&#39;</span><span class="p">})</span>
     <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for scatter plot loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for datashader loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
 
 
