@@ -565,7 +565,11 @@ Caching, also known as Memoization, is a method used in computer science to spee
 For an exemplary introduction to memoization and the implementation in Python also have a look at [Towards Data Science](https://towardsdatascience.com/memoization-in-python-57c0a738179a) or [Real Python](https://realpython.com/lru-cache-python/).
 ```
 
-Let's stick with a minimal example of the one that have used throughout this chapter i.e., only a dropdown with a graph, but adding a repititve, time consuming functionality. Defining our own function `calculation_function`, we assure that whenever the callback for the graph gets triggered by selecting another country we delay the app performance by three seconds. Here is when caching comes into play. By storing the functions' values for the selected countries i.e., remembering the country in the cache, the respective calculation do not has to be executed the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter. See the app below with the respective code for a minimal example.
+Let's stick with a minimal example of the one that we have used throughout this chapter i.e., only a dropdown with a graph, but adding a repititve, time consuming functionality. Defining our own function `calculation_function`, we assure that whenever the callback for the graph gets triggered by selecting another country we delay the app performance by three seconds.
+
+Here is when caching comes into play. By storing the functions' values for the selected countries i.e., remembering the country in the cache, the respective calculation do not has to be executed the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.
+
+The app below with the respective code gives you a minimal example on how to implement caching.
 
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS A COUNTRY AND THEN WIHTIN THE SAME COUNTRY A DIFFERENT VALUE ON THE RANGE SLIDER]
 
