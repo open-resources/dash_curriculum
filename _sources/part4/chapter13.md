@@ -134,11 +134,13 @@ So far, we have used the `plotly.express` library to implement our graphs. This 
 
 ### 13.3.1 ScatterGL
 
-First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package. The following app let's you compare the different durations for data loading when using a ScatterGL plot. Even though the duration will vary, you see how the use of ScatterGL might improve your app performance.
+First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package.
 
 ```{admonition} ScatterGL
 See the [official documentation](https://plotly.com/python/line-and-scatter/#large-data-sets) on how to implement the ScatterGL plot.
 ```
+
+The following app let's you compare the different durations for data loading when using a ScatterGL plot. Even though the duration will vary, you see how the use of ScatterGL might improve your app performance.
 
 #### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
 
@@ -251,7 +253,7 @@ if __name__ == '__main__':
 
 ### 13.3.2 Plotly Resampler
 
-Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
+Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and might be delayed when interacting with the data plot e.g., zoom in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
 
 ```{admonition} Plotly Resampler
 See also the [documentation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
@@ -401,6 +403,63 @@ if __name__ == '__main__':
 ```
 
 ````
+
+To get you familiar with the plotly resampler here is a minimal example on how to implement a graphic using the plotly resampler package that you might want to copy paste for your own app.
+
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly_resampler import FigureResampler
+
+# Setup data
+df = px.data.gapminder()[['country', 'year', 'lifeExp']]
+dropdown_list = df['country'].unique()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col(dropdown)]),
+        dbc.Row([dbc.Col(dcc.Graph(id='our-resample-figure'))]),
+    ]
+)
+
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='our-resample-figure', component_property='figure'),
+    Input(component_id='our-dropdown', component_property='value'),
+)
+def update_graph(value_dropdown):
+    df_sub = df[df['country'].isin([value_dropdown])]
+    fig = FigureResampler(go.Figure())
+    fig.add_trace(go.Scattergl(
+        x=df_sub['year'],
+        y=pd.to_numeric(df_sub['lifeExp']),
+        mode='markers',
+        marker=dict(colorscale='Viridis'),
+    ))
+    fig.update_layout(
+        title='Plotly Resampler scatter plot',
+        xaxis_title='year',
+        yaxis_title='lifeExp',
+    )
+    return fig
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
 
 ### 13.3.3 Datashader
 

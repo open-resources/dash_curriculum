@@ -737,11 +737,12 @@ See the code<div class="summary-down docutils">
 <p>So far, we have used the <code class="docutils literal notranslate"><span class="pre">plotly.express</span></code> library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for larger datasets as we have noticed in the first section. To overcome this limitation, in this section we explore the three most popular methods that will speed up your app when working with larger data sets.</p>
 <div class="section" id="scattergl">
 <h3>13.3.1 ScatterGL<a class="headerlink" href="#scattergl" title="Permalink to this headline">¶</a></h3>
-<p>First, let us have a look at the <a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a> plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, <code class="docutils literal notranslate"><span class="pre">plotly.js</span></code> has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the <code class="docutils literal notranslate"><span class="pre">plotly.graph_objects</span></code> package. The following app let’s you compare the different durations for data loading when using a ScatterGL plot. Even though the duration will vary, you see how the use of ScatterGL might improve your app performance.</p>
+<p>First, let us have a look at the <a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a> plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, <code class="docutils literal notranslate"><span class="pre">plotly.js</span></code> has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the <code class="docutils literal notranslate"><span class="pre">plotly.graph_objects</span></code> package.</p>
 <div class="admonition-scattergl admonition">
 <p class="admonition-title">ScatterGL</p>
 <p>See the <a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">official documentation</a> on how to implement the ScatterGL plot.</p>
 </div>
+<p>The following app let’s you compare the different durations for data loading when using a ScatterGL plot. Even though the duration will vary, you see how the use of ScatterGL might improve your app performance.</p>
 <div class="section" id="add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-two-scatter-plots-for-two-different-slider-values">
 <h4>[ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-compares-the-speed-of-the-two-scatter-plots-for-two-different-slider-values" title="Permalink to this headline">¶</a></h4>
 <details class="sphinx-bs dropdown card mb-3 shadow">
@@ -856,7 +857,7 @@ See the code<div class="summary-down docutils">
 </div>
 <div class="section" id="plotly-resampler">
 <h3>13.3.2 Plotly Resampler<a class="headerlink" href="#plotly-resampler" title="Permalink to this headline">¶</a></h3>
-<p>Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and is delayed when interacting with the data plot e.g., zoom in. That’s where the <code class="docutils literal notranslate"><span class="pre">plotly_resampler</span></code> package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, …), callbacks are used to aggregate data and update the figure.</p>
+<p>Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and might be delayed when interacting with the data plot e.g., zoom in. That’s where the <code class="docutils literal notranslate"><span class="pre">plotly_resampler</span></code> package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, …), callbacks are used to aggregate data and update the figure.</p>
 <div class="admonition-plotly-resampler admonition">
 <p class="admonition-title">Plotly Resampler</p>
 <p>See also the <a class="reference external" href="https://github.com/predict-idlab/plotly-resampler">documentation on Github</a> for the plotly resampler package.</p>
@@ -1006,7 +1007,62 @@ See the code<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details></div>
+</details><p>To get you familiar with the plotly resampler here is a minimal example on how to implement a graphic using the plotly resampler package that you might want to copy paste for your own app.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">plotly_resampler</span> <span class="kn">import</span> <span class="n">FigureResampler</span>
+
+<span class="c1"># Setup data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]]</span>
+<span class="n">dropdown_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-resample-figure&#39;</span><span class="p">))]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-resample-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">FigureResampler</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">())</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]),</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">colorscale</span><span class="o">=</span><span class="s1">&#39;Viridis&#39;</span><span class="p">),</span>
+    <span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Plotly Resampler scatter plot&#39;</span><span class="p">,</span>
+        <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="datashader">
 <h3>13.3.3 Datashader<a class="headerlink" href="#datashader" title="Permalink to this headline">¶</a></h3>
