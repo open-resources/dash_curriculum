@@ -362,7 +362,7 @@ The two components have very similar properties - the main ones are:
 - start_date : default start date, when app page initially loads
 - end_date : default end date, when app page initially loads
 
-In the following app a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.
+In the following app, a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.
 
 ```{note}
 In the following app, instead of using the gapminder dataset, we have used a dataset based on stock prices, as it includes a full date field.
@@ -429,10 +429,14 @@ if __name__ == '__main__':
 ```Store``` component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:
 - this component can only store data in the following formats: json, list, dictionary data types. With the ```data``` property, we can access to the content stored in the memory.
-- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory and they are cleared by three different events. ```memory```: in this case the memory will be cleared when we refresh the browser page; ```session```: in this case the memory will be cleared when we close the browser; ```local```: in this case the memory will be cleared when we clean the browser cookies.
+- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory, which are cleared by three different events. ```memory```: the data will be cleared when we refresh the browser page; ```session```: the data will be cleared when we close the browser; ```local```: the data will be cleared when we clean the browser cookies.
 - this is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
+- it's generally safe to store up to 2MB in most environments, and 5~10MB in most desktop-only applications.
 
 In the following example, a dropdown selection is stored in memory. We've generated three different store components, one for each storage type. This should clarify the difference among the three memory tupes. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.
+
+Try to run the app on your computer. Then, test the storage types by refreshing the page, then closing the browser and reopening it, and then clearing cookies.
+
 ```python
 # Import packages
 from dash import Dash, dcc, Input, Output, html
@@ -533,6 +537,18 @@ if __name__ == '__main__':
     app.run_server(port=8055)
 ```
 ![Store_Example](./ch11_files/img/store.gif)
+
+Here is a simple example of how to use `dcc.Store` in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:
+
+## Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful.
+
+```
+from dash import Dash, html, dcc, Output, Input
+[...]
+```
+
+[See additional properties and examples of the `Store` component](https://dash.plotly.com/dash-core-components/store). 
+
 
 ### 11.4.3 Interval
 `Interval` enables automatic recurrent updates of the app, by triggering callbacks periodically.
