@@ -161,6 +161,7 @@
 - File and folder layouts
 - Registering pages
 - Callbacks
+- building out the app.py file
 
 ### Chapter 15: Different ways of doing Multi-page apps
 
