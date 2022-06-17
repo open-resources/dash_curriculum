@@ -165,18 +165,24 @@
 
 ### Chapter 15: Different ways of doing Multi-page apps
 
-- Samples of what layouts are possible
-- Building multi-page app
-- TBD
+- A few words on what multipage layouts are possible
+- Building multi-page app examples
 
 ## Appendix
 
 ### Gallery and Template
 
 - [Dashboard Layouts](https://github.com/matthewconnell/dashr_sample_layouts)
-  - Template 1
-  - Template 2
-  - Template 3  
+  - Layouts with control panels and graphs
+    - Template 1: Controls-left, Graph-right
+    - Template 2: Controls-bottom, Graph-top
+  - Layouts with navigation panels and Graphs
+    - Template 1: Navigaton-right, Graph-left
+    - Template 2: Navigaton-top, Graph-bottom 
+  - Cpmbining nnavigation and control panels
+    - Template 1: 
+    - Template 2: 
+
 - [Case Studies](https://dashboard-showcase-532.herokuapp.com/)
  - Case Study 1
  - Case Study 2
