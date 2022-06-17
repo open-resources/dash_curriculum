@@ -1,7 +1,6 @@
 # Chapter 12  Advanced Styling and Layout
 
 ```{admonition} What you will learn
-
 - How to set a theme with a CSS stylesheet using `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`
 - How elements of a theme are styled through references to different classes in the stylesheet
 - How you can change component layout through changing references to your stylesheet with `className` or `class_name` dending on library and version.
@@ -19,8 +18,6 @@
 - Special layout attributes for `dbc.Container()`
   - `fluid = True`
 - How to change the layout of a component directly with `style`
-
-
 ```
 
 ## 12.1 The theme of a Dash app
@@ -89,13 +86,9 @@ The reason this whole thing is structured this way, is that you can use the same
 Most (or all?) Dash components have an attribute `className` that lets you reference the name of a class in a `CSS` file. This attribute will also let you change other layout features through selecting other class names than, for example, the default `text-body` for `dcc.Markdown()`.
 
 ```{warning}
-
 In order to be able to change the layout through `classNaame`, a stylesheet *must*  be specified in 
-
     app = Dash(external_stylesheets=[dbc.themes.<theme>])
-
 ```
-
 
 ## 12.3.1 How to change font color
 
@@ -109,10 +102,9 @@ Some alternatives to `body` in `text-body` are:
 
 For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards. Notice how the `className` of the contatiner component is set to `"text-info bg-primary"`.`
 
-### 12.3.1 - Code snippet 1
+#### 12.3.1 - Code snippet 1
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -122,16 +114,15 @@ app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary")], width = 10)])])
 
 app.run_server(mode='inline', port = 9000) 
-
 ```
 
-### 12.3.1 - Code output 1
+#### 12.3.1 - Code output 1
 
 [![enter image description here][8]][8]
 
 Below is the output with `Dasboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
 
-### 12.3.1 - Code snippet 2
+#### 12.3.1 - Code snippet 2
 
 ```python
 from jupyter_dash import JupyterDash
@@ -145,23 +136,21 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', 
 app.run_server(mode='inline', port = 9000)  
 ```
 
-### 12.3.1 - Code output 2
+#### 12.3.1 - Code output 2
 
 [![enter image description here][9]][9]
 
 ```{admonition} Why all the extra components in the examples?
-
 You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn holds all our tables, figures and controls etc.
 
 Also, all these components can offer slightly different functionalities on how to apply `className` and `style` depending on what you'd like to do. But we'll come back to that later.
-
 ```
 
 ## 12.3.2 How to change background 
 
 Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but point to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
 
-### 12.3.2 - Code snippet 1
+#### 12.3.2 - Code snippet
 
 ```python
 from jupyter_dash import JupyterDash
@@ -169,14 +158,11 @@ from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
 app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-
 app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="bg-primary")], width = 10)])])
-
 app.run_server(mode='inline', port = 9000) 
-
 ```
 
-### 12.3.2 - Code output 1
+#### 12.3.2 - Code output
 
 [![enter image description here][10]][10]
 
@@ -192,10 +178,9 @@ Misspellings in `className` will *not* raise any errors. Any additions to `class
 
 So far, the whole `CSS` thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` in `className`:
 
-### 12.3.3 Code snippet 1
+#### 12.3.3 Code snippet
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -204,11 +189,9 @@ app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary")], width = 10)])])
 
 app.run_server(mode='inline', port = 9000)  
-
-
 ```
 
-### 12.3.3 Code output 1
+#### 12.3.3 Code output
 
 [![enter image description here][11]][11]
 
@@ -220,12 +203,9 @@ And you do not have to stop there. In the next subchapters you'll learn how to a
 
 Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col()` contained by a `dbc.Row()` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
 
-### 12.3.4 Code snippet 1
-
-
+#### 12.3.4 Code snippet 1
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -237,10 +217,9 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', 
                                     ],className = 'bg-secondary')])
 
 app.run_server(mode='inline', port = 9000)
-
 ```
 
-### 12.3.4 Code output 1
+#### 12.3.4 Code output 1
 
 [![enter image description here][12]][12]
 
@@ -265,7 +244,6 @@ And at last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` elimina
 ### 12.3.4 Code snippet 2
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -277,7 +255,6 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', 
                                     ],className = 'bg-secondary')])
 
 app.run_server(mode='inline', port = 9000)
-
 ```
 
 ### 12.3.4 Code output 2
@@ -292,7 +269,6 @@ You should expect that different components from different libraries such as `dc
 ### 12.3.5 Code snippet 1
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -302,7 +278,6 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
                             dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning")])],className = 'bg-secondary')])
 
 app.run_server(mode='inline', port = 9008)
-
 ```
 
 ### 12.3.5 Code output 1
@@ -313,13 +288,13 @@ As it now stands, the dashboard isn't exactly very pleasing to the eye. The two 
 
 The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same space around the texts `Dashboard title` and `Label 1`, while the font sizes provide different emphasis to the content.
 
-### 12.3.5 Code output 2.1
+### 12.3.5 Code output 2.1 (snippet below)
 
 [![enter image description here][16]][16]
 
 Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
 
-### 12.3.5 Code output 2.2
+### 12.3.5 Code output 2.2 (snippet below)
 
 [![enter image description here][17]][17]
 
@@ -340,13 +315,12 @@ app.run_server(mode='inline', port = 9008)
 
 ## 12.3.6 How to handle layout challenges with `style`
 
-Again, notice how `className ="text-info` is set for `dcc.Markdown` and `className = "bg-warning` is set for `dbc.Label` with very different results for the layout. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. If you run `help(dcc.Markdown)` and `help(dbc.Label` you'll see that neither component has got a `width` attribute. And if you'd like to align your components in a more visually pleasing way, this is where the `style` attribute comes into play. With this, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `{'width':'100px'}`, and for the former you can use either `{'width':'100%}` or `{'width':'100pc}`. Here's the same layout with `{'widt':'75%}` for both components:
+In the previous snippet, notice how `className ="text-info"` is set for `dcc.Markdown`, and how `className = "bg-warning"` is set for `dbc.Label` with very different results for the layout. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. However, if you run `help(dcc.Markdown)` and `help(dbc.Label)` you'll see that neither component has got a `width` attribute. This is where the `style` attribute comes into play if you'd like to align your components in a more visually pleasing way, . With this, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Here's the same layout with `style = {'widt':'75%}` for both components:
 
 
-### 12.3.6 Code snippet 1
+#### 12.3.6 Code snippet
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -356,23 +330,21 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
                                                            style = {'width':'75%'})])], className = 'bg-secondary '),
                             dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning",
                                                         style = {'width':'75%'})])],className = 'bg-secondary')])
-
 app.run_server(mode='inline', port = 9008)
-
 ```
-### 12.3.6 Code output 1
+#### 12.3.6 Code output
 
 [![enter image description here][18]][18]
 
 ## 12.4 More components and more attributes
 
-With the previous basic principles in place, all you'll need to put together a working and nice looking app is to increase the number of components in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous example and approach something that looks more like a complete Dashboard by adding a `dbc.Button` component and a `dbc.Card` to nicely contain even more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
+With some basic principles firmly in place, all you'll need to put together a working and nice looking app is to increase the number of component types in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous example and approach something that looks more like a complete dashboard by adding a `dbc.Button()` component and a `dbc.Card`. The latter is often used to split a dashboard in different parts and as a container for more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
 
 ## 12.4.1 A button and a card
 
 For a more comprehensive list of boostrap components, refer to [this source][19]. For now we'll just add a `dbc.Button` in a new `dbc.Col` component next to our already existing `dbc.Label`. In addition, we'll include a `dbc.Card` in a `dbc.Col` component in a new `dbc.Row`.
 
-### 12.4.1 Code snippet 1
+#### 12.4.1 Code snippet
 
 ```python
 from jupyter_dash import JupyterDash
@@ -400,7 +372,7 @@ app.run_server(mode='inline', port = 9008)
 
 ```
 
-### 12.4.1 Code output 1
+#### 12.4.1 Code output
 
 [![enter image description here][20]][20]
 
@@ -416,7 +388,7 @@ In the previous snippet, we'ved used `width = 4` for both the `label` and the `b
 
 The image below shows the result for `justify = 'evenly'`. In additon we've included some margins and padding to make the title, label and button look a little nicer.
 
-### 12.4.2 Code snippet 1
+#### 12.4.2 Code snippet 
 
 
 ```python
@@ -446,18 +418,17 @@ app.run_server(mode='inline', port = 9008)
 
 ```
 
-### 12.4.2 Code output 1
+#### 12.4.2 Code output 
 
 [![enter image description here][21]][21]
 
-## 12.4.3 Increase card height with `style = {'height':'200px'}`
+## 12.4.3 Set component height with `style = {'height':'200px'}`
 
 Notice how we've cheated a bit by adding `'height':'65%'` for the `label` component style to make it align a bit better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
 
-### 12.4.3 Code snippet 1
+#### 12.4.3 Code snippet
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -483,7 +454,7 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
 app.run_server(mode='inline', port = 9008)
 ```
 
-### 12.4.3 Code output 1
+#### 12.4.3 Code output 1
 
 [![enter image description here][22]][22]
 
@@ -504,15 +475,13 @@ The two last one will change not only the corners but the complete structure of 
 
 ```{tip}
 When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`.
-
 ```
 
 In the snippet below, we've rounded off the bottom of the card only, and set the weight to `3`.
 
-### 12.4.4 Code snippet 1
+#### 12.4.4 Code snippet
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -536,11 +505,9 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
                            className = 'mt-1')
 
 app.run_server(mode='inline', port = 9008)
-
-
 ```
 
-### 12.4.4 Code output 1
+#### 12.4.4 Code output
 
 [![enter image description here][23]][423]
 
@@ -557,10 +524,9 @@ Don't forget that you can use a comnination of the list above with `className = 
 In the snippet below we've added a thick grey border line below the title by adding `className = "border-top border-secondary border-3"` to the second `dbc.Row` component. We've also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the `dbc.Container` itself with `className = 'bg-secondary mt-1 p-3'`
 
 
-### 12.3.5 Code snippet 1
+#### 12.3.5 Code snippet
 
 ```python
-
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -584,11 +550,9 @@ app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title
                            className = 'bg-secondary mt-1 p-3')
 
 app.run_server(mode='inline', port = 9008)
-
-
 ```
 
-### 12.3.5 Code output 1
+#### 12.3.5 Code output
 
 [![enter image description here][24]][24]
 
@@ -601,9 +565,7 @@ If you find that `bg-secondary` for the `db.Container` comes off as a bit too do
 [![enter image description here][25]][25]
 
 ```{warning}
-
-If you fail to specify the context of `opacity`, like `bg-opacity`, *all* elements that are contained in your component will be affected.
-
+If you do not specify the context of `opacity`, like `bg-opacity`, *all* elements that are contained in your component will be affected.
 ```
 
 
@@ -617,7 +579,7 @@ You can add a bit of depth to your dashboard by adding a shadow to your componen
 
 The last two options stand for `small` and `large`. Below we've included `shadow-lg` for the `dbc.Container` component.
 
-### 12.4.7 Code snippet 1
+### 12.4.7 Code snippet
 
 ```python
 from jupyter_dash import JupyterDash
@@ -646,7 +608,7 @@ app.run_server(mode='inline', port = 9008)
 
 ```
 
-### 12.4.7 Code output 1
+### 12.4.7 Code output
 
 [![enter image description here][26]][26]
 
@@ -654,19 +616,25 @@ app.run_server(mode='inline', port = 9008)
 
 So far we haven't filled any of the components with too much information. If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default behavioss of `dbc.Label` is to let the content flow over the component.
 
-### 12.4.8 Code output 1.1 (snippet below)
+#### 12.4.8 Code output 1.1 (snippet below)
 
 [![enter image description here][27]][27]
 
 
+To change this behavior, include `overflow-{option}` in `className` where `option` can be:
 
-To change this behavior, include `overflow-{option}` in `className` where `option` can be `auto`, `hidden`, `visible`, or scroll `scroll`. Below is the same setup with `overflow-scroll` included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `atuo` and `scroll` in this case is that the latter adds both vertical and horizontal sliders by default.
+- `auto`
+- `hidden`
+- `visible`
+- `scroll`
 
-### 12.4.8 Code output 1.2 (snippet below)
+Below is the same setup with `overflow-scroll` included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `atuo` and `scroll` in this case is that the latter adds both vertical and horizontal sliders by default.
+
+#### 12.4.8 Code output 1.2 (snippet below)
 
 [![enter image description here][28]][28]
 
-### 12.4.8 Code snippet 1
+#### 12.4.8 Code snippet
 
 ```python
 
