@@ -152,12 +152,21 @@
 - Why separate into multiple pages?
   - Advantages of multi-page apps (lower load times, less processing, more modular pages, more focused content, easier to collaborate in teams)
   - Disadvantages of multi-page apps (increased maintenance effort/time, complex structure, potentially some repeated code, etc...)
+- Storage and Caching
+- Authentication of users so they see different pages?
+
+#### Structure of Multi-page apps
+
+- Storyboarding and building out pages
+- File and folder layouts
+- Registering pages
+- Callbacks
 
 ### Chapter 15: Different ways of doing Multi-page apps
 
+- Samples of what layouts are possible
 - Building multi-page app
 - TBD
-
 
 ## Appendix
 
