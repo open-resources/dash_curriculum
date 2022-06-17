@@ -145,30 +145,19 @@
   - Sharing data between callbacks(?)
 - Efficiency
 
-### Chapter 14: Multi-page apps
+## Part V: Multi-page apps (Improving the Dashboard Experience)
+
+### Chapter 14: Introduction to Multi-page apps
+
+- Why separate into multiple pages?
+  - Advantages of multi-page apps (lower load times, less processing, more modular pages, more focused content, easier to collaborate in teams)
+  - Disadvantages of multi-page apps (increased maintenance effort/time, complex structure, potentially some repeated code, etc...)
+
+### Chapter 15: Different ways of doing Multi-page apps
 
 - Building multi-page app
-- Separating into multiple files (layout.py, app1.py. appy2.py, etc...)
+- TBD
 
-## Part V: Automations and Deployments
-
-- What you will learn in this part
-- Learning Intentions
-
-### Chapter 15: Full Deployment
-
-- Components of deployment
-  - Procfile
-  - requirements.txt
-  - Dockerfile
-  - Heroku build pipeline 
-- Deploying to Pythoanywhere ? (Optional)
-
-### Chapter 16: Continuous Integration/Deployment
-
-- Testing
-- Setting up a pipeline
-- Github Actions
 
 ## Appendix
 
@@ -181,3 +170,23 @@
 - [Case Studies](https://dashboard-showcase-532.herokuapp.com/)
  - Case Study 1
  - Case Study 2
+
+## Part X: Automations and Deployments
+
+- What you will learn in this part
+- Learning Intentions
+- 
+### Chapter XX: Full Deployment
+
+- Components of deployment
+  - Procfile
+  - requirements.txt
+  - Dockerfile
+  - Heroku build pipeline 
+- Deploying to Pythoanywhere ? (Optional)
+
+### Chapter XX: Continuous Integration/Deployment
+
+- Testing
+- Setting up a pipeline
+- Github Actions
