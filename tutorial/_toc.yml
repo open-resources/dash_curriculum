@@ -23,7 +23,7 @@ parts:
   - file: part1/chapter0_linux
   - file: part1/chapter0_GitHub
 
-- caption: Part 1. Introduction to Dashboards in Dash
+- caption: Introduction to Dashboards
   chapters:
   - file: part1/summary
     title: Introduction
@@ -33,7 +33,7 @@ parts:
   - file: part1/chapter4
   - file: part1/chapter5
 
-- caption: Part 2. Data Visualization
+- caption: Data Visualization
   chapters:
   - file: part2/summary
     title: Introduction
@@ -43,14 +43,14 @@ parts:
   - file: part2/chapter8
   - file: part2/chapter9
 
-- caption: Part 3. Advanced Dash
+- caption: Advanced Dash
   chapters:
   - file: part3/summary
     title: Introduction
   - file: part3/chapter10
   - file: part3/chapter11
 
-- caption: Part 4. Polishing your Dash App
+- caption: Polishing Dash Apps
   chapters:
   - file: part4/summary
     title: Introduction
@@ -58,7 +58,7 @@ parts:
   - file: part4/chapter13
   - file: part4/chapter14
   
-- caption: Part 5. Automations and Deployments
+- caption: Multi-page Apps
   chapters:
   - file: part5/summary
     title: Introduction
