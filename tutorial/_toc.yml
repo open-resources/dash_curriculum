@@ -16,6 +16,7 @@ parts:
   - file: preface/who
   - file: preface/acknowledgements
 - caption: Installation Stack
+  numbered: true
   chapters:
   - file: part1/chapter0
   - file: part1/chapter0_mac
@@ -24,6 +25,7 @@ parts:
   - file: part1/chapter0_GitHub
 
 - caption: Introduction to Dashboards
+  numbered: true
   chapters:
   - file: part1/summary
     title: Introduction
@@ -34,6 +36,7 @@ parts:
   - file: part1/chapter5
 
 - caption: Data Visualization
+  numbered: true
   chapters:
   - file: part2/summary
     title: Introduction
@@ -44,6 +47,7 @@ parts:
   - file: part2/chapter9
 
 - caption: Advanced Dash
+  numbered: true
   chapters:
   - file: part3/summary
     title: Introduction
@@ -51,6 +55,7 @@ parts:
   - file: part3/chapter11
 
 - caption: Polishing Dash Apps
+  numbered: true
   chapters:
   - file: part4/summary
     title: Introduction
@@ -59,9 +64,9 @@ parts:
   - file: part4/chapter14
   
 - caption: Multi-page Apps
+  numbered: true
   chapters:
   - file: part5/summary
     title: Introduction
   - file: part5/chapter15
   - file: part5/chapter16
-
