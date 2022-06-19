@@ -10,7 +10,7 @@
   - What is Plotly and Dash?
 - Acknowledgements
 
-## Chapter 0: Prerequisites
+## Chapter 0: Installation Stack
 
 - checklist of things they need
 - install stack
@@ -20,7 +20,7 @@
 - Summary and overview of this part
 - Learning Intentions
 
-### Chapter 1: What is a dashboard?
+### Chapter 1: What is a Dashboard?
 
 - Sample Dashboards
 - Theory on Dashboards
@@ -52,7 +52,7 @@
    - Container: Dash Bootstrap Components
    - Row and Col: Dash Bootstrap Components
 
-### Chapter 4: Linking Dash components
+### Chapter 4: Linking Dash Components
 
  - Introduction to decorators in Python
  - Callback decorators in Dash
@@ -64,11 +64,11 @@
    - Dropdown and Graph
    - Slider and Graph
  
-### Chapter 5: Deploying a Dash app to the Web
+### Chapter 5: App Deployment
 
  - Basic deployment to Heroku
 
-## Part II: Data Analysis
+## Part II: Data Visualization
 
 - Summary and overview of this part
 - Learning Intentions
@@ -81,7 +81,7 @@
 - Using data from an API
 - "do wrangling inside app" --> show that it is slow
 
-### Chapter 7: Wrangling data
+### Chapter 7: Wrangling Data
 
 - "do wrangling separately in py files" --> show that it's faster
 - Case Study: Select a dataset
@@ -101,7 +101,7 @@
  - Incorporting PX graphs in a Dash app 
  - References and resourcres
 
-### Chapter 9: DataTable
+### Chapter 9: DataTables
 
  - Intro to the DataTable: creating a basic DataTable
  - Linking dataTable to graph
@@ -119,7 +119,7 @@
  - Multiple buttons: callback_context
  - Multiple outputs and inputs
 
-### Chapter 11: Advanced Components
+### Chapter 11: Additional Components
 
 - Advanced DBC
 - Advanced DCC
@@ -128,42 +128,38 @@
    - Interval
    - Store
 
-## Part IV: Polishing your Dash App
+## Part IV: Polishing Dash Apps
 
-### Chapter 12: Advanced Layout and Styling
+### Chapter 12: Advanced Styling and Layout
 
  - Creating a layout component inside a callback
  - More Dash Bootstrap Components
- - Dash HTML components
  - Sytling app with Dash Bootstrap Components
   
-
-### Chapter 13: Improving app performance
+### Chapter 13: Improving App Performance
 
 - Callback graphs to asses speed
 - Actions to improve app speed
   - Sharing data between callbacks(?)
 - Efficiency
 
-## Part V: Multi-page apps (Improving the Dashboard Experience)
+## Part V: Multi-page Apps
 
-### Chapter 14: Introduction to Multi-page apps
+### Chapter 14: Introduction to Multi-page Apps
 
 - Why separate into multiple pages?
   - Advantages of multi-page apps (lower load times, less processing, more modular pages, more focused content, easier to collaborate in teams)
   - Disadvantages of multi-page apps (increased maintenance effort/time, complex structure, potentially some repeated code, etc...)
-- Storage and Caching
-- Authentication of users so they see different pages?
+- Authentication of users so they see different pages???
 
-#### Structure of Multi-page apps
+- Structure of Multi-page Apps
+  - Storyboarding and building out pages
+  - File and folder layouts
+  - Registering pages
+  - Callbacks
+  - building out the app.py file
 
-- Storyboarding and building out pages
-- File and folder layouts
-- Registering pages
-- Callbacks
-- building out the app.py file
-
-### Chapter 15: Different ways of doing Multi-page apps
+### Chapter 15: Making Multi-page Apps
 
 - A few words on what multipage layouts are possible
 - Building multi-page app examples
