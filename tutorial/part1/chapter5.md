@@ -179,6 +179,10 @@ Refer to the Heroku documentation articles for [common error codes](https://devc
 In addition to minimum requirements, some new Python versions may not yet be supported on Heroku. For example, if Heroku supports Python 3.10.0, and your app is running a newer 3.11 version.
 ```
 
+## 5.10 Automating the deployment process
+
+[Dash-tools](https://github.com/andrew-hossack/dash-tools) is a an open-source package that automates much of the deployment process of a Dash app. If you wish to use this package, make sure to `pip install dash-tools` and follow the [Readme instructions](https://github.com/andrew-hossack/dash-tools/blob/main/README.md).
+
 ## Summary
 
 Congratulations! You are now able to share your app with anyone around the world. In the next chapter we will learn how to incorporate data into our Dash app.
