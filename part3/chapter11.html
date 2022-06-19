@@ -1428,7 +1428,8 @@ One example where this component is typically used is when the app is connected 
 <h3>FileNotFoundError: [Errno 2] No such file or directory: ‘plotly.png’<a class="headerlink" href="#filenotfounderror-errno-2-no-such-file-or-directory-plotly-png" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Offcanvas</span></code> component allows us to display a sidebar overlay on the app.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">base64</span>
 
@@ -1436,9 +1437,8 @@ One example where this component is typically used is when the app is connected 
 <span class="c1"># Initialise the App</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
-<span class="n">image_filename</span> <span class="o">=</span> <span class="s1">&#39;plotly.png&#39;</span> <span class="c1"># replace with your own image</span>
-<span class="n">encoded_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;data:image/png;base64,</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">encoded_image</span><span class="o">.</span><span class="n">decode</span><span class="p">()))</span>
+<span class="n">image_file</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/img/plotly.png&#39;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">image_file</span><span class="p">,</span><span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">offcanvas_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Off-Canvas documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;oc_doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span><span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/&#39;</span><span class="p">)</span>
 <span class="n">link_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Link documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;link_doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span><span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash.plotly.com/dash-core-components/link&#39;</span><span class="p">)</span>
 
@@ -1465,7 +1465,7 @@ One example where this component is typically used is when the app is connected 
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">offcanvas</span><span class="p">])])</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas</span><span class="p">)])</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
@@ -1478,6 +1478,7 @@ One example where this component is typically used is when the app is connected 
     <span class="k">if</span> <span class="n">n1</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     
+
 
 <span class="c1"># Run the App</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
