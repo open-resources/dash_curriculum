@@ -429,6 +429,11 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections">
+   Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#feedback-components">
    11.3 Feedback Components
   </a>
@@ -460,6 +465,13 @@ const thebe_selector_output = ".output, .cell_output"
      11.4.2 Store
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code">
+   Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interval">
      11.4.3 Interval
@@ -478,8 +490,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#offcanvas">
-     11.5.2 OffCanvas
+    <a class="reference internal nav-link" href="#offcanvas-code-example-not-working">
+     11.5.2 OffCanvas (code example not working)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filenotfounderror-errno-2-no-such-file-or-directory-plotly-png">
+     FileNotFoundError: [Errno 2] No such file or directory: ‘plotly.png’
     </a>
    </li>
   </ul>
@@ -537,6 +554,11 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections">
+   Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#feedback-components">
    11.3 Feedback Components
   </a>
@@ -568,6 +590,13 @@ const thebe_selector_output = ".output, .cell_output"
      11.4.2 Store
     </a>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code">
+   Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interval">
      11.4.3 Interval
@@ -586,8 +615,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#offcanvas">
-     11.5.2 OffCanvas
+    <a class="reference internal nav-link" href="#offcanvas-code-example-not-working">
+     11.5.2 OffCanvas (code example not working)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#filenotfounderror-errno-2-no-such-file-or-directory-plotly-png">
+     FileNotFoundError: [Errno 2] No such file or directory: ‘plotly.png’
     </a>
    </li>
   </ul>
@@ -610,7 +644,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 11: Additional Components<a class="headerlink" href="#chapter-11-additional-components" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will introduce several additional components that go beyond what we have seen so far, but that are necessary to further customise apps. In this chapter you’ll learn:</p>
+<p>In this chapter we will introduce several additional components, which are necessary to further customise apps.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
@@ -618,30 +652,98 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Familiarize with some of the most common additional components</p></li>
 </ul>
 </div>
+<p>By the end of this chapter you will know how to build this app:</p>
+<p><img alt="offcanvas" src="../_images/offcanvas.gif" /></p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">image_filename</span> <span class="o">=</span> <span class="s1">&#39;plotly.png&#39;</span> <span class="c1"># replace with your own image</span>
+<span class="n">encoded_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;data:image/png;base64,</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">encoded_image</span><span class="o">.</span><span class="n">decode</span><span class="p">()))</span>
+<span class="n">offcanvas_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Off-Canvas documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;oc_doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span><span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/&#39;</span><span class="p">)</span>
+<span class="n">link_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Link documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;link_doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span><span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash.plotly.com/dash-core-components/link&#39;</span><span class="p">)</span>
+
+
+<span class="n">offcanvas_layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">img</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas_doc</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">link_doc</span><span class="p">)]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">offcanvas</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Open Offcanvas&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Offcanvas</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">offcanvas_layout</span><span class="p">],</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Off-Canvas&quot;</span><span class="p">,</span>
+            <span class="n">is_open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">toggle_offcanvas</span><span class="p">(</span><span class="n">n1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/chapter11_fin_app.py">Click to download the complete code file for this chapter</a></p>
 </div>
 <div class="section" id="introducing-additional-components">
 <h2>11.1 Introducing additional components<a class="headerlink" href="#introducing-additional-components" title="Permalink to this headline">¶</a></h2>
-<p>Dash libraries include a lot of components that serve multiple purposes. It may be a bit overwhelming to navigate through all components, in search for the one that meets our needs. In this chapter we will provide some structure around the components you may need to include in your app.</p>
-<p>We will broke down components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.</p>
-<p>All components below come from these very common libraries:</p>
+<p>Dash libraries include a lot of components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include in your app.</p>
+<p>We will break down the components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.</p>
+<p>All components in this chapter come from these libraries:</p>
 <ul class="simple">
-<li><p>dcc : <a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash core components</a></p></li>
-<li><p>dbc : <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/">Dash boostrap components</a></p></li>
+<li><p><a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash core components</a> (dcc)</p></li>
+<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/">Dash boostrap components</a> (dbc)</p></li>
 </ul>
-<p>In the above links to the library documentation, it is possible to search for keywords and find the components we need. Once we’ve identified the components that we want to include in our app, <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">this cheatsheet</a> is another powerful tool that helps us understanding how components can be customised.</p>
 </div>
 <div class="section" id="data-display-components">
 <h2>11.2 Data Display Components<a class="headerlink" href="#data-display-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="upload">
 <h3>11.2.1 Upload<a class="headerlink" href="#upload" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Upload</span></code> component allows us to upload a file to the dashboard. For this example we will upload a <a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV file</a> and plot the data. Download <span class="xref myst">this</span> CSV file and run the follwing code to try it out:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Upload</span></code> component allows us to upload a file to the dashboard. For this example we will upload a <a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV file</a> and plot the data. <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/rotation_angle.csv">Download this CSV file</a>, save it as <code class="docutils literal notranslate"><span class="pre">rotation_angle.csv</span></code>, run the follwing code, and try uploading the file into the drag and drop section of the app.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">update_fig()</span></code> callback is design for a specific type of data.  Different data wrangling will be required based on the type of data you are importing.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">update_fig()</span></code> callback function is designed for a specific type of data.  Different data wrangling inside the function would be required based on the type of data files you will work with. In this example, the function is built for CSV files exclusively.</p>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-<span class="kn">from</span> <span class="nn">dash.dependencies</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="kn">import</span> <span class="nn">base64</span>
@@ -699,13 +801,13 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><img alt="upload component" src="../_images/upload.gif" /></p>
+<p><a class="reference external" href="https://dash.plotly.com/dash-core-components/upload">This Dash Docs page has additional <code class="docutils literal notranslate"><span class="pre">Upload</span></code> examples</a>.</p>
 </div>
 <div class="section" id="card">
 <h3>11.2.2 Card<a class="headerlink" href="#card" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Card</span></code> component provides a container in which we can place content.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">Card</span></code> component provides a container in which we can place content neatly such as: titles, main body text, images, buttons, and links. It often leads to a more appealing layout design.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
@@ -713,9 +815,9 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span><span class="s2">&quot;DBC card&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;card-title&quot;</span><span class="p">),</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span><span class="s2">&quot;Card title&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;card-title&quot;</span><span class="p">),</span>
                 <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
-                    <span class="s2">&quot;We can add some text here&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;Some quick example text to build on the card title and make up the bulk of the card&#39;s content.&quot;</span><span class="p">,</span>
                     <span class="n">className</span><span class="o">=</span><span class="s2">&quot;card-text&quot;</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">]</span>
@@ -739,14 +841,17 @@ const thebe_selector_output = ".output, .cell_output"
 <p><img alt="card" src="../_images/card.png" /></p>
 </div>
 </div>
+<div class="section" id="shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections">
+<h2>Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections.<a class="headerlink" href="#shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/">This Dash Bootstrap Components page has additional <code class="docutils literal notranslate"><span class="pre">Card</span></code> examples</a>.</p>
+</div>
 <div class="section" id="feedback-components">
 <h2>11.3 Feedback Components<a class="headerlink" href="#feedback-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="modal">
 <h3>11.3.1 Modal<a class="headerlink" href="#modal" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Modals</span></code> are pop-up boxes that allow for user notification, input, or other content to be displayed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Modals</span></code> are pop-up boxes that allow for user notification, input, or other content to be displayed. It is often incorporated to draw the user’s attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, the modal bobdy can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
@@ -788,15 +893,58 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><img alt="modal" src="../_images/modal.gif" /></p>
+<p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/modal/">This Dash Bootstrap Components page has additional <code class="docutils literal notranslate"><span class="pre">Modal</span></code> examples</a>.</p>
 </div>
 <div class="section" id="alert">
 <h3>11.3.2 Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Alerts</span></code> are boxes that provide messages depending on the user interaction with the app.
-Via callbacks it is possible to change several props of this component (full list <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">here</a>), such as: color, fading animation, duration of appearence.</p>
-<p>In the example below, we have created alerts depending on the GTP Per Capita of a user-selected country and year compared to the world’s average:</p>
+Using the callback, you can update many of the component’s properties such as: color, fading animation, duration of appearence.</p>
+<p>In the example below, an alert pops up if the user chooses a quantity over 100.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Select the number of computers to purchase:&quot;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">103</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-dropdown&#39;</span><span class="p">)</span>
+            <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;content&#39;</span><span class="p">)</span>
+            <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+       <span class="p">])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;content&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;my-dropdown&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">toggle_offcanvas</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You have selected to purcase </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> computers.&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Alert</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s2">&quot;We don&#39;t have so many computers in stock. Please select fewer computers&quot;</span><span class="p">,</span>
+                         <span class="n">color</span><span class="o">=</span><span class="s2">&quot;danger&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="Simple alert example" src="../_images/simple_alert.gif" /></p>
+<p>Let’s see a more sophisticated example. Below, we have created alerts depending on the GTP Per Capita of a selected country and year, compared to the global average:</p>
 <ul class="simple">
 <li><p>If the country’s GTP Per Capita is greater than the world’s average, the alert message will have a green background</p></li>
-<li><p>If the value is the same as than the average, the alert message will turn yellow color</p></li>
+<li><p>If the value is the same as the world’s average, the alert message will turn yellow</p></li>
 <li><p>Otherwise the message will become red</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
@@ -882,27 +1030,27 @@ Via callbacks it is possible to change several props of this component (full lis
 </pre></div>
 </div>
 <p><img alt="Alert Example" src="../_images/alert.gif" /></p>
+<p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">Alert</span></code> component</a>.</p>
 </div>
 </div>
 <div class="section" id="filtering-input-components">
 <h2>11.4 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datepicker">
 <h3>11.4.1 DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">DatePicker</span></code> component allows the user to select a single date or a date range, that can then be used in our callbacks.
-There are two types of date pickers, both part of the DCC library:</p>
+<p>The DatePicker components allow the user to select a single date or a date range.
+There are two types of date pickers, both are part of the Dash Core Components library:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">DatePickerSingle</span></code> consists of one single date selection: by clicking on the object a calendar will pop-up, allowing the user to pick a date</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> is similar to the previous component, but includes two date selections, which should be read as “start” and “end” dates.</p></li>
 </ul>
-<p>The two components have very similar properties - the complete list is available <a class="reference external" href="https://dash.plotly.com/dash-core-components/datepickerrange">here</a>; the main ones are:</p>
+<p>The two components have very similar properties - the main ones are:</p>
 <ul class="simple">
 <li><p>min_date_allowed : minimum date the user can choose from</p></li>
 <li><p>max_date_allowed : maximum date the user can choose from</p></li>
-<li><p>start_date : default start date, before the user makes any selection</p></li>
-<li><p>end_date : default end date, before the user makes any selection</p></li>
+<li><p>start_date : default start date, when app page initially loads</p></li>
+<li><p>end_date : default end date, when app page initially loads</p></li>
 </ul>
-<p>In the following app a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered and the chart updated.
-As min_date_allowed and max_date_allowed, the min and max dates from the dataframe have been configured.</p>
+<p>In the following app, a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In the following app, instead of using the gapminder dataset, we have used a dataset based on stock prices, as it includes a full date field.</p>
@@ -960,17 +1108,20 @@ As min_date_allowed and max_date_allowed, the min and max dates from the datafra
 </pre></div>
 </div>
 <p><img alt="DatePickerRange_Example" src="../_images/datepicker.gif" /></p>
+<p><a class="reference external" href="https://dash.plotly.com/dash-core-components/datepickerrange">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> component</a>.</p>
 </div>
 <div class="section" id="store">
 <h3>11.4.2 Store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:</p>
 <ul class="simple">
-<li><p>this component can only store data in the following formats: json, list, dictionary data types. With the <code class="docutils literal notranslate"><span class="pre">data</span></code> prop, we can access to the content stored in the memory.</p></li>
-<li><p>how long the data is going to be stored is a customizable property called <code class="docutils literal notranslate"><span class="pre">storage_type</span></code>. We can use three different types of memory and they are cleared by three different events. <code class="docutils literal notranslate"><span class="pre">memory</span></code>: in this case the memory will be cleared when we refresh the browser page; <code class="docutils literal notranslate"><span class="pre">session</span></code>: in this case the memory will be cleared when we close the browser; <code class="docutils literal notranslate"><span class="pre">local</span></code>: in this case the memory will be cleared when we clean the browser cookies.</p></li>
+<li><p>this component can only store data in the following formats: json, list, dictionary data types. With the <code class="docutils literal notranslate"><span class="pre">data</span></code> property, we can access to the content stored in the memory.</p></li>
+<li><p>how long the data is going to be stored is a customizable property called <code class="docutils literal notranslate"><span class="pre">storage_type</span></code>. We can use three different types of memory, which are cleared by three different events. <code class="docutils literal notranslate"><span class="pre">memory</span></code>: the data will be cleared when we refresh the browser page; <code class="docutils literal notranslate"><span class="pre">session</span></code>: the data will be cleared when we close the browser; <code class="docutils literal notranslate"><span class="pre">local</span></code>: the data will be cleared when we clean the browser cookies.</p></li>
 <li><p>this is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p></li>
+<li><p>it’s generally safe to store up to 2MB in most environments, and 5~10MB in most desktop-only applications.</p></li>
 </ul>
 <p>In the following example, a dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. This should clarify the difference among the three memory tupes. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.</p>
+<p>Try to run the app on your computer. Then, test the storage types by refreshing the page, then closing the browser and reopening it, and then clearing cookies.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
@@ -1071,18 +1222,27 @@ When using this component, it is important to pay attention to the following:</p
 </pre></div>
 </div>
 <p><img alt="Store_Example" src="../_images/store.gif" /></p>
+<p>Here is a simple example of how to use <code class="docutils literal notranslate"><span class="pre">dcc.Store</span></code> in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:</p>
 </div>
+</div>
+<div class="section" id="shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code">
+<h2>Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.<a class="headerlink" href="#shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="https://dash.plotly.com/dash-core-components/store">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">Store</span></code> component</a>.</p>
 <div class="section" id="interval">
 <h3>11.4.3 Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Interval</span></code> enables automatic recurrent updates of the app, by triggering callbacks periodically.
-This component is usually used when the app is connected to an API to download data that is recurrently updated (e.g. stock market data). By adjusting props, it is possible to configure the following:</p>
+One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting property, it is possible to configure the following:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code> is a prop that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">max_intervals</span></code> can be configured to set a cap to the number of times the refresh happen. By default, this prop is set to -1, meaning that refreshes will never stop</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code> is a property that determines the refresh rate. This is measured in milliseconds and every time this interval expires, a counter is increased.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_intervals</span></code> can be configured to set a cap to the number of times the refresh happens. By default, this property is set to -1, meaning that refreshes will never stop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed. This property is used to trigger the callback function.</p></li>
 </ul>
 <p>This is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p>
-<p>In the following example, the current time in New York keeps being refreshed.</p>
+<p>In the following example, the current time in New York is refreshed every 2 seconds.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -1092,10 +1252,14 @@ This component is usually used when the app is connected to an API to download d
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
-<span class="n">_header1</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Current Time&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
-<span class="n">_header4</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;The New York time below is refreshed based on an interval component&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
-<span class="n">_p</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;livet&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;font-family&#39;</span> <span class="p">:</span> <span class="s1">&#39;Courier New&#39;</span><span class="p">,</span> <span class="s1">&#39;font-size&#39;</span> <span class="p">:</span> <span class="s1">&#39;250%&#39;</span><span class="p">})</span>
-<span class="n">_interval</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;int1&#39;</span><span class="p">,</span> <span class="n">disabled</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">_header1</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Current Time&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">_header4</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span>
+    <span class="n">children</span><span class="o">=</span><span class="s1">&#39;The New York time below is refreshed whenever the interval component triggers the callback.&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">_p</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;livet&#39;</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;font-family&#39;</span><span class="p">:</span> <span class="s1">&#39;Courier New&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="s1">&#39;250%&#39;</span><span class="p">})</span>
+<span class="n">_interval</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;int1&#39;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -1107,39 +1271,41 @@ This component is usually used when the app is connected to an API to download d
     <span class="p">]</span>
 <span class="p">)</span>
 
+
 <span class="c1"># Configure callback</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;livet&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;int1&quot;</span><span class="p">,</span> <span class="s2">&quot;n_intervals&quot;</span><span class="p">),</span>
     <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;int1&quot;</span><span class="p">,</span> <span class="s2">&quot;n_intervals&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">refresh_time</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">PreventUpdate</span> <span class="c1"># Condition to stop the interval to refresh</span>
+        <span class="k">raise</span> <span class="n">PreventUpdate</span>  <span class="c1"># Condition to stop the interval to refresh</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">)</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
-    
-    <span class="k">return</span> <span class="n">now</span><span class="p">,</span> <span class="n">i</span>
+
+    <span class="k">return</span> <span class="n">now</span>
+
 
 <span class="c1"># Launch the app server</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="Interval_Example" src="part3/ch11_files/img/interval.gif" /></p>
+<p><img alt="Interval_Example" src="../_images/interval1.gif" /></p>
+<p><a class="reference external" href="https://dash.plotly.com/dash-core-components/interval">See additional information on the <code class="docutils literal notranslate"><span class="pre">Interval</span></code> component</a>.</p>
 </div>
 </div>
 <div class="section" id="navigation-components">
 <h2>11.5 Navigation Components<a class="headerlink" href="#navigation-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="tabs">
 <h3>11.5.1 Tabs<a class="headerlink" href="#tabs" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Tabs</span></code> allow for easy navigation between different pages of our app.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span>
+<p><code class="docutils literal notranslate"><span class="pre">Tabs</span></code> allow for easy navigation between different sections of an app. It is often used when you have a lot of information on one single page and you would like to improve user expriece by dividing the information into separate sections, each within a separate tab.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dcc.Tabs</span></code> and <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> components can be used to create tabbed sections in your app. The <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> component controls the style and value of the individual tab and the <code class="docutils literal notranslate"><span class="pre">dcc.Tabs</span></code> component hold a collection of <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> components.</p>
+<p>In the example below, the content for each tab is housed within the children of a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span>
-<span class="kn">import</span> <span class="nn">plotly_express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
@@ -1151,12 +1317,12 @@ This component is usually used when the app is connected to an API to download d
 <span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_2007</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 <span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
 
-<span class="n">fig2</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">size_max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> 
+<span class="n">fig2</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">size_max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
                 <span class="n">hover_name</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">log_x</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">animation_frame</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
                  <span class="n">animation_group</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">range_x</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100000</span><span class="p">],</span> <span class="n">range_y</span><span class="o">=</span><span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">90</span><span class="p">])</span>
 <span class="n">graph2</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure2&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig2</span><span class="p">)</span>
 
-<span class="n">fig3</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> 
+<span class="n">fig3</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">choropleth</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">locations</span><span class="o">=</span><span class="s1">&#39;iso_alpha&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">hover_name</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
                     <span class="n">animation_frame</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">color_continuous_scale</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">sequential</span><span class="o">.</span><span class="n">Plasma</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;natural earth&#39;</span><span class="p">)</span>
 <span class="n">graph3</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure3&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig3</span><span class="p">)</span>
 
@@ -1195,7 +1361,7 @@ This component is usually used when the app is connected to an API to download d
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">tabs</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">tabs</span><span class="p">])),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
@@ -1205,17 +1371,71 @@ This component is usually used when the app is connected to an API to download d
 </pre></div>
 </div>
 <p><img alt="tabs" src="../_images/tabs.gif" /></p>
+<p>Although the above is a nice and short app, housing the content of each tab in the children of a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code> or an <code class="docutils literal notranslate"><span class="pre">html.Div</span></code> has a drawback. It requires that you compute the children property for each individual tab upfront and send all of the tab’s content over the network at once, which could slow the up down.</p>
+<p>Another way to display the content of tabs is through the callback method, which allows you to compute the tab’s content on the fly, when the tab is clicked. Here’s an example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+
+<span class="n">external_stylesheets</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;https://codepen.io/chriddyp/pen/bWLwgP.css&#39;</span><span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="n">external_stylesheets</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s1">&#39;Dash Tabs component demo&#39;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;tabs-example-graph&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-1-example-graph&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tab One&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-1-example-graph&#39;</span><span class="p">),</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tab Two&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-2-example-graph&#39;</span><span class="p">),</span>
+    <span class="p">]),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-content-example-graph&#39;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;tabs-content-example-graph&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;tabs-example-graph&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">render_content</span><span class="p">(</span><span class="n">tab</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">tab</span> <span class="o">==</span> <span class="s1">&#39;tab-1-example-graph&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Tab content 1&#39;</span><span class="p">),</span>
+            <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                <span class="n">figure</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[{</span>
+                        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span>
+                    <span class="p">}]</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">])</span>
+    <span class="k">elif</span> <span class="n">tab</span> <span class="o">==</span> <span class="s1">&#39;tab-2-example-graph&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Tab content 2&#39;</span><span class="p">),</span>
+            <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;graph-2-tabs-dcc&#39;</span><span class="p">,</span>
+                <span class="n">figure</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[{</span>
+                        <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+                        <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                        <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;bar&#39;</span>
+                    <span class="p">}]</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+        <span class="p">])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+</pre></div>
 </div>
-<div class="section" id="offcanvas">
-<h3>11.5.2 OffCanvas<a class="headerlink" href="#offcanvas" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://dash.plotly.com/dash-core-components/tabs">See additional information on the <code class="docutils literal notranslate"><span class="pre">Tabs</span></code> component</a>.</p>
+</div>
+<div class="section" id="offcanvas-code-example-not-working">
+<h3>11.5.2 OffCanvas (code example not working)<a class="headerlink" href="#offcanvas-code-example-not-working" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="filenotfounderror-errno-2-no-such-file-or-directory-plotly-png">
+<h3>FileNotFoundError: [Errno 2] No such file or directory: ‘plotly.png’<a class="headerlink" href="#filenotfounderror-errno-2-no-such-file-or-directory-plotly-png" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Offcanvas</span></code> component allows us to display a sidebar overlay on the app.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
-<span class="c1"># Import packages</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
-<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">base64</span>
-
 
 
 <span class="c1"># Initialise the App</span>
@@ -1250,10 +1470,9 @@ This component is usually used when the app is connected to an API to download d
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas</span><span class="p">)])</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">offcanvas</span><span class="p">])])</span>
     <span class="p">]</span>
 <span class="p">)</span>
-
 
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
@@ -1265,19 +1484,19 @@ This component is usually used when the app is connected to an API to download d
         <span class="k">return</span> <span class="kc">True</span>
     
 
-
 <span class="c1"># Run the App</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><img alt="offcanvas" src="../_images/offcanvas.gif" /></p>
+<p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/">See additional examples and properties of the <code class="docutils literal notranslate"><span class="pre">Offcanvas</span></code> component</a>.</p>
 </div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we have gone through several components that can add functionalities to our app. As a closing remark, there are more existing components that can be found exploring the mentioned libraries as well as third party libraries (an example is the Mantine library, whose components can be found <a class="reference external" href="https://dash-mantine-components.herokuapp.com/">here</a>.</p>
-<p>This is the end of part 3. In the next part, we will focus on polishing our app: enhancing style, performance and the app structure with multiple pages.</p>
+<p>In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the <a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash Documentation</a>. In addition, there are third-party libraries that have nice components such as <a class="reference external" href="https://dash-mantine-components.herokuapp.com/">Dash Mantine Components</a>; however, these are not maintained by Dash.</p>
+<p>This is the end of the section on Advanced Dash. In the next part, we will focus on polishing our Dash app through enhanced styling and improved app performance.</p>
 </div>
 </div>
 
