@@ -56,11 +56,10 @@ parts:
     title: Introduction
   - file: part4/chapter12
   - file: part4/chapter13
-  - file: part4/chapter14
   
 - caption: Multi-page Apps
   chapters:
   - file: part5/summary
     title: Introduction
+  - file: part5/chapter14
   - file: part5/chapter15
-  - file: part5/chapter16
