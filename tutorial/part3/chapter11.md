@@ -199,12 +199,14 @@ if __name__ == '__main__':
 ```
 ![card](ch11_files/img/card.png)
 
+## Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections. 
+
 [This Dash Bootstrap Components page has additional `Card` examples](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/). 
 
 ## 11.3 Feedback Components
 
 ### 11.3.1 Modal
-`Modals` are pop-up boxes that allow for user notification, input, or other content to be displayed. It is often incorporated to draw the user's attention to a specific section of the page.
+`Modals` are pop-up boxes that allow for user notification, input, or other content to be displayed. It is often incorporated to draw the user's attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, the modal bobdy can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.
 
 ```python
 from dash import Dash, Input, Output, State, html
@@ -256,7 +258,53 @@ if __name__ == '__main__':
 `Alerts` are boxes that provide messages depending on the user interaction with the app.
 Using the callback, you can update many of the component's properties such as: color, fading animation, duration of appearence.
 
-In the example below, we have created alerts depending on the GTP Per Capita of a user-selected country and year compared to the world's average:
+In the example below, an alert pops up if the user chooses a quantity over 100.
+
+```python
+# Import packages
+from dash import Dash, dcc, html, Input, Output
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([
+            dbc.Col([
+                html.Label("Select the number of computers to purchase:"),
+                dcc.Dropdown([10, 44, 103], value=10, id='my-dropdown')
+            ], width=4),
+            dbc.Col([
+                html.Div(id='content')
+            ], width=6)
+       ])
+    ]
+)
+
+
+@app.callback(
+    Output("content", "children"),
+    Input("my-dropdown", "value"),
+)
+def toggle_offcanvas(value):
+    if value < 100:
+        return f"You have selected to purcase {value} computers."
+    if value > 100:
+        return dbc.Alert(children="We don't have so many computers in stock. Please select fewer computers",
+                         color="danger")
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+![Simple alert example](ch11_files/img/simple_alert.gif)
+
+
+Let's see a more sophisticated example. Below, we have created alerts depending on the GTP Per Capita of a selected country and year, compared to the global average:
 - If the country's GTP Per Capita is greater than the world's average, the alert message will have a green background
 - If the value is the same as the world's average, the alert message will turn yellow
 - Otherwise the message will become red
@@ -540,7 +588,7 @@ if __name__ == '__main__':
 
 Here is a simple example of how to use `dcc.Store` in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:
 
-## Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful.
+## Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.
 
 ```
 from dash import Dash, html, dcc, Output, Input
@@ -552,14 +600,14 @@ from dash import Dash, html, dcc, Output, Input
 
 ### 11.4.3 Interval
 `Interval` enables automatic recurrent updates of the app, by triggering callbacks periodically.
-This component is usually used when the app is connected to an API to download data that is recurrently updated (e.g. stock market data). By adjusting property, it is possible to configure the following:
-- `interval` is a property that determine the refresh rate. This is measured in millisecond and every time this interval expires, a counter is increased
-- `max_intervals` can be configured to set a cap to the number of times the refresh happen. By default, this property is set to -1, meaning that refreshes will never stop
-- `n_intervals` represent the counter, i.e. the number of times the interval has passed.
+One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting property, it is possible to configure the following:
+- `interval` is a property that determines the refresh rate. This is measured in milliseconds and every time this interval expires, a counter is increased.
+- `max_intervals` can be configured to set a cap to the number of times the refresh happens. By default, this property is set to -1, meaning that refreshes will never stop.
+- `n_intervals` represent the counter, i.e. the number of times the interval has passed. This property is used to trigger the callback function.
 
 This is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
 
-In the following example, the current time in New York keeps being refreshed.
+In the following example, the current time in New York is refreshed every 2 seconds.
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output, html
@@ -570,10 +618,14 @@ import pytz
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-_header1 = html.H1(children='Current Time', style = {'textAlign' : 'center'})
-_header4 = html.H4(children='The New York time below is refreshed based on an interval component', style = {'textAlign' : 'center'})
-_p = html.P(children='', id='livet', style = {'textAlign' : 'center', 'font-family' : 'Courier New', 'font-size' : '250%'})
-_interval = dcc.Interval(id = 'int1', disabled = False, interval = 5)
+_header1 = html.H1(children='Current Time', style={'textAlign': 'center'})
+_header4 = html.H4(
+    children='The New York time below is refreshed whenever the interval component triggers the callback.',
+    style={'textAlign': 'center'})
+_p = html.P(children='', id='livet',
+            style={'textAlign': 'center', 'font-family': 'Courier New',
+                   'font-size': '250%'})
+_interval = dcc.Interval(id='int1', disabled=False, interval=2000)
 
 # App Layout
 app.layout = dbc.Container(
@@ -585,38 +637,44 @@ app.layout = dbc.Container(
     ]
 )
 
+
 # Configure callback
 @app.callback(
     Output("livet", "children"),
-    Output("int1", "n_intervals"),
     Input("int1", "n_intervals")
 )
 def refresh_time(i):
     if i == 0:
-        raise PreventUpdate # Condition to stop the interval to refresh
+        raise PreventUpdate  # Condition to stop the interval to refresh
     else:
         tz = pytz.timezone('America/New_York')
         now = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-    
-    return now, i
+
+    return now
+
 
 # Launch the app server
 if __name__ == '__main__':
     app.run_server()
 ```
-![Interval_Example](./ch11_files/img/interval.gif)
+![Interval_Example](./ch11_files/img/interval1.gif)
+
+[See additional information on the `Interval` component](https://dash.plotly.com/dash-core-components/interval). 
+
 
 ## 11.5 Navigation Components
 
 ### 11.5.1 Tabs
-`Tabs` allow for easy navigation between different pages of our app.
+`Tabs` allow for easy navigation between different sections of an app. It is often used when you have a lot of information on one single page and you would like to improve user expriece by dividing the information into separate sections, each within a separate tab.
+
+The `dcc.Tabs` and `dcc.Tab` components can be used to create tabbed sections in your app. The `dcc.Tab` component controls the style and value of the individual tab and the `dcc.Tabs` component hold a collection of `dcc.Tab` components.
+
+In the example below, the content for each tab is housed within the children of a `dbc.Card`. 
 
 ```python
-from dash import Dash
+from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
-import dash_core_components as dcc
-from dash import html
-import plotly_express as px
+import plotly.express as px
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -628,12 +686,12 @@ df_2007 = df[df.year ==2007]
 fig1 = px.scatter(df_2007, x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=60)
 graph1 = dcc.Graph(id='figure1', figure=fig1)
 
-fig2 = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=40, 
+fig2 = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop', size_max=40,
                 hover_name='country', log_x=True, animation_frame='year',
                  animation_group='country', range_x=[100, 100000], range_y=[25,90])
 graph2 = dcc.Graph(id='figure2', figure=fig2)
 
-fig3 = px.choropleth(df, locations='iso_alpha', color='lifeExp', hover_name='country', 
+fig3 = px.choropleth(df, locations='iso_alpha', color='lifeExp', hover_name='country',
                     animation_frame='year', color_continuous_scale=px.colors.sequential.Plasma, projection='natural earth')
 graph3 = dcc.Graph(id='figure3', figure=fig3)
 
@@ -672,7 +730,7 @@ tabs = dbc.Tabs(
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(tabs)),
+        dbc.Row(dbc.Col([tabs])),
     ]
 )
 
@@ -682,16 +740,75 @@ if __name__ == '__main__':
 ```
 ![tabs](ch11_files/img/tabs.gif)
 
-### 11.5.2 OffCanvas
+Although the above is a nice and short app, housing the content of each tab in the children of a `dbc.Card` or an `html.Div` has a drawback. It requires that you compute the children property for each individual tab upfront and send all of the tab's content over the network at once, which could slow the up down. 
+
+Another way to display the content of tabs is through the callback method, which allows you to compute the tab's content on the fly, when the tab is clicked. Here's an example.
+
+```python
+from dash import Dash, dcc, html, Input, Output
+
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = Dash(__name__, external_stylesheets=external_stylesheets)
+
+app.layout = html.Div([
+    html.H1('Dash Tabs component demo'),
+    dcc.Tabs(id="tabs-example-graph", value='tab-1-example-graph', children=[
+        dcc.Tab(label='Tab One', value='tab-1-example-graph'),
+        dcc.Tab(label='Tab Two', value='tab-2-example-graph'),
+    ]),
+    html.Div(id='tabs-content-example-graph')
+])
+
+@app.callback(Output('tabs-content-example-graph', 'children'),
+              Input('tabs-example-graph', 'value'))
+def render_content(tab):
+    if tab == 'tab-1-example-graph':
+        return html.Div([
+            html.H3('Tab content 1'),
+            dcc.Graph(
+                figure={
+                    'data': [{
+                        'x': [1, 2, 3],
+                        'y': [3, 1, 2],
+                        'type': 'bar'
+                    }]
+                }
+            )
+        ])
+    elif tab == 'tab-2-example-graph':
+        return html.Div([
+            html.H3('Tab content 2'),
+            dcc.Graph(
+                id='graph-2-tabs-dcc',
+                figure={
+                    'data': [{
+                        'x': [1, 2, 3],
+                        'y': [5, 10, 6],
+                        'type': 'bar'
+                    }]
+                }
+            )
+        ])
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
+
+```
+
+[See additional information on the `Tabs` component](https://dash.plotly.com/dash-core-components/tabs). 
+
+
+### 11.5.2 OffCanvas (code example not working)
+
+### FileNotFoundError: [Errno 2] No such file or directory: 'plotly.png'
 The `Offcanvas` component allows us to display a sidebar overlay on the app.
 
 ```python
 # Import packages
-from dash import Dash, Input, Output, State, html
-import dash_core_components as dcc
+from dash import Dash, dcc, Input, Output, State, html
 import dash_bootstrap_components as dbc
 import base64
-
 
 
 # Initialise the App
@@ -726,10 +843,9 @@ offcanvas = html.Div(
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row([dbc.Col(offcanvas)])
+        dbc.Row([dbc.Col([offcanvas])])
     ]
 )
-
 
 
 @app.callback(
@@ -741,15 +857,16 @@ def toggle_offcanvas(n1):
         return True
     
 
-
 # Run the App
 if __name__ == '__main__':
     app.run_server()
 ```
 ![offcanvas](ch11_files/img/offcanvas.gif)
 
+[See additional examples and properties of the `Offcanvas` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/). 
+
 
 ## Summary
-In this chapter, we have gone through several components that can add functionalities to our app. As a closing remark, there are more existing components that can be found exploring the mentioned libraries as well as third party libraries (an example is the Mantine library, whose components can be found [here](https://dash-mantine-components.herokuapp.com/).
+In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the [Dash Documentation](https://dash.plotly.com/dash-core-components). In addition, there are third-party libraries that have nice components such as [Dash Mantine Components](https://dash-mantine-components.herokuapp.com/); however, these are not maintained by Dash.
 
-This is the end of part 3. In the next part, we will focus on polishing our app: enhancing style, performance and the app structure with multiple pages.
+This is the end of the section on Advanced Dash. In the next part, we will focus on polishing our Dash app through enhanced styling and improved app performance.
