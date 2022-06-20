@@ -319,15 +319,31 @@ You should expect that different components from different libraries such as `dc
 ### 12.3.5 Code snippet 1
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary")])], className = 'bg-secondary'),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning")])],className = 'bg-secondary')])
-
-app.run_server(mode='inline', port = 9008)
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title", className="text-info bg-primary"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        ),
+        dbc.Row(
+            [dbc.Col([dbc.Label("Label 1", className="bg-warning")])],
+            className="bg-secondary",
+        ),
+    ]
+)
+app.run_server(debug=True)
 ```
 
 ### 12.3.5 Code output 1
@@ -351,15 +367,32 @@ Another result is that the markdown and label components no longer have a gap be
 ### 12.3.5 Code snippet 2
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary")])], className = 'bg-secondary'),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning p-1 mt-2")])],className = 'bg-secondary')])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title", className="text-info bg-primary"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        ),
+        dbc.Row(
+            [dbc.Col([dbc.Label("Label 1", className="bg-warning p-1 mt-2")])],
+            className="bg-secondary",
+        ),
+    ]
+)
 
-app.run_server(mode='inline', port = 9008)
+app.run_server(debug=True)
 
 ```
 
@@ -371,16 +404,41 @@ In the previous snippet, notice how `className ="text-info"` is set for `dcc.Mar
 #### 12.3.6 Code snippet
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary m-0",
-                                                           style = {'width':'75%'})])], className = 'bg-secondary '),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning",
-                                                        style = {'width':'75%'})])],className = 'bg-secondary')])
-app.run_server(mode='inline', port = 9008)
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary m-0",
+                            style={"width": "75%"},
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary ",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1", className="bg-warning", style={"width": "75%"}
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        ),
+    ]
+)
+app.run_server(debug=True)
 ```
 #### 12.3.6 Code output
 
@@ -397,28 +455,62 @@ For a more comprehensive list of boostrap components, refer to [this source][19]
 #### 12.4.1 Code snippet
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary",
-                                                          style = {'width':'100%'})])], className = "text-info bg-secondary m-0"),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning m-0",
-                                                        style = {'width':'100%'},
-                                                       )], width = 4),
-                                     dbc.Col(dbc.Button('Click me', className = "",
-                                                       ), width = 4),
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary",
+                            style={"width": "100%"},
+                        )
+                    ]
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning m-0",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your content here",
+                    className="",
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="",
+)
+app.run_server(debug=True, port=8118)
 
-                                    ], className = "bg-secondary m-0"),
-                            
-                            dbc.Row(dbc.Col(dbc.Card('Put your content here',
-                                                     className = "",)
-                                            , width = 12))
-                           ],
-                           className = '')
-
-app.run_server(mode='inline', port = 9008)
 
 ```
 
@@ -440,32 +532,65 @@ The image below shows the result for `justify = 'evenly'`. In additon we've incl
 
 #### 12.4.2 Code snippet 
 
-
 ```python
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary p-2",
-                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
-                                                        style = {'width':'100%', 'height':'65%'},
-                                                       )], width = 4),
-                                     dbc.Col(dbc.Button('Click me', className = "m-2",
-                                                       ), width = 4),
-
-                                    ], className = "bg-secondary m-0",
-                                       justify = 'evenly'),
-                            
-                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
-                                                     className = "",)
-                                            , width = 12))
-                           ],
-                           className = 'mt-2')
-
-app.run_server(mode='inline', port = 9008)
-
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className="",
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="mt-2",
+)
+app.run_server(debug=True)
 ```
 
 #### 12.4.2 Code output 
@@ -479,29 +604,64 @@ Notice how we've cheated a bit by adding `'height':'65%'` for the `label` compon
 #### 12.4.3 Code snippet
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary p-2",
-                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
-                                                        style = {'width':'100%', 'height':'65%'},
-                                                       )], width = 4),
-                                     dbc.Col(dbc.Button('Click me', className = "m-2",
-                                                       ), width = 4),
-                                    ], className = "bg-secondary m-0",
-                                       justify = 'evenly'),
-
-                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
-                                                     className = " mt-2",
-                                                     style = {'height':'200px'})
-                                            , width = 12))
-                           ],
-                           className = 'bg-mt-2')
-
-app.run_server(mode='inline', port = 9008)
+app = rDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-mt-2",
+)
+app.run_server(debug=True)
 ```
 
 #### 12.4.3 Code output 1
@@ -509,8 +669,7 @@ app.run_server(mode='inline', port = 9008)
 [![enter image description here][22]][22]
 
 
-
-## 12.4.4 `Rounded` edges
+## 12.4.4 Rounded edges
 
 If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner` can be:
 
@@ -532,29 +691,64 @@ In the snippet below, we've rounded off the bottom of the card only, and set the
 #### 12.4.4 Code snippet
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info bg-primary p-2",
-                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
-                                                        style = {'width':'100%', 'height':'65%'},
-                                                       )], width = 4),
-                                     dbc.Col(dbc.Button('Click me', className = "m-2",
-                                                       ), width = 4),
-                                    ], className = "bg-secondary m-0",
-                                       justify = 'evenly'),
-
-                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
-                                                     className = " mt-2 rounded-0 rounded-bottom rounded-4",
-                                                     style = {'height':'200px'})
-                                            , width = 12))
-                           ],
-                           className = 'mt-1')
-
-app.run_server(mode='inline', port = 9008)
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="mt-1",
+)
+app.run_server(debug=True)
 ```
 
 #### 12.4.4 Code output
@@ -574,35 +768,70 @@ Don't forget that you can use a comnination of the list above with `className = 
 In the snippet below we've added a thick grey border line below the title by adding `className = "border-top border-secondary border-3"` to the second `dbc.Row` component. We've also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the `dbc.Container` itself with `className = 'bg-secondary mt-1 p-3'`
 
 
-#### 12.3.5 Code snippet
+#### 12.4.5 Code snippet
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', className ="text-info p-2",
-                                                          style = {'width':'100%'})], className = "mt-2")], className = "text-info bg-secondary m-0"),
-                            dbc.Row([dbc.Col([dbc.Label('Label 1', className = "bg-warning mt-2 p-2",
-                                                        style = {'width':'100%', 'height':'65%'},
-                                                       )], width = 4),
-                                     dbc.Col(dbc.Button('Click me', className = "m-2",
-                                                       ), width = 4),
-                                    ], className = "border-top border-white border-3 m-0",
-                                       justify = 'evenly'),
-
-                            dbc.Row(dbc.Col(dbc.Card('Put your card content here',
-                                                     className = " mt-2 rounded-0 rounded-bottom rounded-4",
-                                                     style = {'height':'200px'})
-                                            , width = 12))
-                           ],
-                           className = 'bg-secondary mt-1 p-3')
-
-app.run_server(mode='inline', port = 9008)
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary mt-1 p-3",
+)
+app.run_server(debug=True)
 ```
 
-#### 12.3.5 Code output
+#### 12.4.5 Code output
 
 [![enter image description here][24]][24]
 
@@ -612,6 +841,71 @@ app.run_server(mode='inline', port = 9008)
 
 If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
 
+### 12.4.6 Code snippet
+
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 mt-1 p-3",
+)
+app.run_server(debug=True)
+```
+
+
+### 12.4.6 Code output
 [![enter image description here][25]][25]
 
 ```{warning}
