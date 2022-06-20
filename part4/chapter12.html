@@ -1258,7 +1258,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="the-theme-of-a-dash-app">
 <h2>12.1 The theme of a Dash app<a class="headerlink" href="#the-theme-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
-<p>There are many different ways you can change the layout and add themes of your Plotly Dash app. In this chapter you will learn how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.&lt;theme&gt;]</span></code> where <code class="docutils literal notranslate"><span class="pre">'&lt;theme&gt;'</span></code> can by one of:</p>
+<p>You can change the layout and add themes of your Plotly Dash app in many different ways you can . In this chapter you will learn how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.&lt;theme&gt;]</span></code> where <code class="docutils literal notranslate"><span class="pre">'&lt;theme&gt;'</span></code> can by one of:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cosmo</span></code></p></li>
@@ -1319,18 +1319,27 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">danger</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">info</span></code></p></li>
 </ul>
-<p>For other options, take a look at the cheatsheet at <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">pythonanywhere.com</a>. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards. Notice how the <code class="docutils literal notranslate"><span class="pre">className</span></code> of the contatiner component is set to <code class="docutils literal notranslate"><span class="pre">&quot;text-info</span> <span class="pre">bg-primary&quot;</span></code>.`</p>
+<p>For other options, take a look at the cheatsheet at <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">pythonanywhere.com</a>. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.</p>
 <div class="section" id="code-snippet-1">
 <h3>12.3.1 - Code snippet 1<a class="headerlink" href="#code-snippet-1" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;# Dashboard title&quot;</span><span class="p">)],</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary&quot;</span><span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)])])</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span><span class="p">)</span> 
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1341,15 +1350,23 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 </div>
 <div class="section" id="code-snippet-2">
 <h3>12.3.1 - Code snippet 2<a class="headerlink" href="#code-snippet-2" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info&quot;</span><span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)])])</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span><span class="p">)</span>  
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;# Dashboard title&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info&quot;</span><span class="p">)],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1368,13 +1385,24 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 <p>Recall that the alternatives to <code class="docutils literal notranslate"><span class="pre">text-body</span></code> like <code class="docutils literal notranslate"><span class="pre">text-primary</span></code> and <code class="docutils literal notranslate"><span class="pre">text-secondary</span></code> aren’t actual colors, but point to different colors set by the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. So you can think of these options as different categories of the information you’d like to display. The same thing goes for other features of our <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> example like background color. The following snippet changes the white background of the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme to a rich blue color. And if you’d like to know <em>exactly</em> which color that is, you already know how to find that out through studying the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. Notice in the snippet below that all you have to do to change the background color is to include <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. <code class="docutils literal notranslate"><span class="pre">bg</span></code> stands for <em>background</em>. Later we’ll touch upon other abbreviations like <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>margin</em> and <code class="docutils literal notranslate"><span class="pre">p</span></code> for <em>padding</em>.</p>
 <div class="section" id="code-snippet">
 <h3>12.3.2 - Code snippet<a class="headerlink" href="#code-snippet" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;bg-primary&quot;</span><span class="p">)],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)])])</span>
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span><span class="p">)</span> 
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;# Dashboard title&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-primary&quot;</span><span class="p">)],</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
@@ -1415,17 +1443,28 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 <p>Often, a <code class="docutils literal notranslate"><span class="pre">HTML</span></code> child component will take on the same size as its parent. This should mean that a <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code> contained by a <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component would span the entire height and width of the former. This is however not the case. If we add a color such as <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> to the <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component you’ll see that there are margins on the right and left hand sides as well as at the bottom.</p>
 <div class="section" id="id3">
 <h3>12.3.4 Code snippet 1<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary mt-0&quot;</span><span class="p">)</span>
-                                             <span class="p">]</span>
-                                            <span class="p">)</span>
-                                    <span class="p">],</span><span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary&#39;</span><span class="p">)])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
+                            <span class="s2">&quot;# Dashboard title&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info bg-primary mt-0&quot;</span>
+                        <span class="p">)</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1451,17 +1490,28 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 </div>
 <div class="section" id="id5">
 <h3>12.3.4 Code snippet 2<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;# Dashboard title&#39;</span><span class="p">,</span> <span class="n">className</span> <span class="o">=</span><span class="s2">&quot;text-info bg-primary m-2&quot;</span><span class="p">)</span>
-                                             <span class="p">]</span>
-                                            <span class="p">)</span>
-                                    <span class="p">],</span><span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-secondary&#39;</span><span class="p">)])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
+                            <span class="s2">&quot;# Dashboard title&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info bg-primary m-2&quot;</span>
+                        <span class="p">)</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;inline&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">9000</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
