@@ -22,7 +22,7 @@
 
 ## 12.1 The theme of a Dash app
 
-There are many different ways you can change the layout and add themes of your Plotly Dash app. In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
+You can change the layout and add themes of your Plotly Dash app in many different ways you can . In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
 
 - `bootstrap`
 - `cosmo`
@@ -100,20 +100,29 @@ Some alternatives to `body` in `text-body` are:
 - `danger`
 - `info`
 
-For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards. Notice how the `className` of the contatiner component is set to `"text-info bg-primary"`.`
+For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.
 
 #### 12.3.1 - Code snippet 1
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [dcc.Markdown("# Dashboard title")],
+                    width=10,
+                )
+            ]
+        )
+    ]
+)
 
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary")], width = 10)])])
-
-app.run_server(mode='inline', port = 9000) 
+app.run_server(debug=True)
 ```
 
 #### 12.3.1 - Code output 1
@@ -125,15 +134,23 @@ Below is the output with `Dasboard title` displayed as a heading in the colorcod
 #### 12.3.1 - Code snippet 2
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info")], width = 10)])])
-
-app.run_server(mode='inline', port = 9000)  
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [dcc.Markdown("# Dashboard title", className="text-info")], width=10
+                )
+            ]
+        )
+    ]
+)
+app.run_server(debug=True)
 ```
 
 #### 12.3.1 - Code output 2
@@ -153,13 +170,24 @@ Recall that the alternatives to `text-body` like `text-primary` and `text-second
 #### 12.3.2 - Code snippet
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="bg-primary")], width = 10)])])
-app.run_server(mode='inline', port = 9000) 
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [dcc.Markdown("# Dashboard title", className="bg-primary")],
+                    width=10,
+                )
+            ]
+        )
+    ]
+)
+app.run_server(debug=True)
+
 ```
 
 #### 12.3.2 - Code output
@@ -206,17 +234,28 @@ Often, a `HTML` child component will take on the same size as its parent. This s
 #### 12.3.4 Code snippet 1
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary mt-0")
-                                             ]
-                                            )
-                                    ],className = 'bg-secondary')])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "# Dashboard title", className="text-info bg-primary mt-0"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        )
+    ]
+)
 
-app.run_server(mode='inline', port = 9000)
+app.run_server(debug=True)
 ```
 
 #### 12.3.4 Code output 1
@@ -244,17 +283,28 @@ And at last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` elimina
 ### 12.3.4 Code snippet 2
 
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('# Dashboard title', className ="text-info bg-primary m-2")
-                                             ]
-                                            )
-                                    ],className = 'bg-secondary')])
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "# Dashboard title", className="text-info bg-primary m-2"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        )
+    ]
+)
 
-app.run_server(mode='inline', port = 9000)
+app.run_server(debug=True)
 ```
 
 ### 12.3.4 Code output 2
