@@ -591,9 +591,67 @@ Here is a simple example of how to use `dcc.Store` in your app. In this example,
 ## Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.
 
 ```
-from dash import Dash, html, dcc, Output, Input
-[...]
+# Import packages
+from dash import Dash, dcc, Input, Output, html, dash_table
+from dash.exceptions import PreventUpdate
+import dash_bootstrap_components as dbc
+import plotly.express as px
+import pandas as pd
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# App Layout
+app.layout = html.Div([
+    html.H1('Store App with Data', style = {'textAlign' : 'center'}),
+    dcc.Store(id='memo', data=[], storage_type='session'),
+    dcc.Tabs(id='store-example-data', value='tab-1-data-input', children=[
+        dcc.Tab(label='Tab One', value='tab-1-data-input'),
+        dcc.Tab(label='Tab Two', value='tab-2-data-store'),
+    ]),
+    html.Div(id='tabs-content')
+])
+
+# Configure Callback
+@app.callback(Output('tabs-content', 'children'),
+              Input('store-example-data', 'value'))
+def render_content(tab):
+    if tab == 'tab-1-data-input':
+        df = px.data.gapminder() # Data imported in tab 1
+        return html.Div([
+            html.H3('Select gapminder data to store in memory'),
+            dcc.Dropdown(id='country-dropdown', placeholder = 'Select a country', options = [c for c in df.country.unique()])
+        ])
+    elif tab == 'tab-2-data-store':
+        return html.Div([
+            html.H3('Selected data from previous Tab'),
+            html.Div(id='data-table')
+        ])
+
+@app.callback(Output('memo', 'data'),
+              Input('country-dropdown', 'value'))
+def sel_records(c): # Write in memory
+    if c is None:
+      raise PreventUpdate
+    else:
+        df = px.data.gapminder() # Data imported in tab 1
+        recs =  df.loc[(df['country']==c), :]
+    return recs.to_dict('records')
+
+@app.callback(Output('data-table', 'children'),
+              Input('memo', 'data'))
+def show_records(data_): # Read from memory
+    data_df = pd.DataFrame(data_)
+    my_table = dash_table.DataTable(
+        columns=[{"name": i, "id": i} for i in data_df.columns],
+        data=data_df.to_dict('records')
+    )
+    return my_table
+
+if __name__ == '__main__':
+    app.run_server()
 ```
+![Store_Example2](./ch11_files/img/store2.gif)
 
 [See additional properties and examples of the `Store` component](https://dash.plotly.com/dash-core-components/store). 
 
