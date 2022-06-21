@@ -1222,10 +1222,68 @@ When using this component, it is important to pay attention to the following:</p
 </div>
 <div class="section" id="shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code">
 <h2>Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.<a class="headerlink" href="#shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
-<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dash_table</span>
+<span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s1">&#39;Store App with Data&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">}),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Store</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;memo&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">[],</span> <span class="n">storage_type</span><span class="o">=</span><span class="s1">&#39;session&#39;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;store-example-data&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-1-data-input&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tab One&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-1-data-input&#39;</span><span class="p">),</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Tab Two&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-2-data-store&#39;</span><span class="p">),</span>
+    <span class="p">]),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># Configure Callback</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;store-example-data&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">render_content</span><span class="p">(</span><span class="n">tab</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">tab</span> <span class="o">==</span> <span class="s1">&#39;tab-1-data-input&#39;</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span> <span class="c1"># Data imported in tab 1</span>
+        <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Select gapminder data to store in memory&#39;</span><span class="p">),</span>
+            <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a country&#39;</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
+        <span class="p">])</span>
+    <span class="k">elif</span> <span class="n">tab</span> <span class="o">==</span> <span class="s1">&#39;tab-2-data-store&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s1">&#39;Selected data from previous Tab&#39;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;data-table&#39;</span><span class="p">)</span>
+        <span class="p">])</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;memo&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
+              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">sel_records</span><span class="p">(</span><span class="n">c</span><span class="p">):</span> <span class="c1"># Write in memory</span>
+    <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+      <span class="k">raise</span> <span class="n">PreventUpdate</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span> <span class="c1"># Data imported in tab 1</span>
+        <span class="n">recs</span> <span class="o">=</span>  <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">),</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">recs</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;data-table&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+              <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;memo&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">show_records</span><span class="p">(</span><span class="n">data_</span><span class="p">):</span> <span class="c1"># Read from memory</span>
+    <span class="n">data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_</span><span class="p">)</span>
+    <span class="n">my_table</span> <span class="o">=</span> <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_df</span><span class="o">.</span><span class="n">columns</span><span class="p">],</span>
+        <span class="n">data</span><span class="o">=</span><span class="n">data_df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">my_table</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
+<p><img alt="Store_Example2" src="part3/ch11_files/img/store2.gif" /></p>
 <p><a class="reference external" href="https://dash.plotly.com/dash-core-components/store">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">Store</span></code> component</a>.</p>
 <div class="section" id="interval">
 <h3>11.4.3 Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h3>
