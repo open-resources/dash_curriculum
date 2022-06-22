@@ -18,6 +18,7 @@ In this chapter we will introduce multi-page apps which will allow us to build m
 
 ## Structure of Multi-page Apps
   - Storyboarding and building out pages
+    - <b>Do we need this?</b>
   - File and folder layouts
     - Create main `app.py` file is root directory
     - Create subdirectory `/pages`
