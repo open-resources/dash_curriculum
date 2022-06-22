@@ -391,6 +391,29 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-separate-into-multiple-pages">
+   Why separate into multiple pages?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-multi-page-apps">
+   Structure of Multi-page Apps
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -403,6 +426,29 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#why-separate-into-multiple-pages">
+   Why separate into multiple pages?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#structure-of-multi-page-apps">
+   Structure of Multi-page Apps
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -411,23 +457,61 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-14-introduction-to-multi-page-apps">
 <h1>Chapter 14: Introduction to Multi-page Apps<a class="headerlink" href="#chapter-14-introduction-to-multi-page-apps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we will introduce multi-page apps which will allow us to build more complex apps.</p>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
-<li><p>Why separate into multiple pages?</p>
+<li><p>How to structure multi-page apps project</p></li>
+<li><p>Navigate between apps</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="why-separate-into-multiple-pages">
+<h2>Why separate into multiple pages?<a class="headerlink" href="#why-separate-into-multiple-pages" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Advantages</p>
 <ul>
-<li><p>Advantages</p></li>
-<li><p>Disadvantages</p></li>
+<li><p>Easy to develop small apps and features</p></li>
+<li><p>New apps can be built on to old apps</p></li>
 </ul>
 </li>
-<li><p>Structure of Multi-page Apps</p>
+<li><p>Disadvantages</p>
 <ul>
+<li><p>Extra infrastructure is required</p></li>
+<li><p>Slightly more complex apps</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="structure-of-multi-page-apps">
+<h2>Structure of Multi-page Apps<a class="headerlink" href="#structure-of-multi-page-apps" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
 <li><p>Storyboarding and building out pages</p></li>
-<li><p>File and folder layouts</p></li>
-<li><p>Registering pages</p></li>
+<li><p>File and folder layouts</p>
+<ul>
+<li><p>Create subdirectory <code class="docutils literal notranslate"><span class="pre">./pages</span></code></p>
+<ul>
+<li><p>Each page needs to</p>
+<ul>
+<li><p>contain a <code class="docutils literal notranslate"><span class="pre">layout</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Registering pages</p>
+<ul>
+<li><p>call <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dash.page_registry</span></code> is an <code class="docutils literal notranslate"><span class="pre">ordered</span> <span class="pre">dictionary</span></code> containing each page’s paths, name, title, etc.</p></li>
+</ul>
+</li>
 <li><p>Callbacks</p></li>
 <li><p>Building out the <a class="reference external" href="http://app.py">app.py</a> file</p></li>
 </ul>
-</li>
-</ul>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
