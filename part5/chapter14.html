@@ -402,8 +402,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-separate-into-multiple-pages">
-   Why separate into multiple pages?
+  <a class="reference internal nav-link" href="#why-separate-app-into-multiple-pages">
+   Why separate app into multiple pages?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -437,8 +437,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#why-separate-into-multiple-pages">
-   Why separate into multiple pages?
+  <a class="reference internal nav-link" href="#why-separate-app-into-multiple-pages">
+   Why separate app into multiple pages?
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -468,16 +468,17 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </div>
 </div>
-<div class="section" id="why-separate-into-multiple-pages">
-<h2>Why separate into multiple pages?<a class="headerlink" href="#why-separate-into-multiple-pages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="why-separate-app-into-multiple-pages">
+<h2>Why separate app into multiple pages?<a class="headerlink" href="#why-separate-app-into-multiple-pages" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Advantages</p>
+<li><p><b>Advantages</b></p>
 <ul>
 <li><p>Easy to develop small apps and features</p></li>
+<li><p>Easy to troubleshoot bugs</p></li>
 <li><p>New apps can be built on to old apps</p></li>
 </ul>
 </li>
-<li><p>Disadvantages</p>
+<li><p><b>Disadvantages</b></p>
 <ul>
 <li><p>Extra infrastructure is required</p></li>
 <li><p>Slightly more complex apps</p></li>
@@ -491,21 +492,22 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Storyboarding and building out pages</p></li>
 <li><p>File and folder layouts</p>
 <ul>
-<li><p>Create subdirectory <code class="docutils literal notranslate"><span class="pre">./pages</span></code></p>
+<li><p>Create main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file is root directory</p></li>
+<li><p>Create subdirectory <code class="docutils literal notranslate"><span class="pre">/pages</span></code></p>
 <ul>
-<li><p>Each page needs to</p>
+<li><p>Add individual apps to <code class="docutils literal notranslate"><span class="pre">/pages</span></code> directory</p>
 <ul>
-<li><p>contain a <code class="docutils literal notranslate"><span class="pre">layout</span></code></p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><p>Each page needs to contain a <code class="docutils literal notranslate"><span class="pre">layout</span></code></p></li>
 <li><p>Registering pages</p>
 <ul>
 <li><p>call <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dash.page_registry</span></code> is an <code class="docutils literal notranslate"><span class="pre">ordered</span> <span class="pre">dictionary</span></code> containing each page’s paths, name, title, etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>Callbacks</p></li>
