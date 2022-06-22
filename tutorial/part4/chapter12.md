@@ -1006,7 +1006,7 @@ app.run_server(debug=True)
 
 ### 12.4.8 Gradient
 
-Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will however only let you illustrate subtle changes. The image below compares the snippet we have so far with and wthout `bg-gradient` in `className` for `dbc.Container` on the right and left-hand side, respectively. If you look closely, you'll notice that the top of background in the right-hand image is slightly lighter. This will also depend on which background color you're setting with `bg-primary` or other options.
+Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will however only let you illustrate subtle changes. The image below compares the snippet we have so far with and without `bg-gradient` in `className` for `dbc.Container` on the right and left-hand side, respectively. If you look closely, you'll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you're setting with `bg-{color}`.
 
 #### 12.4.8 Code snippet 1
 
@@ -1075,13 +1075,13 @@ app.run_server(debug=True)
 
 [![enter image description here][27]][27]
 
-In order to add more flexibility to the gradient effect of the background color, you'll have to resort to the `style` attribute. As an example, you can set a background color that transitions from white to grey from the right to the left with:
+In order to add more flexibility to the gradient effect of the background color, you'll have to resort to the `style` attribute. As an example, you can set a background color that transitions from white to grey from the left to the right with:
 
 ```python
 style={"background": "linear-gradient(90deg, white, grey"}
 ```
 
- `linear-gradient` sets the gradient method, while `90deg` sets the direction. [Other alternatives][28] for `linear` are `radial` and `conic`. And other options for `90` in `90deg` can be whatever you would like.
+ `linear` in `linear-gradient` sets the gradient method. [Other alternatives][28] are `radial` and `conic`. `90` in `90deg` sets the direction through the degrees of the angle of the transition direction. Other options for `90` can be whatever you would like.
 
 #### 12.4.8 Code snippet 2
 
@@ -1152,13 +1152,90 @@ app.run_server(debug=True)
 [![enter image description here][29]][29]
 
 
-## 12.X1.8 Overflow
+
+The color options are not limited to simple color names like `white` and `grey`. You can alose use `rgb` and even `rgba` to select any color with any grade of transparency you'd like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses `red`, `yellow` and a transparent `blue` with `rgba(0, 0 , 255, 0.3)`. Notice also that we've included `70%` right after the `rgba` color. This sets the weight of the last color, and can be a bit counter-intuitive. The lower the weight, the more space that particular color covers of the background.
+
+#### 12.4.8 Code snippet 3
+
+```python
+
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-2 p-3",
+    style={
+        "background": "linear-gradient(125deg, red,  yellow, rgba(0, 0, 255, 0.3) 70%"
+    },
+)
+app.run_server(debug=True)
+
+```
+
+#### 12.4.8 Code output 3
+
+[![enter image description here][30]][30]
+
+
+
+## 12.4.9 Overflow
 
 So far we haven't filled any of the components with too much information. If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default behavioss of `dbc.Label` is to let the content flow over the component.
 
-#### 12.X1.8 Code output 1.1 (snippet below)
+#### 12.4.9 Code output 1.1 (snippet below)
 
-[![enter image description here][30]][30]
+[![enter image description here][31]][31]
 
 
 To change this behavior, include `overflow-{option}` in `className` where `option` can be:
@@ -1170,11 +1247,11 @@ To change this behavior, include `overflow-{option}` in `className` where `optio
 
 Below is the same setup with `overflow-scroll` included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `atuo` and `scroll` in this case is that the latter adds both vertical and horizontal sliders by default.
 
-#### 12.X1.8 Code output 1.2 (snippet below)
+#### 12.4.9 Code output 1.2 (snippet below)
 
-[![enter image description here][31]][31]
+[![enter image description here][32]][32]
 
-#### 12.X1.8 Code snippet
+#### 12.4.9 Code snippet
 
 ```python
 from dash import Dash, html, dcc
@@ -1237,7 +1314,13 @@ app.layout = dbc.Container(
 app.run_server(debug=True)
 ```
 
-## 12.X2 Dashboard sizing (sizes?)
+## 12.5 Dashboard sizing
+
+In our latest examples, the app fills up only a limited space of the background. You can adjust this in many ways depending on the functionalities of your app and screen size. This section will show you how to use the `fluid` attribute of `dbc.Container()` to make the app span the entire width of the screen, and how to use `style = {'height':100vh]` to fill the entire height of the screen.
+
+### 12.5.1 `fluid` screen width
+
+### 12.5.2 Set height with 
 
 
 
@@ -1635,7 +1718,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][32]][32]
+[![enter image description here][33]][33]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -1854,7 +1937,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][33]][33]
+[![enter image description here][34]][34]
 
 
  
@@ -1889,7 +1972,8 @@ app.run_server(mode='external', port = 8032)
   [27]: https://i.stack.imgur.com/VVPGV.png
   [28]: https://www.w3schools.com/css/css3_gradients.asp
   [29]: https://i.stack.imgur.com/tcSwu.png
-  [30]: https://i.stack.imgur.com/fkHbn.png
-  [31]: https://i.stack.imgur.com/BdGEE.png
-  [32]: https://i.stack.imgur.com/NGfOi.png
-  [33]: https://i.stack.imgur.com/EJw6S.png
+  [30]: https://i.stack.imgur.com/J87m0.png
+  [31]: https://i.stack.imgur.com/fkHbn.png
+  [32]: https://i.stack.imgur.com/BdGEE.png
+  [33]: https://i.stack.imgur.com/NGfOi.png
+  [34]: https://i.stack.imgur.com/EJw6S.png
