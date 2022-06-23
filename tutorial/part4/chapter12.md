@@ -1320,6 +1320,153 @@ In our latest examples, the app fills up only a limited space of the background.
 
 ### 12.5.1 `fluid` screen width
 
+The image below shows how an app fills the avaiable screen space by default. There's no extra room on top, some extra room on both sides, and plenty of room below.
+
+#### 12.5.1 Code output 1.1 (snippet below)
+
+[![enter image description here][33]][33]
+
+If you drag the screen to the any side, you'll see that the dashboard adjusts to still leave some room on either side. If you'd like to fill the entire available horizontal space, you can do so through setting `fluid = True` for the `dbc.Container` object.
+
+#### 12.4.5 Code output 1.2 (snippet below)
+
+[![enter image description here][34]][34]
+
+#### 12.5.1 Code snippet 1
+
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Very important information that is too long for the component",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "45px"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 p-3 bg-gradient",
+    fluid=True,
+)
+app.run_server(debug=True)
+```
+
+Combining `fluid=True` with margin options in `className` can trigger some strange behavior. `me-4 ` will make the app still fill up the entire space to the right. `ms-4` will provide some space to the left of the app, but "push" the app to the right of the screen and trigger a horizontal scrollbar to appear. You can, however, safely add some space on top with `mt-2`
+
+#### 12.5.1 Code snippet 2
+
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Very important information that is too long for the component",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "45px"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 p-3 bg-gradient ms-4",
+    fluid=True,
+)
+app.run_server(debug=True)
+```
+
+#### 12.5.1 Code output 2
+
+[![enter image description here][35]][35]
+
+
 ### 12.5.2 Set height with 
 
 
@@ -1718,7 +1865,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][33]][33]
+[![enter image description here][36]][36]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -1937,7 +2084,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][34]][34]
+[![enter image description here][37]][37]
 
 
  
@@ -1975,5 +2122,8 @@ app.run_server(mode='external', port = 8032)
   [30]: https://i.stack.imgur.com/J87m0.png
   [31]: https://i.stack.imgur.com/fkHbn.png
   [32]: https://i.stack.imgur.com/BdGEE.png
-  [33]: https://i.stack.imgur.com/NGfOi.png
-  [34]: https://i.stack.imgur.com/EJw6S.png
+  [33]: https://i.stack.imgur.com/pay0z.png
+  [34]: https://i.stack.imgur.com/OnxeJ.png
+  [35]: https://i.stack.imgur.com/erqRS.png
+  [36]: https://i.stack.imgur.com/NGfOi.png
+  [37]: https://i.stack.imgur.com/EJw6S.png
