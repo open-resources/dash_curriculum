@@ -100,7 +100,11 @@ Some alternatives to `body` in `text-body` are:
 - `danger`
 - `info`
 
-For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.
+For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.¨
+
+#### 12.3.1 - Code output 1
+
+[![enter image description here][8]][8]
 
 #### 12.3.1 - Code snippet 1
 
@@ -130,11 +134,11 @@ app.run_server(debug=True)
 ```
 ````
 
-#### 12.3.1 - Code output 1
-
-[![enter image description here][8]][8]
-
 Below is the output with `Dasboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
+
+#### 12.3.1 - Code output 2
+
+[![enter image description here][9]][9]
 
 #### 12.3.1 - Code snippet 2
 
@@ -162,10 +166,6 @@ app.run_server(debug=True)
 ```
 ````
 
-#### 12.3.1 - Code output 2
-
-[![enter image description here][9]][9]
-
 ```{admonition} Why all the extra components in the examples?
 You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn holds all our tables, figures and controls etc.
 
@@ -175,6 +175,10 @@ Also, all these components can offer slightly different functionalities on how t
 ## 12.3.2 How to change background 
 
 Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but point to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
+
+#### 12.3.2 - Code output
+
+[![enter image description here][10]][10]
 
 #### 12.3.2 - Code snippet
 ````{dropdown} See Code
@@ -201,10 +205,6 @@ app.run_server(debug=True)
 
 ```
 ````
-
-#### 12.3.2 - Code output
-
-[![enter image description here][10]][10]
 
 Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
 
