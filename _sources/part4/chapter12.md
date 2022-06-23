@@ -1467,7 +1467,86 @@ app.run_server(debug=True)
 [![enter image description here][35]][35]
 
 
-### 12.5.2 Set height with 
+### 12.5.2 Set height with
+
+This subchapter introduces a new concept for style, the [viewport][36] height or `vh`. This is what you'll use to apply the same behaviour to the height of the app as we've seen for the width of the app with `fluid = True`.
+
+#### 12.5.2 Code snippet
+
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Very important information that is too long for the component",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "45px"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 p-3 bg-gradient",
+    fluid=True,
+    style={"height": "100vh"},
+)
+app.run_server(debug=True)
+```
+
+
+#### 12.5.2 Code output
+
+[![enter image description here][37]][37]
+
+
+```{warning}
+
+You'll see the same strange behaviour with `mt-1` in `className` as you did for other margin options while using `fluid = True` for the app width. `mt-1` *will* provide space on the top, but also trigger a vertical scrollbar that has no real practical use.
+
+```
 
 
 
@@ -1865,7 +1944,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][36]][36]
+[![enter image description here][38]][38]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -2084,7 +2163,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][37]][37]
+[![enter image description here][39]][39]
 
 
  
@@ -2125,5 +2204,7 @@ app.run_server(mode='external', port = 8032)
   [33]: https://i.stack.imgur.com/pay0z.png
   [34]: https://i.stack.imgur.com/OnxeJ.png
   [35]: https://i.stack.imgur.com/erqRS.png
-  [36]: https://i.stack.imgur.com/NGfOi.png
-  [37]: https://i.stack.imgur.com/EJw6S.png
+  [36]: https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts
+  [37]: https://i.stack.imgur.com/IBPlh.png
+  [38]: https://i.stack.imgur.com/NGfOi.png
+  [39]: https://i.stack.imgur.com/EJw6S.png
