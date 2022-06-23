@@ -104,6 +104,10 @@ For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The
 
 #### 12.3.1 - Code snippet 1
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -124,6 +128,7 @@ app.layout = dbc.Container(
 
 app.run_server(debug=True)
 ```
+````
 
 #### 12.3.1 - Code output 1
 
@@ -133,6 +138,9 @@ Below is the output with `Dasboard title` displayed as a heading in the colorcod
 
 #### 12.3.1 - Code snippet 2
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -152,6 +160,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.3.1 - Code output 2
 
@@ -168,7 +177,9 @@ Also, all these components can offer slightly different functionalities on how t
 Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but point to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
 
 #### 12.3.2 - Code snippet
-
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -189,6 +200,7 @@ app.layout = dbc.Container(
 app.run_server(debug=True)
 
 ```
+````
 
 #### 12.3.2 - Code output
 
@@ -207,7 +219,9 @@ Misspellings in `className` will *not* raise any errors. Any additions to `class
 So far, the whole `CSS` thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` in `className`:
 
 #### 12.3.3 Code snippet
-
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -231,6 +245,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True) 
 ```
+````
 
 #### 12.3.3 Code output
 

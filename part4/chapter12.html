@@ -1512,6 +1512,13 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 <p>For other options, take a look at the cheatsheet at <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">pythonanywhere.com</a>. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.</p>
 <div class="section" id="code-snippet-1">
 <h3>12.3.1 - Code snippet 1<a class="headerlink" href="#code-snippet-1" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -1533,6 +1540,7 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 </pre></div>
 </div>
 </div>
+</details></div>
 <div class="section" id="code-output-1">
 <h3>12.3.1 - Code output 1<a class="headerlink" href="#code-output-1" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/iCkRA.png"><img alt="enter image description here" src="https://i.stack.imgur.com/iCkRA.png" /></a></p>
@@ -1540,6 +1548,13 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 </div>
 <div class="section" id="code-snippet-2">
 <h3>12.3.1 - Code snippet 2<a class="headerlink" href="#code-snippet-2" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -1560,6 +1575,7 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 </pre></div>
 </div>
 </div>
+</details></div>
 <div class="section" id="code-output-2">
 <h3>12.3.1 - Code output 2<a class="headerlink" href="#code-output-2" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/d9pqj.png"><img alt="enter image description here" src="https://i.stack.imgur.com/d9pqj.png" /></a></p>
@@ -1575,6 +1591,13 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 <p>Recall that the alternatives to <code class="docutils literal notranslate"><span class="pre">text-body</span></code> like <code class="docutils literal notranslate"><span class="pre">text-primary</span></code> and <code class="docutils literal notranslate"><span class="pre">text-secondary</span></code> aren’t actual colors, but point to different colors set by the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. So you can think of these options as different categories of the information you’d like to display. The same thing goes for other features of our <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> example like background color. The following snippet changes the white background of the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme to a rich blue color. And if you’d like to know <em>exactly</em> which color that is, you already know how to find that out through studying the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. Notice in the snippet below that all you have to do to change the background color is to include <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. <code class="docutils literal notranslate"><span class="pre">bg</span></code> stands for <em>background</em>. Later we’ll touch upon other abbreviations like <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>margin</em> and <code class="docutils literal notranslate"><span class="pre">p</span></code> for <em>padding</em>.</p>
 <div class="section" id="code-snippet">
 <h3>12.3.2 - Code snippet<a class="headerlink" href="#code-snippet" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -1596,6 +1619,7 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 </pre></div>
 </div>
 </div>
+</details></div>
 <div class="section" id="code-output">
 <h3>12.3.2 - Code output<a class="headerlink" href="#code-output" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/vLWvz.png"><img alt="enter image description here" src="https://i.stack.imgur.com/vLWvz.png" /></a></p>
@@ -1611,6 +1635,13 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 <p>So far, the whole <code class="docutils literal notranslate"><span class="pre">CSS</span></code> thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both <code class="docutils literal notranslate"><span class="pre">text-info</span></code> and <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> separated by <code class="docutils literal notranslate"><span class="pre">space</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>:</p>
 <div class="section" id="id1">
 <h3>12.3.3 Code snippet<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -1635,6 +1666,7 @@ app = Dash(external_stylesheets=[dbc.themes.<theme>])</p>
 </pre></div>
 </div>
 </div>
+</details></div>
 <div class="section" id="id2">
 <h3>12.3.3 Code output<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/dfjKw.png"><img alt="enter image description here" src="https://i.stack.imgur.com/dfjKw.png" /></a></p>
