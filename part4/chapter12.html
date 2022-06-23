@@ -777,6 +777,33 @@ const thebe_selector_output = ".output, .cell_output"
        </code>
        screen width
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id31">
+         12.5.1 Code output 1.1 (snippet below)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id32">
+         12.4.5 Code output 1.2 (snippet below)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id33">
+         12.5.1 Code snippet 1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id34">
+         12.5.1 Code snippet 2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id35">
+         12.5.1 Code output 2
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#set-height-with">
@@ -1252,6 +1279,33 @@ const thebe_selector_output = ".output, .cell_output"
        </code>
        screen width
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id31">
+         12.5.1 Code output 1.1 (snippet below)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id32">
+         12.4.5 Code output 1.2 (snippet below)
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id33">
+         12.5.1 Code snippet 1
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id34">
+         12.5.1 Code snippet 2
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id35">
+         12.5.1 Code output 2
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#set-height-with">
@@ -2621,6 +2675,149 @@ In the snippet below we’ve added a thick grey border line below the title by a
 <p>In our latest examples, the app fills up only a limited space of the background. You can adjust this in many ways depending on the functionalities of your app and screen size. This section will show you how to use the <code class="docutils literal notranslate"><span class="pre">fluid</span></code> attribute of <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> to make the app span the entire width of the screen, and how to use <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'height':100vh]</span></code> to fill the entire height of the screen.</p>
 <div class="section" id="fluid-screen-width">
 <h3>12.5.1 <code class="docutils literal notranslate"><span class="pre">fluid</span></code> screen width<a class="headerlink" href="#fluid-screen-width" title="Permalink to this headline">¶</a></h3>
+<p>The image below shows how an app fills the avaiable screen space by default. There’s no extra room on top, some extra room on both sides, and plenty of room below.</p>
+<div class="section" id="id31">
+<h4>12.5.1 Code output 1.1 (snippet below)<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://i.stack.imgur.com/pay0z.png"><img alt="enter image description here" src="https://i.stack.imgur.com/pay0z.png" /></a></p>
+<p>If you drag the screen to the any side, you’ll see that the dashboard adjusts to still leave some room on either side. If you’d like to fill the entire available horizontal space, you can do so through setting <code class="docutils literal notranslate"><span class="pre">fluid</span> <span class="pre">=</span> <span class="pre">True</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> object.</p>
+</div>
+<div class="section" id="id32">
+<h4>12.4.5 Code output 1.2 (snippet below)<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://i.stack.imgur.com/OnxeJ.png"><img alt="enter image description here" src="https://i.stack.imgur.com/OnxeJ.png" /></a></p>
+</div>
+<div class="section" id="id33">
+<h4>12.5.1 Code snippet 1<a class="headerlink" href="#id33" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
+                            <span class="s2">&quot;#### Dashboard title&quot;</span><span class="p">,</span>
+                            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info p-2&quot;</span><span class="p">,</span>
+                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">},</span>
+                        <span class="p">)</span>
+                    <span class="p">],</span>
+                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;mt-2&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info m-0&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+                            <span class="s2">&quot;Very important information that is too long for the component&quot;</span><span class="p">,</span>
+                            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-warning mt-2 p-2 overflow-auto&quot;</span><span class="p">,</span>
+                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;45px&quot;</span><span class="p">},</span>
+                        <span class="p">)</span>
+                    <span class="p">],</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+                        <span class="s2">&quot;Click me&quot;</span><span class="p">,</span>
+                        <span class="n">className</span><span class="o">=</span><span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;border-top border-white border-3 m-0&quot;</span><span class="p">,</span>
+            <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;evenly&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                    <span class="s2">&quot;Put your card content here&quot;</span><span class="p">,</span>
+                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-4&quot;</span><span class="p">,</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;200px&quot;</span><span class="p">},</span>
+                <span class="p">),</span>
+                <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary bg-opacity-75 p-3 bg-gradient&quot;</span><span class="p">,</span>
+    <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Combining <code class="docutils literal notranslate"><span class="pre">fluid=True</span></code> with margin options in <code class="docutils literal notranslate"><span class="pre">className</span></code> can trigger some strange behavior. <code class="docutils literal notranslate"><span class="pre">me-4</span> </code> will make the app still fill up the entire space to the right. <code class="docutils literal notranslate"><span class="pre">ms-4</span></code> will provide some space to the left of the app, but “push” the app to the right of the screen and trigger a horizontal scrollbar to appear. You can, however, safely add some space on top with <code class="docutils literal notranslate"><span class="pre">mt-2</span></code></p>
+</div>
+<div class="section" id="id34">
+<h4>12.5.1 Code snippet 2<a class="headerlink" href="#id34" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
+                            <span class="s2">&quot;#### Dashboard title&quot;</span><span class="p">,</span>
+                            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info p-2&quot;</span><span class="p">,</span>
+                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">},</span>
+                        <span class="p">)</span>
+                    <span class="p">],</span>
+                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;mt-2&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">],</span>
+            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info m-0&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
+                            <span class="s2">&quot;Very important information that is too long for the component&quot;</span><span class="p">,</span>
+                            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-warning mt-2 p-2 overflow-auto&quot;</span><span class="p">,</span>
+                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;45px&quot;</span><span class="p">},</span>
+                        <span class="p">)</span>
+                    <span class="p">],</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
+                        <span class="s2">&quot;Click me&quot;</span><span class="p">,</span>
+                        <span class="n">className</span><span class="o">=</span><span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;border-top border-white border-3 m-0&quot;</span><span class="p">,</span>
+            <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;evenly&quot;</span><span class="p">,</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                    <span class="s2">&quot;Put your card content here&quot;</span><span class="p">,</span>
+                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-4&quot;</span><span class="p">,</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;200px&quot;</span><span class="p">},</span>
+                <span class="p">),</span>
+                <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary bg-opacity-75 p-3 bg-gradient ms-4&quot;</span><span class="p">,</span>
+    <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id35">
+<h4>12.5.1 Code output 2<a class="headerlink" href="#id35" title="Permalink to this headline">¶</a></h4>
+<p><a class="reference external" href="https://i.stack.imgur.com/erqRS.png"><img alt="enter image description here" src="https://i.stack.imgur.com/erqRS.png" /></a></p>
+</div>
 </div>
 <div class="section" id="set-height-with">
 <h3>12.5.2 Set height with<a class="headerlink" href="#set-height-with" title="Permalink to this headline">¶</a></h3>
