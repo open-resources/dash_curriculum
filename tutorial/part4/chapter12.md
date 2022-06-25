@@ -12,7 +12,7 @@
   - rounded edges `rounded`
   - opacity `opacity-25`
 - How multiple features are referenced in the same className call `"text-info bg-primary"`
-- How the same component part can be referenced mutliple times with `"bg-primary bg-opacity-25"`
+- How the same component part can be referenced multiple times with `"bg-primary bg-opacity-25"`
 - Special layout attributes for `dbc.Row()`
   - `justify = 'start'` # or center, end, between, around 
 - Special layout attributes for `dbc.Container()`
@@ -102,10 +102,6 @@ Some alternatives to `body` in `text-body` are:
 
 For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.¨
 
-#### 12.3.1 - Code output 1
-
-[![enter image description here][8]][8]
-
 #### 12.3.1 - Code snippet 1
 
 ````{dropdown} See Code
@@ -134,11 +130,12 @@ app.run_server(debug=True)
 ```
 ````
 
+#### 12.3.1 - Code output 1
+
+[![enter image description here][8]][8]
+
 Below is the output with `Dasboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
 
-#### 12.3.1 - Code output 2
-
-[![enter image description here][9]][9]
 
 #### 12.3.1 - Code snippet 2
 
@@ -166,6 +163,10 @@ app.run_server(debug=True)
 ```
 ````
 
+#### 12.3.1 - Code output 2
+
+[![enter image description here][9]][9]
+
 ```{admonition} Why all the extra components in the examples?
 You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn holds all our tables, figures and controls etc.
 
@@ -175,10 +176,6 @@ Also, all these components can offer slightly different functionalities on how t
 ## 12.3.2 How to change background 
 
 Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but point to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
-
-#### 12.3.2 - Code output
-
-[![enter image description here][10]][10]
 
 #### 12.3.2 - Code snippet
 ````{dropdown} See Code
@@ -205,6 +202,10 @@ app.run_server(debug=True)
 
 ```
 ````
+
+#### 12.3.2 - Code output
+
+[![enter image description here][10]][10]
 
 Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
 
@@ -261,6 +262,9 @@ Often, a `HTML` child component will take on the same size as its parent. This s
 
 #### 12.3.4 Code snippet 1
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -285,18 +289,19 @@ app.layout = dbc.Container(
 
 app.run_server(debug=True)
 ```
+````
 
 #### 12.3.4 Code output 1
 
 [![enter image description here][12]][12]
 
-If we were to put this in `className` terms, this means the the default setting of the `dbc.Row` margin is `mt-0` which translates to `margin at top is zero`. This follows a naming convention `property-side-size`, where `property`, when it comes to [spacing][13], can be one of:
+If we were to put this in `className` terms, this means the the default setting of the `dbc.Row` margin is `mt-0` which translates to `"margin at top is zero"`. This follows a naming convention `property-side-size`, where `property`, when it comes to [spacing][13], can be one of:
 
 - `m` - `margin`, the space between a parent and a child component.
 - `p` -  `padding`, component and features of that component such as text.
 
 
-Next, `side` can be one of:
+And `side` can be one of:
 
 - `t` - `top` for classes that set margin-top or padding-top
 - `b` - `bottom` for classes that set margin-bottom or padding-bottom
@@ -306,10 +311,13 @@ Next, `side` can be one of:
 - `y` - for classes that set both *-top and *-bottom
 - *`blank`* - for classes that set a margin or padding on all 4 sides of the element
 
-And at last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][13] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className.
+At last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][13] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className.
 
 ### 12.3.4 Code snippet 2
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -334,6 +342,7 @@ app.layout = dbc.Container(
 
 app.run_server(debug=True)
 ```
+````
 
 ### 12.3.4 Code output 2
 
@@ -345,7 +354,9 @@ You should expect that different components from different libraries such as `dc
 
 
 ### 12.3.5 Code snippet 1
-
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -373,14 +384,15 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 ### 12.3.5 Code output 1
 
 [![enter image description here][15]][15]
 
-As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span *different* widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing. ***For the remainder of this section, we will only show the changes we've made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.***
+As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span *different* widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case particular, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing. ***For the remainder of this section, we will only show the changes we've made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.***
 
-The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same space around the texts `Dashboard title` and `Label 1`, while the font sizes provide different emphasis to the content.
+The first thing we'll do is adding `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same space around the texts `Dashboard title` and `Label 1`. The differnet font *sizes* still provide different emphasis to the content.
 
 ### 12.3.5 Code output 2.1 (snippet below)
 
