@@ -603,8 +603,11 @@ In the previous snippet, we'ved used `width = 4` for both the `label` and the `b
 
 The image below shows the result for `justify = 'evenly'`. In additon we've included some margins and padding to make the title, label and button look a little nicer.
 
-#### 12.4.2 Code snippet 
+#### 12.4.2 Code snippet
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
@@ -665,6 +668,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.4.2 Code output 
 
@@ -676,6 +680,9 @@ Notice how we've cheated a bit by adding `'height':'65%'` for the `label` compon
 
 #### 12.4.3 Code snippet
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -736,6 +743,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.4.3 Code output 1
 
@@ -763,6 +771,9 @@ In the snippet below, we've rounded off the bottom of the card only, and set the
 
 #### 12.4.4 Code snippet
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -823,6 +834,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.4.4 Code output
 
@@ -843,6 +855,9 @@ In the snippet below we've added a thick grey border line below the title by add
 
 #### 12.4.5 Code snippet
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -903,6 +918,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.4.5 Code output
 
@@ -915,7 +931,9 @@ app.run_server(debug=True)
 If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
 
 ### 12.4.6 Code snippet
-
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -976,7 +994,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
-
+````
 
 ### 12.4.6 Code output
 [![enter image description here][25]][25]
@@ -997,7 +1015,9 @@ You can add a bit of depth to your dashboard by adding a shadow to your componen
 The last two options stand for `small` and `large`. Below we've included `shadow-lg` for the `dbc.Container` component.
 
 ### 12.4.7 Code snippet
-
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1057,8 +1077,8 @@ app.layout = dbc.Container(
     className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3",
 )
 app.run_server(debug=True)
-
 ```
+````
 
 ### 12.4.7 Code output
 
@@ -1070,6 +1090,9 @@ Including `bg-gradient` will add additional depth to the background of your app 
 
 #### 12.4.8 Code snippet 1
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1130,6 +1153,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.4.8 Code output 1
 
@@ -1145,6 +1169,9 @@ style={"background": "linear-gradient(90deg, white, grey"}
 
 #### 12.4.8 Code snippet 2
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1206,6 +1233,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.4.8 Code Output 2
 
@@ -1217,8 +1245,10 @@ The color options are not limited to simple color names like `white` and `grey`.
 
 #### 12.4.8 Code snippet 3
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
-
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
@@ -1280,13 +1310,12 @@ app.layout = dbc.Container(
     },
 )
 app.run_server(debug=True)
-
 ```
+````
 
 #### 12.4.8 Code output 3
 
 [![enter image description here][30]][30]
-
 
 
 ## 12.4.9 Overflow
@@ -1311,8 +1340,10 @@ Below is the same setup with `overflow-scroll` included. You can see that a slid
 
 [![enter image description here][32]][32]
 
-#### 12.4.9 Code snippet
-
+#### 12.4.9 Code snippet 1
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1373,6 +1404,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 ## 12.5 Dashboard sizing
 
@@ -1393,7 +1425,9 @@ If you drag the screen to the any side, you'll see that the dashboard adjusts to
 [![enter image description here][34]][34]
 
 #### 12.5.1 Code snippet 1
-
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1455,11 +1489,15 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 Combining `fluid=True` with margin options in `className` can trigger some strange behavior. `me-4 ` will make the app still fill up the entire space to the right. `ms-4` will provide some space to the left of the app, but "push" the app to the right of the screen and trigger a horizontal scrollbar to appear. You can, however, safely add some space on top with `mt-2`
 
 #### 12.5.1 Code snippet 2
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1521,18 +1559,21 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 #### 12.5.1 Code output 2
 
 [![enter image description here][35]][35]
 
 
-### 12.5.2 Set height with
+### 12.5.2 Set component height
 
-This subchapter introduces a new concept for style, the [viewport][36] height or `vh`. This is what you'll use to apply the same behaviour to the height of the app as we've seen for the width of the app with `fluid = True`.
+This subchapter introduces a new concept for style, the [viewport][36] height or `vh`. This is what you'll use to apply the same behaviour to the height of the app as we've seen for the *width* of the app with `fluid = True`.
 
 #### 12.5.2 Code snippet
-
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1595,6 +1636,7 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
 
 
 #### 12.5.2 Code output
@@ -1623,13 +1665,6 @@ div class="border-top border-white border-3 m-0 justify-content-evenly row"
 Notice how alle the `className` elements we've added can be found there. In addition, you'll see how using the `justify = 'evenly'` attribute for the `dbc.Row()` compnent in effect adds `justify-content-evenly` to the very same component.
 
 
-
-
-
-
-
-
-    
 ---
 
 ## Unclear:
