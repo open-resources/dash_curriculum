@@ -1241,7 +1241,7 @@ app.run_server(debug=True)
 
 
 
-The color options are not limited to simple color names like `white` and `grey`. You can alose use `rgb` and even `rgba` to select any color with any grade of transparency you'd like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses `red`, `yellow` and a transparent `blue` with `rgba(0, 0 , 255, 0.3)`. Notice also that we've included `70%` right after the `rgba` color. This sets the weight of the last color, and can be a bit counter-intuitive. The lower the weight, the more space that particular color covers of the background.
+The color options are not limited to simple color names like `white` and `grey`. You can alose use `rgb` and even `rgba` to select any color with any grade of transparency you'd like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses `red`, `yellow` and a transparent `blue` with `rgba(0, 0 , 255, 0.3)`. Notice also that we've included `70%` right after the `rgba` color. This sets the share of the last color compared to the rest of the colors.
 
 #### 12.4.8 Code snippet 3
 
