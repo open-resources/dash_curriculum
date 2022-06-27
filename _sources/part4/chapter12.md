@@ -32,14 +32,13 @@
 
 2. Due to the practices with showing *complete* snippets for each example, I'ce put all snippets in dropdown blocks. We should definitely consider more efficient ways of showing examples, and then referring to them as results of changing something in an already established code snippet. 
 
-3. I often use "[...] as you can see in the `dbc.Row()` component [...]"
-   - should we drop the parentheses "[...] as you can see in the `dbc.Row` component [...]"
-   - should we rather use "[...] as you can see in the `row` component [...]"
-   - or no formatting like should we rather use "[...] as you can see in the row component [...]"
+3. I often use  refer to dbc and dcc objects like this: "as you can see in the `dbc.Row()`"
+   - should we drop the parentheses like this:  "as you can see in the `dbc.Row`"?
+   - should we rather use only: "as you can see in the `row` component"?
+   - or no formatting like should we rather"[...] as you can see in the row component [...]"
 
 4. What do we call the elements in `className`? Methods? Like in "methods to include in `className`".
 
-5. 
 
 ```
 
