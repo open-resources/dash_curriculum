@@ -450,8 +450,8 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-change-background">
-     12.3.2 How to change background
+    <a class="reference internal nav-link" href="#how-to-change-background-color">
+     12.3.2 How to change background color
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -818,6 +818,11 @@ const thebe_selector_output = ".output, .cell_output"
        <li class="toc-h4 nav-item toc-entry">
         <a class="reference internal nav-link" href="#id37">
          12.5.2 Code output
+        </a>
+       </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#studying-layouts-with-your-browser-s-development-tools">
+         12.6 Studying layouts with your browser’s development tools
         </a>
        </li>
       </ul>
@@ -964,8 +969,8 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
    <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-change-background">
-     12.3.2 How to change background
+    <a class="reference internal nav-link" href="#how-to-change-background-color">
+     12.3.2 How to change background color
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
@@ -1334,6 +1339,11 @@ const thebe_selector_output = ".output, .cell_output"
          12.5.2 Code output
         </a>
        </li>
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#studying-layouts-with-your-browser-s-development-tools">
+         12.6 Studying layouts with your browser’s development tools
+        </a>
+       </li>
       </ul>
      </li>
     </ul>
@@ -1445,6 +1455,29 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li><p>How to change the layout of a component directly with <code class="docutils literal notranslate"><span class="pre">style</span></code></p></li>
 </ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><em><strong>TO EDITORS</strong></em></p>
+<p><strong>Needs clarification:</strong></p>
+<ol class="simple">
+<li><p>We’ve established a standard where code comes before output</p>
+<ul class="simple">
+<li><p>However, I’ve deemed it more practical to show up to <em>two</em> different
+outputs from the same snippet by referring to them, for example, 12.1.1 Code output 1.1 and 12.1.1 Code output 1.2, and then, for the snippet, 12.1.1 Code snippet 1. In those cases, I sometimes find it better to show the outputs, then the code.</p></li>
+</ul>
+</li>
+<li><p>Due to the practices with showing <em>complete</em> snippets for each example, I’ce put all snippets in dropdown blocks. We should definitely consider more efficient ways of showing examples, and then referring to them as results of changing something in an already established code snippet.</p></li>
+<li><p>I often use “[…] as you can see in the <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component […]”</p>
+<ul class="simple">
+<li><p>should we drop the parentheses “[…] as you can see in the <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component […]”</p></li>
+<li><p>should we rather use “[…] as you can see in the <code class="docutils literal notranslate"><span class="pre">row</span></code> component […]”</p></li>
+<li><p>or no formatting like should we rather use “[…] as you can see in the row component […]”</p></li>
+</ul>
+</li>
+<li><p>What do we call the elements in <code class="docutils literal notranslate"><span class="pre">className</span></code>? Methods? Like in “methods to include in <code class="docutils literal notranslate"><span class="pre">className</span></code>”.</p></li>
+<li></li>
+</ol>
 </div>
 <div class="section" id="the-theme-of-a-dash-app">
 <h2>12.1 The theme of a Dash app<a class="headerlink" href="#the-theme-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
@@ -1581,14 +1614,14 @@ See Code<div class="summary-down docutils">
 <p><a class="reference external" href="https://i.stack.imgur.com/d9pqj.png"><img alt="enter image description here" src="https://i.stack.imgur.com/d9pqj.png" /></a></p>
 <div class="admonition-why-all-the-extra-components-in-the-examples admonition">
 <p class="admonition-title">Why all the extra components in the examples?</p>
-<p>You might wonder why we’ve chosen to include the full <code class="docutils literal notranslate"><span class="pre">dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])</span></code> in these demonstrations. That’s to comply with established standards of the former chapters. A <code class="docutils literal notranslate"><span class="pre">dbc.Contatiner()</span></code> forms the foundation of the app and holds one or more <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> components. These can hold one or more <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code> components which in turn holds all our tables, figures and controls etc.</p>
+<p>You might wonder why we’ve chosen to include the full <code class="docutils literal notranslate"><span class="pre">dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])</span></code> in these demonstrations. That’s to comply with established standards of the former chapters. A <code class="docutils literal notranslate"><span class="pre">dbc.Contatiner()</span></code> forms the foundation of the app and holds one or more <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> components. These can hold one or more <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code> components which in turn hold all our tables, figures and controls etc.</p>
 <p>Also, all these components can offer slightly different functionalities on how to apply <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> depending on what you’d like to do. But we’ll come back to that later.</p>
 </div>
 </div>
 </div>
-<div class="section" id="how-to-change-background">
-<h2>12.3.2 How to change background<a class="headerlink" href="#how-to-change-background" title="Permalink to this headline">¶</a></h2>
-<p>Recall that the alternatives to <code class="docutils literal notranslate"><span class="pre">text-body</span></code> like <code class="docutils literal notranslate"><span class="pre">text-primary</span></code> and <code class="docutils literal notranslate"><span class="pre">text-secondary</span></code> aren’t actual colors, but point to different colors set by the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. So you can think of these options as different categories of the information you’d like to display. The same thing goes for other features of our <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> example like background color. The following snippet changes the white background of the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme to a rich blue color. And if you’d like to know <em>exactly</em> which color that is, you already know how to find that out through studying the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. Notice in the snippet below that all you have to do to change the background color is to include <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. <code class="docutils literal notranslate"><span class="pre">bg</span></code> stands for <em>background</em>. Later we’ll touch upon other abbreviations like <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>margin</em> and <code class="docutils literal notranslate"><span class="pre">p</span></code> for <em>padding</em>.</p>
+<div class="section" id="how-to-change-background-color">
+<h2>12.3.2 How to change background color<a class="headerlink" href="#how-to-change-background-color" title="Permalink to this headline">¶</a></h2>
+<p>Recall that the alternatives to <code class="docutils literal notranslate"><span class="pre">text-body</span></code> like <code class="docutils literal notranslate"><span class="pre">text-primary</span></code> and <code class="docutils literal notranslate"><span class="pre">text-secondary</span></code> aren’t actual colors, but rather pointers to different colors set by the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. So you can think of these options as different possible categories of the information you’d like to display. The same thing goes for other features of our <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> example like background color. The following snippet changes the white background of the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme to a rich blue color. And if you’d like to know <em>exactly</em> which color that is, you already know how to find that out through studying the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. Notice in the snippet below that all you have to do to change the background color is to include <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. <code class="docutils literal notranslate"><span class="pre">bg</span></code> stands for <em>background</em>. Later we’ll touch upon other abbreviations like <code class="docutils literal notranslate"><span class="pre">m</span></code> for <em>margin</em> and <code class="docutils literal notranslate"><span class="pre">p</span></code> for <em>padding</em>.</p>
 <div class="section" id="code-snippet">
 <h3>12.3.2 - Code snippet<a class="headerlink" href="#code-snippet" title="Permalink to this headline">¶</a></h3>
 <details class="sphinx-bs dropdown card mb-3 shadow">
@@ -1675,7 +1708,7 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="spacing-margins-and-padding">
 <h2>12.3.4 Spacing, margins and padding<a class="headerlink" href="#spacing-margins-and-padding" title="Permalink to this headline">¶</a></h2>
-<p>Often, a <code class="docutils literal notranslate"><span class="pre">HTML</span></code> child component will take on the same size as its parent. This should mean that a <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code> contained by a <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component would span the entire height and width of the former. This is however not the case. If we add a color such as <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> to the <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component you’ll see that there are margins on the right and left hand sides as well as at the bottom.</p>
+<p>Often, a <code class="docutils literal notranslate"><span class="pre">HTML</span></code> child component will take on the same size as its parent. This should mean that a <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code> contained by a <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component would span the entire height and width of the former. This is however not the case. If we add a color such as <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> to the <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> component you’ll see that there are margins on the right and left hand sides as well as at the bottom.</p>
 <div class="section" id="id3">
 <h3>12.3.4 Code snippet 1<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <details class="sphinx-bs dropdown card mb-3 shadow">
@@ -1815,8 +1848,8 @@ See Code<div class="summary-down docutils">
 <div class="section" id="id8">
 <h3>12.3.5 Code output 1<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/Uu0Ee.png"><img alt="enter image description here" src="https://i.stack.imgur.com/Uu0Ee.png" /></a></p>
-<p>As it now stands, the dashboard isn’t exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span <em>different</em> widths. In addition, the paddings for “Dashboard title” and “Label 1” look very different. In this case particular, we could overcome these obstacles by using the same component in both instances. But when you’re going to build dashboards out in the wild, you’re very likely going to need different components with different properties to align nicely. So let’s take a look at the details on how to make it all visually pleasing. <em><strong>For the remainder of this section, we will only show the changes we’ve made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.</strong></em></p>
-<p>The first thing we’ll do is adding <code class="docutils literal notranslate"><span class="pre">p-1</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=&quot;text-info</span> <span class="pre">bg-primary</span> <span class="pre">p-1&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code> component and <code class="docutils literal notranslate"><span class="pre">p-2</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning</span> <span class="pre">p-2&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component. This way we’ll get approximately the same space around the texts <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">1</span></code>. The differnet font <em>sizes</em> still provide different emphasis to the content.</p>
+<p>As it now stands, the dashboard isn’t exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span <em>different</em> widths. In addition, the paddings for “Dashboard title” and “Label 1” look very different. In this case particular, we could overcome these obstacles by using the same component in both instances. But when you’re going to build dashboards out in the wild, you’re very likely going to need different components with different properties to align nicely. So let’s take a look at the details on how to make it all visually pleasing.</p>
+<p>The first thing we’ll do is adding <code class="docutils literal notranslate"><span class="pre">p-1</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=&quot;text-info</span> <span class="pre">bg-primary</span> <span class="pre">p-1&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code> component and <code class="docutils literal notranslate"><span class="pre">p-2</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning</span> <span class="pre">p-2&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component. This way we’ll get approximately the same spacing around the texts <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">1</span></code>. The differnet font <em>sizes</em> still provide different emphasis to the content.</p>
 </div>
 <div class="section" id="code-output-2-1-snippet-below">
 <h3>12.3.5 Code output 2.1 (snippet below)<a class="headerlink" href="#code-output-2-1-snippet-below" title="Permalink to this headline">¶</a></h3>
@@ -1829,6 +1862,13 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="id9">
 <h3>12.3.5 Code snippet 2<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -1855,16 +1895,23 @@ See Code<div class="summary-down docutils">
 <span class="p">)</span>
 
 <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
 </pre></div>
 </div>
 </div>
+</details></div>
 </div>
 <div class="section" id="how-to-handle-layout-challenges-with-style">
 <h2>12.3.6 How to handle layout challenges with <code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#how-to-handle-layout-challenges-with-style" title="Permalink to this headline">¶</a></h2>
-<p>In the previous snippet, notice how <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=&quot;text-info&quot;</span></code> is set for <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code>, and how <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning&quot;</span></code> is set for <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> with very different results for the layout. In previous chapters, we’ve unsurprisingly set the width of <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> components through the <code class="docutils literal notranslate"><span class="pre">width</span></code> attribute. However, if you run <code class="docutils literal notranslate"><span class="pre">help(dcc.Markdown)</span></code> and <code class="docutils literal notranslate"><span class="pre">help(dbc.Label)</span></code> you’ll see that neither component has got a <code class="docutils literal notranslate"><span class="pre">width</span></code> attribute. This is where the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute comes into play if you’d like to align your components in a more visually pleasing way, . With this, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you’ll use <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100px'}</span></code>, and for the former you can use either <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100%}</span></code> or <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100pc}</span></code>. Here’s the same layout with <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'widt':'75%}</span></code> for both components:</p>
+<p>In the previous snippet, notice how <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=&quot;bg-primary&quot;</span></code> is set for <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code>, and how <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning&quot;</span></code> is set for <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> with very different results for the backgrounds. This is because the two components are set to “fill” the width of their parent components in different ways. In previous chapters, we’ve unsurprisingly set the width of <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> components through the <code class="docutils literal notranslate"><span class="pre">width</span></code> attribute. However, if you run <code class="docutils literal notranslate"><span class="pre">help(dcc.Markdown)</span></code> and <code class="docutils literal notranslate"><span class="pre">help(dbc.Label)</span></code> you’ll see that neither component has got a <code class="docutils literal notranslate"><span class="pre">width</span></code> attribute. This is where the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute comes into play if you’d like to align your components in a more visually pleasing way. With <code class="docutils literal notranslate"><span class="pre">style</span></code>, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you’ll use <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100px'}</span></code>, and for the former you can use either <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100%}</span></code> or <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100pc}</span></code>. Here’s the same layout with <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'75%}</span></code> for both components:</p>
 <div class="section" id="id10">
 <h3>12.3.6 Code snippet<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -1903,6 +1950,7 @@ See Code<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
+</details></div>
 <div class="section" id="id11">
 <h3>12.3.6 Code output<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/jRrsW.png"><img alt="enter image description here" src="https://i.stack.imgur.com/jRrsW.png" /></a></p>
@@ -1910,13 +1958,20 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="more-components-and-more-attributes">
 <h2>12.4 More components and more attributes<a class="headerlink" href="#more-components-and-more-attributes" title="Permalink to this headline">¶</a></h2>
-<p>With some basic principles firmly in place, all you’ll need to put together a working and nice looking app is to increase the number of component types in your toolbox, as well as methods to include in <code class="docutils literal notranslate"><span class="pre">className</span></code>. In this section you’ll learn how to build further on the previous example and approach something that looks more like a complete dashboard by adding a <code class="docutils literal notranslate"><span class="pre">dbc.Button()</span></code> component and a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code>. The latter is often used to split a dashboard in different parts and as a container for more components. You’ll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.</p>
+<p>With some basic principles now firmly in place, all you’ll need to put together a working and nice looking app is to increase the number of component types in your toolbox, as well as methods to include in <code class="docutils literal notranslate"><span class="pre">className</span></code>. In this section you’ll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a <code class="docutils literal notranslate"><span class="pre">dbc.Button()</span></code> and a <code class="docutils literal notranslate"><span class="pre">dbc.Card()</span></code> component . The latter is often used to split a dashboard in different parts and as a container for more components. You’ll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.</p>
 </div>
 <div class="section" id="a-button-and-a-card">
 <h2>12.4.1 A button and a card<a class="headerlink" href="#a-button-and-a-card" title="Permalink to this headline">¶</a></h2>
 <p>For a more comprehensive list of boostrap components, refer to <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/">this source</a>. For now we’ll just add a <code class="docutils literal notranslate"><span class="pre">dbc.Button</span></code> in a new <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component next to our already existing <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code>. In addition, we’ll include a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code> in a <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component in a new <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code>.</p>
 <div class="section" id="id12">
 <h3>12.4.1 Code snippet<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -1972,11 +2027,10 @@ See Code<div class="summary-down docutils">
     <span class="n">className</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8118</span><span class="p">)</span>
-
-
 </pre></div>
 </div>
 </div>
+</details></div>
 <div class="section" id="id13">
 <h3>12.4.1 Code output<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/kTRZ4.png"><img alt="enter image description here" src="https://i.stack.imgur.com/kTRZ4.png" /></a></p>
@@ -2974,6 +3028,16 @@ In the snippet below we’ve added a thick grey border line below the title by a
 <p class="admonition-title">Warning</p>
 <p>You’ll see the same strange behaviour with <code class="docutils literal notranslate"><span class="pre">mt-1</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code> as you did for other margin options while using <code class="docutils literal notranslate"><span class="pre">fluid</span> <span class="pre">=</span> <span class="pre">True</span></code> for the app width. <code class="docutils literal notranslate"><span class="pre">mt-1</span></code> <em>will</em> provide space on the top, but also trigger a vertical scrollbar that has no real practical use.</p>
 </div>
+</div>
+<div class="section" id="studying-layouts-with-your-browser-s-development-tools">
+<h4>12.6 Studying layouts with your browser’s development tools<a class="headerlink" href="#studying-layouts-with-your-browser-s-development-tools" title="Permalink to this headline">¶</a></h4>
+<p>By now you know how to assign different colors and formats to Dash components through <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code>. You’ve also learnt how to study some of these settings in detail in the <code class="docutils literal notranslate"><span class="pre">CSS</span></code>. Instead of the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> approach, you can also retrieve valuable information on colors and formatting by launching your browser’s development tools. If you’re using Edge or Chrome, you can do so with <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">I</span></code>. If you alsoe click the icon highlighted in the red rectangle below, you can hover over any element in your app and retrieve the associated information like this:</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/1YYrX.png"><img alt="enter image description here" src="https://i.stack.imgur.com/1YYrX.png" /></a></p>
+<p>In the image above, we’re hovering over the third <code class="docutils literal notranslate"><span class="pre">row</span></code> component. If you look at the associated <code class="docutils literal notranslate"><span class="pre">div</span> <span class="pre">class</span></code> information to the right you’ll see:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">div</span><span class="w"> </span><span class="kd">class</span><span class="o">=</span><span class="s2">&quot;border-top border-white border-3 m-0 justify-content-evenly row&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Notice how alle the <code class="docutils literal notranslate"><span class="pre">className</span></code> elements we’ve added can be found there. In addition, you’ll see how using the <code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'evenly'</span></code> attribute for the <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> compnent in effect adds <code class="docutils literal notranslate"><span class="pre">justify-content-evenly</span></code> to the very same component.</p>
 </div>
 </div>
 </div>

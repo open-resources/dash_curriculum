@@ -20,6 +20,29 @@
 - How to change the layout of a component directly with `style`
 ```
 
+```{warning} 
+
+***TO EDITORS***
+
+**Needs clarification:**
+
+1. We've established a standard where code comes before output
+   - However, I've deemed it more practical to show up to *two* different
+     outputs from the same snippet by referring to them, for example, 12.1.1 Code output 1.1 and 12.1.1 Code output 1.2, and then, for the snippet, 12.1.1 Code snippet 1. In those cases, I sometimes find it better to show the outputs, then the code.
+
+2. Due to the practices with showing *complete* snippets for each example, I'ce put all snippets in dropdown blocks. We should definitely consider more efficient ways of showing examples, and then referring to them as results of changing something in an already established code snippet. 
+
+3. I often use "[...] as you can see in the `dbc.Row()` component [...]"
+   - should we drop the parentheses "[...] as you can see in the `dbc.Row` component [...]"
+   - should we rather use "[...] as you can see in the `row` component [...]"
+   - or no formatting like should we rather use "[...] as you can see in the row component [...]"
+
+4. What do we call the elements in `className`? Methods? Like in "methods to include in `className`".
+
+5. 
+
+```
+
 ## 12.1 The theme of a Dash app
 
 You can change the layout and add themes of your Plotly Dash app in many different ways you can . In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
@@ -168,14 +191,14 @@ app.run_server(debug=True)
 [![enter image description here][9]][9]
 
 ```{admonition} Why all the extra components in the examples?
-You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn holds all our tables, figures and controls etc.
+You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn hold all our tables, figures and controls etc.
 
 Also, all these components can offer slightly different functionalities on how to apply `className` and `style` depending on what you'd like to do. But we'll come back to that later.
 ```
 
-## 12.3.2 How to change background 
+## 12.3.2 How to change background color
 
-Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but point to different colors set by the `CSS` file. So you can think of these options as different categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
+Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but rather pointers to different colors set by the `CSS` file. So you can think of these options as different possible categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
 
 #### 12.3.2 - Code snippet
 ````{dropdown} See Code
@@ -258,7 +281,7 @@ And you do not have to stop there. In the next subchapters you'll learn how to a
 
 ## 12.3.4 Spacing, margins and padding
 
-Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col()` contained by a `dbc.Row()` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
+Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col()` contained by a `dbc.Row()` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row()` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
 
 #### 12.3.4 Code snippet 1
 
@@ -390,9 +413,9 @@ app.run_server(debug=True)
 
 [![enter image description here][15]][15]
 
-As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span *different* widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case particular, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing. ***For the remainder of this section, we will only show the changes we've made in stand-alone code snippets, and then show the whole thing in a complete snippet at the end.***
+As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span *different* widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case particular, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing.
 
-The first thing we'll do is adding `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same space around the texts `Dashboard title` and `Label 1`. The differnet font *sizes* still provide different emphasis to the content.
+The first thing we'll do is adding `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same spacing around the texts `Dashboard title` and `Label 1`. The differnet font *sizes* still provide different emphasis to the content.
 
 ### 12.3.5 Code output 2.1 (snippet below)
 
@@ -406,6 +429,9 @@ Another result is that the markdown and label components no longer have a gap be
 
 ### 12.3.5 Code snippet 2
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -433,15 +459,18 @@ app.layout = dbc.Container(
 )
 
 app.run_server(debug=True)
-
 ```
+````
 
 ## 12.3.6 How to handle layout challenges with `style`
 
-In the previous snippet, notice how `className ="text-info"` is set for `dcc.Markdown`, and how `className = "bg-warning"` is set for `dbc.Label` with very different results for the layout. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. However, if you run `help(dcc.Markdown)` and `help(dbc.Label)` you'll see that neither component has got a `width` attribute. This is where the `style` attribute comes into play if you'd like to align your components in a more visually pleasing way, . With this, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Here's the same layout with `style = {'widt':'75%}` for both components:
-
+In the previous snippet, notice how `className ="bg-primary"` is set for `dcc.Markdown`, and how `className = "bg-warning"` is set for `dbc.Label` with very different results for the backgrounds. This is because the two components are set to "fill" the width of their parent components in different ways. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. However, if you run `help(dcc.Markdown)` and `help(dbc.Label)` you'll see that neither component has got a `width` attribute. This is where the `style` attribute comes into play if you'd like to align your components in a more visually pleasing way. With `style`, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Here's the same layout with `style = {'width':'75%}` for both components:
 
 #### 12.3.6 Code snippet
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```python
 from dash import Dash, html, dcc
@@ -480,13 +509,16 @@ app.layout = dbc.Container(
 )
 app.run_server(debug=True)
 ```
+````
+
 #### 12.3.6 Code output
 
 [![enter image description here][18]][18]
 
+
 ## 12.4 More components and more attributes
 
-With some basic principles firmly in place, all you'll need to put together a working and nice looking app is to increase the number of component types in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous example and approach something that looks more like a complete dashboard by adding a `dbc.Button()` component and a `dbc.Card`. The latter is often used to split a dashboard in different parts and as a container for more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
+With some basic principles now firmly in place, all you'll need to put together a working and nice looking app is to increase the number of component types in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component . The latter is often used to split a dashboard in different parts and as a container for more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
 
 ## 12.4.1 A button and a card
 
@@ -494,6 +526,9 @@ For a more comprehensive list of boostrap components, refer to [this source][19]
 
 #### 12.4.1 Code snippet
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -550,9 +585,8 @@ app.layout = dbc.Container(
     className="",
 )
 app.run_server(debug=True, port=8118)
-
-
 ```
+````
 
 #### 12.4.1 Code output
 
@@ -1575,8 +1609,19 @@ You'll see the same strange behaviour with `mt-1` in `className` as you did for 
 
 ```
 
+#### 12.6 Studying layouts with your browser's development tools
+
+By now you know how to assign different colors and formats to Dash components through `className` and `style`. You've also learnt how to study some of these settings in detail in the `CSS`. Instead of the `CSS` approach, you can also retrieve valuable information on colors and formatting by launching your browser's development tools. If you're using Edge or Chrome, you can do so with `Ctrl + Shift + I`. If you alsoe click the icon highlighted in the red rectangle below, you can hover over any element in your app and retrieve the associated information like this:
+
+[![enter image description here][38]][38]
 
 
+In the image above, we're hovering over the third `row` component. If you look at the associated `div class` information to the right you'll see:
+
+```javascript
+div class="border-top border-white border-3 m-0 justify-content-evenly row"
+```
+Notice how alle the `className` elements we've added can be found there. In addition, you'll see how using the `justify = 'evenly'` attribute for the `dbc.Row()` compnent in effect adds `justify-content-evenly` to the very same component.
 
 
 
@@ -1971,7 +2016,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][38]][38]
+[![enter image description here][39]][39]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -2190,7 +2235,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][39]][39]
+[![enter image description here][40]][40]
 
 
  
@@ -2233,5 +2278,6 @@ app.run_server(mode='external', port = 8032)
   [35]: https://i.stack.imgur.com/erqRS.png
   [36]: https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts
   [37]: https://i.stack.imgur.com/IBPlh.png
-  [38]: https://i.stack.imgur.com/NGfOi.png
-  [39]: https://i.stack.imgur.com/EJw6S.png
+  [38]: https://i.stack.imgur.com/1YYrX.png
+  [39]: https://i.stack.imgur.com/NGfOi.png
+  [40]: https://i.stack.imgur.com/EJw6S.png
