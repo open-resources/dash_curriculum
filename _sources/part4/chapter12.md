@@ -1759,8 +1759,859 @@ data_table = dash_table.DataTable(
 
 # II - Outtakes:
 
+# THEME TESTER APP - FINAL STAGES, SCREENSHOT
 
-     
+[![enter image description here][39]][39]
+
+# THEME TESTER APP - FINALE STAGES, CODE 
+
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+from dash import State, Input, Output, Dash, html, dcc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# card options
+opts_className_1 = [{'label': 'text color', 'value': 'text-primary'},
+                       {'label': 'background color', 'value': 'bg-primary'},
+                       {'label': 'component margin', 'value': 'm-1'},
+                       {'label': 'component padding', 'value': 'p-1'}]
+
+opts_ddn_scnd_title = [{'label': 'Set text color', 'value': 'text-primary'},
+                       {'label': 'Set background color', 'value': 'bg-primary'},
+                       {'label': 'Set component margin', 'value': 'm-1'},
+                       {'label': 'Set component padding', 'value': 'p-1'},
+                      ]
+
+opts_ddn_crd_1 = [{'label': 'Set card margins', 'value': 'm-1'},
+                  {'label': 'Set card padding', 'value': 'p-1'},
+                 ]
+
+opts_ddn_crd_2 = [{'label': 'Set card margins', 'value': 'm-1'},
+                  {'label': 'Set card padding', 'value': 'p-1'},
+                 ]
+
+opts_justify = ['start', 'center', 'end', 'around', 'between', 'evenly']
+
+opts_justify = [{'label': k, 'value': k} for k in ['start', 'center', 'end', 'around', 'between', 'evenly']]
+
+# card controls
+ctrls_crd1 = [dbc.Row([dbc.Col([dbc.Label("Component"),
+                                dcc.Markdown('Row 1',style={'marginTop' : '11px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('R1C1', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('dcc.MD', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('R2', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('R2C1', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('R2C2', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('dbc.Label 1', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('dbc.Label 2', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('Card', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                                dcc.Markdown('Container', style={'marginTop' : '12px', 'height': '30px', 'width': '200px'}),
+                               ],
+                              width = 1),
+                       
+                       dbc.Col([dbc.Label("Action"),
+                                dcc.Dropdown(id='ddn_R1',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '10px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_R1C1',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_MD1',
+                                             options = opts_ddn_scnd_title,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_R2',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_R2C1',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_R2C2',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_LBL1',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_LBL2',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_CRD1',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                dcc.Dropdown(id='ddn_CTR1',
+                                             options = opts_className_1,
+                                             style={'marginTop' : '12px', 'height': '30px'},
+                                             clearable = True),
+                                
+                               ], #className = "bg-danger",
+                              width = 2),
+                       
+                       dbc.Col([dbc.Label("CSS / className"),
+                                dbc.Input(id = 'ipt_R1',
+                                          placeholder="bg-primary border border-5 rounded-3",
+                                          type="text",
+                                          style={'marginTop' : '8px', 'height': '35px'}
+                                         ),
+                                dbc.Input(id = 'ipt_R1C1',
+                                          placeholder="m-2 bg-info rounded-0 rounded-3",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_MD1',
+                                          placeholder="bg-white m-4 rounded-3 p-2 opacity-75",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_R2',
+                                          placeholder="bg-secondary bg-opacity-25",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_R2C1',
+                                          placeholder="Ready",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_R2C2',
+                                          placeholder="Ready",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_LBL1',
+                                          placeholder="Ready",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_LBL2',
+                                          placeholder="Ready",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_CRD1',
+                                          placeholder="p-3 m-4 bg-secondary bg-opacity-50 fw-bold",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'ipt_CTR1',
+                                          placeholder="rounded-3 mt-3",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                
+                               ], #className = "bg-primary",
+                              width =3, ),
+                       
+                        dbc.Col([dbc.Label("Width"),
+                                dbc.Input(id = 'width_R1',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          # title = "Not an attribute. Adjust width in `Style` instead",
+                                          type="text",
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_R1C1',
+                                          placeholder="Default is 12",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_MD1',
+                                          placeholder="NA",
+                                          type="text",
+                                          disabled = True,
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_R2',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_R2C1',
+                                          placeholder="Default is 12",
+                                          type="text",
+                                          # disabled = True,
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_R2C2',
+                                          placeholder="Default is 12",
+                                          type="text",
+                                          # disabled = True,
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_LBL1',
+                                          placeholder="Default is 12",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_LBL2',
+                                          placeholder="Default is 12",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                 
+                                dbc.Input(id = 'width_CRD1',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'width_CTR1',
+                                          placeholder="NA",
+                                          type="text",
+                                          disabled = True,
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                 
+                               ], #className = "bg-primary",
+                              width = 1, ),
+                       
+                        dbc.Col([dbc.Label("Justify"),
+                                # dbc.Input(id = 'jfy_R1',
+                                #           placeholder="None",
+                                #           type="text",
+                                #           style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                #          ),
+                                # dcc.Dropdown(id = 'jfy_R1',
+                                #           # placeholder="NA",
+                                #           # type="text",
+                                #           options = ['start', 'center', 'end', 'around', 'between', 'evenly'],
+                                #           # className = 'text-success',
+                                #           clearable = False,
+                                #           style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                #          ),
+                                dcc.Dropdown(id='jfy_R1',
+                                             options = opts_justify,
+                                             style={'marginTop' : '12px', 'height': '30px', 'width': '125px'},
+                                             clearable = True),
+                                 
+                                 
+                                dbc.Input(id = 'jfy_R1C1',
+                                          disabled = True,
+                                          placeholder="NA",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'jfy_MD1',
+                                          placeholder="NA",
+                                          type="text",
+                                          disabled = True,
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                # dbc.Input(id = 'jfy_R2',
+                                #           placeholder="Ready",
+                                #           type="text",
+                                #           # className = 'text-success',
+                                #           style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                #          ),
+                                dcc.Dropdown(id='jfy_R2',
+                                             options = opts_justify,
+                                             style={'marginTop' : '12px', 'height': '30px', 'width': '125px'},
+                                             clearable = True),
+                                dbc.Input(id = 'jfy_R2C1',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'jfy_R2C2',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'jfy_LBL1',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'jfy_LBL2',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                 
+                                dbc.Input(id = 'jfy_CRD1',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                dbc.Input(id = 'jfy_CTR1',
+                                          placeholder="NA",
+                                          disabled = True,
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                                         ),
+                                 
+                               ], #className = "bg-primary",
+                              width = 1, ),
+                       
+                        dbc.Col([dbc.Label("Style"),
+                                dbc.Input(id = 'style_R1',
+                                          placeholder="{'width': '125px'}",
+                                          # placeholder=None,
+                                          type="text",
+                                          style={'marginTop' : '8px', 'height': '35px'},
+                                         ),
+                                dbc.Input(id = 'style_R1C1',
+                                          placeholder="{'width': '100%'}",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                dbc.Input(id = 'style_MD1',
+                                          placeholder="{'height': '35px'}",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                dbc.Input(id = 'style_R2',
+                                          placeholder="{'text-align': 'center'}",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                dbc.Input(id = 'style_R2C1',
+                                          placeholder="{'marginTop' : '8px'}",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                dbc.Input(id = 'style_R2C2',
+                                          placeholder="{'marginTop' : '8px'}",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                dbc.Input(id = 'style_LBL1',
+                                          placeholder="Ready",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                dbc.Input(id = 'style_LBL2',
+                                          placeholder="Ready",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                 
+                                dbc.Input(id = 'style_CRD1',
+                                          placeholder="{'width':'95%', 'background': 'linear-gradient(600deg, white 10%, rgba(75, 50, 250, 0.4)'}",
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                dbc.Input(id = 'style_CTR1',
+                                          placeholder="{'width':'95%', 'height':'75vh', 'background': 'linear-gradient(45deg, white 10%, rgba(75, 50, 250, 0.4)'}",
+                                          # placeholder = "{'width':'95%', 'height':'100vh', "background": "linear-gradient(25deg, white, rgba(0, 0, 250, 0.4)"}"
+                                          type="text",
+                                          # className = 'text-success',
+                                          style={'marginTop' : '8px', 'height': '35px', 'width': '100%'},
+                                         ),
+                                 
+                               ],
+                              width = 4, )
+                       
+                      ],
+                     # 
+                     ),
+             ]
+
+
+app.layout = dbc.Container([dbc.Row([dbc.Col([dcc.Markdown('#### Dashboard title', id = "MD1" #className ="text-info bg-primary p-0",
+                                                           #style={'height': '100%', 'width': '100%'},
+                                                           
+                                                           # justify = 'start'
+                                                          )
+                                             # COLUMN
+                                             ], id = "R1C1",#className = "p-5 m-0 bg-success",  width = 12,  #style={'height': '100%', 'width': '20%'},
+                                            ),
+                                     
+                                     
+                                    # ROW 
+                                    ],id = 'R1' #className = 'bg-danger m-2 p-2',
+                                    #justify = 'start', #style={'height': '100%', 'width': '75%'}# m-0 g-0'
+                                   ),
+                            
+                            dbc.Row([dbc.Col([dbc.Label("ClassName examples: {'width':'75%', 'height':'95vh', 'background':'linear-gradient(60deg, white 40%, rgba(0, 0, 200, 0.3))'}", id = 'LBL1' #className = "bg-warning m-0 p-2", style={'height': '100%', 'width': '50%'}
+                                                       )
+                                             # COLUMN 
+                                             ], id = 'R2C1',
+                                            ),
+                                     dbc.Col([dbc.Label("Style examples: {'width':'75%', 'height':'95vh', 'background':'linear-gradient(60deg, white 40%, rgba(0, 0, 200, 0.3))'}", id = 'LBL2' #className = "bg-warning m-0 p-2", style={'height': '100%', 'width': '50%'}
+                                                       )
+                                             # COLUMN 
+                                             ], id = 'R2C2',
+                                            ),
+                                     
+                                     
+                                    ], id = 'R2' #className = 'bg-secondary m-0 g-0', #style={"height": "100%"}
+                                   ),
+                            
+                             dbc.Row([dbc.Col([dbc.Card(ctrls_crd1, id = 'CRD1'#Label 1', #className = "bg-warning m-0 p-2", style={'height': '100%', 'width': '50%'}
+                                                       )
+                                             ],  
+                                            )
+                                    ],#className = 'bg-secondary m-0 g-0', #style={"height": "100%"}
+                                   ),
+                            
+                           ], #className = "bg-dark shadow-lg m-4 p-2", style={"height": "100vh"}, fluid = True
+                            id = 'CTR1',
+                            fluid = True
+                          )
+# CALLBAKCS
+# Callbacks R1 ################################################################ 
+# Set Row1 / R1 className through main_title_css chained to main_title_layout():
+@app.callback(Output("ipt_R1", "value"),
+              [Input("ddn_R1", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("R1", "className"),
+              [Input("ipt_R1", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+# @app.callback(Output("R1", "width"),
+#               [Input("width_R1", "value"),]
+#              )
+# def component_width(cName_element):
+    return cName_element
+
+# Set R1 Justify
+@app.callback(Output("R1", "justify"),
+              [Input("jfy_R1", "value"),]
+             )
+def component_justify(just):
+    return just
+
+# Set R2 Justify
+@app.callback(Output("R2", "justify"),
+              [Input("jfy_R2", "value"),]
+             )
+def component_justify(just):
+    return just
+
+# Set R1 style
+@app.callback(Output("R1", "style"),
+              [Input("style_R1", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)
+    
+# Callbacks R1C1 ################################################################ 
+@app.callback(Output("ipt_R1C1", "value"),
+              [Input("ddn_R1C1", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("R1C1", "className"),
+              [Input("ipt_R1C1", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+@app.callback(Output("R1C1", "width"),
+              [Input("width_R1C1", "value"),]
+             )
+def component_width(cName_element):
+    return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("R1C1", "justify"),
+#               [Input("jfy_R1C1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("R1C1", "style"),
+              [Input("style_R1C1", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)    
+
+# Callbacks MD1 ################################################################ 
+@app.callback(Output("ipt_MD1", "value"),
+              [Input("ddn_MD1", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("MD1", "className"),
+              [Input("ipt_MD1", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+# @app.callback(Output("MD1", "width"),
+#               [Input("width_MD1", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("MD1", "justify"),
+#               [Input("jfy_MD1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("MD1", "style"),
+              [Input("style_MD1", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)
+    
+# Callbacks R2 ################################################################ 
+@app.callback(Output("ipt_R2", "value"),
+              [Input("ddn_R2", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("R2", "className"),
+              [Input("ipt_R2", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+# @app.callback(Output("R2", "width"),
+#               [Input("width_R2", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("R2", "justify"),
+#               [Input("jfy_R2", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("R2", "style"),
+              [Input("style_R2", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)
+
+# Callbacks R2C1 ################################################################ 
+@app.callback(Output("ipt_R2C1", "value"),
+              [Input("ddn_R2C1", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("R2C1", "className"),
+              [Input("ipt_R2C1", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+@app.callback(Output("R2C1", "width"),
+              [Input("width_R2C1", "value"),]
+             )
+def component_width(cName_element):
+    return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("R2C1", "justify"),
+#               [Input("jfy_R2C1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("R2C1", "style"),
+              [Input("style_R2C1", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)
+    
+# Callbacks R2C2 ################################################################ 
+@app.callback(Output("ipt_R2C2", "value"),
+              [Input("ddn_R2C2", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("R2C2", "className"),
+              [Input("ipt_R2C2", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+@app.callback(Output("R2C2", "width"),
+              [Input("width_R2C2", "value"),]
+             )
+def component_width(cName_element):
+    return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("R2C1", "justify"),
+#               [Input("jfy_R2C1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("R2C2", "style"),
+              [Input("style_R2C2", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)   
+    
+# Callbacks LBL1 ################################################################ 
+@app.callback(Output("ipt_LBL1", "value"),
+              [Input("ddn_LBL1", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("LBL1", "className"),
+              [Input("ipt_LBL1", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+@app.callback(Output("LBL1", "width"),
+              [Input("width_LBL1", "value"),]
+             )
+def component_width(cName_element):
+    return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("LBL1", "justify"),
+#               [Input("jfy_LBL1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("LBL1", "style"),
+              [Input("style_LBL1", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)
+
+# Callbacks LBL2 ################################################################ 
+@app.callback(Output("ipt_LBL2", "value"),
+              [Input("ddn_LBL2", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("LBL2", "className"),
+              [Input("ipt_LBL2", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+@app.callback(Output("LBL2", "width"),
+              [Input("width_LBL2", "value"),]
+             )
+def component_width(cName_element):
+    return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("LBL1", "justify"),
+#               [Input("jfy_LBL1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("LBL2", "style"),
+              [Input("style_LBL2", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)
+
+# Callbacks CRD1 ################################################################ 
+@app.callback(Output("ipt_CRD1", "value"),
+              [Input("ddn_CRD1", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("CRD1", "className"),
+              [Input("ipt_CRD1", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+# @app.callback(Output("CRD1", "width"),
+#               [Input("width_CRD1", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("CRD1", "justify"),
+#               [Input("jfy_CRD1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(Output("CRD1", "style"),
+              [Input("style_CRD1", "value"),]
+             )
+def component_style(style):
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None)
+
+# Callbacks CTR1 ################################################################ 
+@app.callback(Output("ipt_CTR1", "value"),
+              [Input("ddn_CTR1", "value"),]
+             )
+def component_layout(cName_element):
+    return cName_element
+
+@app.callback(Output("CTR1", "className"),
+              [Input("ipt_CTR1", "value"),]
+             )
+def component_css(cName_element):
+    return cName_element
+
+# Set Row1 / R1 width
+# @app.callback(Output("CTR1", "width"),
+#               [Input("width_CTR1", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# @app.callback(Output("CTR1", "justify"),
+#               [Input("jfy_CTR1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+@app.callback(Output("CTR1", "style"),
+              [Input("style_CTR1", "value"),]
+             )
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return(eval(style))
+    
+    except:
+        return(None) 
+    
+
+
+app.run_server(mode='external', port = 8009, debug = True)
+
+```
  
 
 
@@ -2050,7 +2901,7 @@ app.run_server(mode='external', port = 8031)
 
 ## Image of APP
 
-[![enter image description here][39]][39]
+[![enter image description here][40]][40]
 
 # IV - APP / Dashboard CSS IN ACTION
 
@@ -2269,7 +3120,7 @@ def crd2_css(cName_element):
                          
 app.run_server(mode='external', port = 8032)                                              
 ```
-[![enter image description here][40]][40]
+[![enter image description here][41]][41]
 
 
  
@@ -2313,5 +3164,6 @@ app.run_server(mode='external', port = 8032)
   [36]: https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts
   [37]: https://i.stack.imgur.com/IBPlh.png
   [38]: https://i.stack.imgur.com/1YYrX.png
-  [39]: https://i.stack.imgur.com/NGfOi.png
-  [40]: https://i.stack.imgur.com/EJw6S.png
+  [39]: https://i.stack.imgur.com/dxVBF.png
+  [40]: https://i.stack.imgur.com/NGfOi.png
+  [41]: https://i.stack.imgur.com/EJw6S.png

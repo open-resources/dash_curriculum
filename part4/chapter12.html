@@ -879,6 +879,16 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theme-tester-app-final-stages-screenshot">
+   THEME TESTER APP - FINAL STAGES, SCREENSHOT
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theme-tester-app-finale-stages-code">
+   THEME TESTER APP - FINALE STAGES, CODE
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#iii-theme-tester-app">
    III - Theme Tester App
   </a>
@@ -1395,6 +1405,16 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ii-outtakes">
    II - Outtakes:
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theme-tester-app-final-stages-screenshot">
+   THEME TESTER APP - FINAL STAGES, SCREENSHOT
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#theme-tester-app-finale-stages-code">
+   THEME TESTER APP - FINALE STAGES, CODE
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
@@ -3242,6 +3262,859 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="ii-outtakes">
 <h1>II - Outtakes:<a class="headerlink" href="#ii-outtakes" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="theme-tester-app-final-stages-screenshot">
+<h1>THEME TESTER APP - FINAL STAGES, SCREENSHOT<a class="headerlink" href="#theme-tester-app-final-stages-screenshot" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://i.stack.imgur.com/dxVBF.png"><img alt="enter image description here" src="https://i.stack.imgur.com/dxVBF.png" /></a></p>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="theme-tester-app-finale-stages-code">
+<h1>THEME TESTER APP - FINALE STAGES, CODE<a class="headerlink" href="#theme-tester-app-finale-stages-code" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># card options</span>
+<span class="n">opts_className_1</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;text color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;text-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;background color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;bg-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;component margin&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;component padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">}]</span>
+
+<span class="n">opts_ddn_scnd_title</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set text color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;text-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set background color&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;bg-primary&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set component margin&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                       <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set component padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
+                      <span class="p">]</span>
+
+<span class="n">opts_ddn_crd_1</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card margins&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                  <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
+                 <span class="p">]</span>
+
+<span class="n">opts_ddn_crd_2</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card margins&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;m-1&#39;</span><span class="p">},</span>
+                  <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Set card padding&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;p-1&#39;</span><span class="p">},</span>
+                 <span class="p">]</span>
+
+<span class="n">opts_justify</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s1">&#39;around&#39;</span><span class="p">,</span> <span class="s1">&#39;between&#39;</span><span class="p">,</span> <span class="s1">&#39;evenly&#39;</span><span class="p">]</span>
+
+<span class="n">opts_justify</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">k</span><span class="p">}</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">,</span> <span class="s1">&#39;around&#39;</span><span class="p">,</span> <span class="s1">&#39;between&#39;</span><span class="p">,</span> <span class="s1">&#39;evenly&#39;</span><span class="p">]]</span>
+
+<span class="c1"># card controls</span>
+<span class="n">ctrls_crd1</span> <span class="o">=</span> <span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Component&quot;</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Row 1&#39;</span><span class="p">,</span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;11px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;R1C1&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;dcc.MD&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;R2&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;R2C1&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;R2C2&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;dbc.Label 1&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;dbc.Label 2&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Card&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;Container&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;200px&#39;</span><span class="p">}),</span>
+                               <span class="p">],</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span>
+                       
+                       <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Action&quot;</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_R1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_R1C1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_MD1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_ddn_scnd_title</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_R2&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_R2C1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_R2C2&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_LBL1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_LBL2&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_CRD1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;ddn_CTR1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_className_1</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                
+                               <span class="p">],</span> <span class="c1">#className = &quot;bg-danger&quot;,</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">2</span><span class="p">),</span>
+                       
+                       <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;CSS / className&quot;</span><span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_R1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;bg-primary border border-5 rounded-3&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">}</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_R1C1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;m-2 bg-info rounded-0 rounded-3&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_MD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;bg-white m-4 rounded-3 p-2 opacity-75&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_R2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;bg-secondary bg-opacity-25&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_R2C1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_R2C2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_LBL1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_LBL2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_CRD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;p-3 m-4 bg-secondary bg-opacity-50 fw-bold&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;ipt_CTR1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;rounded-3 mt-3&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                
+                               <span class="p">],</span> <span class="c1">#className = &quot;bg-primary&quot;,</span>
+                              <span class="n">width</span> <span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="p">),</span>
+                       
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Width&quot;</span><span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_R1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="c1"># title = &quot;Not an attribute. Adjust width in `Style` instead&quot;,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_R1C1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Default is 12&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_MD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_R2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_R2C1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Default is 12&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># disabled = True,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_R2C2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Default is 12&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># disabled = True,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_LBL1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Default is 12&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_LBL2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Default is 12&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                 
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_CRD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;width_CTR1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                 
+                               <span class="p">],</span> <span class="c1">#className = &quot;bg-primary&quot;,</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="p">),</span>
+                       
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Justify&quot;</span><span class="p">),</span>
+                                <span class="c1"># dbc.Input(id = &#39;jfy_R1&#39;,</span>
+                                <span class="c1">#           placeholder=&quot;None&quot;,</span>
+                                <span class="c1">#           type=&quot;text&quot;,</span>
+                                <span class="c1">#           style={&#39;marginTop&#39; : &#39;8px&#39;, &#39;height&#39;: &#39;35px&#39;, &#39;width&#39;: &#39;125px&#39;},</span>
+                                <span class="c1">#          ),</span>
+                                <span class="c1"># dcc.Dropdown(id = &#39;jfy_R1&#39;,</span>
+                                <span class="c1">#           # placeholder=&quot;NA&quot;,</span>
+                                <span class="c1">#           # type=&quot;text&quot;,</span>
+                                <span class="c1">#           options = [&#39;start&#39;, &#39;center&#39;, &#39;end&#39;, &#39;around&#39;, &#39;between&#39;, &#39;evenly&#39;],</span>
+                                <span class="c1">#           # className = &#39;text-success&#39;,</span>
+                                <span class="c1">#           clearable = False,</span>
+                                <span class="c1">#           style={&#39;marginTop&#39; : &#39;8px&#39;, &#39;height&#39;: &#39;35px&#39;, &#39;width&#39;: &#39;125px&#39;},</span>
+                                <span class="c1">#          ),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;jfy_R1&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_justify</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                 
+                                 
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_R1C1&#39;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_MD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="c1"># dbc.Input(id = &#39;jfy_R2&#39;,</span>
+                                <span class="c1">#           placeholder=&quot;Ready&quot;,</span>
+                                <span class="c1">#           type=&quot;text&quot;,</span>
+                                <span class="c1">#           # className = &#39;text-success&#39;,</span>
+                                <span class="c1">#           style={&#39;marginTop&#39; : &#39;8px&#39;, &#39;height&#39;: &#39;35px&#39;, &#39;width&#39;: &#39;125px&#39;},</span>
+                                <span class="c1">#          ),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;jfy_R2&#39;</span><span class="p">,</span>
+                                             <span class="n">options</span> <span class="o">=</span> <span class="n">opts_justify</span><span class="p">,</span>
+                                             <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;12px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;30px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                             <span class="n">clearable</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_R2C1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_R2C2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_LBL1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_LBL2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                 
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_CRD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;jfy_CTR1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;NA&quot;</span><span class="p">,</span>
+                                          <span class="n">disabled</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;125px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                 
+                               <span class="p">],</span> <span class="c1">#className = &quot;bg-primary&quot;,</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="p">),</span>
+                       
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Style&quot;</span><span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_R1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;width&#39;: &#39;125px&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="c1"># placeholder=None,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_R1C1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;width&#39;: &#39;100%&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_MD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;height&#39;: &#39;35px&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_R2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;text-align&#39;: &#39;center&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_R2C1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;marginTop&#39; : &#39;8px&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_R2C2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;marginTop&#39; : &#39;8px&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_LBL1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_LBL2&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Ready&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                 
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_CRD1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;width&#39;:&#39;95%&#39;, &#39;background&#39;: &#39;linear-gradient(600deg, white 10%, rgba(75, 50, 250, 0.4)&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;style_CTR1&#39;</span><span class="p">,</span>
+                                          <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;{&#39;width&#39;:&#39;95%&#39;, &#39;height&#39;:&#39;75vh&#39;, &#39;background&#39;: &#39;linear-gradient(45deg, white 10%, rgba(75, 50, 250, 0.4)&#39;}&quot;</span><span class="p">,</span>
+                                          <span class="c1"># placeholder = &quot;{&#39;width&#39;:&#39;95%&#39;, &#39;height&#39;:&#39;100vh&#39;, &quot;background&quot;: &quot;linear-gradient(25deg, white, rgba(0, 0, 250, 0.4)&quot;}&quot;</span>
+                                          <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span><span class="p">,</span>
+                                          <span class="c1"># className = &#39;text-success&#39;,</span>
+                                          <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;marginTop&#39;</span> <span class="p">:</span> <span class="s1">&#39;8px&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;35px&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;100%&#39;</span><span class="p">},</span>
+                                         <span class="p">),</span>
+                                 
+                               <span class="p">],</span>
+                              <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="p">)</span>
+                       
+                      <span class="p">],</span>
+                     <span class="c1"># </span>
+                     <span class="p">),</span>
+             <span class="p">]</span>
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;#### Dashboard title&#39;</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;MD1&quot;</span> <span class="c1">#className =&quot;text-info bg-primary p-0&quot;,</span>
+                                                           <span class="c1">#style={&#39;height&#39;: &#39;100%&#39;, &#39;width&#39;: &#39;100%&#39;},</span>
+                                                           
+                                                           <span class="c1"># justify = &#39;start&#39;</span>
+                                                          <span class="p">)</span>
+                                             <span class="c1"># COLUMN</span>
+                                             <span class="p">],</span> <span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;R1C1&quot;</span><span class="p">,</span><span class="c1">#className = &quot;p-5 m-0 bg-success&quot;,  width = 12,  #style={&#39;height&#39;: &#39;100%&#39;, &#39;width&#39;: &#39;20%&#39;},</span>
+                                            <span class="p">),</span>
+                                     
+                                     
+                                    <span class="c1"># ROW </span>
+                                    <span class="p">],</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;R1&#39;</span> <span class="c1">#className = &#39;bg-danger m-2 p-2&#39;,</span>
+                                    <span class="c1">#justify = &#39;start&#39;, #style={&#39;height&#39;: &#39;100%&#39;, &#39;width&#39;: &#39;75%&#39;}# m-0 g-0&#39;</span>
+                                   <span class="p">),</span>
+                            
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;ClassName examples: {&#39;width&#39;:&#39;75%&#39;, &#39;height&#39;:&#39;95vh&#39;, &#39;background&#39;:&#39;linear-gradient(60deg, white 40%, rgba(0, 0, 200, 0.3))&#39;}&quot;</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;LBL1&#39;</span> <span class="c1">#className = &quot;bg-warning m-0 p-2&quot;, style={&#39;height&#39;: &#39;100%&#39;, &#39;width&#39;: &#39;50%&#39;}</span>
+                                                       <span class="p">)</span>
+                                             <span class="c1"># COLUMN </span>
+                                             <span class="p">],</span> <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;R2C1&#39;</span><span class="p">,</span>
+                                            <span class="p">),</span>
+                                     <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Style examples: {&#39;width&#39;:&#39;75%&#39;, &#39;height&#39;:&#39;95vh&#39;, &#39;background&#39;:&#39;linear-gradient(60deg, white 40%, rgba(0, 0, 200, 0.3))&#39;}&quot;</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;LBL2&#39;</span> <span class="c1">#className = &quot;bg-warning m-0 p-2&quot;, style={&#39;height&#39;: &#39;100%&#39;, &#39;width&#39;: &#39;50%&#39;}</span>
+                                                       <span class="p">)</span>
+                                             <span class="c1"># COLUMN </span>
+                                             <span class="p">],</span> <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;R2C2&#39;</span><span class="p">,</span>
+                                            <span class="p">),</span>
+                                     
+                                     
+                                    <span class="p">],</span> <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;R2&#39;</span> <span class="c1">#className = &#39;bg-secondary m-0 g-0&#39;, #style={&quot;height&quot;: &quot;100%&quot;}</span>
+                                   <span class="p">),</span>
+                            
+                             <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">ctrls_crd1</span><span class="p">,</span> <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;CRD1&#39;</span><span class="c1">#Label 1&#39;, #className = &quot;bg-warning m-0 p-2&quot;, style={&#39;height&#39;: &#39;100%&#39;, &#39;width&#39;: &#39;50%&#39;}</span>
+                                                       <span class="p">)</span>
+                                             <span class="p">],</span>  
+                                            <span class="p">)</span>
+                                    <span class="p">],</span><span class="c1">#className = &#39;bg-secondary m-0 g-0&#39;, #style={&quot;height&quot;: &quot;100%&quot;}</span>
+                                   <span class="p">),</span>
+                            
+                           <span class="p">],</span> <span class="c1">#className = &quot;bg-dark shadow-lg m-4 p-2&quot;, style={&quot;height&quot;: &quot;100vh&quot;}, fluid = True</span>
+                            <span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;CTR1&#39;</span><span class="p">,</span>
+                            <span class="n">fluid</span> <span class="o">=</span> <span class="kc">True</span>
+                          <span class="p">)</span>
+<span class="c1"># CALLBAKCS</span>
+<span class="c1"># Callbacks R1 ################################################################ </span>
+<span class="c1"># Set Row1 / R1 className through main_title_css chained to main_title_layout():</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_R1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_R1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_R1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="c1"># @app.callback(Output(&quot;R1&quot;, &quot;width&quot;),</span>
+<span class="c1">#               [Input(&quot;width_R1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_width(cName_element):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R1&quot;</span><span class="p">,</span> <span class="s2">&quot;justify&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;jfy_R1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_justify</span><span class="p">(</span><span class="n">just</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">just</span>
+
+<span class="c1"># Set R2 Justify</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2&quot;</span><span class="p">,</span> <span class="s2">&quot;justify&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;jfy_R2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_justify</span><span class="p">(</span><span class="n">just</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R1&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_R1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    
+<span class="c1"># Callbacks R1C1 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;width_R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_width</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;R1C1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_R1C1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_R1C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>    
+
+<span class="c1"># Callbacks MD1 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_MD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_MD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;MD1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_MD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="c1"># @app.callback(Output(&quot;MD1&quot;, &quot;width&quot;),</span>
+<span class="c1">#               [Input(&quot;width_MD1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_width(cName_element):</span>
+<span class="c1">#     return cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;MD1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_MD1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;MD1&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_MD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    
+<span class="c1"># Callbacks R2 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_R2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_R2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_R2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="c1"># @app.callback(Output(&quot;R2&quot;, &quot;width&quot;),</span>
+<span class="c1">#               [Input(&quot;width_R2&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_width(cName_element):</span>
+<span class="c1">#     return cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;R2&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_R2&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_R2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Callbacks R2C1 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;width_R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_width</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;R2C1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_R2C1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_R2C1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    
+<span class="c1"># Callbacks R2C2 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;width_R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_width</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;R2C1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_R2C1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_R2C2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>   
+    
+<span class="c1"># Callbacks LBL1 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;width_LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_width</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;LBL1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_LBL1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_LBL1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Callbacks LBL2 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;width&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;width_LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_width</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;LBL1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_LBL1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_LBL2&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Callbacks CRD1 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_CRD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_CRD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;CRD1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_CRD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="c1"># @app.callback(Output(&quot;CRD1&quot;, &quot;width&quot;),</span>
+<span class="c1">#               [Input(&quot;width_CRD1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_width(cName_element):</span>
+<span class="c1">#     return cName_element</span>
+
+<span class="c1"># Set R1 Justify</span>
+<span class="c1"># @app.callback(Output(&quot;CRD1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_CRD1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="c1"># Set R1 style</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;CRD1&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_CRD1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Callbacks CTR1 ################################################################ </span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;ipt_CTR1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ddn_CTR1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_layout</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;CTR1&quot;</span><span class="p">,</span> <span class="s2">&quot;className&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;ipt_CTR1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_css</span><span class="p">(</span><span class="n">cName_element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">cName_element</span>
+
+<span class="c1"># Set Row1 / R1 width</span>
+<span class="c1"># @app.callback(Output(&quot;CTR1&quot;, &quot;width&quot;),</span>
+<span class="c1">#               [Input(&quot;width_CTR1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_width(cName_element):</span>
+<span class="c1">#     return cName_element</span>
+
+<span class="c1"># @app.callback(Output(&quot;CTR1&quot;, &quot;justify&quot;),</span>
+<span class="c1">#               [Input(&quot;jfy_CTR1&quot;, &quot;value&quot;),]</span>
+<span class="c1">#              )</span>
+<span class="c1"># def component_justify(just):</span>
+<span class="c1">#     return just</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s2">&quot;CTR1&quot;</span><span class="p">,</span> <span class="s2">&quot;style&quot;</span><span class="p">),</span>
+              <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;style_CTR1&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),]</span>
+             <span class="p">)</span>
+<span class="k">def</span> <span class="nf">component_style</span><span class="p">(</span><span class="n">style</span><span class="p">):</span>
+    <span class="c1"># print(type(st))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+    
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> 
+    
+
+
+<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;external&#39;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8009</span><span class="p">,</span> <span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+
+</pre></div>
+</div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="iii-theme-tester-app">
 <h1>III - Theme Tester App<a class="headerlink" href="#iii-theme-tester-app" title="Permalink to this headline">¶</a></h1>
