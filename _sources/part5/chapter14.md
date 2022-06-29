@@ -24,7 +24,7 @@ Let's start our `multi-page app` by creating a root directory folder called `das
 
 ![app_structure](ch14_files/app_structure.png)
 
-Pages are displayed in the `dash.page_container` component that we will add to `app.layout`.  We'll borrow from an [example](https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_example1) on Github and create an app that uses a `navigation bar` with a `dropdown menu`:
+Pages are displayed in the `dash.page_container` component that we will add to `app.layout`.  We'll borrow from an [example](https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_example1) on `Github` and create an app that uses a `navigation bar` with a `dropdown menu`:
 
 In `app.py` copy/paste the following code:
 
