@@ -390,6 +390,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   chapter 15: Making Multi-page Apps
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#content-idea">
+   Content idea:
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -402,6 +420,24 @@ const thebe_selector_output = ".output, .cell_output"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   chapter 15: Making Multi-page Apps
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#content-idea">
+   Content idea:
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -413,6 +449,30 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="simple">
 <li><p>A few words on what multipage layouts are possible</p></li>
 <li><p>Building multi-page app examples</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="content-idea">
+<h1>Content idea:<a class="headerlink" href="#content-idea" title="Permalink to this headline">¶</a></h1>
+<p>Show 3 examples of the same App, with enriched content:</p>
+<p>Example 01 - Multi page basic features:</p>
+<ul class="simple">
+<li><p>App with 3-4 pages, with one component each from the Gapminder data</p></li>
+<li><p>No specific components to navigate through pages (no navbar, …)</p></li>
+<li><p>Pages are reached by changing url</p></li>
+</ul>
+<p>Example 02 - Enriched layout:</p>
+<ul class="simple">
+<li><p>Same app from example 01</p></li>
+<li><p>Adding : Navbar / dropdown menu to navigate among pages</p></li>
+<li><p>Adding : theme switcher
+(Example = <a class="reference external" href="https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_example1">https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_example1</a>)</p></li>
+</ul>
+<p>Example 03 - Basic Auth functionality:</p>
+<ul class="simple">
+<li><p>Same app from example 02</p></li>
+<li><p>Adding : a new page with required authentication / authentication required to the overall app
+(Basic Auth = <a class="reference external" href="https://dash.plotly.com/authentication#basic-auth">https://dash.plotly.com/authentication#basic-auth</a>)
+(Example = <a class="reference external" href="https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_fask_login">https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_fask_login</a>)</p></li>
 </ul>
 </div>
 
