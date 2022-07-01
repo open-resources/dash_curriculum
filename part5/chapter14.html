@@ -488,12 +488,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="structure-of-multi-page-apps">
 <h2>Structure of Multi-page Apps<a class="headerlink" href="#structure-of-multi-page-apps" title="Permalink to this headline">¶</a></h2>
-<p>Let’s start our <code class="docutils literal notranslate"><span class="pre">multi-page</span> <span class="pre">app</span></code> by creating a root directory folder called <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code>.  Within the <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code> directory create a subdirectory called <code class="docutils literal notranslate"><span class="pre">pages</span></code> and the main app file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code>:</p>
+<p>Let’s start our <code class="docutils literal notranslate"><span class="pre">multi-page</span> <span class="pre">app</span></code> by creating a root directory folder called <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code>.  Within the <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code> directory create the main app file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code> and a subdirectory called <code class="docutils literal notranslate"><span class="pre">pages</span></code>:</p>
 <p><img alt="app_structure" src="../_images/app_structure.png" /></p>
 <p>Pages are displayed in the <code class="docutils literal notranslate"><span class="pre">dash.page_container</span></code> component that we will add to <code class="docutils literal notranslate"><span class="pre">app.layout</span></code>.  We’ll borrow from an <a class="reference external" href="https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_example1">example</a> on <code class="docutils literal notranslate"><span class="pre">Github</span></code> and create an app that uses a <code class="docutils literal notranslate"><span class="pre">navigation</span> <span class="pre">bar</span></code> with a <code class="docutils literal notranslate"><span class="pre">dropdown</span> <span class="pre">menu</span></code>:</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">app.py</span></code> copy/paste the following code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">import</span> <span class="nn">dash</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
@@ -522,30 +521,49 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>File and folder layouts</p>
-<ul>
-<li><p>Create main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file is root directory</p></li>
-<li><p>Create subdirectory <code class="docutils literal notranslate"><span class="pre">/pages</span></code></p>
-<ul>
-<li><p>Add individual apps to <code class="docutils literal notranslate"><span class="pre">/pages</span></code> directory</p>
-<ul>
-<li><p>Each page needs to contain a <code class="docutils literal notranslate"><span class="pre">layout</span></code></p></li>
-<li><p>Registering pages</p>
-<ul>
-<li><p>call <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dash.page_registry</span></code> is an <code class="docutils literal notranslate"><span class="pre">ordered</span> <span class="pre">dictionary</span></code> containing each page’s paths, name, title, etc.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Callbacks</p></li>
-<li><p>Building out the <a class="reference external" href="http://app.py">app.py</a> file</p></li>
-</ul>
+<p>Next we need to create the individual apps.  Let’s use example apps we’ve developed in past chapters. First, we’ll use example <code class="docutils literal notranslate"><span class="pre">8.2.3</span></code>.  To make this app work with our multi-page example we need to add <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> and remove all references to <code class="docutils literal notranslate"><span class="pre">app</span></code> because it should only be declared in the main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+
+<span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;# Interactive Dash App with Line Chart&quot;</span><span class="p">),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span>
+                         <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">unique</span><span class="p">()],</span>
+                         <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                         <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Canada&#39;</span><span class="p">,</span> <span class="s1">&#39;Brazil&#39;</span><span class="p">])</span>
+        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="p">]),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">)</span>
+        <span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="p">])</span>
+<span class="p">])</span>
+
+
+<span class="c1"># Configure Callback</span>
+<span class="nd">@callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">udpate_graph</span><span class="p">(</span><span class="n">countries_selected</span><span class="p">):</span>
+    <span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">countries_selected</span><span class="p">)]</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df_filtered</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
 </div>
 </div>
 
