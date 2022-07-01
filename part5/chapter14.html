@@ -564,6 +564,34 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="k">return</span> <span class="n">fig</span>
 </pre></div>
 </div>
+<p>For our second app we will use the final <code class="docutils literal notranslate"><span class="pre">Chapter</span> <span class="pre">10</span></code> code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">navbar</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarSimple</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenu</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+        <span class="p">],</span>
+        <span class="n">nav</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;More Pages&quot;</span><span class="p">,</span>
+    <span class="p">),</span>
+
+<span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">navbar</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span>
+    <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 
