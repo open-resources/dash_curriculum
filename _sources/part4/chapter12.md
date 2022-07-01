@@ -20,28 +20,6 @@
 - How to change the layout of a component directly with `style`
 ```
 
-```{warning} 
-
-***TO EDITORS***
-
-**Needs clarification:**
-
-1. We've established a standard where code comes before output
-   - However, I've deemed it more practical to show up to *two* different
-     outputs from the same snippet by referring to them, for example, 12.1.1 Code output 1.1 and 12.1.1 Code output 1.2, and then, for the snippet, 12.1.1 Code snippet 1. In those cases, I sometimes find it better to show the outputs, then the code.
-
-2. Due to the practices with showing *complete* snippets for each example, I'ce put all snippets in dropdown blocks. We should definitely consider more efficient ways of showing examples, and then referring to them as results of changing something in an already established code snippet. 
-
-3. I often use  refer to dbc and dcc objects like this: "as you can see in the `dbc.Row()`"
-   - should we drop the parentheses like this:  "as you can see in the `dbc.Row`"?
-   - should we rather use only: "as you can see in the `row` component"?
-   - or no formatting like should we rather"[...] as you can see in the row component [...]"
-
-4. What do we call the elements in `className`? Methods? Like in "methods to include in `className`".
-
-
-```
-
 ## 12.1 The theme of a Dash app
 
 You can change the layout and add themes of your Plotly Dash app in many different ways you can . In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
@@ -190,7 +168,7 @@ app.run_server(debug=True)
 [![enter image description here][9]][9]
 
 ```{admonition} Why all the extra components in the examples?
-You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row()` components. These can hold one or more `dbc.Col()` components which in turn hold all our tables, figures and controls etc.
+You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row` components. These can hold one or more `dbc.Col` components which in turn hold all our tables, figures and controls etc.
 
 Also, all these components can offer slightly different functionalities on how to apply `className` and `style` depending on what you'd like to do. But we'll come back to that later.
 ```
@@ -280,7 +258,7 @@ And you do not have to stop there. In the next subchapters you'll learn how to a
 
 ## 12.3.4 Spacing, margins and padding
 
-Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col()` contained by a `dbc.Row()` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row()` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
+Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col` contained by a `dbc.Row` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
 
 #### 12.3.4 Code snippet 1
 
@@ -514,6 +492,11 @@ app.run_server(debug=True)
 
 [![enter image description here][18]][18]
 
+
+```{note}
+
+What you can do with `className` you can, for the most part, also do with `style` and vice versa. However, the attributes of your components are often referenced differently. One example is `"fw-bold"` for `className` and `"font-weight":"bold"` for `style`. The result will be the same, namely a bold font type for the object in question.
+```
 
 ## 12.4 More components and more attributes
 
@@ -1662,102 +1645,13 @@ In the image above, we're hovering over the third `row` component. If you look a
 ```javascript
 div class="border-top border-white border-3 m-0 justify-content-evenly row"
 ```
-Notice how alle the `className` elements we've added can be found there. In addition, you'll see how using the `justify = 'evenly'` attribute for the `dbc.Row()` compnent in effect adds `justify-content-evenly` to the very same component.
-
+Notice how alle the `className` elements we've added can be found there. In addition, you'll see how using the `justify = 'evenly'` attribute for the `dbc.Row` compnent in effect adds `justify-content-evenly` to the very same component.
 
 ---
 
-## Unclear:
+#### 12.7 Test your theme
 
-
-### className combinations:
-
-- `" opacity-25 p-2 m-1 bg-primary bg-gradient text-light fw-bold rounded "`
-
-- `" opacity-75 p-2 m-1 bg-success bg-opacity-25 text-light rounded-bottom "`
-
-
-## Resources:
-
-https://bootswatch.com/
-
-RGB
-
-https://www.rapidtables.com/web/color/RGB_Color.html
-
-Dash component row height
-
-https://github.com/facultyai/dash-bootstrap-components/issues/286
-      
-## I - Outline:      
-## Advanced Styling with Dash Bootstrap Components
-
-  - Introduction to [Dash Bootstrap themes](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/)
-  - [Plotly Dash Theme Explorer App by Ann Marie](https://hellodash.pythonanywhere.com/)
-  - Most common [styling components](https://dashcheatsheet.pythonanywhere.com/)
-    - me, ms, mt, nb
-    - text color, background color, border color
-    - etc. 
-  - Styling beyond DBC ("dbc offers you a lot, but for more customized styling you can use the `style` property in each dash component. For example `dcc.Markdown("App Title", style={'textAlign':'center'})`. To learn more go to this property see dash [docs](https://dash.plotly.com/layout#more-about-html-components)
-
-## Advanced Styling of Dash DataTable
-
-Recognizing that the DataTable is one of the most common Dash components, we'd like to show you a few examples on styling the DataTable, using a few DataTable properties, such as `style_cell`, `style_data_conditional`, `style_header`.
-
-```python
-# Create a Dash DataTable
-data_table = dash_table.DataTable(
-        id='dataTable1', 
-        data=df.to_dict('records'), 
-        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
-        page_size=10,
-        column_selectable="single",
-        sort_action='native',
-        style_cell={'padding': '5px'},
-        style_data_conditional=[
-            {
-            'if': {'row_index': 'odd'},
-            'backgroundColor': 'rgb(204, 230, 255)'},
-            ],
-
-        style_header={
-            'backgroundColor': 'rgb(230, 230, 230)',
-            'fontWeight': 'bold'}
-)
-```
-
-## Advanced Layout with Dash Bootstrap Components
-
- - Vertical alignment
- - Horizontal alignment
- - Container Fluid prop
- - adjusting columns by screen size:
-```
-      app.layout = dbc.Container([
-          dbc.Row(
-              [
-              dbc.Col(
-                  dcc.Markdown("left div", className="bg-primary"),
-              xs=12, sm=12, md=3, lg=3, xl=3, # This sets the column width for different screen sizes
-              ),
-              dbc.Col(
-                  my_table,
-                  xs=12, sm=12, md=6, lg=6, xl=6, # This sets the column width for different screen sizes
-              ),
-              dbc.Col(
-                  dcc.Markdown("right div", className="bg-primary"),
-              xs=12, sm=12, md=3, lg=3, xl=3, # This sets the column width for different screen sizes
-              ),
-
-              ] ,className="g-0" #This allows to have no space between the columns. Delete if you want to have that breathing space
-          )
-      ])
-```
-
-## Dynamic app layout (I can help write this part, Arne, once you're done with the first draft of this chapter)
-  - https://dash.plotly.com/live-updates#updates-on-page-load
-
-# II - Outtakes:
+The following screenshot shows a layout wiht the `bootstrap` theme with different settings for both `className` and `style` for several `dcc` and `dbc` components. The app is available on `<THIS LINK>`
 
 # THEME TESTER APP - FINAL STAGES, SCREENSHOT
 
@@ -2612,7 +2506,107 @@ def component_style(style):
 app.run_server(mode='external', port = 8009, debug = True)
 
 ```
- 
+
+
+
+
+#----------------------------------------------
+
+---
+
+# Everything beoynd this point is redundant and can safely be removed
+
+## Unclear:
+
+
+### className combinations:
+
+- `" opacity-25 p-2 m-1 bg-primary bg-gradient text-light fw-bold rounded "`
+
+- `" opacity-75 p-2 m-1 bg-success bg-opacity-25 text-light rounded-bottom "`
+
+
+## Resources:
+
+https://bootswatch.com/
+
+RGB
+
+https://www.rapidtables.com/web/color/RGB_Color.html
+
+Dash component row height
+
+https://github.com/facultyai/dash-bootstrap-components/issues/286
+      
+## I - Outline:      
+## Advanced Styling with Dash Bootstrap Components
+
+  - Introduction to [Dash Bootstrap themes](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/)
+  - [Plotly Dash Theme Explorer App by Ann Marie](https://hellodash.pythonanywhere.com/)
+  - Most common [styling components](https://dashcheatsheet.pythonanywhere.com/)
+    - me, ms, mt, nb
+    - text color, background color, border color
+    - etc. 
+  - Styling beyond DBC ("dbc offers you a lot, but for more customized styling you can use the `style` property in each dash component. For example `dcc.Markdown("App Title", style={'textAlign':'center'})`. To learn more go to this property see dash [docs](https://dash.plotly.com/layout#more-about-html-components)
+
+## Advanced Styling of Dash DataTable
+
+Recognizing that the DataTable is one of the most common Dash components, we'd like to show you a few examples on styling the DataTable, using a few DataTable properties, such as `style_cell`, `style_data_conditional`, `style_header`.
+
+```python
+# Create a Dash DataTable
+data_table = dash_table.DataTable(
+        id='dataTable1', 
+        data=df.to_dict('records'), 
+        columns=[{'name': i, 'id': i, 'editable':True, 'selectable':True} for i in df.columns],
+        page_size=10,
+        column_selectable="single",
+        sort_action='native',
+        style_cell={'padding': '5px'},
+        style_data_conditional=[
+            {
+            'if': {'row_index': 'odd'},
+            'backgroundColor': 'rgb(204, 230, 255)'},
+            ],
+
+        style_header={
+            'backgroundColor': 'rgb(230, 230, 230)',
+            'fontWeight': 'bold'}
+)
+```
+
+## Advanced Layout with Dash Bootstrap Components
+
+ - Vertical alignment
+ - Horizontal alignment
+ - Container Fluid prop
+ - adjusting columns by screen size:
+```
+      app.layout = dbc.Container([
+          dbc.Row(
+              [
+              dbc.Col(
+                  dcc.Markdown("left div", className="bg-primary"),
+              xs=12, sm=12, md=3, lg=3, xl=3, # This sets the column width for different screen sizes
+              ),
+              dbc.Col(
+                  my_table,
+                  xs=12, sm=12, md=6, lg=6, xl=6, # This sets the column width for different screen sizes
+              ),
+              dbc.Col(
+                  dcc.Markdown("right div", className="bg-primary"),
+              xs=12, sm=12, md=3, lg=3, xl=3, # This sets the column width for different screen sizes
+              ),
+
+              ] ,className="g-0" #This allows to have no space between the columns. Delete if you want to have that breathing space
+          )
+      ])
+```
+
+## Dynamic app layout (I can help write this part, Arne, once you're done with the first draft of this chapter)
+  - https://dash.plotly.com/live-updates#updates-on-page-load
+
+# II - Outtakes:
 
 
 
