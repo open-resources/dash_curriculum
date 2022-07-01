@@ -32,28 +32,42 @@ import dash_bootstrap_components as dbc
 
 app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-navbar = dbc.NavbarSimple(
-    dbc.DropdownMenu(
+dropdown =  dbc.DropdownMenu(
         [
             dbc.DropdownMenuItem(page["name"], href=page["path"])
             for page in dash.page_registry.values()
-            if page["module"] != "pages.not_found_404"
+            if page["module"] != "pages.not_found_404" 
         ],
         nav=True,
         label="More Pages",
-    ),
-
-)
+        align_end=False,
+    )
 
 app.layout = dbc.Container(
-    [navbar, dash.page_container],
+    [dropdown, dash.page_container],
     fluid=True,
 )
 
 if __name__ == "__main__":
     app.run_server(debug=True)
+```
 
+We need a home page to add `home.py` to your `/pages` directory:
 
+```python
+import dash
+from dash import html, dcc
+
+dash.register_page(__name__, path='/')
+
+layout = html.Div(children=[
+    html.H1(children='This is our Home page'),
+
+    html.Div(children='''
+        This is our Home page content.
+    '''),
+
+])
 ```
 
 Next we need to create the individual apps.  Let's use example apps we've developed in past chapters. First, we'll use example `8.2.3`.  To make this app work with our multi-page example we need to add `dash.register_page(__name__)` and remove all references to `app` because it should only be declared in the main `app.py` file :
@@ -130,3 +144,5 @@ app.layout = dbc.Container(
 if __name__ == "__main__":
     app.run_server(debug=True)
 ```
+
+![img-repo](./ch14_files/multi-page.gif)

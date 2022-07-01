@@ -497,28 +497,40 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
-<span class="n">navbar</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarSimple</span><span class="p">(</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenu</span><span class="p">(</span>
+<span class="n">dropdown</span> <span class="o">=</span>  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenu</span><span class="p">(</span>
         <span class="p">[</span>
             <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
             <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+            <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span> 
         <span class="p">],</span>
         <span class="n">nav</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">label</span><span class="o">=</span><span class="s2">&quot;More Pages&quot;</span><span class="p">,</span>
-    <span class="p">),</span>
-
-<span class="p">)</span>
+        <span class="n">align_end</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
 
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">navbar</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span>
     <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We need a home page to add <code class="docutils literal notranslate"><span class="pre">home.py</span></code> to your <code class="docutils literal notranslate"><span class="pre">/pages</span></code> directory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 
+<span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 
+<span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;This is our Home page&#39;</span><span class="p">),</span>
+
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        This is our Home page content.</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">),</span>
+
+<span class="p">])</span>
 </pre></div>
 </div>
 <p>Next we need to create the individual apps.  Let’s use example apps we’ve developed in past chapters. First, we’ll use example <code class="docutils literal notranslate"><span class="pre">8.2.3</span></code>.  To make this app work with our multi-page example we need to add <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> and remove all references to <code class="docutils literal notranslate"><span class="pre">app</span></code> because it should only be declared in the main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file :</p>
@@ -592,6 +604,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
+<p><img alt="img-repo" src="../_images/multi-page.gif" /></p>
 </div>
 </div>
 
