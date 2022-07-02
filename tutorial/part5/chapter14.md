@@ -26,9 +26,7 @@ Let's start our `multi-page app` by creating a root directory folder called `das
 
 ![app_structure](ch14_files/app_structure.png)
 
-Pages are displayed in the `dash.page_container` component that we will add to `app.layout`.  We'll borrow from an [example](https://github.com/AnnMarieW/dash-multi-page-app-demos/tree/main/multi_page_example1) on `Github` and create an app that uses a `navigation bar` with a `dropdown menu`:
-
-In `app.py` copy/paste the following code:
+Here's an example `app.py` file we will use for this example:
 
 ```python
 import dash
@@ -55,8 +53,14 @@ app.layout = dbc.Container(
 if __name__ == "__main__":
     app.run_server(debug=True)
 ```
+There are several new features in this file which make it usable for multi-page apps:
+  - `use_pages=True` must be included when creating the `app` object
+  - `for page in dash.page_registry.values()` will crawl through the `/pages` directory to allow access to all of our sub-apps
+  - `dash.page_container` component must be included in the `app.layout`
+    - This is where the sub-apps will be displayed
+  - 
 
-We need a home page to add `home.py` to your `/pages` directory:
+Now that we have our `app.py` file ready we will add a `home.py` to our `/pages` directory:
 
 ```python
 import dash
@@ -70,7 +74,6 @@ layout = html.Div(children=[
     html.Div(children='''
         This is our Home page content.
     '''),
-
 ])
 ```
 
