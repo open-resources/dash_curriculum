@@ -18,7 +18,11 @@ In this chapter we will introduce multi-page apps which will allow us to build m
 
 ## Structure of Multi-page Apps
 
-Let's start our `multi-page app` by creating a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main app file called `app.py` and a subdirectory called `pages`:
+Multi-page apps have a simple structure:  
+  - One main file commonly named `app.py`
+  - One sub-folder, which must be named `pages`, that contains all of the seperate apps
+
+Let's start our `multi-page app` by creating a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main app file called `app.py` and the `/pages` subdirectory:
 
 ![app_structure](ch14_files/app_structure.png)
 
