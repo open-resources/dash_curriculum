@@ -257,12 +257,12 @@ if __name__ == '__main__':
 Even though the ScatterGL outperforms the px scatter plot, it slows down when using very large data sets and might not be as fast as you would like it to be when interacting with the plot, for example, zooming in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, etc.), callbacks are used to aggregate data and update the figure.
 
 ```{admonition} Plotly Resampler
-This is a third-party, community, library, not officially maintained by Plotly. See the [documentation on Github](https://github.com/predict-idlab/plotly-resampler) for more about the Plotly Resampler package. To work with this package, you would need to install it first: `pip install plotly-resampler`.
+This is a third-party, community, library, not officially maintained by Plotly. See the [documentation on Github](https://github.com/predict-idlab/plotly-resampler) for more about the Plotly Resampler package. To work with this package, you would need to install `pip install plotly-resampler` as well as `pip install ipywidgets`.
 ```
 
 The following app let's you compare the different durations for data loading when working with the plotly resampler.
 
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES AS WELL AS HOW TO ZOOM IN]
+![comparing-plotly-resampler](./ch13_files/webgl-svg-resampler.gif)
 
 ````{dropdown} See the code
     :container: + shadow
@@ -405,7 +405,7 @@ if __name__ == '__main__':
 
 ````
 
-To get you familiar with the plotly resampler here is a minimal example on how to implement a graphic using the plotly resampler package that you might want to copy paste for your own app.
+Here is a minimal example on how to implement a graphic using the plotly resampler package that you might want to copy paste for your own app.
 
 ```
 # Import packages
@@ -447,10 +447,9 @@ def update_graph(value_dropdown):
         x=df_sub['year'],
         y=pd.to_numeric(df_sub['lifeExp']),
         mode='markers',
-        marker=dict(colorscale='Viridis'),
     ))
     fig.update_layout(
-        title='Plotly Resampler scatter plot',
+        title='Plotly Resampler scatterGL plot',
         xaxis_title='year',
         yaxis_title='lifeExp',
     )
