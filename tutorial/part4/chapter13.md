@@ -2,18 +2,20 @@
 
 ## What you will learn
 
-By now, you have everything together to get your first app up and running using even advanced components, layouts and callbacks. As dashboards are designed for data analysis and visualisations at some point you might run into efficiency constraints when the amount of data you are working with gets growing. To circumvent any possible performance lacking this chapter will give you some insights on improving your app performance. You'll learn about the built-in Dash Developer Tools, how to plot massive amount of data with higher performing plotly graphs and how to use caching for improving the performance of your app. 
+As dashboards are designed for data analysis and visualisations, at some point you might run into efficiency constraints when the amount of data you are working with becomes too big. To circumvent possible performance issues, this chapter will give you some insights on wyas to improve your app performance. You'll learn about the built-in Dash Developer Tools, how to plot massive amount of data with higher performing plotly graphs, and how to use caching for improving the performance of your app. 
 
 ```{admonition} Learning Intentions
 - Dash Developer Tools
-- Higher Performing Plotly graphs
+- Plotly Graphs for Big Data
 - Caching
 ```
 
 ## 13.1 Introduction
 
-Let's kick off with a simple app where for a selected country we want to display the life expectation over the years as a scatter plot. To better understand how a growing data set affects the app performance we duplicate the underlying data set by a value of our choice using a range slider. With the growth of the underlying data set also the data points in the scatter plot will be resized. Last, we use the `datetime` package to stop the time our app is loading. All in all, we receive the following app:
-#### [ADD GIF, THAT SHOWS THE APP IN ACTION SELECTING THREE DIFFERENT VALUES IN THE RANGE SLIDER]
+Let's kick off with a simple app with a scatter plot that display the life expectation over the years for a selected country. To better understand how a growing data set affects the app performance, we duplicated the underlying data set by a value of our choice, using a range slider. As the underlying data set grows, the data points in the scatter plot will be resized as well. Lastly, we used the `datetime` package to tell us the time it takes the app to load. All in all, we receive the following app:
+
+![scatter-performance](./ch13_files/scatter-performance.gif)
+
 
 ````{dropdown} See the code
     :container: + shadow
@@ -94,26 +96,25 @@ if __name__ == '__main__':
 
 ````
 
-When adjusting the range slider we obtain already huge performance differences. Right now, here we analyse about 100 k data points. To handle even much larger data sets you will learn about different graphs to work with as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse the performance of your app, the Dash Developer Tools. Let's go!
+Notice how adjusting the range slider to the right increases the data set used, which increases the amount of time it takes the app to refresh and plot the data.
+As you can see, there are huge performance differences betweeen 600 data points and 100 thousand data points used. To handle even much larger data sets, you will learn the different graphs that you can use as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse and understand the performance of your app -- the Dash Developer Tools. Let's go!
 
 ## 13.2 Dash Developer Tools
-The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production i.e., in order to make use of the Dash Developer Tools you must run your app with `debug=True`. When you do this, your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grand you access to error messages or information on your callbacks.
-
-In this tutorial we focus on the Callback Graph. The Dash Developer Tools display a visual representation of your callbacks: which order they are fired in, how long they take, and what data is passed back and forth between the Dash app in the web browser and your Python code.
+The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In order to make use of the Dash Developer Tools you must run your app with `debug=True`. When you do this, your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grant you access to error messages and information about your callbacks.
 
 ```{admonition} Dash Developer Tools
-For an overview over the other tools look at the [official documentation](https://dash.plotly.com/devtools).
+For an overview of the other tools within the Developer Tools, look at the [official documentation](https://dash.plotly.com/devtools).
 ```
 
-The Dash Developer Tools Callback Graph provides Live Introspection, Profiling, and Live Debugging of your callback graph. Herefore, click on the bottom right circular blue button and then on the most left button in grey of the three buttons that will open up. You will get the following view:
+Let's look at the Callback Graph. The Dash Developer Tools displays a visual representation of your callbacks: which order they are fired in, how long they take to fully execute, and what data is passed back and forth between the web browser and the server. To open up the Callback Graph, click on the bottom right circular blue button and then on the most left button named "callbacks". You will get the following view:
 
 ![Dash Developer Tools](./ch13_files/dash-dev-tools.png)
 
 Let's go through the different items in more detail:
 
-- The rounded green boxes with the numbers in it which show up in the middle represent your callback functions.
+- The rounded green boxes with the numbers in them, which show up in the middle:
     - The top number represents the number of times the function has been called.
-    - The bottom number represents how long the request took on average. This includes the network time (sending the data from the browser client to the backend and back) and the compute time (the total time minus the network time or how long the function spent in Python).
+    - The bottom number represents how long the request took. This includes the network time (sending the data from the browser client to the backend and back) and the compute time (the total time minus the network time or how long the function spent in Python).
 - You are also able to click on a green box to see the detailed information about the callback which would open up in the bottom left of the view. This includes:
     - `type` Whether the callback was a clientside callback or a serverside callback.
     - `call count` The number of times the callback was called during your session.
@@ -123,26 +124,26 @@ Let's go through the different items in more detail:
     - `outputs` A JSON representation of the data that was returned from the callback.
     - `inputs` A JSON representation of the data that was passed to your callback function as Input.
     - `state` A JSON representation of the data that was passed to your callback function as State.
-- The blue boxes with a light grey frame around it that are positioned at the top and bottom represent the input and output properties. Click on the box to see a JSON representation of their current values.
-- The dashed arrows (not visible in the screenshot) would represent State.
+- The blue boxes with a light grey frame around them, which are positioned at the top and bottom, represent the input and output properties respectively. Click on the box to see a JSON representation of their current values.
+- The dashed arrows (not visible in the screenshot) would represent `State` elements instead of `Input`.
 - The dropdown in the top right corner enables you to switch layouts.
 
 Now, that you know how to check for the performance of your app, let us learn about different higher performing graphs and how to incorporate them into you app.
 
-## 13.3 Higher Performing Plotly graphs
-So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Short for Scalable Vector Graphics). This provides crisp rendering, publication-quality image export as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for larger datasets as we have noticed in the first section. To overcome this limitation, in this section we explore the three most popular methods that will speed up your app when working with larger data sets.
+## 13.3 Plotly Graphs for Big Data
+So far, we have used the `plotly.express` library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Scalable Vector Graphics). This provides crisp rendering, publication-quality image export, as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for larger datasets as we have noticed in the first section of this chapter. To overcome this limitation, let's explore the three common methods that will speed up your app when working with larger data sets.
 
 ### 13.3.1 ScatterGL
 
-First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. Against plotly charts rendered with SVG, `plotly.js` has WebGL (Short for Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot you have already built dashboards with. To use it, you are required to import the `plotly.graph_objects` package.
+First, let us have a look at the [ScatterGL](https://plotly.com/python/line-and-scatter/#large-data-sets) plot which is a WebGL implementation of the scatter chart type. In addition to Plotly charts rendered with SVG, Plotly has WebGL (Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot but it is of WebGL type. To use it, you are required to import the `plotly.graph_objects` package.
 
 ```{admonition} ScatterGL
-See the [official documentation](https://plotly.com/python/line-and-scatter/#large-data-sets) on how to implement the ScatterGL plot.
+See the [official documentation](https://plotly.com/python/webgl-vs-svg/) on how to implement the ScatterGL plot.
 ```
 
-The following app let's you compare the different durations for data loading when using a ScatterGL plot. Even though the duration will vary, you see how the use of ScatterGL might improve your app performance.
+The following app let's you compare the different durations for data loading when using a ScatterGL plot alongside a regular Scatter plot. You see how the use of a ScatterGL could improve the app performance the larger the data set.
 
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND COMPARES THE SPEED OF THE TWO SCATTER PLOTS FOR TWO DIFFERENT SLIDER VALUES]
+![comparing-performance](./ch13_files/webgl-vs-svg.gif)
 
 ````{dropdown} See the code
     :container: + shadow
@@ -253,10 +254,10 @@ if __name__ == '__main__':
 
 ### 13.3.2 Plotly Resampler
 
-Even though the ScatterGL outperforms the px scatter plot, it is still rather slow for large data sets and might be delayed when interacting with the data plot e.g., zoom in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, ...), callbacks are used to aggregate data and update the figure.
+Even though the ScatterGL outperforms the px scatter plot, it slows down when using very large data sets and might not be as fast as you would like it to be when interacting with the plot, for example, zooming in. That's where the `plotly_resampler` package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, etc.), callbacks are used to aggregate data and update the figure.
 
 ```{admonition} Plotly Resampler
-See also the [documentation on Github](https://github.com/predict-idlab/plotly-resampler) for the plotly resampler package.
+This is a third-party, community, library, not officially maintained by Plotly. See the [documentation on Github](https://github.com/predict-idlab/plotly-resampler) for more about the Plotly Resampler package. To work with this package, you would need to install it first: `pip install plotly-resampler`.
 ```
 
 The following app let's you compare the different durations for data loading when working with the plotly resampler.
