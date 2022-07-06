@@ -20,11 +20,120 @@ In this chapter we will introduce multi-page apps which will allow us to build m
 
 Multi-page apps have a simple structure:  
   - One main file commonly named `app.py`
-  - One sub-folder, which must be named `pages`, that contains all of the seperate apps
+  - One sub-folder, which <b>must</b> be named `pages`, that contains all of the seperate apps
 
-Let's start our `multi-page app` by creating a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main app file called `app.py` and the `/pages` subdirectory:
+Let's start exploring `multi-page apps` by creating walking through the example in [Dash documentation](https://dash.plotly.com/urls).  
+
+First, create a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main app file called `app.py` and the `/pages` subdirectory:
 
 ![app_structure](ch14_files/app_structure.png)
+
+Next, we'll create the 'app.py' file and copy over the example code:
+
+```python
+from dash import Dash, html, dcc
+import dash
+
+app = Dash(__name__, use_pages=True)
+
+app.layout = html.Div([
+	html.H1('Multi-page app with Dash Pages'),
+
+    html.Div(
+        [
+            html.Div(
+                dcc.Link(
+                    f"{page['name']} - {page['path']}", href=page["relative_path"]
+                )
+            )
+            for page in dash.page_registry.values()
+        ]
+    ),
+
+	dash.page_container
+])
+
+if __name__ == '__main__':
+	app.run_server(debug=True)
+```
+
+There are several requirements for the `app.py` file:
+  - `use_pages=True` must be included when creating the `app` object
+  - `for page in dash.page_registry.values()` will crawl through the `/pages` directory to allow access to all of our sub-apps
+  - `dash.page_container` component must be included in the `app.layout`
+    - This is where the sub-apps will be displayed
+  
+
+Next, let's create the `home` page for the app.  Create `home.py` in the `/pages` subdirectory:
+
+```python
+import dash
+from dash import html, dcc
+
+dash.register_page(__name__, path='/')
+
+layout = html.Div(children=[
+    html.H1(children='This is our Home page'),
+
+    html.Div(children='''
+        This is our Home page content.
+    '''),
+
+])
+```
+We'll create 2 more apps in the `/pages` subdirectory to complete this basic multi-page example:  `analytics.py` and `archive.py`.
+
+Here is the code for `analytics.py`:
+
+```python
+import dash
+from dash import html, dcc, callback, Input, Output
+
+dash.register_page(__name__)
+
+layout = html.Div(children=[
+    html.H1(children='This is our Analytics page'),
+	html.Div([
+        "Select a city: ",
+        dcc.RadioItems(['New York City', 'Montreal','San Francisco'],
+        'Montreal',
+        id='analytics-input')
+    ]),
+	html.Br(),
+    html.Div(id='analytics-output'),
+])
+
+
+@callback(
+    Output(component_id='analytics-output', component_property='children'),
+    Input(component_id='analytics-input', component_property='value')
+)
+def update_city_selected(input_value):
+    return f'You selected: {input_value}'
+```
+Here is the code for `archive.py`:
+
+```python
+import dash
+from dash import html, dcc
+
+dash.register_page(__name__)
+
+layout = html.Div(children=[
+    html.H1(children='This is our Archive page'),
+
+    html.Div(children='''
+        This is our Archive page content.
+    '''),
+
+])
+```
+
+![img-repo](./ch14_files/multi-page_basic.gif)
+
+
+
+
 
 Here's an example `app.py` file we will use for this example:
 
@@ -53,12 +162,7 @@ app.layout = dbc.Container(
 if __name__ == "__main__":
     app.run_server(debug=True)
 ```
-There are several new features in this file which make it usable for multi-page apps:
-  - `use_pages=True` must be included when creating the `app` object
-  - `for page in dash.page_registry.values()` will crawl through the `/pages` directory to allow access to all of our sub-apps
-  - `dash.page_container` component must be included in the `app.layout`
-    - This is where the sub-apps will be displayed
-  - 
+
 
 Now that we have our `app.py` file ready we will add a `home.py` to our `/pages` directory:
 
