@@ -1,4 +1,4 @@
-# chapter 15: Advanced Features of Multi-page Apps
+# chapter 15: Making Multi-page Apps
 
 # Content:
 - Show and describe the following App as the baseline
