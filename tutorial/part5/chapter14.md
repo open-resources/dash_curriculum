@@ -33,6 +33,8 @@ First, create a root directory folder called `dash_multi_page`.  Within the `das
   
 Next, let's create the `home` page for our app.  Create `home.py` in the `/pages` subdirectory.  Notice in the code below that we specify the `path` when calling `dash.register_page()`.  This will make the `home.py` page the landing page for our multi-page app.
 
+You might also see that we don't declare an `app` object as we normally do in `Dash` apps.  This is because the `app` object is declared in the `app.py` file.  This idea also applies to the `layout` and `@callbacks` which normally (in single page apps) would be `app.layout` and `@app.callback`.
+
 ```python
 import dash
 from dash import html, dcc
