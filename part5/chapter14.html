@@ -486,7 +486,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
 <li><p>How to structure multi-page apps project</p></li>
-<li><p>Navigate between apps</p></li>
+<li><p>Navigate between pages</p></li>
 </ul>
 </div>
 </div>
@@ -517,7 +517,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Another sub-folder called ‘assets’ which will hold all the pictures and files our app uses</p></li>
 </ul>
 <p>Let’s start exploring <code class="docutils literal notranslate"><span class="pre">multi-page</span> <span class="pre">apps</span></code> by walking through the example in <a class="reference external" href="https://dash.plotly.com/urls">Dash documentation</a>.</p>
-<p>First, create a root directory folder called <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code>.  Within the <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code> directory create the main app file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> subdirectory:</p>
+<p>First, create a root directory folder called <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code>.  Within the <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code> directory create the main page file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> subdirectory:</p>
 <p><img alt="app_structure" src="../_images/app_structure.png" /></p>
 <p>Next, we’ll create the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file and copy over the example code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
@@ -556,7 +556,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p>Next, let’s create the <code class="docutils literal notranslate"><span class="pre">home</span></code> page for the app.  Create <code class="docutils literal notranslate"><span class="pre">home.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> subdirectory.  Notice in the code below that we specify the <code class="docutils literal notranslate"><span class="pre">path</span></code> when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code>.  This will make the <code class="docutils literal notranslate"><span class="pre">home.py</span></code> page the landing page for our multi-page app.</p>
+<p>Next, let’s create the <code class="docutils literal notranslate"><span class="pre">home</span></code> page for our app.  Create <code class="docutils literal notranslate"><span class="pre">home.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> subdirectory.  Notice in the code below that we specify the <code class="docutils literal notranslate"><span class="pre">path</span></code> when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code>.  This will make the <code class="docutils literal notranslate"><span class="pre">home.py</span></code> page the landing page for our multi-page app.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 
@@ -620,7 +620,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="more-advanced-multi-page-app">
 <h2>More Advanced Multi-Page app<a class="headerlink" href="#more-advanced-multi-page-app" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s create a more advanced <code class="docutils literal notranslate"><span class="pre">multi-page</span></code> app.  We’ll use a <code class="docutils literal notranslate"><span class="pre">dropdown</span></code> component to navigate between apps.  For the apps themselves we’ll use examples from previous chapters.</p>
+<p>Now let’s create a more advanced <code class="docutils literal notranslate"><span class="pre">multi-page</span></code> app.  We’ll use a <code class="docutils literal notranslate"><span class="pre">dropdown</span></code> component to navigate between pages.  For the pages themselves we’ll use examples from previous chapters.</p>
 <p>First, create the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file and paste the following code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -646,7 +646,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">dropdown</span></code> menu will display the different apps that users can navigate to.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dropdown</span></code> menu will display the different pages that users can navigate to.</p>
 <p>We can now create our <code class="docutils literal notranslate"><span class="pre">home.py</span></code> file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
@@ -662,7 +662,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>Next we need to create the individual apps. The first app will be <code class="docutils literal notranslate"><span class="pre">8.2.3</span></code> from Chapter 8.  To make this app work with our multi-page example we need to add <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> and remove all references to <code class="docutils literal notranslate"><span class="pre">app</span></code> because it should only be declared in the main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file :</p>
+<p>Next we need to create the individual pages. The first page will be <code class="docutils literal notranslate"><span class="pre">8.2.3</span></code> from Chapter 8.  To make this page work with our multi-page example we need to add <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> and remove all references to <code class="docutils literal notranslate"><span class="pre">app</span></code> because it should only be declared in the main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file :</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -674,7 +674,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="c1"># Data</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 
-<span class="c1"># App Layout</span>
+<span class="c1"># Page Layout</span>
 <span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
     <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;# Interactive Dash App with Line Chart&quot;</span><span class="p">),</span>
     <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
@@ -705,7 +705,7 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="k">return</span> <span class="n">fig</span>
 </pre></div>
 </div>
-<p>For our second app we will use the final <code class="docutils literal notranslate"><span class="pre">Chapter</span> <span class="pre">10</span></code> code:</p>
+<p>For our second page we will use the final <code class="docutils literal notranslate"><span class="pre">Chapter</span> <span class="pre">10</span></code> code:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>

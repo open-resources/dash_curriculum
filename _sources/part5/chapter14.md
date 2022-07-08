@@ -4,7 +4,7 @@
 In this chapter we will introduce multi-page apps which will allow us to build more complex apps.
 ```{admonition} Learning Intentions
 - How to structure multi-page apps project
-- Navigate between apps
+- Navigate between pages
 ```
 
 ## Why separate app into multiple pages?
@@ -25,7 +25,7 @@ Multi-page apps have a simple structure:
 
 Let's start exploring `multi-page apps` by walking through the example in [Dash documentation](https://dash.plotly.com/urls).  
 
-First, create a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main app file called `app.py` and the `/pages` subdirectory:
+First, create a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main page file called `app.py` and the `/pages` subdirectory:
 
 ![app_structure](ch14_files/app_structure.png)
 
@@ -64,7 +64,7 @@ There are several requirements for the `app.py` file:
   - `dash.page_container` component must be included in the `app.layout`
     - This is where the sub-apps will be displayed
   
-Next, let's create the `home` page for the app.  Create `home.py` in the `/pages` subdirectory.  Notice in the code below that we specify the `path` when calling `dash.register_page()`.  This will make the `home.py` page the landing page for our multi-page app.
+Next, let's create the `home` page for our app.  Create `home.py` in the `/pages` subdirectory.  Notice in the code below that we specify the `path` when calling `dash.register_page()`.  This will make the `home.py` page the landing page for our multi-page app.
 
 ```python
 import dash
@@ -132,7 +132,7 @@ layout = html.Div(children=[
 
 ## More Advanced Multi-Page app
 
-Now let's create a more advanced `multi-page` app.  We'll use a `dropdown` component to navigate between apps.  For the apps themselves we'll use examples from previous chapters.
+Now let's create a more advanced `multi-page` app.  We'll use a `dropdown` component to navigate between pages.  For the pages themselves we'll use examples from previous chapters.
 
 First, create the `app.py` file and paste the following code:
 
@@ -160,7 +160,7 @@ app.layout = dbc.Container(
 if __name__ == "__main__":
     app.run_server(debug=True)
 ```
-The `dropdown` menu will display the different apps that users can navigate to.
+The `dropdown` menu will display the different pages that users can navigate to.
 
 
 We can now create our `home.py` file:
@@ -180,7 +180,7 @@ layout = html.Div(children=[
 ])
 ```
 
-Next we need to create the individual apps. The first app will be `8.2.3` from Chapter 8.  To make this app work with our multi-page example we need to add `dash.register_page(__name__)` and remove all references to `app` because it should only be declared in the main `app.py` file :
+Next we need to create the individual pages. The first page will be `8.2.3` from Chapter 8.  To make this page work with our multi-page example we need to add `dash.register_page(__name__)` and remove all references to `app` because it should only be declared in the main `app.py` file :
 
 ```python
 import dash
@@ -194,7 +194,7 @@ dash.register_page(__name__)
 # Data
 df = px.data.gapminder()
 
-# App Layout
+# Page Layout
 layout = dbc.Container([
     dcc.Markdown("# Interactive Dash App with Line Chart"),
     dbc.Row([
@@ -225,7 +225,7 @@ def udpate_graph(countries_selected):
     return fig
 ```
 
-For our second app we will use the final `Chapter 10` code:
+For our second page we will use the final `Chapter 10` code:
 
 ```python
 # Import packages
