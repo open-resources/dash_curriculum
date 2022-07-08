@@ -9,9 +9,11 @@ In this chapter we will introduce multi-page apps which will allow us to build m
 
 ## Why separate app into multiple pages?
   - <b>Advantages</b>
-    - Easy to develop small apps and features
+    - Easy to scale our apps by adding smaller individual pages, rather than developing one large app
     - Easy to troubleshoot bugs
     - New apps can be built on to old apps
+    - Better Search Engine Optimization because each page can have its own meta tags and rendering content
+    - Usage statistics available for each page allows us to analyze user behavior
   - <b>Disadvantages</b>
     - Extra infrastructure is required
     - Slightly more complex apps
