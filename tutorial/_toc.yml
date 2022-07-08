@@ -63,3 +63,7 @@ parts:
     title: Introduction
   - file: part5/chapter14
   - file: part5/chapter15
+
+- caption: Appendix
+  chapters:
+  - file: appendix/templates
