@@ -521,43 +521,6 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Let’s start exploring <code class="docutils literal notranslate"><span class="pre">multi-page</span> <span class="pre">apps</span></code> by walking through the example in <a class="reference external" href="https://dash.plotly.com/urls">Dash documentation</a>.</p>
 <p>First, create a root directory folder called <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code>.  Within the <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code> directory create the main page file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> subdirectory:</p>
 <p><img alt="app_structure" src="../_images/app_structure.png" /></p>
-<p>Next, we’ll create the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file and copy over the example code:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
-	<span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s1">&#39;Multi-page app with Dash Pages&#39;</span><span class="p">),</span>
-
-    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
-                <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;relative_path&quot;</span><span class="p">]</span>
-                <span class="p">)</span>
-            <span class="p">)</span>
-            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-        <span class="p">]</span>
-    <span class="p">),</span>
-
-	<span class="n">dash</span><span class="o">.</span><span class="n">page_container</span>
-<span class="p">])</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>There are several requirements for the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code> must be included when creating the <code class="docutils literal notranslate"><span class="pre">app</span></code> object</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span></code> will crawl through the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> directory to allow access to all of our sub-apps</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">dash.page_container</span></code> component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code></p>
-<ul>
-<li><p>This is where the sub-apps will be displayed</p></li>
-</ul>
-</li>
-</ul>
 <p>Next, let’s create the <code class="docutils literal notranslate"><span class="pre">home</span></code> page for our app.  Create <code class="docutils literal notranslate"><span class="pre">home.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> subdirectory.  Notice in the code below that we specify the <code class="docutils literal notranslate"><span class="pre">path</span></code> when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code>.  This will make the <code class="docutils literal notranslate"><span class="pre">home.py</span></code> page the landing page for our multi-page app.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
@@ -574,7 +537,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>We’ll create 2 more pages to complete this basic multi-page example:  <code class="docutils literal notranslate"><span class="pre">analytics.py</span></code> and <code class="docutils literal notranslate"><span class="pre">archive.py</span></code>.</p>
+<p>We’ll create 2 more pages for this basic multi-page app example:  <code class="docutils literal notranslate"><span class="pre">analytics.py</span></code> and <code class="docutils literal notranslate"><span class="pre">archive.py</span></code>.</p>
 <p>Here is the code for <code class="docutils literal notranslate"><span class="pre">analytics.py</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
@@ -618,6 +581,43 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="p">])</span>
 </pre></div>
 </div>
+<p>Finally, we’ll create the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file and copy over the example code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+	<span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s1">&#39;Multi-page app with Dash Pages&#39;</span><span class="p">),</span>
+
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;relative_path&quot;</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+
+	<span class="n">dash</span><span class="o">.</span><span class="n">page_container</span>
+<span class="p">])</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are several requirements for the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code> must be included when creating the <code class="docutils literal notranslate"><span class="pre">app</span></code> object</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span></code> will crawl through the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> directory to allow access to all of our sub-apps</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dash.page_container</span></code> component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code></p>
+<ul>
+<li><p>This is where the sub-apps will be displayed</p></li>
+</ul>
+</li>
+</ul>
 <p><img alt="basic-app" src="part5/ch14_files/multi-page_basic.gif" /></p>
 </div>
 <div class="section" id="more-advanced-multi-page-app">
