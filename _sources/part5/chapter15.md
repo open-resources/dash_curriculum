@@ -7,3 +7,4 @@
 - Sort pages differently (e.g. Graph page before Extras)
 - Add a meta tag example
 
+![app_structure](ch15_files/app_baseline.gif)
