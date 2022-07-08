@@ -30,41 +30,6 @@ Let's start exploring `multi-page apps` by walking through the example in [Dash 
 First, create a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main page file called `app.py` and the `/pages` subdirectory:
 
 ![app_structure](ch14_files/app_structure.png)
-
-Next, we'll create the `app.py` file and copy over the example code:
-
-```python
-from dash import Dash, html, dcc
-import dash
-
-app = Dash(__name__, use_pages=True)
-
-app.layout = html.Div([
-	html.H1('Multi-page app with Dash Pages'),
-
-    html.Div(
-        [
-            html.Div(
-                dcc.Link(
-                    f"{page['name']} - {page['path']}", href=page["relative_path"]
-                )
-            )
-            for page in dash.page_registry.values()
-        ]
-    ),
-
-	dash.page_container
-])
-
-if __name__ == '__main__':
-	app.run_server(debug=True)
-```
-
-There are several requirements for the `app.py` file:
-  - `use_pages=True` must be included when creating the `app` object
-  - `for page in dash.page_registry.values()` will crawl through the `/pages` directory to allow access to all of our sub-apps
-  - `dash.page_container` component must be included in the `app.layout`
-    - This is where the sub-apps will be displayed
   
 Next, let's create the `home` page for our app.  Create `home.py` in the `/pages` subdirectory.  Notice in the code below that we specify the `path` when calling `dash.register_page()`.  This will make the `home.py` page the landing page for our multi-page app.
 
@@ -83,7 +48,7 @@ layout = html.Div(children=[
 
 ])
 ```
-We'll create 2 more pages to complete this basic multi-page example:  `analytics.py` and `archive.py`.
+We'll create 2 more pages for this basic multi-page app example:  `analytics.py` and `archive.py`.
 
 Here is the code for `analytics.py`:
 
@@ -130,6 +95,42 @@ layout = html.Div(children=[
 
 ])
 ```
+
+Finally, we'll create the `app.py` file and copy over the example code:
+
+```python
+from dash import Dash, html, dcc
+import dash
+
+app = Dash(__name__, use_pages=True)
+
+app.layout = html.Div([
+	html.H1('Multi-page app with Dash Pages'),
+
+    html.Div(
+        [
+            html.Div(
+                dcc.Link(
+                    f"{page['name']} - {page['path']}", href=page["relative_path"]
+                )
+            )
+            for page in dash.page_registry.values()
+        ]
+    ),
+
+	dash.page_container
+])
+
+if __name__ == '__main__':
+	app.run_server(debug=True)
+```
+
+There are several requirements for the `app.py` file:
+  - `use_pages=True` must be included when creating the `app` object
+  - `for page in dash.page_registry.values()` will crawl through the `/pages` directory to allow access to all of our sub-apps
+  - `dash.page_container` component must be included in the `app.layout`
+    - This is where the sub-apps will be displayed
+
 ![basic-app](./ch14_files/multi-page_basic.gif)
 
 ## More Advanced Multi-Page app
