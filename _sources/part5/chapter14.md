@@ -21,6 +21,7 @@ In this chapter we will introduce multi-page apps which will allow us to build m
 Multi-page apps have a simple structure:  
   - One main file commonly named `app.py`
   - One sub-folder, which <b>must</b> be named `pages`, that contains all of the seperate apps
+  - Another sub-folder called 'assets' which will hold all the pictures and files our app uses
 
 Let's start exploring `multi-page apps` by walking through the example in [Dash documentation](https://dash.plotly.com/urls).  
 
@@ -127,8 +128,7 @@ layout = html.Div(children=[
 
 ])
 ```
-
-![img-repo](./ch14_files/multi-page_basic.gif)
+![basic-app](./ch14_files/multi-page_basic.gif)
 
 ## More Advanced Multi-Page app
 
