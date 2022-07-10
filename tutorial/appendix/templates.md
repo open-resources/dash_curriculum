@@ -113,6 +113,114 @@ if __name__ == '__main__':
 
 ### Template with control panel on the bottom
 
+```
+# Import packages
+from dash import Dash, dcc, html
+import dash_bootstrap_components as dbc
+import plotly.express as px
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Data
+df = px.data.gapminder()
+df_options = df[df['continent'].isin(['Europe'])]['country'].unique()
+df = df[df['country'].isin(['Spain', 'United Kingdom'])]
+
+# Figure
+fig = px.bar(df, x='year', y='lifeExp', color='country', barmode='group', title='Grouped Bar Chart', template='plotly_white')
+fig.update_yaxes(range=[60, 80])
+
+# Title
+title = dcc.Markdown("My Dashboard", className="bg-light", style={'font-size': 40})
+
+# Dropdown
+dropdown = dcc.Dropdown(options=df_options, value=['Spain', 'United Kingdom'], multi=True)
+
+# Slider
+slider = dcc.Slider(
+    df['year'].min(),
+    df['year'].max(),
+    5,
+    value=df['year'].min() + 10,
+    marks=None,
+    tooltip={"placement": "bottom", "always_visible": True}
+)
+
+# Radio items
+radio_items = dbc.RadioItems(
+    options=[
+        {'label': 'Option A', 'value': 0},
+        {'label': 'Option B', 'value': 1},
+        {'label': 'Option C', 'value': 2},
+    ],
+    value=0,
+    inline=True
+)
+
+# Card content
+card_content = [
+    dbc.CardHeader('Card header'),
+    dbc.CardBody(
+        [
+            html.H5('Card title'),
+            html.P(
+                'Here you might want to add some statics or further information for your dashboard',
+            ),
+        ]
+    ),
+]
+
+# App Layout
+app.layout = html.Div([
+    dbc.Row([
+        dbc.Col([title], style={'text-align': 'center', 'margin': 'auto'})
+    ]),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+            dbc.Card(dcc.Graph(id='figure1', figure=fig), color="light")
+        ], width=10, style={'margin': 'auto'}),
+    ]),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+            dbc.Row([
+                dbc.Col([
+                    html.P('Select the countries to display'),
+                    dropdown,
+                ]),
+                dbc.Col([
+                    html.P('Select a year'),
+                    slider,
+                ]),
+                dbc.Col([
+                    html.P('Choose one more option'),
+                    radio_items,
+                ])
+            ]),
+        ], width=10, style={'margin': 'auto'})
+    ]),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+            dbc.Row([
+                dbc.Col([dbc.Card(card_content, color="light")
+                         ]),
+                dbc.Col([dbc.Card(card_content, color="light")
+                         ]),
+                dbc.Col([dbc.Card(card_content, color="light")
+                         ])
+            ])
+        ], width=10, style={'margin': 'auto'}),
+    ])
+])
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
+
 ## Navigation panels and Graphs
 - template3
 - template4
