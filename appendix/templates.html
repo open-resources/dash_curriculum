@@ -411,11 +411,35 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#control-panels-and-graphs">
    Control panels and graphs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-with-control-panel-on-the-left">
+     Template with control panel on the left
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-with-control-panel-on-the-bottom">
+     Template with control panel on the bottom
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#navigation-panels-and-graphs">
    Navigation panels and Graphs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-witht-navigation-tabs-on-the-top">
+     Template witht navigation tabs on the top
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-with-navigation-on-the-side">
+     Template with navigation on the side
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#combining-navigation-and-control-panels">
@@ -451,11 +475,35 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#control-panels-and-graphs">
    Control panels and graphs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-with-control-panel-on-the-left">
+     Template with control panel on the left
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-with-control-panel-on-the-bottom">
+     Template with control panel on the bottom
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#navigation-panels-and-graphs">
    Navigation panels and Graphs
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-witht-navigation-tabs-on-the-top">
+     Template witht navigation tabs on the top
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#template-with-navigation-on-the-side">
+     Template with navigation on the side
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#combining-navigation-and-control-panels">
@@ -485,6 +533,115 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>template1</p></li>
 <li><p>template2</p></li>
 </ul>
+<div class="section" id="template-with-control-panel-on-the-left">
+<h3>Template with control panel on the left<a class="headerlink" href="#template-with-control-panel-on-the-left" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;My Plotly Graph&#39;</span><span class="p">)</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">})</span>
+
+<span class="c1"># Dropdown</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;AAPL&#39;</span><span class="p">,</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;MSFT&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;AAPL&#39;</span><span class="p">)</span>
+
+<span class="c1"># Date Picker</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span>
+    <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;start date&#39;</span><span class="p">,</span>
+    <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;end date&#39;</span><span class="p">,</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">display_format</span><span class="o">=</span><span class="s1">&#39;DD-MMM-YYYY&#39;</span><span class="p">,</span>
+    <span class="n">first_day_of_week</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="c1"># Checklist</span>
+<span class="n">checklist</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Dark theme&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}],</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">switch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Radio items</span>
+<span class="n">radio_items</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Red&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> 
+        <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Green&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> 
+        <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Blue&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">inline</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Card content</span>
+<span class="n">card_content</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s1">&#39;My Control Panel&#39;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s1">&#39;1) Select an option of the dropdown&#39;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">dropdown</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s1">&#39;2) Pick a date range from the form&#39;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">date_range</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H6</span><span class="p">(</span><span class="s1">&#39;Optional input&#39;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s1">&#39;3) Enable dark theme of your graph&#39;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">checklist</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s1">&#39;4) Change the color of the graphs line&#39;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">radio_items</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">})</span>
+    <span class="p">]),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)),</span>
+                <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span>
+            <span class="p">]),</span>
+        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">}),</span>
+    <span class="p">])</span>
+<span class="p">])</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="template-with-control-panel-on-the-bottom">
+<h3>Template with control panel on the bottom<a class="headerlink" href="#template-with-control-panel-on-the-bottom" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="navigation-panels-and-graphs">
 <h2>Navigation panels and Graphs<a class="headerlink" href="#navigation-panels-and-graphs" title="Permalink to this headline">¶</a></h2>
@@ -492,6 +649,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>template3</p></li>
 <li><p>template4</p></li>
 </ul>
+<div class="section" id="template-witht-navigation-tabs-on-the-top">
+<h3>Template witht navigation tabs on the top<a class="headerlink" href="#template-witht-navigation-tabs-on-the-top" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="template-with-navigation-on-the-side">
+<h3>Template with navigation on the side<a class="headerlink" href="#template-with-navigation-on-the-side" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 <div class="section" id="combining-navigation-and-control-panels">
 <h2>Combining navigation and control panels<a class="headerlink" href="#combining-navigation-and-control-panels" title="Permalink to this headline">¶</a></h2>
