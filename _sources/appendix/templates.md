@@ -7,6 +7,8 @@ In this section we provide you with a series of layout templates for the purpose
 
 ### Template with control panel on the left
 
+![Template 1](./template-1.png)
+
 ```
 # Import packages
 from dash import Dash, dcc, html
@@ -112,6 +114,8 @@ if __name__ == '__main__':
 ```
 
 ### Template with control panel on the bottom
+
+![Template 2](./template-2.png)
 
 ```
 # Import packages
