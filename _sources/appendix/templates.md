@@ -229,7 +229,92 @@ if __name__ == '__main__':
 - template3
 - template4
 
-### Template witht navigation tabs on the top
+### Template with navigation tabs on the top
+
+![Template 3](./template-3.png)
+
+```
+# Import packages
+from dash import Dash, dcc, html
+import dash_bootstrap_components as dbc
+import plotly.express as px
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Data
+df = px.data.gapminder()
+df_2007 = df[df.year == 2007]
+continents = df['continent'].unique()
+
+# Title
+title = dcc.Markdown("My Dashboard", className="bg-light", style={'font-size': 40})
+
+# Subtitle
+subtitle = dcc.Markdown("Analysis on Life Expectation over generated GDP per Capita in 2007", style={'font-size': 20})
+
+# Tabs
+tabs = [
+    dbc.Tab(
+        dcc.Graph(
+            figure=px.scatter(
+                df_2007,
+                x='gdpPercap',
+                y='lifeExp',
+                color='continent',
+                size='pop',
+                size_max=60
+            )
+        ),
+        label='World',
+        activeLabelClassName='bg-light'
+    )
+]
+
+for continent in continents:
+    tabs.append(
+        dbc.Tab(
+            dcc.Graph(
+                figure=px.scatter(
+                    df_2007[df_2007['continent'] == continent],
+                    x='gdpPercap',
+                    y='lifeExp',
+                    color='country',
+                    size='pop',
+                    size_max=60
+                )
+            ),
+            label=continent,
+            activeLabelClassName = 'bg-light'
+        )
+    )
+
+# App Layout
+app.layout = html.Div([
+    dbc.Row([
+        dbc.Col([
+            title
+        ], style={'text-align': 'center', 'margin': 'auto'})
+    ]),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+            subtitle
+        ], width=10, style={'text-align': 'left', 'margin': 'auto'})
+    ]),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+            dbc.Tabs(tabs)
+        ], width=10, style={'margin': 'auto'})
+    ])
+])
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server(debug=True)
+```
 
 ### Template with navigation on the side
 

@@ -430,8 +430,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#template-witht-navigation-tabs-on-the-top">
-     Template witht navigation tabs on the top
+    <a class="reference internal nav-link" href="#template-with-navigation-tabs-on-the-top">
+     Template with navigation tabs on the top
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -494,8 +494,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#template-witht-navigation-tabs-on-the-top">
-     Template witht navigation tabs on the top
+    <a class="reference internal nav-link" href="#template-with-navigation-tabs-on-the-top">
+     Template with navigation tabs on the top
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -758,8 +758,91 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>template3</p></li>
 <li><p>template4</p></li>
 </ul>
-<div class="section" id="template-witht-navigation-tabs-on-the-top">
-<h3>Template witht navigation tabs on the top<a class="headerlink" href="#template-witht-navigation-tabs-on-the-top" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="template-with-navigation-tabs-on-the-top">
+<h3>Template with navigation tabs on the top<a class="headerlink" href="#template-with-navigation-tabs-on-the-top" title="Permalink to this headline">¶</a></h3>
+<p><img alt="Template 3" src="appendix/template-3.png" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_2007</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2007</span><span class="p">]</span>
+<span class="n">continents</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">})</span>
+
+<span class="c1"># Subtitle</span>
+<span class="n">subtitle</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;Analysis on Life Expectation over generated GDP per Capita in 2007&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+
+<span class="c1"># Tabs</span>
+<span class="n">tabs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
+        <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+            <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                <span class="n">df_2007</span><span class="p">,</span>
+                <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span>
+                <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span>
+                <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
+                <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;World&#39;</span><span class="p">,</span>
+        <span class="n">activeLabelClassName</span><span class="o">=</span><span class="s1">&#39;bg-light&#39;</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">continent</span> <span class="ow">in</span> <span class="n">continents</span><span class="p">:</span>
+    <span class="n">tabs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
+            <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                    <span class="n">df_2007</span><span class="p">[</span><span class="n">df_2007</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">continent</span><span class="p">],</span>
+                    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span>
+                    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
+                    <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span>
+                <span class="p">)</span>
+            <span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">continent</span><span class="p">,</span>
+            <span class="n">activeLabelClassName</span> <span class="o">=</span> <span class="s1">&#39;bg-light&#39;</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">title</span>
+        <span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">})</span>
+    <span class="p">]),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">subtitle</span>
+        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">})</span>
+    <span class="p">]),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">tabs</span><span class="p">)</span>
+        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">})</span>
+    <span class="p">])</span>
+<span class="p">])</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="template-with-navigation-on-the-side">
 <h3>Template with navigation on the side<a class="headerlink" href="#template-with-navigation-on-the-side" title="Permalink to this headline">¶</a></h3>
