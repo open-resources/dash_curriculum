@@ -424,6 +424,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customising-multi-page-urls-and-order">
+   15.3 Customising multi-page URLs and order
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#content">
    Content:
   </a>
@@ -464,6 +469,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customising-multi-page-urls-and-order">
+   15.3 Customising multi-page URLs and order
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#content">
    Content:
   </a>
@@ -485,9 +495,9 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
-<li><p>Visualise and navigate the <code class="docutils literal notranslate"><span class="pre">page_registry</span></code></p></li>
-<li><p>Include images into multi-page Apps</p></li>
+<li><p>Navigate the <code class="docutils literal notranslate"><span class="pre">page_registry</span></code></p></li>
 <li><p>Customise several features of multi-page Apps such as: URLs, page sort, meta tags</p></li>
+<li><p>Include images into multi-page Apps</p></li>
 </ul>
 </div>
 <p>By the end of this chapter, you’ll be able to build the following App:</p>
@@ -618,13 +628,18 @@ See the code<div class="summary-down docutils">
 <p>As we can see, the registry stores a lot of information for each page, let’s focus on some properties (for the full list, check (here)[<a class="reference external" href="https://dash.plotly.com/urls#dash.register_page()">https://dash.plotly.com/urls#dash.register_page()</a>]):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: is the URL of the page. We can see that the homepage has url ‘/’.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: name of the page URL. If null, the app filename will be used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: name of the page to be displayed in the URL. If null, the app filename will be used.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">order</span></code>: the order of the pages in our App. The page with path ‘/’ will receive order 0, then the remaining pages are sorted alphabetically. This is why, if we look at our App, we can see that the pages are sorted alphabetically (after Home) in the navbar.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: name of the page. This will appear into the browser title. If null, the app filename will be used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: name of the page to be displayed into the browser tab. If null, the app filename will be used.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> are extra properties that, if specified, allow to add meta information to our App URL when shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the assets folder.</p></li>
 <li><p>the registry also contain the full <code class="docutils literal notranslate"><span class="pre">layout</span></code> of each page. We’ve disabled the print out of this property by calling the function in this way: <code class="docutils literal notranslate"><span class="pre">print_registry(exclude=&quot;layout&quot;)</span></code></p></li>
 </ul>
-<p>When we register each page of our app with the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function, we can define the above properties and improve our App. Let’s see some examples in the following sections.</p>
+<p>When we register each page of our app with the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function, we can define the above properties and improve our App. Let’s see some examples.</p>
+</div>
+<div class="section" id="customising-multi-page-urls-and-order">
+<h2>15.3 Customising multi-page URLs and order<a class="headerlink" href="#customising-multi-page-urls-and-order" title="Permalink to this headline">¶</a></h2>
+<p>By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our Graph page is actually named after the .py filname, which contains some versioning in it (hence the page name <code class="docutils literal notranslate"><span class="pre">Graphs</span> <span class="pre">v2</span> <span class="pre">fin</span></code>).
+This doesn’t look professional, but can be easily adjusted by properly calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function.</p>
 </div>
 <div class="section" id="content">
 <h2>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
