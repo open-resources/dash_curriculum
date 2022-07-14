@@ -1,4 +1,4 @@
-# chapter 15: Advanced Features of Multi-page Apps
+# Chapter 15: Advanced Features of Multi-page Apps
 
 ## What you will learn
 In this chapter we will build a more advanced multi page App, starting from the framework introduced in the previous chapter. We'll learn how to:
