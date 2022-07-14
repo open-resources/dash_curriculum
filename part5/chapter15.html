@@ -408,12 +408,22 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   chapter 15: Advanced Features of Multi-page Apps
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-multi-page-app-introduction">
+   Advanced multi-page App Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#navigating-the-page-registry">
+   Navigating the page registry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#content">
    Content:
   </a>
@@ -438,12 +448,22 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   chapter 15: Advanced Features of Multi-page Apps
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-you-will-learn">
+   What you will learn
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#advanced-multi-page-app-introduction">
+   Advanced multi-page App Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#navigating-the-page-registry">
+   Navigating the page registry
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#content">
    Content:
   </a>
@@ -459,9 +479,101 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-15-advanced-features-of-multi-page-apps">
 <h1>chapter 15: Advanced Features of Multi-page Apps<a class="headerlink" href="#chapter-15-advanced-features-of-multi-page-apps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we will build a more advanced multi page App, starting from the framework introduced in the previous chapter.</p>
+<div class="admonition-learning-intentions admonition">
+<p class="admonition-title">Learning Intentions</p>
+<ul class="simple">
+<li><p>Visualise and navigate the <code class="docutils literal notranslate"><span class="pre">page_registry</span></code></p></li>
+<li><p>Include images into multi-page Apps</p></li>
+<li><p>Customise several features of multi-page Apps such as: URLs, page sort, meta tags</p></li>
+</ul>
 </div>
-<div class="tex2jax_ignore mathjax_ignore section" id="content">
-<h1>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h1>
+<p>By the end of this chapter, you’ll be able to build the following App:</p>
+</div>
+<div class="section" id="advanced-multi-page-app-introduction">
+<h2>Advanced multi-page App Introduction<a class="headerlink" href="#advanced-multi-page-app-introduction" title="Permalink to this headline">¶</a></h2>
+<p>As a starting point for the chapter, let’s strt by building a multi-page App structure with all knowledge from the previous chapter. Starting from this template, we’ll be adding a couple of feature in every section.
+Our template will be the following:
+<img alt="app_structure" src="../_images/app_baseline.gif" /></p>
+<p>The App structure consists in:</p>
+<ul class="simple">
+<li><p>an <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">assets</span></code> folder, which is currently empty</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pages</span></code> folder with the following pages: <code class="docutils literal notranslate"><span class="pre">Home</span></code>, <code class="docutils literal notranslate"><span class="pre">Graphs</span></code>, <code class="docutils literal notranslate"><span class="pre">Extras</span></code>, <code class="docutils literal notranslate"><span class="pre">About</span></code>.</p></li>
+</ul>
+<p>We want to build an App with a website-looking layout and therefore we’ve customised the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file in the following way:</p>
+<ul class="simple">
+<li><p>Our header is represented by a <code class="docutils literal notranslate"><span class="pre">abc.Navbar</span></code> component containing the title of our App and one <code class="docutils literal notranslate"><span class="pre">dbc.NavLink</span></code> for each page in our registry.</p></li>
+<li><p>Below the header, we’ve included a <code class="docutils literal notranslate"><span class="pre">theme_toggle</span></code> which is a theme switcher. We’ve picked two themes from <code class="docutils literal notranslate"><span class="pre">dbc.themes</span></code> and the switcher will allow to switch between the two</p></li>
+<li><p>Note that when instatiating our <code class="docutils literal notranslate"><span class="pre">app</span></code>, we’ve enabled the <code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code> option and used the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code> to define the default theme (which is <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code> and also added enhanced fonts with the option <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code>).</p></li>
+</ul>
+<p>The obtained <code class="docutils literal notranslate"><span class="pre">app.py</span></code> is the following:</p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
+
+<span class="c1"># Configure Themes</span>
+<span class="n">url_theme1</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span>
+<span class="n">url_theme2</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">DARKLY</span>
+<span class="n">theme_toggle</span> <span class="o">=</span> <span class="n">ThemeSwitchAIO</span><span class="p">(</span>
+    <span class="n">aio_id</span><span class="o">=</span><span class="s2">&quot;theme&quot;</span><span class="p">,</span>
+    <span class="n">themes</span><span class="o">=</span><span class="p">[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">url_theme1</span><span class="p">],</span>
+    <span class="n">icons</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-sun&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-moon&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">dbc_css</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&quot;</span>
+
+<span class="c1"># App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">],</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">])</span>
+
+<span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Navbar</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">NavbarBrand</span><span class="p">(</span><span class="s2">&quot;Multi page app | Advanced&quot;</span><span class="p">))</span>
+                <span class="p">],</span>
+                <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">),</span>
+            <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;textDecoration&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">}</span>
+            <span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarToggler</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;navbar-toggler&quot;</span><span class="p">),</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">([</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+                        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+                    <span class="p">])</span>
+            <span class="p">])</span>
+        <span class="p">],</span>
+        <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dark&#39;</span>
+<span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="n">theme_toggle</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>Each page code is very basic and will be enhanced in the following sections.</p>
+</div>
+<div class="section" id="navigating-the-page-registry">
+<h2>Navigating the page registry<a class="headerlink" href="#navigating-the-page-registry" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="content">
+<h2>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Show and describe the following App as the baseline</p></li>
 <li><p>Go through the following enhancements to the app:</p>
@@ -474,7 +586,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 </li>
 </ul>
-<p><img alt="app_structure" src="../_images/app_baseline.gif" /></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
