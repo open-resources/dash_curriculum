@@ -3,9 +3,9 @@
 ## What you will learn
 In this chapter we will build a more advanced multi page App, starting from the framework introduced in the previous chapter. We'll learn how to:
 ```{admonition} Learning Intentions
-- Visualise and navigate the `page_registry`
-- Include images into multi-page Apps
+- Navigate the `page_registry`
 - Customise several features of multi-page Apps such as: URLs, page sort, meta tags
+- Include images into multi-page Apps
 ```
 By the end of this chapter, you'll be able to build the following App:
 
@@ -133,13 +133,19 @@ If we then examine the page registry into the terminal, we will see the followin
 
 As we can see, the registry stores a lot of information for each page, let's focus on some properties (for the full list, check (here)[https://dash.plotly.com/urls#dash.register_page()]):
 - `path`: is the URL of the page. We can see that the homepage has url '/'.
-- `name`: name of the page URL. If null, the app filename will be used.
+- `name`: name of the page to be displayed in the URL. If null, the app filename will be used.
 - `order`: the order of the pages in our App. The page with path '/' will receive order 0, then the remaining pages are sorted alphabetically. This is why, if we look at our App, we can see that the pages are sorted alphabetically (after Home) in the navbar.
-- `title`: name of the page. This will appear into the browser title. If null, the app filename will be used.
+- `title`: name of the page to be displayed into the browser tab. If null, the app filename will be used.
 - `description` and `image` are extra properties that, if specified, allow to add meta information to our App URL when shared. `image` should contain the image filename located into the assets folder.
 - the registry also contain the full `layout` of each page. We've disabled the print out of this property by calling the function in this way: `print_registry(exclude="layout")`
 
-When we register each page of our app with the `dash.register_page()` function, we can define the above properties and improve our App. Let's see some examples in the following sections.
+When we register each page of our app with the `dash.register_page()` function, we can define the above properties and improve our App. Let's see some examples.
+
+## 15.3 Customising multi-page URLs and order
+By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our Graph page is actually named after the .py filname, which contains some versioning in it (hence the page name `Graphs v2 fin`).
+This doesn't look professional, but can be easily adjusted by properly calling the `dash.register_page()` function.
+
+
 
 ## Content:
 - Show and describe the following App as the baseline
