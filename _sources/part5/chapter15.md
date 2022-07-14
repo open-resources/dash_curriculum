@@ -21,9 +21,9 @@ The App structure consists in:
 - `pages` folder with the following pages: `Home`, `Graphs`, `Extras`, `About`.
 
 We want to build an App with a website-looking layout and therefore we've customised the `app.py` file in the following way:
-- Our header is represented by a `abc.Navbar` component containing the title of our App and one `dbc.NavLink` for each page in our registry.
+- Our header is represented by a `dbc.Navbar` component containing the title of our App and one `dbc.NavLink` for each page in our registry.
 - Below the header, we've included a `theme_toggle` which is a theme switcher. We've picked two themes from `dbc.themes` and the switcher will allow to switch between the two
-- Note that when instatiating our `app`, we've enabled the `use_pages=True` option and used the `external_stylesheets` to define the default theme (which is `url_theme2` and also added enhanced fonts with the option `dbc.icons.FONT_AWESOME`).
+- Note that when instatiating our `app`, we've enabled the `use_pages=True` option and used the `external_stylesheets` to define the default theme (which is `url_theme2`) together with enhanced fonts with the option `dbc.icons.FONT_AWESOME`.
 
 The obtained `app.py` is the following:
 
