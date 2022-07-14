@@ -9,14 +9,14 @@ In this chapter we will build a more advanced multi page App, starting from the 
 ```
 By the end of this chapter, you'll be able to build the following App:
 
-## Advanced multi-page App Introduction
-As a starting point for the chapter, let's strt by building a multi-page App structure with all the knowledge from the previous chapter. Starting from this template, we'll be adding a couple of features in every section.
+## 15.1 Advanced multi-page App Introduction
+As a starting point for the chapter, let's start by building a multi-page App structure with all the knowledge from the previous chapter. Starting from this template, we'll be adding a couple of features in every section.
 
-Our starting template is be the following:
+Our starting template is the following:
 ![app_structure](ch15_files/app_baseline.gif)
 
 The App structure consists in: 
-- an `app.py` file
+- `app.py` file
 - `assets` folder, which is currently empty
 - `pages` folder with the following pages: `Home`, `Graphs`, `Extras`, `About`.
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 
 Each page code is very basic and will be enhanced in the following sections.
 
-## Navigating the page registry
+## 15.2 Navigating the page registry
 
 
 
