@@ -424,8 +424,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-urls-and-order">
-   15.3 Customising multi-page URLs and order
+  <a class="reference internal nav-link" href="#customising-multi-page-name-and-order">
+   15.3 Customising multi-page name and order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -469,8 +469,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-urls-and-order">
-   15.3 Customising multi-page URLs and order
+  <a class="reference internal nav-link" href="#customising-multi-page-name-and-order">
+   15.3 Customising multi-page name and order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -636,8 +636,8 @@ See the code<div class="summary-down docutils">
 </ul>
 <p>When we register each page of our app with the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function, we can define the above properties and improve our App. Let’s see some examples.</p>
 </div>
-<div class="section" id="customising-multi-page-urls-and-order">
-<h2>15.3 Customising multi-page URLs and order<a class="headerlink" href="#customising-multi-page-urls-and-order" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="customising-multi-page-name-and-order">
+<h2>15.3 Customising multi-page name and order<a class="headerlink" href="#customising-multi-page-name-and-order" title="Permalink to this headline">¶</a></h2>
 <p>By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our pages are named after the respective .py filenames.
 However, our Graph filename contains some versioning (hence the page name <code class="docutils literal notranslate"><span class="pre">Graphs</span> <span class="pre">v2</span> <span class="pre">fin</span></code>). This doesn’t look professional, but can be easily adjusted by properly calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function.</p>
 <p>We can obtain a much better result by specifying the following props when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page. In the version of the app displayed below, we’ve introduced the following adjustments for each page:</p>
