@@ -87,9 +87,9 @@ Each page code is very basic and will be enhanced in the following sections.
 
 ## 15.2 Navigating the page registry
 Let's now examine the page registry.
-The `dash_labs` module has a function called `print_registry` which allows to print the registry into the terminal.
+The `dash_labs` module has a function called `print_registry()` which allows to print the registry into the terminal.
 
-In the `extras.py` page from the App, we've used this function which is triggereed by the button via a callback.
+In the `extras.py` page from the App, we've used this function which is triggered by a button.
 ````{dropdown} See the code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -127,17 +127,19 @@ def print_reg(n):
 ```
 
 ````
-If we then examine the page registry into the terminal, we will see the following (for each page of the App; we've just included the output for a couple of pages):
+If we then examine the page registry into the terminal, we will see the following output (for each page of the App; we've just included a couple of pages in the screenshot):
 
 ![printregistry](ch15_files/print_registry.png)
 
-As we can see, the registry stores a lot of information for each page, let's focus on some of them (for the full list, check (here)[https://dash.plotly.com/urls#dash.register_page()]):
+As we can see, the registry stores a lot of information for each page, let's focus on some properties (for the full list, check (here)[https://dash.plotly.com/urls#dash.register_page()]):
 - `path`: is the URL of the page. We can see that the homepage has url '/'.
 - `name`: name of the page URL. If null, the app filename will be used.
-- `order`: the order of the pages in our App. The page with path '/' will receive order 0, then the pages are sorted alphabetically
+- `order`: the order of the pages in our App. The page with path '/' will receive order 0, then the remaining pages are sorted alphabetically. This is why, if we look at our App, we can see that the pages are sorted alphabetically (after Home) in the navbar.
 - `title`: name of the page. This will appear into the browser title. If null, the app filename will be used.
-- `description` and `image`: are extra properties that, if specified, allow to add meta description information to our App URL when it is shared. `image` should contain the image filename located into the assets folder.
-The registry also contain the full `layout` of each page. We've disabled the print out of this property by calling the function in this way: `print_registry(exclude="layout")`
+- `description` and `image` are extra properties that, if specified, allow to add meta information to our App URL when shared. `image` should contain the image filename located into the assets folder.
+- the registry also contain the full `layout` of each page. We've disabled the print out of this property by calling the function in this way: `print_registry(exclude="layout")`
+
+When we register each page of our app with the `dash.register_page()` function, we can define the above properties and improve our App. Let's see some examples in the following sections.
 
 ## Content:
 - Show and describe the following App as the baseline
