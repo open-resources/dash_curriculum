@@ -572,8 +572,8 @@ See the code<div class="summary-down docutils">
 <div class="section" id="navigating-the-page-registry">
 <h2>15.2 Navigating the page registry<a class="headerlink" href="#navigating-the-page-registry" title="Permalink to this headline">¶</a></h2>
 <p>Let’s now examine the page registry.
-The <code class="docutils literal notranslate"><span class="pre">dash_labs</span></code> module has a function called <code class="docutils literal notranslate"><span class="pre">print_registry</span></code> which allows to print the registry into the terminal.</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">extras.py</span></code> page from the App, we’ve used this function which is triggereed by the button via a callback.</p>
+The <code class="docutils literal notranslate"><span class="pre">dash_labs</span></code> module has a function called <code class="docutils literal notranslate"><span class="pre">print_registry()</span></code> which allows to print the registry into the terminal.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">extras.py</span></code> page from the App, we’ve used this function which is triggered by a button.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See the code<div class="summary-down docutils">
@@ -613,17 +613,18 @@ See the code<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details><p>If we then examine the page registry into the terminal, we will see the following (for each page of the App; we’ve just included the output for a couple of pages):</p>
+</details><p>If we then examine the page registry into the terminal, we will see the following output (for each page of the App; we’ve just included a couple of pages in the screenshot):</p>
 <p><img alt="printregistry" src="../_images/print_registry.png" /></p>
-<p>As we can see, the registry stores a lot of information for each page, let’s focus on some of them (for the full list, check (here)[<a class="reference external" href="https://dash.plotly.com/urls#dash.register_page()">https://dash.plotly.com/urls#dash.register_page()</a>]):</p>
+<p>As we can see, the registry stores a lot of information for each page, let’s focus on some properties (for the full list, check (here)[<a class="reference external" href="https://dash.plotly.com/urls#dash.register_page()">https://dash.plotly.com/urls#dash.register_page()</a>]):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: is the URL of the page. We can see that the homepage has url ‘/’.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: name of the page URL. If null, the app filename will be used.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">order</span></code>: the order of the pages in our App. The page with path ‘/’ will receive order 0, then the pages are sorted alphabetically</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">order</span></code>: the order of the pages in our App. The page with path ‘/’ will receive order 0, then the remaining pages are sorted alphabetically. This is why, if we look at our App, we can see that the pages are sorted alphabetically (after Home) in the navbar.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: name of the page. This will appear into the browser title. If null, the app filename will be used.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code>: are extra properties that, if specified, allow to add meta description information to our App URL when it is shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the assets folder.
-The registry also contain the full <code class="docutils literal notranslate"><span class="pre">layout</span></code> of each page. We’ve disabled the print out of this property by calling the function in this way: <code class="docutils literal notranslate"><span class="pre">print_registry(exclude=&quot;layout&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> are extra properties that, if specified, allow to add meta information to our App URL when shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the assets folder.</p></li>
+<li><p>the registry also contain the full <code class="docutils literal notranslate"><span class="pre">layout</span></code> of each page. We’ve disabled the print out of this property by calling the function in this way: <code class="docutils literal notranslate"><span class="pre">print_registry(exclude=&quot;layout&quot;)</span></code></p></li>
 </ul>
+<p>When we register each page of our app with the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function, we can define the above properties and improve our App. Let’s see some examples in the following sections.</p>
 </div>
 <div class="section" id="content">
 <h2>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
