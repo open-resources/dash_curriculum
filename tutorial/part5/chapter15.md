@@ -10,8 +10,9 @@ In this chapter we will build a more advanced multi page App, starting from the 
 By the end of this chapter, you'll be able to build the following App:
 
 ## Advanced multi-page App Introduction
-As a starting point for the chapter, let's strt by building a multi-page App structure with all knowledge from the previous chapter. Starting from this template, we'll be adding a couple of feature in every section.
-Our template will be the following:
+As a starting point for the chapter, let's strt by building a multi-page App structure with all the knowledge from the previous chapter. Starting from this template, we'll be adding a couple of features in every section.
+
+Our starting template is be the following:
 ![app_structure](ch15_files/app_baseline.gif)
 
 The App structure consists in: 
