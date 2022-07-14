@@ -4,7 +4,7 @@
 In this chapter we will build a more advanced multi page App, starting from the framework introduced in the previous chapter. We'll learn how to:
 ```{admonition} Learning Intentions
 - Navigate the `page_registry`
-- Customise several features of multi-page Apps such as: URLs, page sort, meta tags
+- Customise several features of multi-page Apps such as: page name, order, meta tags
 - Include images into multi-page Apps
 ```
 By the end of this chapter, you'll be able to build the following App:
@@ -149,7 +149,7 @@ We can obtain a much better result by specifying the following props when callin
 - pages/home.py : `dash.register_page(__name__, path='/', order='0', name='Home', title='Home')`
 - pages/about.py : `dash.register_page(__name__, order='3')`
 - pages/extras.py : `dash.register_page(__name__, order='2')`
-- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs')`. In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab. This is the difference between `name` and `title` props
+- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs')`. In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab for this page. This is the difference between `name` and `title` props
 
 ![app_structure](ch15_files/app_fix01.gif)
 
