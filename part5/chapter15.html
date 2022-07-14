@@ -638,8 +638,16 @@ See the code<div class="summary-down docutils">
 </div>
 <div class="section" id="customising-multi-page-urls-and-order">
 <h2>15.3 Customising multi-page URLs and order<a class="headerlink" href="#customising-multi-page-urls-and-order" title="Permalink to this headline">¶</a></h2>
-<p>By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our Graph page is actually named after the .py filname, which contains some versioning in it (hence the page name <code class="docutils literal notranslate"><span class="pre">Graphs</span> <span class="pre">v2</span> <span class="pre">fin</span></code>).
-This doesn’t look professional, but can be easily adjusted by properly calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function.</p>
+<p>By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our pages are named after the respective .py filenames.
+However, our Graph filename contains some versioning (hence the page name <code class="docutils literal notranslate"><span class="pre">Graphs</span> <span class="pre">v2</span> <span class="pre">fin</span></code>). This doesn’t look professional, but can be easily adjusted by properly calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function.</p>
+<p>We can obtain a much better result by specifying the following props when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page. In the version of the app displayed below, we’ve introduced the following adjustments for each page:</p>
+<ul class="simple">
+<li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order='0',</span> <span class="pre">name='Home',</span> <span class="pre">title='Home')</span></code></p></li>
+<li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='3')</span></code></p></li>
+<li><p>pages/extras.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2')</span></code></p></li>
+<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1',</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs')</span></code>. In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab. This is the difference between <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">title</span></code> props</p></li>
+</ul>
+<p><img alt="app_structure" src="../_images/app_fix01.gif" /></p>
 </div>
 <div class="section" id="content">
 <h2>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>

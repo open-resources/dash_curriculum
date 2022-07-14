@@ -142,10 +142,16 @@ As we can see, the registry stores a lot of information for each page, let's foc
 When we register each page of our app with the `dash.register_page()` function, we can define the above properties and improve our App. Let's see some examples.
 
 ## 15.3 Customising multi-page URLs and order
-By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our Graph page is actually named after the .py filname, which contains some versioning in it (hence the page name `Graphs v2 fin`).
-This doesn't look professional, but can be easily adjusted by properly calling the `dash.register_page()` function.
+By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our pages are named after the respective .py filenames.
+However, our Graph filename contains some versioning (hence the page name `Graphs v2 fin`). This doesn't look professional, but can be easily adjusted by properly calling the `dash.register_page()` function.
 
+We can obtain a much better result by specifying the following props when calling `dash.register_page(__name__)` for each page. In the version of the app displayed below, we've introduced the following adjustments for each page:
+- pages/home.py : `dash.register_page(__name__, path='/', order='0', name='Home', title='Home')`
+- pages/about.py : `dash.register_page(__name__, order='3')`
+- pages/extras.py : `dash.register_page(__name__, order='2')`
+- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs')`. In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab. This is the difference between `name` and `title` props
 
+![app_structure](ch15_files/app_fix01.gif)
 
 ## Content:
 - Show and describe the following App as the baseline
