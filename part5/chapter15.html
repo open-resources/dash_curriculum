@@ -419,13 +419,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#default-and-custom-404">
+   15.2 Default and Custom 404
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#navigating-the-page-registry">
-   15.2 Navigating the page registry
+   15.3 Navigating the page registry
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#customising-multi-page-name-and-order">
-   15.3 Customising multi-page name and order
+   15.4 Customising multi-page name and order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -464,13 +469,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#default-and-custom-404">
+   15.2 Default and Custom 404
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#navigating-the-page-registry">
-   15.2 Navigating the page registry
+   15.3 Navigating the page registry
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#customising-multi-page-name-and-order">
-   15.3 Customising multi-page name and order
+   15.4 Customising multi-page name and order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -579,8 +589,32 @@ See the code<div class="summary-down docutils">
 </div>
 </details><p>Each page code is very basic and will be enhanced in the following sections.</p>
 </div>
+<div class="section" id="default-and-custom-404">
+<h2>15.2 Default and Custom 404<a class="headerlink" href="#default-and-custom-404" title="Permalink to this headline">¶</a></h2>
+<p>Multi pages Apps include, by default, a landing page whenever the user tries to reach an invalid URL.
+The default 404-page looks like the following:
+<img alt="app_structure" src="part5/ch15_files/app_404_default.gif" /></p>
+<p>The 404-page can be customised, in order to do so we need to create a new page which must be named <code class="docutils literal notranslate"><span class="pre">not_found_404.py</span></code> with the desired layout and it should be included into the <code class="docutils literal notranslate"><span class="pre">pages</span></code> folder.
+Let’s create the following 404 custom page and see it in use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span>
+
+<span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Page not found&#39;</span><span class="p">),</span>
+
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        This is a custom 404 page layout</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">),</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>By adding this page into the <code class="docutils literal notranslate"><span class="pre">pages</span></code> folder from the app shown in the previous section, we will get the following:
+<img alt="app_structure" src="part5/ch15_files/app_404_custom.gif" /></p>
+</div>
 <div class="section" id="navigating-the-page-registry">
-<h2>15.2 Navigating the page registry<a class="headerlink" href="#navigating-the-page-registry" title="Permalink to this headline">¶</a></h2>
+<h2>15.3 Navigating the page registry<a class="headerlink" href="#navigating-the-page-registry" title="Permalink to this headline">¶</a></h2>
 <p>Let’s now examine the page registry.
 The <code class="docutils literal notranslate"><span class="pre">dash_labs</span></code> module has a function called <code class="docutils literal notranslate"><span class="pre">print_registry()</span></code> which allows to print the registry into the terminal.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">extras.py</span></code> page from the App, we’ve used this function which is triggered by a button.</p>
@@ -637,7 +671,7 @@ See the code<div class="summary-down docutils">
 <p>When we register each page of our app with the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function, we can define the above properties and improve our App. Let’s see some examples.</p>
 </div>
 <div class="section" id="customising-multi-page-name-and-order">
-<h2>15.3 Customising multi-page name and order<a class="headerlink" href="#customising-multi-page-name-and-order" title="Permalink to this headline">¶</a></h2>
+<h2>15.4 Customising multi-page name and order<a class="headerlink" href="#customising-multi-page-name-and-order" title="Permalink to this headline">¶</a></h2>
 <p>By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our pages are named after the respective .py filenames.
 However, our Graph filename contains some versioning (hence the page name <code class="docutils literal notranslate"><span class="pre">Graphs</span> <span class="pre">v2</span> <span class="pre">fin</span></code>). This doesn’t look professional, but can be easily adjusted by properly calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function.</p>
 <p>We can obtain a much better result by specifying the following props when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page. In the version of the app displayed below, we’ve introduced the following adjustments for each page:</p>
