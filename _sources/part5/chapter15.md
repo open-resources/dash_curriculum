@@ -12,7 +12,7 @@ By the end of this chapter, you'll be able to build the following App:
 ## 15.1 Advanced multi-page App Introduction
 As a starting point for the chapter, let's start by building a multi-page App structure with all the knowledge from the previous chapter. Starting from this template, we'll be adding a couple of features in every section.
 
-Our starting template is the following, you can download it here[ch15_files/app_v1.zip] (the .zip file will need to be uncompressed):
+Our starting template is the following, you can download it [here](ch15_files/app_v1.zip) (the .zip file will need to be uncompressed):
 ![app_structure](ch15_files/app_baseline.gif)
 
 The App structure consists in: 
@@ -155,7 +155,7 @@ If we then examine the page registry into the terminal, we will see the followin
 
 ![printregistry](ch15_files/print_registry.png)
 
-As we can see, the registry stores a lot of information for each page, let's focus on some properties (for the full list, check (here)[https://dash.plotly.com/urls#dash.register_page()]):
+As we can see, the registry stores a lot of information for each page, let's focus on some properties (for the full list, [click here](https://dash.plotly.com/urls#dash.register_page())):
 - `path`: is the URL of the page. We can see that the homepage has url '/'.
 - `name`: name of the page to be displayed in the URL. If null, the app filename will be used.
 - `order`: the order of the pages in our App. The page with path '/' will receive order 0, then the remaining pages are sorted alphabetically. This is why, if we look at our App, we can see that the pages are sorted alphabetically (after Home) in the navbar.
