@@ -85,7 +85,31 @@ if __name__ == '__main__':
 
 Each page code is very basic and will be enhanced in the following sections.
 
-## 15.2 Navigating the page registry
+## 15.2 Default and Custom 404
+Multi pages Apps include, by default, a landing page whenever the user tries to reach an invalid URL.
+The default 404-page looks like the following:
+![app_structure](ch15_files/app_404_default.gif)
+
+The 404-page can be customised, in order to do so we need to create a new page which must be named `not_found_404.py` with the desired layout and it should be included into the `pages` folder.
+Let's create the following 404 custom page and see it in use:
+```
+import dash
+from dash import html
+
+dash.register_page(__name__)
+
+layout = html.Div(children=[
+    html.H1(children='Page not found'),
+
+    html.Div(children='''
+        This is a custom 404 page layout
+    '''),
+])
+```
+By adding this page into the `pages` folder from the app shown in the previous section, we will get the following:
+![app_structure](ch15_files/app_404_custom.gif)
+
+## 15.3 Navigating the page registry
 Let's now examine the page registry.
 The `dash_labs` module has a function called `print_registry()` which allows to print the registry into the terminal.
 
@@ -141,7 +165,7 @@ As we can see, the registry stores a lot of information for each page, let's foc
 
 When we register each page of our app with the `dash.register_page()` function, we can define the above properties and improve our App. Let's see some examples.
 
-## 15.3 Customising multi-page name and order
+## 15.4 Customising multi-page name and order
 By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our pages are named after the respective .py filenames.
 However, our Graph filename contains some versioning (hence the page name `Graphs v2 fin`). This doesn't look professional, but can be easily adjusted by properly calling the `dash.register_page()` function.
 
