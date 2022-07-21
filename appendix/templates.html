@@ -814,22 +814,24 @@ See the code<div class="summary-down docutils">
 <span class="c1"># Title</span>
 <span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">})</span>
 
-<span class="c1"># Subtitle</span>
-<span class="n">subtitle</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;Analysis on Life Expectation over generated GDP per Capita in 2007&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;font-size&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
-
 <span class="c1"># Tabs</span>
 <span class="n">tabs</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
-        <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
-            <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-                <span class="n">df_2007</span><span class="p">,</span>
-                <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span>
-                <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
-                <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span>
-                <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
-                <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span>
-            <span class="p">)</span>
-        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s1">&#39;Analysis on Life Expectation / GDP per Capita in 2007&#39;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                    <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                        <span class="n">df_2007</span><span class="p">,</span>
+                        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span>
+                        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span>
+                        <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
+                        <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">])</span>
+        <span class="p">]),</span>
         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;World&#39;</span><span class="p">,</span>
         <span class="n">activeLabelClassName</span><span class="o">=</span><span class="s1">&#39;bg-light&#39;</span>
     <span class="p">)</span>
@@ -838,16 +840,21 @@ See the code<div class="summary-down docutils">
 <span class="k">for</span> <span class="n">continent</span> <span class="ow">in</span> <span class="n">continents</span><span class="p">:</span>
     <span class="n">tabs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
-            <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
-                <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
-                    <span class="n">df_2007</span><span class="p">[</span><span class="n">df_2007</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">continent</span><span class="p">],</span>
-                    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span>
-                    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
-                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
-                    <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
-                    <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span>
-                <span class="p">)</span>
-            <span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">([</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                    <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s1">&#39;Analysis on Life Expectation / GDP per Capita in 2007 for </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">continent</span><span class="p">)),</span>
+                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                        <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                            <span class="n">df_2007</span><span class="p">[</span><span class="n">df_2007</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">continent</span><span class="p">],</span>
+                            <span class="n">x</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span>
+                            <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+                            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span>
+                            <span class="n">size</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span>
+                            <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                <span class="p">])</span>
+            <span class="p">]),</span>
             <span class="n">label</span><span class="o">=</span><span class="n">continent</span><span class="p">,</span>
             <span class="n">activeLabelClassName</span> <span class="o">=</span> <span class="s1">&#39;bg-light&#39;</span>
         <span class="p">)</span>
@@ -861,16 +868,8 @@ See the code<div class="summary-down docutils">
         <span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">})</span>
     <span class="p">]),</span>
     <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-            <span class="n">subtitle</span>
-        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text-align&#39;</span><span class="p">:</span> <span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">})</span>
-    <span class="p">]),</span>
-    <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
-            <span class="n">dbc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">tabs</span><span class="p">)</span>
-        <span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;margin&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">})</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">tabs</span><span class="p">)</span>
     <span class="p">])</span>
 <span class="p">])</span>
 
