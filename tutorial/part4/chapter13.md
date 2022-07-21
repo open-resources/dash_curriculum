@@ -405,7 +405,10 @@ if __name__ == '__main__':
 
 ````
 
-Here is a minimal example on how to implement a graphic using the plotly resampler package that you might want to copy paste for your own app.
+Here is a minimal example on how to implement plotly-resampler with the Plotly Express scatter plot.
+
+![plotly-resampler-with-px](./ch13_files/resampler-px.gif)
+
 
 ```
 # Import packages
@@ -413,8 +416,12 @@ from dash import Dash, dcc, Input, Output
 import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
-from plotly_resampler import FigureResampler
+import numpy as np
+from plotly_resampler import register_plotly_resampler
+
+# Call the register function once and all Figures/FigureWidgets will be wrapped
+# according to the register_plotly_resampler its `mode` argument
+register_plotly_resampler(mode='auto')
 
 # Setup data
 df = px.data.gapminder()[['country', 'year', 'lifeExp']]
@@ -424,12 +431,19 @@ dropdown_list = df['country'].unique()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
+markdown = dcc.Markdown(id='our-markdown')
 dropdown = dcc.Dropdown(id='our-dropdown', options=dropdown_list, value=dropdown_list[0])
+slider = dcc.Slider(id='our-slider', min=10000, max=200000, marks=None, value=10000)
+
 
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row([dbc.Col(dropdown)]),
+        dbc.Row([
+            dbc.Col([dropdown], width=4, className='mt-2'),
+            dbc.Col([slider], width=8, className='mt-4'),
+        ]),
+        dbc.Row([dbc.Col([markdown])]),
         dbc.Row([dbc.Col(dcc.Graph(id='our-resample-figure'))]),
     ]
 )
@@ -438,22 +452,27 @@ app.layout = dbc.Container(
 # Configure callbacks
 @app.callback(
     Output(component_id='our-resample-figure', component_property='figure'),
+    Output(component_id='our-markdown', component_property='children'),
     Input(component_id='our-dropdown', component_property='value'),
+    Input(component_id='our-slider', component_property='value'),
+
 )
-def update_graph(value_dropdown):
+def update_graph(value_dropdown, slider_value):
     df_sub = df[df['country'].isin([value_dropdown])]
-    fig = FigureResampler(go.Figure())
-    fig.add_trace(go.Scattergl(
-        x=df_sub['year'],
-        y=pd.to_numeric(df_sub['lifeExp']),
-        mode='markers',
-    ))
+    df_new = pd.DataFrame(np.repeat(df_sub.to_numpy(), slider_value, axis=0), columns=df_sub.columns)
+    print(len(df_new))
+
+    fig = px.scatter(df_new, x='year', y=pd.to_numeric(df_new['lifeExp']))
     fig.update_layout(
-        title='Plotly Resampler scatterGL plot',
+        title='Plotly Resampler scatter plot',
         xaxis_title='year',
         yaxis_title='lifeExp',
     )
-    return fig
+    fig.update_traces(marker=dict(size=5 + (slider_value / 30000) * 25))
+
+    title = 'Data points displayed: {:,}'.format(len(df_sub.index) * slider_value)
+
+    return fig, title
 
 
 # Run the App
@@ -461,21 +480,23 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 ```
 
+Notice that instead of the `FigureResampler`, we use the `register_plotly_resampler`. As you can see in the [plotly-resampler documentation](https://github.com/predict-idlab/plotly-resampler), this function wraps all plotly graph object figures with a FigureResampler or FigureWidgetResampler, which is why it can be used for the plotly.express interface as well.  
+
 ### 13.3.3 Datashader
 
-Another high performing way of exploring correlations of large data sets is to use the [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid aggregating it by count and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and with brighter colors ranging logarithmically in between.
+Another high-performing way of exploring correlations of large data sets is to use the [datashader](https://plotly.com/python/datashader/) in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid, aggregating it by count, and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and other bright colors ranging logarithmically in between.
 
-Compared to the two methods above, the datashader differentiates not only in speed but in the way it visualises data. Instead of the actual data points it represents the occurence of the observed data, therefore letting you explore the correlation, especially any accumulations of your data set really fast. We stay with the bespoken example above to introduce the datashader but change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before use, make sure to install the `datashader` package.
+Compared to ScatterGL and Plotly Resampler, the datashader differs not only in speed but in the way it visualises data. Instead of the actual data points, it represents the occurence of the observed data, therefore letting you explore the correlation, especially any accumulations of your data set, really fast. We'll use the same code from the examples above to introduce the datashader, but we'll change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before you use the datashader, make sure to install the `datashader` package.
 
-```{attention}
+```{admonition}
 As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the `pandas` package for the input years and life expectation i.e., we will set
 - df_new['year'] = pd.to_numeric(df_new['year'])
 - df_new['lifeExp'] = pd.to_numeric(df_new['lifeExp'])
 ```
 
-The following app shows the datashader in action. Use the code below to make it work also on your computer. 
+The following app shows the datashader in action. Use the code below to run it on your computer as well. 
 
-#### [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO OR THREE DIFFERENT CONTINENTS FOR A HIGH SLIDER VALUE]
+![datashader](./ch13_files/datashader-exp.gif)
 
 ````{dropdown} See the code
     :container: + shadow
@@ -559,15 +580,15 @@ if __name__ == '__main__':
 
 ## 13.4 Caching
 
-Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way repeated function calls are made with the same parameters won't have to be calculated multiple times. One popular use case may be recurvise functions. More general, whenever you process repititive but difficult or time-consuming calculations within your app you might want to use caching as it allows you to store calculations to speed up your app performance.
+Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way, repeated function calls that are made with the same parameters won't have to be calculated multiple times. One popular use case may be recurvise functions. More general, whenever you process repititive but difficult or time-consuming calculations within your app, you might want to use caching as it allows you to store calculations to speed up your app performance.
 
 ```{admonition} Memoization
 For an exemplary introduction to memoization and the implementation in Python also have a look at [Towards Data Science](https://towardsdatascience.com/memoization-in-python-57c0a738179a) or [Real Python](https://realpython.com/lru-cache-python/).
 ```
 
-Let's stick with a minimal example of the one that we have used throughout this chapter i.e., only a dropdown with a graph, but adding a repititve, time consuming functionality. Defining our own function `calculation_function`, we assure that whenever the callback for the graph gets triggered by selecting another country we delay the app performance by three seconds.
+Let's stick with a minimal example of the one that we have used throughout this chapter; that is, only a dropdown with a graph, but we'll add a repititve, time consuming functionality. Defining our own function `calculation_function`, we assure that whenever the callback for the graph gets triggered by selecting another country, we delay the app performance by three seconds. This will simulate a calculation that takes three seconds.
 
-Here is when caching comes into play. By storing the functions' values for the selected countries i.e., remembering the country in the cache, the respective calculation do not has to be executed the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.
+Here is when caching comes into play: By storing the functions' values for the selected countries i.e., remembering the country in the cache, the respective calculation does not have to be executed the next time. We will use the `lru_cache` (LRU for Least Recently Used) decorator from the `functools` package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.
 
 The app below with the respective code gives you a minimal example on how to implement caching.
 
