@@ -416,32 +416,40 @@ app.layout = html.Div([
 def update_page(n1, n2, n3, n4, n5):
     if ctx.triggered_id in continents:
         return dbc.Container([
-            html.H3('Analysis on Life Expectation / GDP per Capita in 2007 for {}'.format(ctx.triggered_id)),
-            dcc.Graph(
-                id='graph {}'.format(ctx.triggered_id),
-                figure=px.scatter(
-                    df_2007[df_2007['continent'] == ctx.triggered_id],
-                    x='gdpPercap',
-                    y='lifeExp',
-                    color='country',
-                    size='pop',
-                    size_max=60,
-                )
-            )
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5('Analysis on Life Expectation / GDP per Capita in 2007 for {}'.format(ctx.triggered_id)),
+                    dcc.Graph(
+                        id='graph {}'.format(ctx.triggered_id),
+                        figure=px.scatter(
+                            df_2007[df_2007['continent'] == ctx.triggered_id],
+                            x='gdpPercap',
+                            y='lifeExp',
+                            color='country',
+                            size='pop',
+                            size_max=60,
+                        )
+                    )
+                ])
+            ])
         ])
     else:
         return dbc.Container([
-            html.H3('Analysis on Life Expectation / GDP per Capita in 2007'),
-            dcc.Graph(
-                figure=px.scatter(
-                    df_2007,
-                    x='gdpPercap',
-                    y='lifeExp',
-                    color='continent',
-                    size='pop',
-                    size_max=60
-                )
-            )
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5('Analysis on Life Expectation / GDP per Capita in 2007'),
+                    dcc.Graph(
+                        figure=px.scatter(
+                            df_2007,
+                            x='gdpPercap',
+                            y='lifeExp',
+                            color='continent',
+                            size='pop',
+                            size_max=60
+                        )
+                    )
+                ])
+            ])
         ])
 
 
