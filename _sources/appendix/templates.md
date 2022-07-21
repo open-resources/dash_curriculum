@@ -9,6 +9,10 @@ In this section we provide you with a series of layout templates as a blueprint 
 
 ![Template 1](./template-1.png)
 
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
 ```
 # Import packages
 from dash import Dash, dcc, html
@@ -112,10 +116,15 @@ app.layout = html.Div([
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
+````
 
 ### Template with control panel on the bottom
 
 ![Template 2](./template-2.png)
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```
 # Import packages
@@ -225,6 +234,8 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 ```
 
+````
+
 ## Navigation panels and Graphs
 - template3
 - template4
@@ -232,6 +243,10 @@ if __name__ == '__main__':
 ### Template with navigation tabs on the top
 
 ![Template 3](./template-3.png)
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```
 # Import packages
@@ -316,9 +331,15 @@ if __name__ == '__main__':
     app.run_server(debug=True)
 ```
 
+````
+
 ### Template with navigation on the side
 
 ![Template 4](./template-4.png)
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```
 import dash
@@ -428,6 +449,8 @@ if __name__ == "__main__":
     app.run_server(debug=True)
 ```
 
+````
+
 ## Combining navigation and control panels
 - template5
 - template6
@@ -436,6 +459,10 @@ if __name__ == "__main__":
 
 ![Template 6](./template-6.png)
 
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
 ```
 import dash
 import dash_bootstrap_components as dbc
@@ -694,6 +721,8 @@ def update_page(n1, n2, n3):
 if __name__ == "__main__":
     app.run_server(debug=True)
 ```
+
+````
 
 ## Multipage app
 - template7
