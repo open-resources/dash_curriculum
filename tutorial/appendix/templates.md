@@ -1,5 +1,5 @@
 # Dashboard Layouts
-In this section we provide you with a series of layout templates for the purpose of...
+In this section we provide you with a series of layout templates as a blueprint for your own dashboards. For this purpose we omit any unecessary functionality by implementing only the layout without any use of callbacks. Feel free to use any of these basic templates with your own data. Hereby, we will give you examples for templates that combine control panels and graphs, that use navigation like tabs or a sidebar as well as combining all of these. Finally, we will restructure these dashboards into multi page apps.
 
 ## Control panels and graphs
 - template1
@@ -358,27 +358,31 @@ sidebar = html.Div(
         html.P(
             "A simple sidebar layout with navigation links", className="lead"
         ),
-        dbc.Button(continents[0], color="primary", n_clicks=0, id=continents[0]),
-        html.Br(),
-        html.Br(),
-        dbc.Button(continents[1], color="primary", n_clicks=0, id=continents[1]),
-        html.Br(),
-        html.Br(),
-        dbc.Button(continents[2], color="primary", n_clicks=0, id=continents[2]),
-        html.Br(),
-        html.Br(),
-        dbc.Button(continents[3], color="primary", n_clicks=0, id=continents[3]),
-        html.Br(),
-        html.Br(),
-        dbc.Button(continents[4], color="primary", n_clicks=0, id=continents[4]),
+        dbc.Button(continents[0], color="light", n_clicks=0, id=continents[0]),
+        html.Hr(),
+        dbc.Button(continents[1], color="light", n_clicks=0, id=continents[1]),
+        html.Hr(),
+        dbc.Button(continents[2], color="light", n_clicks=0, id=continents[2]),
+        html.Hr(),
+        dbc.Button(continents[3], color="light", n_clicks=0, id=continents[3]),
+        html.Hr(),
+        dbc.Button(continents[4], color="light", n_clicks=0, id=continents[4]),
     ],
     style=SIDEBAR_STYLE,
 )
 
+# Title
+title = dcc.Markdown("My Dashboard", className="bg-light", style={'font-size': 40})
+
 content = html.Div(id="page-content", style=CONTENT_STYLE)
 
-app.layout = html.Div([sidebar, content])
-
+app.layout = html.Div([
+    dbc.Row([
+        dbc.Col([
+            title
+        ], style={'text-align': 'center', 'margin': 'auto'})
+    ]), sidebar, content
+])
 
 @app.callback(
     Output("page-content", "children"),
