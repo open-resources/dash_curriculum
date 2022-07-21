@@ -318,6 +318,112 @@ if __name__ == '__main__':
 
 ### Template with navigation on the side
 
+![Template 4](./template-4.png)
+
+```
+import dash
+import dash_bootstrap_components as dbc
+from dash import Input, Output, dcc, html, ctx
+import plotly.express as px
+
+app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Data
+df = px.data.gapminder()
+df_2007 = df[df.year == 2007]
+continents = df['continent'].unique()
+
+# the style arguments for the sidebar. We use position:fixed and a fixed width
+SIDEBAR_STYLE = {
+    "position": "fixed",
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "width": "16rem",
+    "padding": "2rem 1rem",
+    "background-color": "#f8f9fa",
+}
+
+# the styles for the main content position it to the right of the sidebar and add some padding.
+CONTENT_STYLE = {
+    "margin-left": "18rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
+
+sidebar = html.Div(
+    [
+        html.H2("Sidebar", className="display-4"),
+        html.Hr(),
+        html.P(
+            "A simple sidebar layout with navigation links", className="lead"
+        ),
+        dbc.Button(continents[0], color="primary", n_clicks=0, id=continents[0]),
+        html.Br(),
+        html.Br(),
+        dbc.Button(continents[1], color="primary", n_clicks=0, id=continents[1]),
+        html.Br(),
+        html.Br(),
+        dbc.Button(continents[2], color="primary", n_clicks=0, id=continents[2]),
+        html.Br(),
+        html.Br(),
+        dbc.Button(continents[3], color="primary", n_clicks=0, id=continents[3]),
+        html.Br(),
+        html.Br(),
+        dbc.Button(continents[4], color="primary", n_clicks=0, id=continents[4]),
+    ],
+    style=SIDEBAR_STYLE,
+)
+
+content = html.Div(id="page-content", style=CONTENT_STYLE)
+
+app.layout = html.Div([sidebar, content])
+
+
+@app.callback(
+    Output("page-content", "children"),
+    Input(continents[0], "n_clicks"),
+    Input(continents[1], "n_clicks"),
+    Input(continents[2], "n_clicks"),
+    Input(continents[3], "n_clicks"),
+    Input(continents[4], "n_clicks"),
+)
+def update_page(n1, n2, n3, n4, n5):
+    if ctx.triggered_id in continents:
+        return dbc.Container([
+            html.H3('Analysis on Life Expectation / GDP per Capita in 2007 for {}'.format(ctx.triggered_id)),
+            dcc.Graph(
+                id='graph {}'.format(ctx.triggered_id),
+                figure=px.scatter(
+                    df_2007[df_2007['continent'] == ctx.triggered_id],
+                    x='gdpPercap',
+                    y='lifeExp',
+                    color='country',
+                    size='pop',
+                    size_max=60,
+                )
+            )
+        ])
+    else:
+        return dbc.Container([
+            html.H3('Analysis on Life Expectation / GDP per Capita in 2007'),
+            dcc.Graph(
+                figure=px.scatter(
+                    df_2007,
+                    x='gdpPercap',
+                    y='lifeExp',
+                    color='continent',
+                    size='pop',
+                    size_max=60
+                )
+            )
+        ])
+
+
+if __name__ == "__main__":
+    app.run_server(debug=True)
+```
+
 ## Combining navigation and control panels
 - template5
 - template6
