@@ -2,8 +2,8 @@
 In this section we provide you with a series of layout templates as a blueprint for your own dashboards. For this purpose we omit any unecessary functionality by implementing only the layout without any use of callbacks. Feel free to use any of these basic templates with your own data. Hereby, we will give you examples for templates that combine control panels and graphs, that use navigation like tabs or a sidebar as well as combining all of these. Finally, we will restructure these dashboards into multi page apps.
 
 ## Control panels and graphs
-- template1
-- template2
+- Template with control panel on the left
+- Template with control panel on the bottom
 
 ### Template with control panel on the left
 
@@ -237,8 +237,8 @@ if __name__ == '__main__':
 ````
 
 ## Navigation panels and Graphs
-- template3
-- template4
+- Template with navigation tabs on the top
+- Template with navigation on the side
 
 ### Template with navigation tabs on the top
 
@@ -459,8 +459,8 @@ if __name__ == "__main__":
 ````
 
 ## Combining navigation and control panels
-- template5
-- template6
+- Template with control panels and navigation on the top
+- Template with control panels and navigation on the side
 
 ### Template with control panels and navigation on the side
 
