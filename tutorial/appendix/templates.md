@@ -265,22 +265,24 @@ continents = df['continent'].unique()
 # Title
 title = dcc.Markdown("My Dashboard", className="bg-light", style={'font-size': 40})
 
-# Subtitle
-subtitle = dcc.Markdown("Analysis on Life Expectation over generated GDP per Capita in 2007", style={'font-size': 20})
-
 # Tabs
 tabs = [
     dbc.Tab(
-        dcc.Graph(
-            figure=px.scatter(
-                df_2007,
-                x='gdpPercap',
-                y='lifeExp',
-                color='continent',
-                size='pop',
-                size_max=60
-            )
-        ),
+        dbc.Card([
+            dbc.CardBody([
+                html.H5('Analysis on Life Expectation / GDP per Capita in 2007'),
+                dcc.Graph(
+                    figure=px.scatter(
+                        df_2007,
+                        x='gdpPercap',
+                        y='lifeExp',
+                        color='continent',
+                        size='pop',
+                        size_max=60
+                    )
+                )
+            ])
+        ]),
         label='World',
         activeLabelClassName='bg-light'
     )
@@ -289,16 +291,21 @@ tabs = [
 for continent in continents:
     tabs.append(
         dbc.Tab(
-            dcc.Graph(
-                figure=px.scatter(
-                    df_2007[df_2007['continent'] == continent],
-                    x='gdpPercap',
-                    y='lifeExp',
-                    color='country',
-                    size='pop',
-                    size_max=60
-                )
-            ),
+            dbc.Card([
+                dbc.CardBody([
+                    html.H5('Analysis on Life Expectation / GDP per Capita in 2007 for {}'.format(continent)),
+                    dcc.Graph(
+                        figure=px.scatter(
+                            df_2007[df_2007['continent'] == continent],
+                            x='gdpPercap',
+                            y='lifeExp',
+                            color='country',
+                            size='pop',
+                            size_max=60
+                        )
+                    )
+                ])
+            ]),
             label=continent,
             activeLabelClassName = 'bg-light'
         )
@@ -312,16 +319,8 @@ app.layout = html.Div([
         ], style={'text-align': 'center', 'margin': 'auto'})
     ]),
     html.Br(),
-    dbc.Row([
-        dbc.Col([
-            subtitle
-        ], width=10, style={'text-align': 'left', 'margin': 'auto'})
-    ]),
-    html.Br(),
-    dbc.Row([
-        dbc.Col([
-            dbc.Tabs(tabs)
-        ], width=10, style={'margin': 'auto'})
+    dbc.Container([
+        dbc.Tabs(tabs)
     ])
 ])
 
