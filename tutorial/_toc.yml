@@ -10,10 +10,10 @@ parts:
     title: About this Project
 - caption: Preface
   chapters:
-  - file: preface/what
-  - file: preface/personas
-  - file: preface/how
-  - file: preface/who
+#   - file: preface/what
+#   - file: preface/personas
+#   - file: preface/how
+#   - file: preface/who
   - file: preface/acknowledgements
 - caption: Installation Stack
   chapters:
