@@ -23,7 +23,7 @@ The App structure consists in:
 We want to build an App with a website-looking layout and therefore we've customised the `app.py` file in the following way:
 - Our header is represented by a `dbc.Navbar` component containing the title of our App and one `dbc.NavLink` for each page in our registry. From the registry, we exclude one page ``if page["module"] != "pages.not_found_404"``. This is a default page that is used when the user tries to reach an invalid URL. In the next section we'll see how it works and how we can customise it.
 - Below the header, we've included a `theme_toggle` which is a theme switcher. We've picked two themes from `dbc.themes` and the switcher will allow to switch between the two
-- Note that when instatiating our `app`, we've enabled the `use_pages=True` option and used the `external_stylesheets` to define the default theme (which is `url_theme2`) together with enhanced fonts with the option `dbc.icons.FONT_AWESOME`.
+- Note that when instantiating our `app`, we've enabled the `use_pages=True` option and used the `external_stylesheets` to define the default theme (which is `url_theme2`) together with enhanced fonts with the option `dbc.icons.FONT_AWESOME`.
 
 The obtained `app.py` is the following:
 
@@ -181,7 +181,7 @@ Now try this yourself: go into the pages files and update the `order` prop with 
 
 ## 15.5 Customising multi-page names, titles and URLs
 Even after customiseing the order as shown in the above section, our App can be further improved by renaming our pages. By looking at the navbar, we can see that our pages are named after the respective .py filenames.
-However, our Graph filename contains some versioning (hence the page name `Graphs v2 fin`). This doesn't look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling `dash.register_page(__name__)` for each page. 
+However, our Graph filename contains some versioning (hence the page name "Graphs v2 fin"). This doesn't look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling `dash.register_page(__name__)` for each page. 
 In the version of the app displayed below, we've introduced the following adjustments for each page:
 - pages/home.py : `dash.register_page(__name__, path='/', order='0', name='Home', title='Home')`
 - pages/about.py : `dash.register_page(__name__, order='3')`
@@ -195,5 +195,11 @@ In the gif below, pay attention to the name displayed in the navbar and the name
 Now try this yourself: go into the pages files and update the `title` and `name` props with other values.
 
 ## 15.6 Updating the default `pages` directory
+We can further customise our app by renaming the folder which contains all pages. By default, the folder should be named `pages`, however, we can simply specify a custom name when instantiating our `app`.
+Let's suppose we want to rename the folder to `app sections`. We can do so by using the `pages_folder` prop when instantiating: `app = Dash(__name__, use_pages=True, external_stylesheets=[[url_theme2, dbc_css], dbc.icons.FONT_AWESOME], pages_folder='app sections')`.
+
+```{note}
+When using a custom 404 page, renaming the `pages` directory would prevent Dash to identify the custom 404 page, which will be treated as a standard page of our app
+```
 
 ## 15.7 Metatags
