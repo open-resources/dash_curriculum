@@ -25,8 +25,6 @@ parts:
 
 - caption: Introduction to Dashboards
   chapters:
-  - file: part1/summary
-    title: Introduction
   - file: part1/chapter1
   - file: part1/chapter2
   - file: part1/chapter3
@@ -35,8 +33,6 @@ parts:
 
 - caption: Data Visualization
   chapters:
-  - file: part2/summary
-    title: Introduction
   - file: part2/chapter6
   - file: part2/chapter7
   - file: part2/chapter3
@@ -45,22 +41,16 @@ parts:
 
 - caption: Advanced Dash
   chapters:
-  - file: part3/summary
-    title: Introduction
   - file: part3/chapter10
   - file: part3/chapter11
 
 - caption: Polishing Dash Apps
   chapters:
-  - file: part4/summary
-    title: Introduction
   - file: part4/chapter12
   - file: part4/chapter13
   
 - caption: Multi-page Apps
   chapters:
-  - file: part5/summary
-    title: Introduction
   - file: part5/chapter14
   - file: part5/chapter15
 
