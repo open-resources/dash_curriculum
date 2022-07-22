@@ -12,7 +12,7 @@ In this chapter we will learn to use the Plotly graphing library given that it i
 ```
 ## 8.1 Principles of effective visualizations
 
-`Firas`
+TBD
 
 ## 8.2 Plotly Figures inside Dash apps
 
