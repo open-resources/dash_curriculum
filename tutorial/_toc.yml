@@ -2,19 +2,8 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: preface/about
 parts:
-- caption: About Us
-  chapters:
-  - file: preface/about
-    title: About this Project
-- caption: Preface
-  chapters:
-#   - file: preface/what
-#   - file: preface/personas
-#   - file: preface/how
-#   - file: preface/who
-  - file: preface/acknowledgements
 - caption: Installation Stack
   chapters:
   - file: part1/chapter0
@@ -57,3 +46,4 @@ parts:
 - caption: Appendix
   chapters:
   - file: appendix/templates
+  - file: preface/acknowledgements
