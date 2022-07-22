@@ -199,7 +199,7 @@ We can further customise our app by renaming the folder which contains all pages
 Let's suppose we want to rename the folder to `app sections`. We can do so by using the `pages_folder` prop when instantiating: `app = Dash(__name__, use_pages=True, external_stylesheets=[[url_theme2, dbc_css], dbc.icons.FONT_AWESOME], pages_folder='app sections')`.
 
 ```{note}
-When using a custom 404 page, renaming the `pages` directory would prevent Dash to identify the custom 404 page, which will be treated as a standard page of our app
+When renaming the `pages` directory remember to rename all parts of the code which are using the `pages` folder. An example of this is the code used to build the `Navbar`. When we rename the folder we should also change our code from: `for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"` to `for page in dash.page_registry.values() if page["module"] != "app sections.not_found_404"`
 ```
 
 ## 15.7 Metatags
