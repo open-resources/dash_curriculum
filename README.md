@@ -1,5 +1,4 @@
 # Overview of Dash Curriculum
- * note: for creation of gifs- [windows software](com), [mac software](https://getkap.co/). 
 ## Preface
 
 - What is this resource?
