@@ -163,27 +163,36 @@ As we can see, the registry stores a lot of information for each page, let's foc
 - `description` and `image` are extra properties that, if specified, allow to add meta information to our App URL when shared. `image` should contain the image filename located into the assets folder.
 - the registry also contain the full `layout` of each page. We've disabled the print out of this property by calling the function in this way: `print_registry(exclude="layout")`
 
-When we register each page of our app with the `dash.register_page()` function, we can define the above properties and improve our App. Let's see some examples.
+When we register each page of our app with the `dash.register_page()` function, we can define the above properties and improve our App. Let's see some examples in the following sections.
 
-## 15.4 Customising multi-page name and order
-By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our pages are named after the respective .py filenames.
-However, our Graph filename contains some versioning (hence the page name `Graphs v2 fin`). This doesn't look professional, but can be easily adjusted by properly calling the `dash.register_page()` function.
+## 15.4 Customising multi-page order
+By looking at the App we have so far, we notice that the navbar shows our pages ordered alphabetically (after Home). This is a default property of Dash and can be customised with the desired order.
 
-We can obtain a much better result by specifying the following props when calling `dash.register_page(__name__)` for each page. In the version of the app displayed below, we've introduced the following adjustments for each page:
+Let's try to set a different order: when calling the `dash.register_page(__name__)` for each page the `order` prop is used:
+- pages/home.py : `dash.register_page(__name__, path='/', order='0')`
+- pages/about.py : `dash.register_page(__name__, order='3')`
+- pages/extras.py : `dash.register_page(__name__, order='2')`
+- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1')`.
+In the gif below, pay attention to the order displayed in the navbar:
+![app_structure](ch15_files/app_fix01_order.gif)
+
+Now try this yourself: go into the pages files and update the `order` prop with the desired order.
+
+## 15.5 Customising multi-page names, titles and URLs
+Even after customiseing the order as shown in the above section, our App can be further improved by renaming our pages. By looking at the navbar, we can see that our pages are named after the respective .py filenames.
+However, our Graph filename contains some versioning (hence the page name `Graphs v2 fin`). This doesn't look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling `dash.register_page(__name__)` for each page. 
+In the version of the app displayed below, we've introduced the following adjustments for each page:
 - pages/home.py : `dash.register_page(__name__, path='/', order='0', name='Home', title='Home')`
 - pages/about.py : `dash.register_page(__name__, order='3')`
 - pages/extras.py : `dash.register_page(__name__, order='2')`
-- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs')`. In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab for this page. This is the difference between `name` and `title` props
+- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs')`.
 
-![app_structure](ch15_files/app_fix01.gif)
+In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab for this page. This is the difference between `name` and `title` props:
 
-## Content:
-- Show and describe the following App as the baseline
-- Go through the following enhancements to the app:
-  - Creation of a button which print out the registry on the console and examine it
-  - Add assets folder with images and show them
-  - Rename URLs
-  - Sort pages differently (e.g. Graph page before Extras)
-  - Add a meta tag example
+![app_structure](ch15_files/app_fix02_names.gif)
 
+Now try this yourself: go into the pages files and update the `title` and `name` props with other values.
 
+## 15.6 Updating the default `pages` directory
+
+## 15.7 Metatags
