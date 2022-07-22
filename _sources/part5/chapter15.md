@@ -172,7 +172,8 @@ Let's try to set a different order: when calling the `dash.register_page(__name_
 - pages/home.py : `dash.register_page(__name__, path='/', order='0')`
 - pages/about.py : `dash.register_page(__name__, order='3')`
 - pages/extras.py : `dash.register_page(__name__, order='2')`
-- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1')`.
+- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1')`
+
 In the gif below, pay attention to the order displayed in the navbar:
 ![app_structure](ch15_files/app_fix01_order.gif)
 
