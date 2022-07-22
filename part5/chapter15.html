@@ -429,13 +429,29 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-name-and-order">
-   15.4 Customising multi-page name and order
+  <a class="reference internal nav-link" href="#customising-multi-page-order">
+   15.4 Customising multi-page order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#content">
-   Content:
+  <a class="reference internal nav-link" href="#customising-multi-page-names-titles-and-urls">
+   15.5 Customising multi-page names, titles and URLs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-the-default-pages-directory">
+   15.6 Updating the default
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pages
+    </span>
+   </code>
+   directory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metatags">
+   15.7 Metatags
   </a>
  </li>
 </ul>
@@ -479,13 +495,29 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-name-and-order">
-   15.4 Customising multi-page name and order
+  <a class="reference internal nav-link" href="#customising-multi-page-order">
+   15.4 Customising multi-page order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#content">
-   Content:
+  <a class="reference internal nav-link" href="#customising-multi-page-names-titles-and-urls">
+   15.5 Customising multi-page names, titles and URLs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updating-the-default-pages-directory">
+   15.6 Updating the default
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     pages
+    </span>
+   </code>
+   directory
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#metatags">
+   15.7 Metatags
   </a>
  </li>
 </ul>
@@ -668,35 +700,42 @@ See the code<div class="summary-down docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> are extra properties that, if specified, allow to add meta information to our App URL when shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the assets folder.</p></li>
 <li><p>the registry also contain the full <code class="docutils literal notranslate"><span class="pre">layout</span></code> of each page. We’ve disabled the print out of this property by calling the function in this way: <code class="docutils literal notranslate"><span class="pre">print_registry(exclude=&quot;layout&quot;)</span></code></p></li>
 </ul>
-<p>When we register each page of our app with the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function, we can define the above properties and improve our App. Let’s see some examples.</p>
+<p>When we register each page of our app with the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function, we can define the above properties and improve our App. Let’s see some examples in the following sections.</p>
 </div>
-<div class="section" id="customising-multi-page-name-and-order">
-<h2>15.4 Customising multi-page name and order<a class="headerlink" href="#customising-multi-page-name-and-order" title="Permalink to this headline">¶</a></h2>
-<p>By looking at the App we have so far, we notice that the order of pages is alphabetical (after Home) and that our pages are named after the respective .py filenames.
-However, our Graph filename contains some versioning (hence the page name <code class="docutils literal notranslate"><span class="pre">Graphs</span> <span class="pre">v2</span> <span class="pre">fin</span></code>). This doesn’t look professional, but can be easily adjusted by properly calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> function.</p>
-<p>We can obtain a much better result by specifying the following props when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page. In the version of the app displayed below, we’ve introduced the following adjustments for each page:</p>
+<div class="section" id="customising-multi-page-order">
+<h2>15.4 Customising multi-page order<a class="headerlink" href="#customising-multi-page-order" title="Permalink to this headline">¶</a></h2>
+<p>By looking at the App we have so far, we notice that the navbar shows our pages ordered alphabetically (after Home). This is a default property of Dash and can be customised with the desired order.</p>
+<p>Let’s try to set a different order: when calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page the <code class="docutils literal notranslate"><span class="pre">order</span></code> prop is used:</p>
+<ul class="simple">
+<li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order='0')</span></code></p></li>
+<li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='3')</span></code></p></li>
+<li><p>pages/extras.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2')</span></code></p></li>
+<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1')</span></code>.
+In the gif below, pay attention to the order displayed in the navbar:
+<img alt="app_structure" src="part5/ch15_files/app_fix01_order.gif" /></p></li>
+</ul>
+<p>Now try this yourself: go into the pages files and update the <code class="docutils literal notranslate"><span class="pre">order</span></code> prop with the desired order.</p>
+</div>
+<div class="section" id="customising-multi-page-names-titles-and-urls">
+<h2>15.5 Customising multi-page names, titles and URLs<a class="headerlink" href="#customising-multi-page-names-titles-and-urls" title="Permalink to this headline">¶</a></h2>
+<p>Even after customiseing the order as shown in the above section, our App can be further improved by renaming our pages. By looking at the navbar, we can see that our pages are named after the respective .py filenames.
+However, our Graph filename contains some versioning (hence the page name <code class="docutils literal notranslate"><span class="pre">Graphs</span> <span class="pre">v2</span> <span class="pre">fin</span></code>). This doesn’t look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page.
+In the version of the app displayed below, we’ve introduced the following adjustments for each page:</p>
 <ul class="simple">
 <li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order='0',</span> <span class="pre">name='Home',</span> <span class="pre">title='Home')</span></code></p></li>
 <li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='3')</span></code></p></li>
 <li><p>pages/extras.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2')</span></code></p></li>
-<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1',</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs')</span></code>. In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab for this page. This is the difference between <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">title</span></code> props</p></li>
+<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1',</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs')</span></code>.</p></li>
 </ul>
-<p><img alt="app_structure" src="../_images/app_fix01.gif" /></p>
+<p>In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab for this page. This is the difference between <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">title</span></code> props:</p>
+<p><img alt="app_structure" src="part5/ch15_files/app_fix02_names.gif" /></p>
+<p>Now try this yourself: go into the pages files and update the <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> props with other values.</p>
 </div>
-<div class="section" id="content">
-<h2>Content:<a class="headerlink" href="#content" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Show and describe the following App as the baseline</p></li>
-<li><p>Go through the following enhancements to the app:</p>
-<ul>
-<li><p>Creation of a button which print out the registry on the console and examine it</p></li>
-<li><p>Add assets folder with images and show them</p></li>
-<li><p>Rename URLs</p></li>
-<li><p>Sort pages differently (e.g. Graph page before Extras)</p></li>
-<li><p>Add a meta tag example</p></li>
-</ul>
-</li>
-</ul>
+<div class="section" id="updating-the-default-pages-directory">
+<h2>15.6 Updating the default <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory<a class="headerlink" href="#updating-the-default-pages-directory" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="metatags">
+<h2>15.7 Metatags<a class="headerlink" href="#metatags" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
