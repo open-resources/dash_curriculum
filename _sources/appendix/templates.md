@@ -2,8 +2,10 @@
 In this section we provide you with a series of layout templates as a blueprint for your own dashboards. For this purpose we omit any unecessary functionality by implementing only the layout without any use of callbacks. Feel free to use any of these basic templates with your own data. Hereby, we will give you examples for templates that combine control panels and graphs, that use navigation like tabs or a sidebar as well as combining all of these. Finally, we will restructure these dashboards into multi page apps.
 
 ## Control panels and graphs
-- Template with control panel on the left
-- Template with control panel on the bottom
+This first section gives you two examples that combine control panels with graphs. You will find
+
+- A template with control panel on the left and
+- A template with control panel on the bottom
 
 ### Template with control panel on the left
 
@@ -237,8 +239,10 @@ if __name__ == '__main__':
 ````
 
 ## Navigation panels and Graphs
-- Template with navigation tabs on the top
-- Template with navigation on the side
+This second section gives you two examples at hand on how to incorporate multiple data sets into your dashboard i.e., combining navigation panels and graphs. In particular, you will find
+
+- A template with navigation tabs on the top and
+- A template with a navigation bar on the side.
 
 ### Template with navigation tabs on the top
 
@@ -331,6 +335,8 @@ if __name__ == '__main__':
 ```
 
 ````
+
+There are multiple ways of switching your navigation from top to the side of your graph. Using the tabs component from the dash core components, they come with a property called `vertical`, see also the [official documentation](https://dash.plotly.com/dash-core-components/tabs). Another option is a navigation bar that you will see below.
 
 ### Template with navigation on the side
 
@@ -459,8 +465,10 @@ if __name__ == "__main__":
 ````
 
 ## Combining navigation and control panels
-- Template with control panels and navigation on the top
-- Template with control panels and navigation on the side
+The third section provides you with two examples that are combining the upper dashboards to a more complex dashboard. You will see
+
+- A template with control panels and navigation on the top and
+- A template with control panels and navigation on the side
 
 ### Template with control panels and navigation on the top
 
@@ -964,6 +972,8 @@ if __name__ == "__main__":
 ```
 
 ````
+
+As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for more structre and better organisation. 
 
 ## Multipage app
 - template7
