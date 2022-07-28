@@ -6,7 +6,7 @@ The Dash Open-Source Curriculum is a result of months of collaboration between P
 Gabriele Albini - 
 Gabriele is an Engineer from Milan, Italy. He has taken part in various BI and data roles within large and small organisations. During his career, he developed strong interests in data visualisation and data insights, and his main focus currently is Machine Learning implementations. Outside working hours, Gabriele enjoys metal music and he loves playing the guitar and travelling. Follow him on [Linkedin](https://www.linkedin.com/in/gabriele-albini-85100549/) and [Github](https://github.com/gabri-al). 
 
-![GA_Avatar](https://user-images.githubusercontent.com/32049495/181523859-b12e1588-de8c-4f06-9db4-452125a51605.png)
+![gab-avatar](./about_files/GA_Avatar.png)
 
 ***
 
