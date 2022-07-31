@@ -213,3 +213,8 @@ Metatags information can be specified by customising the `dash.register_page()` 
 - any textual `description`
 - an `image`, which should contain the filename of the image we would like to include into our metatags and which should be placed into the `assets` folder of our app.
 So, if we write: `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs', description='Graphs of several analyisis of the gapminder dataset.', image=graph_preview.png)`, then we would need to have an image file called  `graph_preview.png` into our `assets` folder
+
+## Summary
+In this chapter, we have gone through several features that are specific to multi page apps. There are additional functionalities and examples that can be found in the [Dash documentation](https://dash.plotly.com/urls).
+
+This also concludes the section dedicated to multi page apps.
