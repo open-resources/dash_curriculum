@@ -7,8 +7,7 @@ In this chapter we will build a more advanced multi page App, starting from the 
 - Customise several features of multi-page Apps such as: page name, order, 404 landing page
 - Include images into multi-page Apps useful for meta tage
 ```
-By the end of this chapter, you'll be able to build the following App:
-# FINAL CODE PLACEHOLDER
+By the end of this chapter, you'll be able to build the following code: [download it here](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_vfin.zip?raw=true).
 
 ## 15.1 Advanced multi-page App Introduction
 As a starting point for the chapter, let's build a multi-page App structure with all the knowledge from the previous chapter. From this template, we'll then be adding a couple of features in every section.
