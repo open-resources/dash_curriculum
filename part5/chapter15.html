@@ -699,8 +699,17 @@ To test this feature, we would need the app to be published; here’s an example
 <li><p>a <code class="docutils literal notranslate"><span class="pre">title</span></code>, like we did above</p></li>
 <li><p>any textual <code class="docutils literal notranslate"><span class="pre">description</span></code></p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">image</span></code>, which should contain the filename of the image we would like to include into our metatags and which should be placed into the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder of our app.
-So, if we write: <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1',</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs',</span> <span class="pre">description='Graphs</span> <span class="pre">of</span> <span class="pre">several</span> <span class="pre">analyisis</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">gapminder</span> <span class="pre">dataset.',</span> <span class="pre">image=graph_preview.png)</span></code>, then we would need to have an image file called  <code class="docutils literal notranslate"><span class="pre">graph_preview.png</span></code> into our <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder</p></li>
+So, if we write:</p></li>
 </ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="n">module</span> <span class="o">=</span> <span class="vm">__name__</span><span class="p">,</span>
+		<span class="n">order</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+		<span class="n">name</span><span class="o">=</span><span class="s1">&#39;Graphs&#39;</span><span class="p">,</span>
+		<span class="n">title</span><span class="o">=</span><span class="s1">&#39;Dash App | Graphs&#39;</span><span class="p">,</span>
+		<span class="n">description</span><span class="o">=</span><span class="s1">&#39;Graphs of several analyisis of the gapminder dataset.&#39;</span><span class="p">,</span>
+		<span class="n">image</span><span class="o">=</span><span class="n">graph_preview</span><span class="o">.</span><span class="n">png</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then we would need to have an image file called  <code class="docutils literal notranslate"><span class="pre">graph_preview.png</span></code> into our <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
