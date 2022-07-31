@@ -205,3 +205,11 @@ When renaming the `pages` directory, all parts of the code which are using the `
 ```
 
 ## 15.7 Metatags
+When sharing the link to a page of our app, it is possible, thanks to metatags, to display a card with a preview of our page consisting of: a `title`, a `description` and an `image`.
+To test this feature, we would need the app to be published; here's an example of a published app which includes metatags: [example of metatags](https://www.trainerhill.com/blog/power-creep)
+
+Metatags information can be specified by customising the `dash.register_page()` for each page. In particular, we can specify:
+- a `title`, like we did above
+- any textual `description`
+- an `image`, which should contain the filename of the image we would like to include into our card and which should be placed into the `assets` folder of our app
+So, if we write: `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs', description='Graphs of several analyisis of the gapminder dataset.', image=graph_preview.png)`, then we would need to have an image file called  `graph_preview.png` into our `assets` folder
