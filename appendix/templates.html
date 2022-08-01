@@ -399,6 +399,18 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#multipage-app">
    Multipage app
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multipage-app-with-navigation-bar-on-the-top">
+     Multipage app with navigation bar on the top
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multipage-app-with-navigation-bar-on-the-side">
+     Multipage app with navigation bar on the side
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -475,6 +487,18 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#multipage-app">
    Multipage app
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multipage-app-with-navigation-bar-on-the-top">
+     Multipage app with navigation bar on the top
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multipage-app-with-navigation-bar-on-the-side">
+     Multipage app with navigation bar on the side
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1470,15 +1494,89 @@ See the code<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
-</details><p>As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for more structre and better organisation.</p>
+</details><p>As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for a better structre.</p>
 </div>
 </div>
 <div class="section" id="multipage-app">
 <h2>Multipage app<a class="headerlink" href="#multipage-app" title="Permalink to this headline">¶</a></h2>
+<p>The last section concludes this appendix on dashboard layouts and will wrap everything we have implemented above into a multipage app.</p>
 <ul class="simple">
-<li><p>template7</p></li>
-<li><p>template8</p></li>
+<li><p>A multipage app with navigation bar on the top and</p></li>
+<li><p>A multipage app with navigation bar on the side</p></li>
 </ul>
+<div class="section" id="multipage-app-with-navigation-bar-on-the-top">
+<h3>Multipage app with navigation bar on the top<a class="headerlink" href="#multipage-app-with-navigation-bar-on-the-top" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
+
+<span class="c1"># Configure Themes</span>
+<span class="n">theme_toggle</span> <span class="o">=</span> <span class="n">ThemeSwitchAIO</span><span class="p">(</span>
+    <span class="n">aio_id</span><span class="o">=</span><span class="s1">&#39;theme&#39;</span><span class="p">,</span>
+    <span class="n">themes</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">DARKLY</span><span class="p">,</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span><span class="p">],</span>
+    <span class="n">icons</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;left&#39;</span><span class="p">:</span> <span class="s1">&#39;fa fa-sun&#39;</span><span class="p">,</span> <span class="s1">&#39;right&#39;</span><span class="p">:</span> <span class="s1">&#39;fa fa-moon&#39;</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">dbc_css</span> <span class="o">=</span> <span class="s1">&#39;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&#39;</span>
+
+<span class="c1"># App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">],</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">])</span>
+
+<span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Navbar</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">NavbarBrand</span><span class="p">(</span><span class="s1">&#39;My Dashboard&#39;</span><span class="p">))</span>
+                <span class="p">],</span>
+                    <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span>
+                <span class="p">),</span>
+                <span class="n">href</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
+                <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textDecoration&#39;</span><span class="p">:</span> <span class="s1">&#39;none&#39;</span><span class="p">}</span>
+            <span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarToggler</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;navbar-toggler&#39;</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">([</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span>
+                    <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s1">&#39;module&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;pages.not_found_404&#39;</span>
+                <span class="p">])</span>
+            <span class="p">])</span>
+        <span class="p">],</span>
+        <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dark&#39;</span>
+<span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="n">theme_toggle</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></div>
+<div class="section" id="multipage-app-with-navigation-bar-on-the-side">
+<h3>Multipage app with navigation bar on the side<a class="headerlink" href="#multipage-app-with-navigation-bar-on-the-side" title="Permalink to this headline">¶</a></h3>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</details></div>
 </div>
 </div>
 
