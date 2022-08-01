@@ -1045,6 +1045,78 @@ if __name__ == '__main__':
     :title: bg-primary text-white font-weight-bold
   
 ```
+from dash import Dash, dcc, html
+import dash_bootstrap_components as dbc
+import dash
+from dash_bootstrap_templates import ThemeSwitchAIO
+
+# Configure Themes
+theme_toggle = ThemeSwitchAIO(
+    aio_id='theme',
+    themes=[dbc.themes.DARKLY, dbc.themes.FLATLY],
+    icons={'left': 'fa fa-sun', 'right': 'fa fa-moon'},
+)
+dbc_css = 'https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css'
+
+# App
+app = Dash(__name__, use_pages=True, external_stylesheets=[[dbc.themes.FLATLY, dbc_css], dbc.icons.FONT_AWESOME])
+
+# the style arguments for the sidebar. We use position:fixed and a fixed width
+SIDEBAR_STYLE = {
+    "position": "fixed",
+    "top": 0,
+    "left": 0,
+    "bottom": 0,
+    "width": "16rem",
+    "padding": "2rem 1rem",
+
+}
+
+# the styles for the main content position it to the right of the sidebar and add some padding.
+CONTENT_STYLE = {
+    "margin-left": "18rem",
+    "margin-right": "2rem",
+    "padding": "2rem 1rem",
+}
+
+sidebar = html.Div([
+        html.H2("Sidebar"),
+        html.P(
+            "A simple sidebar layout with navigation links"
+        ),
+        dbc.Row([
+            theme_toggle
+        ]),
+        html.Hr(),
+        dbc.Row([
+            dbc.Navbar([
+                dbc.NavbarToggler(id='navbar-toggler'),
+                dbc.Nav([
+                    dbc.NavLink(page['name'], href=page['path'])
+                    for page in dash.page_registry.values() if page['module'] != 'pages.not_found_404'
+                ], vertical=True)
+            ], color='dark', dark=True),
+        ]),
+    ],
+    style=SIDEBAR_STYLE,
+)
+
+# Title
+title = dcc.Markdown("My Dashboard", style={'font-size': 40})
+
+content = html.Div(dash.page_container, id="page-content", style=CONTENT_STYLE)
+
+app.layout = html.Div([
+    dbc.Row([
+        dbc.Col([
+            title
+        ], style={'text-align': 'center', 'margin': 'auto'})
+    ]), sidebar, content
+])
+
+
+if __name__ == '__main__':
+    app.run_server(debug=False)
 ```
 
 ````
