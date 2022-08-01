@@ -1073,7 +1073,7 @@ SIDEBAR_STYLE = {
     "bottom": 0,
     "width": "16rem",
     "padding": "2rem 1rem",
-
+    'border-right': 'solid',
 }
 
 # the styles for the main content position it to the right of the sidebar and add some padding.
