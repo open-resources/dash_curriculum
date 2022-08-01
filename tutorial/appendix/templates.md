@@ -983,6 +983,8 @@ The last section concludes this appendix on dashboard layouts and will wrap ever
 
 ### Multipage app with navigation bar on the top
 
+![Template 7](./template-7.png)
+
 ````{dropdown} See the code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -1039,6 +1041,8 @@ if __name__ == '__main__':
 ````
 
 ### Multipage app with navigation bar on the side
+
+![Template 8](./template-8.png)
 
 ````{dropdown} See the code
     :container: + shadow
