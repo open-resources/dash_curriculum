@@ -973,8 +973,78 @@ if __name__ == "__main__":
 
 ````
 
-As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for more structre and better organisation. 
+As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for a better structre. 
 
 ## Multipage app
-- template7
-- template8
+The last section concludes this appendix on dashboard layouts and will wrap everything we have implemented above into a multipage app.
+
+- A multipage app with navigation bar on the top and
+- A multipage app with navigation bar on the side
+
+### Multipage app with navigation bar on the top
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+from dash import Dash, html
+import dash_bootstrap_components as dbc
+import dash
+from dash_bootstrap_templates import ThemeSwitchAIO
+
+# Configure Themes
+theme_toggle = ThemeSwitchAIO(
+    aio_id='theme',
+    themes=[dbc.themes.DARKLY, dbc.themes.FLATLY],
+    icons={'left': 'fa fa-sun', 'right': 'fa fa-moon'},
+)
+dbc_css = 'https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css'
+
+# App
+app = Dash(__name__, use_pages=True, external_stylesheets=[[dbc.themes.FLATLY, dbc_css], dbc.icons.FONT_AWESOME])
+
+header = dbc.Navbar(
+    dbc.Container(
+        [
+            html.A(
+                dbc.Row([
+                    dbc.Col(dbc.NavbarBrand('My Dashboard'))
+                ],
+                    align='center'
+                ),
+                href='/',
+                style={'textDecoration': 'none'}
+            ),
+            dbc.Row([
+                dbc.NavbarToggler(id='navbar-toggler'),
+                dbc.Nav([
+                    dbc.NavLink(page['name'], href=page['path'])
+                    for page in dash.page_registry.values() if page['module'] != 'pages.not_found_404'
+                ])
+            ])
+        ],
+        fluid=True,
+    ),
+    dark=True,
+    color='dark'
+)
+
+app.layout = dbc.Container([header, theme_toggle, dash.page_container], fluid=True)
+
+if __name__ == '__main__':
+    app.run_server(debug=False)
+```
+
+````
+
+### Multipage app with navigation bar on the side
+
+````{dropdown} See the code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+```
+
+````
