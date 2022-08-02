@@ -350,6 +350,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaing-up-a-csv-file">
+   Cleaing up a CSV file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-operations-with-pandas">
    Basic Operations with Pandas
   </a>
@@ -392,6 +397,11 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cleaing-up-a-csv-file">
+   Cleaing up a CSV file
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#basic-operations-with-pandas">
    Basic Operations with Pandas
   </a>
@@ -421,7 +431,54 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 7: Wrangling data<a class="headerlink" href="#chapter-7-wrangling-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will explore data data cleaning, processing, and wrangling</p>
+<p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">wrangling</span></code> is the processing of <code class="docutils literal notranslate"><span class="pre">raw</span></code> data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data useable in our dashbords.</p>
+</div>
+<div class="section" id="cleaing-up-a-csv-file">
+<h2>Cleaing up a CSV file<a class="headerlink" href="#cleaing-up-a-csv-file" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV files</a> are a common method of storing data that doesn’t involve a database.  We’ll go through an example where we are given <code class="docutils literal notranslate"><span class="pre">time-series</span></code> temperature measurements in CSV format and need to clean in up.  Download this CSV file:
+<span class="xref myst">csv_file</span>.</p>
+<p>Let’s start by importing the data using <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> and use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">head</a> command to see the top 5 rows of data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;temp_data.csv&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span> 
+</pre></div>
+</div>
+<p><img alt="head" src="../_images/df_head.png" /></p>
+<p>The huge numbers for the <code class="docutils literal notranslate"><span class="pre">time</span></code> column are in the <a class="reference external" href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a> format which is <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">seconds</span> <span class="pre">from</span> <span class="pre">January</span> <span class="pre">1st</span> <span class="pre">1970</span></code>. Let’ use <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> to transform the times into a more readable format:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;temp_data.csv&#39;</span><span class="p">)</span>
+<span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span> 
+</pre></div>
+</div>
+<p><img alt="unix time transform" src="part2/unix_transform.png" /></p>
+<p>We can also see that one of th evalues in the <code class="docutils literal notranslate"><span class="pre">Temp</span> <span class="pre">(C)</span></code> column is invalid: <code class="docutils literal notranslate"><span class="pre">&#64;!#F</span></code>.  We have a few options for this erroneous data:</p>
+<ul class="simple">
+<li><p>Keep the data as is</p>
+<ul>
+<li><p>This leads to unusable dataframe columns</p></li>
+</ul>
+</li>
+<li><p>Drop the row of data</p>
+<ul>
+<li><p>Dropping rows has greater impact as the number of columns grows</p></li>
+</ul>
+</li>
+<li><p>Insert some value for the erroneous data</p></li>
+</ul>
+<p>In this example we are measuring temperature so it’s probably safe to insert the average of the surrounding cells to the erroneous cell.  We’ll use Pandas <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code> function to go through the dataframe line by line to replace data:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;temp_data.csv&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+
+</pre></div>
+</div>
 </div>
 <div class="section" id="basic-operations-with-pandas">
 <h2>Basic Operations with Pandas<a class="headerlink" href="#basic-operations-with-pandas" title="Permalink to this headline">¶</a></h2>
