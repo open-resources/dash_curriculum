@@ -385,6 +385,33 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#more-advanced-multi-page-app">
    More Advanced Multi-Page app
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     app.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     home.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#app-8-2-3-py">
+     App_8_2_3.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#app-10-py">
+     App_10.py
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
  </li>
 </ul>
 
@@ -447,6 +474,33 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#more-advanced-multi-page-app">
    More Advanced Multi-Page app
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     app.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     home.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#app-8-2-3-py">
+     App_8_2_3.py
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#app-10-py">
+     App_10.py
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
  </li>
 </ul>
 
@@ -465,10 +519,14 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
-<li><p>How to structure multi-page apps project</p></li>
-<li><p>Navigate between pages</p></li>
+<li><p>Why build multi-page apps</p></li>
+<li><p>How to structure a multi-page apps project</p></li>
+<li><p>How to navigate between pages</p></li>
 </ul>
 </div>
+<p>By the end of this chapter you will know how to build this app:</p>
+<p><img alt="img-repo" src="../_images/multi-page.gif" /></p>
+<p><span class="xref myst">Click to download the complete code files for this chapter</span></p>
 </div>
 <div class="section" id="why-build-multi-page-apps">
 <h2>Why build multi-page apps?<a class="headerlink" href="#why-build-multi-page-apps" title="Permalink to this headline">¶</a></h2>
@@ -498,7 +556,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>One sub-folder, named <code class="docutils literal notranslate"><span class="pre">pages</span></code>, that contains all of the seperate pages of the app</p></li>
 <li><p>Another sub-folder called ‘assets’ which will hold the pictures and style sheets our app might use</p></li>
 </ul>
-<p>Let’s start exploring <code class="docutils literal notranslate"><span class="pre">multi-page</span> <span class="pre">apps</span></code> by walking through the example in <a class="reference external" href="https://dash.plotly.com/urls">Dash documentation</a>.</p>
+<p>Let’s start exploring multi-page apps by walking through the first example of Pages in <a class="reference external" href="https://dash.plotly.com/urls#example:-simple-multi-page-app-with-pages">Dash documentation</a>. The complete app can be <span class="xref myst">located here</span>.</p>
 <p>First, create a root directory folder called <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code>.  Within the <code class="docutils literal notranslate"><span class="pre">dash_multi_page</span></code> directory create the main file called <code class="docutils literal notranslate"><span class="pre">app.py</span></code> as well as the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> and <code class="docutils literal notranslate"><span class="pre">/assets</span></code> subdirectories:</p>
 <p><img alt="app_structure" src="../_images/app_structure.png" /></p>
 <p>Next, let’s create the <code class="docutils literal notranslate"><span class="pre">home</span></code> page for our app.  Create <code class="docutils literal notranslate"><span class="pre">home.py</span></code> in the <code class="docutils literal notranslate"><span class="pre">/pages</span></code> subdirectory.  Notice in the code below that we specify the <code class="docutils literal notranslate"><span class="pre">path</span></code> with a forward slash when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code>.  This will make the <code class="docutils literal notranslate"><span class="pre">home.py</span></code> page the landing page for our multi-page app.</p>
@@ -584,7 +642,7 @@ const thebe_selector_output = ".output, .cell_output"
         <span class="p">[</span>
             <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
                 <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;relative_path&quot;</span><span class="p">]</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">page</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
                 <span class="p">)</span>
             <span class="p">)</span>
             <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
@@ -609,8 +667,10 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="more-advanced-multi-page-app">
 <h2>More Advanced Multi-Page app<a class="headerlink" href="#more-advanced-multi-page-app" title="Permalink to this headline">¶</a></h2>
-<p>Now let’s create a more advanced <code class="docutils literal notranslate"><span class="pre">multi-page</span></code> app, building on examples from previous chapters.  We’ll use a <code class="docutils literal notranslate"><span class="pre">dropdown</span></code> component to navigate between pages instead of the <code class="docutils literal notranslate"><span class="pre">dcc.Link</span></code> that we used above.</p>
-<p>First, create the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file and use the following code:</p>
+<p>Now let’s create a more advanced multi-page app, building on examples from previous chapters.  We’ll also use a <code class="docutils literal notranslate"><span class="pre">dropdown</span></code> component to navigate between pages instead of the <code class="docutils literal notranslate"><span class="pre">dcc.Link</span></code> that we used above. The complete app is <span class="xref myst">located here</span>.</p>
+<p>First, create the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file by using the following code.</p>
+<div class="section" id="id1">
+<h3><a class="reference external" href="http://app.py">app.py</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -635,8 +695,12 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">dropdown</span></code> menu will display the different pages that users can navigate to.</p>
-<p>We can now create our <code class="docutils literal notranslate"><span class="pre">home.py</span></code> file:</p>
+<p>In this case we are using the Dash Bootstrap DropdownMenu component to create links to the 3 pages. Every page in the for loop will generate a new DropdownMenuItem with the name of the page and a link to it.</p>
+<p>Notice the location of the <code class="docutils literal notranslate"><span class="pre">dash.page_container</span></code> in the layout. This means that the layout content of each page will display right after the dropdownMenu.</p>
+<p>Now, let’s create our home page:</p>
+</div>
+<div class="section" id="id2">
+<h3><a class="reference external" href="http://home.py">home.py</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 
@@ -651,7 +715,11 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>Next we need to create the individual pages. The first page will be <code class="docutils literal notranslate"><span class="pre">8.2.3</span></code> from Chapter 8.  To make this page work with our multi-page example we need to add <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> and remove all references to <code class="docutils literal notranslate"><span class="pre">app</span></code> because it should only be declared in the main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file :</p>
+<p>Remeber to include <code class="docutils literal notranslate"><span class="pre">path='/'</span></code> in the page registry to indicate that this will be your app’s home page.</p>
+<p>Next we need to create the other two pages. The first page will be pull an example from Chapter 8.  To make this page work with our multi-page example app we need to add <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> and remove all references to <code class="docutils literal notranslate"><span class="pre">app</span></code> because it should only be declared in the main <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file:</p>
+</div>
+<div class="section" id="app-8-2-3-py">
+<h3>App_8_2_3.py<a class="headerlink" href="#app-8-2-3-py" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
@@ -694,7 +762,10 @@ const thebe_selector_output = ".output, .cell_output"
     <span class="k">return</span> <span class="n">fig</span>
 </pre></div>
 </div>
-<p>For our second page we will use the final <code class="docutils literal notranslate"><span class="pre">Chapter</span> <span class="pre">10</span></code> code:</p>
+<p>For our second page we will use the final <code class="docutils literal notranslate"><span class="pre">Chapter</span> <span class="pre">10</span></code> code.</p>
+</div>
+<div class="section" id="app-10-py">
+<h3>App_10.py<a class="headerlink" href="#app-10-py" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dash_table</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -767,6 +838,12 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><img alt="img-repo" src="../_images/multi-page.gif" /></p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter, we have gone over the advantages of a multi-page app compared to a single-page app. We have learned to structure a multi-page app and understood what features differ from a single-page app.</p>
+<p>In the next chapter, we will dive into the page registry and review more customizations features, which will take your multi-page app to the next level.</p>
 </div>
 </div>
 
