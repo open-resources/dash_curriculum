@@ -1,0 +1,1 @@
+Fake data, images, or scripts can go inside the assets folder.
