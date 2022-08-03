@@ -3,9 +3,16 @@
 ## What you will learn
 In this chapter we will introduce multi-page apps which will allow us to build more complex apps.
 ```{admonition} Learning Intentions
-- How to structure multi-page apps project
-- Navigate between pages
+- Why build multi-page apps
+- How to structure a multi-page apps project
+- How to navigate between pages
 ```
+
+By the end of this chapter you will know how to build this app:
+
+![img-repo](./ch14_files/multi-page.gif)
+
+[Click to download the complete code files for this chapter](./ch14_files/dash_multi_page_2)
 
 ## Why build multi-page apps?
   - <b>Advantages</b>
@@ -25,7 +32,7 @@ Multi-page apps have a simple structure:
   - One sub-folder, named `pages`, that contains all of the seperate pages of the app
   - Another sub-folder called 'assets' which will hold the pictures and style sheets our app might use
 
-Let's start exploring `multi-page apps` by walking through the example in [Dash documentation](https://dash.plotly.com/urls).  
+Let's start exploring multi-page apps by walking through the first example of Pages in [Dash documentation](https://dash.plotly.com/urls#example:-simple-multi-page-app-with-pages). The complete app can be [located here](./ch14_files/dash_multi_page).
 
 First, create a root directory folder called `dash_multi_page`.  Within the `dash_multi_page` directory create the main file called `app.py` as well as the `/pages` and `/assets` subdirectories:
 
@@ -116,7 +123,7 @@ app.layout = html.Div([
         [
             html.Div(
                 dcc.Link(
-                    f"{page['name']} - {page['path']}", href=page["relative_path"]
+                    f"{page['name']} - {page['path']}", href=page["path"]
                 )
             )
             for page in dash.page_registry.values()
@@ -139,10 +146,11 @@ There are several requirements for the `app.py` file:
 
 ## More Advanced Multi-Page app
 
-Now let's create a more advanced `multi-page` app, building on examples from previous chapters.  We'll use a `dropdown` component to navigate between pages instead of the `dcc.Link` that we used above.
+Now let's create a more advanced multi-page app, building on examples from previous chapters.  We'll also use a `dropdown` component to navigate between pages instead of the `dcc.Link` that we used above. The complete app is [located here](./ch14_files/dash_multi_page).
 
-First, create the `app.py` file and use the following code:
+First, create the `app.py` file by using the following code.
 
+#### app.py
 ```python
 import dash
 import dash_bootstrap_components as dbc
@@ -167,11 +175,13 @@ app.layout = dbc.Container(
 if __name__ == "__main__":
     app.run_server(debug=True)
 ```
-The `dropdown` menu will display the different pages that users can navigate to.
+In this case we are using the Dash Bootstrap DropdownMenu component to create links to the 3 pages. Every page in the for loop will generate a new DropdownMenuItem with the name of the page and a link to it.
 
+Notice the location of the `dash.page_container` in the layout. This means that the layout content of each page will display right after the dropdownMenu. 
 
-We can now create our `home.py` file:
+Now, let's create our home page:
 
+#### home.py
 ```python
 import dash
 from dash import html, dcc
@@ -187,7 +197,11 @@ layout = html.Div(children=[
 ])
 ```
 
-Next we need to create the individual pages. The first page will be `8.2.3` from Chapter 8.  To make this page work with our multi-page example we need to add `dash.register_page(__name__)` and remove all references to `app` because it should only be declared in the main `app.py` file :
+Remeber to include `path='/'` in the page registry to indicate that this will be your app's home page.
+
+Next we need to create the other two pages. The first page will be pull an example from Chapter 8.  To make this page work with our multi-page example app we need to add `dash.register_page(__name__)` and remove all references to `app` because it should only be declared in the main `app.py` file:
+
+#### App_8_2_3.py
 
 ```python
 import dash
@@ -232,8 +246,9 @@ def udpate_graph(countries_selected):
     return fig
 ```
 
-For our second page we will use the final `Chapter 10` code:
+For our second page we will use the final `Chapter 10` code.
 
+#### App_10.py
 ```python
 # Import packages
 from dash import Dash, dash_table, dcc, html, Input, Output, State
@@ -308,3 +323,7 @@ def update_graph(n_clicks, value_dropdown, value_radio):
 
 ![img-repo](./ch14_files/multi-page.gif)
 
+## Summary
+In this chapter, we have gone over the advantages of a multi-page app compared to a single-page app. We have learned to structure a multi-page app and understood what features differ from a single-page app. 
+
+In the next chapter, we will dive into the page registry and review more customizations features, which will take your multi-page app to the next level.
