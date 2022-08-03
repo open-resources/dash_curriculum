@@ -1,5 +1,6 @@
 # Import packages
-from dash import Dash, dash_table, dcc, html, Input, Output, State
+import dash
+from dash import Dash, dash_table, dcc, html, Input, Output, State, callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
 
