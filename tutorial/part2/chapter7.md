@@ -29,7 +29,7 @@ print(raw_data.head())
 ```
 ![unix time transform](./ch7_files/unix_transform.png)
 
-We can also see that one of th evalues in the `Temp (C)` column is invalid: `@!#F`.  We have a few options for this erroneous data:
+We can also see that one of the values in the `Temp (C)` column is invalid: `@!#F`.  We have a few options for this erroneous data:
 - Keep the data as is
   - This leads to unusable dataframe columns
 - Drop the row of data
@@ -62,6 +62,8 @@ raw_data.reset_index(drop=True, inplace=True)
 
 print(raw_data.head())
 ```
+We added the helper function `check_numeric()` which uses [try-expect](https://www.geeksforgeeks.org/python-try-except/) to test if the row has valid numeric data.
+
 ![post cleaning](./ch7_files/post_clean.png)
 
 
