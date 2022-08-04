@@ -27,7 +27,7 @@ raw_data['time'] = pd.to_datetime(raw_data['time'],unit='s')
 
 print(raw_data.head()) 
 ```
-![unix time transform](unix_transform.png)
+![unix time transform](./ch7_files/unix_transform.png)
 
 We can also see that one of th evalues in the `Temp (C)` column is invalid: `@!#F`.  We have a few options for this erroneous data:
 - Keep the data as is
