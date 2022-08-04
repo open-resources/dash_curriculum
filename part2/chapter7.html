@@ -456,7 +456,7 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><img alt="unix time transform" src="../_images/unix_transform.png" /></p>
-<p>We can also see that one of th evalues in the <code class="docutils literal notranslate"><span class="pre">Temp</span> <span class="pre">(C)</span></code> column is invalid: <code class="docutils literal notranslate"><span class="pre">&#64;!#F</span></code>.  We have a few options for this erroneous data:</p>
+<p>We can also see that one of the values in the <code class="docutils literal notranslate"><span class="pre">Temp</span> <span class="pre">(C)</span></code> column is invalid: <code class="docutils literal notranslate"><span class="pre">&#64;!#F</span></code>.  We have a few options for this erroneous data:</p>
 <ul class="simple">
 <li><p>Keep the data as is</p>
 <ul>
@@ -494,6 +494,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
+<p>We added the helper function <code class="docutils literal notranslate"><span class="pre">check_numeric()</span></code> which uses <a class="reference external" href="https://www.geeksforgeeks.org/python-try-except/">try-expect</a> to test if the row has valid numeric data.</p>
 <p><img alt="post cleaning" src="../_images/post_clean.png" /></p>
 </div>
 <div class="section" id="basic-operations-with-pandas">
