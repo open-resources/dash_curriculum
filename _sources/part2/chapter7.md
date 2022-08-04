@@ -13,7 +13,7 @@ import pandas as pd
 
 raw_data = pd.read_csv('temp_data.csv')
 
-print(raw_data.head()) 
+print(raw_data.head())
 ```
 ![head](./ch7_files/df_head.png)
 
@@ -37,16 +37,32 @@ We can also see that one of th evalues in the `Temp (C)` column is invalid: `@!#
 - Insert some value for the erroneous data
 
 
-In this example we are measuring temperature so it's probably safe to insert the average of the surrounding cells to the erroneous cell.  We'll use Pandas `iterrows()` function to go through the dataframe line by line to replace data:
+In this example we are measuring temperature, which changes slowly, so it's probably safe to drop the row if the data is corrupted.  We'll use Pandas `iterrows()` function to go through the dataframe line by line to remove erroneous rows:
 
 ```python
 import pandas as pd
+import numpy as np
+
+def check_numeric(x):
+    try:
+        float(x)
+        return True
+    except:
+        return False
 
 raw_data = pd.read_csv('temp_data.csv')
+print(raw_data.head())
+raw_data['time'] = pd.to_datetime(raw_data['time'],unit='s')
 
 for index, row in raw_data.iterrows():
+    if not check_numeric(row['Temp (C)']):
+        raw_data.drop(index, axis=0, inplace=True)
 
+raw_data.reset_index(drop=True, inplace=True)
+
+print(raw_data.head())
 ```
+![post cleaning](./ch7_files/post_clean.png)
 
 
 ## Basic Operations with Pandas
