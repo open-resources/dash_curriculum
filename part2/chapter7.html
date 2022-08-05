@@ -435,27 +435,18 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="cleaing-up-a-csv-file">
 <h2>Cleaing up a CSV file<a class="headerlink" href="#cleaing-up-a-csv-file" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV files</a> are a common method of storing data that doesn’t involve a database.  We’ll go through an example where we are given <code class="docutils literal notranslate"><span class="pre">time-series</span></code> temperature measurements in CSV format and need to clean in up.  Download this CSV file:
-<span class="xref myst">csv_file</span>.</p>
+<p>In chapter 6 you learned how to read a <code class="docutils literal notranslate"><span class="pre">CSV</span></code> into a Pandas dataframe.  In this chapter we will import the CSV file directly from Github. We’ll go through an example where we are given <code class="docutils literal notranslate"><span class="pre">time-series</span></code> temperature measurements in CSV format and need to clean in up.  Download this CSV file:
+<img alt="csv_file" src="part2/ch7_files/temp_data" />.</p>
 <p>Let’s start by importing the data using <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> and use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">head</a> command to see the top 5 rows of data:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;temp_data.csv&#39;</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 <p><img alt="head" src="../_images/df_head.png" /></p>
-<p>The huge numbers for the <code class="docutils literal notranslate"><span class="pre">time</span></code> column are in the <a class="reference external" href="https://en.wikipedia.org/wiki/Unix_time">Unix time</a> format which is <code class="docutils literal notranslate"><span class="pre">the</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">seconds</span> <span class="pre">from</span> <span class="pre">January</span> <span class="pre">1st</span> <span class="pre">1970</span></code>. Let’ use <code class="docutils literal notranslate"><span class="pre">pd.to_datetime</span></code> to transform the times into a more readable format:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;temp_data.csv&#39;</span><span class="p">)</span>
-<span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span><span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span> 
-</pre></div>
-</div>
-<p><img alt="unix time transform" src="../_images/unix_transform.png" /></p>
 <p>We can also see that one of the values in the <code class="docutils literal notranslate"><span class="pre">Temp</span> <span class="pre">(C)</span></code> column is invalid: <code class="docutils literal notranslate"><span class="pre">&#64;!#F</span></code>.  We have a few options for this erroneous data:</p>
 <ul class="simple">
 <li><p>Keep the data as is</p>
@@ -470,6 +461,16 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li><p>Insert some value for the erroneous data</p></li>
 </ul>
+<p>We’ll start by dropping all the rows without data using Pandas <code class="docutils literal notranslate"><span class="pre">dropna</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
 <p>In this example we are measuring temperature, which changes slowly, so it’s probably safe to drop the row if the data is corrupted.  We’ll use Pandas <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code> function to go through the dataframe line by line to remove erroneous rows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
