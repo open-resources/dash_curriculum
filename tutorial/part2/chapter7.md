@@ -4,30 +4,19 @@
 `Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data useable in our dashbords.
 
 ## Cleaing up a CSV file
-[CSV files](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) are a common method of storing data that doesn't involve a database.  We'll go through an example where we are given `time-series` temperature measurements in CSV format and need to clean in up.  Download this CSV file:
-[csv_file](./ch7_files/temp_data).
+In chapter 6 you learned how to read a `CSV` into a Pandas dataframe.  In this chapter we will import the CSV file directly from Github. We'll go through an example where we are given `time-series` temperature measurements in CSV format and need to clean in up.  Download this CSV file:
+![csv_file](./ch7_files/temp_data).
 
 Let's start by importing the data using `Pandas` and use the [head](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) command to see the top 5 rows of data:
 ```python
 import pandas as pd
 
-raw_data = pd.read_csv('temp_data.csv')
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
 
 print(raw_data.head())
 ```
 ![head](./ch7_files/df_head.png)
-
-The huge numbers for the `time` column are in the [Unix time](https://en.wikipedia.org/wiki/Unix_time) format which is `the number of seconds from January 1st 1970`. Let' use `pd.to_datetime` to transform the times into a more readable format:
-
-```python
-import pandas as pd
-
-raw_data = pd.read_csv('temp_data.csv')
-raw_data['time'] = pd.to_datetime(raw_data['time'],unit='s')
-
-print(raw_data.head()) 
-```
-![unix time transform](./ch7_files/unix_transform.png)
 
 We can also see that one of the values in the `Temp (C)` column is invalid: `@!#F`.  We have a few options for this erroneous data:
 - Keep the data as is
@@ -35,6 +24,19 @@ We can also see that one of the values in the `Temp (C)` column is invalid: `@!#
 - Drop the row of data
   - Dropping rows has greater impact as the number of columns grows
 - Insert some value for the erroneous data
+
+
+We'll start by dropping all the rows without data using Pandas `dropna` method:
+
+```python
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+print(raw_data.head())
+raw_data.dropna(axis=0,inplace=True)
+```
 
 
 In this example we are measuring temperature, which changes slowly, so it's probably safe to drop the row if the data is corrupted.  We'll use Pandas `iterrows()` function to go through the dataframe line by line to remove erroneous rows:
