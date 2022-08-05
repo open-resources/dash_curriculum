@@ -17,7 +17,7 @@ print(raw_data.head())
 ```
 ![head](./ch7_files/df_head.png)
 
-We can also see that one of the values in the `Temp (C)` column is invalid: `@!#F`.  We have a few options for this erroneous data:
+We can also see that one of the values in the `temp` column is invalid: `@!#F`.  We have a few options for this erroneous data:
 - Keep the data as is
   - This leads to unusable dataframe columns
 - Drop the row of data
@@ -91,6 +91,9 @@ print(raw_data.head())
 raw_data.columns = ['index', 'Date', 'Temp_C']
 print(raw_data.head())
 ```
+
+![rename columns](./ch7_files/rename_col.png)
+
 
 ## Basic Operations with Pandas
 
