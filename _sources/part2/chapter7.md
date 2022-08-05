@@ -65,6 +65,32 @@ The code above uses Python's [try-expect](https://www.geeksforgeeks.org/python-t
 
 ![post cleaning](./ch7_files/post_clean.png)
 
+We can also change the names of the columns:
+
+```python
+import pandas as pd
+import numpy as np
+
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+print(raw_data.head())
+raw_data.dropna(axis=0,inplace=True)
+
+for index, row in raw_data.iterrows():
+    try:
+        float(row['temp'])
+    except:
+        raw_data.drop(index, axis=0, inplace=True)
+
+raw_data.reset_index(drop=True, inplace=True)
+
+print(raw_data.head())
+raw_data.rename(columns={"time": "Date", "temp": "Temp_C"})
+print(raw_data.head())
+```
 
 ## Basic Operations with Pandas
 
