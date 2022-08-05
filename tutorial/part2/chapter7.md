@@ -37,7 +37,7 @@ print(raw_data.head())
 raw_data.dropna(axis=0,inplace=True)
 ```
 
-Now we'll use Pandas `iterrows()` function to go through the dataframe line by line to remove rows that don't contain numeric data:
+Now we'll use Pandas `iterrows()` function to go through the dataframe line by line to remove rows that don't contain numeric data in the `temp` column:
 
 ```python
 import pandas as pd
@@ -50,10 +50,10 @@ raw_data = pd.read_csv(url)
 
 print(raw_data.head())
 raw_data.dropna(axis=0,inplace=True)
-
+    
 for index, row in raw_data.iterrows():
     try:
-        float(row['temp'])
+        float(row[2]) # 'temp' column is index 2
     except:
         raw_data.drop(index, axis=0, inplace=True)
 
@@ -78,17 +78,17 @@ raw_data = pd.read_csv(url)
 
 print(raw_data.head())
 raw_data.dropna(axis=0,inplace=True)
-
+    
 for index, row in raw_data.iterrows():
     try:
-        float(row['temp'])
+        float(row[2]) # 'temp' column is index 2
     except:
         raw_data.drop(index, axis=0, inplace=True)
 
 raw_data.reset_index(drop=True, inplace=True)
 
 print(raw_data.head())
-raw_data.rename(columns={"time": "Date", "temp": "Temp_C"})
+raw_data.columns = ['index', 'Date', 'Temp_C']
 print(raw_data.head())
 ```
 
