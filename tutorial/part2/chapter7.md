@@ -4,8 +4,7 @@
 `Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data useable in our dashbords.
 
 ## Cleaing up a CSV file
-In chapter 6 you learned how to read a `CSV` into a Pandas dataframe.  In this chapter we will import the CSV file directly from Github. We'll go through an example where we are given `time-series` temperature measurements in CSV format and need to clean in up.  Download this CSV file:
-![csv_file](./ch7_files/temp_data).
+In chapter 6 you learned how to read a `CSV` into a Pandas dataframe.  In this chapter we will import the CSV file directly from Github. We'll go through an example where we are given `time-series` temperature measurements in CSV format and need to clean in up.
 
 Let's start by importing the data using `Pandas` and use the [head](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) command to see the top 5 rows of data:
 ```python
@@ -26,7 +25,7 @@ We can also see that one of the values in the `Temp (C)` column is invalid: `@!#
 - Insert some value for the erroneous data
 
 
-We'll start by dropping all the rows without data using Pandas `dropna` method:
+In this example we are measuring temperature, which changes slowly, so it's probably safe to dropping all rows with corrupted data.  We'll start by dropping rows with no data using Pandas `dropna` method:
 
 ```python
 import pandas as pd
@@ -38,33 +37,31 @@ print(raw_data.head())
 raw_data.dropna(axis=0,inplace=True)
 ```
 
-
-In this example we are measuring temperature, which changes slowly, so it's probably safe to drop the row if the data is corrupted.  We'll use Pandas `iterrows()` function to go through the dataframe line by line to remove erroneous rows:
+Now we'll use Pandas `iterrows()` function to go through the dataframe line by line to remove rows that don't contain numeric data:
 
 ```python
 import pandas as pd
 import numpy as np
 
-def check_numeric(x):
-    try:
-        float(x)
-        return True
-    except:
-        return False
+import pandas as pd
 
-raw_data = pd.read_csv('temp_data.csv')
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
 print(raw_data.head())
-raw_data['time'] = pd.to_datetime(raw_data['time'],unit='s')
+raw_data.dropna(axis=0,inplace=True)
 
 for index, row in raw_data.iterrows():
-    if not check_numeric(row['Temp (C)']):
+    try:
+        float(row['temp'])
+    except:
         raw_data.drop(index, axis=0, inplace=True)
 
 raw_data.reset_index(drop=True, inplace=True)
 
 print(raw_data.head())
 ```
-We added the helper function `check_numeric()` which uses [try-expect](https://www.geeksforgeeks.org/python-try-except/) to test if the row has valid numeric data.
+The code above uses Python's [try-expect](https://www.geeksforgeeks.org/python-try-except/) logic test if the row has valid numeric data.
 
 ![post cleaning](./ch7_files/post_clean.png)
 
