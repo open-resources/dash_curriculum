@@ -363,6 +363,55 @@ We see there are four rows with columns of various widths which contain componen
   * Play around with the `width` value of the column containing the dropdown and slider to see how it changes the app layout.
   * Try to move the button to be in the same row as the Checklist and RadtioItem
 
+## Now try yourself
+1) Import relevant packages and build a `Dropdown` component with following options: 'CA','FL','DC' and save it as a variable with name dropdown1
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+from dash import dcc
+dropdown1 = dcc.Dropdown(options=['CA','FL','DC'])
+```
 
+````
+2) Using the `Dropdown` component we just built, create and launch an app with the following structure: one entire row dedicated to the title of the app, which should be "My new app" with `width=12` and center aligned; a second row with two columns: the first with `width=4` and a `Markdown` component saying "Please select a state"; the second with `width=8` and our `Dropdown` component. Start from the code of any app provided in the chapter and modify it accordingly.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# Import packages
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+title_ = dcc.Markdown(children='My new app', style={'textAlign': 'center'})
+markdown_ = dcc.Markdown(children='Please select a state')
+dropdown1 = dcc.Dropdown(options=['CA','FL','DC'])
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([title_], width=12)]),
+        dbc.Row(
+            [
+                dbc.Col([markdown_], width = 4),
+                dbc.Col([dropdown1], width = 8),
+            ]
+        ),
+    ]
+)
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+![solution_ex2](./ch3_files/chapter03_ex2.gif)
+
+````
 ## Summary
 In this chapter we learned about several useful Dash **components** and how to organize them in a **layout**. In the next chapter we will learn how to create an interactive app by linking the components together.
