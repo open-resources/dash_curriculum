@@ -123,6 +123,57 @@ Now that you know how to create and launch your first basic app, try to play aro
 - Try to change the content of the Markdown component in your app
 - Try to add a new Markdown component with different content
 
+## Now try yourself
+By using the app code included in the "What you will learn" section, complete the two exercises below:
+- (1) Change the title of our app to "New title" and align it to the left
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# 1. Import packages
+from dash import Dash, dcc
+import dash_bootstrap_components as dbc
+
+# 2. Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# 3. App Layout
+app.layout = dbc.Container([
+    dcc.Markdown(children='New title', style={'textAlign': 'left'})
+])
+
+# 4. Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+````
+- (2) In addition to the above, use the .css style properties ```'color':'red'``` to colour the title in red
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# 1. Import packages
+from dash import Dash, dcc
+import dash_bootstrap_components as dbc
+
+# 2. Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# 3. App Layout
+app.layout = dbc.Container([
+    dcc.Markdown(children='New title', style={'textAlign': 'left', 'color':'red'})
+])
+
+# 4. Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
+````
+
 ## Summary
 In this chapter we learned about what a Dash app is as well as its recommended structure. We have also explored each building block and their core properties, learning how to modify them. Finally, we learned how to launch the app, stop and update the app.
 
