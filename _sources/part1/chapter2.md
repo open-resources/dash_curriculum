@@ -123,7 +123,7 @@ Now that you know how to create and launch your first basic app, try to play aro
 - Try to change the content of the Markdown component in your app
 - Try to add a new Markdown component with different content
 
-## Now try yourself
+## Exercises
 By using the app code included in the "What you will learn" section, complete the two exercises below:
 1.  Change the title of our app to "New title" and align it to the left
 ````{dropdown} See Solution
