@@ -164,7 +164,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # 3. App Layout
 app.layout = dbc.Container([
-    dcc.Markdown(children='New title', style={'textAlign': 'left', 'color':'red'})
+    dcc.Markdown(children='New title', style={'textAlign': 'left', 'color' : 'red'})
 ])
 
 # 4. Run the App
