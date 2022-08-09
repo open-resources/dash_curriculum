@@ -17,13 +17,48 @@ In this chapter, we intend for you to learn:
 
 ```{admonition} Learning Intentions
 
-- what a dashboard is
-- how to use dashboards
-- principles of effective dashboard design
-- ways users can interact with dashboards
-- how to make dashboards accessible
-- the importance of dashboards in data analysis projects
+- What is a dashboard?
+- How to use dashboards?
+- Principles of effective dashboard design
+- Ways users can interact with dashboards
+- How to make dashboards accessible?
+- The importance of dashboards in data analysis projects
 ```
+
+## What is a dashboard?
+
+A dashboard is a type of graphical user interface which often provides at-a-glance views of key performance indicators (KPIs) relevant to a particular objective or business process. (https://en.wikipedia.org/wiki/Dashboard_(business))
+
+## How to use dashboards?
+
+## Principles of effective dashboard design
+
+Common roles for data visualization include:
+
+- showing change over time
+- showing a part-to-whole composition
+- looking at how data is distributed
+- comparing values between groups
+- observing relationships between variables
+- looking at geographical data
+
+(https://chartio.com/learn/charts/how-to-choose-data-visualization/)
+(https://extremepresentation.com/2010/12/tools/)
+(https://www.highcharts.com/chartchooser/)
+
+## Ways users can interact with dashboards
+
+## How to make dashboards accessible?
+
+## The importance of dashboards in data analysis projects
+
+- Quicker exploration than with coding.
+- Can enable people without programming skills to understand data better.
+- Can engage users to more than static visualisations.
+- Can lead to more engaging storytelling in data journalism.
+- When there is too much data, interactivity can allow us to look at subsets.
+- People can be interested in different things when they look at the same data.
+
 
 ```{admonition} Click the button to reveal the end result of this chapter!
 :class: dropdown
