@@ -1205,10 +1205,12 @@ if __name__ == "__main__":
 As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for a better structre. 
 
 ## Multipage app
-The last section concludes this appendix on dashboard layouts and will wrap everything we have implemented above into a multipage app.
+The last section concludes this appendix on dashboard layouts and will wrap everything we have implemented above into a multipage app. Here, you find
 
 - A multipage app with navigation bar on the top and
 - A multipage app with navigation bar on the side
+
+Below each template you find the corresponding code to incorporate into your main app.py file. The other files are the same as for both dashboards, you can download them here.
 
 ### Multipage app with navigation bar on the top
 
