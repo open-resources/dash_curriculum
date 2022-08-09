@@ -777,9 +777,7 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
-<li><p>Create a callback that, based on a color name (e.g. red) selected in a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component, updates the <code class="docutils literal notranslate"><span class="pre">style</span></code> property of a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component to change the color of its text.</p></li>
-</ol>
+<p>(1) Create a callback that, based on a color name (e.g. red) selected in a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component, updates the <code class="docutils literal notranslate"><span class="pre">style</span></code> property of a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component to change the color of its text.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
@@ -822,9 +820,7 @@ See Solution<div class="summary-down docutils">
 </div>
 <p class="card-text"><img alt="solution_ex1" src="../_images/chapter04_ex1.gif" /></p>
 </div>
-</details><ol class="simple">
-<li><p>Incorporate the callback we just built into the app code included in the “Bring everything together” section. The new app, besides allowing to change the title text and size, should also allow to change the title color, based on the <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component. Locate the radio items component on a new row in the layout. Note that in the new app we will have two callbakcs both affecting the <code class="docutils literal notranslate"><span class="pre">style</span></code> of our title. You should know that callbacks can handle multiple inputs at the same time with the following code: <code class="docutils literal notranslate"><span class="pre">&#64;app.callback(Output(),</span> <span class="pre">Input(),</span> <span class="pre">Input())</span></code></p></li>
-</ol>
+</details><p>(2) Incorporate the callback we just built into the app code included in the “Bring everything together” section. The new app, besides allowing to change the title text and size, should also allow to change the title color, based on the <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component. Locate the radio items component on a new row in the layout. Note that in the new app we will have two callbakcs both affecting the <code class="docutils literal notranslate"><span class="pre">style</span></code> of our title. You should know that callbacks can handle multiple inputs at the same time with the following code: <code class="docutils literal notranslate"><span class="pre">&#64;app.callback(Output(),</span> <span class="pre">Input(),</span> <span class="pre">Input())</span></code></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
