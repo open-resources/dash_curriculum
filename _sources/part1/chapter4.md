@@ -312,7 +312,7 @@ if __name__ == '__main__':
 ![gif4-3](./ch4_files/gif-chap4-3.gif)
 
 ## Now try yourself
-1.  Create a callback that, based on a colour selected in a `RadioItems` component, changes the colour of a text stored in a `Markdown` component.
+1.  Create a callback that, based on a colour selected in a `RadioItems` component, updates the `style` property of a text stored in a `Markdown` component to change its colour.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
