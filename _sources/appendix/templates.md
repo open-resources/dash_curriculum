@@ -1210,7 +1210,7 @@ The last section concludes this appendix on dashboard layouts and will wrap ever
 - A multipage app with navigation bar on the top and
 - A multipage app with navigation bar on the side
 
-Below each template you find the corresponding code to incorporate into your main app.py file. The other files are the same as for both dashboards, you can [download them here](./pages.zip?raw=true).
+Below each template you find the corresponding code to incorporate into your main `app.py` file. The other files are the same as for both dashboards, you can [download them here](./pages.zip?raw=true).
 
 ### Multipage app with navigation bar on the top
 
