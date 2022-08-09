@@ -389,8 +389,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-try-yourself">
-   Now try yourself
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -463,8 +463,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-try-yourself">
-   Now try yourself
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -775,10 +775,10 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
 <p><img alt="gif4-3" src="../_images/gif-chap4-3.gif" /></p>
 </div>
 </div>
-<div class="section" id="now-try-yourself">
-<h2>Now try yourself<a class="headerlink" href="#now-try-yourself" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>Create a callback that, based on a colour selected in a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component, updates the <code class="docutils literal notranslate"><span class="pre">style</span></code> property of a text stored in a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component to change its colour.</p></li>
+<li><p>Create a callback that, based on a color name (e.g. red) selected in a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component, updates the <code class="docutils literal notranslate"><span class="pre">style</span></code> property of a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component to change the color of its text.</p></li>
 </ol>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -823,7 +823,7 @@ See Solution<div class="summary-down docutils">
 <p class="card-text"><img alt="solution_ex1" src="../_images/chapter04_ex1.gif" /></p>
 </div>
 </details><ol class="simple">
-<li><p>Incorporate the callback we just built into the app code included in the “Bring everything together”. The new app, besides allowing to change the title text and size, should also allow to change the title colour based on the <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component.</p></li>
+<li><p>Incorporate the callback we just built into the app code included in the “Bring everything together” section. The new app, besides allowing to change the title text and size, should also allow to change the title color, based on the <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component. Locate the radio items component on a new row in the layout. Note that in the new app we will have two callbakcs both affecting the <code class="docutils literal notranslate"><span class="pre">style</span></code> of our title. You should know that callbacks can handle multiple inputs at the same time with the following code: <code class="docutils literal notranslate"><span class="pre">&#64;app.callback(Output(),</span> <span class="pre">Input(),</span> <span class="pre">Input())</span></code></p></li>
 </ol>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -832,9 +832,59 @@ See Solution<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to the App&#39;</span><span class="p">,</span> <span class="s1">&#39;This is the title&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">radioitems_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-radio&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">markdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">slider</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">radioitems_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">value_dropdown</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;style&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-radio&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_slider</span><span class="p">,</span> <span class="n">value_radio</span><span class="p">):</span>
+    <span class="n">new_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">value_slider</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span> <span class="p">:</span> <span class="n">value_radio</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">new_style</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 </pre></div>
 </div>
+<p class="card-text"><img alt="solution_ex2" src="part1/ch4_files/chapter04_ex2.gif" /></p>
 </div>
 </details></div>
 <div class="section" id="summary">
