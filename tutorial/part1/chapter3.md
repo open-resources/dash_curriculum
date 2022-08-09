@@ -364,7 +364,7 @@ We see there are four rows with columns of various widths which contain componen
   * Try to move the button to be in the same row as the Checklist and RadtioItem
 
 ## Now try yourself
-1.  Import relevant packages and build a `Dropdown` component with following options: 'CA','FL','DC' and save it as a variable with name dropdown1
+1.  Import relevant packages and build a `Dropdown` component with the following options: 'CA','FL','DC'. Save the dropdown as a variable with name dropdown1
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
