@@ -363,8 +363,8 @@ We see there are four rows with columns of various widths which contain componen
   * Play around with the `width` value of the column containing the dropdown and slider to see how it changes the app layout.
   * Try to move the button to be in the same row as the Checklist and RadtioItem
 
-## Now try yourself
-1.  Import relevant packages and build a `Dropdown` component with the following options: 'CA','FL','DC'. Save the dropdown as a variable with name dropdown1
+## Exercises
+1.  Import the relevant package and build a `Dropdown` component with the following options: 'CA','FL','DC'. Save the dropdown as a variable with name dropdown1
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
