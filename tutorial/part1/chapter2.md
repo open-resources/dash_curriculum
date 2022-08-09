@@ -125,7 +125,7 @@ Now that you know how to create and launch your first basic app, try to play aro
 
 ## Exercises
 By using the app code included in the "What you will learn" section, complete the two exercises below:
-1.  Change the title of our app to "New title" and align it to the left
+(1) Change the title of our app to "New title" and align it to the left
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -149,7 +149,7 @@ if __name__ == '__main__':
 ```
 
 ````
-2.  In addition to the above, use the .css style properties ```'color':'red'``` to colour the title in red
+(2) In addition to the above, use the .css style properties ```'color':'red'``` to colour the title in red
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
