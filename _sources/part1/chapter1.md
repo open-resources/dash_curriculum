@@ -1,15 +1,12 @@
 # Chapter 1
 
-Add bried note letting readers know that we will be using the word `dashboard` and `app` interchangeably throughout this curriculum.
+In this day and age, understanding data is the key to making the best decisions for any business. However, the amount of information that’s available at any time can be overwhelming for the most data-savvy person.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dui tortor, pharetra non ornare sit amet, blandit quis lorem.
-Sed euismod augue id est malesuada, ac semper turpis mollis. Donec eget gravida nunc.
-Aenean interdum mauris at ipsum volutpat, id iaculis nulla tempus.
-Vestibulum id felis orci.
-Ut nulla mauris, scelerisque non rutrum et, vulputate dapibus risus.
-Phasellus ultricies scelerisque nisi, sed blandit orci finibus eu. Quisque est orci, tincidunt vitae tortor ac, ullamcorper vulputate mi.
-Sed vitae leo quam. Nullam faucibus sed odio eget posuere. Phasellus dapibus leo in ligula mollis condimentum.
-In vitae odio ipsum.
+So what’s the key to making data-driven decisions? Finding the most important data and formatting it in a way that’s easy to understand. This can change, depending on who will view the data. If you’re an industry expert, you may find complex data easier to understand. If you’re presenting data to less well-versed stakeholders at your company, you may need to simplify it before sharing it with others.
+
+One of the easiest ways to make data easy to understand for technical and non-technical audiences is to create a dashboard that easily displays all of your data visualizations in one place.
+
+(https://www.tableau.com/learn/articles/dashboards/what-is)
 
 ## Learning Intentions
 
@@ -29,6 +26,8 @@ In this chapter, we intend for you to learn:
 
 A dashboard is a type of graphical user interface which often provides at-a-glance views of key performance indicators (KPIs) relevant to a particular objective or business process. (https://en.wikipedia.org/wiki/Dashboard_(business))
 
+In essence, a dashboard is a board that displays information, usually as some key numbers and a few panels of plots.
+
 ## How to use dashboards?
 
 ## Principles of effective dashboard design
@@ -41,6 +40,8 @@ Common roles for data visualization include:
 - comparing values between groups
 - observing relationships between variables
 - looking at geographical data
+
+![Chart Chooser](./ch1_files/chart_chooser.jpg)
 
 (https://chartio.com/learn/charts/how-to-choose-data-visualization/)
 (https://extremepresentation.com/2010/12/tools/)
