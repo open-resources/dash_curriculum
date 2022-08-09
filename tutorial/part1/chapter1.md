@@ -30,7 +30,28 @@ In essence, a dashboard is a board that displays information, usually as some ke
 
 ## How to use dashboards?
 
+https://www.klipfolio.com/blog/what-is-a-data-dashboard
+
+Behind the scenes, a dashboard connects to your files (like an Excel spreadsheet or Google sheet), attachments, services (like QuickBooks or HubSpot) and APIs. A dashboard transforms the raw data into something human-readable. Instead of sifting through columns or rows in a spreadsheet, you can analyze your data in a table, line chart, bubble chart, or bar chart, just to name a few options.
+
+Dashboards aggregate data from multiple data sources. A dashboard isn’t just about saving time, but seeing all of your data together in one place.
+
+he difference is about the shift in perspective from periodic reporting (like quarterly or yearly) to continued monitoring (like daily or weekly). What makes dashboards and reports so valuable is how you and your team use them to your advantage.
+
+- Access to historical data
+- Trend analysis to see what's worked (or what hasn't) in the past to shift your approach for the future
+- Bring multiple metrics together
+- Visualize your data
+
+Differences between dashboards and reports
+- Dashboards are interactive—you can segment, filter, and visualize your data
+- Dashboards display live, dynamically updated data (as your data source updates, your dashboard does too)
+- Reports share information on known areas of interest or goals
+- Dashboards monitor known areas of interest or goals
+
 ## Principles of effective dashboard design
+
+Very good overview: https://www.klipfolio.com/blog/starter-guide-to-dashboard-design.
 
 Common roles for data visualization include:
 
