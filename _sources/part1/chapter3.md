@@ -364,7 +364,7 @@ We see there are four rows with columns of various widths which contain componen
   * Try to move the button to be in the same row as the Checklist and RadtioItem
 
 ## Now try yourself
-1) Import relevant packages and build a `Dropdown` component with following options: 'CA','FL','DC' and save it as a variable with name dropdown1
+1.  Import relevant packages and build a `Dropdown` component with following options: 'CA','FL','DC' and save it as a variable with name dropdown1
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -375,7 +375,9 @@ dropdown1 = dcc.Dropdown(options=['CA','FL','DC'])
 ```
 
 ````
-2) Using the `Dropdown` component we just built, create and launch an app with the following structure: one entire row dedicated to the title of the app, which should be "My new app" with `width=12` and center aligned; a second row with two columns: the first with `width=4` and a `Markdown` component saying "Please select a state"; the second with `width=8` and our `Dropdown` component. Start from the code of any app provided in the chapter and modify it accordingly.
+2.  Using the `Dropdown` component we just built, create and launch an app with the following structure:
+- one entire row dedicated to the title of the app, which should be "My new app" with `width=12` and center aligned
+- a second row with two columns: the first with `width=4` and a `Markdown` component saying "Please select a state"; the second with `width=8` and our `Dropdown` component. Start from the code of any app provided in the chapter and modify it accordingly.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
