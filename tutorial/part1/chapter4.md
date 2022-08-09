@@ -312,7 +312,7 @@ if __name__ == '__main__':
 ![gif4-3](./ch4_files/gif-chap4-3.gif)
 
 ## Exercises
-1.  Create a callback that, based on a color name (e.g. red) selected in a `RadioItems` component, updates the `style` property of a `Markdown` component to change the color of its text.
+(1) Create a callback that, based on a color name (e.g. red) selected in a `RadioItems` component, updates the `style` property of a `Markdown` component to change the color of its text.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -352,7 +352,7 @@ if __name__ == '__main__':
 ```
 ![solution_ex1](./ch4_files/chapter04_ex1.gif)
 ````
-2.  Incorporate the callback we just built into the app code included in the "Bring everything together" section. The new app, besides allowing to change the title text and size, should also allow to change the title color, based on the `RadioItems` component. Locate the radio items component on a new row in the layout. Note that in the new app we will have two callbakcs both affecting the `style` of our title. You should know that callbacks can handle multiple inputs at the same time with the following code: `@app.callback(Output(), Input(), Input())`
+(2) Incorporate the callback we just built into the app code included in the "Bring everything together" section. The new app, besides allowing to change the title text and size, should also allow to change the title color, based on the `RadioItems` component. Locate the radio items component on a new row in the layout. Note that in the new app we will have two callbakcs both affecting the `style` of our title. You should know that callbacks can handle multiple inputs at the same time with the following code: `@app.callback(Output(), Input(), Input())`
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
