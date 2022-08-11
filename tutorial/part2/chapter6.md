@@ -383,8 +383,27 @@ The above code will generate the following app:
 - Import the gapminder data from this URL
 - Filter data by year greater or equal than 1980
 - Group the data by continent and calculate the average life expectancy
-(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the average life expectancy in a `Markdown` component, based on a continent that the user can choose from a `RadioItems` component.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# Import packages
 
+```
+````
+(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the average life expectancy in a `Markdown` component, based on a continent that the user can choose from a `RadioItems` component.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+# Import packages
+
+
+```
+![solution_ex2](./ch6_files/chapter06_ex2.gif)
+````
 ## Summary
 In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
 
