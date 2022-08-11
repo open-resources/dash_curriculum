@@ -382,25 +382,69 @@ The above code will generate the following app:
 (1) Build the following steps in Python (this data will be used in the next exercise app):
 - Import the gapminder data from [this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)
 - Filter data by year greater or equal than 1980
-- Group the data by continent and calculate the average life expectancy
+- Group the data by continent and calculate the max life expectancy
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
-# Import packages
-
+import pandas as pd
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
+df_ = pd.read_table(url, sep=';')
+df_ = df_.loc[df_['year'] >= 1980, :]
+df_ = df_.groupby('continent')['lifeExp'].max().reset_index()
+print(df_.head())
 ```
 ````
-(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the average life expectancy in a `Markdown` component, based on a continent that the user can choose from a `RadioItems` component.
+
+(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the max life expectancy in a `Markdown` component, based on a continent that the user can choose from a `RadioItems` component. You may use and adapt the code from the app in the Example 2 above.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages
+from dash import Dash, dcc, Input, Output, html
+import dash_bootstrap_components as dbc
+import pandas as pd
 
+# Import data
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
+df_ = pd.read_table(url, sep=';')
+df_ = df_.loc[df_['year'] >= 1980, :]
+df_ = df_.groupby('continent')['lifeExp'].max().reset_index()
 
+# Initialise the app
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+_header = html.H1(children = 'Life Expectation by continent since 1980', style = {'textAlign' : 'center'})
+continent_radio = dcc.RadioItems(id = 'continent-radio', options = [c for c in df_.continent.unique()])
+output_ = dcc.Markdown(id = 'final-output')
+
+# app Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([_header], width=8)]),
+        dbc.Row([dbc.Col([continent_radio], width=8)]),
+        dbc.Row([dbc.Col([output_], width=6)])
+    ]
+)
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='final-output', component_property='children'),
+    Input(component_id='continent-radio', component_property='value'),
+prevent_initial_call=True
+)
+def continent_lifeExp(continent_selection):
+    lifeExp_value = df_.loc[df_['continent']==continent_selection, 'lifeExp'].values[0]
+    output = ('The life expectation in '+continent_selection+' is: '+lifeExp_value+' years.')
+    return output
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server(debug=True)
 ```
 ![solution_ex2](./ch6_files/chapter06_ex2.gif)
 ````

@@ -933,7 +933,7 @@ Based on the selected country, the total population will be displayed.</p>
 <ul class="simple">
 <li><p>Import the gapminder data from <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt">this ULR</a></p></li>
 <li><p>Filter data by year greater or equal than 1980</p></li>
-<li><p>Group the data by continent and calculate the average life expectancy</p></li>
+<li><p>Group the data by continent and calculate the max life expectancy</p></li>
 </ul>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -942,12 +942,16 @@ See Solution<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
-
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1980</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
-</details><p>(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the average life expectancy in a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component, based on a continent that the user can choose from a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component.</p>
+</details><p>(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the max life expectancy in a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component, based on a continent that the user can choose from a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component. You may use and adapt the code from the app in the Example 2 above.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
@@ -956,8 +960,47 @@ See Solution<div class="summary-down docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="c1"># Import data</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1980</span><span class="p">,</span> <span class="p">:]</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
+<span class="c1"># Initialise the app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span> <span class="o">=</span> <span class="s1">&#39;Life Expectation by continent since 1980&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">continent_radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
+<span class="n">output_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
+
+<span class="c1"># app Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_header</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">continent_radio</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">output_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;final-output&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">continent_lifeExp</span><span class="p">(</span><span class="n">continent_selection</span><span class="p">):</span>
+    <span class="n">lifeExp_value</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">continent_selection</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;The life expectation in &#39;</span><span class="o">+</span><span class="n">continent_selection</span><span class="o">+</span><span class="s1">&#39; is: &#39;</span><span class="o">+</span><span class="n">lifeExp_value</span><span class="o">+</span><span class="s1">&#39; years.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1"># Run the app</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="card-text"><img alt="solution_ex2" src="part2/ch6_files/chapter06_ex2.gif" /></p>
