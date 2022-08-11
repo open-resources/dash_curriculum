@@ -379,8 +379,8 @@ The above code will generate the following app:
 ![fina-app](./ch6_files/chap6-final-app.gif)
 
 ## Exericses
-(1) Build the following steps in Python, in order to import and do some data pre-processing which we will then use in the next exercise app:
-- Import the gapminder data from this URL
+(1) Build the following steps in Python (this data will be used in the next exercise app):
+- Import the gapminder data from [this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt)
 - Filter data by year greater or equal than 1980
 - Group the data by continent and calculate the average life expectancy
 ````{dropdown} See Solution
