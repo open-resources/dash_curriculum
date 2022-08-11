@@ -444,10 +444,11 @@ def continent_lifeExp(continent_selection):
 
 # Run the app
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
 ```
 ![solution_ex2](./ch6_files/chapter06_ex2.gif)
 ````
+
 ## Summary
 In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
 
