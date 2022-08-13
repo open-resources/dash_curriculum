@@ -639,7 +639,7 @@ app.layout = html.Div([
     html.Div(id='tabs-content')
 ])
 
-# Configure Callback
+# Display tab content, based on the tab selected
 @app.callback(Output('tabs-content', 'children'),
               Input('store-example-data', 'value'))
 def render_content(tab):
@@ -655,6 +655,7 @@ def render_content(tab):
             html.Div(id='data-table')
         ])
 
+# save the filtered dataframe in dcc.Store once user selects dropdown option
 @app.callback(Output('memo', 'data'),
               Input('country-dropdown', 'value'))
 def sel_records(c): # Write in memory
@@ -665,6 +666,8 @@ def sel_records(c): # Write in memory
         recs =  df.loc[(df['country']==c), :]
     return recs.to_dict('records')
 
+
+# retrieve the stored data to populate the DataTable shown in tab 2
 @app.callback(Output('data-table', 'children'),
               Input('memo', 'data'))
 def show_records(data_): # Read from memory
@@ -678,6 +681,7 @@ def show_records(data_): # Read from memory
 if __name__ == '__main__':
     app.run_server()
 ```
+
 ![Store_Example2](./ch11_files/img/store2.gif)
 
 [See additional properties and examples of the `Store` component](https://dash.plotly.com/dash-core-components/store). 

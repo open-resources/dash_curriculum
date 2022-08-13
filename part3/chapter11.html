@@ -1149,7 +1149,7 @@ When using this component, it is important to pay attention to the following:</p
     <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">)</span>
 <span class="p">])</span>
 
-<span class="c1"># Configure Callback</span>
+<span class="c1"># Display tab content, based on the tab selected</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
               <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;store-example-data&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">render_content</span><span class="p">(</span><span class="n">tab</span><span class="p">):</span>
@@ -1165,6 +1165,7 @@ When using this component, it is important to pay attention to the following:</p
             <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;data-table&#39;</span><span class="p">)</span>
         <span class="p">])</span>
 
+<span class="c1"># save the filtered dataframe in dcc.Store once user selects dropdown option</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;memo&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">),</span>
               <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">sel_records</span><span class="p">(</span><span class="n">c</span><span class="p">):</span> <span class="c1"># Write in memory</span>
@@ -1175,6 +1176,8 @@ When using this component, it is important to pay attention to the following:</p
         <span class="n">recs</span> <span class="o">=</span>  <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">),</span> <span class="p">:]</span>
     <span class="k">return</span> <span class="n">recs</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 
+
+<span class="c1"># retrieve the stored data to populate the DataTable shown in tab 2</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">Output</span><span class="p">(</span><span class="s1">&#39;data-table&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
               <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;memo&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">))</span>
 <span class="k">def</span> <span class="nf">show_records</span><span class="p">(</span><span class="n">data_</span><span class="p">):</span> <span class="c1"># Read from memory</span>
