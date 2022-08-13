@@ -744,9 +744,9 @@ if __name__ == '__main__':
 [See additional information on the `Interval` component](https://dash.plotly.com/dash-core-components/interval). 
 
 
-## 11.5 Navigation Components
+## 11.3 Navigation Components
 
-### 11.5.1 Tabs
+### 11.3.1 Tabs
 `Tabs` allow for easy navigation between different sections of an app. It is often used when you have a lot of information on one single page and you would like to improve user expriece by dividing the information into separate sections, each within a separate tab.
 
 The `dcc.Tabs` and `dcc.Tab` components can be used to create tabbed sections in your app. The `dcc.Tab` component controls the style and value of the individual tab and the `dcc.Tabs` component hold a collection of `dcc.Tab` components.
@@ -803,9 +803,9 @@ tab3_content = dbc.Card(
 
 tabs = dbc.Tabs(
     [
-        dbc.Tab(tab1_content, label="Tab 1"),
-        dbc.Tab(tab2_content, label="Tab 2"),
-        dbc.Tab(tab3_content, label="Tab 3"),
+        dbc.Tab(children=tab1_content, label="Tab 1"),
+        dbc.Tab(children=tab2_content, label="Tab 2"),
+        dbc.Tab(children=tab3_content, label="Tab 3"),
     ]
 )
 
@@ -822,9 +822,9 @@ if __name__ == '__main__':
 ```
 ![tabs](ch11_files/img/tabs.gif)
 
-Although the above is a nice and short app, housing the content of each tab in the children of a `dbc.Card` or an `html.Div` has a drawback. It requires that you compute the children property for each individual tab upfront and send all of the tab's content over the network at once, which could slow the up down. 
+Although the above is a nice and short app, housing the content in the children of each tab has a drawback. It requires the app to compute the children property for each individual tab upfront and send all of the tab's content over the network at once, which could slow the app down. 
 
-Another way to display the content of tabs is through the callback method, which allows you to compute the tab's content on the fly, when the tab is clicked. Here's an example.
+Another way to display the content of each tab is through the callback method, which allows you to compute the tab's content on the fly, only when the tab is clicked. Here's an example.
 
 ```python
 from dash import Dash, dcc, html, Input, Output
@@ -874,16 +874,18 @@ def render_content(tab):
         ])
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server()
 
 ```
+
+![tabs2](ch11_files/img/tabs2.gif)
+
 
 [See additional information on the `Tabs` component](https://dash.plotly.com/dash-core-components/tabs). 
 
 
-### 11.5.2 OffCanvas (code example not working)
+### 11.3.2 OffCanvas
 
-### FileNotFoundError: [Errno 2] No such file or directory: 'plotly.png'
 The `Offcanvas` component allows us to display a sidebar overlay on the app.
 
 ```python
@@ -950,6 +952,6 @@ if __name__ == '__main__':
 
 
 ## Summary
-In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the [Dash Documentation](https://dash.plotly.com/dash-core-components). In addition, there are third-party libraries that have nice components such as [Dash Mantine Components](https://dash-mantine-components.herokuapp.com/); however, these are not maintained by Dash.
+In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the [Dash Documentation](https://dash.plotly.com/dash-core-components). In addition, there are third-party libraries that have nice components such as [Dash Mantine Components](https://dash-mantine-components.herokuapp.com/); however, keep in mind that these are not maintained by Dash.
 
 This is the end of the section on Advanced Dash. In the next part, we will focus on polishing our Dash app through enhanced styling and improved app performance.
