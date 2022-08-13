@@ -11,13 +11,14 @@ All components in this chapter come from these libraries:
 
 
 ```{admonition} Learning Intentions
-- How to look for additional components
-- Familiarize with some of the most common additional components
+- Upload, Card, Modal, Alert components
+- Store data, Datepicker and Interval component
+- Tabs and Offcanvas components
 ```
 
 By the end of this chapter you will know how to build this app:
 
-![offcanvas](ch11_files/img/offcanvas.gif)
+![offcanvas](ch11_files/img/offcanvas-example.gif)
 
 ````{dropdown} See the code
     :container: + shadow
@@ -420,7 +421,7 @@ if __name__ == '__main__':
 [See additional properties and examples of the `Alert` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/). 
 
 
-## 11.2 Filtering & Input Components
+## 11.2 Date Filtering & Input Components
 
 ### 11.2.1 DatePicker
 The DatePicker components allow the user to select a single date or a date range.
@@ -431,8 +432,8 @@ There are two types of date pickers, both are part of the Dash Core Components l
 The two components have very similar properties - the main ones are:
 - min_date_allowed : minimum date the user can choose from
 - max_date_allowed : maximum date the user can choose from
-- start_date : default start date, when app page initially loads
-- end_date : default end date, when app page initially loads
+- start_date : default start date selected, when app page initially loads
+- end_date : default end date selected, when app page initially loads
 
 In the following app, a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.
 
@@ -497,7 +498,7 @@ if __name__ == '__main__':
 [See additional properties and examples of the `DatePickerRange` component](https://dash.plotly.com/dash-core-components/datepickerrange). 
 
 
-### 11.4.2 Store
+### 11.2.2 Store
 ```Store``` component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:
 - this component can only store data in the following formats: json, list, dictionary data types. With the ```data``` property, we can access to the content stored in the memory.
@@ -505,9 +506,13 @@ When using this component, it is important to pay attention to the following:
 - this is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
 - it's generally safe to store up to 2MB in most environments, and 5~10MB in most desktop-only applications.
 
-In the following example, a dropdown selection is stored in memory. We've generated three different store components, one for each storage type. This should clarify the difference among the three memory tupes. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.
+In the following example, a dropdown selection is stored in memory. We've generated three different store components, one for each storage type. This should clarify the difference among the three memory types. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.
 
-Try to run the app on your computer. Then, test the storage types by refreshing the page, then closing the browser and reopening it, and then clearing cookies.
+Try to run the app on your computer. Then, test the storage types by refreshing the page; then closing the browser and reopening it; and then clearing cookies.
+
+```{note}
+Don't worry about understanding the code below. This was written for the purpose of demonstrating the different `storage_type`s.
+```
 
 ```python
 # Import packages
@@ -606,13 +611,11 @@ for store_type in ['memory', 'session', 'local']:
 
 # Run the App
 if __name__ == '__main__':
-    app.run_server(port=8055)
+    app.run_server()
 ```
 ![Store_Example](./ch11_files/img/store.gif)
 
-Here is a simple example of how to use `dcc.Store` in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:
-
-## Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.
+Here is a real life example of how to use `dcc.Store` in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:
 
 ```
 # Import packages
@@ -680,7 +683,7 @@ if __name__ == '__main__':
 [See additional properties and examples of the `Store` component](https://dash.plotly.com/dash-core-components/store). 
 
 
-### 11.4.3 Interval
+### 11.2.3 Interval
 `Interval` enables automatic recurrent updates of the app, by triggering callbacks periodically.
 One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting property, it is possible to configure the following:
 - `interval` is a property that determines the refresh rate. This is measured in milliseconds and every time this interval expires, a counter is increased.
@@ -727,7 +730,7 @@ app.layout = dbc.Container(
 )
 def refresh_time(i):
     if i == 0:
-        raise PreventUpdate  # Condition to stop the interval to refresh
+        raise PreventUpdate  # Prevent the callback from updating when the app first loads (n_intervals==0)
     else:
         tz = pytz.timezone('America/New_York')
         now = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
