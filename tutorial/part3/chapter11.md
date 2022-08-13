@@ -886,24 +886,23 @@ if __name__ == '__main__':
 
 ### 11.3.2 OffCanvas
 
-The `Offcanvas` component allows us to display a sidebar overlay on the app.
+The `Offcanvas` component allows us to display a sidebar overlay on the app. It is often used when there are elements of the app that you would like to show your visitors in a non-invasive, user-friendly way. In the example below, the Offcanvas will contain our logo and two links to external resources the users might be interested in.
 
-```python
-# Import packages
-from dash import Dash, Input, Output, State, html
-import dash_core_components as dcc
+```python# Import packages
+from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 import base64
-
 
 # Initialise the App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 image_file = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/img/plotly.png'
-img = html.Img(src=image_file,width=300)
-offcanvas_doc = dcc.Link("Off-Canvas documentation", id='oc_doc', target='_blank',href='https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/')
-link_doc = dcc.Link("Link documentation", id='link_doc', target='_blank',href='https://dash.plotly.com/dash-core-components/link')
-
+img = html.Img(src=image_file, width=300)
+offcanvas_doc = dcc.Link("Off-Canvas documentation", id='oc_doc',
+                         target='_blank',
+                         href='https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/')
+link_doc = dcc.Link("Link documentation", id='link_doc', target='_blank',
+                    href='https://dash.plotly.com/dash-core-components/link')
 
 offcanvas_layout = dbc.Container(
     [
@@ -927,7 +926,13 @@ offcanvas = html.Div(
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row([dbc.Col(offcanvas)])
+        dbc.Row([
+            dbc.Col([offcanvas], width=3),
+            dbc.Col([html.H1("Content of app here below", style={'textAlign':'center'}),
+                     dcc.Dropdown(["A","B","C"]),
+                     html.H4("Empty Graph", style={'textAlign':'center'}),
+                     dcc.Graph()], width=9)
+        ])
     ]
 )
 
@@ -935,18 +940,19 @@ app.layout = dbc.Container(
 @app.callback(
     Output("offcanvas", "is_open"),
     Input("open-offcanvas", "n_clicks"),
+    State("offcanvas", "is_open")
 )
-def toggle_offcanvas(n1):
+def toggle_offcanvas(n1, is_open):
     if n1:
-        return True
-    
-
+        return not is_open
+    return is_open
 
 # Run the App
 if __name__ == '__main__':
     app.run_server()
 ```
-![offcanvas](ch11_files/img/offcanvas.gif)
+
+![offcanvas](ch11_files/img/offcanvas-example.gif)
 
 [See additional examples and properties of the `Offcanvas` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/). 
 
