@@ -377,8 +377,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#filtering-input-components">
-   11.2 Filtering &amp; Input Components
+  <a class="reference internal nav-link" href="#date-filtering-input-components">
+   11.2 Date Filtering &amp; Input Components
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -388,19 +388,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#store">
-     11.4.2 Store
+     11.2.2 Store
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code">
-   Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interval">
-     11.4.3 Interval
+     11.2.3 Interval
     </a>
    </li>
   </ul>
@@ -480,8 +473,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#filtering-input-components">
-   11.2 Filtering &amp; Input Components
+  <a class="reference internal nav-link" href="#date-filtering-input-components">
+   11.2 Date Filtering &amp; Input Components
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -491,19 +484,12 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#store">
-     11.4.2 Store
+     11.2.2 Store
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code">
-   Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#interval">
-     11.4.3 Interval
+     11.2.3 Interval
     </a>
    </li>
   </ul>
@@ -553,12 +539,13 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
-<li><p>How to look for additional components</p></li>
-<li><p>Familiarize with some of the most common additional components</p></li>
+<li><p>Upload, Card, Modal, Alert components</p></li>
+<li><p>Store data, Datepicker and Interval component</p></li>
+<li><p>Tabs and Offcanvas components</p></li>
 </ul>
 </div>
 <p>By the end of this chapter you will know how to build this app:</p>
-<p><img alt="offcanvas" src="part3/ch11_files/img/offcanvas.gif" /></p>
+<p><img alt="offcanvas" src="../_images/offcanvas-example.gif" /></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See the code<div class="summary-down docutils">
@@ -947,8 +934,8 @@ Using the callback, you can update many of the component’s properties such as:
 <p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">Alert</span></code> component</a>.</p>
 </div>
 </div>
-<div class="section" id="filtering-input-components">
-<h2>11.2 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="date-filtering-input-components">
+<h2>11.2 Date Filtering &amp; Input Components<a class="headerlink" href="#date-filtering-input-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datepicker">
 <h3>11.2.1 DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
 <p>The DatePicker components allow the user to select a single date or a date range.
@@ -961,8 +948,8 @@ There are two types of date pickers, both are part of the Dash Core Components l
 <ul class="simple">
 <li><p>min_date_allowed : minimum date the user can choose from</p></li>
 <li><p>max_date_allowed : maximum date the user can choose from</p></li>
-<li><p>start_date : default start date, when app page initially loads</p></li>
-<li><p>end_date : default end date, when app page initially loads</p></li>
+<li><p>start_date : default start date selected, when app page initially loads</p></li>
+<li><p>end_date : default end date selected, when app page initially loads</p></li>
 </ul>
 <p>In the following app, a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.</p>
 <div class="admonition note">
@@ -1025,7 +1012,7 @@ There are two types of date pickers, both are part of the Dash Core Components l
 <p><a class="reference external" href="https://dash.plotly.com/dash-core-components/datepickerrange">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> component</a>.</p>
 </div>
 <div class="section" id="store">
-<h3>11.4.2 Store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h3>
+<h3>11.2.2 Store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:</p>
 <ul class="simple">
@@ -1034,8 +1021,12 @@ When using this component, it is important to pay attention to the following:</p
 <li><p>this is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p></li>
 <li><p>it’s generally safe to store up to 2MB in most environments, and 5~10MB in most desktop-only applications.</p></li>
 </ul>
-<p>In the following example, a dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. This should clarify the difference among the three memory tupes. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.</p>
-<p>Try to run the app on your computer. Then, test the storage types by refreshing the page, then closing the browser and reopening it, and then clearing cookies.</p>
+<p>In the following example, a dropdown selection is stored in memory. We’ve generated three different store components, one for each storage type. This should clarify the difference among the three memory types. In the app, the three graphs will plot life expectancy for the countries that are in the corresponding memory.</p>
+<p>Try to run the app on your computer. Then, test the storage types by refreshing the page; then closing the browser and reopening it; and then clearing cookies.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Don’t worry about understanding the code below. This was written for the purpose of demonstrating the different <code class="docutils literal notranslate"><span class="pre">storage_type</span></code>s.</p>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
@@ -1132,15 +1123,11 @@ When using this component, it is important to pay attention to the following:</p
 
 <span class="c1"># Run the App</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8055</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><img alt="Store_Example" src="../_images/store.gif" /></p>
-<p>Here is a simple example of how to use <code class="docutils literal notranslate"><span class="pre">dcc.Store</span></code> in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:</p>
-</div>
-</div>
-<div class="section" id="shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code">
-<h2>Shane, Gab can you please add a simple app example with tab and Store, or any other example that you think would be simple and helpful for the student to understand how to use store in their code.<a class="headerlink" href="#shane-gab-can-you-please-add-a-simple-app-example-with-tab-and-store-or-any-other-example-that-you-think-would-be-simple-and-helpful-for-the-student-to-understand-how-to-use-store-in-their-code" title="Permalink to this headline">¶</a></h2>
+<p>Here is a real life example of how to use <code class="docutils literal notranslate"><span class="pre">dcc.Store</span></code> in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
@@ -1204,8 +1191,9 @@ When using this component, it is important to pay attention to the following:</p
 </div>
 <p><img alt="Store_Example2" src="../_images/store2.gif" /></p>
 <p><a class="reference external" href="https://dash.plotly.com/dash-core-components/store">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">Store</span></code> component</a>.</p>
+</div>
 <div class="section" id="interval">
-<h3>11.4.3 Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h3>
+<h3>11.2.3 Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Interval</span></code> enables automatic recurrent updates of the app, by triggering callbacks periodically.
 One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting property, it is possible to configure the following:</p>
 <ul class="simple">
@@ -1251,7 +1239,7 @@ One example where this component is typically used is when the app is connected 
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">refresh_time</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">PreventUpdate</span>  <span class="c1"># Condition to stop the interval to refresh</span>
+        <span class="k">raise</span> <span class="n">PreventUpdate</span>  <span class="c1"># Prevent the callback from updating when the app first loads (n_intervals==0)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">)</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
