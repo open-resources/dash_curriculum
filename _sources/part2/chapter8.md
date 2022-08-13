@@ -466,7 +466,16 @@ fig.show()
 ![solution_ex1](./ch8_files/chapter08_ex1.png)
 ````
 
-(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select a metric : `population` or `GDP`; build a callback so that the stacked bar chart will be generated with the selected metric.
+(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select a metric : `population`, `GDP per capita` or `Life expectancy`; build a callback so that the stacked bar chart will be generated with the selected metric (when grouping the data, for GDP per capita and life expectancy, use the mean).
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex1](./ch8_files/chapter08_ex2.gif)
+````
 
 # Summary
 
