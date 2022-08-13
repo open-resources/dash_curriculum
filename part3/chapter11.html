@@ -350,57 +350,40 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introducing-additional-components">
-   11.1 Introducing additional components
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-display-components">
-   11.2 Data Display Components
+   11.1 Data Display Components
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#upload">
-     11.2.1 Upload
+     11.1.1 Upload
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#card">
-     11.2.2 Card
+     11.1.2 Card
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections">
-   Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#feedback-components">
-   11.3 Feedback Components
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modal">
-     11.3.1 Modal
+     11.1.3 Modal
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#alert">
-     11.3.2 Alert
+     11.1.4 Alert
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filtering-input-components">
-   11.4 Filtering &amp; Input Components
+   11.2 Filtering &amp; Input Components
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datepicker">
-     11.4.1 DatePicker
+     11.2.1 DatePicker
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -475,57 +458,40 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introducing-additional-components">
-   11.1 Introducing additional components
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-display-components">
-   11.2 Data Display Components
+   11.1 Data Display Components
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#upload">
-     11.2.1 Upload
+     11.1.1 Upload
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#card">
-     11.2.2 Card
+     11.1.2 Card
     </a>
    </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections">
-   Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#feedback-components">
-   11.3 Feedback Components
-  </a>
-  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modal">
-     11.3.1 Modal
+     11.1.3 Modal
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#alert">
-     11.3.2 Alert
+     11.1.4 Alert
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filtering-input-components">
-   11.4 Filtering &amp; Input Components
+   11.2 Filtering &amp; Input Components
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#datepicker">
-     11.4.1 DatePicker
+     11.2.1 DatePicker
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -587,7 +553,13 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 11: Additional Components<a class="headerlink" href="#chapter-11-additional-components" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we will introduce several additional components, which are necessary to further customise apps.</p>
+<p>Dash libraries include many components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include in your app.</p>
+<p>We will break down the components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.</p>
+<p>All components in this chapter come from these libraries:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash core components</a> (dcc)</p></li>
+<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/">Dash boostrap components</a> (dbc)</p></li>
+</ul>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
@@ -666,29 +638,19 @@ See the code<div class="summary-down docutils">
 </div>
 </details><p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/chapter11_fin_app.py">Click to download the complete code file for this chapter</a></p>
 </div>
-<div class="section" id="introducing-additional-components">
-<h2>11.1 Introducing additional components<a class="headerlink" href="#introducing-additional-components" title="Permalink to this headline">¶</a></h2>
-<p>Dash libraries include a lot of components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include in your app.</p>
-<p>We will break down the components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.</p>
-<p>All components in this chapter come from these libraries:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash core components</a> (dcc)</p></li>
-<li><p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/">Dash boostrap components</a> (dbc)</p></li>
-</ul>
-</div>
 <div class="section" id="data-display-components">
-<h2>11.2 Data Display Components<a class="headerlink" href="#data-display-components" title="Permalink to this headline">¶</a></h2>
+<h2>11.1 Data Display Components<a class="headerlink" href="#data-display-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="upload">
-<h3>11.2.1 Upload<a class="headerlink" href="#upload" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Upload</span></code> component allows us to upload a file to the dashboard. For this example we will upload a <a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV file</a> and plot the data. <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/rotation_angle.csv">Download this CSV file</a>, save it as <code class="docutils literal notranslate"><span class="pre">rotation_angle.csv</span></code>, run the follwing code, and try uploading the file into the drag and drop section of the app.</p>
+<h3>11.1.1 Upload<a class="headerlink" href="#upload" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Upload</span></code> component allows us to upload a file to the dashboard. For this example we will upload a <a class="reference external" href="https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/">CSV file</a> and plot the data on a line chart. <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/rotation_angle.csv">Download this CSV file</a>, save it as <code class="docutils literal notranslate"><span class="pre">rotation_angle.csv</span></code>, run the follwing code, and try uploading the file into the drag and drop section of the app.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">update_fig()</span></code> callback function is designed for a specific type of data.  Different data wrangling inside the function would be required based on the type of data files you will work with. In this example, the function is built for CSV files exclusively.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">update_fig()</span></code> callback function below is designed for CSV files exclusively. Different data wrangling inside the function would be required if you choose to work with other data files.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">from</span> <span class="nn">dash.dash</span> <span class="kn">import</span> <span class="n">no_update</span>
@@ -730,10 +692,7 @@ See the code<div class="summary-down docutils">
         <span class="k">if</span> <span class="s1">&#39;csv&#39;</span> <span class="ow">in</span> <span class="n">content_type</span><span class="p">:</span>
             <span class="n">decoded_data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">content_data</span><span class="p">)</span>
             <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">StringIO</span><span class="p">(</span><span class="n">decoded_data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>
-            <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-            <span class="c1"># Go through each column in the dataframe and make a trace for it</span>
-            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
-                <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;lines+markers&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">col</span><span class="p">))</span>
+            <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;angle&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">fig</span>
     <span class="k">return</span> <span class="n">no_update</span>
 
@@ -747,8 +706,8 @@ See the code<div class="summary-down docutils">
 <p><a class="reference external" href="https://dash.plotly.com/dash-core-components/upload">This Dash Docs page has additional <code class="docutils literal notranslate"><span class="pre">Upload</span></code> examples</a>.</p>
 </div>
 <div class="section" id="card">
-<h3>11.2.2 Card<a class="headerlink" href="#card" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Card</span></code> component provides a container in which we can place content neatly such as: titles, main body text, images, buttons, and links. It often leads to a more appealing layout design.</p>
+<h3>11.1.2 Card<a class="headerlink" href="#card" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Card</span></code> component provides a container in which we can place content neatly such as: titles, main body text, images, graphs, buttons, and links. It often leads to a more appealing layout design. All you need to do is build the card body inside the <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -769,10 +728,9 @@ See the code<div class="summary-down docutils">
     <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;18rem&quot;</span><span class="p">},</span>
 <span class="p">)</span>
 
-<span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">card</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card</span><span class="p">])),</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
@@ -782,17 +740,56 @@ See the code<div class="summary-down docutils">
 </pre></div>
 </div>
 <p><img alt="card" src="../_images/card.png" /></p>
+<p>Now let’s create a card with a graph and a dropdown.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">card</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span><span class="s2">&quot;population by country&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;card-title&quot;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span>
+                             <span class="n">multi</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                             <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="p">[</span><span class="mi">20</span><span class="p">]],</span>
+                             <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-dropdown&#39;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph&#39;</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;50rem&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card</span><span class="p">])),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;my-dropdown&#39;</span><span class="p">,</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph_card</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">dff</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">value</span><span class="p">)]</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span><span class="n">dff</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
 </div>
-</div>
-<div class="section" id="shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections">
-<h2>Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections.<a class="headerlink" href="#shane-gab-can-you-please-add-a-few-more-examples-of-how-a-card-can-be-used-or-more-explanations-this-section-has-very-little-content-compared-to-other-sections" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/">This Dash Bootstrap Components page has additional <code class="docutils literal notranslate"><span class="pre">Card</span></code> examples</a>.</p>
 </div>
-<div class="section" id="feedback-components">
-<h2>11.3 Feedback Components<a class="headerlink" href="#feedback-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="modal">
-<h3>11.3.1 Modal<a class="headerlink" href="#modal" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Modals</span></code> are pop-up boxes that allow for user notification, input, or other content to be displayed. It is often incorporated to draw the user’s attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, the modal bobdy can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.</p>
+<h3>11.1.3 Modal<a class="headerlink" href="#modal" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Modals</span></code> are pop-up boxes that allow for user notification, input, or other content to be displayed. A modal is often incorporated to draw the user’s attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, just like the card, the modal bobdy can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
@@ -815,15 +812,15 @@ See the code<div class="summary-down docutils">
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">open_button</span><span class="p">)),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">modal</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">open_button</span><span class="p">])),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">modal</span><span class="p">]))</span>
     <span class="p">]</span>
 <span class="p">)</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;modal&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">),</span>
-    <span class="p">[</span><span class="n">Input</span><span class="p">(</span><span class="s2">&quot;open_modal&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span> <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;close_modal&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">)],</span>
-    <span class="p">[</span><span class="n">State</span><span class="p">(</span><span class="s2">&quot;modal&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">)],</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;open_modal&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span> <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;close_modal&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">State</span><span class="p">(</span><span class="s2">&quot;modal&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">toggle_modal</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">is_open</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n1</span> <span class="ow">or</span> <span class="n">n2</span><span class="p">:</span>
@@ -839,7 +836,7 @@ See the code<div class="summary-down docutils">
 <p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/modal/">This Dash Bootstrap Components page has additional <code class="docutils literal notranslate"><span class="pre">Modal</span></code> examples</a>.</p>
 </div>
 <div class="section" id="alert">
-<h3>11.3.2 Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h3>
+<h3>11.1.4 Alert<a class="headerlink" href="#alert" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Alerts</span></code> are boxes that provide messages depending on the user interaction with the app.
 Using the callback, you can update many of the component’s properties such as: color, fading animation, duration of appearence.</p>
 <p>In the example below, an alert pops up if the user chooses a quantity over 100.</p>
@@ -872,22 +869,21 @@ Using the callback, you can update many of the component’s properties such as:
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">toggle_offcanvas</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You have selected to purcase </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> computers.&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;You have selected to purchase </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> computers.&quot;</span>
     <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Alert</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s2">&quot;We don&#39;t have so many computers in stock. Please select fewer computers&quot;</span><span class="p">,</span>
                          <span class="n">color</span><span class="o">=</span><span class="s2">&quot;danger&quot;</span><span class="p">)</span>
 
 
-<span class="c1"># Run the App</span>
+<span class="c1"># Launch the app server</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><img alt="Simple alert example" src="../_images/simple_alert.gif" /></p>
-<p>Let’s see a more sophisticated example. Below, we have created alerts depending on the GTP Per Capita of a selected country and year, compared to the global average:</p>
+<p>Let’s see a more sophisticated example. Below, we have created alerts depending on the GDP Per Capita of a selected country and year, compared to the global average:</p>
 <ul class="simple">
-<li><p>If the country’s GTP Per Capita is greater than the world’s average, the alert message will have a green background</p></li>
-<li><p>If the value is the same as the world’s average, the alert message will turn yellow</p></li>
+<li><p>If the country’s GDP Per Capita is greater than the world’s average, the alert message will have a green background</p></li>
 <li><p>Otherwise the message will become red</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
@@ -904,18 +900,17 @@ Using the callback, you can update many of the component’s properties such as:
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
-<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Alerts by GDP Per Capita&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
-<span class="n">_text1</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;The below alert will adapt depending on GDP for the selected country and year compared to the world</span><span class="se">\&#39;</span><span class="s1">s average&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
-<span class="n">year_sel</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;year-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a year&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
-<span class="n">country_sel</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a country&#39;</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
-<span class="n">alert_msg</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Alert</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;alert-gdp&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Select some year and country to display info&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
+<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Alerts by GDP Per Capita&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">_text1</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;The below alert will adapt depending on GDP for the selected country and year, compared to the world</span><span class="se">\&#39;</span><span class="s1">s average GDP&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">year_sel</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;year-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Select a year&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">country_sel</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Select a country&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">country</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">alert_msg</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Alert</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;alert-gdp&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Select a year and country to trigger alert&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_header</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_text1</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>        
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;gdpc-line&#39;</span><span class="p">)],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">_text1</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
             <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">year_sel</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
             <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">country_sel</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
@@ -924,7 +919,6 @@ Using the callback, you can update many of the component’s properties such as:
     <span class="p">]</span>
 <span class="p">)</span>
 
-<span class="c1"># Configure callback</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;alert-gdp&quot;</span><span class="p">,</span> <span class="s2">&quot;color&quot;</span><span class="p">),</span>
     <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;alert-gdp&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
@@ -934,52 +928,39 @@ Using the callback, you can update many of the component’s properties such as:
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_alert</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
     <span class="n">gdp_sel</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span> <span class="c1">#Filter for selection</span>
-    <span class="n">gdp_avg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span> <span class="c1">#Calculate world avg for the same yeara</span>
+    <span class="n">gdp_global_avg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">]</span> <span class="c1">#Calculate world avg for the same yeara</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">gdp_sel</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gdp_avg</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">gdp_sel</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">gdp_global_avg</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
         <span class="n">gdp_sel_v</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">gdp_sel</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span>
-        <span class="n">gdp_avg_v</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">gdp_avg</span><span class="o">.</span><span class="n">values</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">gdp_avg_v</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">gdp_global_avg</span><span class="o">.</span><span class="n">values</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+
         <span class="n">new_children</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;The GDP per Capita in &#39;</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="s1">&#39; in &#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; was: &#39;</span><span class="o">+</span><span class="n">gdp_sel_v</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">+</span>
                         <span class="s1">&#39;; The world average was: &#39;</span><span class="o">+</span><span class="n">gdp_avg_v</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)]</span>
-        <span class="k">if</span> <span class="n">gdp_sel_v</span> <span class="o">==</span> <span class="n">gdp_avg_v</span><span class="p">:</span>
-            <span class="n">new_color</span> <span class="o">=</span> <span class="s1">&#39;warning&#39;</span> 
-        <span class="k">elif</span> <span class="n">gdp_sel_v</span> <span class="o">&lt;</span> <span class="n">gdp_avg_v</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">gdp_sel_v</span> <span class="o">&lt;</span> <span class="n">gdp_avg_v</span><span class="p">:</span>
             <span class="n">new_color</span> <span class="o">=</span> <span class="s1">&#39;danger&#39;</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">new_color</span> <span class="o">=</span> <span class="s1">&#39;success&#39;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">new_color</span> <span class="o">=</span> <span class="s2">&quot;dark&quot;</span>
-        <span class="n">new_children</span> <span class="o">=</span> <span class="s1">&#39;Insufficient Data. Try new selection&#39;</span>
+        <span class="n">new_children</span> <span class="o">=</span> <span class="s1">&#39;Insufficient Data. Try another selection&#39;</span>
 
     <span class="k">return</span> <span class="n">new_color</span><span class="p">,</span> <span class="n">new_children</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;gdpc-line&quot;</span><span class="p">,</span> <span class="s2">&quot;figure&quot;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;country-dropdown&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">),</span>
-    <span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">country_sel</span><span class="p">):</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">country_sel</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">df_plot</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">country_sel</span><span class="p">),</span> <span class="p">:]</span>
-        <span class="n">df_avg</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df_plot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
-        <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">df_avg</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">df_avg</span><span class="p">[</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">],</span> <span class="n">line</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;firebrick&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;dash&#39;</span><span class="p">:</span><span class="s1">&#39;dot&#39;</span><span class="p">},</span> <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Wold Average&#39;</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">fig</span>
 
-<span class="c1"># Run the App</span>
+<span class="c1"># Launch the app server</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p><img alt="Alert Example" src="part3/ch11_files/img/alert.gif" /></p>
+<p><img alt="Alert Example" src="../_images/alert2.gif" /></p>
 <p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/">See additional properties and examples of the <code class="docutils literal notranslate"><span class="pre">Alert</span></code> component</a>.</p>
 </div>
 </div>
 <div class="section" id="filtering-input-components">
-<h2>11.4 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
+<h2>11.2 Filtering &amp; Input Components<a class="headerlink" href="#filtering-input-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="datepicker">
-<h3>11.4.1 DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
+<h3>11.2.1 DatePicker<a class="headerlink" href="#datepicker" title="Permalink to this headline">¶</a></h3>
 <p>The DatePicker components allow the user to select a single date or a date range.
 There are two types of date pickers, both are part of the Dash Core Components library:</p>
 <ul class="simple">

@@ -1,7 +1,15 @@
 # Chapter 11: Additional Components
 
 ## What you will learn
-In this chapter we will introduce several additional components, which are necessary to further customise apps.
+Dash libraries include many components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include in your app.
+
+We will break down the components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.
+
+All components in this chapter come from these libraries:
+- [Dash core components](https://dash.plotly.com/dash-core-components) (dcc)
+- [Dash boostrap components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/) (dbc)
+
+
 ```{admonition} Learning Intentions
 - How to look for additional components
 - Familiarize with some of the most common additional components
@@ -79,30 +87,20 @@ if __name__ == '__main__':
 
 [Click to download the complete code file for this chapter](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/chapter11_fin_app.py)
 
-## 11.1 Introducing additional components
-Dash libraries include a lot of components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include in your app.
+## 11.1 Data Display Components
 
-We will break down the components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.
-
-All components in this chapter come from these libraries:
-- [Dash core components](https://dash.plotly.com/dash-core-components) (dcc)
-- [Dash boostrap components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/) (dbc)
-
-
-## 11.2 Data Display Components
-
-### 11.2.1 Upload
-The `Upload` component allows us to upload a file to the dashboard. For this example we will upload a [CSV file](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) and plot the data. [Download this CSV file](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/rotation_angle.csv), save it as `rotation_angle.csv`, run the follwing code, and try uploading the file into the drag and drop section of the app.
+### 11.1.1 Upload
+The `Upload` component allows us to upload a file to the dashboard. For this example we will upload a [CSV file](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) and plot the data on a line chart. [Download this CSV file](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/rotation_angle.csv), save it as `rotation_angle.csv`, run the follwing code, and try uploading the file into the drag and drop section of the app.
 
 ```{attention}
-Note that the `update_fig()` callback function is designed for a specific type of data.  Different data wrangling inside the function would be required based on the type of data files you will work with. In this example, the function is built for CSV files exclusively.
+Note that the `update_fig()` callback function below is designed for CSV files exclusively. Different data wrangling inside the function would be required if you choose to work with other data files.
 ```
 
 ```python
 from dash import Dash, dcc, html, Input, Output, State
 import dash_bootstrap_components as dbc
 import pandas as pd
-import plotly.graph_objects as go
+import plotly.express as px
 import base64
 import io
 from dash.dash import no_update
@@ -144,10 +142,7 @@ def update_fig(contents):
         if 'csv' in content_type:
             decoded_data = base64.b64decode(content_data)
             df = pd.read_csv(io.StringIO(decoded_data.decode('utf-8')))
-            fig = go.Figure()
-            # Go through each column in the dataframe and make a trace for it
-            for col in df.columns:
-                fig.add_trace(go.Scattergl(y=df[col], mode='lines+markers', name=col))
+            fig = px.line(df, y='angle')
             return fig
     return no_update
 
@@ -162,8 +157,8 @@ if __name__ == '__main__':
 [This Dash Docs page has additional `Upload` examples](https://dash.plotly.com/dash-core-components/upload). 
 
 
-### 11.2.2 Card
-The `Card` component provides a container in which we can place content neatly such as: titles, main body text, images, buttons, and links. It often leads to a more appealing layout design.
+### 11.1.2 Card
+The `Card` component provides a container in which we can place content neatly such as: titles, main body text, images, graphs, buttons, and links. It often leads to a more appealing layout design. All you need to do is build the card body inside the `dbc.Card`
 
 ```python
 from dash import Dash, html
@@ -186,10 +181,9 @@ card = dbc.Card(
     style={"width": "18rem"},
 )
 
-# App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(card)),
+        dbc.Row(dbc.Col([card])),
     ]
 )
 
@@ -199,14 +193,58 @@ if __name__ == '__main__':
 ```
 ![card](ch11_files/img/card.png)
 
-## Shane, Gab can you please add a few more examples of how a Card can be used or more explanations. This section has very little content compared to other sections. 
+Now let's create a card with a graph and a dropdown.
+
+```python
+from dash import Dash, html, dcc, Output, Input
+import dash_bootstrap_components as dbc
+import plotly.express as px
+
+df = px.data.gapminder()
+
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+card = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                html.H4("population by country", className="card-title"),
+                dcc.Dropdown(df.country.unique(),
+                             multi=True,
+                             value=[df.country[0],df.country[20]],
+                             id='my-dropdown'),
+                dcc.Graph(id='my-graph')
+            ]
+        ),
+    ],
+    style={"width": "50rem"},
+)
+
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col([card])),
+    ]
+)
+
+@app.callback(
+    Output('my-graph','figure'),
+    Input('my-dropdown','value')
+)
+def update_graph_card(value):
+    dff = df[df.country.isin(value)]
+    fig = px.histogram(dff, 'country', y='pop')
+    return fig
+
+
+if __name__ == '__main__':
+    app.run_server()
+```
 
 [This Dash Bootstrap Components page has additional `Card` examples](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/). 
 
-## 11.3 Feedback Components
 
-### 11.3.1 Modal
-`Modals` are pop-up boxes that allow for user notification, input, or other content to be displayed. It is often incorporated to draw the user's attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, the modal bobdy can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.
+### 11.1.3 Modal
+`Modals` are pop-up boxes that allow for user notification, input, or other content to be displayed. A modal is often incorporated to draw the user's attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, just like the card, the modal bobdy can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.
 
 ```python
 from dash import Dash, Input, Output, State, html
@@ -231,15 +269,15 @@ modal = dbc.Modal(
 # App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col(open_button)),
-        dbc.Row(dbc.Col(modal)),
+        dbc.Row(dbc.Col([open_button])),
+        dbc.Row(dbc.Col([modal]))
     ]
 )
 
 @app.callback(
     Output("modal", "is_open"),
-    [Input("open_modal", "n_clicks"), Input("close_modal", "n_clicks")],
-    [State("modal", "is_open")],
+    Input("open_modal", "n_clicks"), Input("close_modal", "n_clicks"),
+    State("modal", "is_open")
 )
 def toggle_modal(n1, n2, is_open):
     if n1 or n2:
@@ -250,11 +288,12 @@ def toggle_modal(n1, n2, is_open):
 if __name__ == '__main__':
     app.run_server()
 ```
+
 ![modal](ch11_files/img/modal.gif)
 
 [This Dash Bootstrap Components page has additional `Modal` examples](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/modal/). 
 
-### 11.3.2 Alert
+### 11.1.4 Alert
 `Alerts` are boxes that provide messages depending on the user interaction with the app.
 Using the callback, you can update many of the component's properties such as: color, fading animation, duration of appearence.
 
@@ -290,13 +329,13 @@ app.layout = dbc.Container(
 )
 def toggle_offcanvas(value):
     if value < 100:
-        return f"You have selected to purcase {value} computers."
+        return f"You have selected to purchase {value} computers."
     if value > 100:
         return dbc.Alert(children="We don't have so many computers in stock. Please select fewer computers",
                          color="danger")
 
 
-# Run the App
+# Launch the app server
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -304,9 +343,8 @@ if __name__ == '__main__':
 ![Simple alert example](ch11_files/img/simple_alert.gif)
 
 
-Let's see a more sophisticated example. Below, we have created alerts depending on the GTP Per Capita of a selected country and year, compared to the global average:
-- If the country's GTP Per Capita is greater than the world's average, the alert message will have a green background
-- If the value is the same as the world's average, the alert message will turn yellow
+Let's see a more sophisticated example. Below, we have created alerts depending on the GDP Per Capita of a selected country and year, compared to the global average:
+- If the country's GDP Per Capita is greater than the world's average, the alert message will have a green background
 - Otherwise the message will become red
 
 ```python
@@ -324,18 +362,17 @@ df = px.data.gapminder()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-_header = html.H1(children='Alerts by GDP Per Capita', style = {'textAlign' : 'center'})
-_text1 = html.P(children='The below alert will adapt depending on GDP for the selected country and year compared to the world\'s average', style = {'textAlign' : 'center'})
-year_sel = dcc.Dropdown(id='year-dropdown', placeholder = 'Select a year', options= [c for c in df.year.unique()])
-country_sel = dcc.Dropdown(id='country-dropdown', placeholder = 'Select a country', options = [c for c in df.country.unique()])
-alert_msg = dbc.Alert(id='alert-gdp', children="Select some year and country to display info", color="info")
+_header = html.H1(children='Alerts by GDP Per Capita', style={'textAlign' : 'center'})
+_text1 = html.P(children='The below alert will adapt depending on GDP for the selected country and year, compared to the world\'s average GDP', style={'textAlign' : 'center'})
+year_sel = dcc.Dropdown(id='year-dropdown', placeholder='Select a year', options=df.year.unique())
+country_sel = dcc.Dropdown(id='country-dropdown', placeholder='Select a country', options=df.country.unique())
+alert_msg = dbc.Alert(id='alert-gdp', children="Select a year and country to trigger alert", color="info")
 
 # App Layout
 app.layout = dbc.Container(
     [
         dbc.Row([dbc.Col([_header], width=8)]),
-        dbc.Row([dbc.Col([_text1], width=8)]),        
-        dbc.Row([dbc.Col([dcc.Graph(id='gdpc-line')], width=8)]),
+        dbc.Row([dbc.Col([_text1], width=8)]),
         dbc.Row([
             dbc.Col([year_sel], width=4),
             dbc.Col([country_sel], width=4)
@@ -344,7 +381,6 @@ app.layout = dbc.Container(
     ]
 )
 
-# Configure callback
 @app.callback(
     Output("alert-gdp", "color"),
     Output("alert-gdp", "children"),
@@ -354,51 +390,39 @@ app.layout = dbc.Container(
 )
 def update_alert(y, c):
     gdp_sel = df.loc[(df['country']==c) & (df['year']==y), 'gdpPercap'] #Filter for selection
-    gdp_avg = df.loc[(df['year']==y), 'gdpPercap'] #Calculate world avg for the same yeara
+    gdp_global_avg = df.loc[(df['year']==y), 'gdpPercap'] #Calculate world avg for the same yeara
 
-    if (gdp_sel.values.size > 0) & (gdp_avg.values.size > 0):
+    if (gdp_sel.values.size > 0) & (gdp_global_avg.values.size > 0):
         gdp_sel_v = round(gdp_sel.values[0],2)
-        gdp_avg_v = round(np.mean(gdp_avg.values),2)
+        gdp_avg_v = round(np.mean(gdp_global_avg.values),2)
+
         new_children = ['The GDP per Capita in '+c+' in '+str(y)+' was: '+gdp_sel_v.astype(str)+
                         '; The world average was: '+gdp_avg_v.astype(str)]
-        if gdp_sel_v == gdp_avg_v:
-            new_color = 'warning' 
-        elif gdp_sel_v < gdp_avg_v:
+
+        if gdp_sel_v < gdp_avg_v:
             new_color = 'danger'
         else:
             new_color = 'success'
     else:
         new_color = "dark"
-        new_children = 'Insufficient Data. Try new selection'
+        new_children = 'Insufficient Data. Try another selection'
 
     return new_color, new_children
 
-@app.callback(
-    Output("gdpc-line", "figure"),
-    Input("country-dropdown", "value"),
-    prevent_initial_call=True
-)
-def update_graph(country_sel):
-    fig = px.line()
-    if country_sel is not None:
-        df_plot = df.loc[(df['country']==country_sel), :]
-        df_avg = df.groupby(['year']).agg({'gdpPercap':'mean'}).reset_index()
-        fig = px.line(df_plot, x='year', y='gdpPercap', color='country', template='plotly_white')
-        fig.add_trace(go.Scatter(x=df_avg['year'], y=df_avg['gdpPercap'], line = {'color':'firebrick', 'width':4, 'dash':'dot'}, name = 'Wold Average'))
-    return fig
 
-# Run the App
+# Launch the app server
 if __name__ == '__main__':
     app.run_server()
 ```
-![Alert Example](ch11_files/img/alert.gif)
+
+![Alert Example](ch11_files/img/alert2.gif)
 
 [See additional properties and examples of the `Alert` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/). 
 
 
-## 11.4 Filtering & Input Components
+## 11.2 Filtering & Input Components
 
-### 11.4.1 DatePicker
+### 11.2.1 DatePicker
 The DatePicker components allow the user to select a single date or a date range.
 There are two types of date pickers, both are part of the Dash Core Components library:
 - ```DatePickerSingle``` consists of one single date selection: by clicking on the object a calendar will pop-up, allowing the user to pick a date
