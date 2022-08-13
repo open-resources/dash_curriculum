@@ -466,7 +466,7 @@ fig.show()
 ![solution_ex1](./ch8_files/chapter08_ex1.png)
 ````
 
-(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select a metric : `population` or `GDP`; build a callback so that the stacked bar chart will update its y-axis showing the selected metric.
+(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select a metric : `population` or `GDP`; build a callback so that the stacked bar chart will be generated with the selected metric.
 
 # Summary
 
