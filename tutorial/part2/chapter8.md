@@ -448,9 +448,9 @@ for k in kinds[:-1]:
 ```
 
 # Exercises
-(1) Using the gapminder data, create a stacked bar chart where we have `continent` on the x-axis, population (`pop`) on the y-axis. Each column of the chart should have the countries populations stacked one on the other. Use data from year 2002.
+(1) Using the gapminder data, create a stacked bar chart where we have `year` on the x-axis and population (`pop`) on the y-axis. Each column of the chart should have the `continent` populations stacked one on the other. (In order to have one value per continent, the data should be grouped by year and continent).
 
-(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select a year from the ones available in the data; build a callback so that the stacked bar chart will update accordinly.
+(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select a metric : `population` or `GDP`; build a callback so that the stacked bar chart will update its y-axis showing the selected metric.
 
 # Summary
 
