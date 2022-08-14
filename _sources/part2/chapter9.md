@@ -581,7 +581,7 @@ if __name__ == '__main__':
 
 ## Exercises
 
-(1) Build an app composed by a title and a table. The table should be within a `Col` of `width = 6` and contain the following columns from the Gapminder dataset: `country, year, lifeExp, pop, gdpPercap`. The dataset should be filtered by `'continent'=='Americas'`. The table columns shuold be selectable (one column can be selected at the same time) and they should have the native filtering option enabled.
+(1) Build an app composed by a title and a table. In terms of layout, the table should be wrapped in a `Col` component of `width = 6` and the table should show the following columns from the Gapminder dataset: `country, year, lifeExp, pop, gdpPercap`. The dataset should be filtered by `'continent'=='Americas'`. The table columns shuold be selectable (one column can be selected at the same time) and the native filtering option should be enabled.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
