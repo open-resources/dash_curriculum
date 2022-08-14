@@ -582,6 +582,100 @@ if __name__ == '__main__':
 
 ![state gif](./ch10_files/final-app-state-gif.gif)
 
+## Exercises
+
+(1) Build an app composed by a title, an empty table, a button and a chart.
+- The table should be editable and should have two columns 'x' and 'y'. All its 5 rows should be empty.
+- Next to the table, a chart should plot the values contained in the 'x' and 'y' column of the table. We should expect integer values only.
+- The chart should be generated only when pressing on the "DRAW" button.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+       
+```
+# Import packages
+from dash import Dash, dash_table, dcc, html, Input, Output, State
+import dash_bootstrap_components as dbc
+import plotly.express as px
+import pandas as pd
+
+# Setup data
+df = px.data.gapminder()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='# Exercise 10.1', style={'textAlign': 'center'})
+button = html.Button(id='draw', children='PLOT TABLE DATA', n_clicks=0)
+data_table = dash_table.DataTable(
+                id='input_data',
+                data = [{'x':'','y':''},{'x':'','y':''},{'x':'','y':''},{'x':'','y':''},{'x':'','y':''},{'x':'','y':''}], # Empty rows
+                editable=True,
+                columns=[{'name': i, 'id': i, 'selectable':False} for i in ['x','y']],
+                page_size=15,
+                row_deletable=True
+)
+graph = dcc.Graph(id='chart-1')
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(
+            [
+                dbc.Col(data_table, width=5),
+                dbc.Col(graph, width=7)
+            ]
+        ),
+        dbc.Row(
+            [
+                dbc.Col(button, width=5, style={'textAlign': 'center'}),
+                dbc.Col(width=7)
+            ]
+        )
+    ]
+)
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='chart-1', component_property='figure'),
+    Input(component_id='draw', component_property='n_clicks'),
+    State(component_id='input_data', component_property='data'),
+    prevent_initial_call=True
+)
+def plot_table(n_clicks, table_data):
+    if n_clicks > 0:
+        x = []; y = []
+        for r in table_data:
+            if (r['x'] == '') or (r['y'] == ''):
+                pass
+            else:
+                x_ = int(r['x']); y_ = int(r['y'])
+                x.append(x_)
+                y.append(y_)
+        df_ = pd.DataFrame({'x':x, 'y':y})
+        df_.sort_values(by='x', inplace=True)
+        fig = px.line(df_, x='x', y='y', markers=True)
+    return fig
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+![solution_ex1](./ch10_files/chapter10_ex1.gif)
+````
+
+(2) B
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex2](./ch10_files/chapter10_ex2.gif)
+````
 
 ## Summary
 
