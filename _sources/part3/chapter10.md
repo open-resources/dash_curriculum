@@ -587,7 +587,7 @@ if __name__ == '__main__':
 (1) Build an app composed by a title, an empty table, a button and a chart.
 - The table should be editable and should have two columns 'x' and 'y'. All its 5 rows should be empty.
 - Next to the table, a chart should plot the values contained in the 'x' and 'y' column of the table. We should expect integer values only.
-- The chart should be generated only when pressing on the "DRAW" button.
+- The chart should be generated only when pressing on the button.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -666,7 +666,10 @@ if __name__ == '__main__':
 ![solution_ex1](./ch10_files/chapter10_ex1.gif)
 ````
 
-(2) Starting from the app presented in the "Callback Context" section, build an app that shows in a Table, the click / selected datapoints from a scatter plot: use the `gapminder` data, filtered by countries `['Brazil','Germany','Pakistan']` and plot the `year` on the x-axis and `pop` on the y-axis. Next, create an empty table with columns `year` and `pop`. Finally, build a `callback` that, with the use of `ctx`, fill the table with the points clicked or selected on the graph.
+(2) Starting from the app presented in the "Callback Context" section, build a similar app that shows in a Table, the click / selected datapoints from a scatter plot.
+- Using the `gapminder` dataset, filtered by countries `['Brazil','Germany','Pakistan']`, plot the `year` on the x-axis and `pop` on the y-axis of a scatter plot.
+- Next, create an empty table with columns `year` and `pop`.
+- Finally, build a `callback` that, with the use of `ctx`, fill the table with the points clicked or selected on the graph.
 
 ````{dropdown} See Solution
     :container: + shadow
