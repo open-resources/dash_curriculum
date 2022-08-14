@@ -666,13 +666,70 @@ if __name__ == '__main__':
 ![solution_ex1](./ch10_files/chapter10_ex1.gif)
 ````
 
-(2) B
+(2) Starting from the app presented in the "Callback Context" section, build an app that shows in a Table, the click / selected datapoints from a scatter plot: use the `gapminder` data, filtered by countries `['Brazil','Germany','Pakistan']` and plot the `year` on the x-axis and `pop` on the y-axis. Next, create an empty table with columns `year` and `pop`. Finally, build a `callback` that, with the use of `ctx`, fill the table with the points clicked or selected on the graph.
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
+from dash import Dash, dash_table, dcc, html, Input, Output, ctx
+import dash_bootstrap_components as dbc
+import plotly.express as px
+import pandas as pd
 
+# Import data & data preprocessing
+df = px.data.gapminder()
+df = df.loc[df['country'].isin(['Brazil','Germany','Pakistan']), :]
+
+# Create the Dash application
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+title_ = dcc.Markdown(id='our-markdown', children='# Exercise 10.2', style={'textAlign': 'center'})
+graph = dcc.Graph(
+    id='chart-1',
+    figure = px.scatter(df, x='year', y='pop', color='continent', symbol='country', template='plotly_dark'))
+data_table = dash_table.DataTable(
+    id = 'selection-table',
+    columns=[{'name': i, 'id': i} for i in ['year','pop']],
+    page_size=10)
+
+# App Layout
+app.layout = dbc.Container([
+    dbc.Row([dbc.Col([title_], width=12)]),
+    dbc.Row([
+        dbc.Col([graph], width=6),
+        dbc.Col([data_table], width=6)
+        ]),
+    ])
+
+#Callbacks
+@app.callback(
+    Output('selection-table','data'),
+    Input(component_id='chart-1', component_property='selectedData'),
+    Input(component_id='chart-1', component_property='clickData'),
+    prevent_initial_call=True
+)
+def update_markdown(selected, clicked):
+    triggered_prop_id = ctx.triggered_prop_ids
+
+    if 'chart-1.selectedData' in triggered_prop_id:
+        chart_input = selected
+    elif 'chart-1.clickData' in triggered_prop_id:
+        chart_input = clicked
+
+    data_ = pd.DataFrame({'year':[], 'pop':[]})
+    for p in chart_input['points']:
+        new_row = [p['x'], p['y']]
+        data_.loc[-1] = new_row
+        data_.reset_index(inplace=True, drop=True)
+
+    return data_.to_dict('records')
+
+# Run the App
+if __name__== '__main__':
+    app.run_server()
 ```
 ![solution_ex2](./ch10_files/chapter10_ex2.gif)
 ````
