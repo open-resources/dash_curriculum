@@ -1089,7 +1089,7 @@ See Table<div class="summary-down docutils">
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<p>(1) Build an app composed by a title and a table. The table should be within a <code class="docutils literal notranslate"><span class="pre">Col</span></code> of <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">=</span> <span class="pre">4</span></code> and contain the following columns from the Gapminder dataset: <code class="docutils literal notranslate"><span class="pre">country,</span> <span class="pre">year,</span> <span class="pre">lifeExp,</span> <span class="pre">pop,</span> <span class="pre">gdpPercap</span></code>. The dataset should be filtered by <code class="docutils literal notranslate"><span class="pre">'continent'=='Americas'</span></code>. The table columns shuold be selectable (one column can be selected at the same time) and they should have the native filtering option enabled.</p>
+<p>(1) Build an app composed by a title and a table. The table should be within a <code class="docutils literal notranslate"><span class="pre">Col</span></code> of <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">=</span> <span class="pre">6</span></code> and contain the following columns from the Gapminder dataset: <code class="docutils literal notranslate"><span class="pre">country,</span> <span class="pre">year,</span> <span class="pre">lifeExp,</span> <span class="pre">pop,</span> <span class="pre">gdpPercap</span></code>. The dataset should be filtered by <code class="docutils literal notranslate"><span class="pre">'continent'=='Americas'</span></code>. The table columns shuold be selectable (one column can be selected at the same time) and they should have the native filtering option enabled.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
@@ -1125,7 +1125,7 @@ See Solution<div class="summary-down docutils">
 
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
     <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)]),</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">data_table</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">)]),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">data_table</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">6</span><span class="p">)]),</span>
     <span class="p">])</span>
 
 <span class="c1"># Launch the app server</span>
@@ -1135,7 +1135,7 @@ See Solution<div class="summary-down docutils">
 </div>
 <p class="card-text"><img alt="solution_ex1" src="../_images/chapter09_ex1.gif" /></p>
 </div>
-</details><p>(2) Based on the table created in the above exercise, complete the app with a linechart. The chart should be located in a new column, on the same row next to the table. The linechart should have years on the x-axis, one line per country and should show one of the selectable columns on the y-axis.</p>
+</details><p>(2) Based on the table created in the above exercise, complete the app with a line chart. The chart should be located in a new column, on the same row next to the table. The linechart should have years on the x-axis, one line per country and should show the selected column on the y-axis.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
