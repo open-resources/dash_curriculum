@@ -271,7 +271,7 @@ app.layout = dbc.Container(
     Input(component_id='our-button', component_property='n_clicks'),
 )
 def update_title(n_clicks):
-    if n_clicks == 0:
+    if n_clicks == 0 or n_clicks is None:
         title = 'My first app. The button has not been clicked yet.'
     else:
         title = 'My first app with a button that I have clicked {} times.'.format(n_clicks)

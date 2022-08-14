@@ -733,7 +733,7 @@ See the code<div class="summary-down docutils">
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-button&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;n_clicks&#39;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_title</span><span class="p">(</span><span class="n">n_clicks</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n_clicks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n_clicks</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n_clicks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;My first app. The button has not been clicked yet.&#39;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;My first app with a button that I have clicked </span><span class="si">{}</span><span class="s1"> times.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_clicks</span><span class="p">)</span>
