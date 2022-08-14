@@ -579,5 +579,29 @@ if __name__ == '__main__':
 
 ````
 
+## Exercises
+
+(1) Build an app composed by a title and a table. The table should be within a `Col` of `width = 4` and contain the following columns from the Gapminder dataset: `country, year, lifeExp, pop, gdpPercap`. The dataset should be filtered by `'continent'=='Americas'`. The table columns shuold be selectable (one column can be selected at the same time) and they should have the native filtering option enabled.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex1](./ch9_files/chapter09_ex1.gif)
+````
+
+(2) Based on the table created in the above exercise, complete the app with a linechart. The chart should be located in a new column, on the same row next to the table. The linechart should have years on the x-axis, one line per country and should show one of the selectable columns on the y-axis.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex2](./ch9_files/chapter09_ex2.gif)
+````
+
 ## Summary
 In this chapter we learned about `Dash DataTables`.  In the next chapter we will learn about advanced callbacks, multiple outputs, and `State`.
