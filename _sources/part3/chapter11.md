@@ -965,17 +965,93 @@ if __name__ == '__main__':
 
 ## Exercise
 (1) Build an app composed by a title, a `DatePickerRange` component and 3 `Card` components.
-Using the `px.data.stocks()` data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks `GOOG` and `AAPL` (which are columns of the stock dataset). Based on the date range filtered in the `DatePickerRange` component, the central card graph should show the filtered records; the left card should show any data prior to the start date; and the right card should show any data after the end date.
+Using the `px.data.stocks()` data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks `GOOG` and `AAPL` (which are columns of the stock dataset).
+Based on the date range set in the `DatePickerRange` component, the central card graph should show the records which fall in the date range; the left card should show any data prior to the start date; and the right card should show any data after the end date.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
+# Import packages
+from dash import Dash, dcc, Input, Output, html
+import dash_bootstrap_components as dbc
+import pandas as pd
+from datetime import date
+import plotly.express as px
 
+# Import data
+df = px.data.stocks()
+df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+title_ = dcc.Markdown(children='Exercise 11.1', style={'textAlign': 'center','fontSize': 20})
+date_range_ = dcc.DatePickerRange(id='date-range',
+    start_date_placeholder_text='start date',
+    end_date_placeholder_text='end date',
+    min_date_allowed=df.date.min(),
+    max_date_allowed=df.date.max(),
+    display_format='DD-MMM-YYYY',
+    first_day_of_week = 1)
+card_L = dbc.Card(
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-left'),
+        ]),
+    )
+card_C = dbc.Card(
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-center'),
+        ]),
+    )
+card_R = dbc.Card(
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-right'),
+        ]),
+    )
+
+# App layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col([title_], width = 12)),
+        dbc.Row(dbc.Col([date_range_], width = 12, style={'textAlign': 'center'})),
+        dbc.Row([
+            dbc.Col([card_L], width = 4),
+            dbc.Col([card_C], width = 4),
+            dbc.Col([card_R], width = 4)
+        ]),
+    ]
+)
+
+# Callbacks
+@app.callback(
+    Output('my-graph-left','figure'),
+    Output('my-graph-center','figure'),
+    Output('my-graph-right','figure'),
+    Input(component_id='date-range', component_property='start_date'),
+    Input(component_id='date-range', component_property='end_date')
+)
+def plot_dt(start_date, end_date):
+    figL = px.line(df, x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figC = figL
+    figR = figC
+    if start_date is not None:
+        figL = px.line(df.loc[df['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+        if end_date is not None:
+            figC = px.line(df.loc[(df['date']>=start_date) & (df['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    if end_date is not None:
+        figR = px.line(df.loc[df['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+
+    return figL, figC, figR
+
+# Run the App
+if __name__== '__main__':
+    app.run_server()
 ```
 ![solution_ex1](./ch11_files/chapter11_ex1.gif)
 ````
-(2) Build a new up with a title and 2 Tabs. The first tab should contain the exercise 1 3 tabs, while the second tab should contain the app we built in the exercise 2 from chapter 8.
+(2) Build a new up with a title and 2 Tabs. The first tab should contain the app developed in the exercise 1 of this chapter, while the second tab should contain the app we built in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises).
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
