@@ -1051,13 +1051,153 @@ if __name__== '__main__':
 ```
 ![solution_ex1](./ch11_files/chapter11_ex1.gif)
 ````
-(2) Build a new up with a title and 2 Tabs. The first tab should contain the app developed in the exercise 1 of this chapter, while the second tab should contain the app we built in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises).
+(2) Build a new up with a title and 2 Tabs. Display the content of the following tabs through a callback:
+- The first tab should contain the app developed in the exercise 1 of this chapter
+- While the second tab should contain the app we built in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises)
+You can omit the title of each app inside the tabs. Since we will need callbacks that use content defined in other callbacks, instantiate your app in the following way to avoid warning messages: `app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)`.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
+# Import packages
+from dash import Dash, dcc, Input, Output, html
+import dash_bootstrap_components as dbc
+import pandas as pd
+from datetime import date
+import plotly.express as px
 
+# Import data
+dfS = px.data.stocks()
+dfS['date'] = pd.to_datetime(dfS['date'], format='%Y-%m-%d')
+
+dfG = px.data.gapminder()
+dfG = dfG.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
+
+# Create app components
+title_ = dcc.Markdown(children='Exercise 11.2', style={'textAlign': 'center','fontSize': 20})
+tabs_ = dcc.Tabs(
+            id='tabs-app',
+            children=[
+                dcc.Tab(label='App One', value='tab-app-1'),
+                dcc.Tab(label='App Two', value='tab-app-2')],
+            value='tab-app-1'
+        )
+tabs_content_ = dbc.Container(id='tabs-content')
+# Specific for App 1
+date_range_ = dcc.DatePickerRange(id='date-range',
+    start_date_placeholder_text='start date',
+    end_date_placeholder_text='end date',
+    min_date_allowed=dfS.date.min(),
+    max_date_allowed=dfS.date.max(),
+    display_format='DD-MMM-YYYY',
+    first_day_of_week = 1)
+card_L = dbc.Card(
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-left'),
+        ]),
+    )
+card_C = dbc.Card(
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-center'),
+        ]),
+    )
+card_R = dbc.Card(
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-right'),
+        ]),
+    )
+# Specific for App 2
+dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
+                        options= [{'label': 'Population', 'value': 'pop'},
+                                {'label': 'GDP per capita', 'value': 'gdpPercap'},
+                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
+graph_ = dcc.Graph(id='figure1')
+
+# App layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col([title_], width = 12)),
+        dbc.Row(
+            dbc.Col([
+                    tabs_,
+                    tabs_content_
+            ],
+            width = 12)
+        )
+    ]
+)
+
+# Callbacks
+@app.callback(
+    Output('tabs-content', 'children'),
+    Input('tabs-app', 'value'),
+    suppress_callback_exceptions=True)
+def render_content(tab):
+    if tab == 'tab-app-1':
+        app1_layout = dbc.Container(
+            [
+                dbc.Row(dbc.Col([date_range_], width = 12, style={'textAlign': 'center'})),
+                dbc.Row([
+                    dbc.Col([card_L], width = 4),
+                    dbc.Col([card_C], width = 4),
+                    dbc.Col([card_R], width = 4)
+                ]),
+            ]
+        )
+        return app1_layout
+
+    elif tab == 'tab-app-2':
+        # App 2 layout
+        app2_layout = dbc.Container(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col([dropdown_], width=2),
+                        dbc.Col([graph_], width=10),
+                    ]
+                )
+            ]
+        )
+        return app2_layout
+
+# Callback for App1
+@app.callback(
+    Output('my-graph-left','figure'),
+    Output('my-graph-center','figure'),
+    Output('my-graph-right','figure'),
+    Input(component_id='date-range', component_property='start_date'),
+    Input(component_id='date-range', component_property='end_date')
+)
+def plot_dt(start_date, end_date):
+    figL = px.line(dfS, x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figC = figL
+    figR = figC
+    if start_date is not None:
+        figL = px.line(dfS.loc[dfS['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+        if end_date is not None:
+            figC = px.line(dfS.loc[(dfS['date']>=start_date) & (dfS['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    if end_date is not None:
+        figR = px.line(dfS.loc[dfS['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+
+    return figL, figC, figR
+
+# Callback for App2
+@app.callback(
+    Output('figure1','figure'),
+    Input('metric-dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_markdown(metric_):
+    fig = px.bar(dfG, x='year', y=metric_, color='continent', template='plotly_dark')
+    return fig
+
+# Run the App
+if __name__== '__main__':
+    app.run_server()
 ```
 ![solution_ex2](./ch11_files/chapter11_ex2.gif)
 ````
