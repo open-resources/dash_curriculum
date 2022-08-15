@@ -963,7 +963,7 @@ if __name__ == '__main__':
 
 [See additional examples and properties of the `Offcanvas` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/). 
 
-## Exercise
+## Exercises
 (1) Build an app composed by a title, a `DatePickerRange` component and 3 `Card` components.
 Using the `px.data.stocks()` data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks `GOOG` and `AAPL` (which are columns of the stock dataset).
 Based on the date range set in the `DatePickerRange` component, the central card graph should show the records which fall in the date range; the left card should show any data prior to the start date; and the right card should show any data after the end date.
