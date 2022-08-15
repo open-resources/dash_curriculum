@@ -716,7 +716,7 @@ See the code<div class="summary-down docutils">
 
 <span class="c1"># Create app components</span>
 <span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-button&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;Update title&#39;</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-button&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;Update title&#39;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -733,7 +733,7 @@ See the code<div class="summary-down docutils">
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-button&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;n_clicks&#39;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_title</span><span class="p">(</span><span class="n">n_clicks</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">n_clicks</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n_clicks</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">n_clicks</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;My first app. The button has not been clicked yet.&#39;</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;My first app with a button that I have clicked </span><span class="si">{}</span><span class="s1"> times.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_clicks</span><span class="p">)</span>
@@ -756,8 +756,8 @@ See the code<div class="summary-down docutils">
 
 <span class="c1"># Create app components</span>
 <span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">)</span>
-<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-button&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;Update title&#39;</span><span class="p">)</span>
-<span class="n">button_reset</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;reset-button&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;Reset&#39;</span><span class="p">)</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-button&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;Update title&#39;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">button_reset</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;reset-button&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;Reset&#39;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
