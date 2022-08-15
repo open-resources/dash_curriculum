@@ -963,7 +963,28 @@ if __name__ == '__main__':
 
 [See additional examples and properties of the `Offcanvas` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/). 
 
+## Exercise
+(1) Build an app composed by a title, a `DatePickerRange` component and 3 `Card` components.
+Using the `px.data.stocks()` data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks `GOOG` and `AAPL` (which are columns of the stock dataset). Based on the date range filtered in the `DatePickerRange` component, the central card graph should show the filtered records; the left card should show any data prior to the start date; and the right card should show any data after the end date.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
 
+```
+![solution_ex1](./ch11_files/chapter11_ex1.gif)
+````
+(2) Build a new up with a title and 2 Tabs. The first tab should contain the exercise 1 3 tabs, while the second tab should contain the app we built in the exercise 2 from chapter 8.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex2](./ch11_files/chapter11_ex2.gif)
+````
 ## Summary
 In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the [Dash Documentation](https://dash.plotly.com/dash-core-components). In addition, there are third-party libraries that have nice components such as [Dash Mantine Components](https://dash-mantine-components.herokuapp.com/); however, keep in mind that these are not maintained by Dash.
 
