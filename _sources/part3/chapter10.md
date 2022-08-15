@@ -585,7 +585,7 @@ if __name__ == '__main__':
 ## Exercises
 
 (1) Build an app composed by a title, an empty table, a button and a chart.
-- The table should be editable and should have two columns 'x' and 'y'. All its 5 rows should be empty.
+- The table should be editable and should have two columns 'x' and 'y'. All its 5 rows should be empty and the user would insert datapoints.
 - Next to the table, a chart should plot the values contained in the 'x' and 'y' column of the table. We should expect integer values only.
 - The chart should be generated only when pressing on the button.
 ````{dropdown} See Solution
