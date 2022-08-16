@@ -11,3 +11,10 @@ Gabriele is an Engineer from Milan, Italy. He has taken part in various BI and d
 ***
 
 Shane...
+
+***
+
+Marcel Zeuch - 
+Marcel is a mathematician living in Frankfurt, Germany.  He worked as a management consultant as well as a quantitative and data analyst. He has been using plotly and dash since 2020 and is co-author of a Data Science compendium published by Springer. He is passionate about Data Science and visualisations, entrepreneurship and finance. Follow him on [LinkedIn](https://de.linkedin.com/in/marcel-zeuch) and [Github](https://github.com/MarcelZeuch).
+
+![marcel-avatar](./about_files/MZ_Avatar.jpg)
