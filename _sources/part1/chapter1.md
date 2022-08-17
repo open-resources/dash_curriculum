@@ -1,4 +1,4 @@
-# Chapter 1
+# Chapter 1: Introduction to Dashboards
 
 These days, understanding data is the key to making the best decisions for any business. However, the amount of information that’s available at any time can be overwhelming for the most data-savvy person.
 
