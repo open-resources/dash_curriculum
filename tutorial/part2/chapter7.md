@@ -33,6 +33,24 @@ print(raw_data.shape)
 ```
 ![shape](./ch7_files/shape.png)
 
+### Info
+The Pandas `info` method will return information on the `dataframe` such as: 
+- data types
+- column names
+- memory usage
+
+```python
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+print(raw_data.head())
+print(raw_data.shape)
+print(raw_data.info())
+```
+![info](./ch7_files/info.png)
+
 
 
 ## Cleaning Data
