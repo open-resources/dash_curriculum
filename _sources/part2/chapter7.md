@@ -73,14 +73,9 @@ print(raw_data.describe())
 
 
 ## Cleaning Data
-We can see that one of the values in the `temp` column is invalid: `@!#F`.  We have a few options for this erroneous data:
-- Keep the data as is
-  - This leads to unusable dataframe columns
-- Drop the row of data
-  - Dropping rows has greater impact as the number of columns grows
-- Insert some value for the erroneous data
 
-In this example we are measuring temperature, which changes slowly, so it's probably safe to dropping all rows with corrupted data.  We'll start by dropping rows with no data using Pandas `dropna` method:
+## Dropna
+From exploring the data we see that some of the values are `null`.  We can drop those values from this dataset because temperature is a slowly changing characteristic:
 
 ```python
 import pandas as pd
@@ -89,8 +84,50 @@ url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tut
 raw_data = pd.read_csv(url)
 
 print(raw_data.head())
+print(raw_data.shape)
+print(raw_data.info())
+print(raw_data.describe())
+
 raw_data.dropna(axis=0,inplace=True)
+print(raw_data.describe())
 ```
+![dropna](./ch7_files/dropna.png)
+There are now `3` less rows after droping the `null` value rows.
+
+## Iterrows and Isnumeric
+
+There are several non-numeric values that we'd like to drop from the dataset. First we need to `iterate` through each row in the dataframe with `iterrows()`:
+
+```python
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+print(raw_data.head())
+print(raw_data.shape)
+print(raw_data.info())
+print(raw_data.describe())
+
+raw_data.dropna(axis=0,inplace=True)
+
+print(raw_data.describe())
+
+
+for index, row in raw_data.iterrows():
+    if not row[2].isnumeric():
+        raw_data.drop(index, axis=0, inplace=True)
+        
+print(raw_data.head())
+```
+
+
+We can see that one of the values in the `temp` column is invalid: `@!#F`.  We have a few options for this erroneous data:
+- Keep the data as is
+  - This leads to unusable dataframe columns
+- Drop the row of data
+  - Dropping rows has greater impact as the number of columns grows
+- Insert some value for the erroneous data
 
 Now we'll use Pandas `iterrows()` function to go through the dataframe line by line to remove rows that don't contain numeric data in the `temp` column:
 
