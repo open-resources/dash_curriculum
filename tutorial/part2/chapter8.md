@@ -12,7 +12,32 @@ In this chapter we will learn to use the Plotly graphing library given that it i
 ```
 ## 8.1 Principles of effective visualizations
 
-TBD
+
+Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualizations you want. Or apply existing plotting methods and make any changes that you see fit. With the power of this flexibiity in your hands, there are a few things you should keep in mind; Making effective visualizations is all about storytelling and / or conveying a message, *not* making good looking pictures. With Plotly you can have it both ways. Still, what is *good looking* is subject to individual preferences. But although the preferences every single recipient of your visualizations are different, there are a few principles that will let you get your messages through to most or all of them.
+
+People are generally very good at detecting patterns and structures with their eyes. People are also easily bored. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be clean, concise, clear, and your information should be cited. Thse are the so-called four **`C`**'s of data visualizations.
+
+```{admonition}4 C's of data viz
+
+1) `Clean` -  Remove `Chart Junk` such as excess details, non-informative or information-obscuring elements.
+
+2) `Concise` - Summarize your data
+3) `Clear` - Make it easy to conceptualize the point of the visual.
+4) `Cite` - Attribute your sources (including yourself) and be honest with the data. 
+
+
+```
+
+
+Resources:
+
+Tufte:
+
+https://www.youtube.com/watch?v=zObrKaahU_U&ab_channel=TheEventfulGroup
+
+Effective visualizations:
+
+https://ikigailabs.medium.com/8-tips-for-creating-engaging-data-visualizations-6d26c2e0b408
 
 ## 8.2 Plotly Figures inside Dash apps
 
