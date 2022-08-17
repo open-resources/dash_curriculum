@@ -3,10 +3,10 @@
 ## What you will learn
 `Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data useable in our dashbords.
 
-## Cleaing up a CSV file
-In chapter 6 you learned how to read a `CSV` into a Pandas dataframe.  In this chapter we will import the CSV file directly from Github. We'll go through an example where we are given `time-series` temperature measurements in CSV format and need to clean in up.
-
-Let's start by importing the data using `Pandas` and use the [head](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) command to see the top 5 rows of data:
+## Exploring Data
+Let's start by exploring the data.  We'll learn about several different `Pandas` functions to explore the data.
+### Head
+Commonly, after we  import the data we'll use the [head](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) command to see the top 5 rows of data:
 ```python
 import pandas as pd
 
@@ -17,13 +17,31 @@ print(raw_data.head())
 ```
 ![head](./ch7_files/df_head.png)
 
-We can also see that one of the values in the `temp` column is invalid: `@!#F`.  We have a few options for this erroneous data:
+We see that this is `time-series` data which contains timestamped temperature readings.  
+
+### Shape
+Let's see how big the data is by using [shape](https://pandas.pydata.org/pandas-docs/version/0.23/generated/pandas.DataFrame.shape.html):
+
+```python
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+print(raw_data.head())
+print(raw_data.shape)
+```
+![shape](./ch7_files/shape.png)
+
+
+
+## Cleaning Data
+We can see that one of the values in the `temp` column is invalid: `@!#F`.  We have a few options for this erroneous data:
 - Keep the data as is
   - This leads to unusable dataframe columns
 - Drop the row of data
   - Dropping rows has greater impact as the number of columns grows
 - Insert some value for the erroneous data
-
 
 In this example we are measuring temperature, which changes slowly, so it's probably safe to dropping all rows with corrupted data.  We'll start by dropping rows with no data using Pandas `dropna` method:
 
