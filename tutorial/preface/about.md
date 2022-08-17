@@ -17,4 +17,4 @@ Shane...
 Marcel Zeuch - 
 Marcel is a mathematician living in Frankfurt, Germany.  He worked as a management consultant as well as a quantitative and data analyst. He has been using Plotly and Dash since 2020 and is the co-author of a Data Science compendium, published by Springer. He is passionate about Data Science and visualisations, entrepreneurship and finance. Follow him on [LinkedIn](https://de.linkedin.com/in/marcel-zeuch) and [Github](https://github.com/MarcelZeuch).
 
-![marcel-avatar](./about_files/marcel-bio1.jpg)
+![marcel-avatar](./about_files/marcel-bio1.png)
