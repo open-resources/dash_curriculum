@@ -12,7 +12,7 @@ parts:
   - file: part1/chapter0_linux
   - file: part1/chapter0_GitHub
 
-- caption: Introduction to Dashboards
+- caption: Dash for Data Apps
   chapters:
   - file: part1/chapter1
   - file: part1/chapter2
