@@ -152,6 +152,9 @@ print(raw_data.head())
 ```
 ![reset_index](./ch7_files/reset_index.png)
 
+## Filter Data
+Now that the data is clean we can filter the data.
+
 
 ## FIRST PASS SECTION - REMOVE
 
