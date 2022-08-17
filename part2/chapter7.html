@@ -369,6 +369,11 @@ const thebe_selector_output = ".output, .cell_output"
      Info
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#describe">
+     Describe
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -436,6 +441,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#info">
      Info
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#describe">
+     Describe
     </a>
    </li>
   </ul>
@@ -527,6 +537,27 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p><img alt="info" src="../_images/info.png" /></p>
+</div>
+<div class="section" id="describe">
+<h3>Describe<a class="headerlink" href="#describe" title="Permalink to this headline">¶</a></h3>
+<p>The Pandas <code class="docutils literal notranslate"><span class="pre">describe</span></code> method will return statistics on the dataframe such as:</p>
+<ul class="simple">
+<li><p>min/max</p></li>
+<li><p>unique values</p></li>
+<li><p>count of non-null values in column</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><img alt="describe" src="../_images/describe.png" /></p>
 </div>
 </div>
 <div class="section" id="cleaning-data">

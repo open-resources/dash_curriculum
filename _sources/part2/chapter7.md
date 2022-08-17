@@ -52,6 +52,25 @@ print(raw_data.info())
 ![info](./ch7_files/info.png)
 
 
+### Describe
+The Pandas `describe` method will return statistics on the dataframe such as:
+- min/max
+- unique values
+- count of non-null values in column
+
+```python
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+print(raw_data.head())
+print(raw_data.shape)
+print(raw_data.info())
+print(raw_data.describe())
+```
+![describe](./ch7_files/describe.png)
+
 
 ## Cleaning Data
 We can see that one of the values in the `temp` column is invalid: `@!#F`.  We have a few options for this erroneous data:
