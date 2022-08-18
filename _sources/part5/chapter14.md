@@ -150,7 +150,7 @@ Now let's create a more advanced multi-page app, building on examples from previ
 
 First, create the `app.py` file by using the following code.
 
-#### app.py
+#### App.py
 ```python
 import dash
 import dash_bootstrap_components as dbc
@@ -181,7 +181,7 @@ Notice the location of the `dash.page_container` in the layout. This means that 
 
 Now, let's create our home page:
 
-#### home.py
+#### Home.py
 ```python
 import dash
 from dash import html, dcc
