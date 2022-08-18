@@ -13,21 +13,68 @@ In this chapter we will learn to use the Plotly graphing library given that it i
 ## 8.1 Principles of effective visualizations
 
 
-Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualizations you want. Or apply existing plotting methods and make any changes that you see fit. With the power of this flexibiity in your hands, there are a few things you should keep in mind; Making effective visualizations is all about storytelling and / or conveying a message, *not* making good looking pictures. With Plotly you can have it both ways. Still, what is *good looking* is subject to individual preferences. But although the preferences every single recipient of your visualizations are different, there are a few principles that will let you get your messages through to most or all of them.
+Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualization you want. We will argue that Plotly Express charts both look good and offer means of effective visualizations right out of the box. But you will also learn how to make your own changes to themes and layouts. 
 
-People are generally very good at detecting patterns and structures with their eyes. People are also easily bored. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be clean, concise, clear, and your information should be cited. Thse are the so-called four **`C`**'s of data visualizations.
+With the power of this flexibiity at your hands, you should keep in mind that making effective data visualizations is all about storytelling and / or conveying a message, and *not* making good looking pictures. As already stated, you can and have it both ways with Plotly. However, what is *good looking* will always be subject to individual preferences. Nevertheless, there are a few principles that will let you get your messages through to any recipient regardless of their preferences
 
-```{admonition}4 C's of data viz
+People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be `clear`, `clean`, `concise` and `captivating`. These are the so-called Shaffer's four **`C`**'s of data visualization.
 
-1) `Clean` -  Remove `Chart Junk` such as excess details, non-informative or information-obscuring elements.
+```{admonition}Shaffer's 4 C's of data visualization
 
-2) `Concise` - Summarize your data
-3) `Clear` - Make it easy to conceptualize the point of the visual.
-4) `Cite` - Attribute your sources (including yourself) and be honest with the data. 
+1) `Clear -  easily seen; sharply defined`
+    - who's the audience? What's the message?
+    - clarity more important than aesthetics
+2) `Clean - thorough, complete, unadulterated`
+    - labels, axes, gridlines, formatting, right chart type, color choice, etc
+3) `Concise - brief but compprehensive`
+    - Make it easy to conceptualize the point of the visual.
+    - Not minimalist, but not verbose
+4) `Captivating - to attract and hold by beauty and excellence`
+    - does it capture attention?
+    - is it interesting?
+    - does it tell the story
+```
 
+Whether your visualizations are `clear` and `captivating` will depend heavily on your data, message and audience, and thus not very suited for an introductory subchapter on the matter. What we will cover here are some elements of Shaffers `Clean` and `Concise` principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on `Chart junk` and `data-ink` ratio. He argues that a large share of ink on a graphic should present actual information about the underlying data. Data-ink is the non-erasable core of the a graphic. As a result `non-data-ink` can easily be regarded as redundant `chart junk`.
+
+
+```{admonition}Examples of chart junk
+1) `Borders` can be reduced
+2) `Gridlines` can be removed, single X and Y axes can suffice
+3) Avoid using `fill colors` to separate sections, titles, table and charts. White space is better.
+4) Avoid gradient fills. Solid colors are easier on the eye.
+5) 3D effects can easily get confusing.
+6) More!?!
 
 ```
 
+Figure 1 - Example of chart junk
+
+[![enter image description here][1]][1]
+
+
+Figure 2 - Same chart after following Shaffer and Tufte
+
+
+[![enter image description here][2]][2]
+
+
+
+```{warning}
+# Not actually a warnin but a placeholder for cut-outs
+
+How these principles are applied will depend on the message and purpose of your visualizations.
+Some reoccuring purposes are:
+
+1) understand distribution and composition of data
+2) explore changes in and between data categories over time
+3) Examine relationships between two or more variables
+
+No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and makes the message clear. Here, the key often lies in choosing the most appropriate visualization type, of which the most common include tables, line graphs, scatter plots, bubble charts, bar charts, histograms, box plots, and heatmaps. Unique visualization types, such as timeline or treemaps, may also effectively communicate your data while captivating audience interest. You will learn more about theses in the rest of this chapter `8.3` and `8.4`. But before we get to that, let's take a closer look at the other C's; `clean`, `concise` and `cite` by visualizing some data from the stock market. 
+
+The message we'll try to convey is that, in a volatile market, the values two different companies C and E experienced two very different developments . `C` has an unfortunate start but comes out on top, while the opposite is true for `E`.
+
+```
 
 Resources:
 
@@ -38,6 +85,14 @@ https://www.youtube.com/watch?v=zObrKaahU_U&ab_channel=TheEventfulGroup
 Effective visualizations:
 
 https://ikigailabs.medium.com/8-tips-for-creating-engaging-data-visualizations-6d26c2e0b408
+
+Shaffers 4 C's of visualization:
+
+https://www.dataplusscience.com/files/The%20Shaffer%204%20C's%20of%20Data%20Visualization.pdf
+
+5 Eye-Tracking Discoveries for OPTIMAL Chart Design - Do you use these?
+
+https://www.youtube.com/watch?v=wc_caViJGQg&ab_channel=LeilaGharani
 
 ## 8.2 Plotly Figures inside Dash apps
 
@@ -552,3 +607,7 @@ if __name__== '__main__':
 In this chapter you've learned the effective principles of data visualization and how to use Plotly graphs within Dash. You've also learned to plot common Plotly figures using the gapminder data set. [This notebook](https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook) offers additional data analysis of the Gapminder data set with Plotly. 
 
 In the next chapter we will do a deep dive into the Dash DataTable.
+
+
+  [1]: https://i.stack.imgur.com/cRWkl.png
+  [2]: https://i.stack.imgur.com/bkC2y.png
