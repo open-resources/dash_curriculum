@@ -1,568 +1,2852 @@
-# Chapter 8: Data Visualization
-
-In this chapter we will learn to use the Plotly graphing library given that it is the leading Python library for data visualization. 
+# Chapter 12  Advanced Styling and Layout
 
 ```{admonition} What you will learn
-
-- Principles of Effective Visualizations
-- How to incorporate a Plotly Figure Object in a Dash App
-- The power behind of Plotly Express
-- How to create common Plotly chart types
-
-```
-## 8.1 Principles of effective visualizations
-
-
-Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualizations you want. Or apply existing plotting methods and make any changes that you see fit. With the power of this flexibiity in your hands, there are a few things you should keep in mind; Making effective visualizations is all about storytelling and / or conveying a message, *not* making good looking pictures. With Plotly you can have it both ways. Still, what is *good looking* is subject to individual preferences. But although the preferences every single recipient of your visualizations are different, there are a few principles that will let you get your messages through to most or all of them.
-
-People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be clean, concise, clear, and your information should be cited. These are the so-called four **`C`**'s of data visualizations.
-
-```{admonition}4 Cs of data visualization
-
-1) `Clean` -  Remove `Chart Junk` such as excess details, non-informative or information-obscuring elements.
-
-2) `Concise` - Summarize your data
-3) `Clear` - Make it easy to conceptualize the point of the visual.
-4) `Cite` - Attribute your sources (including yourself) and be honest with the data. 
-
-
+- How to set a theme with a CSS stylesheet using `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`
+- How elements of a theme are styled through references to different classes in the stylesheet
+- How you can change component layout through changing references to your stylesheet with `className` or `class_name` dending on library and version.
+- A variety of classnames
+  - text color `text-primary`
+  - background color `bg-primary`
+  - margin  `m-1`
+  - padding `p-1`
+  - rounded edges `rounded`
+  - opacity `opacity-25`
+- How multiple features are referenced in the same className call `"text-info bg-primary"`
+- How the same component part can be referenced multiple times with `"bg-primary bg-opacity-25"`
+- Special layout attributes for `dbc.Row()`
+  - `justify = 'start'` # or center, end, between, around 
+- Special layout attributes for `dbc.Container()`
+  - `fluid = True`
+- How to change the layout of a component directly with `style`
 ```
 
-How these principles are applied will depend on the message and purpose of your visualizations.
-Some reoccuring purposes are:
+## 12.1 The theme of a Dash app
 
-1) understand distribution and composition of data
-2) explore changes in and between data categories over time
-3) Examine relationships between two or more variables
+You can change the layout and add themes of your Plotly Dash app in many different ways you can . In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
 
-No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and makes the message clear (the third C). Here, the key often lies in choosing the most appropriate visualization type, of which the most common include tables, line graphs, scatter plots, bubble charts, bar charts, histograms, box plots, and heatmaps. Unique visualization types, such as timeline or treemaps, may also effectively communicate your data while captivating audience interest. You will learn more about theses in the rest of this chapter `8.3` and `8.4`. But before we get to that, let's take a closer look at the other C's; `clean`, `concise` and `cite` by visualizing some data from the stock market. 
+- `bootstrap`
+- `cosmo`
+- `cyborg`
+- `darkly`
+- `flatly`
+- `grid`
 
-The message we'll try to convey is that, in a volatile market, the values two different companies C and E experienced two very different developments . `C` has an unfortunate start but comes out on top, while the opposite is true for `E`.
+For an exhaustive list, run `dir(dbc.themes)` and see which are available to your current version of Dash Bootstrap Components (`dbc`).
+ 
+Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of cards or the size of each component for different sizes of your device screen.
 
-Resources:
+Here's how some elements will look like with the `bootstrap` theme:
 
-Tufte:
+[![enter image description here][1]][1]
 
-https://www.youtube.com/watch?v=zObrKaahU_U&ab_channel=TheEventfulGroup
+And here's how the same elemets will look like with the `slate` theme:
 
-Effective visualizations:
+[![enter image description here][2]][2]
 
-https://ikigailabs.medium.com/8-tips-for-creating-engaging-data-visualizations-6d26c2e0b408
+You can study more themes and components in [dash-bootstrap-components][3].
+ 
 
-Shaffers 4 C's of visualization:
+## 12.2 Theme and the Cascading Style Sheet
 
-https://www.dataplusscience.com/files/The%20Shaffer%204%20C's%20of%20Data%20Visualization.pdf
-
-## 8.2 Plotly Figures inside Dash apps
-
-As an example of how to include Plotly figures in your Dash app, first we need to create the Plotly figure. Consider the following code snippet where we load the gapminder dataset from `px.data.gapminder()`, filter the data to consist of only four countries, and make a line chart with `px.line()`. The function call `px.line()` in this snippet will contain attributes that you will learn more about in the section 8.3.
-
-### 8.2.1 Create a Plotly Express Figure
+You set up your Dash app and select a theme like this:
 
 ```python
-import plotly.express as px
-import pandas as pd
-
-df = px.data.gapminder()
-df_filtered = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
-
-# figure
-fig = px.line(df_filtered, x='year', y='lifeExp', color='country')
-fig.show()
-
+app = Dash(external_stylesheets=[dbc.themes.SLATE])
 ```
 
-![create line chart](./ch8_files/first-plotly-line.png)
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css` which points to a certain cascading stylesheet or, `CSS`. For most web applicatoins, `CSS` goes hand in hand with `HTML`. In general, `HTML` is a language that lets you build web pages. and Plotly Dash can be regarded as a set of tools that lets you produce `HTML` components that look nice and act well togehter. A `CSS` file defines how these components look and behave with regards to the layout.
 
-### 8.2.2 Incorporate the Figure into a Dash app
+One such component can be the text container `dcc.Markdown()` that you can use as a title for your app or dashboard. If you use the `bootstrap` theme, the default font color of your heading will be of a dark grey type with the RGB code `(33, 37, 47)` and look like this:
 
-To display the line chart in our Dash app, we need to assign it to the `figure` property of the `dcc.Graph` component as shown below. 
-
-```python
-from dash import Dash, dcc
-import pandas as pd
-import plotly.express as px
-import dash_bootstrap_components as dbc
-
-# data
-df = px.data.gapminder()
-df_filtered = df[df['country'].isin(['Canada', 'Brazil', 'Norway', 'Germany'])]
-
-# figure
-fig = px.line(df_filtered, x='year', y='lifeExp', color='country')
-
-# Dash App
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# App Layout
-app.layout = dbc.Container([
-    dbc.Row([
-        dbc.Col([
-            dcc.Graph(id='figure1', figure=fig)
-        ], width = 8)
-    ])
-])
-
-if __name__== '__main__':
-    app.run_server()
-```
-
-### 8.2.3 Incorporate the Figure into an interactive Dash app
-
-Although we created a beautiful app with a line chart, the app was static. One consequence is that the app user cannot interact with the data to change the elements of the graph. Let's create an interactive app, where the callback allows the user to update the countries displayed in the figure through a dropdown.
-
-```python
-from dash import Dash, dcc, Output, Input
-import pandas as pd
-import plotly.express as px
-import dash_bootstrap_components as dbc
-
-# Data
-df = px.data.gapminder()
-
-# Instantiate the App
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# App Layout
-app.layout = dbc.Container([
-    dcc.Markdown("# Interactive Dash App with Line Chart"),
-    dbc.Row([
-        dbc.Col([
-            dcc.Dropdown(id='country-dropdown',
-                         options=[x for x in df.country.unique()],
-                         multi=True,
-                         value=['Canada', 'Brazil'])
-        ], width=8)
-    ]),
-    dbc.Row([
-        dbc.Col([
-            dcc.Graph(id='figure1')
-        ], width = 8)
-    ])
-])
+[![enter image description here][4]][4]
 
 
-# Configure Callback
-@app.callback(
-    Output('figure1','figure'),
-    Input('country-dropdown', 'value')
-)
-def udpate_graph(countries_selected):
-    df_filtered = df[df.country.isin(countries_selected)]
-    fig = px.line(df_filtered, x='year', y='lifeExp', color='country')
+ This particular color is mapped to `text-body` in the `CSS` file. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `CSS` file:
 
-    return fig
+    .text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
 
-if __name__=='__main__':
-    app.run_server(debug=True)
-```
+This is called a class. All classes are preceded with a period sign. And within the curly brackets we have multiple `property-value` pairs with a colon separating the `property` and `value`, and a semicolon between each pair. One such `property` is `color` with the corresponding value:
+    
+  
+     var(--bs-body-color-rgb)
+     
+     
+This points to a setting at the start of the document that reveals the `rgb()` code used by `text-body`:
 
-![interactie line chart in dash](./ch8_files/plotly-dash-line.gif)
+    bs-body-color-rgb:33,37,43
 
-As you can see from the code above, the callback is triggered as soon as the user selects a country from the dropdown; then, we filter the dataframe based on the countries selected; then, we build the line chart and return it as the object assigned to the `figure` property of the `dcc.Graph`.
+You can use reources such as [RapidTables][5] to verfiy that you're lookin at the correct color:
+    
+[![enter image description here][6]][6]
 
-## 8.3 Introduction to the powers of Plotly Express
+The reason this whole thing is structured this way, is that you can use the same color code through a unique variable across several parts of the `CSS`. The next section in this chapter will describe how to edit these properties through the `className` attribute. At the end of the chapter you'll also learn how to design specific details through the `style` attribute of your components.
+     
+## 12.3 The `className` attribute
 
-The Plotly Express module contains functions that can create entire figures at once and is usually referred to as `px`. Plotly Express is part of the Plotly library and it is the recommended starting point for creating some of the most common figures like the line, scatter, bar, and timeline figures. We'll go through some of them in this chapter, but you can learn about many other figures in the [documentation](https://plotly.com/python/). 
-
-First, let's unveil the powers you can unleash with a multi-dimensinal dataset like `px.data.gapminder()` and a simple Plotly Express function like `px.line()`
-
-### 8.3.1 About the gapminder dataset
-
-The gapminder dataset is a built-in Plotly Express dataset provided by [Gapminder.org](https://www.gapminder.org/). Here you'll find `1704` rows of data and the following columns `['country', 'continent', 'year', 'lifeExp', 'pop', 'gdpPercap' 'iso_alpha', 'iso_num']`. Life expectancy at birth is stored as `lifeExp`, population by country is `pop`, and `gdpPercap` is the per capita GDP. The data is a so-called long (or  tidy) form type. Long-form data has one row per observation, and one column per variable. This data form is suitable for storing and displaying multivariate data (more dimensions than two). 
-Plotly Express also handles [wide-form and mixed-form data](https://plotly.com/python/wide-form/).
-
-
-### 8.3.2 A basic line chart with `px.line()`
-
-As a minimal example, consider life expectancies in Canada in a period from 1952 to 2007:
-
-```
-import plotly.express as px
-import pandas as pd
-
-# sample data
-df = px.data.gapminder()
-
-df = df[df["country"].isin(["Canada"])]
-
-# Line chart
-fig = px.line(df, x="year", y="lifeExp", title="PX Line plot", template="plotly_white")
-fig.show()
-```
-
-![basic line chart](./ch8_files/chap8-8.3.2.png)
-
-Let's look at the applied attributes of `px.line()` one by one.
-
-1. `df` is a reference to the imported data set.
-2. `x='year'` instructs the `year` column in `df` to appear on the x-axis
-3. `y='lifeExp` instructs the `lifeExp` column in `df` to appear on the y-axis
-4. `title="PX Line plot"` is optional, and creates a title in the top left corner.
-5. `template='plotly_white'` is also optional, and creates a minimal figure layout with a white background.
-
-See the [line chart page](https://plotly.com/python-api-reference/generated/plotly.express.line.html#plotly.express.line) of the Plotly Express high-level interface to read more about the line chart attributes
-
-### 8.3.3 Adding multiple lines with different colors
-So far so good, but the data set includes data for many more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it's also an important part of what makes Plotly Express so powerful and flexible. 
-
-```
-import plotly.express as px
-import pandas as pd
-
-# sample data
-df = px.data.gapminder()
-
-df = df[df['country'].isin(['Canada', 'Norway', 'Germany'])]
-
-# line chart
-fig = px.line(df, x="year", y="lifeExp", color='country', title="PX Line plot", template="plotly_white")
-fig.show()
-```
-
-![multiple lines](./ch8_files/chap8-multiline.png)
-
-In addition to the already existing attributes, we've added `color='country'`. This is exactly what you need to make an addition of lines representing a larger set of countries. What happens under the hood is that Plotly Express assigns a color to each unique value in the `country` column in `df`, which are: `['Canada', 'Germany', 'Norway']`.
-
+Most (or all?) Dash components have an attribute `className` that lets you reference the name of a class in a `CSS` file. This attribute will also let you change other layout features through selecting other class names than, for example, the default `text-body` for `dcc.Markdown()`.
 
 ```{warning}
-Without the `color` attribute, an assignment of the y-axis to a multivariable column will create a [mess of a chart](https://i.stack.imgur.com/uS3TP.png) where all lines are blue, and the end-point of one line is connected to the starting point of another.
+In order to be able to change the layout through `classNaame`, a stylesheet *must*  be specified in 
+    app = Dash(external_stylesheets=[dbc.themes.<theme>])
 ```
 
-### 8.3.4 The interactivity of Plotly Figures
-With `color='country'` initialized, a legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.
+## 12.3.1 How to change font color
 
-Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the `y-axis`, the complete axis will slide when you move the mouse. If you grab the top of the axis, everything else other than the minumum value will change.
+Some alternatives to `body` in `text-body` are:
 
-![legend](./ch8_files/px-interactivity.gif)
+- `primary`
+- `secondary`
+- `success`
+- `danger`
+- `info`
 
-### 8.3.5 Multidimensional data with lines and markers
+For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.¨
 
-You can combine lines *and* markers in `px.line()` to illustrate multiple dimensions of your data set through the addition of the `symbol` attribute. This works much like `color='country'`. But this time, we're applying a symbol sequence to the unique values in `df['continent']` which are `'Americas'` and `'Europe'`.
+#### 12.3.1 - Code snippet 1
 
-```
-import plotly.express as px
-import pandas as pd
-
-# sample dataset from plotly express
-df = px.data.gapminder()
-
-df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]
-
-fig = px.line(df, x='year', y='lifeExp', color='country', symbol='continent',
-              title="Multidimensional data", template='plotly_white')
-fig.show()
-```
-
-![adding markers to lines](./ch8_files/line-with-markers.png)
-
-### 8.3.6 Scatter charts
-
-The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the `px.line()` call with `px.scatter()` and otherwise use the same arguments.
-
-```python
-import plotly.express as px
-import pandas as pd
-
-# sample dataset from plotly express
-df = px.data.gapminder()
-
-df = df[df['country'].isin(['Canada',  'Norway', 'Germany'])]
-
-fig = px.scatter(df, x='year', y='lifeExp', color='country', 
-                     title='PX scatter plot', template='plotly_white')
-fig.show()
-```
-
-![scatter plot](./ch8_files/scatter.png)
-
-### 8.3.7 Animated scatter / bubble charts
-
-Things get really interesting when you apply multiple settings like `animation_frame="year"`, `animation_group="country"` and `size="pop"`. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents through multiple years.
-
-```python
-import plotly.express as px
-df = px.data.gapminder()
-fig = px.scatter(df, x="gdpPercap", y="lifeExp", animation_frame="year",
-           animation_group="country", size="pop", color="continent",
-           hover_name="country", log_x=True, size_max=55,
-           range_x=[100,100000], range_y=[25,90])
-
-fig.show()
-```
-
-![animated bubble plot](./ch8_files/annimated-bubble.gif)
-
-```{note}
-
-Certain IDEs from time to time encounter probblems when running Plotly animations, even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at [this post](https://github.com/microsoft/vscode-jupyter/issues/4364) for more details: 
-
-```python
-import plotly.io as pio
-pio.renderers.default = 'notebook_connected'
-```
-
-```{tip}
-The animatoin snippet above introduced several new methods of the `fig` object. You can learn more about these methods in the [docs](https://plotly.com/python-api-reference/generated/plotly.express.scatter.html#plotly.express.scatter)
-```
-
-## 8.4 Exploring additional Plotly Express figures
-
-Now that you've got a sense of the powers hidden in all Plotly figures, the time has come to introduce additional categories to line and scatter plots.
-
-One thing all of the following chart types have in common is that they use the very same data set and that very little data wrangling is required. The few data wrangling techniques that are used are only there because some chart types require a specific data format, or simply look better with a smaller subset of the gapminder data set.
-
-### 8.4.1 Stacked Bar chart
-
-`px.bar()` works similarly to `px.line()` in that it uses `color="country"` in the same way. By default, each colored category is stacked on top of one another for each unique occurence of `year` on the `x-axis`.
-
-```python
-import plotly.express as px
-df = px.data.gapminder()
-
-fig = px.bar(df, x='year', y='pop', color='country',
-             title='PX scatter plot',
-             template='plotly_white')
-fig.show()
-```
-
-![bar plot](./ch8_files/bar-plot.png)
-
-### 8.4.2 Grouped bar chart
-Stacking the bars makes sense to illustrate accumulations for data such as `population`, but not so much for life expectancies. In order to group subcategories next to each other, simply include `barmode='group'` in the function call.
-
-```{note}
-Not all Plotly Express functions produce perfect layout for every data set. Below, we've used antoher method of the `fig` object called `range` to adjust the range of the y-axis; `fig.update_yaxes(range=[60, 80])`. Try the code snippet without that particular line, and see if you agree with our design choices.
-```
-
-```python
-import plotly.express as px
-df = px.data.gapminder()
-df = df[df['country'].isin(['Spain', 'United Kingdom'])]
-
-fig = px.bar(df, x='year', y='lifeExp', color='country',
-             barmode='group', title='Grouped Bar Chart',
-             template='plotly_white')
-fig.update_yaxes(range=[60, 80])
-fig.show()
-```
-
-![barmode group](./ch8_files/bar-group.png)
-
-### 8.4.3 Histograms
-
-Histograms can be considered a special kind of bar chart where the bars represent groups of data instead of individual observations. By default, `px.histogram()` will also stack categories on top of one another. To prevent that and display distributions of data individually, just inclue `barmode='overlay'` as seen in the snippet below.
-
-```python
-import plotly.express as px
-df = px.data.gapminder()
-df = df[df['continent'].isin(['Asia',  'Europe'])]
-fig = px.histogram(df, x='lifeExp', nbins=20, color='continent', barmode='overlay')
-fig.show()
-```
-
-![histogram](./ch8_files/hist-plot.png)
-
-### 8.4.4 Box plot
-
-`px.box` lets you investigate distributions of data even further. By default, `px.box()` displays `mean`, `quartiles`, and some `outliers` for the different categories in the order that they appear in the data set. In the following example we've included the argument `category_orders` to display mean values for each group in a decreasing manner.
-
-```python
-import plotly.express as px
-df = px.data.gapminder()
-
-fig = px.box(df, x="continent", y="lifeExp",
-             category_orders = {'continent': ['Oceania', 'Europe', 'Americas', 'Asia', 'Asia', 'Africa']})
-fig.update_traces(quartilemethod="exclusive") # or "inclusive", or "linear" by default
-fig.show()
-```
-
-![box1](./ch8_files/box1.png)
-
-### 8.4.5 Facet / Trellis plots
-
-This section uses a new attribute that splits a data set into several subplots: `facet_col`. Then, we use `facet_col_wrap` to define the number of columns in which we would like to organize the subplots.
-
-```python
-import plotly.express as px
-df = px.data.gapminder()
-
-# data subset
-df = df[df['continent'].isin(['Europe',  'Americas', 'Asia'])]
-df = df[df['year']>1962]
-
-fig = px.scatter(df, x='gdpPercap', y='lifeExp', color='continent', size='pop',
-                facet_col='year', facet_col_wrap=3)
-fig.show()
-```
-
-![facet](./ch8_files/facet.png)
-
-### 8.4.6 Treemaps
-
-Treemap charts visualize hierarchical data using nested rectangles. The hierarchy is defined by labels (names for px.treemap) and parents attributes. Another way to define the hierarchy is through the attribute `path`: list of columns names or columns of a rectangular dataframe defining the hierarchy of sectors, from root to leaves.
-
-```python
-import plotly.express as px
-import numpy as np
-df = px.data.gapminder().query("year == 2007")
-fig = px.treemap(df, path=[px.Constant('world'), 'continent', 'country'], values='pop',
-                  color='lifeExp', hover_data=['iso_alpha'])
-fig.show()
-```
-
-![treemap](./ch8_files/treemap.png)
-
-
-### 8.4.7 Heatmaps
-
-The term "heatmap" usually refers to a cartesian plot with data visualized as colored rectangular tiles.
-
-```python
-import plotly.express as px
-df = px.data.gapminder()
-df = df[df['gdpPercap']<60000]
-fig = px.density_heatmap(df, x="gdpPercap", y="lifeExp",
-                        nbinsx=20, nbinsy=20, color_continuous_scale="Viridis")
-fig.show()
-```
-
-![heatmap](./ch8_files/heatmap.png)
-
-### 8.4.8 Timeline charts
-
-Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we've made a few changes to the gapminder data set and removed some random dates. You can use this code snippet to illustrate the available time period data for each country. Missing years within a time period are not taken into account.
-
-```python
-import plotly.express as px
-import pandas as pd
-import numpy as np
-
-# data
-df = px.data.gapminder()
-df = df[df['country'].isin([
-       'France', 'Germany', 
-       'Sweden', 'Finland',
-       'United Kingdom'])]
-df = df.reset_index()
-
-# instructions to drop random observations
-np.random.seed(12)
-remove_n = int(len(df)*0.6)
-drop_indices = np.random.choice(df.index, remove_n, replace=False)
-df = df.drop(drop_indices)
-
-# pivot to country in column names, integer as index, and years as values
-dfp = df.pivot(index='index', columns='country', values='year')
-dfp = dfp.agg(['min','max'])
-dfp = dfp.astype(int)
-df = dfp.T
-df = df.reset_index()
-df = df.astype(str)
-
-fig = px.timeline(df, x_start="min", x_end="max", y="country")
-fig.update_yaxes(autorange="reversed") # otherwise tasks are listed from the bottom up
-fig.show()
-```
-
-![timeline](./ch8_files/timeline.png)
-
-```{tip}
-You can set Plotly to be the [plotting backend for pandas](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937), and produce Plotly Figures with `df.plot(kind)` where `kind` can be any of ` ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']`. This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.
-
-```python
-import random
-import pandas as pd
-
-random.seed(123)
-df = pd.DataFrame({'x':[1,2,3,4,5,6]})
-pd.options.plotting.backend = "plotly"
-
-kinds = ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']
-
-for k in kinds[:-1]:
-    fig = df.plot(kind=k, title = k)
-    fig.update_layout(title = dict(font=dict(color='#EF553B')))
-    fig.show()
-```
-
-# Exercises
-(1) Using the gapminder data, create a stacked bar chart where we have `year` on the x-axis and population (`pop`) on the y-axis. Each column of the chart should show the `continent` populations stacked one on the other. (In order to show one value per continent, the data should be grouped by year and continent). As chart `template`, use `plotly_dark`.
-````{dropdown} See Solution
+````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
-  
-```
-import plotly.express as px
-import pandas as pd
 
-df = px.data.gapminder()
-df = df.groupby(['year','continent']).agg({'pop':'sum'}).reset_index()
-
-fig = px.bar(df, x='year', y='pop', color='continent', template='plotly_dark')
-fig.show()
-```
-![solution_ex1](./ch8_files/chapter08_ex1.png)
-````
-
-(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select one metric among: `population`, `GDP per capita` or `Life expectancy`; build a callback so that the stacked bar chart will be generated with the selected metric (when grouping the data, for GDP per capita and life expectancy, use the mean).
-````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
-  
-```
-from dash import Dash, dcc, Output, Input
-import pandas as pd
-import plotly.express as px
+```python
+from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-# data
-df = px.data.gapminder()
-df = df.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
-
-# Dash App
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Create app components
-title_ = dcc.Markdown(children='Gapminder Stacked Bar Charts', style={'textAlign': 'center','fontSize': 20})
-dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
-                        options= [{'label': 'Population', 'value': 'pop'},
-                                {'label': 'GDP per capita', 'value': 'gdpPercap'},
-                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
-graph_ = dcc.Graph(id='figure1')
-
-# App Layout
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
-        dbc.Row([dbc.Col([title_], width=12)]),
         dbc.Row(
             [
-                dbc.Col([dropdown_], width=2),
-                dbc.Col([graph_], width=10),
+                dbc.Col(
+                    [dcc.Markdown("# Dashboard title")],
+                    width=10,
+                )
             ]
         )
     ]
 )
 
-# Callbacks
-@app.callback(
-    Output('figure1','figure'),
-    Input('metric-dropdown', 'value'),
-    prevent_initial_call=True
-)
-def update_markdown(metric_):
-    fig = px.bar(df, x='year', y=metric_, color='continent', template='plotly_dark')
-    return fig
-
-# Run the App
-if __name__== '__main__':
-    app.run_server()
+app.run_server(debug=True)
 ```
-![solution_ex1](./ch8_files/chapter08_ex2.gif)
 ````
 
-# Summary
+#### 12.3.1 - Code output 1
 
-In this chapter you've learned the effective principles of data visualization and how to use Plotly graphs within Dash. You've also learned to plot common Plotly figures using the gapminder data set. [This notebook](https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook) offers additional data analysis of the Gapminder data set with Plotly. 
+[![enter image description here][8]][8]
 
-In the next chapter we will do a deep dive into the Dash DataTable.
+Below is the output with `Dasboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
+
+
+#### 12.3.1 - Code snippet 2
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [dcc.Markdown("# Dashboard title", className="text-info")], width=10
+                )
+            ]
+        )
+    ]
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.3.1 - Code output 2
+
+[![enter image description here][9]][9]
+
+```{admonition} Why all the extra components in the examples?
+You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row` components. These can hold one or more `dbc.Col` components which in turn hold all our tables, figures and controls etc.
+
+Also, all these components can offer slightly different functionalities on how to apply `className` and `style` depending on what you'd like to do. But we'll come back to that later.
+```
+
+## 12.3.2 How to change background color
+
+Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but rather pointers to different colors set by the `CSS` file. So you can think of these options as different possible categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
+
+#### 12.3.2 - Code snippet
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [dcc.Markdown("# Dashboard title", className="bg-primary")],
+                    width=10,
+                )
+            ]
+        )
+    ]
+)
+app.run_server(debug=True)
+
+```
+````
+
+#### 12.3.2 - Code output
+
+[![enter image description here][10]][10]
+
+Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
+
+```{warning}
+
+Misspellings in `className` will *not* raise any errors. Any additions to `className` that can not be interpreted are simply ignored.
+
+```
+
+## 12.3.3 How to change font *and* background color
+
+So far, the whole `CSS` thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` in `className`:
+
+#### 12.3.3 Code snippet
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "# Dashboard title", className="text-info bg-primary"
+                        )
+                    ],
+                    width=10,
+                )
+            ]
+        )
+    ]
+)
+app.run_server(debug=True) 
+```
+````
+
+#### 12.3.3 Code output
+
+[![enter image description here][11]][11]
+
+
+And you do not have to stop there. In the next subchapters you'll learn how to add controls that are contained in a `dbc.Card()` component, how to style that component, and how to make room for the different elements using padding `p-1`, and margin `m-1` in the `className` attribute. By "controls", we mean anything from buttons to dropdowns and input fields, as well as accompanying labels to describe what they do.
+
+
+## 12.3.4 Spacing, margins and padding
+
+Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col` contained by a `dbc.Row` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
+
+#### 12.3.4 Code snippet 1
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "# Dashboard title", className="text-info bg-primary mt-0"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        )
+    ]
+)
+
+app.run_server(debug=True)
+```
+````
+
+#### 12.3.4 Code output 1
+
+[![enter image description here][12]][12]
+
+If we were to put this in `className` terms, this means the the default setting of the `dbc.Row` margin is `mt-0` which translates to `"margin at top is zero"`. This follows a naming convention `property-side-size`, where `property`, when it comes to [spacing][13], can be one of:
+
+- `m` - `margin`, the space between a parent and a child component.
+- `p` -  `padding`, component and features of that component such as text.
+
+
+And `side` can be one of:
+
+- `t` - `top` for classes that set margin-top or padding-top
+- `b` - `bottom` for classes that set margin-bottom or padding-bottom
+- `s` - `start` for classes that set margin-left or padding-left
+- `e` - `end` for classes that set margin-right or padding-right
+- `x` - for classes that set both *-left and *-right
+- `y` - for classes that set both *-top and *-bottom
+- *`blank`* - for classes that set a margin or padding on all 4 sides of the element
+
+At last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][13] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className.
+
+### 12.3.4 Code snippet 2
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "# Dashboard title", className="text-info bg-primary m-2"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        )
+    ]
+)
+
+app.run_server(debug=True)
+```
+````
+
+### 12.3.4 Code output 2
+
+[![enter image description here][14]][14]
+
+## 12.3.5 Component placement
+
+You should expect that different components from different libraries such as `dcc`, `dbc` and `HTML` come with different default settings with regards to margins, paddings and other features such as text alignment. This section will not go through all default settings for all relevant components, but rather demonstrate how to handle different settings and make sure your layout turns out the way you want it to. So lets take the setup that we've already got, and add a row with a `dbc.Label` component. Without defining any margins or padding, but with some background color to discern the different elements, the following snippet will produce the dashboard illustrated below.
+
+
+### 12.3.5 Code snippet 1
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title", className="text-info bg-primary"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        ),
+        dbc.Row(
+            [dbc.Col([dbc.Label("Label 1", className="bg-warning")])],
+            className="bg-secondary",
+        ),
+    ]
+)
+app.run_server(debug=True)
+```
+````
+
+### 12.3.5 Code output 1
+
+[![enter image description here][15]][15]
+
+As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span *different* widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case particular, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing.
+
+The first thing we'll do is adding `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same spacing around the texts `Dashboard title` and `Label 1`. The differnet font *sizes* still provide different emphasis to the content.
+
+### 12.3.5 Code output 2.1 (snippet below)
+
+[![enter image description here][16]][16]
+
+Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
+
+### 12.3.5 Code output 2.2 (snippet below)
+
+[![enter image description here][17]][17]
+
+### 12.3.5 Code snippet 2
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title", className="text-info bg-primary"
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        ),
+        dbc.Row(
+            [dbc.Col([dbc.Label("Label 1", className="bg-warning p-1 mt-2")])],
+            className="bg-secondary",
+        ),
+    ]
+)
+
+app.run_server(debug=True)
+```
+````
+
+## 12.3.6 How to handle layout challenges with `style`
+
+In the previous snippet, notice how `className ="bg-primary"` is set for `dcc.Markdown`, and how `className = "bg-warning"` is set for `dbc.Label` with very different results for the backgrounds. This is because the two components are set to "fill" the width of their parent components in different ways. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. However, if you run `help(dcc.Markdown)` and `help(dbc.Label)` you'll see that neither component has got a `width` attribute. This is where the `style` attribute comes into play if you'd like to align your components in a more visually pleasing way. With `style`, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Here's the same layout with `style = {'width':'75%}` for both components:
+
+#### 12.3.6 Code snippet
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary m-0",
+                            style={"width": "75%"},
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary ",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1", className="bg-warning", style={"width": "75%"}
+                        )
+                    ]
+                )
+            ],
+            className="bg-secondary",
+        ),
+    ]
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.3.6 Code output
+
+[![enter image description here][18]][18]
+
+
+```{note}
+
+What you can do with `className` you can, for the most part, also do with `style` and vice versa. However, the attributes of your components are often referenced differently. One example is `"fw-bold"` for `className` and `"font-weight":"bold"` for `style`. The result will be the same, namely a bold font type for the object in question.
+```
+
+## 12.4 More components and more attributes
+
+With some basic principles now firmly in place, all you'll need to put together a working and nice looking app is to increase the number of component types in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component . The latter is often used to split a dashboard in different parts and as a container for more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
+
+## 12.4.1 A button and a card
+
+For a more comprehensive list of boostrap components, refer to [this source][19]. For now we'll just add a `dbc.Button` in a new `dbc.Col` component next to our already existing `dbc.Label`. In addition, we'll include a `dbc.Card` in a `dbc.Col` component in a new `dbc.Row`.
+
+#### 12.4.1 Code snippet
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary",
+                            style={"width": "100%"},
+                        )
+                    ]
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning m-0",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your content here",
+                    className="",
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="",
+)
+app.run_server(debug=True, port=8118)
+```
+````
+
+#### 12.4.1 Code output
+
+[![enter image description here][20]][20]
+
+## 12.4.2 Justify row components
+In the previous snippet, we'ved used `width = 4` for both the `label` and the `button` which by default are placed at the start of the parent `row` component. To change this, you can include `justify = '<option>'` in the `row` component where your options are:
+
+- `start`
+- `center`
+- `end`
+- `around`
+- `between`
+- `evenly`
+
+The image below shows the result for `justify = 'evenly'`. In additon we've included some margins and padding to make the title, label and button look a little nicer.
+
+#### 12.4.2 Code snippet
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className="",
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="mt-2",
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.4.2 Code output 
+
+[![enter image description here][21]][21]
+
+## 12.4.3 Set component height with `style = {'height':'200px'}`
+
+Notice how we've cheated a bit by adding `'height':'65%'` for the `label` component style to make it align a bit better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
+
+#### 12.4.3 Code snippet
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = rDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-mt-2",
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.4.3 Code output 1
+
+[![enter image description here][22]][22]
+
+
+## 12.4.4 Rounded edges
+
+If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner` can be:
+
+- `top`
+- `bottom`
+- `start`
+- `end`
+- `circle`
+- `pill`
+
+The two last one will change not only the corners but the complete structure of the whole card to become circle or pill shaped.
+
+```{tip}
+When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`.
+```
+
+In the snippet below, we've rounded off the bottom of the card only, and set the weight to `3`.
+
+#### 12.4.4 Code snippet
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="mt-1",
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.4.4 Code output
+
+[![enter image description here][23]][423]
+
+## 12.4.5 Borders
+
+So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let's drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with `border-{size}` where `size` can range from `1` to `5`. As with `rounded` you can set the position of the border with `border-{direction}` where `direction` can be:
+
+- `top`
+- `end`
+- `bottom`
+- `start`.
+
+Don't forget that you can use a comnination of the list above with `className = " border-top border-bottom`.
+In the snippet below we've added a thick grey border line below the title by adding `className = "border-top border-secondary border-3"` to the second `dbc.Row` component. We've also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the `dbc.Container` itself with `className = 'bg-secondary mt-1 p-3'`
+
+
+#### 12.4.5 Code snippet
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary mt-1 p-3",
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.4.5 Code output
+
+[![enter image description here][24]][24]
+
+
+
+## 12.4.6 Opacity
+
+If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
+
+### 12.4.6 Code snippet
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 mt-1 p-3",
+)
+app.run_server(debug=True)
+```
+````
+
+### 12.4.6 Code output
+[![enter image description here][25]][25]
+
+```{warning}
+If you do not specify the context of `opacity`, like `bg-opacity`, *all* elements that are contained in your component will be affected.
+```
+
+
+## 12.4.7 Shadow
+
+You can add a bit of depth to your dashboard by adding a shadow to your components with `shadow-{size}` where `size` can be left out all together, or set to:
+
+- `none`
+- `sm`
+- `lg`
+
+The last two options stand for `small` and `large`. Below we've included `shadow-lg` for the `dbc.Container` component.
+
+### 12.4.7 Code snippet
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3",
+)
+app.run_server(debug=True)
+```
+````
+
+### 12.4.7 Code output
+
+[![enter image description here][26]][26]
+
+### 12.4.8 Gradient
+
+Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will however only let you illustrate subtle changes. The image below compares the snippet we have so far with and without `bg-gradient` in `className` for `dbc.Container` on the right and left-hand side, respectively. If you look closely, you'll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you're setting with `bg-{color}`.
+
+#### 12.4.8 Code snippet 1
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3 bg-gradient",
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.4.8 Code output 1
+
+[![enter image description here][27]][27]
+
+In order to add more flexibility to the gradient effect of the background color, you'll have to resort to the `style` attribute. As an example, you can set a background color that transitions from white to grey from the left to the right with:
+
+```python
+style={"background": "linear-gradient(90deg, white, grey"}
+```
+
+ `linear` in `linear-gradient` sets the gradient method. [Other alternatives][28] are `radial` and `conic`. `90` in `90deg` sets the direction through the degrees of the angle of the transition direction. Other options for `90` can be whatever you would like.
+
+#### 12.4.8 Code snippet 2
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3",
+    style={"background": "linear-gradient(90deg, white, grey"},
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.4.8 Code Output 2
+
+[![enter image description here][29]][29]
+
+
+
+The color options are not limited to simple color names like `white` and `grey`. You can alose use `rgb` and even `rgba` to select any color with any grade of transparency you'd like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses `red`, `yellow` and a transparent `blue` with `rgba(0, 0 , 255, 0.3)`. Notice also that we've included `70%` right after the `rgba` color. This sets the share of the last color compared to the rest of the colors.
+
+#### 12.4.8 Code snippet 3
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-2 p-3",
+    style={
+        "background": "linear-gradient(125deg, red,  yellow, rgba(0, 0, 255, 0.3) 70%"
+    },
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.4.8 Code output 3
+
+[![enter image description here][30]][30]
+
+
+### 12.4.9 Overflow
+
+So far we haven't filled any of the components with too much information. If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default behavioss of `dbc.Label` is to let the content flow over the component.
+
+#### 12.4.9 Code output 1.1 (snippet below)
+
+[![enter image description here][31]][31]
+
+
+To change this behavior, include `overflow-{option}` in `className` where `option` can be:
+
+- `auto`
+- `hidden`
+- `visible`
+- `scroll`
+
+Below is the same setup with `overflow-scroll` included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `atuo` and `scroll` in this case is that the latter adds both vertical and horizontal sliders by default.
+
+#### 12.4.9 Code output 1.2 (snippet below)
+
+[![enter image description here][32]][32]
+
+#### 12.4.9 Code snippet 1
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Very important information that is too long for the component",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "45px"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 rounded-3 mt-1 p-3 bg-gradient",
+)
+app.run_server(debug=True)
+```
+````
+
+## 12.5 Dashboard sizing
+
+In our latest examples, the app fills up only a limited space of the background. You can adjust this in many ways depending on the functionalities of your app and screen size. This section will show you how to use the `fluid` attribute of `dbc.Container()` to make the app span the entire width of the screen, and how to use `style = {'height':100vh]` to fill the entire height of the screen.
+
+### 12.5.1 `fluid` screen width
+
+The image below shows how an app fills the avaiable screen space by default. There's no extra room on top, some extra room on both sides, and plenty of room below.
+
+#### 12.5.1 Code output 1.1 (snippet below)
+
+[![enter image description here][33]][33]
+
+If you drag the screen to the any side, you'll see that the dashboard adjusts to still leave some room on either side. If you'd like to fill the entire available horizontal space, you can do so through setting `fluid = True` for the `dbc.Container` object.
+
+#### 12.4.5 Code output 1.2 (snippet below)
+
+[![enter image description here][34]][34]
+
+#### 12.5.1 Code snippet 1
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Very important information that is too long for the component",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "45px"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 p-3 bg-gradient",
+    fluid=True,
+)
+app.run_server(debug=True)
+```
+````
+
+Combining `fluid=True` with margin options in `className` can trigger some strange behavior. `me-4 ` will make the app still fill up the entire space to the right. `ms-4` will provide some space to the left of the app, but "push" the app to the right of the screen and trigger a horizontal scrollbar to appear. You can, however, safely add some space on top with `mt-2`
+
+#### 12.5.1 Code snippet 2
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Very important information that is too long for the component",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "45px"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 p-3 bg-gradient ms-4",
+    fluid=True,
+)
+app.run_server(debug=True)
+```
+````
+
+#### 12.5.1 Code output 2
+
+[![enter image description here][35]][35]
+
+
+### 12.5.2 Set component height
+
+This subchapter introduces a new concept for style, the [viewport][36] height or `vh`. This is what you'll use to apply the same behaviour to the height of the app as we've seen for the *width* of the app with `fluid = True`.
+
+#### 12.5.2 Code snippet
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Very important information that is too long for the component",
+                            className="bg-warning mt-2 p-2 overflow-auto",
+                            style={"width": "100%", "height": "45px"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="border-top border-white border-3 m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-secondary bg-opacity-75 p-3 bg-gradient",
+    fluid=True,
+    style={"height": "100vh"},
+)
+app.run_server(debug=True)
+```
+````
+
+
+#### 12.5.2 Code output
+
+[![enter image description here][37]][37]
+
+
+```{warning}
+
+You'll see the same strange behaviour with `mt-1` in `className` as you did for other margin options while using `fluid = True` for the app width. `mt-1` *will* provide space on the top, but also trigger a vertical scrollbar that has no real practical use.
+
+```
+
+#### 12.6 Studying layouts with your browser's development tools
+
+By now you know how to assign different colors and formats to Dash components through `className` and `style`. You've also learnt how to study some of these settings in detail in the `CSS`. Instead of the `CSS` approach, you can also retrieve valuable information on colors and formatting by launching your browser's development tools. If you're using Edge or Chrome, you can do so with `Ctrl + Shift + I`. If you alsoe click the icon highlighted in the red rectangle below, you can hover over any element in your app and retrieve the associated information like this:
+
+[![enter image description here][38]][38]
+
+
+In the image above, we're hovering over the third `row` component. If you look at the associated `div class` information to the right you'll see:
+
+```javascript
+div class="border-top border-white border-3 m-0 justify-content-evenly row"
+```
+Notice how alle the `className` elements we've added can be found there. In addition, you'll see how using the `justify = 'evenly'` attribute for the `dbc.Row` compnent in effect adds `justify-content-evenly` to the very same component.
+
+---
+
+#### 12.7 Test your theme
+
+The following screenshot shows a layout wiht the `bootstrap` theme with different settings for both `className` and `style` for several `dcc` and `dbc` components. The app is available on `<THIS LINK>`
+
+##### 12.7 Code output - Theme Tester App
+
+[![enter image description here][39]][39]
+
+##### 12.7 Code snippet - Theme Tester App
+
+
+```python
+
+from jupyter_dash import JupyterDash
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+from dash import State, Input, Output, Dash, html, dcc
+
+app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# card options
+opts_className_1 = [
+    {"label": "text color", "value": "text-primary"},
+    {"label": "background color", "value": "bg-primary"},
+    {"label": "component margin", "value": "m-1"},
+    {"label": "component padding", "value": "p-1"},
+]
+
+opts_ddn_scnd_title = [
+    {"label": "Set text color", "value": "text-primary"},
+    {"label": "Set background color", "value": "bg-primary"},
+    {"label": "Set component margin", "value": "m-1"},
+    {"label": "Set component padding", "value": "p-1"},
+]
+
+opts_ddn_crd_1 = [
+    {"label": "Set card margins", "value": "m-1"},
+    {"label": "Set card padding", "value": "p-1"},
+]
+
+opts_ddn_crd_2 = [
+    {"label": "Set card margins", "value": "m-1"},
+    {"label": "Set card padding", "value": "p-1"},
+]
+
+opts_justify = ["start", "center", "end", "around", "between", "evenly"]
+
+opts_justify = [
+    {"label": k, "value": k}
+    for k in ["start", "center", "end", "around", "between", "evenly"]
+]
+
+# card controls
+ctrls_crd1 = [
+    dbc.Row(
+        [
+            dbc.Col(
+                [
+                    dbc.Label("Component"),
+                    dcc.Markdown(
+                        "Row 1",
+                        style={"marginTop": "11px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "R1C1",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "dcc.MD",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "R2",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "R2C1",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "R2C2",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "dbc.Label 1",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "dbc.Label 2",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "Card",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                    dcc.Markdown(
+                        "Container",
+                        style={"marginTop": "12px", "height": "30px", "width": "200px"},
+                    ),
+                ],
+                width=1,
+            ),
+            dbc.Col(
+                [
+                    dbc.Label("Action"),
+                    dcc.Dropdown(
+                        id="ddn_R1",
+                        options=opts_className_1,
+                        style={"marginTop": "10px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_R1C1",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_MD1",
+                        options=opts_ddn_scnd_title,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_R2",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_R2C1",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_R2C2",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_LBL1",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_LBL2",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_CRD1",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                    dcc.Dropdown(
+                        id="ddn_CTR1",
+                        options=opts_className_1,
+                        style={"marginTop": "12px", "height": "30px"},
+                        clearable=True,
+                    ),
+                ],  # className = "bg-danger",
+                width=2,
+            ),
+            dbc.Col(
+                [
+                    dbc.Label("CSS / className"),
+                    dbc.Input(
+                        id="ipt_R1",
+                        placeholder="bg-primary border border-5 rounded-3",
+                        type="text",
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_R1C1",
+                        placeholder="m-2 bg-info rounded-0 rounded-3",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_MD1",
+                        placeholder="bg-white m-4 rounded-3 p-2 opacity-75",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_R2",
+                        placeholder="bg-secondary bg-opacity-25",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_R2C1",
+                        placeholder="Ready",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_R2C2",
+                        placeholder="Ready",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_LBL1",
+                        placeholder="Ready",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_LBL2",
+                        placeholder="Ready",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_CRD1",
+                        placeholder="p-3 m-4 bg-secondary bg-opacity-50 fw-bold",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="ipt_CTR1",
+                        placeholder="rounded-3 mt-3",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                ],  # className = "bg-primary",
+                width=3,
+            ),
+            dbc.Col(
+                [
+                    dbc.Label("Width"),
+                    dbc.Input(
+                        id="width_R1",
+                        placeholder="NA",
+                        disabled=True,
+                        # title = "Not an attribute. Adjust width in `Style` instead",
+                        type="text",
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_R1C1",
+                        placeholder="Default is 12",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_MD1",
+                        placeholder="NA",
+                        type="text",
+                        disabled=True,
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_R2",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_R2C1",
+                        placeholder="Default is 12",
+                        type="text",
+                        # disabled = True,
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_R2C2",
+                        placeholder="Default is 12",
+                        type="text",
+                        # disabled = True,
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_LBL1",
+                        placeholder="Default is 12",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_LBL2",
+                        placeholder="Default is 12",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_CRD1",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="width_CTR1",
+                        placeholder="NA",
+                        type="text",
+                        disabled=True,
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                ],  # className = "bg-primary",
+                width=1,
+            ),
+            dbc.Col(
+                [
+                    dbc.Label("Justify"),
+                    # dbc.Input(id = 'jfy_R1',
+                    #           placeholder="None",
+                    #           type="text",
+                    #           style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                    #          ),
+                    # dcc.Dropdown(id = 'jfy_R1',
+                    #           # placeholder="NA",
+                    #           # type="text",
+                    #           options = ['start', 'center', 'end', 'around', 'between', 'evenly'],
+                    #           # className = 'text-success',
+                    #           clearable = False,
+                    #           style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                    #          ),
+                    dcc.Dropdown(
+                        id="jfy_R1",
+                        options=opts_justify,
+                        style={"marginTop": "12px", "height": "30px", "width": "125px"},
+                        clearable=True,
+                    ),
+                    dbc.Input(
+                        id="jfy_R1C1",
+                        disabled=True,
+                        placeholder="NA",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="jfy_MD1",
+                        placeholder="NA",
+                        type="text",
+                        disabled=True,
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    # dbc.Input(id = 'jfy_R2',
+                    #           placeholder="Ready",
+                    #           type="text",
+                    #           # className = 'text-success',
+                    #           style={'marginTop' : '8px', 'height': '35px', 'width': '125px'},
+                    #          ),
+                    dcc.Dropdown(
+                        id="jfy_R2",
+                        options=opts_justify,
+                        style={"marginTop": "12px", "height": "30px", "width": "125px"},
+                        clearable=True,
+                    ),
+                    dbc.Input(
+                        id="jfy_R2C1",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="jfy_R2C2",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="jfy_LBL1",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="jfy_LBL2",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="jfy_CRD1",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                    dbc.Input(
+                        id="jfy_CTR1",
+                        placeholder="NA",
+                        disabled=True,
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "125px"},
+                    ),
+                ],  # className = "bg-primary",
+                width=1,
+            ),
+            dbc.Col(
+                [
+                    dbc.Label("Style"),
+                    dbc.Input(
+                        id="style_R1",
+                        placeholder="{'width': '125px'}",
+                        # placeholder=None,
+                        type="text",
+                        style={"marginTop": "8px", "height": "35px"},
+                    ),
+                    dbc.Input(
+                        id="style_R1C1",
+                        placeholder="{'width': '100%'}",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_MD1",
+                        placeholder="{'height': '35px'}",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_R2",
+                        placeholder="{'text-align': 'center'}",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_R2C1",
+                        placeholder="{'marginTop' : '8px'}",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_R2C2",
+                        placeholder="{'marginTop' : '8px'}",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_LBL1",
+                        placeholder="Ready",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_LBL2",
+                        placeholder="Ready",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_CRD1",
+                        placeholder="{'width':'95%', 'background': 'linear-gradient(600deg, white 10%, rgba(75, 50, 250, 0.4)'}",
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                    dbc.Input(
+                        id="style_CTR1",
+                        placeholder="{'width':'95%', 'height':'75vh', 'background': 'linear-gradient(45deg, white 10%, rgba(75, 50, 250, 0.4)'}",
+                        # placeholder = "{'width':'95%', 'height':'100vh', "background": "linear-gradient(25deg, white, rgba(0, 0, 250, 0.4)"}"
+                        type="text",
+                        # className = 'text-success',
+                        style={"marginTop": "8px", "height": "35px", "width": "100%"},
+                    ),
+                ],
+                width=4,
+            ),
+        ],
+        #
+    ),
+]
+
+
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            id="MD1"  # className ="text-info bg-primary p-0",
+                            # style={'height': '100%', 'width': '100%'},
+                            # justify = 'start'
+                        )
+                        # COLUMN
+                    ],
+                    id="R1C1",  # className = "p-5 m-0 bg-success",  width = 12,  #style={'height': '100%', 'width': '20%'},
+                ),
+                # ROW
+            ],
+            id="R1"  # className = 'bg-danger m-2 p-2',
+            # justify = 'start', #style={'height': '100%', 'width': '75%'}# m-0 g-0'
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "ClassName examples: {'width':'75%', 'height':'95vh', 'background':'linear-gradient(60deg, white 40%, rgba(0, 0, 200, 0.3))'}",
+                            id="LBL1",  # className = "bg-warning m-0 p-2", style={'height': '100%', 'width': '50%'}
+                        )
+                        # COLUMN
+                    ],
+                    id="R2C1",
+                ),
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Style examples: {'width':'75%', 'height':'95vh', 'background':'linear-gradient(60deg, white 40%, rgba(0, 0, 200, 0.3))'}",
+                            id="LBL2",  # className = "bg-warning m-0 p-2", style={'height': '100%', 'width': '50%'}
+                        )
+                        # COLUMN
+                    ],
+                    id="R2C2",
+                ),
+            ],
+            id="R2",  # className = 'bg-secondary m-0 g-0', #style={"height": "100%"}
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Card(
+                            ctrls_crd1,
+                            id="CRD1",  # Label 1', #className = "bg-warning m-0 p-2", style={'height': '100%', 'width': '50%'}
+                        )
+                    ],
+                )
+            ],  # className = 'bg-secondary m-0 g-0', #style={"height": "100%"}
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Button(
+                            "Return to curriculum",
+                            id="btn1",
+                            # href = "https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part4/chapter12.md",
+                            href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part4/chapter12.md",
+                            # # options=[{'label': k, 'value': k} for k in opts_years],
+                            # color="warning",
+                            className="bg-primary rounded"
+                            # value=df.year.max(),
+                        )
+                    ],
+                    width=4,
+                    className="text-end mt-3",
+                ),
+            ],
+            justify="end",
+            # className="bg-danger",
+        ),
+    ],  # className = "bg-dark shadow-lg m-4 p-2", style={"height": "100vh"}, fluid = True
+    id="CTR1",
+    fluid=True,
+)
+# CALLBAKCS
+# Callbacks R1 ################################################################
+# Set Row1 / R1 className through main_title_css chained to main_title_layout():
+@app.callback(
+    Output("ipt_R1", "value"),
+    [
+        Input("ddn_R1", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("R1", "className"),
+    [
+        Input("ipt_R1", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+    # Set Row1 / R1 width
+    # @app.callback(Output("R1", "width"),
+    #               [Input("width_R1", "value"),]
+    #              )
+    # def component_width(cName_element):
+    return cName_element
+
+
+# Set R1 Justify
+@app.callback(
+    Output("R1", "justify"),
+    [
+        Input("jfy_R1", "value"),
+    ],
+)
+def component_justify(just):
+    return just
+
+
+# Set R2 Justify
+@app.callback(
+    Output("R2", "justify"),
+    [
+        Input("jfy_R2", "value"),
+    ],
+)
+def component_justify(just):
+    return just
+
+
+# Set R1 style
+@app.callback(
+    Output("R1", "style"),
+    [
+        Input("style_R1", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks R1C1 ################################################################
+@app.callback(
+    Output("ipt_R1C1", "value"),
+    [
+        Input("ddn_R1C1", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("R1C1", "className"),
+    [
+        Input("ipt_R1C1", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+@app.callback(
+    Output("R1C1", "width"),
+    [
+        Input("width_R1C1", "value"),
+    ],
+)
+def component_width(cName_element):
+    return cName_element
+
+
+# Set R1 Justify
+# @app.callback(Output("R1C1", "justify"),
+#               [Input("jfy_R1C1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("R1C1", "style"),
+    [
+        Input("style_R1C1", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks MD1 ################################################################
+@app.callback(
+    Output("ipt_MD1", "value"),
+    [
+        Input("ddn_MD1", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("MD1", "className"),
+    [
+        Input("ipt_MD1", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+# @app.callback(Output("MD1", "width"),
+#               [Input("width_MD1", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("MD1", "justify"),
+#               [Input("jfy_MD1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("MD1", "style"),
+    [
+        Input("style_MD1", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks R2 ################################################################
+@app.callback(
+    Output("ipt_R2", "value"),
+    [
+        Input("ddn_R2", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("R2", "className"),
+    [
+        Input("ipt_R2", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+# @app.callback(Output("R2", "width"),
+#               [Input("width_R2", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("R2", "justify"),
+#               [Input("jfy_R2", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("R2", "style"),
+    [
+        Input("style_R2", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks R2C1 ################################################################
+@app.callback(
+    Output("ipt_R2C1", "value"),
+    [
+        Input("ddn_R2C1", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("R2C1", "className"),
+    [
+        Input("ipt_R2C1", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+@app.callback(
+    Output("R2C1", "width"),
+    [
+        Input("width_R2C1", "value"),
+    ],
+)
+def component_width(cName_element):
+    return cName_element
+
+
+# Set R1 Justify
+# @app.callback(Output("R2C1", "justify"),
+#               [Input("jfy_R2C1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("R2C1", "style"),
+    [
+        Input("style_R2C1", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks R2C2 ################################################################
+@app.callback(
+    Output("ipt_R2C2", "value"),
+    [
+        Input("ddn_R2C2", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("R2C2", "className"),
+    [
+        Input("ipt_R2C2", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+@app.callback(
+    Output("R2C2", "width"),
+    [
+        Input("width_R2C2", "value"),
+    ],
+)
+def component_width(cName_element):
+    return cName_element
+
+
+# Set R1 Justify
+# @app.callback(Output("R2C1", "justify"),
+#               [Input("jfy_R2C1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("R2C2", "style"),
+    [
+        Input("style_R2C2", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks LBL1 ################################################################
+@app.callback(
+    Output("ipt_LBL1", "value"),
+    [
+        Input("ddn_LBL1", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("LBL1", "className"),
+    [
+        Input("ipt_LBL1", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+@app.callback(
+    Output("LBL1", "width"),
+    [
+        Input("width_LBL1", "value"),
+    ],
+)
+def component_width(cName_element):
+    return cName_element
+
+
+# Set R1 Justify
+# @app.callback(Output("LBL1", "justify"),
+#               [Input("jfy_LBL1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("LBL1", "style"),
+    [
+        Input("style_LBL1", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks LBL2 ################################################################
+@app.callback(
+    Output("ipt_LBL2", "value"),
+    [
+        Input("ddn_LBL2", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("LBL2", "className"),
+    [
+        Input("ipt_LBL2", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+@app.callback(
+    Output("LBL2", "width"),
+    [
+        Input("width_LBL2", "value"),
+    ],
+)
+def component_width(cName_element):
+    return cName_element
+
+
+# Set R1 Justify
+# @app.callback(Output("LBL1", "justify"),
+#               [Input("jfy_LBL1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("LBL2", "style"),
+    [
+        Input("style_LBL2", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks CRD1 ################################################################
+@app.callback(
+    Output("ipt_CRD1", "value"),
+    [
+        Input("ddn_CRD1", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("CRD1", "className"),
+    [
+        Input("ipt_CRD1", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+# @app.callback(Output("CRD1", "width"),
+#               [Input("width_CRD1", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# Set R1 Justify
+# @app.callback(Output("CRD1", "justify"),
+#               [Input("jfy_CRD1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+# Set R1 style
+@app.callback(
+    Output("CRD1", "style"),
+    [
+        Input("style_CRD1", "value"),
+    ],
+)
+def component_style(style):
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+# Callbacks CTR1 ################################################################
+@app.callback(
+    Output("ipt_CTR1", "value"),
+    [
+        Input("ddn_CTR1", "value"),
+    ],
+)
+def component_layout(cName_element):
+    return cName_element
+
+
+@app.callback(
+    Output("CTR1", "className"),
+    [
+        Input("ipt_CTR1", "value"),
+    ],
+)
+def component_css(cName_element):
+    return cName_element
+
+
+# Set Row1 / R1 width
+# @app.callback(Output("CTR1", "width"),
+#               [Input("width_CTR1", "value"),]
+#              )
+# def component_width(cName_element):
+#     return cName_element
+
+# @app.callback(Output("CTR1", "justify"),
+#               [Input("jfy_CTR1", "value"),]
+#              )
+# def component_justify(just):
+#     return just
+
+
+@app.callback(
+    Output("CTR1", "style"),
+    [
+        Input("style_CTR1", "value"),
+    ],
+)
+def component_style(style):
+    # print(type(st))
+    try:
+        eval(style)
+        return eval(style)
+
+    except:
+        return None
+
+
+app.run_server(mode="external", port=8009, debug=True)
+
+
+```
+
+
+
+
+ 
+
+
+  [1]: https://i.stack.imgur.com/Vunbd.png
+  [2]: https://i.stack.imgur.com/EvbEU.png
+  [3]: https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/
+  [4]: https://i.stack.imgur.com/pHvGO.png
+  [5]: https://www.rapidtables.com/web/color/RGB_Color.html
+  [6]: https://i.stack.imgur.com/BFgvm.png
+  [7]: https://dashcheatsheet.pythonanywhere.com/
+  [8]: https://i.stack.imgur.com/iCkRA.png
+  [9]: https://i.stack.imgur.com/d9pqj.png
+  [10]: https://i.stack.imgur.com/vLWvz.png
+  [11]: https://i.stack.imgur.com/dfjKw.png
+  [12]: https://i.stack.imgur.com/muWaZ.png
+  [13]: https://mdbootstrap.com/docs/standard/utilities/spacing/
+  [14]: https://i.stack.imgur.com/PkwOL.png
+  [15]: https://i.stack.imgur.com/Uu0Ee.png
+  [16]: https://i.stack.imgur.com/UWulS.png
+  [17]: https://i.stack.imgur.com/RylgH.png
+  [18]: https://i.stack.imgur.com/jRrsW.png
+  [19]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/
+  [20]: https://i.stack.imgur.com/kTRZ4.png
+  [21]: https://i.stack.imgur.com/UrTWh.png
+  [22]: https://i.stack.imgur.com/B77Zv.png
+  [23]: https://i.stack.imgur.com/xFYRI.png
+  [24]: https://i.stack.imgur.com/PM6BH.png
+  [25]: https://i.stack.imgur.com/UpEZe.png
+  [26]: https://i.stack.imgur.com/4H9h8.png
+  [27]: https://i.stack.imgur.com/VVPGV.png
+  [28]: https://www.w3schools.com/css/css3_gradients.asp
+  [29]: https://i.stack.imgur.com/tcSwu.png
+  [30]: https://i.stack.imgur.com/J87m0.png
+  [31]: https://i.stack.imgur.com/fkHbn.png
+  [32]: https://i.stack.imgur.com/BdGEE.png
+  [33]: https://i.stack.imgur.com/pay0z.png
+  [34]: https://i.stack.imgur.com/OnxeJ.png
+  [35]: https://i.stack.imgur.com/erqRS.png
+  [36]: https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts
+  [37]: https://i.stack.imgur.com/IBPlh.png
+  [38]: https://i.stack.imgur.com/1YYrX.png
+  [39]: https://i.stack.imgur.com/dxVBF.png
+  [40]: https://i.stack.imgur.com/NGfOi.png
+  [41]: https://i.stack.imgur.com/EJw6S.png
