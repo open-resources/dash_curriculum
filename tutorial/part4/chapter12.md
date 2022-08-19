@@ -17,7 +17,7 @@ Chapter 8 will introduce you to the powers of Plotly Express and start your jour
 
 People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be clean, concise, clear, and your information should be cited. These are the so-called four **`C`**'s of data visualizations.
 
-```{admonition}4 C's of data visualization
+```{admonition}4 Cs of data visualization
 
 1) `Clean` -  Remove `Chart Junk` such as excess details, non-informative or information-obscuring elements.
 
