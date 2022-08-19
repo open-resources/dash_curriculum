@@ -35,15 +35,15 @@ People are generally very good at detecting patterns and structures with their e
     - does it tell the story
 ```
 
-Whether your visualizations are `clear` and `captivating` will depend heavily on your data, message and audience, and thus not very suited for an introductory subchapter on the matter. What we will cover here are some elements of Shaffers `Clean` and `Concise` principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on `Chart junk` and `data-ink` ratio. He argues that a large share of ink on a graphic should present actual information about the underlying data. Data-ink is the non-erasable core of the a graphic. As a result `non-data-ink` can easily be regarded as redundant `chart junk`.
+Whether your visualizations are `clear` and `captivating` will depend heavily on your actual data, message and audience. These factors will vary heavily from case to case, so this theme is not especially suited for an introductory subchapter general principles of data visualization . What we will rather touch upon here are some elements of Shaffers `Clean` and `Concise` principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on `Chart junk` and `data-ink` ratio. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. `Data-ink` is the non-erasable core of the a graphic, while `non-data-ink` can easily be regarded as redundant `chart junk`. So when you're designing your visualizations, you should strive for a high ratio between `data-ink` and `chart junk`. This will help you focus on the message and not the picture your audience is resting their eyes on.
 
 
 ```{admonition}Examples of chart junk
 1) `Borders` can be reduced
-2) `Gridlines` can be removed, single X and Y axes can suffice
-3) Avoid using `fill colors` to separate sections, titles, table and charts. White space is better.
-4) Avoid gradient fills. Solid colors are easier on the eye.
-5) 3D effects can easily get confusing.
+2) `Gridlines` can be removed. Single X and Y axes are often enough.
+3) `Fill colors` should be avoided when separating sections, titles, tablse and charts. `White space` is better.
+4) `Gradient fills` should be avoided. Solid colors are easier on the eye.
+5) `3D effects` can easily get confusing.
 6) More!?!
 
 ```
@@ -58,10 +58,18 @@ Figure 2 - Same chart after following Shaffer and Tufte
 
 [![enter image description here][2]][2]
 
+Figure 3 - Gif that shows the transition between Figure 1 and Figure 2
+
+[![enter image description here][3]][3]
+
+
+### After gif
+
+You might not agree on every choice we've made in that gif. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide for yourself!
 
 
 ```{warning}
-# Not actually a warnin but a placeholder for cut-outs
+# Not actually a warning but a placeholder for cut-outs
 
 How these principles are applied will depend on the message and purpose of your visualizations.
 Some reoccuring purposes are:
@@ -70,7 +78,7 @@ Some reoccuring purposes are:
 2) explore changes in and between data categories over time
 3) Examine relationships between two or more variables
 
-No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and makes the message clear. Here, the key often lies in choosing the most appropriate visualization type, of which the most common include tables, line graphs, scatter plots, bubble charts, bar charts, histograms, box plots, and heatmaps. Unique visualization types, such as timeline or treemaps, may also effectively communicate your data while captivating audience interest. You will learn more about theses in the rest of this chapter `8.3` and `8.4`. But before we get to that, let's take a closer look at the other C's; `clean`, `concise` and `cite` by visualizing some data from the stock market. 
+No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and makes the message clear. Here, the key often lies in choosing the most appropriate visualization type, of which the most common include tables, line graphs, scatter plots, bubble charts, bar charts, histograms, box plots, and heatmaps. Unique visualization types, such as timeline or treemaps, may also effectively communicate your data while captivating audience interest. You will learn more about these in chapter `8.3` and `8.4`. But before we get to that, let's take a closer look at the other C's; `clean`, `concise` and `cite` by visualizing some data from the stock market. 
 
 The message we'll try to convey is that, in a volatile market, the values two different companies C and E experienced two very different developments . `C` has an unfortunate start but comes out on top, while the opposite is true for `E`.
 
@@ -611,3 +619,4 @@ In the next chapter we will do a deep dive into the Dash DataTable.
 
   [1]: https://i.stack.imgur.com/cRWkl.png
   [2]: https://i.stack.imgur.com/bkC2y.png
+  [3]: https://i.stack.imgur.com/gaL9H.gif
