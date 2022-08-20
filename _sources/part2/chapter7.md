@@ -97,7 +97,7 @@ There are now `3` less rows after droping the `null` value rows.
 
 ### Iterrows and Try-Except
 
-There are several non-numeric values that we'd like to drop from the dataset. First we need to `iterate` through each row in the dataframe with `iterrows()`. Then we'll use Python's [try-expect](https://www.geeksforgeeks.org/python-try-except/) logic test if the row has valid `float` data.
+There are several non-numeric values that we'd like to drop from the dataset. First we need to `iterate` through each row in the dataframe with `iterrows()`. Then we'll use Python's [try-expect](https://www.geeksforgeeks.org/python-try-except/) logic test if the row has valid `float` data:
 
 ```python
 import pandas as pd
@@ -143,9 +143,10 @@ raw_data.dropna(axis=0,inplace=True)
 
 print(raw_data.describe())
 
-
 for index, row in raw_data.iterrows():
-    if not row[2].isnumeric():
+    try:
+        float(row[2]) # 'temp' column is index 2
+    except:
         raw_data.drop(index, axis=0, inplace=True)
         
 print(raw_data.head())
@@ -157,65 +158,8 @@ print(raw_data.head())
 ## Filter Data
 Now that the data is clean we can filter the data.
 
-## FIRST PASS SECTION - REMOVE
 
-```python
-import pandas as pd
-import numpy as np
-
-import pandas as pd
-
-url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
-raw_data = pd.read_csv(url)
-
-print(raw_data.head())
-raw_data.dropna(axis=0,inplace=True)
-    
-for index, row in raw_data.iterrows():
-    try:
-        float(row[2]) # 'temp' column is index 2
-    except:
-        raw_data.drop(index, axis=0, inplace=True)
-
-raw_data.reset_index(drop=True, inplace=True)
-
-print(raw_data.head())
-```
-The code above uses Python's [try-expect](https://www.geeksforgeeks.org/python-try-except/) logic test if the row has valid numeric data.
-
-![post cleaning](./ch7_files/post_clean.png)
-
-We can also change the names of the columns:
-
-```python
-import pandas as pd
-import numpy as np
-
-import pandas as pd
-
-url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
-raw_data = pd.read_csv(url)
-
-print(raw_data.head())
-raw_data.dropna(axis=0,inplace=True)
-    
-for index, row in raw_data.iterrows():
-    try:
-        float(row[2]) # 'temp' column is index 2
-    except:
-        raw_data.drop(index, axis=0, inplace=True)
-
-raw_data.reset_index(drop=True, inplace=True)
-
-print(raw_data.head())
-raw_data.columns = ['index', 'Date', 'Temp_C']
-print(raw_data.head())
-```
-
-![rename columns](./ch7_files/rename_col.png)
-
-
-## Basic Operations with Pandas
+## Other Resources
 
 [Pandas](https://pandas.pydata.org/) is a data analysis and manipulation library
 
@@ -225,16 +169,6 @@ print(raw_data.head())
 - https://realpython.com/python-data-cleaning-numpy-pandas/
 - https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c
 - https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404
-```python
-df.head() # shows top 5 rows of df
-df.types() # shows data type of columns
-df.describe() # computes various statistics for each column
 
-# Dealing with missing values
-df.isna().sum() # display how many **NA** entries in each row
-
-```
-
-## Processing data
-
-Cleaning, processing, and wrangling data before use
+## Summary
+In this chapter we learned to explore, clean, and filter data.  These techniques are important to real-world data analysis.

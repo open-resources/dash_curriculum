@@ -404,13 +404,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-pass-section-remove">
-   FIRST PASS SECTION - REMOVE
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basic-operations-with-pandas">
-   Basic Operations with Pandas
+  <a class="reference internal nav-link" href="#other-resources">
+   Other Resources
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -421,8 +416,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#processing-data">
-   Processing data
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
 </ul>
@@ -505,13 +500,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-pass-section-remove">
-   FIRST PASS SECTION - REMOVE
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#basic-operations-with-pandas">
-   Basic Operations with Pandas
+  <a class="reference internal nav-link" href="#other-resources">
+   Other Resources
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -522,8 +512,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#processing-data">
-   Processing data
+  <a class="reference internal nav-link" href="#summary">
+   Summary
   </a>
  </li>
 </ul>
@@ -638,7 +628,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="iterrows-and-try-except">
 <h3>Iterrows and Try-Except<a class="headerlink" href="#iterrows-and-try-except" title="Permalink to this headline">¶</a></h3>
-<p>There are several non-numeric values that we’d like to drop from the dataset. First we need to <code class="docutils literal notranslate"><span class="pre">iterate</span></code> through each row in the dataframe with <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>. Then we’ll use Python’s <a class="reference external" href="https://www.geeksforgeeks.org/python-try-except/">try-expect</a> logic test if the row has valid <code class="docutils literal notranslate"><span class="pre">float</span></code> data.</p>
+<p>There are several non-numeric values that we’d like to drop from the dataset. First we need to <code class="docutils literal notranslate"><span class="pre">iterate</span></code> through each row in the dataframe with <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>. Then we’ll use Python’s <a class="reference external" href="https://www.geeksforgeeks.org/python-try-except/">try-expect</a> logic test if the row has valid <code class="docutils literal notranslate"><span class="pre">float</span></code> data:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
@@ -681,9 +671,10 @@ const thebe_selector_output = ".output, .cell_output"
 
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 
-
 <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
+    <span class="k">except</span><span class="p">:</span>
         <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -698,61 +689,8 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">¶</a></h2>
 <p>Now that the data is clean we can filter the data.</p>
 </div>
-<div class="section" id="first-pass-section-remove">
-<h2>FIRST PASS SECTION - REMOVE<a class="headerlink" href="#first-pass-section-remove" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
-<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-<p>The code above uses Python’s <a class="reference external" href="https://www.geeksforgeeks.org/python-try-except/">try-expect</a> logic test if the row has valid numeric data.</p>
-<p><img alt="post cleaning" src="../_images/post_clean.png" /></p>
-<p>We can also change the names of the columns:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
-<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="n">raw_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="s1">&#39;Temp_C&#39;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-</pre></div>
-</div>
-<p><img alt="rename columns" src="../_images/rename_col.png" /></p>
-</div>
-<div class="section" id="basic-operations-with-pandas">
-<h2>Basic Operations with Pandas<a class="headerlink" href="#basic-operations-with-pandas" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="other-resources">
+<h2>Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> is a data analysis and manipulation library</p>
 <div class="section" id="links-to-use-for-pandas-data-wrangling">
 <h3>Links to use for Pandas data wrangling<a class="headerlink" href="#links-to-use-for-pandas-data-wrangling" title="Permalink to this headline">¶</a></h3>
@@ -763,20 +701,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c">https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c</a></p></li>
 <li><p><a class="reference external" href="https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404">https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404</a></p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span> <span class="c1"># shows top 5 rows of df</span>
-<span class="n">df</span><span class="o">.</span><span class="n">types</span><span class="p">()</span> <span class="c1"># shows data type of columns</span>
-<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span> <span class="c1"># computes various statistics for each column</span>
-
-<span class="c1"># Dealing with missing values</span>
-<span class="n">df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># display how many **NA** entries in each row</span>
-
-</pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="processing-data">
-<h2>Processing data<a class="headerlink" href="#processing-data" title="Permalink to this headline">¶</a></h2>
-<p>Cleaning, processing, and wrangling data before use</p>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we learned to explore, clean, and filter data.  These techniques are important to real-world data analysis.</p>
 </div>
 </div>
 
