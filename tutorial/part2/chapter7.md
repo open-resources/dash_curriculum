@@ -92,11 +92,12 @@ raw_data.dropna(axis=0,inplace=True)
 print(raw_data.describe())
 ```
 ![dropna](./ch7_files/dropna.png)
+
 There are now `3` less rows after droping the `null` value rows.
 
-### Iterrows and Isnumeric
+### Iterrows and Try-Except
 
-There are several non-numeric values that we'd like to drop from the dataset. First we need to `iterate` through each row in the dataframe with `iterrows()`:
+There are several non-numeric values that we'd like to drop from the dataset. First we need to `iterate` through each row in the dataframe with `iterrows()`. Then we'll use Python's [try-expect](https://www.geeksforgeeks.org/python-try-except/) logic test if the row has valid `float` data.
 
 ```python
 import pandas as pd
@@ -113,14 +114,15 @@ raw_data.dropna(axis=0,inplace=True)
 
 print(raw_data.describe())
 
-
 for index, row in raw_data.iterrows():
-    if not row[2].isnumeric():
+    try:
+        float(row[2]) # 'temp' column is index 2
+    except:
         raw_data.drop(index, axis=0, inplace=True)
         
 print(raw_data.head())
 ```
-![isnumeric](./ch7_files/isnumeric.png)
+![isnumeric](./ch7_files/filter_numeric.png)
 
 
 ### Reset Index
@@ -154,7 +156,6 @@ print(raw_data.head())
 
 ## Filter Data
 Now that the data is clean we can filter the data.
-
 
 ## FIRST PASS SECTION - REMOVE
 
