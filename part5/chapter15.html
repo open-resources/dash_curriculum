@@ -365,8 +365,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-names-titles-and-urls">
-   15.4 Customising multi-page names, titles and URLs
+  <a class="reference internal nav-link" href="#customising-names-titles-and-urls-of-pages">
+   15.4 Customising names, titles, and URLs of pages
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -436,8 +436,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-names-titles-and-urls">
-   15.4 Customising multi-page names, titles and URLs
+  <a class="reference internal nav-link" href="#customising-names-titles-and-urls-of-pages">
+   15.4 Customising names, titles, and URLs of pages
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -496,7 +496,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Attention</p>
 <p>To run this app successfully, you will need to install the <code class="docutils literal notranslate"><span class="pre">dash_bootstrap_templates</span></code> and the <code class="docutils literal notranslate"><span class="pre">dash-labs</span></code> packages.</p>
 <blockquote>
-<div><p>pip install dash_bootstrap_templates</p>
+<div><p>pip install dash-bootstrap-templates</p>
 </div></blockquote>
 <blockquote>
 <div><p>pip install dash-labs</p>
@@ -546,21 +546,19 @@ The default 404-page looks like the following:
 </div>
 <div class="section" id="customising-multi-page-order">
 <h2>15.3 Customising multi-page order<a class="headerlink" href="#customising-multi-page-order" title="Permalink to this headline">¶</a></h2>
-<p>By looking at the App we have so far, we notice that the navbar shows our pages ordered alphabetically (after Home). Let’s customise the page order.</p>
-<p>To do so, when calling the <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code>, for each page the <code class="docutils literal notranslate"><span class="pre">order</span></code> prop is used with the following values:</p>
+<p>By looking at the App we have so far, you’ll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the <code class="docutils literal notranslate"><span class="pre">order</span></code> propertye of the <a class="reference external" href="http://home.py">home.py</a> file, the number 1 to the graphs_v2_fin.py file and the number 2 to the <a class="reference external" href="http://about.py">about.py</a> file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: “Home” first since it’s the home page, “About” second, and “Graphs” third.</p>
+<p>Here’s what the current app looks like:</p>
 <ul class="simple">
 <li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order='0')</span></code></p></li>
-<li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='3')</span></code></p></li>
-<li><p>pages/extras.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2')</span></code></p></li>
+<li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2')</span></code></p></li>
 <li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1')</span></code></p></li>
 </ul>
-<p>In the gif below, pay attention to the order displayed in the <code class="docutils literal notranslate"><span class="pre">navbar</span></code>:
-<img alt="app_structure" src="part5/ch15_files/app_fix01_order.gif" /></p>
-<p>Now try this yourself: go into the pages files and update the <code class="docutils literal notranslate"><span class="pre">order</span></code> prop with the desired order.</p>
+<p>Get your feet wet. Try to change the order of the home page so it appears last (far right) in the Navbar.</p>
 </div>
-<div class="section" id="customising-multi-page-names-titles-and-urls">
-<h2>15.4 Customising multi-page names, titles and URLs<a class="headerlink" href="#customising-multi-page-names-titles-and-urls" title="Permalink to this headline">¶</a></h2>
-<p>Our App can be further improved by renaming pages. By looking at the navbar, we can see that our pages are named after the respective .py filenames.
+<div class="section" id="customising-names-titles-and-urls-of-pages">
+<h2>15.4 Customising names, titles, and URLs of pages<a class="headerlink" href="#customising-names-titles-and-urls-of-pages" title="Permalink to this headline">¶</a></h2>
+<p>Our App can be further improved by renaming several elements of the app. To modify the name of the page that appears on the browsers tab, you will need to assign the desired name to the <code class="docutils literal notranslate"><span class="pre">title</span></code> property of the page registry. To</p>
+<p>. By looking at the Navbar, we can see that our pages are named after the respective .py filenames.
 However, our Graph filename contains some versioning (hence the page name “Graphs v2 fin”). This doesn’t look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page.
 In the version of the app displayed below, we’ve introduced the following adjustments for some pages:</p>
 <ul class="simple">

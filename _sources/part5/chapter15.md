@@ -18,7 +18,7 @@ By the end of this chapter, you'll be able to build this app:
 ```{attention} 
 To run this app successfully, you will need to install the `dash_bootstrap_templates` and the `dash-labs` packages.
 
-> pip install dash_bootstrap_templates
+> pip install dash-bootstrap-templates
 
 > pip install dash-labs
 ```
@@ -74,21 +74,20 @@ As we can see, the registry stores a lot of information for each page, let's foc
 
 
 ## 15.3 Customising multi-page order
-By looking at the App we have so far, we notice that the navbar shows our pages ordered alphabetically (after Home). Let's customise the page order.
+By looking at the App we have so far, you'll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the `order` propertye of the home.py file, the number 1 to the graphs_v2_fin.py file and the number 2 to the about.py file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: "Home" first since it's the home page, "About" second, and "Graphs" third.
 
-To do so, when calling the `dash.register_page(__name__)`, for each page the `order` prop is used with the following values:
+Here's what the current app looks like: 
 - pages/home.py : `dash.register_page(__name__, path='/', order='0')`
-- pages/about.py : `dash.register_page(__name__, order='3')`
-- pages/extras.py : `dash.register_page(__name__, order='2')`
+- pages/about.py : `dash.register_page(__name__, order='2')`
 - pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1')`
 
-In the gif below, pay attention to the order displayed in the `navbar`:
-![app_structure](ch15_files/app_fix01_order.gif)
+Get your feet wet. Try to change the order of the home page so it appears last (far right) in the Navbar. 
 
-Now try this yourself: go into the pages files and update the `order` prop with the desired order.
 
-## 15.4 Customising multi-page names, titles and URLs
-Our App can be further improved by renaming pages. By looking at the navbar, we can see that our pages are named after the respective .py filenames.
+## 15.4 Customising names, titles, and URLs of pages
+Our App can be further improved by renaming several elements of the app. To modify the name of the page that appears on the browsers tab, you will need to assign the desired name to the `title` property of the page registry. To 
+
+. By looking at the Navbar, we can see that our pages are named after the respective .py filenames.
 However, our Graph filename contains some versioning (hence the page name "Graphs v2 fin"). This doesn't look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling `dash.register_page(__name__)` for each page. 
 In the version of the app displayed below, we've introduced the following adjustments for some pages:
 - pages/home.py : `dash.register_page(__name__, path='/', order='0', name='Home', title='Home')`
