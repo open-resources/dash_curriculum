@@ -158,7 +158,7 @@ print(raw_data.head())
 ## Filter Data
 Now that the data is clean we can filter the data.
 
-### Filter by value & astype
+### Filter by value & `astype`
 Let's filter the data for temperatures over `18.5C`.  Notice that we need to use the Pandas method [`astype()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html) to use the `temp` data as `float` type data instead of `string` data. 
 
 ```python
@@ -192,7 +192,7 @@ print(fltr_df.describe())
 ```
 ![filter_by_value](./ch7_files/filter_by_value.png)
 
-### iloc
+### Iloc
 The Pandas method [`iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html) is used to filter data by index value.  For example, if we wanted the first 20 values we could return that with:
 
 ```python
