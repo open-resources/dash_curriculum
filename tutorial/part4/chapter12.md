@@ -2859,6 +2859,7 @@ In the exercises below, we will apply some of the strategies learnt in this chap
 - Add a dark line (which is considered as a margin) below the title
 - Make the App full page width and height
 - Set the full app background to a grey-gradient colour using the following class (that we saw in an example from this chapter): `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`
+You can find all available `className` values by downloading [this file](https://github.com/twbs/bootstrap/releases/download/v5.0.2/bootstrap-5.0.2-dist.zip) and opening `bootstrap-5.0.2-dist\css\bootstrap.css` with a text editor.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
