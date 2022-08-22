@@ -323,6 +323,29 @@ def update_graph(n_clicks, value_dropdown, value_radio):
 
 ![img-repo](./ch14_files/multi-page.gif)
 
+## Exercises
+(1) Starting from the apps we built in the two [exercises from chapter 12](https://open-resources.github.io/dash_curriculum/part4/chapter12.html#exercises), let's create a multipage app titled "My first multipage App" in which "Part 1" is the page dedicated to the Exercise 1 and "Part 2" is the page dedicated to the section 2.
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex1](./ch14_files/chapter14_ex1.gif)
+````
+
+(2) Starting from the app we built in [exercise 11.2](https://open-resources.github.io/dash_curriculum/part3/chapter11.html#exercises), adjust the layout in the
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex2](./ch14_files/chapter14_ex2.gif)
+````
+
 ## Summary
 In this chapter, we have gone over the advantages of a multi-page app compared to a single-page app. We have learned to structure a multi-page app and understood what features differ from a single-page app. 
 
