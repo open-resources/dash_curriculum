@@ -28,7 +28,7 @@ Multi pages Apps include, by default, a landing page whenever the user tries to 
 The default 404-page looks like the following:
 ![app_structure](ch15_files/app_404_default.gif)
 
-However, the 404-page can be customised. In order to do so, we need to create a new file named `not_found_404.py` inside the pages folder and add the desired layout content.
+However, the 404-page can be customised. In order to do so, we created a new file named `not_found_404.py` inside the pages folder and add the desired layout content.
 
 ```
 import dash
@@ -45,11 +45,11 @@ layout = html.Div(children=[
 ])
 ```
 
-Then, by adding the below line of code to the `app.py` file, we ensure that the 404 page does not show up as a link in the navbar. 
+Then, by adding the below line of code to the `app.py` file, we ensured that the 404 page does not show up as a link in the navbar. 
 
 `for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"`
 
-Now, run the app, and try to type a fake name in the url to see the new 404 page displayed:
+Run the app and try to type a fake name in the url to see the 404 page displayed:
 
 ![app_structure](ch15_files/app_404_custom.gif)
 
@@ -74,35 +74,35 @@ As we can see, the registry stores a lot of information for each page, let's foc
 
 
 ## 15.3 Customising multi-page order
-By looking at the App we have so far, you'll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the `order` propertye of the home.py file, the number 1 to the graphs_v2_fin.py file and the number 2 to the about.py file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: "Home" first since it's the home page, "About" second, and "Graphs" third.
+By looking at the App we have so far, you'll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the `order` property of the home.py file, the number 1 to the graphs_v2_fin.py file and the number 2 to the about.py file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: "Home" first because it's the home page, "About" second, and "Graphs" third.
 
-Here's what the current app looks like: 
+Here's what the page registry looks like: 
 - pages/home.py : `dash.register_page(__name__, path='/', order='0')`
 - pages/about.py : `dash.register_page(__name__, order='2')`
 - pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1')`
 
-Get your feet wet. Try to change the order of the home page so it appears last (far right) in the Navbar. 
+Get your feet wet and try to change the order of the home page so it appears last (far right) in the Navbar. 
 
 
 ## 15.4 Customising names, titles, and URLs of pages
-Our App can be further improved by renaming several elements of the app. To modify the name of the page that appears on the browsers tab, you will need to assign the desired name to the `title` property of the page registry. To 
+The graphs page of our app is represented by the file `graphs_v2_fin.py`. Dash will automatically assign the file name to the `title`, `name` and `path` properties of the page registry. However, in our case, we made the app look more professional by assigning new names and titles in the page registry. 
 
-. By looking at the Navbar, we can see that our pages are named after the respective .py filenames.
-However, our Graph filename contains some versioning (hence the page name "Graphs v2 fin"). This doesn't look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling `dash.register_page(__name__)` for each page. 
-In the version of the app displayed below, we've introduced the following adjustments for some pages:
-- pages/home.py : `dash.register_page(__name__, path='/', order='0', name='Home', title='Home')`
 - pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs')`.
 
-In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab for each page. This is the difference between `name` and `title` props and it is particularly evident for the "graphs" page:
+Notice that we did not modigy the `path` property of the page registry. Consequently, the url of the graphs page will remain `/graphs-v2-fin`. 
+
+Pay attention to the gif below to see how the new name is displayed in the Navbar and the new title is displayed in the browser tab.
 
 ![app_structure](ch15_files/app_fix02_names.gif)
 
-Now try this yourself: go into the pages files and update the `title` and `name` props with other values.
+Now try this yourself: go into the pages files and update the `title` and `name` properties with other values.
 
 ## 15.5 Updating the default `pages` directory
-We can further customise our app by renaming the folder which contains all pages. By default, the folder should be named `pages`, however, we can simply specify a custom name when instantiating our `app`.
-Let's suppose we want to rename the folder to `app sections`. We can do so by using the `pages_folder` prop when instantiating:
-`app = Dash(__name__, use_pages=True, external_stylesheets=[[url_theme2, dbc_css], dbc.icons.FONT_AWESOME], pages_folder='app sections')`.
+We can further customise our app by renaming the folder which contains all pages. By default, the folder should be named `pages`; however, we can simply specify a custom folder name when instantiating our `app` if we prefer a different name.
+
+Let's suppose we chose to rename the folder with all the app's pages to `app sections` instead of `pages`. After we do that, we need to update the `pages_folder` property in the `app.py` file:
+
+`app = Dash(__name__, use_pages=True, pages_folder='app sections')`.
 
 ```{note}
 When renaming the `pages` directory, all parts of the code which are using the `pages` folder should be updated with the new name. An example of this is the code used in our template to build the `Navbar`. When we rename the folder, we should also change our code
@@ -110,7 +110,7 @@ When renaming the `pages` directory, all parts of the code which are using the `
 - to: `for page in dash.page_registry.values() if page["module"] != "app sections.not_found_404"`
 ```
 
-## 15.7 Metatags
+## 15.6 Metatags
 When sharing the link to a page of our app (on chat app or social networks), it is possible, thanks to metatags, to display a card with a preview of our page consisting of: a `title`, a `description` and an `image`.
 To test this feature, we would need the app to be published; here's an example of a published app which includes metatags: [example of metatags](https://www.trainerhill.com/blog/power-creep).
 
