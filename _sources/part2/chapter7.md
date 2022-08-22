@@ -158,7 +158,7 @@ print(raw_data.head())
 ## Filter Data
 Now that the data is clean we can filter the data.
 
-### Filter by value & `astype`
+### Filter by value & astype
 Let's filter the data for temperatures over `18.5C`.  Notice that we need to use the Pandas method [`astype()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html) to use the `temp` data as `float` type data instead of `string` data. 
 
 ```python
@@ -231,7 +231,7 @@ print(first_20.describe())
 
 
 ## Concatenate
-Let's say we new temperature data to import and analyze. We'll use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html).
+Let's say we new temperature data to import and analyze. We'll use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) method.
 
 ```python
 import pandas as pd

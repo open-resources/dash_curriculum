@@ -405,12 +405,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#filter-by-value-astype">
-     Filter by value &amp;
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       astype
-      </span>
-     </code>
+     Filter by value &amp; astype
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -523,12 +518,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#filter-by-value-astype">
-     Filter by value &amp;
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       astype
-      </span>
-     </code>
+     Filter by value &amp; astype
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -733,7 +723,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h2>Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">¶</a></h2>
 <p>Now that the data is clean we can filter the data.</p>
 <div class="section" id="filter-by-value-astype">
-<h3>Filter by value &amp; <code class="docutils literal notranslate"><span class="pre">astype</span></code><a class="headerlink" href="#filter-by-value-astype" title="Permalink to this headline">¶</a></h3>
+<h3>Filter by value &amp; astype<a class="headerlink" href="#filter-by-value-astype" title="Permalink to this headline">¶</a></h3>
 <p>Let’s filter the data for temperatures over <code class="docutils literal notranslate"><span class="pre">18.5C</span></code>.  Notice that we need to use the Pandas method <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html"><code class="docutils literal notranslate"><span class="pre">astype()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">temp</span></code> data as <code class="docutils literal notranslate"><span class="pre">float</span></code> type data instead of <code class="docutils literal notranslate"><span class="pre">string</span></code> data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -806,7 +796,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="concatenate">
 <h2>Concatenate<a class="headerlink" href="#concatenate" title="Permalink to this headline">¶</a></h2>
-<p>Let’s say we new temperature data to import and analyze. We’ll use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code class="docutils literal notranslate"><span class="pre">concat</span></code></a>.</p>
+<p>Let’s say we new temperature data to import and analyze. We’ll use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code class="docutils literal notranslate"><span class="pre">concat</span></code></a> method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
