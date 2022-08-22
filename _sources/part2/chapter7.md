@@ -148,7 +148,7 @@ for index, row in raw_data.iterrows():
         float(row[2]) # 'temp' column is index 2
     except:
         raw_data.drop(index, axis=0, inplace=True)
-        
+
 print(raw_data.head())
 raw_data.reset_index(drop=True, inplace=True)
 print(raw_data.head())
@@ -158,6 +158,37 @@ print(raw_data.head())
 ## Filter Data
 Now that the data is clean we can filter the data.
 
+### By Value
+Let's see what times of day the temperature is highest by filtering for temps over `19C`:
+
+```python
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+print(raw_data.head())
+print(raw_data.shape)
+print(raw_data.info())
+print(raw_data.describe())
+
+raw_data.dropna(axis=0,inplace=True)
+
+print(raw_data.describe())
+
+for index, row in raw_data.iterrows():
+    try:
+        float(row[2]) # 'temp' column is index 2
+    except:
+        raw_data.drop(index, axis=0, inplace=True)
+
+print(raw_data.head())
+raw_data.reset_index(drop=True, inplace=True)
+print(raw_data.head())
+
+fltr_df = raw_data[raw_data['Temp']<19]
+print(fltr_df.describe())
+```
 
 ## Other Resources
 
