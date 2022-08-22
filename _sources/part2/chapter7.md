@@ -158,8 +158,8 @@ print(raw_data.head())
 ## Filter Data
 Now that the data is clean we can filter the data.
 
-### By Value
-Let's see what times of day the temperature is highest by filtering for temps over `19C`:
+### Sort by value & astype()
+Let's see what times of day the temperature is highest by filtering for temps over `19C`.  Notice that we need to use the Pandas method `astype(float)` to use the `temp` data as float data instead of string data:
 
 ```python
 import pandas as pd
@@ -186,8 +186,8 @@ print(raw_data.head())
 raw_data.reset_index(drop=True, inplace=True)
 print(raw_data.head())
 
-fltr_df = raw_data[raw_data['Temp']<19]
-print(fltr_df.describe())
+fltr_df = raw_data[raw_data['temp'].astype(float).between(18.5,19)]
+print(fltr_df.head())
 ```
 
 ## Other Resources
