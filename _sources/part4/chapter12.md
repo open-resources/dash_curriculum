@@ -2855,10 +2855,10 @@ app.run_server(mode="external", port=8009, debug=True)
 In the exercises below, we will apply some of the strategies learnt in this chapter, to style some of the apps we have build previosuly.
 
 (1) Starting from the app we built in [exercise 8.2](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises), just by adding the right `className` to the right components, perform the following layout enhancements:
-- Adjust the title text to make it dark
-- Add a dark line (which is considered as a margin) below the title
-- Make the App full page width and height
-- Set the full app background to a grey-gradient colour using the following class (that we saw in an example from this chapter): `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`
+- Adjust the title text to make it dark.
+- Add a dark line (which is considered as a margin) below the title.
+- Make the App full page width and height.
+- Set the full app background to a grey-gradient colour using the following class (that we saw in an example from this chapter): `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`.
 You can find all available `className` values by downloading [this file](https://github.com/twbs/bootstrap/releases/download/v5.0.2/bootstrap-5.0.2-dist.zip) and opening `bootstrap-5.0.2-dist\css\bootstrap.css` with a text editor.
 ````{dropdown} See Solution
     :container: + shadow
@@ -2932,11 +2932,12 @@ if __name__== '__main__':
 
 (2) Starting from the app we built in [exercise 11.2](https://open-resources.github.io/dash_curriculum/part3/chapter11.html#exercises), adjust the layout in the following way:
 - Make the title dark
-- Create a tab style variable (to be assigned to the `style` prop of each tab) so that the tab background color becomes `#800033`, the text becomes bold and color `#f2f2f2` and the border is `1px solid #ffe6f0`
+- Create a tab style variable (to be assigned to the `style` prop of each tab) so that the tab background color becomes `#800033`, the text becomes bold and color `#f2f2f2` and the border is `1px solid #ffe6f0`.
 - Create a selected tab style variable (to be assigned to the `selected_style` prop of each tab) where, in addition to the above, we also underline the text.
-- Add some padding to the tabs content container
-- Assign this css class to the app layout to set proper background `bg-danger bg-opacity-75 m-0 p-3 bg-gradient`. Make it fluid and full height and width.
+- Add some padding to the tabs content container.
+- Assign this css class `bg-danger bg-opacity-75 m-0 p-3 bg-gradient` to the app layout to set proper background. Make it fluid and full height and width.
 - Remove the border and padding to each of the three cards in tab 1.
+
 We recommend to apply each layout change with `debug=True` option, so that you can see the effect of each command.
 ````{dropdown} See Solution
     :container: + shadow
@@ -3114,5 +3115,5 @@ def update_markdown(metric_):
 if __name__== '__main__':
     app.run_server()
 ```
-![solution_ex1](./ch11_files/chapter12_ex2.gif)
+![solution_ex2](./ch11_files/chapter12_ex2.gif)
 ````
