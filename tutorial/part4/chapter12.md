@@ -2850,3 +2850,90 @@ app.run_server(mode="external", port=8009, debug=True)
   [39]: https://i.stack.imgur.com/dxVBF.png
   [40]: https://i.stack.imgur.com/NGfOi.png
   [41]: https://i.stack.imgur.com/EJw6S.png
+
+## Exercises
+In the exercises below, we will apply some of the strategies learnt in this chapter, to style some of the apps we have build previosuly.
+(1) Starting from the app we built in [exercise 8.2](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises), just by adding the right `className` to the right components, perform the following layout enhancements:
+- Adjust the title text to make it dark
+- Add a dark line (which is considered as a margin) below the title
+- Make the App fill page width and height
+- Set the full app background colour to a grey-gradient colour with the following class that we saw in an example from this chapter: `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+from dash import Dash, dcc, Output, Input
+import pandas as pd
+import plotly.express as px
+import dash_bootstrap_components as dbc
+
+# data
+df = px.data.gapminder()
+df = df.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
+
+# Dash App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+title_ = dcc.Markdown(children='Gapminder Stacked Bar Charts', style={'textAlign': 'center','fontSize': 25}, className='text-dark')
+dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
+                        options= [{'label': 'Population', 'value': 'pop'},
+                                {'label': 'GDP per capita', 'value': 'gdpPercap'},
+                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
+graph_ = dcc.Graph(id='figure1')
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col([title_], width=12)
+            ]),
+        dbc.Row(
+            [
+                dbc.Col([dropdown_],
+                        className="p-3",
+                        width=2),
+                dbc.Col(
+                        [
+                            graph_
+                        ],
+                        className="p-3",
+                        width=10),
+            ],
+            className="border-top border-dark border-3 m-1",
+            justify="evenly"
+        )
+    ],
+    className="bg-secondary bg-opacity-75 m-0 p-3 bg-gradient",
+    fluid=True,
+    style={"height": "100vh"},
+)
+
+# Callbacks
+@app.callback(
+    Output('figure1','figure'),
+    Input('metric-dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_markdown(metric_):
+    fig = px.bar(df, x='year', y=metric_, color='continent', template='plotly_dark')
+    return fig
+
+# Run the App
+if __name__== '__main__':
+    app.run_server(debug = True)
+```
+![solution_ex1](./ch11_files/chapter12_ex1.gif)
+````
+(2) Bu
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+  
+```
+
+```
+![solution_ex1](./ch11_files/chapter12_ex1.gif)
+````
