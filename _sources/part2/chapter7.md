@@ -229,6 +229,14 @@ print(first_20.describe())
 ```
 ![first 20 values](./ch7_files/first_20.png)
 
+
+## Merge
+Let's say we new temperature data to import and analyze. We'll use the [`merge`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html).
+
+```python
+
+```
+
 ## Other Resources
 
 [Pandas](https://pandas.pydata.org/) is a data analysis and manipulation library
