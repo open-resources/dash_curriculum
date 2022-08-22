@@ -159,7 +159,7 @@ print(raw_data.head())
 Now that the data is clean we can filter the data.
 
 ### Filter by value & astype()
-Let's filter the data for temperatures over `18.5C`.  Notice that we need to use the Pandas method [`astype(float)`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html) to use the `temp` data as `float` type data instead of `string` data. 
+Let's filter the data for temperatures over `18.5C`.  Notice that we need to use the Pandas method `astype(float)` to use the `temp` data as `float` type data instead of `string` data. 
 
 ```python
 import pandas as pd
