@@ -56,7 +56,10 @@ Whether or not your visualizations are `clear` and `captivating` will depend hea
 
 ### 8.1.4 Concise
 
-And avoid obscuring your data through misrepresentation. One example is to use ranges or curoffs of your figure axes that misrepresent your data. Another consideration is the data itself? Are you trying to show too much at the same time? Sometimes you can consider summarizing your data instead of showing the raw data only. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - datat that you do not have the proper rights to share. Always cite your sources, for example through a label in the bottom right corner. Regarding other labels, always try to describe your data and axes properly. Many will suggest that you should labeld your data directly on particularly interestring data points, and not indirectly using a `legend`. That's not very fitting for Plotly figures what have got nice interactive capabilites connected to the legend. We often see that some chose to apply different colors to labels and titles. This is rarely necessary. The next subchapter will focus on how colors should be used to `differentiate data values or categories` and not different decorating elements of your charts.
+And avoid obscuring your data through misrepresentation. One example is to use ranges or curoffs of your figure axes that misrepresent your data. Another consideration is the data itself? Are you trying to show too much at the same time? Sometimes you can consider summarizing your data instead of showing the raw data only. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - data that you do not have the proper rights to share. Always cite your sources, for example through a label in the bottom right corner. Regarding other labels, always try to describe your data and axes properly. Many will suggest that you should label your data directly on particularly interestring data points, and not indirectly using a `legend`. While the former is often a good idea, the latter is not very fitting for Plotly figures that have got nice interactive capabilites connected to the legend. But do consider making your legend as brief and concise as possible. Instead of `Company A, Company C, Company D`, apply `Company` as a legend title and then list `A, B , C`.
+
+
+We often see that some chose to apply different colors to labels and titles. This is rarely necessary as they mostly have different positoins, orientations or even font size. The next subchapter will focus on how colors should be used to `differentiate data values or categories` and not different decorating elements of your charts.
 
 ### 8.1.5 Colors
 
@@ -66,17 +69,6 @@ When it comes to color themes, scales and color composition Plotly Express alrea
 
 First of all, unless the colors you apply are a part of a reocurring theme, varying colors *should* reflect varying values or categories. Again, consider the earlier mentioned arguments regarding data ink. You should also keep in mind that colors have different meanings for alle people, and that some are colorblind which. Combining a greyscale with different symbols for, for example bars or lines, can more often that not be a good idea. If you combine a greyscale with only one or two colors on top, you'll very likely produce a very effective visualizations. Take a look at the gif below and see if you agree with some of the choices we've made there. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide the look and feel of your Plotly figures for yourself!
 
-
-
-Figure 1 - Example of chart junk
-
-[![enter image description here][1]][1]
-
-
-Figure 2 - Same chart after following Shaffer and Tufte
-
-
-[![enter image description here][2]][2]
 
 Figure 3 - Gif that shows the transition between Figure 1 and Figure 2
 
