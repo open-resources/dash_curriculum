@@ -11,7 +11,7 @@ Gabriele is an Engineer from Milan, Italy. He has taken part in various BI and d
 ***
 
 Shane Mattner -
-Shane is an embedded firmware engineer living in San Francisco, California. He's worked as a firmware, electrical, and controls engineer on various consumer and industrial products. Plotly and Dash have become an integral part of his engineering toolkit that makes data collection and analysis easy.
+Shane is an embedded firmware engineer living in San Francisco, California. He's worked as a firmware, electrical, and controls engineer on various consumer and industrial products. Plotly and Dash have become an integral part of his engineering toolkit that makes data collection and analysis easy. Follow him on [Linkedin](https://www.linkedin.com/in/shane-mattner-071b7941/) and [Github](https://github.com/shanemmattner). 
 
 ![shane_mattner](./about_files/shane_mattner.jpeg)
 
