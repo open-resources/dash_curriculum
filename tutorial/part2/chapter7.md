@@ -192,7 +192,7 @@ print(fltr_df.describe())
 ```
 ![filter_by_value](./ch7_files/filter_by_value.png)
 
-### Iloc
+### iloc
 The Pandas method [`iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html) is used to filter data by index value.  For example, if we wanted the first 20 values we could return that with:
 
 ```python
