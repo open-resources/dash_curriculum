@@ -2853,11 +2853,12 @@ app.run_server(mode="external", port=8009, debug=True)
 
 ## Exercises
 In the exercises below, we will apply some of the strategies learnt in this chapter, to style some of the apps we have build previosuly.
+
 (1) Starting from the app we built in [exercise 8.2](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises), just by adding the right `className` to the right components, perform the following layout enhancements:
 - Adjust the title text to make it dark
 - Add a dark line (which is considered as a margin) below the title
-- Make the App fill page width and height
-- Set the full app background colour to a grey-gradient colour with the following class that we saw in an example from this chapter: `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`
+- Make the App full page width and height
+- Set the full app background to a grey-gradient colour using the following class (that we saw in an example from this chapter): `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
