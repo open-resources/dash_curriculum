@@ -230,11 +230,42 @@ print(first_20.describe())
 ![first 20 values](./ch7_files/first_20.png)
 
 
-## Merge
-Let's say we new temperature data to import and analyze. We'll use the [`merge`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html).
+## Concatenate
+Let's say we new temperature data to import and analyze. We'll use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html).
 
 ```python
+import pandas as pd
 
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+raw_data.dropna(axis=0,inplace=True)
+
+for index, row in raw_data.iterrows():
+    try:
+        float(row[2]) # 'temp' column is index 2
+    except:
+        raw_data.drop(index, axis=0, inplace=True)
+
+raw_data.reset_index(drop=True, inplace=True)
+
+# Import the 2nd data set
+url2 = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data_2.csv'
+raw_data2 = pd.read_csv(url)
+raw_data2.dropna(axis=0,inplace=True)
+
+for index, row in raw_data2.iterrows():
+    try:
+        float(row[2]) # 'temp' column is index 2
+    except:
+        raw_data2.drop(index, axis=0, inplace=True)
+
+raw_data2.reset_index(drop=True, inplace=True)
+
+print(raw_data.head())
+print(raw_data2.head())
+
+concat_df = pd.concat([raw_data, raw_data2])
+print(concat_df)
 ```
 
 ## Other Resources
