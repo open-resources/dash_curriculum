@@ -355,8 +355,28 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#after-gif">
-       After gif
+      <a class="reference internal nav-link" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration">
+       8.1.1 Message first, visualization second / Focus on the data, not the decoration
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shaffer-s-four-c-s">
+       8.1.2 Shaffer’s four C’s
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-ink-and-chart-junk">
+       8.1.3 Data ink and chart junk
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#concise">
+       8.1.4 Concise
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#colors">
+       8.1.5 Colors
       </a>
      </li>
     </ul>
@@ -527,8 +547,28 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#after-gif">
-       After gif
+      <a class="reference internal nav-link" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration">
+       8.1.1 Message first, visualization second / Focus on the data, not the decoration
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#shaffer-s-four-c-s">
+       8.1.2 Shaffer’s four C’s
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#data-ink-and-chart-junk">
+       8.1.3 Data ink and chart junk
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#concise">
+       8.1.4 Concise
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#colors">
+       8.1.5 Colors
       </a>
      </li>
     </ul>
@@ -692,7 +732,12 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="principles-of-effective-visualizations">
 <h2>8.1 Principles of effective visualizations<a class="headerlink" href="#principles-of-effective-visualizations" title="Permalink to this headline">¶</a></h2>
 <p>Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualization you want. We will argue that Plotly Express charts both look good and offer means of effective visualizations right out of the box. But you will also learn how to make your own changes to themes and layouts.</p>
+<div class="section" id="message-first-visualization-second-focus-on-the-data-not-the-decoration">
+<h3>8.1.1 Message first, visualization second / Focus on the data, not the decoration<a class="headerlink" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration" title="Permalink to this headline">¶</a></h3>
 <p>With the power of this flexibiity at your hands, you should keep in mind that making effective data visualizations is all about storytelling and / or conveying a message, and <em>not</em> making good looking pictures. As already stated, you can and have it both ways with Plotly. However, what is <em>good looking</em> will always be subject to individual preferences. Nevertheless, there are a few principles that will let you get your messages through to any recipient regardless of their preferences</p>
+</div>
+<div class="section" id="shaffer-s-four-c-s">
+<h3>8.1.2 Shaffer’s four C’s<a class="headerlink" href="#shaffer-s-four-c-s" title="Permalink to this headline">¶</a></h3>
 <p>People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be <code class="docutils literal notranslate"><span class="pre">clear</span></code>, <code class="docutils literal notranslate"><span class="pre">clean</span></code>, <code class="docutils literal notranslate"><span class="pre">concise</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code>. These are the so-called Shaffer’s four <strong><code class="docutils literal notranslate"><span class="pre">C</span></code></strong>’s of data visualization.</p>
 <div class="highlight-{admonition}Shaffer's notranslate"><div class="highlight"><pre><span></span>
 1) `Clear -  easily seen; sharply defined`
@@ -700,16 +745,19 @@ const thebe_selector_output = ".output, .cell_output"
     - clarity more important than aesthetics
 2) `Clean - thorough, complete, unadulterated`
     - labels, axes, gridlines, formatting, right chart type, color choice, etc
-3) `Concise - brief but compprehensive`
+3) `Concise - brief but comprehensive`
     - Make it easy to conceptualize the point of the visual.
     - Not minimalist, but not verbose
 4) `Captivating - to attract and hold by beauty and excellence`
     - does it capture attention?
     - is it interesting?
-    - does it tell the story
+    - does it tell the story?
 </pre></div>
 </div>
-<p>Whether your visualizations are <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code> will depend heavily on your actual data, message and audience. These factors will vary heavily from case to case, so this theme is not especially suited for an introductory subchapter general principles of data visualization . What we will rather touch upon here are some elements of Shaffers <code class="docutils literal notranslate"><span class="pre">Clean</span></code> and <code class="docutils literal notranslate"><span class="pre">Concise</span></code> principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on <code class="docutils literal notranslate"><span class="pre">Chart</span> <span class="pre">junk</span></code> and <code class="docutils literal notranslate"><span class="pre">data-ink</span></code> ratio. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. <code class="docutils literal notranslate"><span class="pre">Data-ink</span></code> is the non-erasable core of the a graphic, while <code class="docutils literal notranslate"><span class="pre">non-data-ink</span></code> can easily be regarded as redundant <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. So when you’re designing your visualizations, you should strive for a high ratio between <code class="docutils literal notranslate"><span class="pre">data-ink</span></code> and <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. This will help you focus on the message and not the picture your audience is resting their eyes on.</p>
+</div>
+<div class="section" id="data-ink-and-chart-junk">
+<h3>8.1.3 Data ink and chart junk<a class="headerlink" href="#data-ink-and-chart-junk" title="Permalink to this headline">¶</a></h3>
+<p>Whether or not your visualizations are <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code> will depend heavily on your actual data, message and audience. These factors will vary from case to case ans is not particularly suited for an introductory chapter on general principles for data visualization. What we will rather touch upon here are some elements of Shaffers <code class="docutils literal notranslate"><span class="pre">Clean</span></code> and <code class="docutils literal notranslate"><span class="pre">Concise</span></code> principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on <code class="docutils literal notranslate"><span class="pre">Chart</span> <span class="pre">junk</span></code> and <code class="docutils literal notranslate"><span class="pre">data-ink</span></code>. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. <code class="docutils literal notranslate"><span class="pre">Data-ink</span></code> is the non-erasable core of the a graphic, while <code class="docutils literal notranslate"><span class="pre">non-data-ink</span></code> can easily be regarded as redundant <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. So when you’re designing your visualizations, you should strive for a high ratio between <code class="docutils literal notranslate"><span class="pre">data-ink</span></code> and <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. This will help you focus on the message and not the picture your audience is resting their eyes on.</p>
 <div class="highlight-{admonition}Examples notranslate"><div class="highlight"><pre><span></span>1) `Borders` can be reduced
 2) `Gridlines` can be removed. Single X and Y axes are often enough.
 3) `Fill colors` should be avoided when separating sections, titles, tablse and charts. `White space` is better.
@@ -719,15 +767,22 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
+</div>
+<div class="section" id="concise">
+<h3>8.1.4 Concise<a class="headerlink" href="#concise" title="Permalink to this headline">¶</a></h3>
+<p>And avoid obscuring your data through misrepresentation. One example is to use ranges or curoffs of your figure axes that misrepresent your data. Another consideration is the data itself? Are you trying to show too much at the same time? Sometimes you can consider summarizing your data instead of showing the raw data only. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - datat that you do not have the proper rights to share. Always cite your sources.</p>
+</div>
+<div class="section" id="colors">
+<h3>8.1.5 Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
+<p>The choice and use of colors play a major in data visualization, and is also subject for an array of books and research. Here, we will only focus on what we consider to be most important.</p>
+<p>When it comes to color themes, scales and color composition Plotly Express already has an array of palettes available. You can study them <a class="reference external" href="https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express">here</a>. You should know that different scales are used differently for two different types aof data, continous and discrete. A A typiocal example of continuos data are temperature, and…? Categorical data such as country and continent names serve as good examples for categorical data. Regardless of data types, the scales that Plotly Express uses have been carefully put together on the background of color theory to make them harmonize and look good together (bold statement? Maybe a citation of sorts?). But again, although Plotly Express makes things easy for you, there are a few things you should keep in mind here too.</p>
+<p>First of all, unless the colors you apply are a part of a reocurring theme, varying colors <em>should</em> reflect varying values or categories. Again, consider the earlier mentioned arguments regarding data ink. You should also keep in mind that colors have different meanings for alle people, and that some are colorblind which. Combining a greyscale with different symbols for, for example bars or lines, can more often that not be a good idea. If you combine a greyscale with only one or two colors on top, you’ll very likely produce a very effective visualizations. Take a look at the gif below and see if you agree with some of the choices we’ve made there. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide the look and feel of your Plotly figures for yourself!</p>
 <p>Figure 1 - Example of chart junk</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/cRWkl.png"><img alt="enter image description here" src="https://i.stack.imgur.com/cRWkl.png" /></a></p>
 <p>Figure 2 - Same chart after following Shaffer and Tufte</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/bkC2y.png"><img alt="enter image description here" src="https://i.stack.imgur.com/bkC2y.png" /></a></p>
 <p>Figure 3 - Gif that shows the transition between Figure 1 and Figure 2</p>
-<p><a class="reference external" href="https://i.stack.imgur.com/gaL9H.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/gaL9H.gif" /></a></p>
-<div class="section" id="after-gif">
-<h3>After gif<a class="headerlink" href="#after-gif" title="Permalink to this headline">¶</a></h3>
-<p>You might not agree on every choice we’ve made in that gif. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide for yourself!</p>
+<p><a class="reference external" href="https://i.stack.imgur.com/WoPOZ.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/WoPOZ.gif" /></a></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 </div>

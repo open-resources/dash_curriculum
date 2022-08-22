@@ -15,7 +15,11 @@ In this chapter we will learn to use the Plotly graphing library given that it i
 
 Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualization you want. We will argue that Plotly Express charts both look good and offer means of effective visualizations right out of the box. But you will also learn how to make your own changes to themes and layouts. 
 
+### 8.1.1 Message first, visualization second / Focus on the data, not the decoration
+
 With the power of this flexibiity at your hands, you should keep in mind that making effective data visualizations is all about storytelling and / or conveying a message, and *not* making good looking pictures. As already stated, you can and have it both ways with Plotly. However, what is *good looking* will always be subject to individual preferences. Nevertheless, there are a few principles that will let you get your messages through to any recipient regardless of their preferences
+
+###  8.1.2 Shaffer's four C's
 
 People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be `clear`, `clean`, `concise` and `captivating`. These are the so-called Shaffer's four **`C`**'s of data visualization.
 
@@ -26,16 +30,18 @@ People are generally very good at detecting patterns and structures with their e
     - clarity more important than aesthetics
 2) `Clean - thorough, complete, unadulterated`
     - labels, axes, gridlines, formatting, right chart type, color choice, etc
-3) `Concise - brief but compprehensive`
+3) `Concise - brief but comprehensive`
     - Make it easy to conceptualize the point of the visual.
     - Not minimalist, but not verbose
 4) `Captivating - to attract and hold by beauty and excellence`
     - does it capture attention?
     - is it interesting?
-    - does it tell the story
+    - does it tell the story?
 ```
 
-Whether your visualizations are `clear` and `captivating` will depend heavily on your actual data, message and audience. These factors will vary heavily from case to case, so this theme is not especially suited for an introductory subchapter general principles of data visualization . What we will rather touch upon here are some elements of Shaffers `Clean` and `Concise` principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on `Chart junk` and `data-ink` ratio. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. `Data-ink` is the non-erasable core of the a graphic, while `non-data-ink` can easily be regarded as redundant `chart junk`. So when you're designing your visualizations, you should strive for a high ratio between `data-ink` and `chart junk`. This will help you focus on the message and not the picture your audience is resting their eyes on.
+###  8.1.3 Data ink and chart junk
+
+Whether or not your visualizations are `clear` and `captivating` will depend heavily on your actual data, message and audience. These factors will vary from case to case ans is not particularly suited for an introductory chapter on general principles for data visualization. What we will rather touch upon here are some elements of Shaffers `Clean` and `Concise` principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on `Chart junk` and `data-ink`. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. `Data-ink` is the non-erasable core of the a graphic, while `non-data-ink` can easily be regarded as redundant `chart junk`. So when you're designing your visualizations, you should strive for a high ratio between `data-ink` and `chart junk`. This will help you focus on the message and not the picture your audience is resting their eyes on.
 
 
 ```{admonition}Examples of chart junk
@@ -47,6 +53,20 @@ Whether your visualizations are `clear` and `captivating` will depend heavily on
 6) More!?!
 
 ```
+
+### 8.1.4 Concise
+
+And avoid obscuring your data through misrepresentation. One example is to use ranges or curoffs of your figure axes that misrepresent your data. Another consideration is the data itself? Are you trying to show too much at the same time? Sometimes you can consider summarizing your data instead of showing the raw data only. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - datat that you do not have the proper rights to share. Always cite your sources.
+
+### 8.1.5 Colors
+
+The choice and use of colors play a major in data visualization, and is also subject for an array of books and research. Here, we will only focus on what we consider to be most important.
+
+When it comes to color themes, scales and color composition Plotly Express already has an array of palettes available. You can study them [here](https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express). You should know that different scales are used differently for two different types aof data, continous and discrete. A A typiocal example of continuos data are temperature, and...? Categorical data such as country and continent names serve as good examples for categorical data. Regardless of data types, the scales that Plotly Express uses have been carefully put together on the background of color theory to make them harmonize and look good together (bold statement? Maybe a citation of sorts?). But again, although Plotly Express makes things easy for you, there are a few things you should keep in mind here too.
+
+First of all, unless the colors you apply are a part of a reocurring theme, varying colors *should* reflect varying values or categories. Again, consider the earlier mentioned arguments regarding data ink. You should also keep in mind that colors have different meanings for alle people, and that some are colorblind which. Combining a greyscale with different symbols for, for example bars or lines, can more often that not be a good idea. If you combine a greyscale with only one or two colors on top, you'll very likely produce a very effective visualizations. Take a look at the gif below and see if you agree with some of the choices we've made there. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide the look and feel of your Plotly figures for yourself!
+
+
 
 Figure 1 - Example of chart junk
 
@@ -62,10 +82,6 @@ Figure 3 - Gif that shows the transition between Figure 1 and Figure 2
 
 [![enter image description here][3]][3]
 
-
-### After gif
-
-You might not agree on every choice we've made in that gif. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide for yourself!
 
 
 ```{warning}
@@ -619,4 +635,4 @@ In the next chapter we will do a deep dive into the Dash DataTable.
 
   [1]: https://i.stack.imgur.com/cRWkl.png
   [2]: https://i.stack.imgur.com/bkC2y.png
-  [3]: https://i.stack.imgur.com/gaL9H.gif
+  [3]: https://i.stack.imgur.com/WoPOZ.gif
