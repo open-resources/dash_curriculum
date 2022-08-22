@@ -789,6 +789,11 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -1253,6 +1258,11 @@ const thebe_selector_output = ".output, .cell_output"
     </ul>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exercises">
+   Exercises
+  </a>
  </li>
 </ul>
 
@@ -4117,6 +4127,102 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
+<p>In the exercises below, we will apply some of the strategies learnt in this chapter, to style some of the apps we have build previosuly.
+(1) Starting from the app we built in <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 8.2</a>, just by adding the right <code class="docutils literal notranslate"><span class="pre">className</span></code> to the right components, perform the following layout enhancements:</p>
+<ul class="simple">
+<li><p>Adjust the title text to make it dark</p></li>
+<li><p>Add a dark line (which is considered as a margin) below the title</p></li>
+<li><p>Make the App fill page width and height</p></li>
+<li><p>Set the full app background colour to a grey-gradient colour with the following class that we saw in an example from this chapter: <code class="docutils literal notranslate"><span class="pre">bg-secondary</span> <span class="pre">bg-opacity-75</span> <span class="pre">m-0</span> <span class="pre">p-3</span> <span class="pre">bg-gradient</span></code></p></li>
+</ul>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Solution<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Dash App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">title_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Gapminder Stacked Bar Charts&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;text-dark&#39;</span><span class="p">)</span>
+<span class="n">dropdown_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a metric&#39;</span><span class="p">,</span>
+                        <span class="n">options</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;pop&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;GDP per capita&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Life Expectancy&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">}])</span>
+<span class="n">graph_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+            <span class="p">]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown_</span><span class="p">],</span>
+                        <span class="n">className</span><span class="o">=</span><span class="s2">&quot;p-3&quot;</span><span class="p">,</span>
+                        <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                        <span class="p">[</span>
+                            <span class="n">graph_</span>
+                        <span class="p">],</span>
+                        <span class="n">className</span><span class="o">=</span><span class="s2">&quot;p-3&quot;</span><span class="p">,</span>
+                        <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+            <span class="p">],</span>
+            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;border-top border-dark border-3 m-1&quot;</span><span class="p">,</span>
+            <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;evenly&quot;</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary bg-opacity-75 m-0 p-3 bg-gradient&quot;</span><span class="p">,</span>
+    <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;100vh&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">metric_</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">metric_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="card-text"><img alt="solution_ex1" src="part4/ch11_files/chapter12_ex1.gif" /></p>
+</div>
+</details><p>(2) Bu</p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Solution<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p class="card-text"><img alt="solution_ex1" src="part4/ch11_files/chapter12_ex1.gif" /></p>
+</div>
+</details></div>
 </div>
 
     <script type="text/x-thebe-config">
