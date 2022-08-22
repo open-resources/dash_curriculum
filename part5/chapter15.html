@@ -382,7 +382,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metatags">
-   15.7 Metatags
+   15.6 Metatags
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -453,7 +453,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#metatags">
-   15.7 Metatags
+   15.6 Metatags
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -508,7 +508,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p>Multi pages Apps include, by default, a landing page whenever the user tries to reach an invalid URL.
 The default 404-page looks like the following:
 <img alt="app_structure" src="../_images/app_404_default.gif" /></p>
-<p>However, the 404-page can be customised. In order to do so, we need to create a new file named <code class="docutils literal notranslate"><span class="pre">not_found_404.py</span></code> inside the pages folder and add the desired layout content.</p>
+<p>However, the 404-page can be customised. In order to do so, we created a new file named <code class="docutils literal notranslate"><span class="pre">not_found_404.py</span></code> inside the pages folder and add the desired layout content.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span>
 
@@ -523,9 +523,9 @@ The default 404-page looks like the following:
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>Then, by adding the below line of code to the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file, we ensure that the 404 page does not show up as a link in the navbar.</p>
+<p>Then, by adding the below line of code to the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file, we ensured that the 404 page does not show up as a link in the navbar.</p>
 <p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span> <span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;pages.not_found_404&quot;</span></code></p>
-<p>Now, run the app, and try to type a fake name in the url to see the new 404 page displayed:</p>
+<p>Run the app and try to type a fake name in the url to see the 404 page displayed:</p>
 <p><img alt="app_structure" src="../_images/app_404_custom.gif" /></p>
 </div>
 <div class="section" id="navigating-the-page-registry">
@@ -546,34 +546,31 @@ The default 404-page looks like the following:
 </div>
 <div class="section" id="customising-multi-page-order">
 <h2>15.3 Customising multi-page order<a class="headerlink" href="#customising-multi-page-order" title="Permalink to this headline">¶</a></h2>
-<p>By looking at the App we have so far, you’ll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the <code class="docutils literal notranslate"><span class="pre">order</span></code> propertye of the <a class="reference external" href="http://home.py">home.py</a> file, the number 1 to the graphs_v2_fin.py file and the number 2 to the <a class="reference external" href="http://about.py">about.py</a> file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: “Home” first since it’s the home page, “About” second, and “Graphs” third.</p>
-<p>Here’s what the current app looks like:</p>
+<p>By looking at the App we have so far, you’ll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the <code class="docutils literal notranslate"><span class="pre">order</span></code> property of the <a class="reference external" href="http://home.py">home.py</a> file, the number 1 to the graphs_v2_fin.py file and the number 2 to the <a class="reference external" href="http://about.py">about.py</a> file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: “Home” first because it’s the home page, “About” second, and “Graphs” third.</p>
+<p>Here’s what the page registry looks like:</p>
 <ul class="simple">
 <li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order='0')</span></code></p></li>
 <li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2')</span></code></p></li>
 <li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1')</span></code></p></li>
 </ul>
-<p>Get your feet wet. Try to change the order of the home page so it appears last (far right) in the Navbar.</p>
+<p>Get your feet wet and try to change the order of the home page so it appears last (far right) in the Navbar.</p>
 </div>
 <div class="section" id="customising-names-titles-and-urls-of-pages">
 <h2>15.4 Customising names, titles, and URLs of pages<a class="headerlink" href="#customising-names-titles-and-urls-of-pages" title="Permalink to this headline">¶</a></h2>
-<p>Our App can be further improved by renaming several elements of the app. To modify the name of the page that appears on the browsers tab, you will need to assign the desired name to the <code class="docutils literal notranslate"><span class="pre">title</span></code> property of the page registry. To</p>
-<p>. By looking at the Navbar, we can see that our pages are named after the respective .py filenames.
-However, our Graph filename contains some versioning (hence the page name “Graphs v2 fin”). This doesn’t look professional, but can be easily adjusted: we can obtain a much better result by specifying the following props when calling <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__)</span></code> for each page.
-In the version of the app displayed below, we’ve introduced the following adjustments for some pages:</p>
+<p>The graphs page of our app is represented by the file <code class="docutils literal notranslate"><span class="pre">graphs_v2_fin.py</span></code>. Dash will automatically assign the file name to the <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code> properties of the page registry. However, in our case, we made the app look more professional by assigning new names and titles in the page registry.</p>
 <ul class="simple">
-<li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order='0',</span> <span class="pre">name='Home',</span> <span class="pre">title='Home')</span></code></p></li>
 <li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1',</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs')</span></code>.</p></li>
 </ul>
-<p>In the gif below, pay attention to the name displayed in the navbar and the name displayed into the browser tab for each page. This is the difference between <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">title</span></code> props and it is particularly evident for the “graphs” page:</p>
+<p>Notice that we did not modigy the <code class="docutils literal notranslate"><span class="pre">path</span></code> property of the page registry. Consequently, the url of the graphs page will remain <code class="docutils literal notranslate"><span class="pre">/graphs-v2-fin</span></code>.</p>
+<p>Pay attention to the gif below to see how the new name is displayed in the Navbar and the new title is displayed in the browser tab.</p>
 <p><img alt="app_structure" src="../_images/app_fix02_names.gif" /></p>
-<p>Now try this yourself: go into the pages files and update the <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> props with other values.</p>
+<p>Now try this yourself: go into the pages files and update the <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> properties with other values.</p>
 </div>
 <div class="section" id="updating-the-default-pages-directory">
 <h2>15.5 Updating the default <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory<a class="headerlink" href="#updating-the-default-pages-directory" title="Permalink to this headline">¶</a></h2>
-<p>We can further customise our app by renaming the folder which contains all pages. By default, the folder should be named <code class="docutils literal notranslate"><span class="pre">pages</span></code>, however, we can simply specify a custom name when instantiating our <code class="docutils literal notranslate"><span class="pre">app</span></code>.
-Let’s suppose we want to rename the folder to <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">sections</span></code>. We can do so by using the <code class="docutils literal notranslate"><span class="pre">pages_folder</span></code> prop when instantiating:
-<code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">Dash(__name__,</span> <span class="pre">use_pages=True,</span> <span class="pre">external_stylesheets=[[url_theme2,</span> <span class="pre">dbc_css],</span> <span class="pre">dbc.icons.FONT_AWESOME],</span> <span class="pre">pages_folder='app</span> <span class="pre">sections')</span></code>.</p>
+<p>We can further customise our app by renaming the folder which contains all pages. By default, the folder should be named <code class="docutils literal notranslate"><span class="pre">pages</span></code>; however, we can simply specify a custom folder name when instantiating our <code class="docutils literal notranslate"><span class="pre">app</span></code> if we prefer a different name.</p>
+<p>Let’s suppose we chose to rename the folder with all the app’s pages to <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">sections</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pages</span></code>. After we do that, we need to update the <code class="docutils literal notranslate"><span class="pre">pages_folder</span></code> property in the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file:</p>
+<p><code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">Dash(__name__,</span> <span class="pre">use_pages=True,</span> <span class="pre">pages_folder='app</span> <span class="pre">sections')</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>When renaming the <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory, all parts of the code which are using the <code class="docutils literal notranslate"><span class="pre">pages</span></code> folder should be updated with the new name. An example of this is the code used in our template to build the <code class="docutils literal notranslate"><span class="pre">Navbar</span></code>. When we rename the folder, we should also change our code</p>
@@ -584,7 +581,7 @@ Let’s suppose we want to rename the folder to <code class="docutils literal no
 </div>
 </div>
 <div class="section" id="metatags">
-<h2>15.7 Metatags<a class="headerlink" href="#metatags" title="Permalink to this headline">¶</a></h2>
+<h2>15.6 Metatags<a class="headerlink" href="#metatags" title="Permalink to this headline">¶</a></h2>
 <p>When sharing the link to a page of our app (on chat app or social networks), it is possible, thanks to metatags, to display a card with a preview of our page consisting of: a <code class="docutils literal notranslate"><span class="pre">title</span></code>, a <code class="docutils literal notranslate"><span class="pre">description</span></code> and an <code class="docutils literal notranslate"><span class="pre">image</span></code>.
 To test this feature, we would need the app to be published; here’s an example of a published app which includes metatags: <a class="reference external" href="https://www.trainerhill.com/blog/power-creep">example of metatags</a>.</p>
 <p><img alt="metatags_example" src="../_images/metatags_example.jpg" /></p>
