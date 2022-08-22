@@ -408,6 +408,11 @@ const thebe_selector_output = ".output, .cell_output"
      Filter by value &amp; astype()
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iloc">
+     iloc()
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -509,6 +514,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#filter-by-value-astype">
      Filter by value &amp; astype()
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#iloc">
+     iloc()
     </a>
    </li>
   </ul>
@@ -734,6 +744,44 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="nb">print</span><span class="p">(</span><span class="n">fltr_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 </div>
+<p><img alt="filter_by_value" src="../_images/filter_by_value.png" /></p>
+</div>
+<div class="section" id="iloc">
+<h3>iloc()<a class="headerlink" href="#iloc" title="Permalink to this headline">¶</a></h3>
+<p>The Pandas method <code class="docutils literal notranslate"><span class="pre">iloc</span></code> is used to filter data by index value.  For example, if we wanted the first 20 values we could return that with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="n">fltr_df</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">18.5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fltr_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="n">first_20</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first_20</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><img alt="first 20 values" src="../_images/first_20.png" /></p>
 </div>
 </div>
 <div class="section" id="other-resources">
