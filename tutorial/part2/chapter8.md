@@ -56,7 +56,7 @@ Whether or not your visualizations are `clear` and `captivating` will depend hea
 
 ### 8.1.4 Concise
 
-And avoid obscuring your data through misrepresentation. One example is to use ranges or curoffs of your figure axes that misrepresent your data. Another consideration is the data itself? Are you trying to show too much at the same time? Sometimes you can consider summarizing your data instead of showing the raw data only. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - datat that you do not have the proper rights to share. Always cite your sources.
+And avoid obscuring your data through misrepresentation. One example is to use ranges or curoffs of your figure axes that misrepresent your data. Another consideration is the data itself? Are you trying to show too much at the same time? Sometimes you can consider summarizing your data instead of showing the raw data only. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - datat that you do not have the proper rights to share. Always cite your sources, for example through a label in the bottom right corner. Regarding other labels, always try to describe your data and axes properly. Many will suggest that you should labeld your data directly on particularly interestring data points, and not indirectly using a `legend`. That's not very fitting for Plotly figures what have got nice interactive capabilites connected to the legend. We often see that some chose to apply different colors to labels and titles. This is rarely necessary. The next subchapter will focus on how colors should be used to `differentiate data values or categories` and not different decorating elements of your charts.
 
 ### 8.1.5 Colors
 
