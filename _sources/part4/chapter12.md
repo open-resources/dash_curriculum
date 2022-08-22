@@ -2924,10 +2924,11 @@ def update_markdown(metric_):
 
 # Run the App
 if __name__== '__main__':
-    app.run_server(debug = True)
+    app.run_server()
 ```
 ![solution_ex1](./ch11_files/chapter12_ex1.gif)
 ````
+
 (2) Bu
 ````{dropdown} See Solution
     :container: + shadow
