@@ -2927,7 +2927,7 @@ def update_markdown(metric_):
 if __name__== '__main__':
     app.run_server()
 ```
-![solution_ex1](./ch11_files/chapter12_ex1.gif)
+![solution_ex1](./ch12_files/chapter12_ex1.gif)
 ````
 
 (2) Starting from the app we built in [exercise 11.2](https://open-resources.github.io/dash_curriculum/part3/chapter11.html#exercises), adjust the layout in the following way:
@@ -3115,5 +3115,5 @@ def update_markdown(metric_):
 if __name__== '__main__':
     app.run_server()
 ```
-![solution_ex2](./ch11_files/chapter12_ex2.gif)
+![solution_ex2](./ch12_files/chapter12_ex2.gif)
 ````
