@@ -404,8 +404,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sort-by-value-astype">
-     Sort by value &amp; astype()
+    <a class="reference internal nav-link" href="#filter-by-value-astype">
+     Filter by value &amp; astype()
     </a>
    </li>
   </ul>
@@ -507,8 +507,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#sort-by-value-astype">
-     Sort by value &amp; astype()
+    <a class="reference internal nav-link" href="#filter-by-value-astype">
+     Filter by value &amp; astype()
     </a>
    </li>
   </ul>
@@ -702,9 +702,9 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="section" id="filter-data">
 <h2>Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">¶</a></h2>
 <p>Now that the data is clean we can filter the data.</p>
-<div class="section" id="sort-by-value-astype">
-<h3>Sort by value &amp; astype()<a class="headerlink" href="#sort-by-value-astype" title="Permalink to this headline">¶</a></h3>
-<p>Let’s see what times of day the temperature is highest by filtering for temps over <code class="docutils literal notranslate"><span class="pre">19C</span></code>.  Notice that we need to use the Pandas method <code class="docutils literal notranslate"><span class="pre">astype(float)</span></code> to use the <code class="docutils literal notranslate"><span class="pre">temp</span></code> data as float data instead of string data:</p>
+<div class="section" id="filter-by-value-astype">
+<h3>Filter by value &amp; astype()<a class="headerlink" href="#filter-by-value-astype" title="Permalink to this headline">¶</a></h3>
+<p>Let’s filter the data for temperatures over <code class="docutils literal notranslate"><span class="pre">18C</span></code>.  Notice that we need to use the Pandas method <code class="docutils literal notranslate"><span class="pre">astype(float)</span></code> to use the <code class="docutils literal notranslate"><span class="pre">temp</span></code> data as float data instead of string data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
@@ -729,8 +729,9 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 
-<span class="n">fltr_df</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">between</span><span class="p">(</span><span class="mf">18.5</span><span class="p">,</span><span class="mi">19</span><span class="p">)]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fltr_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="n">fltr_df</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">18.5</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fltr_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
