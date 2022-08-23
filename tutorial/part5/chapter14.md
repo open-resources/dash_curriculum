@@ -340,7 +340,7 @@ The app folder structure will be:
 	- part2.py
 
 app.py
-```
+```python
 from dash import Dash, dcc, Output, Input, html, callback
 import dash
 import pandas as pd
@@ -373,7 +373,7 @@ if __name__ == '__main__':
 ```
 
 part1.py
-```
+```python
 import dash
 from dash import Dash, dcc, Output, Input, callback
 import pandas as pd
@@ -435,7 +435,7 @@ def update_markdown(metric_):
 ```
 
 part2.py
-```
+```python
 # Import packages
 import dash
 from dash import Dash, dcc, Input, Output, html, callback
@@ -604,6 +604,7 @@ def update_markdown(metric_):
     fig = px.bar(dfG, x='year', y=metric_, color='continent', template='plotly_dark')
     return fig
 ```
+
 ![solution_ex1](./ch14_files/chapter14_ex1.gif)
 ````
 
