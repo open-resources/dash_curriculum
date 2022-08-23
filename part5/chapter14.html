@@ -1144,8 +1144,8 @@ See Solution<div class="summary-down docutils">
 </div>
 </details><p>(2) Starting from the app we built in exercise 1, let’s improve the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file. As you saw, the top part of the app doesn’t look nice, let’s make the following improvements:</p>
 <ul class="simple">
-<li><p>let’s create a dropdown menu with the link to each page. The dropdown should be on the top right of our app, below the title section</p></li>
-<li><p>Let’s modify the background of the whole top section to a dark color with a bright app title in the center</p></li>
+<li><p>Create a dropdown menu with the link to each page. The dropdown should be on the top right of our app, below the title.</p></li>
+<li><p>Modify the background of the whole top section to a dark color with a bright app title in the center</p></li>
 </ul>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -1154,7 +1154,42 @@ See Solution<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<p class="card-text">The new <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file will be the following: (the remaining files are the same as in the solution to exercise 1)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">callback</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">],</span> <span class="n">suppress_callback_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">dropdown_</span> <span class="o">=</span>  <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenu</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">DropdownMenuItem</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="p">],</span>
+        <span class="n">nav</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Show Pages&quot;</span><span class="p">,</span>
+        <span class="n">align_end</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span>
+	<span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+		<span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s1">&#39;My first multipage App&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;text-light&#39;</span><span class="p">),</span>
+	<span class="p">]),</span>
+	<span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+		<span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">()],</span> <span class="n">width</span><span class="o">=</span><span class="mi">11</span><span class="p">),</span>
+		<span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+	<span class="p">]),</span>
+	<span class="n">dash</span><span class="o">.</span><span class="n">page_container</span>
+<span class="p">],</span>
+<span class="n">fluid</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="n">className</span> <span class="o">=</span> <span class="s1">&#39;bg-dark&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p class="card-text"><img alt="solution_ex2" src="../_images/chapter14_ex2.gif" /></p>
