@@ -866,17 +866,18 @@ See Solution<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">The app folder structure will be:</p>
+<p class="card-text">The app file structure will be:</p>
 <ul class="simple">
-<li><p class="card-text"><a class="reference external" href="http://app.py">app.py</a></p></li>
-<li><p class="card-text">pages</p>
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">app.py</span></code></p></li>
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">pages</span></code></p>
 <ul>
-<li><p class="card-text"><a class="reference external" href="http://part1.py">part1.py</a></p></li>
-<li><p class="card-text"><a class="reference external" href="http://part2.py">part2.py</a></p></li>
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">part1.py</span></code></p></li>
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">part2.py</span></code></p></li>
 </ul>
 </li>
 </ul>
-<p class="card-text"><a class="reference external" href="http://app.py">app.py</a></p>
+<p class="card-text">Let’s see how each file looks like:</p>
+<p class="card-text"><code class="docutils literal notranslate"><span class="pre">app.py</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">callback</span>
 <span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -908,7 +909,7 @@ See Solution<div class="summary-down docutils">
 	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="card-text"><a class="reference external" href="http://part1.py">part1.py</a></p>
+<p class="card-text"><code class="docutils literal notranslate"><span class="pre">part1.py</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">callback</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -969,7 +970,7 @@ See Solution<div class="summary-down docutils">
     <span class="k">return</span> <span class="n">fig</span>
 </pre></div>
 </div>
-<p class="card-text"><a class="reference external" href="http://part2.py">part2.py</a></p>
+<p class="card-text"><code class="docutils literal notranslate"><span class="pre">part2.py</span></code></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">callback</span>
@@ -1141,7 +1142,11 @@ See Solution<div class="summary-down docutils">
 </div>
 <p class="card-text"><img alt="solution_ex1" src="../_images/chapter14_ex1.gif" /></p>
 </div>
-</details><p>(2) Starting from the app we built in <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part3/chapter11.html#exercises">exercise 11.2</a>, adjust the layout in the</p>
+</details><p>(2) Starting from the app we built in exercise 1, let’s improve the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file. As you saw, the top part of the app doesn’t look nice, let’s make the following improvements:</p>
+<ul class="simple">
+<li><p>let’s create a dropdown menu with the link to each page. The dropdown should be on the top right of our app, below the title section</p></li>
+<li><p>Let’s modify the background of the whole top section to a dark color with a bright app title in the center</p></li>
+</ul>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">

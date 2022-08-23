@@ -333,13 +333,16 @@ To avoid errors, carefully look at the `id` of the different components across b
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 
-The app folder structure will be:
-- app.py
-- pages
-	- part1.py
-	- part2.py
+The app file structure will be:
+- `app.py`
+- `pages`
+	- `part1.py`
+	- `part2.py`
 
-app.py
+Let's see how each file looks like:
+
+`app.py`
+
 ```python
 from dash import Dash, dcc, Output, Input, html, callback
 import dash
@@ -372,7 +375,8 @@ if __name__ == '__main__':
 	app.run_server()
 ```
 
-part1.py
+`part1.py`
+
 ```python
 import dash
 from dash import Dash, dcc, Output, Input, callback
@@ -434,7 +438,8 @@ def update_markdown(metric_):
     return fig
 ```
 
-part2.py
+`part2.py`
+
 ```python
 # Import packages
 import dash
@@ -608,7 +613,9 @@ def update_markdown(metric_):
 ![solution_ex1](./ch14_files/chapter14_ex1.gif)
 ````
 
-(2) Starting from the app we built in [exercise 11.2](https://open-resources.github.io/dash_curriculum/part3/chapter11.html#exercises), adjust the layout in the
+(2) Starting from the app we built in exercise 1, let's improve the `app.py` file. As you saw, the top part of the app doesn't look nice, let's make the following improvements:
+- let's create a dropdown menu with the link to each page. The dropdown should be on the top right of our app, below the title section
+- Let's modify the background of the whole top section to a dark color with a bright app title in the center
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
