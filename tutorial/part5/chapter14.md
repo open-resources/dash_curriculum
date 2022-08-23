@@ -324,13 +324,285 @@ def update_graph(n_clicks, value_dropdown, value_radio):
 ![img-repo](./ch14_files/multi-page.gif)
 
 ## Exercises
-(1) Starting from the apps we built in the two [exercises from chapter 12](https://open-resources.github.io/dash_curriculum/part4/chapter12.html#exercises), let's create a multipage app titled "My first multipage App" in which "Part 1" is the page dedicated to the Exercise 1 and "Part 2" is the page dedicated to the section 2.
+(1) Starting from the apps we built in the two [exercises from chapter 12](https://open-resources.github.io/dash_curriculum/part4/chapter12.html#exercises), let's create a multipage app titled "My first multipage App" in which:
+- "Part 1" is the page dedicated to the Exercise 1. This is also our landing page
+- "Part 2" is the page dedicated to the section 2
+- On the app.py file, also create a .div component below the title, containing the links to the two pages (similarly to what's been presented [here](https://open-resources.github.io/dash_curriculum/part5/chapter14.html#app-py)).
+To avoid errors, carefully look at the `id` of the different components across both pages: we cannot reuse ids!
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
-  
+
+The app folder structure will be:
+- app.py
+- pages
+	- part1.py
+	- part2.py
+
+app.py
+```
+from dash import Dash, dcc, Output, Input, html, callback
+import dash
+import pandas as pd
+import plotly.express as px
+import dash_bootstrap_components as dbc
+from datetime import date
+import plotly.express as px
+
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
+
+app.layout = html.Div([
+	html.H1('My first multipage App'),
+
+    html.Div(
+        [
+            html.Div(
+                dcc.Link(
+                    f"{page['name']} - {page['path']}", href=page["path"]
+                )
+            )
+            for page in dash.page_registry.values()
+        ]
+    ),
+
+	dash.page_container
+])
+
+if __name__ == '__main__':
+	app.run_server()
 ```
 
+part1.py
+```
+import dash
+from dash import Dash, dcc, Output, Input, callback
+import pandas as pd
+import plotly.express as px
+import dash_bootstrap_components as dbc
+
+# data
+df = px.data.gapminder()
+df = df.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
+
+# Dash App
+dash.register_page(__name__, path='/')
+
+# Create app components
+title_ = dcc.Markdown(children='Gapminder Stacked Bar Charts', style={'textAlign': 'center','fontSize': 25}, className='text-dark')
+dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
+                        options= [{'label': 'Population', 'value': 'pop'},
+                                {'label': 'GDP per capita', 'value': 'gdpPercap'},
+                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
+graph_ = dcc.Graph(id='figure1-1')
+
+# App Layout
+layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col([title_], width=12)
+            ]),
+        dbc.Row(
+            [
+                dbc.Col([dropdown_],
+                        className="p-3",
+                        width=2),
+                dbc.Col(
+                        [
+                            graph_
+                        ],
+                        className="p-3",
+                        width=10),
+            ],
+            className="border-top border-dark border-3 m-1",
+            justify="evenly"
+        )
+    ],
+    className="bg-secondary bg-opacity-75 m-0 p-3 bg-gradient",
+    fluid=True,
+    style={"height": "100vh"},
+)
+
+# Callbacks
+@callback(
+    Output('figure1-1','figure'),
+    Input('metric-dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_markdown(metric_):
+    fig = px.bar(df, x='year', y=metric_, color='continent', template='plotly_dark')
+    return fig
+```
+
+part2.py
+```
+# Import packages
+import dash
+from dash import Dash, dcc, Input, Output, html, callback
+import dash_bootstrap_components as dbc
+import pandas as pd
+from datetime import date
+import plotly.express as px
+
+# Initialise the App
+dash.register_page(__name__)
+
+# Import data
+dfS = px.data.stocks()
+dfS['date'] = pd.to_datetime(dfS['date'], format='%Y-%m-%d')
+
+dfG = px.data.gapminder()
+dfG = dfG.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
+
+# Create app components
+tab_style = {
+    'background-color' : '#800033',
+    'fontWeight': 'bold',
+    'color' : '#f2f2f2',
+    'border': '1px solid #ffe6f0'
+}
+
+selected_tab_style = {
+    'background-color' : '#800033',
+    'fontWeight': 'bold',
+    'text-decoration': 'underline',
+    'color' : '#f2f2f2',
+    'border': '1px solid #ffe6f0'
+}
+
+card_style = {
+    'padding' : '0px',
+    'border' : '0px'
+}
+
+title_ = dcc.Markdown(children='Exercise 11.2', style={'textAlign': 'center','fontSize': 20}, className='text-dark')
+tabs_ = dcc.Tabs(
+            id='tabs-app',
+            children=[
+                dcc.Tab(label='App One', value='tab-app-1', style=tab_style, selected_style=selected_tab_style),
+                dcc.Tab(label='App Two', value='tab-app-2', style=tab_style, selected_style=selected_tab_style)],
+            value='tab-app-1'
+        )
+tabs_content_ = dbc.Container(id='tabs-content', className='p-3')
+# Specific for App 1
+date_range_ = dcc.DatePickerRange(id='date-range',
+    start_date_placeholder_text='start date',
+    end_date_placeholder_text='end date',
+    min_date_allowed=dfS.date.min(),
+    max_date_allowed=dfS.date.max(),
+    display_format='DD-MMM-YYYY',
+    first_day_of_week = 1)
+card_L = dbc.Card([
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-left'),
+        ],
+        style = card_style),
+    ],
+    style = card_style)
+card_C = dbc.Card([
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-center'),
+        ],
+        style = card_style),
+    ],
+    style = card_style)
+card_R = dbc.Card([
+            dbc.CardBody([
+                dcc.Graph(id='my-graph-right'),
+        ],
+        style = card_style),
+    ],
+    style = card_style)
+# Specific for App 2
+dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
+                        options= [{'label': 'Population', 'value': 'pop'},
+                                {'label': 'GDP per capita', 'value': 'gdpPercap'},
+                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
+graph_ = dcc.Graph(id='figure1-2')
+
+# App layout
+layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col([title_], width = 12)),
+        dbc.Row(
+            [
+                dbc.Col([
+                        tabs_,
+                        tabs_content_
+                ],
+                width = 12)
+            ]
+        )
+    ],
+    className="bg-danger bg-opacity-75 m-0 p-3 bg-gradient",
+    fluid=True,
+    style={"height": "100vh"},
+)
+
+# Callbacks
+@callback(
+    Output('tabs-content', 'children'),
+    Input('tabs-app', 'value'),
+    suppress_callback_exceptions=True)
+def render_content(tab):
+    if tab == 'tab-app-1':
+        app1_layout = dbc.Container(
+            [
+                dbc.Row(dbc.Col([date_range_], width = 12, style={'textAlign': 'center'})),
+                dbc.Row([
+                    dbc.Col([card_L], width = 4),
+                    dbc.Col([card_C], width = 4),
+                    dbc.Col([card_R], width = 4)
+                ],
+                className = 'p-4'),
+            ]
+        )
+        return app1_layout
+
+    elif tab == 'tab-app-2':
+        # App 2 layout
+        app2_layout = dbc.Container(
+            [
+                dbc.Row(
+                    [
+                        dbc.Col([dropdown_], width=2),
+                        dbc.Col([graph_], width=10),
+                    ]
+                )
+            ]
+        )
+        return app2_layout
+
+# Callback for App1
+@callback(
+    Output('my-graph-left','figure'),
+    Output('my-graph-center','figure'),
+    Output('my-graph-right','figure'),
+    Input(component_id='date-range', component_property='start_date'),
+    Input(component_id='date-range', component_property='end_date')
+)
+def plot_dt(start_date, end_date):
+    figL = px.line(dfS, x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figC = figL
+    figR = figC
+    if start_date is not None:
+        figL = px.line(dfS.loc[dfS['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+        if end_date is not None:
+            figC = px.line(dfS.loc[(dfS['date']>=start_date) & (dfS['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    if end_date is not None:
+        figR = px.line(dfS.loc[dfS['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+
+    return figL, figC, figR
+
+# Callback for App2
+@callback(
+    Output('figure1-2','figure'),
+    Input('metric-dropdown', 'value'),
+    prevent_initial_call=True
+)
+def update_markdown(metric_):
+    fig = px.bar(dfG, x='year', y=metric_, color='continent', template='plotly_dark')
+    return fig
 ```
 ![solution_ex1](./ch14_files/chapter14_ex1.gif)
 ````
