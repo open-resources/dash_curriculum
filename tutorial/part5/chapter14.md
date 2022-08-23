@@ -614,14 +614,49 @@ def update_markdown(metric_):
 ````
 
 (2) Starting from the app we built in exercise 1, let's improve the `app.py` file. As you saw, the top part of the app doesn't look nice, let's make the following improvements:
-- let's create a dropdown menu with the link to each page. The dropdown should be on the top right of our app, below the title section
-- Let's modify the background of the whole top section to a dark color with a bright app title in the center
+- Create a dropdown menu with the link to each page. The dropdown should be on the top right of our app, below the title.
+- Modify the background of the whole top section to a dark color with a bright app title in the center
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
-  
-```
 
+The new `app.py` file will be the following: (the remaining files are the same as in the solution to exercise 1)
+```
+from dash import Dash, dcc, Output, Input, html, callback
+import dash
+import pandas as pd
+import plotly.express as px
+import dash_bootstrap_components as dbc
+from datetime import date
+import plotly.express as px
+
+app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
+
+dropdown_ =  dbc.DropdownMenu(
+        [
+            dbc.DropdownMenuItem(page["name"], href=page["path"])
+            for page in dash.page_registry.values()
+        ],
+        nav=True,
+        label="Show Pages",
+        align_end=False,
+    )
+
+app.layout = dbc.Container([
+	dbc.Row([
+		html.H1('My first multipage App', style={'textAlign': 'center','fontSize': 25}, className='text-light'),
+	]),
+	dbc.Row([
+		dbc.Col([html.Div()], width=11),
+		dbc.Col([dropdown_], width=1)
+	]),
+	dash.page_container
+],
+fluid = True,
+className = 'bg-dark')
+
+if __name__ == '__main__':
+	app.run_server()
 ```
 ![solution_ex2](./ch14_files/chapter14_ex2.gif)
 ````
