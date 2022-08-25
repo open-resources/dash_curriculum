@@ -207,6 +207,35 @@ if __name__ == '__main__':
 
 Each page code is very basic and will be enhanced in the following sections.
 
+## Exercises
+(1) Starting from the App we've built in this chapter (which can be downloaded [here](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_vfin.zip?raw=true)), add a new page with the following features:
+- The new page file should be named `new_page.py`
+- The content of the page should be the App developed in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises)
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+
+```
+
+```
+![solution_ex1](./ch15_files/chapter15_ex1.gif)
+````
+
+(2) Continue what we have built in exercise 1. Make the following adjustments to the newly added page:
+- Update the order of the `new_page.py`: make it the third page of our App, after `Graphs`.
+- Update the name of the new page to: `Metrics`
+- Update the title of the new page to: `Gapminder | Metrics`
+````{dropdown} See Solution
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+
+```
+
+```
+![solution_ex2](./ch15_files/chapter15_ex2.gif)
+````
+
+
 ## Summary
 In this chapter, we have gone through several features that are specific to multi page apps. There are additional functionalities and examples that can be found in the [Dash documentation](https://dash.plotly.com/urls).
 
