@@ -73,9 +73,9 @@ When it comes to color themes, scales and color composition Plotly Express alrea
 First of all, unless the colors you apply are a part of a reocurring theme, varying colors *should* reflect varying values or categories. Again, consider the earlier mentioned arguments regarding data ink. You should also keep in mind that colors have different meanings for alle people, and that some are colorblind which. Combining a greyscale with different symbols for, for example bars or lines, can more often that not be a good idea. If you combine a greyscale with only one or two colors on top, you'll very likely produce a very effective visualizations. Take a look at the gif below and see if you agree with some of the choices we've made there. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide the look and feel of your Plotly figures for yourself!
 
 
-Figure 3 - Gif that shows the transition between Figure 1 and Figure 2
+Figure 3 - Some principles of effective data visualization
 
-[![enter image description here][3]][3]
+[![enter image description here][1]][1]
 
 
 
@@ -628,6 +628,4 @@ In this chapter you've learned the effective principles of data visualization an
 In the next chapter we will do a deep dive into the Dash DataTable.
 
 
-  [1]: https://i.stack.imgur.com/cRWkl.png
-  [2]: https://i.stack.imgur.com/bkC2y.png
-  [3]: https://i.stack.imgur.com/WoPOZ.gif
+  [1]: https://i.stack.imgur.com/Vtuc9.gif
