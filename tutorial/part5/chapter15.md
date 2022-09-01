@@ -91,45 +91,47 @@ The graphs page of our app is represented by the file `graphs_v2_fin.py`. Dash w
 
 Notice that we did not modigy the `path` property of the page registry. Consequently, the url of the graphs page will remain `/graphs-v2-fin`. 
 
-Pay attention to the gif below to see how the new name is displayed in the Navbar and the new title is displayed in the browser tab.
+Pay attention to the gif below to see how the name is displayed in the Navbar and the title is displayed in the browser tab.
 
 ![app_structure](ch15_files/app_fix02_names.gif)
 
 Now try this yourself: go into the pages files and update the `title` and `name` properties with other values.
 
 ## 15.5 Updating the default `pages` directory
-We can further customise our app by renaming the folder which contains all pages. By default, the folder should be named `pages`; however, we can simply specify a custom folder name when instantiating our `app` if we prefer a different name.
+We can further customise a multipage app by renaming the folder which contains all pages. By default, the folder should be named `pages`; however, we can simply specify a custom folder name when instantiating our `app` if we prefer a different name.
 
-Let's suppose we chose to rename the folder with all the app's pages to `app sections` instead of `pages`. After we do that, we need to update the `pages_folder` property in the `app.py` file:
+Let's suppose we chose to rename the folder with all the app's pages to `app sections` instead of `pages`. After we do that, we need to assign the new folder name to the `pages_folder` property in the `app.py` file:
 
 `app = Dash(__name__, use_pages=True, pages_folder='app sections')`.
 
 ```{note}
-When renaming the `pages` directory, all parts of the code which are using the `pages` folder should be updated with the new name. An example of this is the code used in our template to build the `Navbar`. When we rename the folder, we should also change our code
+When renaming the `pages` directory, all parts of the code which are using the `pages` folder should be updated with the new name. An example of this is the code used in our template to build the `Navbar`. 
 - from: `for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"`
 - to: `for page in dash.page_registry.values() if page["module"] != "app sections.not_found_404"`
 ```
 
 ## 15.6 Metatags
-When sharing the link to a page of our app (on chat app or social networks), it is possible, thanks to metatags, to display a card with a preview of our page consisting of: a `title`, a `description` and an `image`.
-To test this feature, we would need the app to be published; here's an example of a published app which includes metatags: [example of metatags](https://www.trainerhill.com/blog/power-creep).
+When sharing the link to a page of our app (social media networks, Forum, etc.), thanks to meta tags, a card would be displayed with a preview of our page. For the web to automatically create that page preview, you would need to define the `title`, `description` and the `image` properties.
+To test this feature, we would need the app to be published; here's an example of a published app which includes meta tags: [example of metatags](https://www.trainerhill.com/blog/power-creep).
 
 ![metatags_example](ch15_files/metatags_example.jpg)
 
-Metatags information can be specified by customising the `dash.register_page()` call of each page. In particular, we can specify:
-- a `title`, like we did above
-- any textual `description`
-- an `image`, which should contain the filename of the image we would like to include into our metatags and which should be placed into the `assets` folder of our app.
-So, if we write: 
+Although the code of the Power Creep app is not open source, the meta tag properties within it are defined as such:
+
+- `title`: Power Creep
+- 'description`: An analysis of Power Creep in Pokemon Trading Card Game 
+- `image`: an image placed in the `assets` folder of the app
+
+So, coming back to our app, we could need to define the graphs page as such: 
 ```
 dash.register_page(module = __name__,
 		order='1',
 		name='Graphs',
 		title='Dash App | Graphs',
-		description='Graphs of several analyisis of the gapminder dataset.',
+		description='Graphs of several analyses of the gapminder dataset.',
 		image=graph_preview.png)
 ```
-then we would need to have an image file called  `graph_preview.png` into our `assets` folder.
+Make sure that you place the image file, `graph_preview.png`, in the `assets` folder.
 
 ## 15.X Advanced multi-page App Introduction
 As a starting point for the chapter, let's build a multi-page App structure with all the knowledge from the previous chapter. We'll build on this template, by adding a couple of features to it in every section of this chapter.
