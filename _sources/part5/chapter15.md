@@ -14,7 +14,7 @@ By the end of this chapter, you'll be able to build this app:
 
 ![app_structure](ch15_files/final-app.gif)
 
-[Click to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true).
+[Click to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app15_final.zip?raw=true).
 
 ```{attention} 
 To run this app successfully, you will need to install the `dash-bootstrap-templates` and the `dash-labs` packages.
@@ -202,7 +202,7 @@ layout = html.Div(children=[
 Relaunch the app and notice how the background color of the dropdown options updates as you toggle between the light and dark theme.
 
 ## Exercises
-(1) Using the [app we've built in this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true), add a new page with the following features: 
+(1) Using the [app we've built in this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app15_final.zip?raw=true), add a new page with the following features: 
 - The new page file should be named `new_page.py`
 - The content of the page should be the app developed in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises)
 - Tip: remember how the layout and the callback are defined inside a multi page app; remember to register the page instead of instatiating Dash
