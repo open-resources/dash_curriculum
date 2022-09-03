@@ -355,18 +355,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#navigating-the-page-registry">
-   15.2 Navigating the page registry
+  <a class="reference internal nav-link" href="#page-registry">
+   15.2 Page registry
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-order">
-   15.3 Customising multi-page order
+  <a class="reference internal nav-link" href="#multi-page-order">
+   15.3 Multi-page order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-names-titles-and-urls-of-pages">
-   15.4 Customising names, titles, and URLs of pages
+  <a class="reference internal nav-link" href="#names-titles-and-urls-of-pages">
+   15.4 Names, titles, and URLs of pages
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -381,13 +381,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metatags">
-   15.6 Metatags
+  <a class="reference internal nav-link" href="#meta-tags">
+   15.6 Meta tags
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#x-advanced-multi-page-app-introduction">
-   15.X Advanced multi-page App Introduction
+  <a class="reference internal nav-link" href="#app-themes">
+   15.7 App themes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -431,18 +431,18 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#navigating-the-page-registry">
-   15.2 Navigating the page registry
+  <a class="reference internal nav-link" href="#page-registry">
+   15.2 Page registry
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-multi-page-order">
-   15.3 Customising multi-page order
+  <a class="reference internal nav-link" href="#multi-page-order">
+   15.3 Multi-page order
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#customising-names-titles-and-urls-of-pages">
-   15.4 Customising names, titles, and URLs of pages
+  <a class="reference internal nav-link" href="#names-titles-and-urls-of-pages">
+   15.4 Names, titles, and URLs of pages
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -457,13 +457,13 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#metatags">
-   15.6 Metatags
+  <a class="reference internal nav-link" href="#meta-tags">
+   15.6 Meta tags
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#x-advanced-multi-page-app-introduction">
-   15.X Advanced multi-page App Introduction
+  <a class="reference internal nav-link" href="#app-themes">
+   15.7 App themes
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -505,7 +505,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true">Click to download the complete code file for this chapter</a>.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>To run this app successfully, you will need to install the <code class="docutils literal notranslate"><span class="pre">dash_bootstrap_templates</span></code> and the <code class="docutils literal notranslate"><span class="pre">dash-labs</span></code> packages.</p>
+<p>To run this app successfully, you will need to install the <code class="docutils literal notranslate"><span class="pre">dash-bootstrap-templates</span></code> and the <code class="docutils literal notranslate"><span class="pre">dash-labs</span></code> packages.</p>
 <blockquote>
 <div><p>pip install dash-bootstrap-templates</p>
 </div></blockquote>
@@ -539,8 +539,8 @@ The default 404-page looks like the following:
 <p>Run the app and try to type a fake name in the url to see the custom-amde 404 page displayed:</p>
 <p><img alt="app_structure" src="../_images/app404_custom.gif" /></p>
 </div>
-<div class="section" id="navigating-the-page-registry">
-<h2>15.2 Navigating the page registry<a class="headerlink" href="#navigating-the-page-registry" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="page-registry">
+<h2>15.2 Page registry<a class="headerlink" href="#page-registry" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">dash_labs</span></code> module has a function called <code class="docutils literal notranslate"><span class="pre">print_registry()</span></code> which allows to print the registry into the terminal to see the meta data of each registered page.</p>
 <p>Un-hashtag the below line of code in the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file, and rerun your app.</p>
 <p><code class="docutils literal notranslate"><span class="pre">print_registry(exclude=&quot;layout&quot;)</span></code></p>
@@ -555,27 +555,25 @@ The default 404-page looks like the following:
 <li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> are extra properties that, if specified, allow the adding of meta information to our app URL when shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p></li>
 </ul>
 </div>
-<div class="section" id="customising-multi-page-order">
-<h2>15.3 Customising multi-page order<a class="headerlink" href="#customising-multi-page-order" title="Permalink to this headline">¶</a></h2>
-<p>By looking at the App we have so far, you’ll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the <code class="docutils literal notranslate"><span class="pre">order</span></code> property of the <a class="reference external" href="http://home.py">home.py</a> file, the number 1 to the graphs_v2_fin.py file and the number 2 to the <a class="reference external" href="http://about.py">about.py</a> file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: “Home” first because it’s the home page, “About” second, and “Graphs” third.</p>
+<div class="section" id="multi-page-order">
+<h2>15.3 Multi-page order<a class="headerlink" href="#multi-page-order" title="Permalink to this headline">¶</a></h2>
+<p>By looking at the app we have so far, you’ll notice that the order of the links in the navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the <code class="docutils literal notranslate"><span class="pre">order</span></code> property of the <a class="reference external" href="http://home.py">home.py</a> file, the number 1 to the graphs_v2_fin.py file, and the number 2 to the <a class="reference external" href="http://about.py">about.py</a> file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: “Home” first because it’s the home page, “About” second, and “Graphs” third.</p>
 <p>Here’s what the page registry looks like:</p>
 <ul class="simple">
-<li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order='0')</span></code></p></li>
-<li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2')</span></code></p></li>
-<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1')</span></code></p></li>
+<li><p>pages/home.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">path='/',</span> <span class="pre">order=0)</span></code></p></li>
+<li><p>pages/about.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=2)</span></code></p></li>
+<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=1)</span></code></p></li>
 </ul>
 <p>Get your feet wet and try to change the order of the home page so it appears last (far right) in the Navbar.</p>
 </div>
-<div class="section" id="customising-names-titles-and-urls-of-pages">
-<h2>15.4 Customising names, titles, and URLs of pages<a class="headerlink" href="#customising-names-titles-and-urls-of-pages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="names-titles-and-urls-of-pages">
+<h2>15.4 Names, titles, and URLs of pages<a class="headerlink" href="#names-titles-and-urls-of-pages" title="Permalink to this headline">¶</a></h2>
 <p>The graphs page of our app is represented by the file <code class="docutils literal notranslate"><span class="pre">graphs_v2_fin.py</span></code>. Dash will automatically assign the file name to the <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code> properties of the page registry. However, in our case, we made the app look more professional by assigning new names and titles in the page registry.</p>
 <ul class="simple">
-<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(module</span> <span class="pre">=</span> <span class="pre">__name__,</span> <span class="pre">order='1',</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs')</span></code>.</p></li>
+<li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=1,</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs')</span></code>.</p></li>
 </ul>
-<p>Notice that we did not modigy the <code class="docutils literal notranslate"><span class="pre">path</span></code> property of the page registry. Consequently, the url of the graphs page will remain <code class="docutils literal notranslate"><span class="pre">/graphs-v2-fin</span></code>.</p>
-<p>Pay attention to the gif below to see how the name is displayed in the Navbar and the title is displayed in the browser tab.</p>
-<p><img alt="app_structure" src="part5/ch15_files/app_fix02_names.gif" /></p>
-<p>Now try this yourself: go into the pages files and update the <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> properties with other values.</p>
+<p>Notice that we did not modify the <code class="docutils literal notranslate"><span class="pre">path</span></code> property of the page registry. Consequently, the url of the graphs page will remain <code class="docutils literal notranslate"><span class="pre">/graphs-v2-fin</span></code>.</p>
+<p>Now try this yourself: go into one of the pages and update the <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> properties with other values. Rerun the app and see how the text displayed in the navbar and the text displayed in the browser tab changes.</p>
 </div>
 <div class="section" id="updating-the-default-pages-directory">
 <h2>15.5 Updating the default <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory<a class="headerlink" href="#updating-the-default-pages-directory" title="Permalink to this headline">¶</a></h2>
@@ -584,53 +582,45 @@ The default 404-page looks like the following:
 <p><code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">Dash(__name__,</span> <span class="pre">use_pages=True,</span> <span class="pre">pages_folder='app</span> <span class="pre">sections')</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When renaming the <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory, all parts of the code which are using the <code class="docutils literal notranslate"><span class="pre">pages</span></code> folder should be updated with the new name. An example of this is the code used in our template to build the <code class="docutils literal notranslate"><span class="pre">Navbar</span></code>.</p>
+<p>When renaming the <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory, all parts of the code that refer to the <code class="docutils literal notranslate"><span class="pre">pages</span></code> folder must be updated with the new name. An example of this is the code used in the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file to build the <code class="docutils literal notranslate"><span class="pre">Navbar</span></code>.</p>
 <ul class="simple">
 <li><p>from: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span> <span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;pages.not_found_404&quot;</span></code></p></li>
 <li><p>to: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span> <span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;app</span> <span class="pre">sections.not_found_404&quot;</span></code></p></li>
 </ul>
 </div>
 </div>
-<div class="section" id="metatags">
-<h2>15.6 Metatags<a class="headerlink" href="#metatags" title="Permalink to this headline">¶</a></h2>
-<p>When sharing the link to a page of our app (social media networks, Forum, etc.), thanks to meta tags, a card would be displayed with a preview of our page. For the web to automatically create that page preview, you would need to define the <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> and the <code class="docutils literal notranslate"><span class="pre">image</span></code> properties.
-To test this feature, we would need the app to be published; here’s an example of a published app which includes meta tags: <a class="reference external" href="https://www.trainerhill.com/blog/power-creep">example of metatags</a>.</p>
+<div class="section" id="meta-tags">
+<h2>15.6 Meta tags<a class="headerlink" href="#meta-tags" title="Permalink to this headline">¶</a></h2>
+<p>Meta tags allow a card to be displayed with a preview of our app when sharing the link to our app (for example, on Twitter, LinkedIn, Plotly Forum, etc.). For the web to automatically create a page preview, you would need to define the <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> and the <code class="docutils literal notranslate"><span class="pre">image</span></code> properties of the page registry.</p>
+<p>To test this feature, we would need the app to be published; here’s an example of a published app, made by a Dash community member, which includes meta tags.</p>
 <p><img alt="metatags_example" src="../_images/metatags_example.jpg" /></p>
-<p>Although the code of the Power Creep app is not open source, the meta tag properties within it are defined as such:</p>
+<p>The meta tag properties within the Power Creep app are defined as such:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: Power Creep</p></li>
-<li><p>‘description`: An analysis of Power Creep in Pokemon Trading Card Game</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title=</span> <span class="pre">'Power</span> <span class="pre">Creep'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description=</span> <span class="pre">'An</span> <span class="pre">analysis</span> <span class="pre">of</span> <span class="pre">Power</span> <span class="pre">Creep</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">Pokemon</span> <span class="pre">Trading</span> <span class="pre">Card</span> <span class="pre">Game'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">image</span></code>: an image placed in the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder of the app</p></li>
 </ul>
-<p>So, coming back to our app, we could need to define the graphs page as such:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="n">module</span> <span class="o">=</span> <span class="vm">__name__</span><span class="p">,</span>
-		<span class="n">order</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
+<p>So, coming back to our app, if you would like to create meta tags for the Graphs page, you would need to add the <code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> properties to its page registry as such:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span>
+		<span class="n">order</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 		<span class="n">name</span><span class="o">=</span><span class="s1">&#39;Graphs&#39;</span><span class="p">,</span>
 		<span class="n">title</span><span class="o">=</span><span class="s1">&#39;Dash App | Graphs&#39;</span><span class="p">,</span>
-		<span class="n">description</span><span class="o">=</span><span class="s1">&#39;Graphs of several analyses of the gapminder dataset.&#39;</span><span class="p">,</span>
+		<span class="n">description</span><span class="o">=</span><span class="s1">&#39;Graphs to visualize the gapminder dataset.&#39;</span><span class="p">,</span>
 		<span class="n">image</span><span class="o">=</span><span class="n">graph_preview</span><span class="o">.</span><span class="n">png</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Make sure that you place the image file, <code class="docutils literal notranslate"><span class="pre">graph_preview.png</span></code>, in the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p>
+<p>Make sure to create your desired image and place that file, <code class="docutils literal notranslate"><span class="pre">graph_preview.png</span></code>, in the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p>
 </div>
-<div class="section" id="x-advanced-multi-page-app-introduction">
-<h2>15.X Advanced multi-page App Introduction<a class="headerlink" href="#x-advanced-multi-page-app-introduction" title="Permalink to this headline">¶</a></h2>
-<p>As a starting point for the chapter, let’s build a multi-page App structure with all the knowledge from the previous chapter. We’ll build on this template, by adding a couple of features to it in every section of this chapter.</p>
-<p>The template is the following, you can download it <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_v1.zip?raw=true">here</a> (the .zip file will need to be uncompressed):
-<img alt="app_structure" src="part5/ch15_files/app_baseline.gif" /></p>
-<p>The App structure consists in:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">app.py</span></code> file</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">assets</span></code> folder, which is currently empty. This is where pictures, media files, and style sheets might be stored</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pages</span></code> folder with the following pages: <code class="docutils literal notranslate"><span class="pre">Home</span></code>, <code class="docutils literal notranslate"><span class="pre">Graphs</span></code>, <code class="docutils literal notranslate"><span class="pre">Extras</span></code>, <code class="docutils literal notranslate"><span class="pre">About</span></code>.</p></li>
-</ul>
+<div class="section" id="app-themes">
+<h2>15.7 App themes<a class="headerlink" href="#app-themes" title="Permalink to this headline">¶</a></h2>
+<p>As a reminder, the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file is what brings all the pages together and finalizes the build of the multi page app.</p>
 <p>We want to give this app a more professional look; therefore we’ve customised the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file in the following way:</p>
 <ul class="simple">
 <li><p>Our header is represented by a <code class="docutils literal notranslate"><span class="pre">dbc.Navbar</span></code> component containing the title of our App and one <code class="docutils literal notranslate"><span class="pre">dbc.NavLink</span></code> for each page in our registry. From the registry, we exclude one page <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;pages.not_found_404&quot;</span></code>. This is a default page that is used when the user tries to reach an invalid URL. In the next section we’ll see how it works and how we can customise it.</p></li>
 <li><p>Below the header, we’ve included a <code class="docutils literal notranslate"><span class="pre">theme_toggle</span></code> which allow to switch between two themes. We’ve picked two themes from <code class="docutils literal notranslate"><span class="pre">dbc.themes</span></code> (tipically a dark and a light one) and the switcher will allow to switch between the two.</p></li>
 <li><p>Note that when instantiating our <code class="docutils literal notranslate"><span class="pre">app</span></code>, we’ve enabled the <code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code> option and used the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code> to define the default theme (which is <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code>) together with enhanced fonts with the option <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code>.</p></li>
 </ul>
-<p><strong><a class="reference external" href="http://App.py">App.py</a> file:</strong></p>
+<p><strong>App file:</strong></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See the code<div class="summary-down docutils">
@@ -642,6 +632,7 @@ See the code<div class="summary-down docutils">
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
+<span class="kn">from</span> <span class="nn">dash_labs</span> <span class="kn">import</span> <span class="n">print_registry</span>
 
 <span class="c1"># Configure Themes</span>
 <span class="n">url_theme1</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span>
@@ -654,7 +645,9 @@ See the code<div class="summary-down docutils">
 <span class="n">dbc_css</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&quot;</span>
 
 <span class="c1"># App</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">],</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">],</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">],</span> <span class="n">pages_folder</span><span class="o">=</span><span class="s1">&#39;pages&#39;</span><span class="p">)</span>
+
+<span class="c1"># print_registry(exclude=&quot;layout&quot;)</span>
 
 <span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Navbar</span><span class="p">(</span>
     <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -671,7 +664,7 @@ See the code<div class="summary-down docutils">
                 <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarToggler</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;navbar-toggler&quot;</span><span class="p">),</span>
                     <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">([</span>
                         <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
-                        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+                            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
                     <span class="p">])</span>
             <span class="p">])</span>
         <span class="p">],</span>
