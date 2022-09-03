@@ -386,8 +386,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-themes">
-   15.7 App themes
+  <a class="reference internal nav-link" href="#app-theme-toggler">
+   15.7 App theme toggler
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -462,8 +462,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#app-themes">
-   15.7 App themes
+  <a class="reference internal nav-link" href="#app-theme-toggler">
+   15.7 App theme toggler
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -497,7 +497,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Navigate the <code class="docutils literal notranslate"><span class="pre">page_registry</span></code></p></li>
 <li><p>Customise order of pages, title and urls</p></li>
 <li><p>Include meta tags</p></li>
-<li><p>Add theme to app</p></li>
+<li><p>Switching app themes</p></li>
 </ul>
 </div>
 <p>By the end of this chapter, you’ll be able to build this app:</p>
@@ -611,15 +611,12 @@ The default 404-page looks like the following:
 </div>
 <p>Make sure to create your desired image and place that file, <code class="docutils literal notranslate"><span class="pre">graph_preview.png</span></code>, in the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p>
 </div>
-<div class="section" id="app-themes">
-<h2>15.7 App themes<a class="headerlink" href="#app-themes" title="Permalink to this headline">¶</a></h2>
-<p>As a reminder, the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file is what brings all the pages together and finalizes the build of the multi page app.</p>
-<p>We want to give this app a more professional look; therefore we’ve customised the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file in the following way:</p>
-<ul class="simple">
-<li><p>Our header is represented by a <code class="docutils literal notranslate"><span class="pre">dbc.Navbar</span></code> component containing the title of our App and one <code class="docutils literal notranslate"><span class="pre">dbc.NavLink</span></code> for each page in our registry. From the registry, we exclude one page <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;pages.not_found_404&quot;</span></code>. This is a default page that is used when the user tries to reach an invalid URL. In the next section we’ll see how it works and how we can customise it.</p></li>
-<li><p>Below the header, we’ve included a <code class="docutils literal notranslate"><span class="pre">theme_toggle</span></code> which allow to switch between two themes. We’ve picked two themes from <code class="docutils literal notranslate"><span class="pre">dbc.themes</span></code> (tipically a dark and a light one) and the switcher will allow to switch between the two.</p></li>
-<li><p>Note that when instantiating our <code class="docutils literal notranslate"><span class="pre">app</span></code>, we’ve enabled the <code class="docutils literal notranslate"><span class="pre">use_pages=True</span></code> option and used the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code> to define the default theme (which is <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code>) together with enhanced fonts with the option <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code>.</p></li>
-</ul>
+<div class="section" id="app-theme-toggler">
+<h2>15.7 App theme toggler<a class="headerlink" href="#app-theme-toggler" title="Permalink to this headline">¶</a></h2>
+<p>As a reminder, the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file is what brings all the pages together and finalizes the build of the multi page app. In our app, the layout is defined as a <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code>, which contains the header (navbar), the theme toggler, and the <code class="docutils literal notranslate"><span class="pre">page_container</span></code> that displays the content of each page.</p>
+<p>This is the first time we’ve built and added a theme toggler to our app, which allows the switching between two themes. The theme toggler used is the <code class="docutils literal notranslate"><span class="pre">ThemeSwitchAIO</span></code>, which belongs to the ‘dash_bootstrap_templates’ library. We’ve picked two themes from <code class="docutils literal notranslate"><span class="pre">dbc.themes</span></code>: FLATLY and DARKLY (tipically you would choose a dark and a light theme). We’ve also added the sun and moon icons using the <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code></p>
+<p>Note that we’ve assiged <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code>, <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc_css</span></code> to the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code> of the app. The <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code> defines the default theme when the app first loads. The <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code> enables the usage of the font awesome icons.</p>
+<p>Switching between Bootstrap themes in a Dash app will automatically style only the Dash Bootstrap components. However, it will not update the styling of any Dash Core Components or the Dash DataTable. By adding <code class="docutils literal notranslate"><span class="pre">className=&quot;dbc&quot;</span></code> to the outer container of the app and assigning the <code class="docutils literal notranslate"><span class="pre">dbc_css</span></code> sheet to the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code>, the app will automatically style the Dash Core Components and the DataTable in accordance with the selected Bootstrap theme.</p>
 <p><strong>App file:</strong></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -628,9 +625,9 @@ See the code<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-<span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
 <span class="kn">from</span> <span class="nn">dash_labs</span> <span class="kn">import</span> <span class="n">print_registry</span>
 
@@ -644,51 +641,50 @@ See the code<div class="summary-down docutils">
 <span class="p">)</span>
 <span class="n">dbc_css</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&quot;</span>
 
-<span class="c1"># App</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">],</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">],</span> <span class="n">pages_folder</span><span class="o">=</span><span class="s1">&#39;pages&#39;</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">,</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">],</span> <span class="n">pages_folder</span><span class="o">=</span><span class="s1">&#39;pages&#39;</span><span class="p">)</span>
 
 <span class="c1"># print_registry(exclude=&quot;layout&quot;)</span>
 
-<span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Navbar</span><span class="p">(</span>
-    <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-        <span class="p">[</span>
-            <span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">NavbarBrand</span><span class="p">(</span><span class="s2">&quot;Multi page app | Advanced&quot;</span><span class="p">))</span>
-                <span class="p">],</span>
-                <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">),</span>
-            <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
-            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;textDecoration&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">}</span>
-            <span class="p">),</span>
-            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarToggler</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;navbar-toggler&quot;</span><span class="p">),</span>
-                    <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">([</span>
-                        <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
-                            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
-                    <span class="p">])</span>
-            <span class="p">])</span>
-        <span class="p">],</span>
-        <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="p">),</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarSimple</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+        <span class="p">])</span>
+    <span class="p">],</span>
+    <span class="n">brand</span><span class="o">=</span><span class="s2">&quot;Multi page app | Advanced&quot;</span><span class="p">,</span>
+    <span class="n">brand_href</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
     <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dark&#39;</span>
 <span class="p">)</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="n">theme_toggle</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="n">theme_toggle</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;dbc&quot;</span><span class="p">,</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
 	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
 </pre></div>
 </div>
 </div>
-</details><p>Each page code is very basic and will be enhanced in the following sections.</p>
+</details><p>The impact of the <code class="docutils literal notranslate"><span class="pre">dbc_class</span></code> is not observable in our app. However, try to add a Dropdown to the graphs page:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;This is our Graphs page&#39;</span><span class="p">),</span>
+    <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">]),</span>
+    <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">        This is our Graphs page content.</span>
+<span class="s1">    &#39;&#39;&#39;</span><span class="p">),</span>
+<span class="p">])</span>
+</pre></div>
+</div>
+<p>Relaunch the app and notice how the background color of the dropdown options updates as you toggle between the light and dark theme.</p>
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<p>(1) Starting from the App we’ve built in this chapter (which can be downloaded <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_vfin.zip?raw=true">here</a>), add a new page with the following features:</p>
+<p>(1) Using the <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true">app we’ve built in this chapter</a>, add a new page with the following features:</p>
 <ul class="simple">
 <li><p>The new page file should be named <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code></p></li>
-<li><p>The content of the page should be the App developed in the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 2 from chapter 8</a></p></li>
+<li><p>The content of the page should be the app developed in the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 2 from chapter 8</a></p></li>
+<li><p>Tip: remember how the layout and the callback are defined inside a multi page app; remember to register the page instead of instatiating Dash</p></li>
 </ul>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -742,11 +738,12 @@ See Solution<div class="summary-down docutils">
     <span class="k">return</span> <span class="n">fig</span>
 </pre></div>
 </div>
-<p class="card-text"><img alt="solution_ex1" src="part5/ch15_files/chapter15_ex1.gif" /></p>
+<p class="card-text"><img alt="solution_ex1" src="../_images/chapter15_solution1.gif" /></p>
 </div>
-</details><p>(2) Continue what we have built in exercise 1. Make the following adjustments to the newly added page:</p>
+</details><hr class="docutils" />
+<p>(2) Building on exercise 1, make the following adjustments to the newly added page:</p>
 <ul class="simple">
-<li><p>Update the order of the <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code>: make it the third page of our App, after <code class="docutils literal notranslate"><span class="pre">Graphs</span></code>.</p></li>
+<li><p>Update the order of the <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code>: make it the third linked page in the navbar, after <code class="docutils literal notranslate"><span class="pre">Graphs</span></code>.</p></li>
 <li><p>Update the name of the new page to: <code class="docutils literal notranslate"><span class="pre">Metrics</span></code></p></li>
 <li><p>Update the title of the new page to: <code class="docutils literal notranslate"><span class="pre">Gapminder</span> <span class="pre">|</span> <span class="pre">Metrics</span></code></p></li>
 </ul>
@@ -759,17 +756,16 @@ See Solution<div class="summary-down docutils">
 </summary><div class="summary-content card-body docutils">
 <p class="card-text">To slove this exercise, we just need to update the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> statements of the following files:</p>
 <ul class="simple">
-<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">new_page.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='2',</span> <span class="pre">name='Metrics',</span> <span class="pre">title='Gapminder</span> <span class="pre">|</span> <span class="pre">Metrics')</span></code></p></li>
-<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">extras.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='3')</span></code></p></li>
-<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">about.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order='4')</span></code></p></li>
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">new_page.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=2,</span> <span class="pre">name='Metrics',</span> <span class="pre">title='Gapminder</span> <span class="pre">|</span> <span class="pre">Metrics')</span></code></p></li>
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">about.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=3)</span></code></p></li>
 </ul>
-<p class="card-text"><img alt="solution_ex2" src="part5/ch15_files/chapter15_ex2.gif" /></p>
+<p class="card-text"><img alt="solution_ex2" src="../_images/chapter15_solution2.png" /></p>
 </div>
 </details></div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we have gone through several features that are specific to multi page apps. There are additional functionalities and examples that can be found in the <a class="reference external" href="https://dash.plotly.com/urls">Dash documentation</a>.</p>
-<p>This also concludes the section dedicated to multi page apps.</p>
+<p>In this chapter, we have gone through several advanced features specific to multi page apps. There are additional functionalities and examples that can be found in the <a class="reference external" href="https://dash.plotly.com/urls#dash-pages">Dash Pages section</a> of the Dash documentation.</p>
+<p>This concludes the section dedicated to multi page apps.</p>
 </div>
 </div>
 
