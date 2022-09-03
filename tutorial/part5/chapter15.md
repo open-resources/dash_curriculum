@@ -7,7 +7,7 @@ In this chapter we will cover more advanced features of Dash Pages, as we build 
 - Navigate the `page_registry`
 - Customise order of pages, title and urls
 - Include meta tags
-- Add theme to app
+- Switching app themes
 ```
 
 By the end of this chapter, you'll be able to build this app:
@@ -129,13 +129,14 @@ dash.register_page(__name__,
 ```
 Make sure to create your desired image and place that file, `graph_preview.png`, in the `assets` folder.
 
-## 15.7 App themes
-As a reminder, the `app.py` file is what brings all the pages together and finalizes the build of the multi page app.
+## 15.7 App theme toggler
+As a reminder, the `app.py` file is what brings all the pages together and finalizes the build of the multi page app. In our app, the layout is defined as a `dbc.Container`, which contains the header (navbar), the theme toggler, and the `page_container` that displays the content of each page.
 
-We want to give this app a more professional look; therefore we've customised the `app.py` file in the following way:
-- Our header is represented by a `dbc.Navbar` component containing the title of our App and one `dbc.NavLink` for each page in our registry. From the registry, we exclude one page ``if page["module"] != "pages.not_found_404"``. This is a default page that is used when the user tries to reach an invalid URL. In the next section we'll see how it works and how we can customise it.
-- Below the header, we've included a `theme_toggle` which allow to switch between two themes. We've picked two themes from `dbc.themes` (tipically a dark and a light one) and the switcher will allow to switch between the two.
-- Note that when instantiating our `app`, we've enabled the `use_pages=True` option and used the `external_stylesheets` to define the default theme (which is `url_theme2`) together with enhanced fonts with the option `dbc.icons.FONT_AWESOME`.
+This is the first time we've built and added a theme toggler to our app, which allows the switching between two themes. The theme toggler used is the `ThemeSwitchAIO`, which belongs to the 'dash_bootstrap_templates' library. We've picked two themes from `dbc.themes`: FLATLY and DARKLY (tipically you would choose a dark and a light theme). We've also added the sun and moon icons using the `dbc.icons.FONT_AWESOME`
+
+Note that we've assiged `dbc.icons.FONT_AWESOME`, `url_theme2` and `dbc_css` to the `external_stylesheets` of the app. The `url_theme2` defines the default theme when the app first loads. The `dbc.icons.FONT_AWESOME` enables the usage of the font awesome icons. 
+
+Switching between Bootstrap themes in a Dash app will automatically style only the Dash Bootstrap components. However, it will not update the styling of any Dash Core Components or the Dash DataTable. By adding `className="dbc"` to the outer container of the app and assigning the `dbc_css` sheet to the `external_stylesheets`, the app will automatically style the Dash Core Components and the DataTable in accordance with the selected Bootstrap theme. 
 
 **App file:**
 
@@ -144,9 +145,9 @@ We want to give this app a more professional look; therefore we've customised th
     :title: bg-primary text-white font-weight-bold
   
 ```
+import dash
 from dash import Dash, html
 import dash_bootstrap_components as dbc
-import dash
 from dash_bootstrap_templates import ThemeSwitchAIO
 from dash_labs import print_registry
 
@@ -160,50 +161,52 @@ theme_toggle = ThemeSwitchAIO(
 )
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
-# App
-app = Dash(__name__, use_pages=True, external_stylesheets=[[url_theme2, dbc_css], dbc.icons.FONT_AWESOME], pages_folder='pages')
+app = Dash(__name__, use_pages=True, external_stylesheets=[url_theme2, dbc_css, dbc.icons.FONT_AWESOME], pages_folder='pages')
 
 # print_registry(exclude="layout")
 
-header = dbc.Navbar(
-    dbc.Container(
-        [
-            html.A(
-                dbc.Row([
-                    dbc.Col(dbc.NavbarBrand("Multi page app | Advanced"))
-                ],
-                align="center"),
-            href="/",
-            style={"textDecoration": "none"}
-            ),
-            dbc.Row([
-                dbc.NavbarToggler(id="navbar-toggler"),
-                    dbc.Nav([
-                        dbc.NavLink(page["name"], href=page["path"])
-                            for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"
-                    ])
-            ])
-        ],
-        fluid=True,
-    ),
+header = dbc.NavbarSimple(
+    [
+        dbc.Nav([
+            dbc.NavLink(page["name"], href=page["path"])
+            for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"
+        ])
+    ],
+    brand="Multi page app | Advanced",
+    brand_href='/',
     dark=True,
     color='dark'
 )
 
-app.layout = dbc.Container([header, theme_toggle, dash.page_container], fluid=True)
+app.layout = dbc.Container([header, theme_toggle, dash.page_container], className="dbc", fluid=True)
 
 if __name__ == '__main__':
 	app.run_server(debug=False)
+
 ```
 
 ````
 
-Each page code is very basic and will be enhanced in the following sections.
+The impact of the `dbc_class` is not observable in our app. However, try to add a Dropdown to the graphs page: 
+
+```
+layout = html.Div(children=[
+    html.H1(children='This is our Graphs page'),
+    dcc.Dropdown(['one','two','three']),
+    html.Div(children='''
+        This is our Graphs page content.
+    '''),
+])
+```
+
+Relaunch the app and notice how the background color of the dropdown options updates as you toggle between the light and dark theme.
 
 ## Exercises
-(1) Starting from the App we've built in this chapter (which can be downloaded [here](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_vfin.zip?raw=true)), add a new page with the following features:
+(1) Using the [app we've built in this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true), add a new page with the following features: 
 - The new page file should be named `new_page.py`
-- The content of the page should be the App developed in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises)
+- The content of the page should be the app developed in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises)
+- Tip: remember how the layout and the callback are defined inside a multi page app; remember to register the page instead of instatiating Dash
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -253,11 +256,12 @@ def update_markdown(metric_):
     fig = px.bar(df, x='year', y=metric_, color='continent', template='plotly_dark')
     return fig
 ```
-![solution_ex1](./ch15_files/chapter15_ex1.gif)
+![solution_ex1](./ch15_files/chapter15_solution1.gif)
 ````
+---
 
-(2) Continue what we have built in exercise 1. Make the following adjustments to the newly added page:
-- Update the order of the `new_page.py`: make it the third page of our App, after `Graphs`.
+(2) Building on exercise 1, make the following adjustments to the newly added page:
+- Update the order of the `new_page.py`: make it the third linked page in the navbar, after `Graphs`.
 - Update the name of the new page to: `Metrics`
 - Update the title of the new page to: `Gapminder | Metrics`
 ````{dropdown} See Solution
@@ -265,15 +269,13 @@ def update_markdown(metric_):
     :title: bg-primary text-white font-weight-bold
 
 To slove this exercise, we just need to update the `dash.register_page()` statements of the following files:
-- `new_page.py` should be registered as: `dash.register_page(__name__, order='2', name='Metrics', title='Gapminder | Metrics')`
-- `extras.py` should be registered as: `dash.register_page(__name__, order='3')`
-- `about.py` should be registered as: `dash.register_page(__name__, order='4')`
+- `new_page.py` should be registered as: `dash.register_page(__name__, order=2, name='Metrics', title='Gapminder | Metrics')`
+- `about.py` should be registered as: `dash.register_page(__name__, order=3)`
 
-![solution_ex2](./ch15_files/chapter15_ex2.gif)
+![solution_ex2](./ch15_files/chapter15_solution2.png)
 ````
 
-
 ## Summary
-In this chapter, we have gone through several features that are specific to multi page apps. There are additional functionalities and examples that can be found in the [Dash documentation](https://dash.plotly.com/urls).
+In this chapter, we have gone through several advanced features specific to multi page apps. There are additional functionalities and examples that can be found in the [Dash Pages section](https://dash.plotly.com/urls#dash-pages) of the Dash documentation.
 
-This also concludes the section dedicated to multi page apps.
+This concludes the section dedicated to multi page apps.
