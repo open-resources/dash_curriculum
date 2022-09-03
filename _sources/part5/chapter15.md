@@ -7,13 +7,14 @@ In this chapter we will cover more advanced features of Dash Pages, as we build 
 - Navigate the `page_registry`
 - Customise order of pages, title and urls
 - Include meta tags
+- Add theme to app
 ```
 
 By the end of this chapter, you'll be able to build this app:
 
-![app_structure](ch15_files/app_baseline.gif)
+![app_structure](ch15_files/final-app.gif)
 
-[Click to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_vfin.zip?raw=true).
+[Click to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true).
 
 ```{attention} 
 To run this app successfully, you will need to install the `dash_bootstrap_templates` and the `dash-labs` packages.
@@ -24,9 +25,9 @@ To run this app successfully, you will need to install the `dash_bootstrap_templ
 ```
 
 ## 15.1 Default and Custom 404
-Multi pages Apps include, by default, a landing page whenever the user tries to reach an invalid URL.
+Multi pages apps include, by default, a landing page whenever the user tries to reach an invalid URL.
 The default 404-page looks like the following:
-![app_structure](ch15_files/app_404_default.gif)
+![app_structure](ch15_files/app404_default.gif)
 
 However, the 404-page can be customised. In order to do so, we created a new file named `not_found_404.py` inside the pages folder and add the desired layout content.
 
@@ -45,33 +46,32 @@ layout = html.Div(children=[
 ])
 ```
 
-Then, by adding the below line of code to the `app.py` file, we ensured that the 404 page does not show up as a link in the navbar. 
+Then, we add the below line of code to the `app.py` file to ensure that the 404 page does not appear as a link in the navbar, since we only want the Home, About, and Graphs pages on the navbar. 
 
 `for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"`
 
-Run the app and try to type a fake name in the url to see the 404 page displayed:
+Run the app and try to type a fake name in the url to see the custom-amde 404 page displayed:
 
-![app_structure](ch15_files/app_404_custom.gif)
+![app_structure](ch15_files/app404_custom.gif)
 
 ## 15.2 Navigating the page registry
 The `dash_labs` module has a function called `print_registry()` which allows to print the registry into the terminal to see the meta data of each registered page.
 
-Un-hashtag the below line of code in the `apps.py` file, and rerun your app.
+Un-hashtag the below line of code in the `app.py` file, and rerun your app.
 
 `print_registry(exclude="layout")`
 
-If you examine your terminal, you will see the following output (we've included only a couple of pages in the screenshot. The complete output includes the same properties for every page):
+If you examine your terminal, you will see the following output (we've included the output only for the home page in the screenshot. The complete output includes the other pages):
 
-![printregistry](ch15_files/print_registry.png)
+![printregistry](ch15_files/pg-registry.png)
 
-As we can see, the registry stores a lot of information for each page, let's focus on some properties ([see the docs for the full list](https://dash.plotly.com/urls#reference-for-dash.register_page))
+As you can see, the registry stores a lot of information for each page, let's focus on some properties ([see the docs for the full list](https://dash.plotly.com/urls#reference-for-dash.register_page))
 
-- `path`: is the URL of the page. We can see that the homepage has url '/'.
-- `name`: name of the link. If null, the app filename will be used.
-- `order`: the order of the pages in the app - commonly used when creating the page links in the app.py file (Navlink in our case). If order of pages is not supplied, the page with path '/' will receive order 0, then the remaining pages are sorted alphabetically.
-- `title`: name of the page to be displayed into the browser tab. If null, the app filename will be used.
-- `description` and `image` are extra properties that, if specified, allow the adding of meta information to our App URL when shared. `image` should contain the image filename located into the `assets` folder. We'll see an example of this feature later.
-
+- `path`: is the URL of the page. The path of the home page is always assigned a `'/'`. A multi page app **must always be assigned a home page path.**
+- `name`: name of the link. If null, the app filename will be used. Not to be confused with `__name__`.
+- `order`: the order of the pages in the app - commonly used when creating the page links in the app.py file (navlink and navbar in our case). If order of pages is not supplied, the page with path '/' will receive order 0, then the remaining pages are sorted alphabetically.
+- `title`: name of the page to be displayed in the browser tab. If null, the app filename will be used.
+- `description` and `image` are extra properties that, if specified, allow the adding of meta information to our app URL when shared. `image` should contain the image filename located into the `assets` folder.
 
 ## 15.3 Customising multi-page order
 By looking at the App we have so far, you'll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the `order` property of the home.py file, the number 1 to the graphs_v2_fin.py file and the number 2 to the about.py file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: "Home" first because it's the home page, "About" second, and "Graphs" third.
@@ -82,7 +82,6 @@ Here's what the page registry looks like:
 - pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1')`
 
 Get your feet wet and try to change the order of the home page so it appears last (far right) in the Navbar. 
-
 
 ## 15.4 Customising names, titles, and URLs of pages
 The graphs page of our app is represented by the file `graphs_v2_fin.py`. Dash will automatically assign the file name to the `title`, `name` and `path` properties of the page registry. However, in our case, we made the app look more professional by assigning new names and titles in the page registry. 

@@ -497,11 +497,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Navigate the <code class="docutils literal notranslate"><span class="pre">page_registry</span></code></p></li>
 <li><p>Customise order of pages, title and urls</p></li>
 <li><p>Include meta tags</p></li>
+<li><p>Add theme to app</p></li>
 </ul>
 </div>
 <p>By the end of this chapter, you’ll be able to build this app:</p>
-<p><img alt="app_structure" src="part5/ch15_files/app_baseline.gif" /></p>
-<p><a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_vfin.zip?raw=true">Click to download the complete code file for this chapter</a>.</p>
+<p><img alt="app_structure" src="../_images/final-app1.gif" /></p>
+<p><a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true">Click to download the complete code file for this chapter</a>.</p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>To run this app successfully, you will need to install the <code class="docutils literal notranslate"><span class="pre">dash_bootstrap_templates</span></code> and the <code class="docutils literal notranslate"><span class="pre">dash-labs</span></code> packages.</p>
@@ -515,9 +516,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="default-and-custom-404">
 <h2>15.1 Default and Custom 404<a class="headerlink" href="#default-and-custom-404" title="Permalink to this headline">¶</a></h2>
-<p>Multi pages Apps include, by default, a landing page whenever the user tries to reach an invalid URL.
+<p>Multi pages apps include, by default, a landing page whenever the user tries to reach an invalid URL.
 The default 404-page looks like the following:
-<img alt="app_structure" src="part5/ch15_files/app_404_default.gif" /></p>
+<img alt="app_structure" src="../_images/app404_default.gif" /></p>
 <p>However, the 404-page can be customised. In order to do so, we created a new file named <code class="docutils literal notranslate"><span class="pre">not_found_404.py</span></code> inside the pages folder and add the desired layout content.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">html</span>
@@ -533,25 +534,25 @@ The default 404-page looks like the following:
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>Then, by adding the below line of code to the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file, we ensured that the 404 page does not show up as a link in the navbar.</p>
+<p>Then, we add the below line of code to the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file to ensure that the 404 page does not appear as a link in the navbar, since we only want the Home, About, and Graphs pages on the navbar.</p>
 <p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span> <span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;pages.not_found_404&quot;</span></code></p>
-<p>Run the app and try to type a fake name in the url to see the 404 page displayed:</p>
-<p><img alt="app_structure" src="part5/ch15_files/app_404_custom.gif" /></p>
+<p>Run the app and try to type a fake name in the url to see the custom-amde 404 page displayed:</p>
+<p><img alt="app_structure" src="../_images/app404_custom.gif" /></p>
 </div>
 <div class="section" id="navigating-the-page-registry">
 <h2>15.2 Navigating the page registry<a class="headerlink" href="#navigating-the-page-registry" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">dash_labs</span></code> module has a function called <code class="docutils literal notranslate"><span class="pre">print_registry()</span></code> which allows to print the registry into the terminal to see the meta data of each registered page.</p>
-<p>Un-hashtag the below line of code in the <code class="docutils literal notranslate"><span class="pre">apps.py</span></code> file, and rerun your app.</p>
+<p>Un-hashtag the below line of code in the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file, and rerun your app.</p>
 <p><code class="docutils literal notranslate"><span class="pre">print_registry(exclude=&quot;layout&quot;)</span></code></p>
-<p>If you examine your terminal, you will see the following output (we’ve included only a couple of pages in the screenshot. The complete output includes the same properties for every page):</p>
-<p><img alt="printregistry" src="part5/ch15_files/print_registry.png" /></p>
-<p>As we can see, the registry stores a lot of information for each page, let’s focus on some properties (<a class="reference external" href="https://dash.plotly.com/urls#reference-for-dash.register_page">see the docs for the full list</a>)</p>
+<p>If you examine your terminal, you will see the following output (we’ve included the output only for the home page in the screenshot. The complete output includes the other pages):</p>
+<p><img alt="printregistry" src="../_images/pg-registry.png" /></p>
+<p>As you can see, the registry stores a lot of information for each page, let’s focus on some properties (<a class="reference external" href="https://dash.plotly.com/urls#reference-for-dash.register_page">see the docs for the full list</a>)</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: is the URL of the page. We can see that the homepage has url ‘/’.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: name of the link. If null, the app filename will be used.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">order</span></code>: the order of the pages in the app - commonly used when creating the page links in the <a class="reference external" href="http://app.py">app.py</a> file (Navlink in our case). If order of pages is not supplied, the page with path ‘/’ will receive order 0, then the remaining pages are sorted alphabetically.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: name of the page to be displayed into the browser tab. If null, the app filename will be used.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> are extra properties that, if specified, allow the adding of meta information to our App URL when shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder. We’ll see an example of this feature later.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: is the URL of the page. The path of the home page is always assigned a <code class="docutils literal notranslate"><span class="pre">'/'</span></code>. A multi page app <strong>must always be assigned a home page path.</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: name of the link. If null, the app filename will be used. Not to be confused with <code class="docutils literal notranslate"><span class="pre">__name__</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">order</span></code>: the order of the pages in the app - commonly used when creating the page links in the <a class="reference external" href="http://app.py">app.py</a> file (navlink and navbar in our case). If order of pages is not supplied, the page with path ‘/’ will receive order 0, then the remaining pages are sorted alphabetically.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: name of the page to be displayed in the browser tab. If null, the app filename will be used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> are extra properties that, if specified, allow the adding of meta information to our app URL when shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p></li>
 </ul>
 </div>
 <div class="section" id="customising-multi-page-order">
