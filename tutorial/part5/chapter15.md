@@ -17,7 +17,7 @@ By the end of this chapter, you'll be able to build this app:
 [Click to download the complete code file for this chapter](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_final.zip?raw=true).
 
 ```{attention} 
-To run this app successfully, you will need to install the `dash_bootstrap_templates` and the `dash-labs` packages.
+To run this app successfully, you will need to install the `dash-bootstrap-templates` and the `dash-labs` packages.
 
 > pip install dash-bootstrap-templates
 
@@ -54,7 +54,7 @@ Run the app and try to type a fake name in the url to see the custom-amde 404 pa
 
 ![app_structure](ch15_files/app404_custom.gif)
 
-## 15.2 Navigating the page registry
+## 15.2 Page registry
 The `dash_labs` module has a function called `print_registry()` which allows to print the registry into the terminal to see the meta data of each registered page.
 
 Un-hashtag the below line of code in the `app.py` file, and rerun your app.
@@ -73,28 +73,24 @@ As you can see, the registry stores a lot of information for each page, let's fo
 - `title`: name of the page to be displayed in the browser tab. If null, the app filename will be used.
 - `description` and `image` are extra properties that, if specified, allow the adding of meta information to our app URL when shared. `image` should contain the image filename located into the `assets` folder.
 
-## 15.3 Customising multi-page order
-By looking at the App we have so far, you'll notice that the order of the links in the Navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the `order` property of the home.py file, the number 1 to the graphs_v2_fin.py file and the number 2 to the about.py file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: "Home" first because it's the home page, "About" second, and "Graphs" third.
+## 15.3 Multi-page order
+By looking at the app we have so far, you'll notice that the order of the links in the navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the `order` property of the home.py file, the number 1 to the graphs_v2_fin.py file, and the number 2 to the about.py file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: "Home" first because it's the home page, "About" second, and "Graphs" third.
 
 Here's what the page registry looks like: 
-- pages/home.py : `dash.register_page(__name__, path='/', order='0')`
-- pages/about.py : `dash.register_page(__name__, order='2')`
-- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1')`
+- pages/home.py : `dash.register_page(__name__, path='/', order=0)`
+- pages/about.py : `dash.register_page(__name__, order=2)`
+- pages/graphs_v2_fin.py : `dash.register_page(__name__, order=1)`
 
 Get your feet wet and try to change the order of the home page so it appears last (far right) in the Navbar. 
 
-## 15.4 Customising names, titles, and URLs of pages
+## 15.4 Names, titles, and URLs of pages
 The graphs page of our app is represented by the file `graphs_v2_fin.py`. Dash will automatically assign the file name to the `title`, `name` and `path` properties of the page registry. However, in our case, we made the app look more professional by assigning new names and titles in the page registry. 
 
-- pages/graphs_v2_fin.py : `dash.register_page(module = __name__, order='1', name='Graphs', title='Dash App | Graphs')`.
+- pages/graphs_v2_fin.py : `dash.register_page(__name__, order=1, name='Graphs', title='Dash App | Graphs')`.
 
-Notice that we did not modigy the `path` property of the page registry. Consequently, the url of the graphs page will remain `/graphs-v2-fin`. 
+Notice that we did not modify the `path` property of the page registry. Consequently, the url of the graphs page will remain `/graphs-v2-fin`. 
 
-Pay attention to the gif below to see how the name is displayed in the Navbar and the title is displayed in the browser tab.
-
-![app_structure](ch15_files/app_fix02_names.gif)
-
-Now try this yourself: go into the pages files and update the `title` and `name` properties with other values.
+Now try this yourself: go into one of the pages and update the `title` and `name` properties with other values. Rerun the app and see how the text displayed in the navbar and the text displayed in the browser tab changes.
 
 ## 15.5 Updating the default `pages` directory
 We can further customise a multipage app by renaming the folder which contains all pages. By default, the folder should be named `pages`; however, we can simply specify a custom folder name when instantiating our `app` if we prefer a different name.
@@ -104,51 +100,44 @@ Let's suppose we chose to rename the folder with all the app's pages to `app sec
 `app = Dash(__name__, use_pages=True, pages_folder='app sections')`.
 
 ```{note}
-When renaming the `pages` directory, all parts of the code which are using the `pages` folder should be updated with the new name. An example of this is the code used in our template to build the `Navbar`. 
+When renaming the `pages` directory, all parts of the code that refer to the `pages` folder must be updated with the new name. An example of this is the code used in the `app.py` file to build the `Navbar`. 
 - from: `for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"`
 - to: `for page in dash.page_registry.values() if page["module"] != "app sections.not_found_404"`
 ```
 
-## 15.6 Metatags
-When sharing the link to a page of our app (social media networks, Forum, etc.), thanks to meta tags, a card would be displayed with a preview of our page. For the web to automatically create that page preview, you would need to define the `title`, `description` and the `image` properties.
-To test this feature, we would need the app to be published; here's an example of a published app which includes meta tags: [example of metatags](https://www.trainerhill.com/blog/power-creep).
+## 15.6 Meta tags
+Meta tags allow a card to be displayed with a preview of our app when sharing the link to our app (for example, on Twitter, LinkedIn, Plotly Forum, etc.). For the web to automatically create a page preview, you would need to define the `title`, `description` and the `image` properties of the page registry.
+
+To test this feature, we would need the app to be published; here's an example of a published app, made by a Dash community member, which includes meta tags.
 
 ![metatags_example](ch15_files/metatags_example.jpg)
 
-Although the code of the Power Creep app is not open source, the meta tag properties within it are defined as such:
+The meta tag properties within the Power Creep app are defined as such:
 
-- `title`: Power Creep
-- 'description`: An analysis of Power Creep in Pokemon Trading Card Game 
+- `title= 'Power Creep'`
+- `description= 'An analysis of Power Creep in the Pokemon Trading Card Game'` 
 - `image`: an image placed in the `assets` folder of the app
 
-So, coming back to our app, we could need to define the graphs page as such: 
+So, coming back to our app, if you would like to create meta tags for the Graphs page, you would need to add the `description` and `image` properties to its page registry as such: 
 ```
-dash.register_page(module = __name__,
-		order='1',
+dash.register_page(__name__,
+		order=1,
 		name='Graphs',
 		title='Dash App | Graphs',
-		description='Graphs of several analyses of the gapminder dataset.',
+		description='Graphs to visualize the gapminder dataset.',
 		image=graph_preview.png)
 ```
-Make sure that you place the image file, `graph_preview.png`, in the `assets` folder.
+Make sure to create your desired image and place that file, `graph_preview.png`, in the `assets` folder.
 
-## 15.X Advanced multi-page App Introduction
-As a starting point for the chapter, let's build a multi-page App structure with all the knowledge from the previous chapter. We'll build on this template, by adding a couple of features to it in every section of this chapter.
-
-The template is the following, you can download it [here](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app_v1.zip?raw=true) (the .zip file will need to be uncompressed):
-![app_structure](ch15_files/app_baseline.gif)
-
-The App structure consists in: 
-- `app.py` file
-- `assets` folder, which is currently empty. This is where pictures, media files, and style sheets might be stored
-- `pages` folder with the following pages: `Home`, `Graphs`, `Extras`, `About`.
+## 15.7 App themes
+As a reminder, the `app.py` file is what brings all the pages together and finalizes the build of the multi page app.
 
 We want to give this app a more professional look; therefore we've customised the `app.py` file in the following way:
 - Our header is represented by a `dbc.Navbar` component containing the title of our App and one `dbc.NavLink` for each page in our registry. From the registry, we exclude one page ``if page["module"] != "pages.not_found_404"``. This is a default page that is used when the user tries to reach an invalid URL. In the next section we'll see how it works and how we can customise it.
 - Below the header, we've included a `theme_toggle` which allow to switch between two themes. We've picked two themes from `dbc.themes` (tipically a dark and a light one) and the switcher will allow to switch between the two.
 - Note that when instantiating our `app`, we've enabled the `use_pages=True` option and used the `external_stylesheets` to define the default theme (which is `url_theme2`) together with enhanced fonts with the option `dbc.icons.FONT_AWESOME`.
 
-**App.py file:**
+**App file:**
 
 ````{dropdown} See the code
     :container: + shadow
@@ -159,6 +148,7 @@ from dash import Dash, html
 import dash_bootstrap_components as dbc
 import dash
 from dash_bootstrap_templates import ThemeSwitchAIO
+from dash_labs import print_registry
 
 # Configure Themes
 url_theme1 = dbc.themes.FLATLY
@@ -171,7 +161,9 @@ theme_toggle = ThemeSwitchAIO(
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 
 # App
-app = Dash(__name__, use_pages=True, external_stylesheets=[[url_theme2, dbc_css], dbc.icons.FONT_AWESOME])
+app = Dash(__name__, use_pages=True, external_stylesheets=[[url_theme2, dbc_css], dbc.icons.FONT_AWESOME], pages_folder='pages')
+
+# print_registry(exclude="layout")
 
 header = dbc.Navbar(
     dbc.Container(
@@ -188,7 +180,7 @@ header = dbc.Navbar(
                 dbc.NavbarToggler(id="navbar-toggler"),
                     dbc.Nav([
                         dbc.NavLink(page["name"], href=page["path"])
-                        for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"
+                            for page in dash.page_registry.values() if page["module"] != "pages.not_found_404"
                     ])
             ])
         ],
