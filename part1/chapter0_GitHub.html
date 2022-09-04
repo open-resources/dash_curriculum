@@ -357,11 +357,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-the-necessary-python-libraries">
-   Install the necessary Python libraries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#test-the-stack">
    Test the stack
   </a>
@@ -389,11 +384,6 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#how-to-install-github">
    How to Install GitHub
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-the-necessary-python-libraries">
-   Install the necessary Python libraries
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -444,22 +434,14 @@ const thebe_selector_output = ".output, .cell_output"
 <p><img alt="img-repo" src="../_images/cloned-repo2.png" /></p>
 <p>Now that your file has been cloned to your computer, you need to initiate git by typing inside the terminal: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code>:</p>
 <p><img alt="img-gitinit" src="../_images/git-init.png" /></p>
-<p>Do we need this section below?</p>
 <hr class="docutils" />
 <p>Press enter, enter your github account credentials (might need to set up git config here for first time)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;bolajiayodeji&quot;</span>
 <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="n">mailtobolaji</span><span class="nd">@gmail</span><span class="o">.</span><span class="n">com</span>
 </pre></div>
 </div>
-<p><strong>Add gif of being prompted for github credentials and entering them</strong>\</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="install-the-necessary-python-libraries">
-<h2>Install the necessary Python libraries<a class="headerlink" href="#install-the-necessary-python-libraries" title="Permalink to this headline">¶</a></h2>
-<p>To enusre our Dash apps can run, you need to install a few libraries if you have not done so in the previous chapter. Go to the VScode terminal and type: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">dash</span></code></p>
-<p><img alt="img-install-dash" src="../_images/install-dash.png" /></p>
-<p>Continue using the terminal to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">dash-bootstrap-components</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas</span></code></p>
-</div>
 <div class="section" id="test-the-stack">
 <h2>Test the stack<a class="headerlink" href="#test-the-stack" title="Permalink to this headline">¶</a></h2>
 <p>Let’s make sure everything has been installed correctly. Open the newly cloned folder in VScode and create a new file called <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong>.  Copy and paste this code inot the file:</p>
@@ -473,7 +455,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><img alt="img-gitinit" src="../_images/new-code.png" /></p>
 <p>Click the <strong>Run</strong> tab located in the top section of VScode; then click <strong>Run Without Debugging</strong> to run the file.  If we see <strong>Hello World!</strong> printed out in the terminal, we know the Python code is working properly with all libraries installed.</p>
 <p><img alt="img-vscode" src="../_images/code-run.png" /></p>
-<p>Now that we have our <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong> file running, let’s use git to track the file in our repository. Go to the terminal in VScode and go into the cloned directory by typing <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.\MyDashApps\</span></code>. Modify <code class="docutils literal notranslate"><span class="pre">MyDashApps</span></code> with the name of your repository. Then, type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>.  We see that there is an <strong>Untracked file</strong> called <strong><code class="docutils literal notranslate"><span class="pre">main.py/</span></code></strong> since we have not committed that file yet:</p>
+<p>Now that we have our <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong> file running, let’s use git to track the file in our repository. Go to the terminal in VScode and go into the cloned directory by typing <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">MyDashApps</span></code> (modify <code class="docutils literal notranslate"><span class="pre">MyDashApps</span></code> with the name of your repository). Then, type <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>.  We see that there is an <strong>Untracked file</strong> called <strong><code class="docutils literal notranslate"><span class="pre">main.py</span></code></strong> since we have not committed that file yet:</p>
 <p><img alt="img-status" src="../_images/git-status.png" /></p>
 <p>We’ll <strong>add</strong> that folder to the git <strong>staging area</strong> by typing: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">main.py</span></code>.</p>
 <p>Then, we need to <strong>commit</strong> the changes. Type in <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;This</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">commit</span> <span class="pre">message&quot;</span></code>. Every commit needs a message and this is a good opportunity to include a short reminder of what this commit changed:</p>

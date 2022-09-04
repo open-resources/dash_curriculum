@@ -31,8 +31,6 @@ Now that your file has been cloned to your computer, you need to initiate git by
 
 ![img-gitinit](./ch0_files/git-init.png)
 
-Do we need this section below?
-
 -----
 
 Press enter, enter your github account credentials (might need to set up git config here for first time)
@@ -40,18 +38,7 @@ Press enter, enter your github account credentials (might need to set up git con
 git config --global user.name "bolajiayodeji"
 git config --global user.email mailtobolaji@gmail.com
  ```
-**Add gif of being prompted for github credentials and entering them**\
-
 ----
-
-
-## Install the necessary Python libraries
-To enusre our Dash apps can run, you need to install a few libraries if you have not done so in the previous chapter. Go to the VScode terminal and type: `pip install dash` 
-
-![img-install-dash](./ch0_files/install-dash.png)
-
-Continue using the terminal to `pip install dash-bootstrap-components` and `pip install pandas`
-
 
 ## Test the stack
 Let's make sure everything has been installed correctly. Open the newly cloned folder in VScode and create a new file called **`main.py`**.  Copy and paste this code inot the file:
@@ -70,7 +57,7 @@ Click the **Run** tab located in the top section of VScode; then click **Run Wit
 
 ![img-vscode](./ch0_files/code-run.png)
 
-Now that we have our **`main.py`** file running, let's use git to track the file in our repository. Go to the terminal in VScode and go into the cloned directory by typing `cd .\MyDashApps\`. Modify `MyDashApps` with the name of your repository. Then, type `git status`.  We see that there is an **Untracked file** called **`main.py/`** since we have not committed that file yet:
+Now that we have our **`main.py`** file running, let's use git to track the file in our repository. Go to the terminal in VScode and go into the cloned directory by typing `cd MyDashApps` (modify `MyDashApps` with the name of your repository). Then, type `git status`.  We see that there is an **Untracked file** called **`main.py`** since we have not committed that file yet:
 
 ![img-status](./ch0_files/git-status.png)
 
