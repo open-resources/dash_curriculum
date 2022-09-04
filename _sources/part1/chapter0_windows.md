@@ -1,27 +1,60 @@
-# Windows Installation
+# Installation on Windows
 
-## VS Code
-Follow the instructions below to install VScode, set it up, and add Python extentions.
+System requirements for Python and Git are minimal. Therefore, the minimal system requirements for setup will be based on the [requirements for Visual Studio Code](https://code.visualstudio.com/docs/supporting/requirements). 
+
+## Overview
+
+1. **Git**
+  - Git is a [version control system](https://www.geeksforgeeks.org/version-control-systems/) that is used to track and manage changes to our code over time in a [repository](https://www.geeksforgeeks.org/what-is-a-git-repository/)
+  - [Learn (the basics of) Git in 15 minutes](https://youtu.be/USjZcfj8yxE)
+
+2. **Python**
+  - Python is the programming language we will use to build our applications
+  - We will use various Python [libraries](https://www.geeksforgeeks.org/libraries-in-python/) (such as Dash and Pandas) as the primary building blocks for our application
+
+3. **Github**
+  - Github is a cloud-based service that hosts Git repositories. We will use these cloud repositories to deploy our Dash apps.
+  - You will need to [create an account on GitHub](https://github.com/signup)
+
+## Code Editor
+
+- **Visual Studio Code (VS Code)**
+  - VS Code is a program that we will use to edit and debug our code
+  - VS Code Extensions help us to code and improve productivity
+  - **Note**: There are many different [IDEs](https://www.codecademy.com/article/what-is-an-ide) options but using VS Code will make for a smoother learning experience for this course
+
+## Installing Git
+
+To install Git onto your computer, follow the instructions below:
+- [Git - Installation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+## Installing VS Code
+
+Follow the instructions below to install VS Code, set it up, and add Python extensions.
 - [Text based instructions](https://code.visualstudio.com/docs/setup/windows)
 - [Video instructions](https://code.visualstudio.com/docs/introvideos/basics)
 - [Extensions - Text](https://code.visualstudio.com/docs/languages/python)
 - [Extensions - Video](https://www.youtube.com/watch?v=Z3i04RoI9Fk)
 
+## Installing Python
 
-## Python
-Check if you already have Python installed by typing ```python --version``` in the VScode terminal.  If you see Python installed, skip to section named **"Install additional libraries"**. If you do not have Python installed, follow the installation instructions below first:
+Check if you already have Python installed by typing ```python --version``` in the VScode terminal.  **Python version 3.9 or above is highly encouraged**. If you see Python installed, skip to section named **"Install additional libraries"**. If you do not have Python installed, follow the installation instructions below first:
 - [Text based instruction](https://www.python.org/downloads/)
 - [Video instructions](https://www.youtube.com/watch?v=Kn1HF3oD19c)
 
-**Install additional libraries:**
-- We need to install various Python libraries, including Dash, to run our application.  We will use pip to install the libraries. Paste the following command into the VScode terminal: `pip install dash` 
+### Installing additional libraries
+
+We need to install various Python libraries, including Dash, to run our application.
+We will use pip to install the libraries, but you may use equivalent commands in other package managers as well including `poetry`, `mamba`, `conda`, and others.
+
+Assuming you are using `pip`, paste the following commands one at a time into the VScode terminal and ensure installation is complete:
+
+- `pip install dash`
+- `pip install dash-bootstrap-components`
+- `pip install pandas`
 
 ![img-install-dash](./ch0_files/install-dash.png)
 
-Continue using the terminal to `pip install dash-bootstrap-components` and `pip install pandas`
-  
-
-## Git
-To install Git onto your computer, follow the instructions below:
-- [Git - Installation](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-
+```{caution}
+You may be asked to install some dependencies, and you should agree to have those dependencies installed.
+```
