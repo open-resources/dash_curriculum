@@ -1,4 +1,4 @@
-# Installation on Windows
+# Windows
 
 System requirements for Python and Git are minimal. Therefore, the minimal system requirements for setup will be based on the [requirements for Visual Studio Code](https://code.visualstudio.com/docs/supporting/requirements). 
 
