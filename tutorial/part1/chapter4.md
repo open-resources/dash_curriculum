@@ -1,4 +1,4 @@
-# Chapter 4: Linking Dash components
+# Chapter 4: Linking Dash Components
 
 ## What you will learn
 
