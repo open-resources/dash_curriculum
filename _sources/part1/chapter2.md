@@ -72,8 +72,8 @@ app.layout = dbc.Container([
 ])
 ```
 The app layout represents what will be displayed in the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: `dcc.Markdown`. This Dash Core Component let's you use [Markdown syntax](https://commonmark.org/help/) to format the text that is displayed on the page. This component has a few properties, such as `children` and `style`:
-- **Children** : this is a common property shared by many Dash components and it allows the adding of textual content. In this Markdown component, "My First App" will be the content displayed on the web page.
-- **Style** : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
+- `children` : this is a common property shared by many Dash components and it allows the adding of textual content. In this Markdown component, "My First App" will be the content displayed on the web page.
+- `style` : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
 
 ### 2.1.4 Run the App
 ```
@@ -124,8 +124,7 @@ Now that you know how to create and launch your first basic app, try to play aro
 - Try to add a new Markdown component with different content
 
 ## Exercises
-By using the app code included in the "What you will learn" section, complete the two exercises below:
-(1) Change the title of our app to "New title" and align it to the left
+(1) Use [the app](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch2_files/chapter2_app.py) from the "What you will learn" section and change the title of the app to "New title", aligning it to the left
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -175,6 +174,6 @@ if __name__ == '__main__':
 ````
 
 ## Summary
-In this chapter we learned about what a Dash app is as well as its recommended structure. We have also explored each building block and their core properties, learning how to modify them. Finally, we learned how to launch the app, stop and update the app.
+In this chapter we learned what a Dash app is as well as its recommended structure. We have also explored each building block and their core properties. Finally, we learned how to launch the app, stop and update the app.
 
 In the next chapter, we will discover additional Dash components and examine how to customise the layout.
