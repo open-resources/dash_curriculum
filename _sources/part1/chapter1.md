@@ -25,7 +25,7 @@ In essence, a dashboard is a board that displays information, usually as some ke
 
 ## How to use dashboards?
 
-Dashboards aggregate data from multiple data sources e.g., files like an Excel spreadsheet or Google sheet or APIs. Compared with a spreadsheet, in a dashboard you can analyze your data in a table, line chart, bubble chart, or bar chart, just to name a few options. So a dashboard isn’t just about saving time, but seeing all of your data together in one place. Comparing to a classical business report a dashboard sets itself apart as it shifts the perspective from a periodic reporting to a constant monitoring.
+Dashboards aggregate data from multiple data sources e.g., files like an Excel spreadsheet or Google sheet or APIs. Compared with a spreadsheet, in a dashboard you can analyze your data in a table, line chart, bubble chart, or bar chart, just to name a few options. So a dashboard isn’t just about saving time, but seeing all of your data together in one place. Compared to a classical business report a dashboard sets itself apart as it shifts the perspective from a periodic reporting to a constant monitoring.
 
 Common roles for data visualization include:
 
@@ -51,7 +51,7 @@ When working on a dashboard you always should start with the following questions
 - What is their level of experience with data?
 - What are their prejudices in terms of visualizations and colours?
 
-Further best Practices for dashboard design are:
+Further best practices for dashboard design are:
 
 - Design different dashboards for different business needs.
 - Add comparison values.
