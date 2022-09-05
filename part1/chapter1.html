@@ -375,6 +375,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#the-importance-of-dashboards-in-data-analysis-projects">
    The importance of dashboards in data analysis projects
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dashboards-versus-business-reportings">
+     Dashboards versus business reportings
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -420,6 +427,13 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#the-importance-of-dashboards-in-data-analysis-projects">
    The importance of dashboards in data analysis projects
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dashboards-versus-business-reportings">
+     Dashboards versus business reportings
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -433,9 +447,8 @@ const thebe_selector_output = ".output, .cell_output"
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-1-introduction-to-dashboards">
 <h1>Chapter 1: Introduction to Dashboards<a class="headerlink" href="#chapter-1-introduction-to-dashboards" title="Permalink to this headline">¶</a></h1>
 <p>These days, understanding data is the key to making the best decisions for any business. However, the amount of information that’s available at any time can be overwhelming for the most data-savvy person.</p>
-<p>So what’s the key to making data-driven decisions? Finding the most important data and formatting it in a way that’s easy to understand. This can change, depending on who will view the data. If you’re an industry expert, you may find complex data easier to understand. If you’re presenting data to less well-versed stakeholders at your company, you may need to simplify it before sharing it with others.</p>
+<p>So what’s the key to making data-driven decisions? Finding the most important data and formatting it in a way that’s easy to understand. This can change, depending on who will view the data. If you’re an industry expert, you may find complex data easier to understand.</p>
 <p>One of the easiest ways to make data easy to understand for technical and non-technical audiences is to create a dashboard that easily displays all of your data visualizations in one place. This chapter gives you a short introduction into dashboards.</p>
-<p>(<a class="reference external" href="https://www.tableau.com/learn/articles/dashboards/what-is">https://www.tableau.com/learn/articles/dashboards/what-is</a>)</p>
 <div class="section" id="learning-intentions">
 <h2>Learning Intentions<a class="headerlink" href="#learning-intentions" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter, we cover the following topics:</p>
@@ -445,20 +458,19 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>What is a dashboard?</p></li>
 <li><p>How to use dashboards?</p></li>
 <li><p>Principles of effective dashboard design</p></li>
-<li><p>The importance of dashboards in data analysis projects</p></li>
+<li><p>The importance of dashboards in data analysis projects and the difference to business reportings</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="what-is-a-dashboard">
 <h2>What is a dashboard?<a class="headerlink" href="#what-is-a-dashboard" title="Permalink to this headline">¶</a></h2>
-<p>A dashboard is a type of graphical user interface which often provides at-a-glance views of key performance indicators (KPIs) relevant to a particular objective or business process. (<a class="reference external" href="https://en.wikipedia.org/wiki/Dashboard_(business)">https://en.wikipedia.org/wiki/Dashboard_(business)</a>)</p>
+<p>A dashboard is a type of graphical user interface which often provides at-a-glance views of key performance indicators (KPIs) relevant to a particular objective or business process.</p>
 <p>In essence, a dashboard is a board that displays information, usually as some key numbers and a few panels of plots.</p>
 </div>
 <div class="section" id="how-to-use-dashboards">
 <h2>How to use dashboards?<a class="headerlink" href="#how-to-use-dashboards" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.klipfolio.com/blog/what-is-a-data-dashboard">https://www.klipfolio.com/blog/what-is-a-data-dashboard</a></p>
-<p>Behind the scenes, a dashboard connects to your files (like an Excel spreadsheet or Google sheet), attachments, services (like QuickBooks or HubSpot) and APIs. A dashboard transforms the raw data into something human-readable. Instead of sifting through columns or rows in a spreadsheet, you can analyze your data in a table, line chart, bubble chart, or bar chart, just to name a few options.</p>
-<p>Dashboards aggregate data from multiple data sources. A dashboard isn’t just about saving time, but seeing all of your data together in one place. Comparing to a classical business report a dashboard sets itself apart as it shifts the perspective from a periodic reporting to a constant monitoring. Common roles for data visualization include:</p>
+<p>Dashboards aggregate data from multiple data sources e.g., files like an Excel spreadsheet or Google sheet or APIs. Compared with a spreadsheet, in a dashboard you can analyze your data in a table, line chart, bubble chart, or bar chart, just to name a few options. So a dashboard isn’t just about saving time, but seeing all of your data together in one place. Comparing to a classical business report a dashboard sets itself apart as it shifts the perspective from a periodic reporting to a constant monitoring.</p>
+<p>Common roles for data visualization include:</p>
 <ul class="simple">
 <li><p>showing change over time</p></li>
 <li><p>showing a part-to-whole composition</p></li>
@@ -470,8 +482,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="principles-of-effective-dashboard-design">
 <h2>Principles of effective dashboard design<a class="headerlink" href="#principles-of-effective-dashboard-design" title="Permalink to this headline">¶</a></h2>
-<p>Very good overview: <a class="reference external" href="https://www.klipfolio.com/blog/starter-guide-to-dashboard-design">https://www.klipfolio.com/blog/starter-guide-to-dashboard-design</a>.</p>
-<p>Questions you should start with:</p>
+<div class="admonition-further-sources admonition">
+<p class="admonition-title">Further sources</p>
+<p>For a good overview also see the <a class="reference external" href="https://www.klipfolio.com/blog/starter-guide-to-dashboard-design">Starter Guide on Dashboard Design</a> on Klipfolio.</p>
+</div>
+<p>When working on a dashboard you always should start with the following questions that will give you a guidance on how to structure your design:</p>
 <ul class="simple">
 <li><p>Who is my audience?</p></li>
 <li><p>What information do they need?</p></li>
@@ -479,38 +494,23 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>What is their level of experience with data?</p></li>
 <li><p>What are their prejudices in terms of visualizations and colours?</p></li>
 </ul>
-<p>Best Practices for dashboard design:</p>
+<p>Further best Practices for dashboard design are:</p>
 <ul class="simple">
-<li><p>Design different dashboards for different business needs</p></li>
-<li><p>Add comparison values</p></li>
-<li><p>Consider your dashboard layout</p></li>
-<li><p>Pick the right visualizations</p></li>
-<li><p>Proper use of colour</p></li>
-<li><p>Easy-to-read information</p></li>
-<li><p>Design for different displays</p></li>
+<li><p>Design different dashboards for different business needs.</p></li>
+<li><p>Add comparison values.</p></li>
+<li><p>Consider your dashboard layout.</p></li>
+<li><p>Pick the right visualizations.</p></li>
+<li><p>Proper use of colour.</p></li>
+<li><p>Easy-to-read information.</p></li>
+<li><p>Design for different displays.</p></li>
 </ul>
+<p>One good starting point when referring to the right visualizations might be the chart chooser below. For some further exploration you also might want to look at the <a class="reference external" href="https://chartio.com/learn/charts/how-to-choose-data-visualization/">Chart Tutorial</a> by Chartio or the <a class="reference external" href="https://www.highcharts.com/chartchooser/">Chart Chooser</a> by Highcharts.</p>
 <p><img alt="Chart Chooser" src="../_images/chart_chooser.jpg" /></p>
-<p>(<a class="reference external" href="https://chartio.com/learn/charts/how-to-choose-data-visualization/">https://chartio.com/learn/charts/how-to-choose-data-visualization/</a>)
-(<a class="reference external" href="https://extremepresentation.com/2010/12/tools/">https://extremepresentation.com/2010/12/tools/</a>)
-(<a class="reference external" href="https://www.highcharts.com/chartchooser/">https://www.highcharts.com/chartchooser/</a>)</p>
+<p>Source: <a class="reference external" href="https://extremepresentation.com/2010/12/tools/">https://extremepresentation.com/2010/12/tools/</a></p>
 </div>
 <div class="section" id="the-importance-of-dashboards-in-data-analysis-projects">
 <h2>The importance of dashboards in data analysis projects<a class="headerlink" href="#the-importance-of-dashboards-in-data-analysis-projects" title="Permalink to this headline">¶</a></h2>
-<p>Like already mentioned before, the difference is about the shift in perspective from periodic reporting (like quarterly or yearly) to continued monitoring (like daily or weekly). What makes dashboards and reports so valuable is how you and your team use them to your advantage.</p>
-<ul class="simple">
-<li><p>Access to historical data</p></li>
-<li><p>Trend analysis to see what’s worked (or what hasn’t) in the past to shift your approach for the future</p></li>
-<li><p>Bring multiple metrics together</p></li>
-<li><p>Visualize your data</p></li>
-</ul>
-<p>Differences between dashboards and reports</p>
-<ul class="simple">
-<li><p>Dashboards are interactive—you can segment, filter, and visualize your data</p></li>
-<li><p>Dashboards display live, dynamically updated data (as your data source updates, your dashboard does too)</p></li>
-<li><p>Reports share information on known areas of interest or goals</p></li>
-<li><p>Dashboards monitor known areas of interest or goals</p></li>
-</ul>
-<p>Herefore, dashboards are essential for any holistic analysis on data. The importance of dashboards among others can be found in the following benefits:</p>
+<p>Overall, dashboards are essential for any holistic analysis on data. The importance of dashboards among others can be found in the following benefits:</p>
 <ul class="simple">
 <li><p>Quicker exploration than with coding.</p></li>
 <li><p>Can enable people without programming skills to understand data better.</p></li>
@@ -519,6 +519,24 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>When there is too much data, interactivity can allow us to look at subsets.</p></li>
 <li><p>People can be interested in different things when they look at the same data.</p></li>
 </ul>
+<div class="section" id="dashboards-versus-business-reportings">
+<h3>Dashboards versus business reportings<a class="headerlink" href="#dashboards-versus-business-reportings" title="Permalink to this headline">¶</a></h3>
+<p>What makes dashboards and business reportings so valuable is how you and your team use them to your advantage, this incorporates:</p>
+<ul class="simple">
+<li><p>Access to historical data.</p></li>
+<li><p>Trend analysis to see what’s worked (or what hasn’t) in the past to shift your approach for the future.</p></li>
+<li><p>Bring multiple metrics together.</p></li>
+<li><p>Visualize your data.</p></li>
+</ul>
+<p>However, the difference between the two is about the shift in perspective from periodic reporting (like quarterly or yearly) to continued monitoring (like daily or weekly) which make dashboards so powerful in data analysis.</p>
+<p>The main differences between dashboards and reports are, that:</p>
+<ul class="simple">
+<li><p>Dashboards are interactive e.g., you can segment, filter, and visualize your data.</p></li>
+<li><p>Dashboards display live, dynamically updated data (as your data source updates, your dashboard does too).</p></li>
+<li><p>Reports share information only on known areas of interest or goals.</p></li>
+<li><p>Dashboards instead monitor known areas of interest or goals.</p></li>
+</ul>
+</div>
 </div>
 </div>
 
