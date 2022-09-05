@@ -96,11 +96,6 @@ Before we talk about the structure of a callback, let’s briefly discuss how ca
 
 Let's take the app from the previous chapter, containing a markdown and a dropdown component. Extending this code with a simple callback gives us an app that links these two components together, where the selection of the dropdown value will update the title of the app.
 
-
-```{attention}
-Always make sure to import the packages 'Output' and 'Input' from the dash library at the beginning of your code when you are working with callbacks.
-```
-
 ```
 # Import packages
 from dash import Dash, dcc, Input, Output
@@ -208,7 +203,7 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
 
 Now that we have already seen a simple callback and understand how it is implemented, let's see a more complex example.
 
-### 4.3.1 Change the style of a Markdown component using a slider
+### 4.3.1 Update Markdown's style component with a slider
 
 Here we will replace the dropdown from the previous example with a slider. In addition to the `children` property of the Markdown component we introduce another property called `style` which can be used for any kind of styling, e.g., the color or size of the font. [Chapter 9](../part3/chapter9.md) will give you some more insights on this topic.
 
@@ -312,7 +307,9 @@ if __name__ == '__main__':
 ![gif4-3](./ch4_files/gif-chap4-3.gif)
 
 ## Exercises
-(1) Create a callback that, based on a color name (e.g. red) selected in a `RadioItems` component, updates the `style` property of a `Markdown` component to change the color of its text.
+(1) Create an app with a RadioItems component that has three different color names in its `options` property: red, orange, and green. Create a `Markdown` component, assigning 'Text' to its `children` and align the text in the center using the `style` property.
+
+Then, create a callback that uses the color value selected to update the `color` key within the `style` property of a `Markdown` component. The goal is to change the color of the markdown's 'Text', based on the Radio Item chosen. Make sure to import the packages `Output` and `Input` from the dash library at the beginning of your code when adding callbacks to your apps.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -352,7 +349,61 @@ if __name__ == '__main__':
 ```
 ![solution_ex1](./ch4_files/chapter04_ex1.gif)
 ````
-(2) Incorporate the callback we just built into the app code included in the "Bring everything together" section. The new app, besides allowing to change the title text and size, should also allow to change the title color, based on the `RadioItems` component. Locate the radio items component on a new row in the layout. Note that in the new app we will have two callbakcs both affecting the `style` of our title. You should know that callbacks can handle multiple inputs at the same time with the following code: `@app.callback(Output(), Input(), Input())`
+(2) Copy the app code below that comes from the "Bring everything together" section. Now, incorporate into the app's layout the RadioItems component that you built in exercise 1. Then, update the second callback of the app to include the RadioItems `value` property as the second callback Input. Update the callback function in such a way that the color of the app title changes, based on the Radio Item value chosen.
+
+- Tip: the structure of a callback with multiple inputs should look like this - `@app.callback(Output(...), Input(...), Input(...))`
+
+```
+# Import packages
+from dash import Dash, dcc, Input, Output
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+markdown = dcc.Markdown(id='our-markdown', children='My First app', style={'fontSize': 12})
+dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
+slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
+
+# App Layout
+app.layout = dbc.Container(
+    [
+        dbc.Row([dbc.Col([markdown], width=8)]),
+        dbc.Row(
+            [
+                dbc.Col([dropdown], width=3),
+                dbc.Col([slider], width=9),
+            ]
+        ),
+    ]
+)
+
+
+# Callbacks
+@app.callback(
+    Output(component_id='our-markdown', component_property='children'),
+    Input(component_id='our-dropdown', component_property='value')
+)
+def update_markdown(value_dropdown):
+    title = value_dropdown
+    return title
+
+
+@app.callback(
+    Output(component_id='our-markdown', component_property='style'),
+    Input(component_id='our-slider', component_property='value')
+)
+def update_markdown(value_slider):
+    title_size = {'fontSize': 12+2*value_slider}
+    return title_size
+
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -415,6 +466,5 @@ if __name__ == '__main__':
 
 Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. Regardless if there is only one or multiple callbacks, you'll be able to manage your app by linking different components together.
 
-Now it's your turn, try to link some of the other components you learned in chapter 3 and build your own interactive app.
 In the next chapter we will learn how to deploy our app to the web.
 
