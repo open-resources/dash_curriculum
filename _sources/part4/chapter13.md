@@ -1,4 +1,4 @@
-# Chapter 13: Improving app performance
+# Chapter 13: Improving App Performance
 
 ## What you will learn
 
