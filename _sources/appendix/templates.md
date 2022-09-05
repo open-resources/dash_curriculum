@@ -1,13 +1,13 @@
 # Dashboard Layouts
-In this section we provide you with a series of layout templates as a blueprint for your own dashboards. For this purpose we omit any unecessary functionality by implementing only the layout without any use of callbacks. Feel free to use any of these basic templates with your own data. Hereby, we will give you examples for templates that combine control panels and graphs, that use navigation like tabs or a sidebar as well as combining all of these. Finally, we will restructure these dashboards into multi page apps.
+In this section we provide you with a series of layout templates as a blueprint for your own dashboards. For this purpose we omit any unecessary functionality by implementing only the layout without any use of callbacks. We will provide templates that combine control panels and graphs as well as templates that use navigation elements like tabs or a sidebar. Finally, we will restructure these dashboards into multi page apps. We encourage you to use these templates when creating your own dashboards. 
 
 ## Control panels and graphs
-This first section gives you two examples that combine control panels with graphs. You will find
+This first section gives you two examples that combine control panels with graphs. You will find:
 
-- A template with control panel on the left and
+- A template with control panel on the left
 - A template with control panel on the bottom
 
-### Template with control panel on the left
+### Control panel on the left
 
 ![Template 1](./template-1.png)
 
@@ -133,7 +133,7 @@ if __name__ == "__main__":
 ```
 ````
 
-### Template with control panel on the bottom
+### Control panel on the bottom
 
 ![Template 2](./template-2.png)
 
@@ -285,13 +285,13 @@ if __name__ == "__main__":
 
 ````
 
-## Navigation panels and Graphs
-This second section gives you two examples at hand on how to incorporate multiple data sets into your dashboard i.e., combining navigation panels and graphs. In particular, you will find
+## Navigation panels and graphs
+This second section provides two examples of how to combine navigation panels and graphs. In particular, you will find:
 
-- A template with navigation tabs on the top and
-- A template with a navigation bar on the side.
+- A template with navigation tabs on the top
+- A template with a navigation bar on the side
 
-### Template with navigation tabs on the top
+### Navigation tabs on top
 
 ![Template 3](./template-3.png)
 
@@ -317,7 +317,7 @@ continents = df["continent"].unique()
 title = dcc.Markdown("My Dashboard", className="bg-light", style={"font-size": 30})
 
 # Tabs
-tabs = [
+list_of_tabs = [
     dbc.Tab(
         dbc.Card(
             [
@@ -346,7 +346,7 @@ tabs = [
 ]
 
 for continent in continents:
-    tabs.append(
+    list_of_tabs.append(
         dbc.Tab(
             dbc.Card(
                 [
@@ -377,11 +377,13 @@ for continent in continents:
     )
 
 # App Layout
-app.layout = html.Div(
+app.layout = dbc.Container(
     [
-        dbc.Row([dbc.Col([title], style={"text-align": "center", "margin": "auto"})]),
-        html.Br(),
-        dbc.Container([dbc.Tabs(tabs)]),
+        dbc.Row([
+            dbc.Col([title], width=12, style={"text-align": "center", "margin": "auto"})
+        ]),
+
+        dbc.Tabs(list_of_tabs)
     ]
 )
 
@@ -395,7 +397,7 @@ if __name__ == "__main__":
 
 There are multiple ways of switching your navigation from top to the side of your graph. Using the tabs component from the dash core components, they come with a property called `vertical`, see also the [official documentation](https://dash.plotly.com/dash-core-components/tabs). Another option is a navigation bar that you will see below.
 
-### Template with navigation on the side
+### Navigation sidebar
 
 ![Template 4](./template-4.png)
 
