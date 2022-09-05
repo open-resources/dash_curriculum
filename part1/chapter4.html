@@ -384,8 +384,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#change-the-style-of-a-markdown-component-using-a-slider">
-     4.3.1 Change the style of a Markdown component using a slider
+    <a class="reference internal nav-link" href="#update-markdown-s-style-component-with-a-slider">
+     4.3.1 Update Markdown’s style component with a slider
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -458,8 +458,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#change-the-style-of-a-markdown-component-using-a-slider">
-     4.3.1 Change the style of a Markdown component using a slider
+    <a class="reference internal nav-link" href="#update-markdown-s-style-component-with-a-slider">
+     4.3.1 Update Markdown’s style component with a slider
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -583,10 +583,6 @@ See the code<div class="summary-down docutils">
 <li><p>Run the App</p></li>
 </ul>
 <p>Let’s take the app from the previous chapter, containing a markdown and a dropdown component. Extending this code with a simple callback gives us an app that links these two components together, where the selection of the dropdown value will update the title of the app.</p>
-<div class="admonition attention">
-<p class="admonition-title">Attention</p>
-<p>Always make sure to import the packages ‘Output’ and ‘Input’ from the dash library at the beginning of your code when you are working with callbacks.</p>
-</div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -684,8 +680,8 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
 <div class="section" id="callbacks-in-action">
 <h2>4.3 Callbacks in action<a class="headerlink" href="#callbacks-in-action" title="Permalink to this headline">¶</a></h2>
 <p>Now that we have already seen a simple callback and understand how it is implemented, let’s see a more complex example.</p>
-<div class="section" id="change-the-style-of-a-markdown-component-using-a-slider">
-<h3>4.3.1 Change the style of a Markdown component using a slider<a class="headerlink" href="#change-the-style-of-a-markdown-component-using-a-slider" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="update-markdown-s-style-component-with-a-slider">
+<h3>4.3.1 Update Markdown’s style component with a slider<a class="headerlink" href="#update-markdown-s-style-component-with-a-slider" title="Permalink to this headline">¶</a></h3>
 <p>Here we will replace the dropdown from the previous example with a slider. In addition to the <code class="docutils literal notranslate"><span class="pre">children</span></code> property of the Markdown component we introduce another property called <code class="docutils literal notranslate"><span class="pre">style</span></code> which can be used for any kind of styling, e.g., the color or size of the font. <span class="xref myst">Chapter 9</span> will give you some more insights on this topic.</p>
 <p>We equip the slider introduced in the previous chapter with an <code class="docutils literal notranslate"><span class="pre">id</span></code> and add the <code class="docutils literal notranslate"><span class="pre">value</span></code> property with a default value to it. The respective value of the slider will then be responsible for modifying the size of the markdown. In this case, once the callback is triggered, we update the font size of the markdown to be the default value (12) plus twice the value chosen within the slider.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
@@ -784,7 +780,8 @@ Note, that you might work with multiple outputs in the callback decorator, in wh
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<p>(1) Create a callback that, based on a color name (e.g. red) selected in a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component, updates the <code class="docutils literal notranslate"><span class="pre">style</span></code> property of a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component to change the color of its text.</p>
+<p>(1) Create an app with a RadioItems component that has three different color names in its <code class="docutils literal notranslate"><span class="pre">options</span></code> property: red, orange, and green. Create a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component, assigning ‘Text’ to its <code class="docutils literal notranslate"><span class="pre">children</span></code> and align the text in the center using the <code class="docutils literal notranslate"><span class="pre">style</span></code> property.</p>
+<p>Then, create a callback that uses the color value selected to update the <code class="docutils literal notranslate"><span class="pre">color</span></code> key within the <code class="docutils literal notranslate"><span class="pre">style</span></code> property of a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component. The goal is to change the color of the markdown’s ‘Text’, based on the Radio Item chosen. Make sure to import the packages <code class="docutils literal notranslate"><span class="pre">Output</span></code> and <code class="docutils literal notranslate"><span class="pre">Input</span></code> from the dash library at the beginning of your code when adding callbacks to your apps.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
@@ -827,7 +824,60 @@ See Solution<div class="summary-down docutils">
 </div>
 <p class="card-text"><img alt="solution_ex1" src="../_images/chapter04_ex1.gif" /></p>
 </div>
-</details><p>(2) Incorporate the callback we just built into the app code included in the “Bring everything together” section. The new app, besides allowing to change the title text and size, should also allow to change the title color, based on the <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component. Locate the radio items component on a new row in the layout. Note that in the new app we will have two callbakcs both affecting the <code class="docutils literal notranslate"><span class="pre">style</span></code> of our title. You should know that callbacks can handle multiple inputs at the same time with the following code: <code class="docutils literal notranslate"><span class="pre">&#64;app.callback(Output(),</span> <span class="pre">Input(),</span> <span class="pre">Input())</span></code></p>
+</details><p>(2) Copy the app code below that comes from the “Bring everything together” section. Now, incorporate into the app’s layout the RadioItems component that you built in exercise 1. Then, update the second callback of the app to include the RadioItems <code class="docutils literal notranslate"><span class="pre">value</span></code> property as the second callback Input. Update the callback function in such a way that the color of the app title changes, based on the Radio Item value chosen.</p>
+<ul class="simple">
+<li><p>Tip: the structure of a callback with multiple inputs should look like this - <code class="docutils literal notranslate"><span class="pre">&#64;app.callback(Output(...),</span> <span class="pre">Input(...),</span> <span class="pre">Input(...))</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">children</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">})</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to the App&#39;</span><span class="p">,</span> <span class="s1">&#39;This is the title&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">markdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">slider</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">):</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">value_dropdown</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;style&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">title_size</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">value_slider</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">title_size</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
@@ -893,8 +943,7 @@ See Solution<div class="summary-down docutils">
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. Regardless if there is only one or multiple callbacks, you’ll be able to manage your app by linking different components together.</p>
-<p>Now it’s your turn, try to link some of the other components you learned in chapter 3 and build your own interactive app.
-In the next chapter we will learn how to deploy our app to the web.</p>
+<p>In the next chapter we will learn how to deploy our app to the web.</p>
 </div>
 </div>
 
