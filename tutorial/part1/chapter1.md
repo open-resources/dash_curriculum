@@ -2,7 +2,7 @@
 
 These days, understanding data is the key to making the best decisions for any business. However, the amount of information that’s available at any time can be overwhelming for the most data-savvy person.
 
-So what’s the key to making data-driven decisions? Finding the most important data and formatting it in a way that’s easy to understand. This can change, depending on who will view the data. If you’re an industry expert, you may find complex data easier to understand.
+So what’s the key to making data-driven decisions? Finding the most important data and formatting it in a way that’s easy to understand. This can change, depending on who will view the data.
 
 One of the easiest ways to make data easy to understand for technical and non-technical audiences is to create a dashboard that easily displays all of your data visualizations in one place. This chapter gives you a short introduction into dashboards.
 
