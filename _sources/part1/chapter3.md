@@ -148,8 +148,9 @@ if __name__ == '__main__':
 
   
 
-Radio items are lists of options from which the user can select only one option.
-Similar to the checklist, we will pass in a list of **options** when creating the component.
+Radio items are lists of options from which the user can select only one option. Adding too many radio items may crowd your data visualization and it can also confuse your user with too many options. Having too few radio items may mean that you do not need them in the first place. Radio items are suitable when you want your user to select only one of the options. Whereas a checklist can include multiple choice options for the user to select. 
+
+Similar to the checklist, we will pass in a list of **options** when creating the component. 
 
 ```python
 # Import packages 
@@ -187,7 +188,9 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
     
-Dropdowns allow the user to select from a list of options. Similar to the checklist, we will pass in a list of **options** when creating the component.
+Dropdowns allow the user to select from a list of options. Similar to the checklist, we will pass in a list of **options** when creating the component. 
+
+We will also assign one of the list elements to the `value` property of the dropdown. The `value` property represents the dropdown option that is selected. 
     
 ```python
 # Import packages 
@@ -202,7 +205,7 @@ markdown = dcc.Markdown(children='My First app')
 button = html.Button(children="Button")
 checklist = dcc.Checklist(options=['New York City', 'Montréal', 'San Francisco'])
 radio = dcc.RadioItems(options=['New York City', 'Montréal', 'San Francisco'])
-dropdown = dcc.Dropdown(options=['NYC', 'MTL', 'SF'])
+dropdown = dcc.Dropdown(options=['NYC', 'MTL', 'SF'], value='MTL')
 
 # App Layout 
 app.layout = dbc.Container([
@@ -364,20 +367,58 @@ We see there are four rows with columns of various widths which contain componen
   * Try to move the button to be in the same row as the Checklist and RadtioItem
 
 ## Exercises
-(1) Import the relevant package and build a `Dropdown` component with the following options: 'CA','FL','DC'. Save the dropdown as a variable with name dropdown1
+(1) Add to the code below a dropdown component with the following options: 'CA', 'FL', 'DC'. Assign 'DC' as the initial value of the dropdown. Save the dropdown as a variable with name dropdown1, and add it to the layout.
+
+```
+# Import packages
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+
+
+# App Layout
+app.layout = dbc.Container([
+
+])
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
+```
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
-from dash import dcc
-dropdown1 = dcc.Dropdown(options=['CA','FL','DC'])
+# Import packages
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+# Initialise the App
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+# Create app components
+dropdown1 = dcc.Dropdown(options=['CA','FL','DC'], value='DC')
+
+# App Layout
+app.layout = dbc.Container([
+    dropdown1
+])
+
+# Run the App
+if __name__ == '__main__':
+    app.run_server()
 ```
 
 ````
-(2) Using the `Dropdown` component we just built, create and launch an app with the following structure:
+(2) Using the app and dropdown component you just built, add the following structure:
 - one entire row dedicated to the title of the app, which should be "My new app" with `width=12` and center aligned
-- a second row with two columns: the first with `width=4` and a `Markdown` component saying "Please select a state"; the second with `width=8` and our `Dropdown` component. Start from the code of any app provided in the chapter and modify it accordingly.
+- a second row with two column components: the first with `width=4` and a `Markdown` component saying "Please select a state"; the second with `width=8` and our dropdown component created in exercise 1
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -393,7 +434,7 @@ app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 # Create app components
 title_ = dcc.Markdown(children='My new app', style={'textAlign': 'center'})
 markdown_ = dcc.Markdown(children='Please select a state')
-dropdown1 = dcc.Dropdown(options=['CA','FL','DC'])
+dropdown1 = dcc.Dropdown(options=['CA','FL','DC'], value='DC')
 
 # App Layout
 app.layout = dbc.Container(
@@ -404,7 +445,7 @@ app.layout = dbc.Container(
                 dbc.Col([markdown_], width = 4),
                 dbc.Col([dropdown1], width = 8),
             ]
-        ),
+        )
     ]
 )
 
@@ -412,7 +453,7 @@ app.layout = dbc.Container(
 if __name__ == '__main__':
     app.run_server()
 ```
-![solution_ex2](./ch3_files/chapter03_ex2.gif)
+![solution_ex2](./ch3_files/chapter03_ex2.png)
 
 ````
 ## Summary
