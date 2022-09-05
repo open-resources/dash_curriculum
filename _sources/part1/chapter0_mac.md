@@ -1,4 +1,11 @@
 # macOS
+System requirements for Python and Git are minimal. Therefore, the minimal system requirements for setup will be based on the requirements for Visual Studio Code.
+- Hardware:
+   - 1.6 GHz or faster processor
+   - 2 GB of RAM
+- Software:
+   - OS X v10.11 or later 
+
 ## Overview
 
 1. **Git**
