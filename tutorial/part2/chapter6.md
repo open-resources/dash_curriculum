@@ -4,7 +4,7 @@
 In this chapter we will show you how to incorporate data into Dash apps. There are many ways one could add data to an app, but we will focus on a few of the most common ways when working with Dash. 
 
 ```{admonition} Learning Intentions
-- import data into the app
+- read data into the app
 - create and populate Pandas dataframes
 - basic data wrangling techniques to prepare data for reporting
 ```
@@ -25,7 +25,7 @@ import pandas as pd
 
 # Import data
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
-df3 = pd.read_table(url, sep=';')
+df3 = pd.read_csv(url, sep=';')
 y=2007
 df3 = df3.loc[(df3['year']==y), :]
 
@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
 [Click to download the complete code file for this chapter](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/chapter6_fin_app.py)
 
-## 6.1 Where to import data within Dash apps
+## 6.1 Where to read in the data
 The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, layout, etc.
 For this reason, we recommend importing the data before initialising the app, right above this line of code:
 
@@ -125,7 +125,7 @@ Whether our data is located on our computer or on the internet, we can read the 
 
 #### Excel files
 Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a pandas dataframe. 
-The file we'll be using is available here [data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx): follow the link and click "Download"; find the folder in your computer where the file was downloaded and copy the path. For example, on our computer the path was `C:\Users\Desktop\Downloads`.
+The file we'll be using is available here [data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx): follow the link and click "Download"; find the folder in your computer where the file was downloaded and copy the path. For example, on our computer the path was `C:/Users/Desktop/Downloads`.
 
 Create a new `app.py` file, copy the code below into that file, and run it.
 
@@ -135,7 +135,7 @@ Note that you will need to `pip install openpyxl` into your terminal in order to
 
 ```
 import pandas as pd
-filepath = r'C:\Users\Desktop\Downloads\data_01.xlsx'
+filepath = r'C:/Users/Desktop/Downloads/data_01.xlsx'
 df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 print(df1)
 ```
@@ -167,7 +167,7 @@ We will now upload the same data from above, but from a .csv file named [data_02
 
 ```
 import pandas as pd
-filepath = r'C:\Users\User1\Downloads\data_02.csv'
+filepath = r'C:/Users/User1/Downloads/data_02.csv'
 col_names = ['country','continent','year','pop']
 df2 = pd.read_csv(filepath, sep='|', usecols=col_names)
 print(df2.head())
@@ -326,7 +326,7 @@ import pandas as pd
 
 # Import data
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
-df3 = pd.read_table(url, sep=';')
+df3 = pd.read_csv(url, sep=';')
 y=2007
 df3 = df3.loc[(df3['year']==y), :]
 
@@ -401,7 +401,7 @@ import pandas as pd
 
 # Import data
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
-df_ = pd.read_table(url, sep=';')
+df_ = pd.read_csv(url, sep=';')
 df_ = df_.loc[df_['year'] >= 1980, :]
 df_ = df_.groupby('continent')['lifeExp'].max().reset_index()
 print(df_.head())
@@ -419,9 +419,7 @@ if __name__ == '__main__':
     app.run_server()
 
 ```
-
 ![Solution 1](./ch6_files/solve_ex_1.png)
-
 ````
 
 (2) Build a Dash app that imports and wrangles the data as per exercise 1; then, display the max life expectancy as the `children` of a Markdown component, based on a continent that the user can choose from a RadioItems component.
@@ -437,7 +435,7 @@ import pandas as pd
 
 # Import data
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
-df_ = pd.read_table(url, sep=';')
+df_ = pd.read_csv(url, sep=';')
 df_ = df_.loc[df_['year'] >= 1980, :]
 df_ = df_.groupby('continent')['lifeExp'].max().reset_index()
 
@@ -445,8 +443,8 @@ df_ = df_.groupby('continent')['lifeExp'].max().reset_index()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-_header=html.H1(children = 'Life Expectation by continent since 1980', style = {'textAlign' : 'center'})
-continent_radio=dcc.RadioItems(id='continent-radio', options=df_.continent.unique())
+_header=html.H1(children='Life Expectation by continent since 1980', style={'textAlign': 'center'})
+continent_radio=dcc.RadioItems(id='continent-radio', options=df_.continent.unique(), value='Africa')
 output_=dcc.Markdown(id='final-output')
 
 # app Layout
@@ -461,8 +459,7 @@ app.layout = dbc.Container(
 # Configure callbacks
 @app.callback(
     Output(component_id='final-output', component_property='children'),
-    Input(component_id='continent-radio', component_property='value'),
-prevent_initial_call=True
+    Input(component_id='continent-radio', component_property='value')
 )
 def continent_lifeExp(continent_selection):
     lifeExp_value = df_.loc[df_['continent']==continent_selection, 'lifeExp'].values[0]
