@@ -837,7 +837,7 @@ Let’s see two examples:</p>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
-<span class="n">continent_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;continent-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
+<span class="n">continent_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;continent-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
 <span class="n">continent_output</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;continent-output&#39;</span><span class="p">)</span>
 
 <span class="c1"># App Layout</span>
@@ -889,10 +889,10 @@ Based on the selected country, the total population will be displayed.</p>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
-<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span> <span class="o">=</span> <span class="s1">&#39;Population by country in 2007&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
-<span class="n">continent_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;continent-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a continent&#39;</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
-<span class="n">country_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a country&#39;</span><span class="p">)</span>
-<span class="n">_output</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
+<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Population by country in 2007&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">continent_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;continent-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Select a continent&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">country_dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;country-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;Select a country&#39;</span><span class="p">)</span>
+<span class="n">_output</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
 
 <span class="c1"># app Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -911,7 +911,7 @@ Based on the selected country, the total population will be displayed.</p>
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;continent-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">country_list</span><span class="p">(</span><span class="n">continent_selection</span><span class="p">):</span>
-    <span class="n">country_options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">continent_selection</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()]</span>
+    <span class="n">country_options</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">continent_selection</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">country_options</span>
 
 
@@ -923,8 +923,9 @@ Based on the selected country, the total population will be displayed.</p>
 <span class="k">def</span> <span class="nf">pop_calculator</span><span class="p">(</span><span class="n">country_selection</span><span class="p">):</span>
     <span class="n">pop_value</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">country_selection</span><span class="p">]</span>
     <span class="n">pop_value</span> <span class="o">=</span> <span class="n">pop_value</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;pop&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># select only first value in pop column</span>
-    <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;The population in &#39;</span><span class="o">+</span><span class="n">country_selection</span><span class="o">+</span><span class="s1">&#39; was: &#39;</span><span class="o">+</span><span class="n">pop_value</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="s1">&#39;The population in &#39;</span><span class="o">+</span><span class="n">country_selection</span><span class="o">+</span><span class="s1">&#39; was: &#39;</span><span class="o">+</span><span class="n">pop_value</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">output</span>
+
 
 <span class="c1"># Run the app</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -933,7 +934,7 @@ Based on the selected country, the total population will be displayed.</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>In the code above, you may notice that in the second callback we have added this prop: <code class="docutils literal notranslate"><span class="pre">prevent_initial_call=True</span></code>. This was necessary, since the ‘country-dropdown’ component doesn’t have any default option (the options, in fact, depend on the first dropdown selection). By default, Dash calls every callback when initialising the app. We want to prevent this initial call, as Dash wouldn’t find any input value for this callback.</p>
+<p>In the code above, you may notice that in the second callback we have added this line: <code class="docutils literal notranslate"><span class="pre">prevent_initial_call=True</span></code>. This is necessary because the second callback depends on the first callback, which does not get triggered until the user selects a dropdown value. By default, Dash triggers every callback when initialising the app. We want to prevent the initial activation of the second callback, as Dash wouldn’t find any input value for this callback until the first callback is executed.</p>
 </div>
 <p>The above code will generate the following app:</p>
 <p><img alt="fina-app" src="../_images/chap6-final-app.gif" /></p>
@@ -954,16 +955,34 @@ See Solution<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">dash_table</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Import data</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
 <span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1980</span><span class="p">,</span> <span class="p">:]</span>
 <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+<span class="c1"># Initialise the app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">([</span>
+    <span class="n">dash_table</span><span class="o">.</span><span class="n">DataTable</span><span class="p">(</span><span class="n">df_</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;records&#39;</span><span class="p">))</span>
+<span class="p">])</span>
+
+
+<span class="c1"># Run the app</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+
 </pre></div>
 </div>
+<p class="card-text"><img alt="Solution 1" src="../_images/solve_ex_1.png" /></p>
 </div>
-</details><p>(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the max life expectancy in a <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> component, based on a continent that the user can choose from a <code class="docutils literal notranslate"><span class="pre">RadioItems</span></code> component. You may use and adapt the code from the app in the Example 2 above.</p>
+</details><p>(2) Build a Dash app that imports and wrangles the data as per exercise 1; then, display the max life expectancy as the <code class="docutils literal notranslate"><span class="pre">children</span></code> of a Markdown component, based on a continent that the user can choose from a RadioItems component.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
@@ -986,9 +1005,9 @@ See Solution<div class="summary-down docutils">
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
-<span class="n">_header</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span> <span class="o">=</span> <span class="s1">&#39;Life Expectation by continent since 1980&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
-<span class="n">continent_radio</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">()])</span>
-<span class="n">output_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span> <span class="o">=</span> <span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
+<span class="n">_header</span><span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span> <span class="o">=</span> <span class="s1">&#39;Life Expectation by continent since 1980&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">continent_radio</span><span class="o">=</span><span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df_</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">output_</span><span class="o">=</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
 
 <span class="c1"># app Layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -1020,8 +1039,8 @@ See Solution<div class="summary-down docutils">
 </details></div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.</p>
-<p>In the next chapter we will dive into data visualisation, exploring the Plotly Express graphing library.</p>
+<p>In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by the Dash components.</p>
+<p>In the next chapter we will dive deeper into data wrangling.</p>
 </div>
 </div>
 
