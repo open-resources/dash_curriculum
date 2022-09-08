@@ -282,7 +282,7 @@ df3 = pd.read_table(url, sep=';')
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-continent_dropdown = dcc.Dropdown(id='continent-dropdown', options=[c for c in df3.continent.unique()])
+continent_dropdown = dcc.Dropdown(id='continent-dropdown', options=df3.continent.unique())
 continent_output = html.Div(id='continent-output')
 
 # App Layout
@@ -334,10 +334,10 @@ df3 = df3.loc[(df3['year']==y), :]
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-_header = html.H1(children = 'Population by country in 2007', style = {'textAlign' : 'center'})
-continent_dropdown = dcc.Dropdown(id = 'continent-dropdown', placeholder = 'Select a continent', options = [c for c in df3.continent.unique()])
-country_dropdown = dcc.Dropdown(id = 'country-dropdown', placeholder = 'Select a country')
-_output = html.Div(id = 'final-output')
+_header = html.H1(children='Population by country in 2007', style={'textAlign': 'center'})
+continent_dropdown = dcc.Dropdown(id='continent-dropdown', placeholder='Select a continent', options=df3.continent.unique())
+country_dropdown = dcc.Dropdown(id='country-dropdown', placeholder='Select a country')
+_output = html.Div(id='final-output')
 
 # app Layout
 app.layout = dbc.Container(
@@ -356,7 +356,7 @@ app.layout = dbc.Container(
     Input(component_id='continent-dropdown', component_property='value')
 )
 def country_list(continent_selection):
-    country_options = [c for c in df3.loc[df3['continent']==continent_selection, 'country'].unique()]
+    country_options = df3.loc[df3['continent']==continent_selection, 'country'].unique()
     return country_options
 
 
@@ -368,8 +368,9 @@ prevent_initial_call=True
 def pop_calculator(country_selection):
     pop_value = df3.loc[df3['country']==country_selection]
     pop_value = pop_value.loc[:, 'pop'].values[0]  # select only first value in pop column
-    output = ('The population in '+country_selection+' was: '+pop_value.astype(str))
+    output = 'The population in '+country_selection+' was: '+pop_value.astype(str)
     return output
+
 
 # Run the app
 if __name__ == '__main__':
@@ -377,7 +378,7 @@ if __name__ == '__main__':
 ```
 
 ```{tip}
-In the code above, you may notice that in the second callback we have added this prop: `prevent_initial_call=True`. This was necessary, since the 'country-dropdown' component doesn't have any default option (the options, in fact, depend on the first dropdown selection). By default, Dash calls every callback when initialising the app. We want to prevent this initial call, as Dash wouldn't find any input value for this callback.
+In the code above, you may notice that in the second callback we have added this line: `prevent_initial_call=True`. This is necessary because the second callback depends on the first callback, which does not get triggered until the user selects a dropdown value. By default, Dash triggers every callback when initialising the app. We want to prevent the initial activation of the second callback, as Dash wouldn't find any input value for this callback until the first callback is executed.
 ```
 
 The above code will generate the following app:
@@ -394,16 +395,36 @@ The above code will generate the following app:
     :title: bg-primary text-white font-weight-bold
   
 ```
+from dash import Dash, html, dcc, dash_table
+import dash_bootstrap_components as dbc
 import pandas as pd
+
+# Import data
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
 df_ = pd.read_table(url, sep=';')
 df_ = df_.loc[df_['year'] >= 1980, :]
 df_ = df_.groupby('continent')['lifeExp'].max().reset_index()
 print(df_.head())
+
+# Initialise the app
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = html.Div([
+    dash_table.DataTable(df_.to_dict('records'))
+])
+
+
+# Run the app
+if __name__ == '__main__':
+    app.run_server()
+
 ```
+
+![Solution 1](./ch6_files/solve_ex_1.png)
+
 ````
 
-(2) Build a Dash app that import and wrangle the data as per exercise 1, then displays the max life expectancy in a `Markdown` component, based on a continent that the user can choose from a `RadioItems` component. You may use and adapt the code from the app in the Example 2 above.
+(2) Build a Dash app that imports and wrangles the data as per exercise 1; then, display the max life expectancy as the `children` of a Markdown component, based on a continent that the user can choose from a RadioItems component.
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -424,9 +445,9 @@ df_ = df_.groupby('continent')['lifeExp'].max().reset_index()
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-_header = html.H1(children = 'Life Expectation by continent since 1980', style = {'textAlign' : 'center'})
-continent_radio = dcc.RadioItems(id = 'continent-radio', options = [c for c in df_.continent.unique()])
-output_ = dcc.Markdown(id = 'final-output')
+_header=html.H1(children = 'Life Expectation by continent since 1980', style = {'textAlign' : 'center'})
+continent_radio=dcc.RadioItems(id='continent-radio', options=df_.continent.unique())
+output_=dcc.Markdown(id='final-output')
 
 # app Layout
 app.layout = dbc.Container(
@@ -456,6 +477,6 @@ if __name__ == '__main__':
 ````
 
 ## Summary
-In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by Dash components.
+In this chapter, we have explored several options to upload data into a pandas dataframe that will be used inside a Dash app. We went through some basic data wrangling techniques that prepare our data for usage by the Dash components.
 
-In the next chapter we will dive into data visualisation, exploring the Plotly Express graphing library.
+In the next chapter we will dive deeper into data wrangling.
