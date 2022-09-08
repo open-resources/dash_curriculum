@@ -357,8 +357,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#where-to-import-data-within-dash-apps">
-   6.1 Where to import data within Dash apps
+  <a class="reference internal nav-link" href="#where-to-read-in-the-data">
+   6.1 Where to read in the data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -472,8 +472,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#where-to-import-data-within-dash-apps">
-   6.1 Where to import data within Dash apps
+  <a class="reference internal nav-link" href="#where-to-read-in-the-data">
+   6.1 Where to read in the data
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -578,7 +578,7 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
-<li><p>import data into the app</p></li>
+<li><p>read data into the app</p></li>
 <li><p>create and populate Pandas dataframes</p></li>
 <li><p>basic data wrangling techniques to prepare data for reporting</p></li>
 </ul>
@@ -599,7 +599,7 @@ See the code<div class="summary-down docutils">
 
 <span class="c1"># Import data</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
-<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">y</span><span class="o">=</span><span class="mi">2007</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="p">:]</span>
 
@@ -652,8 +652,8 @@ See the code<div class="summary-down docutils">
 </div>
 </details><p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/chapter6_fin_app.py">Click to download the complete code file for this chapter</a></p>
 </div>
-<div class="section" id="where-to-import-data-within-dash-apps">
-<h2>6.1 Where to import data within Dash apps<a class="headerlink" href="#where-to-import-data-within-dash-apps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="where-to-read-in-the-data">
+<h2>6.1 Where to read in the data<a class="headerlink" href="#where-to-read-in-the-data" title="Permalink to this headline">¶</a></h2>
 <p>The data which is imported into Dash apps will be used by multiple objects: Dash components, callbacks, tables, layout, etc.
 For this reason, we recommend importing the data before initialising the app, right above this line of code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data imported here</span>
@@ -695,14 +695,14 @@ For this reason, we recommend importing the data before initialising the app, ri
 <div class="section" id="excel-files">
 <h4>Excel files<a class="headerlink" href="#excel-files" title="Permalink to this headline">¶</a></h4>
 <p>Let’s see an example of how to upload an Excel file - extracted from the Gapminder data - into a pandas dataframe.
-The file we’ll be using is available here <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">data_01</a>: follow the link and click “Download”; find the folder in your computer where the file was downloaded and copy the path. For example, on our computer the path was <code class="docutils literal notranslate"><span class="pre">C:\Users\Desktop\Downloads</span></code>.</p>
+The file we’ll be using is available here <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx">data_01</a>: follow the link and click “Download”; find the folder in your computer where the file was downloaded and copy the path. For example, on our computer the path was <code class="docutils literal notranslate"><span class="pre">C:/Users/Desktop/Downloads</span></code>.</p>
 <p>Create a new <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file, copy the code below into that file, and run it.</p>
 <div class="admonition-note admonition">
 <p class="admonition-title">Note</p>
 <p>Note that you will need to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">openpyxl</span></code> into your terminal in order to work with <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> files.</p>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\Desktop\Downloads\data_01.xlsx&#39;</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:/Users/Desktop/Downloads/data_01.xlsx&#39;</span>
 <span class="n">df1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s1">&#39;Sheet1&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
 </pre></div>
@@ -730,7 +730,7 @@ The file we’ll be using is available here <a class="reference external" href="
 <h4>CSV files<a class="headerlink" href="#csv-files" title="Permalink to this headline">¶</a></h4>
 <p>We will now upload the same data from above, but from a .csv file named <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv">data_02</a>. Please follow the link and click the “Raw” button (next to the pencil edit button), then paste the records into a new Notepad file (Windows) or TextEdit file (MacOS), and save it as “data_02.csv”. Create a new <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file and copy the code below into it. Update the <code class="docutils literal notranslate"><span class="pre">filepath</span></code> in the code with the path of your Notepad file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\User1\Downloads\data_02.csv&#39;</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:/Users/User1/Downloads/data_02.csv&#39;</span>
 <span class="n">col_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;pop&#39;</span><span class="p">]</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">col_names</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -881,7 +881,7 @@ Based on the selected country, the total population will be displayed.</p>
 
 <span class="c1"># Import data</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
-<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df3</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">y</span><span class="o">=</span><span class="mi">2007</span>
 <span class="n">df3</span> <span class="o">=</span> <span class="n">df3</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">y</span><span class="p">),</span> <span class="p">:]</span>
 
@@ -961,7 +961,7 @@ See Solution<div class="summary-down docutils">
 
 <span class="c1"># Import data</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
-<span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1980</span><span class="p">,</span> <span class="p">:]</span>
 <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df_</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
@@ -997,7 +997,7 @@ See Solution<div class="summary-down docutils">
 
 <span class="c1"># Import data</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt&#39;</span>
-<span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<span class="n">df_</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1980</span><span class="p">,</span> <span class="p">:]</span>
 <span class="n">df_</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;continent&#39;</span><span class="p">)[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
@@ -1005,8 +1005,8 @@ See Solution<div class="summary-down docutils">
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
-<span class="n">_header</span><span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span> <span class="o">=</span> <span class="s1">&#39;Life Expectation by continent since 1980&#39;</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;textAlign&#39;</span> <span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
-<span class="n">continent_radio</span><span class="o">=</span><span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df_</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="n">_header</span><span class="o">=</span><span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Life Expectation by continent since 1980&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})</span>
+<span class="n">continent_radio</span><span class="o">=</span><span class="n">dcc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">df_</span><span class="o">.</span><span class="n">continent</span><span class="o">.</span><span class="n">unique</span><span class="p">(),</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;Africa&#39;</span><span class="p">)</span>
 <span class="n">output_</span><span class="o">=</span><span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;final-output&#39;</span><span class="p">)</span>
 
 <span class="c1"># app Layout</span>
@@ -1021,8 +1021,7 @@ See Solution<div class="summary-down docutils">
 <span class="c1"># Configure callbacks</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;final-output&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
-<span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;continent-radio&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">continent_lifeExp</span><span class="p">(</span><span class="n">continent_selection</span><span class="p">):</span>
     <span class="n">lifeExp_value</span> <span class="o">=</span> <span class="n">df_</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">continent_selection</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
