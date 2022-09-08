@@ -116,27 +116,37 @@ df = px.data.gapminder()
 ```
 
 ## 6.2 Uploading data into an app
-Whether our data is located on our computer or on the internet, we need to read the data from the source and convert it into a pandas dataframe. There are several ways of uploading data into our app; we will focus on these methodologies, as they are commonly used by Dash-app creators:
+Whether our data is located on our computer or on the internet, we can read the data from the source and convert it into a pandas dataframe. There are several ways of uploading data into our app; we will focus on these methodologies, as they are commonly used by Dash app creators:
 
 - reading data from files on our computer (.xls, .csv, .json)
-- reading data from a URL
+- reading data from the web (via URL)
 
 ### 6.2.1 Reading data from files on your computer
 
 #### Excel files
-Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a dataframe. 
-The file we'll be using is available here [data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx): follow the link and click on "Download"; find the folder where the file was downloaded and copy the path. Note that you will need to `pip install openpyxl` into your terminal in order to work with `.xlsx` files
+Let's see an example of how to upload an Excel file - extracted from the Gapminder data - into a pandas dataframe. 
+The file we'll be using is available here [data_01](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_01.xlsx): follow the link and click "Download"; find the folder in your computer where the file was downloaded and copy the path. For example, on our computer the path was `C:\Users\Desktop\Downloads`.
+
+Create a new `app.py` file, copy the code below into that file, and run it.
+
+```{admonition} Note
+Note that you will need to `pip install openpyxl` into your terminal in order to work with `.xlsx` files.
+```
 
 ```
 import pandas as pd
-filepath = r'C:\Users\YourUser\Downloads\data_01.xlsx'
+filepath = r'C:\Users\Desktop\Downloads\data_01.xlsx'
 df1 = pd.read_excel(filepath, sheet_name='Sheet1')
 print(df1)
 ```
 
-In this example, we have accessed the data (Excel file) outside the folder where our main app is located; therefore, we specified a filepath. The path is saved as a raw string (hence the "r" just before the string containing the path. This is done because VS Code may trigger a warning when using a normal string).
+You should see this output in the terminal if the `app.py file` executed successfully. 
 
-If the data file is located directly inside the folder where your main app file is (or within the VS Code working directory), the full path is not required; you may only specify the filename. The code will then become: 
+![data output](./ch6_files/data_01_output.png)
+
+In this example, we have accessed the data (Excel file) from outside the folder where we placed the `app.py` file; therefore, we specified a filepath. The path is saved as a raw string (hence the "r" just before the string containing the path. This is done because VS Code may trigger a warning when using a normal string).
+
+If the data file is inside the folder where your `app.py` file is located (or within the VS Code working directory), the full path is not necessary; you may only specify the filename. The code will then become: 
 
 ```
 import pandas as pd
@@ -149,15 +159,11 @@ print(df1)
 If you experience any difficulties in finding your filepath, please check [this screenshot](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/Helper01.JPG), showing how to find the filepath directly from VS Code.
 ```
 ```{tip}
-In production versions, when apps get deployed, the best practice is to have a "data" folder, where all data files are stored and therefore accessed by the app code. This will be covered in [Chapter 14](https://open-resources.github.io/dash_curriculum/part4/chapter14.html).
+In production versions, when apps get deployed, the best practice is to have a "data" folder, where all data files are stored and therefore accessed by the app code.
 ```
 
-We uploaded one Excel tab (named "Sheet1") to a data frame called "df1". After the data uploads, the dataframe would look like the following:
-
-![Excel data 01](./ch6_files/data01.JPG)
-
 #### CSV files
-We will now upload the same data from above, but from a .csv file named [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click the "Copy raw contents" button (next to the pencil edit button), then paste the records into a new Notepad file (Windows) or TextEdit file (MacOS), and save it as "data_02.csv". Find the path of your file to update the `filename` in the code below.
+We will now upload the same data from above, but from a .csv file named [data_02](https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part2/ch6_files/data_02.csv). Please follow the link and click the "Raw" button (next to the pencil edit button), then paste the records into a new Notepad file (Windows) or TextEdit file (MacOS), and save it as "data_02.csv". Create a new `app.py` file and copy the code below into it. Update the `filepath` in the code with the path of your Notepad file.
 
 ```
 import pandas as pd
@@ -167,13 +173,12 @@ df2 = pd.read_csv(filepath, sep='|', usecols=col_names)
 print(df2.head())
 ```
 
-- Similarly to the previous example, we have accessed the data located outside the app folder, and therefore specified a filepath as a raw string.
 - In most cases, you will see .csv files with comma column separators (hence the name, csv standing for "comma-separated values"). Here, we used a different separator: '|'. The `sep` argument allows to specify whatever characters should be considered field separators: pandas will separate data into different columns any time it encounters these characters.
 - We have also selected a subset of columns to be uploaded, listed in the `usecols` argument. The remaining columns that are present in the file will be ignored.
 
 ![csv data 02](./ch6_files/data02.JPG)
 
-### 6.2.2 Reading data from a URL
+### 6.2.2 Reading data from the web (URL)
 We will now upload the same data from above, but from [this ULR](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt).
 
 ```
@@ -198,6 +203,7 @@ We will now upload data stored in json format. You may encounter this file forma
 - Pandas includes a specific function to process json files: pd.read_json()
 
 ```
+import pandas as pd
 url = 'https://cdn.jsdelivr.net/gh/timruffles/gapminder-data-json@74aee1c2878e92608a6219c27986e7cd96154482/gapminder.min.json'
 df4 = pd.read_json(url)
 print(df4.head())
