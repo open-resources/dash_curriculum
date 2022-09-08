@@ -5,7 +5,7 @@ import pandas as pd
 
 # Import data
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch6_files/data_03.txt'
-df3 = pd.read_table(url, sep=';')
+df3 = pd.read_csv(url, sep=';')
 y=2007
 df3 = df3.loc[(df3['year']==y), :]
 
