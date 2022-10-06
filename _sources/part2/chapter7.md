@@ -1,12 +1,13 @@
 # Chapter 7: Wrangling Data
 
 ## What you will learn
-`Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data useable in our dashbords.
+`Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data that is useable in our dashbords.
 
-## Exploring Data
-Let's start by exploring the data.  We'll learn about several different `Pandas` functions to explore the data.
+## 7.1 Exploring Data
+One of the most effective ways of exploring a data set is by using the pandas library. Pandas is an open source data analysis and manipulation tool, written in Python. Before you start, remember to `pip install pandas` in the terminal if you haven't done so yet. Now, let's learn a few common pandas functions for data exploration.
+
 ### Head
-Commonly, after we  import the data we'll use the [head](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) command to see the top 5 rows of data:
+Commonly, after the data is imported, you would use the [head](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) command to see the top 5 rows of data:
 ```python
 import pandas as pd
 
@@ -15,12 +16,12 @@ raw_data = pd.read_csv(url)
 
 print(raw_data.head())
 ```
-![head](./ch7_files/df_head.png)
+![head](./ch7_files/df-head.png)
 
-We see that this is `time-series` data which contains timestamped temperature readings.  
+We see that this is `time-series` data which contains timestamped temperature readings. The first column is `Unnamed: 0` because the linked csv file does not have a column name for that column. 
 
 ### Shape
-Let's see how big the data is by using [shape](https://pandas.pydata.org/pandas-docs/version/0.23/generated/pandas.DataFrame.shape.html):
+[shape](https://pandas.pydata.org/pandas-docs/version/0.23/generated/pandas.DataFrame.shape.html) is typically used to learn more about he dimensions of the data.
 
 ```python
 import pandas as pd
@@ -33,8 +34,10 @@ print(raw_data.shape)
 ```
 ![shape](./ch7_files/shape.png)
 
+110 represents the number of rows, while 3 reflects the number of columns in the dataframe.
+
 ### Info
-The Pandas `info` method will return information on the `dataframe` such as: 
+The Pandas `info` method will return information on the dataframe such as: 
 - data types
 - column names
 - memory usage
@@ -45,12 +48,11 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
 raw_data = pd.read_csv(url)
 
-print(raw_data.head())
-print(raw_data.shape)
 print(raw_data.info())
 ```
-![info](./ch7_files/info.png)
+![info](./ch7_files/df_info.png)
 
+You see from the image above that the `temp` column has 106 non-null values, which means that 3 values are null. If you look carefully at the csv sheet, you would see that the data has 3 rows with no values in the `temp` column.
 
 ### Describe
 The Pandas `describe` method will return statistics on the dataframe such as:
@@ -64,18 +66,15 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
 raw_data = pd.read_csv(url)
 
-print(raw_data.head())
-print(raw_data.shape)
-print(raw_data.info())
 print(raw_data.describe())
 ```
-![describe](./ch7_files/describe.png)
+![describe](./ch7_files/df-describe.png)
 
 
-## Cleaning Data
+## 7.2 Cleaning Data
 
 ### Dropna
-From exploring the data we see that some of the values are `null`.  We can drop those values from this dataset because temperature is a slowly changing characteristic:
+By exploring the datafarme in the section above, we saw that 3 of the values are `null`. Because there are only 3 values and because temperature values don't vary significantly, let's remove those rows with the missing values under the `temp` column. We'll use the `dropna` for this task.
 
 ```python
 import pandas as pd
@@ -83,21 +82,19 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
 raw_data = pd.read_csv(url)
 
-print(raw_data.head())
 print(raw_data.shape)
-print(raw_data.info())
-print(raw_data.describe())
 
 raw_data.dropna(axis=0,inplace=True)
-print(raw_data.describe())
-```
-![dropna](./ch7_files/dropna.png)
 
-There are now `3` less rows after droping the `null` value rows.
+print(raw_data.shape)
+```
+![dropna](./ch7_files/df-dropna.png)
+
+There are now `3` fewer rows after droping the `null` value rows.
 
 ### Iterrows and Try-Except
 
-There are several non-numeric values that we'd like to drop from the dataset. First we need to `iterate` through each row in the dataframe with `iterrows()`. Then we'll use Python's [try-expect](https://www.geeksforgeeks.org/python-try-except/) logic test if the row has valid `float` data:
+There are several non-numeric values that we'd like to drop from the dataframe as well. First, we need to `iterate` through each row in the dataframe with `iterrows()`. Then we'll use Python's [try-expect](https://www.geeksforgeeks.org/python-try-except/) logic to test if the row has a valid `float` data type. If it does not have a valid `float` data type, we will use `dropna` to remove that row: 
 
 ```python
 import pandas as pd
@@ -105,28 +102,22 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
 raw_data = pd.read_csv(url)
 
-print(raw_data.head())
-print(raw_data.shape)
-print(raw_data.info())
-print(raw_data.describe())
+raw_data.dropna(axis=0, inplace=True)
 
-raw_data.dropna(axis=0,inplace=True)
-
-print(raw_data.describe())
-
-for index, row in raw_data.iterrows():
+for index, col in raw_data.iterrows():
     try:
-        float(row[2]) # 'temp' column is index 2
+        float(col[2])  # 'temp' column is index 2
     except:
         raw_data.drop(index, axis=0, inplace=True)
-        
+
 print(raw_data.head())
 ```
 ![isnumeric](./ch7_files/filter_numeric.png)
 
+Notice from the image above that rows 2 and 5 were dropped. This is because neither of them had a float data type in the `temp` column.
 
 ### Reset Index
-After we drop rows the `index` of the dataframe will be off.  Let's reset the index with `reset_index` method:
+Given that we've dropped a few rows, we see that the `index` of the dataframe is off. We'll use the `reset_index` method to reset the index and drop the old index with `drop=True`:
 
 ```python
 import pandas as pd
@@ -134,18 +125,11 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
 raw_data = pd.read_csv(url)
 
-print(raw_data.head())
-print(raw_data.shape)
-print(raw_data.info())
-print(raw_data.describe())
+raw_data.dropna(axis=0, inplace=True)
 
-raw_data.dropna(axis=0,inplace=True)
-
-print(raw_data.describe())
-
-for index, row in raw_data.iterrows():
+for index, col in raw_data.iterrows():
     try:
-        float(row[2]) # 'temp' column is index 2
+        float(col[2])  # 'temp' column is index 2
     except:
         raw_data.drop(index, axis=0, inplace=True)
 
@@ -155,8 +139,8 @@ print(raw_data.head())
 ```
 ![reset_index](./ch7_files/reset_index.png)
 
-## Filter Data
-Now that the data is clean we can filter the data.
+## 7.3 Filter Data
+Now that the data is clean, we can filter the data.
 
 ### Filter by value & astype
 Let's filter the data for temperatures over `18.5C`.  Notice that we need to use the Pandas method [`astype()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html) to use the `temp` data as `float` type data instead of `string` data. 
@@ -230,7 +214,7 @@ print(first_20.describe())
 ![first 20 values](./ch7_files/first_20.png)
 
 
-## Concatenate
+## 7.4 Concatenate
 Let's say we new temperature data to import and analyze. We'll use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) method.
 
 ```python
@@ -268,7 +252,7 @@ concat_df = pd.concat([raw_data, raw_data2])
 print(concat_df)
 ```
 
-## Other Resources
+## 7.5 Other Resources
 
 [Pandas](https://pandas.pydata.org/) is a data analysis and manipulation library
 

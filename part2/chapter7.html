@@ -463,7 +463,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exploring-data">
-   Exploring Data
+   7.1 Exploring Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -490,7 +490,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cleaning-data">
-   Cleaning Data
+   7.2 Cleaning Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -512,7 +512,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filter-data">
-   Filter Data
+   7.3 Filter Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -529,12 +529,12 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#concatenate">
-   Concatenate
+   7.4 Concatenate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-resources">
-   Other Resources
+   7.5 Other Resources
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -575,7 +575,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#exploring-data">
-   Exploring Data
+   7.1 Exploring Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -602,7 +602,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#cleaning-data">
-   Cleaning Data
+   7.2 Cleaning Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -624,7 +624,7 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#filter-data">
-   Filter Data
+   7.3 Filter Data
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -641,12 +641,12 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#concatenate">
-   Concatenate
+   7.4 Concatenate
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-resources">
-   Other Resources
+   7.5 Other Resources
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -675,14 +675,14 @@ title="Print to PDF"
 <h1>Chapter 7: Wrangling Data<a class="headerlink" href="#chapter-7-wrangling-data" title="Permalink to this headline">#</a></h1>
 <section id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">wrangling</span></code> is the processing of <code class="docutils literal notranslate"><span class="pre">raw</span></code> data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data useable in our dashbords.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">wrangling</span></code> is the processing of <code class="docutils literal notranslate"><span class="pre">raw</span></code> data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data that is useable in our dashbords.</p>
 </section>
 <section id="exploring-data">
-<h2>Exploring Data<a class="headerlink" href="#exploring-data" title="Permalink to this headline">#</a></h2>
-<p>Let’s start by exploring the data.  We’ll learn about several different <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> functions to explore the data.</p>
+<h2>7.1 Exploring Data<a class="headerlink" href="#exploring-data" title="Permalink to this headline">#</a></h2>
+<p>One of the most effective ways of exploring a data set is by using the pandas library. Pandas is an open source data analysis and manipulation tool, written in Python. Before you start, remember to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas</span></code> in the terminal if you haven’t done so yet. Now, let’s learn a few common pandas functions for data exploration.</p>
 <section id="head">
 <h3>Head<a class="headerlink" href="#head" title="Permalink to this headline">#</a></h3>
-<p>Commonly, after we  import the data we’ll use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">head</a> command to see the top 5 rows of data:</p>
+<p>Commonly, after the data is imported, you would use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">head</a> command to see the top 5 rows of data:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
@@ -691,12 +691,12 @@ title="Print to PDF"
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
-<p><img alt="head" src="part2/ch7_files/df_head.png" /></p>
-<p>We see that this is <code class="docutils literal notranslate"><span class="pre">time-series</span></code> data which contains timestamped temperature readings.</p>
+<p><img alt="head" src="../_images/df-head.png" /></p>
+<p>We see that this is <code class="docutils literal notranslate"><span class="pre">time-series</span></code> data which contains timestamped temperature readings. The first column is <code class="docutils literal notranslate"><span class="pre">Unnamed:</span> <span class="pre">0</span></code> because the linked csv file does not have a column name for that column.</p>
 </section>
 <section id="shape">
 <h3>Shape<a class="headerlink" href="#shape" title="Permalink to this headline">#</a></h3>
-<p>Let’s see how big the data is by using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.23/generated/pandas.DataFrame.shape.html">shape</a>:</p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/version/0.23/generated/pandas.DataFrame.shape.html">shape</a> is typically used to learn more about he dimensions of the data.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
@@ -707,10 +707,11 @@ title="Print to PDF"
 </pre></div>
 </div>
 <p><img alt="shape" src="../_images/shape.png" /></p>
+<p>110 represents the number of rows, while 3 reflects the number of columns in the dataframe.</p>
 </section>
 <section id="info">
 <h3>Info<a class="headerlink" href="#info" title="Permalink to this headline">#</a></h3>
-<p>The Pandas <code class="docutils literal notranslate"><span class="pre">info</span></code> method will return information on the <code class="docutils literal notranslate"><span class="pre">dataframe</span></code> such as:</p>
+<p>The Pandas <code class="docutils literal notranslate"><span class="pre">info</span></code> method will return information on the dataframe such as:</p>
 <ul class="simple">
 <li><p>data types</p></li>
 <li><p>column names</p></li>
@@ -721,12 +722,11 @@ title="Print to PDF"
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 </div>
-<p><img alt="info" src="part2/ch7_files/info.png" /></p>
+<p><img alt="info" src="../_images/df_info.png" /></p>
+<p>You see from the image above that the <code class="docutils literal notranslate"><span class="pre">temp</span></code> column has 106 non-null values, which means that 3 values are null. If you look carefully at the csv sheet, you would see that the data has 3 rows with no values in the <code class="docutils literal notranslate"><span class="pre">temp</span></code> column.</p>
 </section>
 <section id="describe">
 <h3>Describe<a class="headerlink" href="#describe" title="Permalink to this headline">#</a></h3>
@@ -741,85 +741,67 @@ title="Print to PDF"
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 </div>
-<p><img alt="describe" src="part2/ch7_files/describe.png" /></p>
+<p><img alt="describe" src="../_images/df-describe.png" /></p>
 </section>
 </section>
 <section id="cleaning-data">
-<h2>Cleaning Data<a class="headerlink" href="#cleaning-data" title="Permalink to this headline">#</a></h2>
+<h2>7.2 Cleaning Data<a class="headerlink" href="#cleaning-data" title="Permalink to this headline">#</a></h2>
 <section id="dropna">
 <h3>Dropna<a class="headerlink" href="#dropna" title="Permalink to this headline">#</a></h3>
-<p>From exploring the data we see that some of the values are <code class="docutils literal notranslate"><span class="pre">null</span></code>.  We can drop those values from this dataset because temperature is a slowly changing characteristic:</p>
+<p>By exploring the datafarme in the section above, we saw that 3 of the values are <code class="docutils literal notranslate"><span class="pre">null</span></code>. Because there are only 3 values and because temperature values don’t vary significantly, let’s remove those rows with the missing values under the <code class="docutils literal notranslate"><span class="pre">temp</span></code> column. We’ll use the <code class="docutils literal notranslate"><span class="pre">dropna</span></code> for this task.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 
 <span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><img alt="dropna" src="part2/ch7_files/dropna.png" /></p>
-<p>There are now <code class="docutils literal notranslate"><span class="pre">3</span></code> less rows after droping the <code class="docutils literal notranslate"><span class="pre">null</span></code> value rows.</p>
+<p><img alt="dropna" src="../_images/df-dropna.png" /></p>
+<p>There are now <code class="docutils literal notranslate"><span class="pre">3</span></code> fewer rows after droping the <code class="docutils literal notranslate"><span class="pre">null</span></code> value rows.</p>
 </section>
 <section id="iterrows-and-try-except">
 <h3>Iterrows and Try-Except<a class="headerlink" href="#iterrows-and-try-except" title="Permalink to this headline">#</a></h3>
-<p>There are several non-numeric values that we’d like to drop from the dataset. First we need to <code class="docutils literal notranslate"><span class="pre">iterate</span></code> through each row in the dataframe with <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>. Then we’ll use Python’s <a class="reference external" href="https://www.geeksforgeeks.org/python-try-except/">try-expect</a> logic test if the row has valid <code class="docutils literal notranslate"><span class="pre">float</span></code> data:</p>
+<p>There are several non-numeric values that we’d like to drop from the dataframe as well. First, we need to <code class="docutils literal notranslate"><span class="pre">iterate</span></code> through each row in the dataframe with <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code>. Then we’ll use Python’s <a class="reference external" href="https://www.geeksforgeeks.org/python-try-except/">try-expect</a> logic to test if the row has a valid <code class="docutils literal notranslate"><span class="pre">float</span></code> data type. If it does not have a valid <code class="docutils literal notranslate"><span class="pre">float</span></code> data type, we will use <code class="docutils literal notranslate"><span class="pre">dropna</span></code> to remove that row:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># &#39;temp&#39; column is index 2</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        
+
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
 <p><img alt="isnumeric" src="../_images/filter_numeric.png" /></p>
+<p>Notice from the image above that rows 2 and 5 were dropped. This is because neither of them had a float data type in the <code class="docutils literal notranslate"><span class="pre">temp</span></code> column.</p>
 </section>
 <section id="reset-index">
 <h3>Reset Index<a class="headerlink" href="#reset-index" title="Permalink to this headline">#</a></h3>
-<p>After we drop rows the <code class="docutils literal notranslate"><span class="pre">index</span></code> of the dataframe will be off.  Let’s reset the index with <code class="docutils literal notranslate"><span class="pre">reset_index</span></code> method:</p>
+<p>Given that we’ve dropped a few rows, we see that the <code class="docutils literal notranslate"><span class="pre">index</span></code> of the dataframe is off. We’ll use the <code class="docutils literal notranslate"><span class="pre">reset_index</span></code> method to reset the index and drop the old index with <code class="docutils literal notranslate"><span class="pre">drop=True</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># &#39;temp&#39; column is index 2</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -832,8 +814,8 @@ title="Print to PDF"
 </section>
 </section>
 <section id="filter-data">
-<h2>Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">#</a></h2>
-<p>Now that the data is clean we can filter the data.</p>
+<h2>7.3 Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">#</a></h2>
+<p>Now that the data is clean, we can filter the data.</p>
 <section id="filter-by-value-astype">
 <h3>Filter by value &amp; astype<a class="headerlink" href="#filter-by-value-astype" title="Permalink to this headline">#</a></h3>
 <p>Let’s filter the data for temperatures over <code class="docutils literal notranslate"><span class="pre">18.5C</span></code>.  Notice that we need to use the Pandas method <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html"><code class="docutils literal notranslate"><span class="pre">astype()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">temp</span></code> data as <code class="docutils literal notranslate"><span class="pre">float</span></code> type data instead of <code class="docutils literal notranslate"><span class="pre">string</span></code> data.</p>
@@ -907,7 +889,7 @@ title="Print to PDF"
 </section>
 </section>
 <section id="concatenate">
-<h2>Concatenate<a class="headerlink" href="#concatenate" title="Permalink to this headline">#</a></h2>
+<h2>7.4 Concatenate<a class="headerlink" href="#concatenate" title="Permalink to this headline">#</a></h2>
 <p>Let’s say we new temperature data to import and analyze. We’ll use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code class="docutils literal notranslate"><span class="pre">concat</span></code></a> method.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -945,7 +927,7 @@ title="Print to PDF"
 </div>
 </section>
 <section id="other-resources">
-<h2>Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">#</a></h2>
+<h2>7.5 Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> is a data analysis and manipulation library</p>
 <section id="links-to-use-for-pandas-data-wrangling">
 <h3>Links to use for Pandas data wrangling<a class="headerlink" href="#links-to-use-for-pandas-data-wrangling" title="Permalink to this headline">#</a></h3>
