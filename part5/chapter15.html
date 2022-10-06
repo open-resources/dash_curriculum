@@ -723,7 +723,55 @@ The default 404-page looks like the following:
 <p>Note that we’ve assiged <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code>, <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc_css</span></code> to the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code> of the app. The <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code> defines the default theme when the app first loads. The <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code> enables the usage of the font awesome icons.</p>
 <p>Switching between Bootstrap themes in a Dash app will automatically style only the Dash Bootstrap components. However, it will not update the styling of any Dash Core Components or the Dash DataTable. By adding <code class="docutils literal notranslate"><span class="pre">className=&quot;dbc&quot;</span></code> to the outer container of the app and assigning the <code class="docutils literal notranslate"><span class="pre">dbc_css</span></code> sheet to the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code>, the app will automatically style the Dash Core Components and the DataTable in accordance with the selected Bootstrap theme.</p>
 <p><strong>App file:</strong></p>
-<p>The impact of the <code class="docutils literal notranslate"><span class="pre">dbc_class</span></code> is not observable in our app. However, try to add a Dropdown to the graphs page:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
+<span class="kn">from</span> <span class="nn">dash_labs</span> <span class="kn">import</span> <span class="n">print_registry</span>
+
+<span class="c1"># Configure Themes</span>
+<span class="n">url_theme1</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span>
+<span class="n">url_theme2</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">DARKLY</span>
+<span class="n">theme_toggle</span> <span class="o">=</span> <span class="n">ThemeSwitchAIO</span><span class="p">(</span>
+    <span class="n">aio_id</span><span class="o">=</span><span class="s2">&quot;theme&quot;</span><span class="p">,</span>
+    <span class="n">themes</span><span class="o">=</span><span class="p">[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">url_theme1</span><span class="p">],</span>
+    <span class="n">icons</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-sun&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-moon&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">dbc_css</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&quot;</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">,</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">],</span> <span class="n">pages_folder</span><span class="o">=</span><span class="s1">&#39;pages&#39;</span><span class="p">)</span>
+
+<span class="c1"># print_registry(exclude=&quot;layout&quot;)</span>
+
+<span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarSimple</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+        <span class="p">])</span>
+    <span class="p">],</span>
+    <span class="n">brand</span><span class="o">=</span><span class="s2">&quot;Multi page app | Advanced&quot;</span><span class="p">,</span>
+    <span class="n">brand_href</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
+    <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dark&#39;</span>
+<span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="n">theme_toggle</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;dbc&quot;</span><span class="p">,</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</details><p>The impact of the <code class="docutils literal notranslate"><span class="pre">dbc_class</span></code> is not observable in our app. However, try to add a Dropdown to the graphs page:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span>
     <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;This is our Graphs page&#39;</span><span class="p">),</span>
     <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">]),</span>
@@ -743,14 +791,82 @@ The default 404-page looks like the following:
 <li><p>The content of the page should be the app developed in the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 2 from chapter 8</a></p></li>
 <li><p>Tip: remember how the layout and the callback are defined inside a multi page app; remember to register the page instead of instatiating Dash</p></li>
 </ul>
-<hr class="docutils" />
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">This is how the <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code> should look like. Place this file inside the <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">sections</span></code> folder (the remaining App files do not require any change).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">callback</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Dash App</span>
+<span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">title_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Gapminder Stacked Bar Charts&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+<span class="n">dropdown_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a metric&#39;</span><span class="p">,</span>
+                        <span class="n">options</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;pop&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;GDP per capita&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Life Expectancy&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">}])</span>
+<span class="n">graph_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">graph_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">metric_</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">metric_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+<p class="sd-card-text"><img alt="solution_ex1" src="../_images/chapter15_solution1.gif" /></p>
+</div>
+</details><hr class="docutils" />
 <p>(2) Building on exercise 1, make the following adjustments to the newly added page:</p>
 <ul class="simple">
 <li><p>Update the order of the <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code>: make it the third linked page in the navbar, after <code class="docutils literal notranslate"><span class="pre">Graphs</span></code>.</p></li>
 <li><p>Update the name of the new page to: <code class="docutils literal notranslate"><span class="pre">Metrics</span></code></p></li>
 <li><p>Update the title of the new page to: <code class="docutils literal notranslate"><span class="pre">Gapminder</span> <span class="pre">|</span> <span class="pre">Metrics</span></code></p></li>
 </ul>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">To slove this exercise, we just need to update the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> statements of the following files:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">new_page.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=2,</span> <span class="pre">name='Metrics',</span> <span class="pre">title='Gapminder</span> <span class="pre">|</span> <span class="pre">Metrics')</span></code></p></li>
+<li><p class="sd-card-text"><code class="docutils literal notranslate"><span class="pre">about.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=3)</span></code></p></li>
+</ul>
+<p class="sd-card-text"><img alt="solution_ex2" src="../_images/chapter15_solution2.png" /></p>
+</div>
+</details></section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>In this chapter, we have gone through several advanced features specific to multi page apps. There are additional functionalities and examples that can be found in the <a class="reference external" href="https://dash.plotly.com/urls#dash-pages">Dash Pages section</a> of the Dash documentation.</p>

@@ -604,7 +604,87 @@ title="Print to PDF"
 <h2>13.1 Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>Let’s kick off with a simple app with a scatter plot that display the life expectation over the years for a selected country. To better understand how a growing data set affects the app performance, we duplicated the underlying data set by a value of our choice, using a range slider. As the underlying data set grows, the data points in the scatter plot will be resized as well. Lastly, we used the <code class="docutils literal notranslate"><span class="pre">datetime</span></code> package to tell us the time it takes the app to load. All in all, we receive the following app:</p>
 <p><img alt="scatter-performance" src="../_images/scatter-performance.gif" /></p>
-<p>Notice how adjusting the range slider to the right increases the data set used, which increases the amount of time it takes the app to refresh and plot the data.
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Setup data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]]</span>
+<span class="n">dropdown_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">)</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">markdown_scatter</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">8500</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">))]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_scatter</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Data points displayed: </span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">*</span> <span class="n">value_slider</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">df_new</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PX scatter plot&#39;</span><span class="p">,</span>
+        <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_slider</span> <span class="o">/</span> <span class="mi">10000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">25</span><span class="p">))</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for scatter plot loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>Notice how adjusting the range slider to the right increases the data set used, which increases the amount of time it takes the app to refresh and plot the data.
 As you can see, there are huge performance differences betweeen 600 data points and 100 thousand data points used. To handle even much larger data sets, you will learn the different graphs that you can use as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse and understand the performance of your app – the Dash Developer Tools. Let’s go!</p>
 </section>
 <section id="dash-developer-tools">
@@ -654,7 +734,115 @@ As you can see, there are huge performance differences betweeen 600 data points 
 </div>
 <p>The following app let’s you compare the different durations for data loading when using a ScatterGL plot alongside a regular Scatter plot. You see how the use of a ScatterGL could improve the app performance the larger the data set.</p>
 <p><img alt="comparing-performance" src="../_images/webgl-vs-svg.gif" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="c1"># Setup data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]]</span>
+<span class="n">dropdown_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">)</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">markdown_scatter</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">)</span>
+<span class="n">markdown_gl</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-gl&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">)),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-gl-figure&#39;</span><span class="p">))]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_scatter</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_gl</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Data points displayed: </span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">*</span> <span class="n">value_slider</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">df_new</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PX scatter plot&#39;</span><span class="p">,</span>
+        <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_slider</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">25</span><span class="p">))</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for scatter plot loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-gl-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-gl&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">],</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">colorscale</span><span class="o">=</span><span class="s1">&#39;Viridis&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_slider</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">25</span><span class="p">),</span>
+    <span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;GO gl-scatter plot&#39;</span><span class="p">,</span>
+        <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for gl-scatter plot loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 <section id="plotly-resampler">
 <h3>13.3.2 Plotly Resampler<a class="headerlink" href="#plotly-resampler" title="Permalink to this headline">#</a></h3>
 <p>Even though the ScatterGL outperforms the px scatter plot, it slows down when using very large data sets and might not be as fast as you would like it to be when interacting with the plot, for example, zooming in. That’s where the <code class="docutils literal notranslate"><span class="pre">plotly_resampler</span></code> package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, etc.), callbacks are used to aggregate data and update the figure.</p>
@@ -664,7 +852,149 @@ As you can see, there are huge performance differences betweeen 600 data points 
 </div>
 <p>The following app let’s you compare the different durations for data loading when working with the plotly resampler.</p>
 <p><img alt="comparing-plotly-resampler" src="../_images/webgl-svg-resampler.gif" /></p>
-<p>Here is a minimal example on how to implement plotly-resampler with the Plotly Express scatter plot.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">from</span> <span class="nn">plotly_resampler</span> <span class="kn">import</span> <span class="n">FigureResampler</span>
+
+<span class="c1"># Setup data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()[[</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]]</span>
+<span class="n">dropdown_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">)</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">markdown_scatter</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">)</span>
+<span class="n">markdown_gl</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-gl&#39;</span><span class="p">)</span>
+<span class="n">markdown_resampler</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-resample&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">)),</span>
+                 <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-gl-figure&#39;</span><span class="p">)),</span>
+                 <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-resample-figure&#39;</span><span class="p">))]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_scatter</span><span class="p">),</span>
+                 <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_gl</span><span class="p">),</span>
+                 <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_resampler</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Data points displayed: </span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">*</span> <span class="n">value_slider</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">df_new</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;PX scatter plot&#39;</span><span class="p">,</span>
+        <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_traces</span><span class="p">(</span><span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_slider</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">25</span><span class="p">))</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for scatter plot loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-gl-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-gl&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]),</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">colorscale</span><span class="o">=</span><span class="s1">&#39;Viridis&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_slider</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">25</span><span class="p">),</span>
+    <span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;GO gl-scatter plot&#39;</span><span class="p">,</span>
+        <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for gl-scatter plot loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-resample-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-resample&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">FigureResampler</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">())</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scattergl</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">],</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]),</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;markers&#39;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">colorscale</span><span class="o">=</span><span class="s1">&#39;Viridis&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span> <span class="o">+</span> <span class="p">(</span><span class="n">value_slider</span> <span class="o">/</span> <span class="mi">30000</span><span class="p">)</span> <span class="o">*</span> <span class="mi">25</span><span class="p">),</span>
+    <span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Plotly Resampler scatter plot&#39;</span><span class="p">,</span>
+        <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span>
+        <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for Plotly Resampler scatter plot loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>Here is a minimal example on how to implement plotly-resampler with the Plotly Express scatter plot.</p>
 <p><img alt="plotly-resampler-with-px" src="../_images/resampler-px.gif" /></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
@@ -743,7 +1073,88 @@ As you can see, there are huge performance differences betweeen 600 data points 
 <p>Compared to ScatterGL and Plotly Resampler, the datashader differs not only in speed but in the way it visualises data. Instead of the actual data points, it represents the occurence of the observed data, therefore letting you explore the correlation, especially any accumulations of your data set, really fast. We’ll use the same code from the examples above to introduce the datashader, but we’ll change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before you use the datashader, make sure to install the <code class="docutils literal notranslate"><span class="pre">datashader</span></code> package.</p>
 <p>The following app shows the datashader in action. Use the code below to run it on your computer as well.</p>
 <p><img alt="datashader" src="../_images/datashader-exp.gif" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">datashader</span> <span class="k">as</span> <span class="nn">ds</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Setup data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()[[</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">]]</span>
+<span class="n">dropdown_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">markdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">)</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">dropdown_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">markdown_scatter</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">)</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">50000</span><span class="p">,</span> <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dropdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">))]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">markdown_scatter</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">slider</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Data points aggregated: </span><span class="si">{:,}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> <span class="o">*</span> <span class="n">value_slider</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">title</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-figure&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;markdown-scatter&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_graph</span><span class="p">(</span><span class="n">value_dropdown</span><span class="p">,</span> <span class="n">value_slider</span><span class="p">):</span>
+    <span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="n">value_dropdown</span><span class="p">])]</span>
+    <span class="n">df_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">(),</span> <span class="n">value_slider</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">columns</span><span class="o">=</span><span class="n">df_sub</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
+    <span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df_new</span><span class="p">[</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">])</span>
+    <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">cvs</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">plot_width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">plot_height</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">agg</span> <span class="o">=</span> <span class="n">cvs</span><span class="o">.</span><span class="n">points</span><span class="p">(</span><span class="n">df_new</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">)</span>
+    <span class="n">zero_mask</span> <span class="o">=</span> <span class="n">agg</span><span class="o">.</span><span class="n">values</span> <span class="o">==</span> <span class="mi">0</span>
+    <span class="n">agg</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">agg</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logical_not</span><span class="p">(</span><span class="n">zero_mask</span><span class="p">))</span>
+    <span class="n">agg</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">zero_mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">agg</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;Log10(count)&#39;</span><span class="p">})</span>
+    <span class="n">end_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s1">&#39;Duration for datashader loading: </span><span class="si">{}</span><span class="s1"> s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">(),</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">subtitle</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 <section id="caching">
 <h2>13.4 Caching<a class="headerlink" href="#caching" title="Permalink to this headline">#</a></h2>

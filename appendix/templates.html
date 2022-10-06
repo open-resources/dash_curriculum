@@ -627,11 +627,284 @@ title="Print to PDF"
 <section id="control-panel-on-the-left">
 <h3>Control panel on the left<a class="headerlink" href="#control-panel-on-the-left" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 1" src="../_images/template-1.png" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AAPL&quot;</span><span class="p">],</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;My Plotly Graph&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># Dropdown</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="s2">&quot;GOOG&quot;</span><span class="p">,</span> <span class="s2">&quot;MSFT&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+
+<span class="c1"># Date Picker</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span>
+    <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s2">&quot;start date&quot;</span><span class="p">,</span>
+    <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s2">&quot;end date&quot;</span><span class="p">,</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">display_format</span><span class="o">=</span><span class="s2">&quot;DD-MMM-YYYY&quot;</span><span class="p">,</span>
+    <span class="n">first_day_of_week</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Checklist</span>
+<span class="n">checklist</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Dark theme&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}],</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">switch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Radio items</span>
+<span class="n">radio_items</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Red&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Green&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Card content</span>
+<span class="n">card_content</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s2">&quot;My Control Panel&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;1) Select an option of the dropdown&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">dropdown</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;2) Pick a date range from the form&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">date_range</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H6</span><span class="p">(</span><span class="s2">&quot;Optional input&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;3) Enable dark theme of your graph&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">checklist</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;4) Change the color of the graphs line&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">radio_items</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)),</span>
+                            <span class="p">],</span>
+                            <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                        <span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;figure1&quot;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span>
+                            <span class="p">),</span>
+                            <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 <section id="control-panel-on-the-bottom">
 <h3>Control panel on the bottom<a class="headerlink" href="#control-panel-on-the-bottom" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 2" src="../_images/template-2.png" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_options</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Europe&quot;</span><span class="p">])][</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Spain&quot;</span><span class="p">,</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">])]</span>
+
+<span class="c1"># Figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
+    <span class="n">barmode</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Grouped Bar Chart&quot;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># Dropdown</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">df_options</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Spain&quot;</span><span class="p">,</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">],</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Slider</span>
+<span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;placement&quot;</span><span class="p">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;always_visible&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1"># Radio items</span>
+<span class="n">radio_items</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option A&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option B&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option C&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Card content</span>
+<span class="n">card_content</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardHeader</span><span class="p">(</span><span class="s2">&quot;Card header&quot;</span><span class="p">),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s2">&quot;Card title&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;Here you might want to add some statics or further information for your dashboard&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;figure1&quot;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)],</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">},</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                    <span class="p">[</span>
+                                        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;Select the countries to display&quot;</span><span class="p">),</span>
+                                        <span class="n">dropdown</span><span class="p">,</span>
+                                    <span class="p">]</span>
+                                <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                    <span class="p">[</span>
+                                        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;Select a year&quot;</span><span class="p">),</span>
+                                        <span class="n">slider</span><span class="p">,</span>
+                                    <span class="p">]</span>
+                                <span class="p">),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                    <span class="p">[</span>
+                                        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;Choose one more option&quot;</span><span class="p">),</span>
+                                        <span class="n">radio_items</span><span class="p">,</span>
+                                    <span class="p">]</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="p">),</span>
+                    <span class="p">],</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">},</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)]),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)]),</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)]),</span>
+                            <span class="p">]</span>
+                        <span class="p">)</span>
+                    <span class="p">],</span>
+                    <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">},</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 <section id="navigation-panels-and-graphs">
 <h2>Navigation panels and graphs<a class="headerlink" href="#navigation-panels-and-graphs" title="Permalink to this headline">#</a></h2>
@@ -643,12 +916,260 @@ title="Print to PDF"
 <section id="navigation-tabs-on-top">
 <h3>Navigation tabs on top<a class="headerlink" href="#navigation-tabs-on-top" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 3" src="../_images/template-3.png" /></p>
-<p>There are multiple ways of switching your navigation from top to the side of your graph. Using the tabs component from the dash core components, they come with a property called <code class="docutils literal notranslate"><span class="pre">vertical</span></code>, see also the <a class="reference external" href="https://dash.plotly.com/dash-core-components/tabs">official documentation</a>. Another option is a navigation bar that you will see below.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_2007</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2007</span><span class="p">]</span>
+<span class="n">continents</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># Tabs</span>
+<span class="n">list_of_tabs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span>
+                            <span class="s2">&quot;Analysis on Life Expectation / GDP per Capita in 2007&quot;</span>
+                        <span class="p">),</span>
+                        <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                            <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                                <span class="n">df_2007</span><span class="p">,</span>
+                                <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span>
+                                <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+                                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;continent&quot;</span><span class="p">,</span>
+                                <span class="n">size</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span>
+                                <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                            <span class="p">)</span>
+                        <span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;World&quot;</span><span class="p">,</span>
+        <span class="n">activeLabelClassName</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">continent</span> <span class="ow">in</span> <span class="n">continents</span><span class="p">:</span>
+    <span class="n">list_of_tabs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+                        <span class="p">[</span>
+                            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span>
+                                <span class="s2">&quot;Analysis on Life Expectation / GDP per Capita in 2007 for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                    <span class="n">continent</span>
+                                <span class="p">)</span>
+                            <span class="p">),</span>
+                            <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                                    <span class="n">df_2007</span><span class="p">[</span><span class="n">df_2007</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">continent</span><span class="p">],</span>
+                                    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span>
+                                    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+                                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
+                                    <span class="n">size</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span>
+                                    <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                                <span class="p">)</span>
+                            <span class="p">),</span>
+                        <span class="p">]</span>
+                    <span class="p">)</span>
+                <span class="p">]</span>
+            <span class="p">),</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">continent</span><span class="p">,</span>
+            <span class="n">activeLabelClassName</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})</span>
+        <span class="p">]),</span>
+
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span><span class="n">list_of_tabs</span><span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>There are multiple ways of switching your navigation from top to the side of your graph. Using the tabs component from the dash core components, they come with a property called <code class="docutils literal notranslate"><span class="pre">vertical</span></code>, see also the <a class="reference external" href="https://dash.plotly.com/dash-core-components/tabs">official documentation</a>. Another option is a navigation bar that you will see below.</p>
 </section>
 <section id="navigation-sidebar">
 <h3>Navigation sidebar<a class="headerlink" href="#navigation-sidebar" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 4" src="../_images/template-4.png" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">ctx</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_2007</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2007</span><span class="p">]</span>
+<span class="n">continents</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="c1"># Styling</span>
+<span class="n">SIDEBAR_STYLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="s2">&quot;fixed&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;bottom&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;16rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;padding&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem 1rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;#f8f9fa&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">CONTENT_STYLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;margin-left&quot;</span><span class="p">:</span> <span class="s2">&quot;18rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;margin-right&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;padding&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem 1rem&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Sidebar</span>
+<span class="n">sidebar</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s2">&quot;Sidebar&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;display-4&quot;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;A simple sidebar layout with navigation links&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;lead&quot;</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">continents</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">continents</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">continents</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">continents</span><span class="p">[</span><span class="mi">3</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">continents</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span>
+    <span class="p">],</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">SIDEBAR_STYLE</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># Content</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;page-content&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">CONTENT_STYLE</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})]),</span>
+        <span class="n">sidebar</span><span class="p">,</span>
+        <span class="n">content</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;page-content&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">continents</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_page</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n3</span><span class="p">,</span> <span class="n">n4</span><span class="p">,</span> <span class="n">n5</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">triggered_id</span> <span class="ow">in</span> <span class="n">continents</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span>
+                                    <span class="s2">&quot;Analysis on Life Expectation / GDP per Capita in 2007 for </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                        <span class="n">ctx</span><span class="o">.</span><span class="n">triggered_id</span>
+                                    <span class="p">)</span>
+                                <span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;graph </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">triggered_id</span><span class="p">),</span>
+                                    <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                                        <span class="n">df_2007</span><span class="p">[</span>
+                                            <span class="n">df_2007</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">ctx</span><span class="o">.</span><span class="n">triggered_id</span>
+                                        <span class="p">],</span>
+                                        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span>
+                                        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+                                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
+                                        <span class="n">size</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span>
+                                        <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                                    <span class="p">),</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="p">)</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span>
+                                    <span class="s2">&quot;Analysis on Life Expectation / GDP per Capita in 2007&quot;</span>
+                                <span class="p">),</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                    <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                                        <span class="n">df_2007</span><span class="p">,</span>
+                                        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span>
+                                        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+                                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;continent&quot;</span><span class="p">,</span>
+                                        <span class="n">size</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span>
+                                        <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                                    <span class="p">)</span>
+                                <span class="p">),</span>
+                            <span class="p">]</span>
+                        <span class="p">)</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 <section id="combining-navigation-and-control-panels">
 <h2>Combining navigation and control panels<a class="headerlink" href="#combining-navigation-and-control-panels" title="Permalink to this headline">#</a></h2>
@@ -660,11 +1181,656 @@ title="Print to PDF"
 <section id="template-with-control-panels-and-navigation-on-the-top">
 <h3>Template with control panels and navigation on the top<a class="headerlink" href="#template-with-control-panels-and-navigation-on-the-top" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 5" src="../_images/template-5.png" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1">#################</span>
+<span class="c1"># 1 # Bar plot ##</span>
+<span class="c1">#################</span>
+
+<span class="c1"># Data</span>
+<span class="n">df_ba</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_options</span> <span class="o">=</span> <span class="n">df_ba</span><span class="p">[</span><span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Europe&quot;</span><span class="p">])][</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">df_ba</span> <span class="o">=</span> <span class="n">df_ba</span><span class="p">[</span><span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Spain&quot;</span><span class="p">,</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">])]</span>
+
+<span class="c1"># Figure</span>
+<span class="n">fig_ba</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">df_ba</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
+    <span class="n">barmode</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Grouped Bar Chart&quot;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig_ba</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+
+<span class="c1"># Dropdown</span>
+<span class="n">dropdown_ba</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">df_options</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Spain&quot;</span><span class="p">,</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">],</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Slider</span>
+<span class="n">slider_ba</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+    <span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;placement&quot;</span><span class="p">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;always_visible&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1"># Radio items</span>
+<span class="n">radio_items_ba</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option A&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option B&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option C&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Card content</span>
+<span class="n">card_content_ba</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardHeader</span><span class="p">(</span><span class="s2">&quot;Card header&quot;</span><span class="p">),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s2">&quot;Card title&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;Here you might want to add some statics or further information for your dashboard&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1">##################</span>
+<span class="c1"># 2 # Line plot ##</span>
+<span class="c1">##################</span>
+
+<span class="c1"># Data</span>
+<span class="n">df_li</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">df_li</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_li</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+    <span class="n">df_li</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AAPL&quot;</span><span class="p">],</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;My Plotly Graph&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Dropdown</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="s2">&quot;GOOG&quot;</span><span class="p">,</span> <span class="s2">&quot;MSFT&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+
+<span class="c1"># Date Picker</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span>
+    <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s2">&quot;start date&quot;</span><span class="p">,</span>
+    <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s2">&quot;end date&quot;</span><span class="p">,</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df_li</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df_li</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">display_format</span><span class="o">=</span><span class="s2">&quot;DD-MMM-YYYY&quot;</span><span class="p">,</span>
+    <span class="n">first_day_of_week</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Checklist</span>
+<span class="n">checklist</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Dark theme&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}],</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">switch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Radio items</span>
+<span class="n">radio_items</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Red&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Green&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Card content</span>
+<span class="n">card_content</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s2">&quot;My Control Panel&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;1) Select an option of the dropdown&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">dropdown</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;2) Pick a date range from the form&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">date_range</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H6</span><span class="p">(</span><span class="s2">&quot;Optional input&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;3) Enable dark theme of your graph&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">checklist</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;4) Change the color of the graphs line&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">radio_items</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1">#####################</span>
+<span class="c1"># 3 # Scatter plot ##</span>
+<span class="c1">#####################</span>
+
+<span class="c1"># Data</span>
+<span class="n">df_sc</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_2007</span> <span class="o">=</span> <span class="n">df_sc</span><span class="p">[</span><span class="n">df_sc</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2007</span><span class="p">]</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                    <span class="p">[</span>
+                                        <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+                                            <span class="p">[</span>
+                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                                                    <span class="p">[</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                                                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                                                        <span class="n">figure</span><span class="o">=</span><span class="n">fig_ba</span>
+                                                                    <span class="p">),</span>
+                                                                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span>
+                                                                <span class="p">)</span>
+                                                            <span class="p">]</span>
+                                                        <span class="p">),</span>
+                                                    <span class="p">]</span>
+                                                <span class="p">),</span>
+                                                <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                                                    <span class="p">[</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                                                                    <span class="s2">&quot;Select the countries to display&quot;</span>
+                                                                <span class="p">),</span>
+                                                                <span class="n">dropdown_ba</span><span class="p">,</span>
+                                                            <span class="p">]</span>
+                                                        <span class="p">),</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;Select a year&quot;</span><span class="p">),</span>
+                                                                <span class="n">slider_ba</span><span class="p">,</span>
+                                                            <span class="p">]</span>
+                                                        <span class="p">),</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                                                                    <span class="s2">&quot;Choose one more option&quot;</span>
+                                                                <span class="p">),</span>
+                                                                <span class="n">radio_items_ba</span><span class="p">,</span>
+                                                            <span class="p">]</span>
+                                                        <span class="p">),</span>
+                                                    <span class="p">]</span>
+                                                <span class="p">),</span>
+                                                <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                                                    <span class="p">[</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                                                    <span class="n">card_content_ba</span><span class="p">,</span>
+                                                                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span>
+                                                                <span class="p">)</span>
+                                                            <span class="p">]</span>
+                                                        <span class="p">),</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                                                    <span class="n">card_content_ba</span><span class="p">,</span>
+                                                                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span>
+                                                                <span class="p">)</span>
+                                                            <span class="p">]</span>
+                                                        <span class="p">),</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                                                    <span class="n">card_content_ba</span><span class="p">,</span>
+                                                                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span>
+                                                                <span class="p">)</span>
+                                                            <span class="p">]</span>
+                                                        <span class="p">),</span>
+                                                    <span class="p">]</span>
+                                                <span class="p">),</span>
+                                            <span class="p">]</span>
+                                        <span class="p">)</span>
+                                    <span class="p">]</span>
+                                <span class="p">)</span>
+                            <span class="p">],</span>
+                            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bar plot&quot;</span><span class="p">,</span>
+                            <span class="n">activeLabelClassName</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span>
+                        <span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                    <span class="p">[</span>
+                                        <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+                                            <span class="p">[</span>
+                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                                                    <span class="p">[</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="p">[</span>
+                                                                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                                                                    <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                                                        <span class="n">card_content</span><span class="p">,</span>
+                                                                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span>
+                                                                    <span class="p">)</span>
+                                                                <span class="p">),</span>
+                                                            <span class="p">],</span>
+                                                            <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                                                        <span class="p">),</span>
+                                                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                                                            <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                                                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span>
+                                                                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span>
+                                                            <span class="p">),</span>
+                                                            <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                                                        <span class="p">),</span>
+                                                    <span class="p">]</span>
+                                                <span class="p">)</span>
+                                            <span class="p">]</span>
+                                        <span class="p">)</span>
+                                    <span class="p">]</span>
+                                <span class="p">)</span>
+                            <span class="p">],</span>
+                            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Line plot&quot;</span><span class="p">,</span>
+                            <span class="n">activeLabelClassName</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span>
+                        <span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                    <span class="p">[</span>
+                                        <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+                                            <span class="p">[</span>
+                                                <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span>
+                                                    <span class="s2">&quot;Analysis on Life Expectation / GDP per Capita in 2007&quot;</span>
+                                                <span class="p">),</span>
+                                                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                                                    <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                                                        <span class="n">df_2007</span><span class="p">,</span>
+                                                        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span>
+                                                        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+                                                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;continent&quot;</span><span class="p">,</span>
+                                                        <span class="n">size</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span>
+                                                        <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                                                    <span class="p">)</span>
+                                                <span class="p">),</span>
+                                            <span class="p">]</span>
+                                        <span class="p">)</span>
+                                    <span class="p">]</span>
+                                <span class="p">)</span>
+                            <span class="p">],</span>
+                            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Scatter plot&quot;</span><span class="p">,</span>
+                            <span class="n">activeLabelClassName</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span>
+                        <span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 <section id="template-with-control-panels-and-navigation-on-the-side">
 <h3>Template with control panels and navigation on the side<a class="headerlink" href="#template-with-control-panels-and-navigation-on-the-side" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 6" src="../_images/template-6.png" /></p>
-<p>As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for a better structre.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">ctx</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">dash</span><span class="o">.</span><span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1">#################</span>
+<span class="c1"># 1 # Bar plot ##</span>
+<span class="c1">#################</span>
+
+<span class="c1"># Data</span>
+<span class="n">df_ba</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_options</span> <span class="o">=</span> <span class="n">df_ba</span><span class="p">[</span><span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;continent&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Europe&quot;</span><span class="p">])][</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">df_ba</span> <span class="o">=</span> <span class="n">df_ba</span><span class="p">[</span><span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s2">&quot;Spain&quot;</span><span class="p">,</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">])]</span>
+
+<span class="c1"># Figure</span>
+<span class="n">fig_ba</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">df_ba</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;country&quot;</span><span class="p">,</span>
+    <span class="n">barmode</span><span class="o">=</span><span class="s2">&quot;group&quot;</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Grouped Bar Chart&quot;</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">fig_ba</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span><span class="nb">range</span><span class="o">=</span><span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+
+<span class="c1"># Dropdown</span>
+<span class="n">dropdown_ba</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">df_options</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Spain&quot;</span><span class="p">,</span> <span class="s2">&quot;United Kingdom&quot;</span><span class="p">],</span> <span class="n">multi</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Slider</span>
+<span class="n">slider_ba</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span>
+    <span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="n">df_ba</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">+</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">marks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;placement&quot;</span><span class="p">:</span> <span class="s2">&quot;bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;always_visible&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+<span class="p">)</span>
+
+<span class="c1"># Radio items</span>
+<span class="n">radio_items_ba</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option A&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option B&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Option C&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Card content</span>
+<span class="n">card_content_ba</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardHeader</span><span class="p">(</span><span class="s2">&quot;Card header&quot;</span><span class="p">),</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s2">&quot;Card title&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;Here you might want to add some statics or further information for your dashboard&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1">##################</span>
+<span class="c1"># 2 # Line plot ##</span>
+<span class="c1">##################</span>
+
+<span class="c1"># Data</span>
+<span class="n">df_li</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">df_li</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_li</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Figure</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span>
+    <span class="n">df_li</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AAPL&quot;</span><span class="p">],</span> <span class="n">template</span><span class="o">=</span><span class="s2">&quot;plotly_white&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;My Plotly Graph&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Dropdown</span>
+<span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span> <span class="s2">&quot;GOOG&quot;</span><span class="p">,</span> <span class="s2">&quot;MSFT&quot;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;AAPL&quot;</span><span class="p">)</span>
+
+<span class="c1"># Date Picker</span>
+<span class="n">date_range</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span>
+    <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s2">&quot;start date&quot;</span><span class="p">,</span>
+    <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s2">&quot;end date&quot;</span><span class="p">,</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df_li</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df_li</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">display_format</span><span class="o">=</span><span class="s2">&quot;DD-MMM-YYYY&quot;</span><span class="p">,</span>
+    <span class="n">first_day_of_week</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Checklist</span>
+<span class="n">checklist</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Checklist</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Dark theme&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}],</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">switch</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Radio items</span>
+<span class="n">radio_items</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">RadioItems</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Red&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Green&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">inline</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Card content</span>
+<span class="n">card_content</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span><span class="s2">&quot;My Control Panel&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;1) Select an option of the dropdown&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">dropdown</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;2) Pick a date range from the form&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">date_range</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">H6</span><span class="p">(</span><span class="s2">&quot;Optional input&quot;</span><span class="p">),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;3) Enable dark theme of your graph&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">checklist</span><span class="p">,</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span>
+                <span class="s2">&quot;4) Change the color of the graphs line&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">radio_items</span><span class="p">,</span>
+        <span class="p">]</span>
+    <span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1">#####################</span>
+<span class="c1"># 3 # Scatter plot ##</span>
+<span class="c1">#####################</span>
+
+<span class="c1"># Data</span>
+<span class="n">df_sc</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df_2007</span> <span class="o">=</span> <span class="n">df_sc</span><span class="p">[</span><span class="n">df_sc</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="mi">2007</span><span class="p">]</span>
+
+<span class="c1"># Styling</span>
+<span class="n">SIDEBAR_STYLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="s2">&quot;fixed&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;bottom&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;16rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;padding&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem 1rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;#f8f9fa&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">CONTENT_STYLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;margin-left&quot;</span><span class="p">:</span> <span class="s2">&quot;18rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;margin-right&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;padding&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem 1rem&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Sidebar</span>
+<span class="n">sidebar</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s2">&quot;Sidebar&quot;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;A simple sidebar layout with navigation links&quot;</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Bar plot&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;Bar plot&quot;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Line plot&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;Line plot&quot;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Scatter plot&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;Scatter plot&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">SIDEBAR_STYLE</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-light&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># Content</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;page-content&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">CONTENT_STYLE</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})]),</span>
+        <span class="n">sidebar</span><span class="p">,</span>
+        <span class="n">content</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Configure callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;page-content&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;Bar plot&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;Line plot&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;Scatter plot&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_page</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">,</span> <span class="n">n3</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ctx</span><span class="o">.</span><span class="n">triggered_id</span> <span class="o">==</span> <span class="s2">&quot;Bar plot&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                    <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;figure1&quot;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig_ba</span><span class="p">),</span>
+                                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">,</span>
+                                <span class="p">)</span>
+                            <span class="p">]</span>
+                        <span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">),</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;Select the countries to display&quot;</span><span class="p">),</span>
+                                <span class="n">dropdown_ba</span><span class="p">,</span>
+                            <span class="p">]</span>
+                        <span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;Select a year&quot;</span><span class="p">),</span>
+                                <span class="n">slider_ba</span><span class="p">,</span>
+                            <span class="p">]</span>
+                        <span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;Choose one more option&quot;</span><span class="p">),</span>
+                                <span class="n">radio_items_ba</span><span class="p">,</span>
+                            <span class="p">]</span>
+                        <span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">),</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">Br</span><span class="p">(),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content_ba</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)]),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content_ba</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)]),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content_ba</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)]),</span>
+                    <span class="p">]</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ctx</span><span class="o">.</span><span class="n">triggered_id</span> <span class="o">==</span> <span class="s2">&quot;Line plot&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span><span class="n">card_content</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)),</span>
+                            <span class="p">],</span>
+                            <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+                        <span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+                                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;figure1&quot;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;light&quot;</span>
+                            <span class="p">),</span>
+                            <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                        <span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ctx</span><span class="o">.</span><span class="n">triggered_id</span> <span class="o">==</span> <span class="s2">&quot;Scatter plot&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">H3</span><span class="p">(</span><span class="s2">&quot;Analysis on Life Expectation / GDP per Capita in 2007&quot;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span>
+                    <span class="n">figure</span><span class="o">=</span><span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+                        <span class="n">df_2007</span><span class="p">,</span>
+                        <span class="n">x</span><span class="o">=</span><span class="s2">&quot;gdpPercap&quot;</span><span class="p">,</span>
+                        <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;continent&quot;</span><span class="p">,</span>
+                        <span class="n">size</span><span class="o">=</span><span class="s2">&quot;pop&quot;</span><span class="p">,</span>
+                        <span class="n">size_max</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">html</span><span class="o">.</span><span class="n">H5</span><span class="p">(</span>
+                    <span class="s2">&quot;Please navigate to an analysed data set with the navigation on the left.&quot;</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details><p>As the code for this implementation starts to become much longer and more complex the last section will provide you with the complex dashboards built into a multipage app for a better structre.</p>
 </section>
 </section>
 <section id="multipage-app">
@@ -678,11 +1844,171 @@ title="Print to PDF"
 <section id="multipage-app-with-navigation-bar-on-the-top">
 <h3>Multipage app with navigation bar on the top<a class="headerlink" href="#multipage-app-with-navigation-bar-on-the-top" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 7" src="../_images/template-7.png" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
+
+<span class="c1"># Configure Themes</span>
+<span class="n">theme_toggle</span> <span class="o">=</span> <span class="n">ThemeSwitchAIO</span><span class="p">(</span>
+    <span class="n">aio_id</span><span class="o">=</span><span class="s2">&quot;theme&quot;</span><span class="p">,</span>
+    <span class="n">themes</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">DARKLY</span><span class="p">,</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span><span class="p">],</span>
+    <span class="n">icons</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-sun&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-moon&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">dbc_css</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&quot;</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span>
+    <span class="vm">__name__</span><span class="p">,</span>
+    <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">],</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Header</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Navbar</span><span class="p">(</span>
+    <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="n">html</span><span class="o">.</span><span class="n">A</span><span class="p">(</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">NavbarBrand</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">))],</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">),</span>
+                <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span>
+                <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;textDecoration&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">},</span>
+            <span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarToggler</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;navbar-toggler&quot;</span><span class="p">),</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">(</span>
+                        <span class="p">[</span>
+                            <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+                            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+                            <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+                        <span class="p">]</span>
+                    <span class="p">),</span>
+                <span class="p">]</span>
+            <span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dark&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="n">theme_toggle</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 <section id="multipage-app-with-navigation-bar-on-the-side">
 <h3>Multipage app with navigation bar on the side<a class="headerlink" href="#multipage-app-with-navigation-bar-on-the-side" title="Permalink to this headline">#</a></h3>
 <p><img alt="Template 8" src="../_images/template-8.png" /></p>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
+
+<span class="c1"># Configure Themes</span>
+<span class="n">theme_toggle</span> <span class="o">=</span> <span class="n">ThemeSwitchAIO</span><span class="p">(</span>
+    <span class="n">aio_id</span><span class="o">=</span><span class="s2">&quot;theme&quot;</span><span class="p">,</span>
+    <span class="n">themes</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">DARKLY</span><span class="p">,</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span><span class="p">],</span>
+    <span class="n">icons</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-sun&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-moon&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">dbc_css</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&quot;</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span>
+    <span class="vm">__name__</span><span class="p">,</span>
+    <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">],</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Styling</span>
+<span class="n">SIDEBAR_STYLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;position&quot;</span><span class="p">:</span> <span class="s2">&quot;fixed&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;top&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;bottom&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;16rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;padding&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem 1rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;border-right&quot;</span><span class="p">:</span> <span class="s2">&quot;solid&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">CONTENT_STYLE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;margin-left&quot;</span><span class="p">:</span> <span class="s2">&quot;18rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;margin-right&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;padding&quot;</span><span class="p">:</span> <span class="s2">&quot;2rem 1rem&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Sidebar</span>
+<span class="n">sidebar</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">H2</span><span class="p">(</span><span class="s2">&quot;Sidebar&quot;</span><span class="p">),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="s2">&quot;A simple sidebar layout with navigation links&quot;</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">theme_toggle</span><span class="p">]),</span>
+        <span class="n">html</span><span class="o">.</span><span class="n">Hr</span><span class="p">(),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Navbar</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarToggler</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;navbar-toggler&quot;</span><span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">(</span>
+                            <span class="p">[</span>
+                                <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+                                <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+                                <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+                            <span class="p">],</span>
+                            <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="p">),</span>
+                    <span class="p">],</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;dark&quot;</span><span class="p">,</span>
+                    <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">SIDEBAR_STYLE</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;My Dashboard&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># Content</span>
+<span class="n">content</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;page-content&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">CONTENT_STYLE</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title</span><span class="p">],</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="s2">&quot;margin&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">})]),</span>
+        <span class="n">sidebar</span><span class="p">,</span>
+        <span class="n">content</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details></section>
 </section>
 </section>
 

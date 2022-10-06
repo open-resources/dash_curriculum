@@ -661,7 +661,74 @@ title="Print to PDF"
 </div>
 <p>By the end of this chapter you will know how to build this app:</p>
 <p><img alt="offcanvas" src="../_images/offcanvas-example.gif" /></p>
-<p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/chapter11_fin_app.py">Click to download the complete code file for this chapter</a></p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See the code<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_core_components</span> <span class="k">as</span> <span class="nn">dcc</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="n">image_filename</span> <span class="o">=</span> <span class="s1">&#39;plotly.png&#39;</span> <span class="c1"># replace with your own image</span>
+<span class="n">encoded_image</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">image_filename</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="s1">&#39;data:image/png;base64,</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">encoded_image</span><span class="o">.</span><span class="n">decode</span><span class="p">()))</span>
+<span class="n">offcanvas_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Off-Canvas documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;oc_doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span><span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/&#39;</span><span class="p">)</span>
+<span class="n">link_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Link documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;link_doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span><span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash.plotly.com/dash-core-components/link&#39;</span><span class="p">)</span>
+
+
+<span class="n">offcanvas_layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">img</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas_doc</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">link_doc</span><span class="p">)]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">offcanvas</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Open Offcanvas&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Offcanvas</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">offcanvas_layout</span><span class="p">],</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Off-Canvas&quot;</span><span class="p">,</span>
+            <span class="n">is_open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas</span><span class="p">)])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">toggle_offcanvas</span><span class="p">(</span><span class="n">n1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    
+
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details><p><a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/chapter11_fin_app.py">Click to download the complete code file for this chapter</a></p>
 </section>
 <section id="data-display-components">
 <h2>11.1 Data Display Components<a class="headerlink" href="#data-display-components" title="Permalink to this headline">#</a></h2>
@@ -1513,13 +1580,249 @@ if __name__ == &#39;__main__&#39;:
 <p>(1) Build an app composed by a title, a <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> component and 3 <code class="docutils literal notranslate"><span class="pre">Card</span></code> components.
 Using the <code class="docutils literal notranslate"><span class="pre">px.data.stocks()</span></code> data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks <code class="docutils literal notranslate"><span class="pre">GOOG</span></code> and <code class="docutils literal notranslate"><span class="pre">AAPL</span></code> (which are columns of the stock dataset).
 Based on the date range set in the <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> component, the central card graph should show the records which fall in the date range; the left card should show any data prior to the start date; and the right card should show any data after the end date.</p>
-<p>(2) Build a new up with a title and 2 Tabs. Display the content of the following tabs through a callback:</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Import data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">title_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Exercise 11.1&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+<span class="n">date_range_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span>
+    <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;start date&#39;</span><span class="p">,</span>
+    <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;end date&#39;</span><span class="p">,</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">display_format</span><span class="o">=</span><span class="s1">&#39;DD-MMM-YYYY&#39;</span><span class="p">,</span>
+    <span class="n">first_day_of_week</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">card_L</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-left&#39;</span><span class="p">),</span>
+        <span class="p">]),</span>
+    <span class="p">)</span>
+<span class="n">card_C</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-center&#39;</span><span class="p">),</span>
+        <span class="p">]),</span>
+    <span class="p">)</span>
+<span class="n">card_R</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-right&#39;</span><span class="p">),</span>
+        <span class="p">]),</span>
+    <span class="p">)</span>
+
+<span class="c1"># App layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title_</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">date_range_</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card_L</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card_C</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card_R</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="p">]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-left&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-center&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-right&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;start_date&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot_dt</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
+    <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figC</span> <span class="o">=</span> <span class="n">figL</span>
+    <span class="n">figR</span> <span class="o">=</span> <span class="n">figC</span>
+    <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">start_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">figC</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_date</span><span class="p">),</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">figR</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">end_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">figL</span><span class="p">,</span> <span class="n">figC</span><span class="p">,</span> <span class="n">figR</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sd-card-text"><img alt="solution_ex1" src="../_images/chapter11_ex1.gif" /></p>
+</div>
+</details><p>(2) Build a new up with a title and 2 Tabs. Display the content of the following tabs through a callback:</p>
 <ul class="simple">
 <li><p>The first tab should contain the app developed in the exercise 1 of this chapter</p></li>
 <li><p>While the second tab should contain the app we built in the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 2 from chapter 8</a>
 You can omit the title of each app inside the tabs. Since we will need callbacks that use content defined in other callbacks, instantiate your app in the following way to avoid warning messages: <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">Dash(__name__,</span> <span class="pre">external_stylesheets=[dbc.themes.BOOTSTRAP],</span> <span class="pre">suppress_callback_exceptions=True)</span></code>.</p></li>
 </ul>
-</section>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3 sd-shadow-lg">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+See Solution<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+
+<span class="c1"># Import data</span>
+<span class="n">dfS</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">dfG</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">dfG</span> <span class="o">=</span> <span class="n">dfG</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">],</span> <span class="n">suppress_callback_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">title_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Exercise 11.2&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+<span class="n">tabs_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-app&#39;</span><span class="p">,</span>
+            <span class="n">children</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;App One&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-app-1&#39;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;App Two&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-app-2&#39;</span><span class="p">)],</span>
+            <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-app-1&#39;</span>
+        <span class="p">)</span>
+<span class="n">tabs_content_</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">)</span>
+<span class="c1"># Specific for App 1</span>
+<span class="n">date_range_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span>
+    <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;start date&#39;</span><span class="p">,</span>
+    <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;end date&#39;</span><span class="p">,</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">dfS</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">dfS</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">display_format</span><span class="o">=</span><span class="s1">&#39;DD-MMM-YYYY&#39;</span><span class="p">,</span>
+    <span class="n">first_day_of_week</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">card_L</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-left&#39;</span><span class="p">),</span>
+        <span class="p">]),</span>
+    <span class="p">)</span>
+<span class="n">card_C</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-center&#39;</span><span class="p">),</span>
+        <span class="p">]),</span>
+    <span class="p">)</span>
+<span class="n">card_R</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-right&#39;</span><span class="p">),</span>
+        <span class="p">]),</span>
+    <span class="p">)</span>
+<span class="c1"># Specific for App 2</span>
+<span class="n">dropdown_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a metric&#39;</span><span class="p">,</span>
+                        <span class="n">options</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;pop&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;GDP per capita&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Life Expectancy&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">}])</span>
+<span class="n">graph_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">)</span>
+
+<span class="c1"># App layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title_</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span>
+                    <span class="n">tabs_</span><span class="p">,</span>
+                    <span class="n">tabs_content_</span>
+            <span class="p">],</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;tabs-app&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">suppress_callback_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">render_content</span><span class="p">(</span><span class="n">tab</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">tab</span> <span class="o">==</span> <span class="s1">&#39;tab-app-1&#39;</span><span class="p">:</span>
+        <span class="n">app1_layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">date_range_</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">})),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card_L</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card_C</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">),</span>
+                    <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">card_R</span><span class="p">],</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
+                <span class="p">]),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">app1_layout</span>
+
+    <span class="k">elif</span> <span class="n">tab</span> <span class="o">==</span> <span class="s1">&#39;tab-app-2&#39;</span><span class="p">:</span>
+        <span class="c1"># App 2 layout</span>
+        <span class="n">app2_layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                        <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">graph_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">app2_layout</span>
+
+<span class="c1"># Callback for App1</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-left&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-center&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-right&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;start_date&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">plot_dt</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
+    <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figC</span> <span class="o">=</span> <span class="n">figL</span>
+    <span class="n">figR</span> <span class="o">=</span> <span class="n">figC</span>
+    <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">start_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">figC</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_date</span><span class="p">),</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">figR</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">end_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">figL</span><span class="p">,</span> <span class="n">figC</span><span class="p">,</span> <span class="n">figR</span>
+
+<span class="c1"># Callback for App2</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
+    <span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">metric_</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">dfG</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">metric_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sd-card-text"><img alt="solution_ex2" src="../_images/chapter11_ex2.gif" /></p>
+</div>
+</details></section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
 <p>In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the <a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash Documentation</a>. In addition, there are third-party libraries that have nice components such as <a class="reference external" href="https://dash-mantine-components.herokuapp.com/">Dash Mantine Components</a>; however, keep in mind that these are not maintained by Dash.</p>

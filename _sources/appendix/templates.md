@@ -12,8 +12,8 @@ This first section gives you two examples that combine control panels with graph
 ![Template 1](./template-1.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -138,8 +138,8 @@ if __name__ == "__main__":
 ![Template 2](./template-2.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
 
 ```
 # Import packages
@@ -296,8 +296,8 @@ This second section provides two examples of how to combine navigation panels an
 ![Template 3](./template-3.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
 
 ```
 # Import packages
@@ -402,8 +402,8 @@ There are multiple ways of switching your navigation from top to the side of you
 ![Template 4](./template-4.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
 
 ```
 # Import packages
@@ -558,8 +558,8 @@ The third section provides you with two examples that are combining the upper da
 ![Template 5](./template-5.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -892,8 +892,8 @@ if __name__ == "__main__":
 ![Template 6](./template-6.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -1219,8 +1219,8 @@ Below each template you find the corresponding code to incorporate into your mai
 ![Template 7](./template-7.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -1287,8 +1287,8 @@ if __name__ == "__main__":
 ![Template 8](./template-8.png)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
