@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Windows Software Stack &#8212; Dash Tutorial</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -37,13 +39,12 @@
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
-    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/design-tabs.js"></script>
+    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -60,21 +61,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -83,10 +70,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -104,15 +90,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../../about.html">
-                    About
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../about.html">
+   About
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Installation Stack
  </span>
@@ -273,17 +258,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -291,162 +271,77 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/open-resources/dash_curriculum"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpreface/chapter0/ref_material/install_ds_stack_windows.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../../_sources/preface/chapter0/ref_material/install_ds_stack_windows.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/preface/chapter0/ref_material/install_ds_stack_windows.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpreface/chapter0/ref_material/install_ds_stack_windows.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#installation-notes">
    Installation notes
@@ -579,11 +474,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Windows Software Stack</h1>
@@ -732,12 +628,11 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="windows-software-stack">
-<span id="page-install-ds-stack-windows"></span><h1>Windows Software Stack<a class="headerlink" href="#windows-software-stack" title="Permalink to this headline">#</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="windows-software-stack">
+<span id="page-install-ds-stack-windows"></span><h1>Windows Software Stack<a class="headerlink" href="#windows-software-stack" title="Permalink to this headline">¶</a></h1>
 <p>These instructions will walk you through installing the required Data Science software stack for .
 Before starting, ensure that your laptop meets the minimum requirements:</p>
 <ul class="simple">
@@ -755,15 +650,15 @@ Before starting, ensure that your laptop meets the minimum requirements:</p>
 </ul>
 <p>If your compuer does not meet any of the requirements above, please don’t just drop the course!!
 Let me know first and we can discuss alternate possibilities so you can still take the course.</p>
-<section id="installation-notes">
-<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Permalink to this headline">#</a></h2>
+<div class="section" id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Permalink to this headline">¶</a></h2>
 <p>If you have already installed Git, Conda, or any of the Python related packages please uninstall these and follow the instructions below to install and configure them correcty (make sure to also remove any user configuration files and backup them if desired).
 In order to be able to support you effectively and minimize setup issues and software conflicts, we require all students to install the software stack the same way.</p>
 <p>In all the sections below, if you are presented with the choice to download either a 64-bit (also called x64) or a 32-bit (also called x86) version of the application <strong>always</strong> choose the 64-bit version.</p>
 <p>Once you have completed these installation instructions, make sure to follow the post-installation notes at the end to check that all software is setup correctly.</p>
-</section>
-<section id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="#ubc-student-email">UBC Student Email</a></p></li>
 <li><p><a class="reference external" href="#zoom">Zoom</a> (Latest Version of Zoom)</p></li>
@@ -777,21 +672,21 @@ In order to be able to support you effectively and minimize setup issues and sof
 <li><p><a class="reference external" href="#tree">Tree</a></p></li>
 <li><p><a class="reference external" href="#Test-JupyterLab">Test JupyterLab</a></p></li>
 </ul>
-</section>
-<section id="ubc-student-email">
-<h2>UBC Student Email<a class="headerlink" href="#ubc-student-email" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="ubc-student-email">
+<h2>UBC Student Email<a class="headerlink" href="#ubc-student-email" title="Permalink to this headline">¶</a></h2>
 <p>Please sign up for a UBC Student Email.
 This account will also grant you access to a range of other UBC services (not used in this course), including Microsoft Teams and OneDrive.
 To do so navigate to <a class="reference external" href="https://it.ubc.ca/services/email-voice-internet/ubc-student-email-service">https://it.ubc.ca/services/email-voice-internet/ubc-student-email-service</a> and follow the instructions under “Get Started”.</p>
-</section>
-<section id="web-browser">
-<h2>Web browser<a class="headerlink" href="#web-browser" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="web-browser">
+<h2>Web browser<a class="headerlink" href="#web-browser" title="Permalink to this headline">¶</a></h2>
 <p>You are welcome to use most modern browsers that have a WebKit or Gecko backend.
 <a class="reference external" href="https://www.apple.com/ca/safari/">Safari</a>, <a class="reference external" href="https://www.mozilla.org/en-CA/firefox/new/?redirect_source=firefox-com">Firefox</a>, <a class="reference external" href="https://vivaldi.com">Vivaldi</a>, <a class="reference external" href="https://brave.com">Brave</a>, <a class="reference external" href="https://www.microsoft.com/en-us/edge">Edge</a> are all recommended.
 Google Chrome is not recommended because of the <a class="reference external" href="https://www.forbes.com/sites/zakdoffman/2021/03/20/stop-using-google-chrome-on-apple-iphone-12-pro-max-ipad-and-macbook-pro/">well-documented privacy and tracking issues with Google</a>.</p>
-</section>
-<section id="zoom">
-<h2>Zoom<a class="headerlink" href="#zoom" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="zoom">
+<h2>Zoom<a class="headerlink" href="#zoom" title="Permalink to this headline">¶</a></h2>
 <p>We will be using Zoom in this course for the classes, as well as the labs, and student hours.
 It is <em>very</em> important that you have the most recent version of Zoom installed, as we will be using many of the features that are only available in more recent versions.</p>
 <p>The latest version of Zoom as of Sept 2021 is: <code class="docutils literal notranslate"><span class="pre">5.7.6</span> <span class="pre">(1320)</span></code>.
@@ -802,15 +697,15 @@ You can ensure you have the latest version of Zoom by clicking “Check for Upda
 <p>Please note that if you have been relying on the “web version” of Zoom that works only in a browser, this will not work for this course!
 Please make sure to download the Zoom desktop client for your operating system to fully participate in the course.</p>
 </div>
-</section>
-<section id="github-com-account">
-<h2><a class="reference external" href="http://GitHub.com">GitHub.com</a> account<a class="headerlink" href="#github-com-account" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="github-com-account">
+<h2><a class="reference external" href="http://GitHub.com">GitHub.com</a> account<a class="headerlink" href="#github-com-account" title="Permalink to this headline">¶</a></h2>
 <p>Sign up for a free account at <a class="reference external" href="https://github.com/">GitHub.com</a> if you don’t have one already.
 Your GitHub username is important, here’s how to find your username:</p>
 <img src="setup_images/github_account.png" alt = "Pointing to the top right once you log into GitHub.com to identify your username."/>
-</section>
-<section id="microsoft-office">
-<h2>Microsoft Office<a class="headerlink" href="#microsoft-office" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="microsoft-office">
+<h2>Microsoft Office<a class="headerlink" href="#microsoft-office" title="Permalink to this headline">¶</a></h2>
 <p>UBC students have free access to a Microsoft Office 365 annual subscription, which is renewed for students enrolled in at least one course.
 Office 365 includes Word, Excel, PowerPoint, Outlook, and OneNote, and is available on a variety of platforms.</p>
 <p>To get your free Office 365 license and download the installer files, visit <a class="reference external" href="https://it.ubc.ca/services/desktop-print-services/software-licensing/office-365-students">UBC IT</a> for the installation instructions.
@@ -821,16 +716,16 @@ Note that you will need your CWL login credentials in order to download the soft
 <p>You will not be able to use Google Sheets, Apple Numbers, or LibreOffice Calc to do the Excel portion of this course.
 If you have trouble installing it, please let the instructor know.</p>
 </div>
-</section>
-<section id="visual-studio-code">
-<h2>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="visual-studio-code">
+<h2>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this headline">¶</a></h2>
 <p>The open-source text editor Visual Studio Code (VS Code) is both a powerful text editor and a full-blown Python IDE, which we will use for more complex analysis.
 You can download and install the macOS version of VS Code from the VS code website <a class="reference external" href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a>.
 Once the download is finished, double click it to open and follow the installation instructions.
 Make sure you are able to open VS Code by clicking on the application.</p>
-</section>
-<section id="terminal">
-<h2>Terminal<a class="headerlink" href="#terminal" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="terminal">
+<h2>Terminal<a class="headerlink" href="#terminal" title="Permalink to this headline">¶</a></h2>
 <p>Unfortunately, one of the major problems with using the Windows operating system is that the “Command Prompt” that comes with the operating system is severely deficient.
 No worries though, luckily most of the tools we use in this course are open source, so the community has worked hard to shore up deficiencies in the Microsoft ecosystem (until Windows subsystem for Linux is a more mature product).</p>
 <p>The replacement for the Command Prompt we will use in this course is called “GitBash”.
@@ -885,12 +780,12 @@ Below is a picture of the Git Bash icon on the Desktop and an opened instance of
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">version</span> <span class="mf">2.32.0</span><span class="o">.</span><span class="n">windows</span><span class="mf">.1</span>
 </pre></div>
 </div>
-</section>
-<section id="python">
-<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
 <p>We will be using Python for a large part of the course, and <code class="docutils literal notranslate"><span class="pre">conda</span></code> will be our Python package manager.</p>
-<section id="installing-conda-and-python">
-<h3>Installing <code class="docutils literal notranslate"><span class="pre">conda</span></code> and python<a class="headerlink" href="#installing-conda-and-python" title="Permalink to this headline">#</a></h3>
+<div class="section" id="installing-conda-and-python">
+<h3>Installing <code class="docutils literal notranslate"><span class="pre">conda</span></code> and python<a class="headerlink" href="#installing-conda-and-python" title="Permalink to this headline">¶</a></h3>
 <p>We will be using Python for a large part of the program, and <code class="docutils literal notranslate"><span class="pre">conda</span></code> as our Python package manager.
 To install Python and the <code class="docutils literal notranslate"><span class="pre">conda</span></code> package manager, we will use the <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda platform (read more here)</a>, for which the <a class="reference external" href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe"><strong>Python 3.9</strong> (or higher) 64-bit version can be downloaded here</a>.
 Miniconda also provides us with a minimum number of useful packages so installation is quick, and relatively painless.</p>
@@ -913,9 +808,9 @@ Type the following to check that your Python installation is working:</p>
 <div><p>If instead you see <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">2.7.X</span></code> you installed the wrong version.
 Follow <a class="reference external" href="https://docs.anaconda.com/anaconda/install/uninstall">these instructions</a> to delete this installation and try the installation again, selecting <strong>Python 3.9</strong>.</p>
 </div></blockquote>
-</section>
-<section id="integrating-python-with-the-git-bash-terminal">
-<h3>Integrating Python with the Git Bash terminal<a class="headerlink" href="#integrating-python-with-the-git-bash-terminal" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="integrating-python-with-the-git-bash-terminal">
+<h3>Integrating Python with the Git Bash terminal<a class="headerlink" href="#integrating-python-with-the-git-bash-terminal" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This part is very important!!!</p>
@@ -962,9 +857,9 @@ Now if you launch a new terminal instance,
 you will see <code class="docutils literal notranslate"><span class="pre">(base)</span></code> on the same line as the rest of the prompt string as in the screenshot below.</p>
 </div></blockquote>
 <img src="setup_images/remove-newline-from-ps1.png" alt = "Decorative"/>
-</section>
-<section id="essential-python-packages">
-<h3>Essential Python packages<a class="headerlink" href="#essential-python-packages" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="essential-python-packages">
+<h3>Essential Python packages<a class="headerlink" href="#essential-python-packages" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span></code> installs Python packages from different online repositories which are called “channels”.
 A package needs to go through thorough testing before it is included in the default channel,
 which is good for stability,
@@ -992,10 +887,10 @@ Each command is on a new line and should be run one-by-one.</p>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span></code> will show you the packages that will be downloaded, and you may need to press <code class="docutils literal notranslate"><span class="pre">enter</span></code> or <code class="docutils literal notranslate"><span class="pre">Y</span></code> (for yes) to proceed with the installation.
 We are specifying that we should use the “conda-forge” source because it typically has more recent and updated package versions.
 This may take a while to complete.</p>
-</section>
-</section>
-<section id="configuring-vs-code-extensions">
-<h2>Configuring VS Code extensions<a class="headerlink" href="#configuring-vs-code-extensions" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="configuring-vs-code-extensions">
+<h2>Configuring VS Code extensions<a class="headerlink" href="#configuring-vs-code-extensions" title="Permalink to this headline">¶</a></h2>
 <p>The real magic of VS Code is in the extensions that let you add languages, debuggers, and tools to your installation to support your specific workflow.
 Now that we have installed all our other Data Science tools, we can install the VS Code extensions that work really well with them.
 From within VS Code you can open up the <a class="reference external" href="https://code.visualstudio.com/docs/editor/extension-gallery">Extension Marketplace (read more here)</a> to browse and install extensions by clicking on the Extensions icon in the Activity Bar indicated in the figure below.</p>
@@ -1007,18 +902,18 @@ From within VS Code you can open up the <a class="reference external" href="http
 <li><p>(Optional) Bracket Pair Colorizer 2 (add colour to help distinguish your brackets: (), [], {})</p></li>
 </ul>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=06I63_p-2A4">This video tutorial</a> is an excellent introduction to using VS Code in Python.</p>
-</section>
-<section id="git-and-github">
-<h2>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="git-and-github">
+<h2>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">¶</a></h2>
 <p>We will use the publicly available <a class="reference external" href="https://github.com/">GitHub.com</a>.</p>
 <p>You should already have your <a class="reference external" href="http://GitHub.com">GitHub.com</a> username, you will need that for this question.</p>
-<section id="install-git-on-your-computer">
-<h3>Install Git on your computer<a class="headerlink" href="#install-git-on-your-computer" title="Permalink to this headline">#</a></h3>
+<div class="section" id="install-git-on-your-computer">
+<h3>Install Git on your computer<a class="headerlink" href="#install-git-on-your-computer" title="Permalink to this headline">¶</a></h3>
 <p>Although Git and GitBash are two separate programs, Git is packaged with GitBash and so you’ve already installed it.
 Time to configure it.</p>
-</section>
-<section id="configuring-git-user-info">
-<h3>Configuring Git user info<a class="headerlink" href="#configuring-git-user-info" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="configuring-git-user-info">
+<h3>Configuring Git user info<a class="headerlink" href="#configuring-git-user-info" title="Permalink to this headline">¶</a></h3>
 <p>Next, we need to configure Git by telling it your name and email.
 To do this type the following into the Terminal (the same ones you used to sign up for GitHub):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;YOUR NAME HERE&quot;</span>
@@ -1029,9 +924,9 @@ To do this type the following into the Terminal (the same ones you used to sign 
 <p class="admonition-title">Note</p>
 <p>To ensure that you haven’t made a typo in any of the above, you can view your global Git configurations by either opening the configuration file in a text editor (e.g. via the command <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">~/.gitconfig</span></code>) or by typing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--list</span> <span class="pre">--global</span></code>.</p>
 </div>
-</section>
-<section id="create-your-github-personal-access-token">
-<h3>Create your GitHub “Personal Access Token”<a class="headerlink" href="#create-your-github-personal-access-token" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="create-your-github-personal-access-token">
+<h3>Create your GitHub “Personal Access Token”<a class="headerlink" href="#create-your-github-personal-access-token" title="Permalink to this headline">¶</a></h3>
 <p>This is a bit tricky, so please make sure you follow these directions carefully.</p>
 <ol class="simple">
 <li><p>Create a Personal Access Token on <a class="reference external" href="http://GitHub.com">GitHub.com</a> by clicking this link: <a class="reference external" href="https://github.com/settings/tokens/new">https://github.com/settings/tokens/new</a>; make sure to COPY the token that they give you, it is basically a special password that you can use in the Terminal. Detailed steps are:</p></li>
@@ -1049,9 +944,9 @@ To do this type the following into the Terminal (the same ones you used to sign 
 <li><p>Save this token somewhere on your computer, you will need it when you clone a repository to your computer.</p></li>
 <li><p>Don’t share your token with anyone and protect it like it’s your password! You will not be able to come back to this page to get your token. If you forget it, or lose it, you can just delete the token and create another one.</p></li>
 </ul>
-</section>
-<section id="clone-your-first-repository-on-your-computer">
-<h3>Clone your first repository on your computer!<a class="headerlink" href="#clone-your-first-repository-on-your-computer" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="clone-your-first-repository-on-your-computer">
+<h3>Clone your first repository on your computer!<a class="headerlink" href="#clone-your-first-repository-on-your-computer" title="Permalink to this headline">¶</a></h3>
 <p>Open a GitBash Terminal window, and then run the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">data301</span><span class="o">-</span><span class="mi">2021</span><span class="o">-</span><span class="n">winter1</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
@@ -1059,9 +954,9 @@ To do this type the following into the Terminal (the same ones you used to sign 
 <p>Here you will be prompted for your <a class="reference external" href="http://GitHub.com">GitHub.com</a> username, and your PAT (personal access token) as your password.</p>
 <p>Hopefully, if things work, you should be able to see a new folder created at that location.
 We will be talking more about what exactly you did over the next week and a bit, don’t worry!</p>
-</section>
-<section id="launch-vs-code-from-gitbash">
-<h3>Launch VS Code from GitBash<a class="headerlink" href="#launch-vs-code-from-gitbash" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="launch-vs-code-from-gitbash">
+<h3>Launch VS Code from GitBash<a class="headerlink" href="#launch-vs-code-from-gitbash" title="Permalink to this headline">¶</a></h3>
 <p>You can launch many windows programs from the Bash terminal, e.g. to launch VS Code that we installed previously, you would type in <code class="docutils literal notranslate"><span class="pre">code</span></code>, let’s use this to check the version of vscode that we installed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">--</span><span class="n">version</span>
 </pre></div>
@@ -1071,9 +966,9 @@ We will be talking more about what exactly you did over the next week and a bit,
 <span class="n">x64</span>
 </pre></div>
 </div>
-</section>
-<section id="setting-vs-code-as-the-default-editor">
-<h3>Setting VS Code as the default editor<a class="headerlink" href="#setting-vs-code-as-the-default-editor" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="setting-vs-code-as-the-default-editor">
+<h3>Setting VS Code as the default editor<a class="headerlink" href="#setting-vs-code-as-the-default-editor" title="Permalink to this headline">¶</a></h3>
 <p>To make programs run from the terminal (such as <code class="docutils literal notranslate"><span class="pre">git</span></code>) use VS Code by default, we will modify <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>. First, open it using VS Code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">~/.</span><span class="n">bash_profile</span>
 </pre></div>
@@ -1091,10 +986,10 @@ VISUAL=$EDITOR  # Use the same value as for &quot;EDITOR&quot; in the line above
 <blockquote>
 <div><p>Most terminal programs will read the <code class="docutils literal notranslate"><span class="pre">EDITOR</span></code> environmental variable when determining which editor to use, but some read <code class="docutils literal notranslate"><span class="pre">VISUAL</span></code>, so we’re setting both to the same value.</p>
 </div></blockquote>
-</section>
-</section>
-<section id="tree">
-<h2>Tree<a class="headerlink" href="#tree" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="tree">
+<h2>Tree<a class="headerlink" href="#tree" title="Permalink to this headline">¶</a></h2>
 <p>From the <a class="reference external" href="http://gnuwin32.sourceforge.net/packages/tree.htm">Tree for Windows</a> page, “Tree is a recursive directory listing program that produces a depth indented listing of files.”
 This is very useful to explore your directory and file structure to figure out which files are where.</p>
 <p>Unfortunately, <code class="docutils literal notranslate"><span class="pre">Tree</span></code> is not trivial to install on Windows, but it is definitely worth the 2-3 minutes it takes to install it.
@@ -1106,9 +1001,9 @@ The steps <a class="reference external" href="https://dev.to/flyingduck92/add-tr
 <li><p>Move or copy the <code class="docutils literal notranslate"><span class="pre">tree.exe</span></code> file to this location: <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Git\usr\bin</span></code>.</p></li>
 <li><p>Restart GitBash and type in <code class="docutils literal notranslate"><span class="pre">tree</span></code>.</p></li>
 </ol>
-</section>
-<section id="test-jupyterlab">
-<h2>Test JupyterLab<a class="headerlink" href="#test-jupyterlab" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="test-jupyterlab">
+<h2>Test JupyterLab<a class="headerlink" href="#test-jupyterlab" title="Permalink to this headline">¶</a></h2>
 <p>To test that your JupyterLab installation is functional, open a new Terminal window.
 Then type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> and then hit enter.
 This should open a new tab in your default browser with the JupyterLab interface.
@@ -1117,9 +1012,9 @@ or go to the terminal from which you launched JupyterLab and hold <code class="d
 <p>You should see something like this in your browser:</p>
 <p><img alt="" src="../../../_images/jupyter_lab.png" /></p>
 <p>You’re all done!</p>
-</section>
-<section id="attributions">
-<h2>Attributions<a class="headerlink" href="#attributions" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="attributions">
+<h2>Attributions<a class="headerlink" href="#attributions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://cs109.github.io/2015/">Harvard CS109</a></p></li>
 <li><p><a class="reference external" href="http://stat545.com/packages01_system-prep.html#mac-os-system-prep">UBC STAT 545</a> licensed under the <a class="reference external" href="https://creativecommons.org/licenses/by-nc/3.0/legalcode">CC BY-NC 3.0</a>.</p></li>
@@ -1129,8 +1024,8 @@ or go to the terminal from which you launched JupyterLab and hold <code class="d
 <p class="admonition-title">Important</p>
 <p>These instructions have been adapted and remixed from the original version provided by the UBC-Vancouver <a class="reference external" href="https://ubc-mds.github.io/resources_pages/installation_instructions/">MDS Install stack</a> under a CC-BY-SA 4.0 license. They were originally written by <a class="reference external" href="https://github.com/Anmol6">Anmol Jawandha</a> but have since been updated by Firas Moosvi, Joel Ostblom, Tomas Beuzen, Rodolfo Lourenzutti, &amp; Tiffany Timbers, and others.</p>
 </div>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1154,40 +1049,34 @@ or go to the terminal from which you launched JupyterLab and hold <code class="d
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Dash Community Ambassadors<br/>
-  
-    <div class="extra_footer">
-      <div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
+      </div>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
