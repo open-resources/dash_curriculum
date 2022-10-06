@@ -105,8 +105,8 @@ For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The
 #### 12.3.1 - Code snippet 1
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```python
 from dash import Dash, html, dcc
@@ -140,8 +140,8 @@ Below is the output with `Dasboard title` displayed as a heading in the colorcod
 #### 12.3.1 - Code snippet 2
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -179,8 +179,8 @@ Recall that the alternatives to `text-body` like `text-primary` and `text-second
 
 #### 12.3.2 - Code snippet
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -221,8 +221,8 @@ So far, the whole `CSS` thing can seem a bit complicated, but this particular se
 
 #### 12.3.3 Code snippet
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -263,8 +263,8 @@ Often, a `HTML` child component will take on the same size as its parent. This s
 #### 12.3.4 Code snippet 1
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -316,8 +316,8 @@ At last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates 
 ### 12.3.4 Code snippet 2
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -355,8 +355,8 @@ You should expect that different components from different libraries such as `dc
 
 ### 12.3.5 Code snippet 1
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -407,8 +407,8 @@ Another result is that the markdown and label components no longer have a gap be
 ### 12.3.5 Code snippet 2
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -446,8 +446,8 @@ In the previous snippet, notice how `className ="bg-primary"` is set for `dcc.Ma
 #### 12.3.6 Code snippet
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```python
 from dash import Dash, html, dcc
@@ -509,8 +509,8 @@ For a more comprehensive list of boostrap components, refer to [this source][19]
 #### 12.4.1 Code snippet
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -589,8 +589,8 @@ The image below shows the result for `justify = 'evenly'`. In additon we've incl
 #### 12.4.2 Code snippet
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
@@ -664,8 +664,8 @@ Notice how we've cheated a bit by adding `'height':'65%'` for the `label` compon
 #### 12.4.3 Code snippet
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -755,8 +755,8 @@ In the snippet below, we've rounded off the bottom of the card only, and set the
 #### 12.4.4 Code snippet
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -839,8 +839,8 @@ In the snippet below we've added a thick grey border line below the title by add
 #### 12.4.5 Code snippet
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -915,8 +915,8 @@ If you find that `bg-secondary` for the `db.Container` comes off as a bit too do
 
 ### 12.4.6 Code snippet
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -999,8 +999,8 @@ The last two options stand for `small` and `large`. Below we've included `shadow
 
 ### 12.4.7 Code snippet
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1074,8 +1074,8 @@ Including `bg-gradient` will add additional depth to the background of your app 
 #### 12.4.8 Code snippet 1
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1153,8 +1153,8 @@ style={"background": "linear-gradient(90deg, white, grey"}
 #### 12.4.8 Code snippet 2
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1229,8 +1229,8 @@ The color options are not limited to simple color names like `white` and `grey`.
 #### 12.4.8 Code snippet 3
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1325,8 +1325,8 @@ Below is the same setup with `overflow-scroll` included. You can see that a slid
 
 #### 12.4.9 Code snippet 1
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1409,8 +1409,8 @@ If you drag the screen to the any side, you'll see that the dashboard adjusts to
 
 #### 12.5.1 Code snippet 1
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1479,8 +1479,8 @@ Combining `fluid=True` with margin options in `className` can trigger some stran
 #### 12.5.1 Code snippet 2
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -1555,8 +1555,8 @@ This subchapter introduces a new concept for style, the [viewport][36] height or
 
 #### 12.5.2 Code snippet
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 ```python
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
@@ -2861,8 +2861,8 @@ In the exercises below, we will apply some of the strategies learnt in this chap
 - Set the full app background to a grey-gradient colour using the following class (that we saw in an example from this chapter): `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`.
 You can find all available `className` values by downloading [this file](https://github.com/twbs/bootstrap/releases/download/v5.0.2/bootstrap-5.0.2-dist.zip) and opening `bootstrap-5.0.2-dist\css\bootstrap.css` with a text editor.
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 from dash import Dash, dcc, Output, Input
@@ -2940,8 +2940,8 @@ if __name__== '__main__':
 
 We recommend to apply each layout change with `debug=True` option, so that you can see the effect of each command.
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages

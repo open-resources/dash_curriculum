@@ -14,8 +14,8 @@ By the end of this chapter you will know how to build and launch this inital app
 ![first_app](./ch2_files/chap2-1.png)
 
 ````{dropdown} See Code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # 1. Import packages
@@ -126,8 +126,8 @@ Now that you know how to create and launch your first basic app, try to play aro
 ## Exercises
 (1) Use [the app](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch2_files/chapter2_app.py) from the "What you will learn" section and change the title of the app to "New title", aligning it to the left
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # 1. Import packages
@@ -150,8 +150,8 @@ if __name__ == '__main__':
 ````
 (2) In addition to the above, use the .css style properties ```'color':'red'``` to colour the title in red
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # 1. Import packages

@@ -330,8 +330,8 @@ def update_graph(n_clicks, value_dropdown, value_radio):
 - On the app.py file, also create a .div component below the title, containing the links to the two pages (similarly to what's been presented [here](https://open-resources.github.io/dash_curriculum/part5/chapter14.html#app-py)).
 To avoid errors, carefully look at the `id` of the different components across both pages: we cannot reuse ids!
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 The app file structure will be:
 - `app.py`
@@ -617,8 +617,8 @@ def update_markdown(metric_):
 - Create a dropdown menu with the link to each page. The dropdown should be on the top right of our app, below the title.
 - Modify the background of the whole top section to a dark color with a bright app title in the center
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 The new `app.py` file will be the following: (the remaining files are the same as in the solution to exercise 1)
 ```
