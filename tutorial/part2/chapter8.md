@@ -549,8 +549,8 @@ for k in kinds[:-1]:
 # Exercises
 (1) Using the gapminder data, create a stacked bar chart where we have `year` on the x-axis and population (`pop`) on the y-axis. Each column of the chart should show the `continent` populations stacked one on the other. (In order to show one value per continent, the data should be grouped by year and continent). As chart `template`, use `plotly_dark`.
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 import plotly.express as px
@@ -567,8 +567,8 @@ fig.show()
 
 (2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select one metric among: `population`, `GDP per capita` or `Life expectancy`; build a callback so that the stacked bar chart will be generated with the selected metric (when grouping the data, for GDP per capita and life expectancy, use the mean).
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 from dash import Dash, dcc, Output, Input

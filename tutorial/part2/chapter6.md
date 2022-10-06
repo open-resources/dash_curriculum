@@ -14,8 +14,8 @@ By the end of this chapter you will know how to build this app:
 ![fina-app](./ch6_files/chap6-final-app.gif)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -391,8 +391,8 @@ The above code will generate the following app:
 - Filter data by year greater or equal than 1980
 - Group the data by continent and calculate the max life expectancy
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 from dash import Dash, html, dcc, dash_table
@@ -424,8 +424,8 @@ if __name__ == '__main__':
 
 (2) Build a Dash app that imports and wrangles the data as per exercise 1; then, display the max life expectancy as the `children` of a Markdown component, based on a continent that the user can choose from a RadioItems component.
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages

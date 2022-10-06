@@ -19,8 +19,8 @@ By the end of this chapter you will know how to build this app:
 ![gif4-3](./ch4_files/gif-chap4-3.gif)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -311,8 +311,8 @@ if __name__ == '__main__':
 
 Then, create a callback that uses the color value selected to update the `color` key within the `style` property of a `Markdown` component. The goal is to change the color of the markdown's 'Text', based on the Radio Item chosen. Make sure to import the packages `Output` and `Input` from the dash library at the beginning of your code when adding callbacks to your apps.
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -405,8 +405,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages

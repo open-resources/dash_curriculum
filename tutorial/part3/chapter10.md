@@ -15,8 +15,8 @@ By the end of this chapter you will know how to build this app:
 ![state gif](./ch10_files/final-app-state-gif.gif)
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -589,8 +589,8 @@ if __name__ == '__main__':
 - Next to the table, a chart should plot the values contained in the 'x' and 'y' column of the table. We should expect integer values only.
 - The chart should be generated only when pressing on the button.
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
        
 ```
 # Import packages
@@ -672,8 +672,8 @@ if __name__ == '__main__':
 - Finally, build a `callback` that, with the use of `ctx`, fill the table with the points clicked or selected on the graph.
 
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 from dash import Dash, dash_table, dcc, html, Input, Output, ctx

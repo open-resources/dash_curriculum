@@ -16,8 +16,8 @@ By the end of this chapter you will know how to build this app:
 
 
 ````{dropdown} See Code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages 
@@ -71,8 +71,8 @@ if __name__ == '__main__':
 **Properties** are attributes of components, such as an `id` or `children`, which allow us to fully build the component.
 
 ````{dropdown} Buttons
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass the **children** property to give the button a name in the dashboard.
 
@@ -105,8 +105,8 @@ if __name__ == '__main__':
 ````
 
 ````{dropdown} Checklist
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
 
 Checklists display a set of options for the user to choose.
 We will pass in a list of **options** when we create the checklist component below:
@@ -143,8 +143,8 @@ if __name__ == '__main__':
 ````
 
 ````{dropdown} Radio items
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
 
   
 
@@ -185,8 +185,8 @@ if __name__ == '__main__':
 ````
 
 ````{dropdown} Dropdown
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
     
 Dropdowns allow the user to select from a list of options. Similar to the checklist, we will pass in a list of **options** when creating the component. 
 
@@ -227,8 +227,8 @@ if __name__ == '__main__':
 ````
 
 ````{dropdown} Slider
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
     
 Sliders allow the user to select a value by moving an indicator.  We pass in the (**start**, **end**, **increment**) `properties` to this component.
 
@@ -391,8 +391,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages
@@ -420,8 +420,8 @@ if __name__ == '__main__':
 - one entire row dedicated to the title of the app, which should be "My new app" with `width=12` and center aligned
 - a second row with two column components: the first with `width=4` and a `Markdown` component saying "Please select a state"; the second with `width=8` and our dropdown component created in exercise 1
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 # Import packages

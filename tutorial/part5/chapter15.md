@@ -141,8 +141,8 @@ Switching between Bootstrap themes in a Dash app will automatically style only t
 **App file:**
 
 ````{dropdown} See the code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
   
 ```
 import dash
@@ -208,8 +208,8 @@ Relaunch the app and notice how the background color of the dropdown options upd
 - Tip: remember how the layout and the callback are defined inside a multi page app; remember to register the page instead of instatiating Dash
 
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
 
 This is how the `new_page.py` should look like. Place this file inside the `app sections` folder (the remaining App files do not require any change).
 ```
@@ -265,8 +265,8 @@ def update_markdown(metric_):
 - Update the name of the new page to: `Metrics`
 - Update the title of the new page to: `Gapminder | Metrics`
 ````{dropdown} See Solution
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
+    :class-container: sd-shadow-lg
+    :color: primary
 
 To slove this exercise, we just need to update the `dash.register_page()` statements of the following files:
 - `new_page.py` should be registered as: `dash.register_page(__name__, order=2, name='Metrics', title='Gapminder | Metrics')`
