@@ -7,10 +7,9 @@ parts:
 - caption: Installation Stack
   chapters:
   - file: part1/chapter0
-    sections:
-    - file: part1/chapter0_mac
-    - file: part1/chapter0_windows
-    - file: part1/chapter0_linux
+  - file: part1/chapter0_mac
+  - file: part1/chapter0_windows
+  - file: part1/chapter0_linux
   - file: part1/chapter0_GitHub
 
 - caption: Dash for Data Apps
