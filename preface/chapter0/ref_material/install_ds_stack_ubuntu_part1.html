@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>MDS software stack install instructions for Ubuntu &#8212; Dash Tutorial</title>
     
-  <link href="../../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
     <script src="../../../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../../../_static/doctools.js"></script>
     <script src="../../../_static/clipboard.min.js"></script>
     <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../about.html">
-   About
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../about.html">
+                    About
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Installation Stack
  </span>
@@ -265,90 +280,180 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../../_sources/preface/chapter0/ref_material/install_ds_stack_ubuntu_part1.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpreface/chapter0/ref_material/install_ds_stack_ubuntu_part1.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpreface/chapter0/ref_material/install_ds_stack_ubuntu_part1.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../../_sources/preface/chapter0/ref_material/install_ds_stack_ubuntu_part1.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#table-of-contents">
    Table of Contents
@@ -494,12 +599,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>MDS software stack install instructions for Ubuntu</h1>
@@ -661,11 +765,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="mds-software-stack-install-instructions-for-ubuntu">
-<span id="page-install-ds-stack-ubuntu"></span><h1>MDS software stack install instructions for Ubuntu<a class="headerlink" href="#mds-software-stack-install-instructions-for-ubuntu" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="mds-software-stack-install-instructions-for-ubuntu">
+<span id="page-install-ds-stack-ubuntu"></span><h1>MDS software stack install instructions for Ubuntu<a class="headerlink" href="#mds-software-stack-install-instructions-for-ubuntu" title="Permalink to this headline">#</a></h1>
 <!-- Open links in a new tab unless they have the `` attribute -->
 <head>
     <base target="_blank">
@@ -691,8 +796,8 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>student user has full administrative access to the computer</p></li>
 </ul>
 <p><strong>Students’ whose laptops do not meet the requirements specified above will not be able to receive technical assistance from the MDS team in troubleshooting installation issues.</strong></p>
-<div class="section" id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="#ubc-student-email">UBC Student Email</a></p></li>
 <li><p><a class="reference external" href="#web-browser">Web browser</a></p></li>
@@ -710,9 +815,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><a class="reference external" href="#improving-the-bash-configuration">Improving the bash configuration</a></p></li>
 <li><p><a class="reference external" href="#post-installation-notes">Post-installation notes</a></p></li>
 </ul>
-</div>
-<div class="section" id="installation-notes">
-<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="installation-notes">
+<h2>Installation notes<a class="headerlink" href="#installation-notes" title="Permalink to this headline">#</a></h2>
 <p>If you have already installed Git, Latex, or any of the R or Python related packages
 please uninstall these and follow the instructions below to reinstall them
 (make sure to also remove any user configuration files and backup them if desired).
@@ -725,13 +830,13 @@ or a 32-bit (also called x86) version of the application <strong>always</strong>
 <p>Once you have completed these installation instructions,
 make sure to follow the post-installation notes at the end
 to check that all software is setup correctly.</p>
-</div>
-<div class="section" id="ubc-student-email">
-<h2>UBC Student Email<a class="headerlink" href="#ubc-student-email" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="ubc-student-email">
+<h2>UBC Student Email<a class="headerlink" href="#ubc-student-email" title="Permalink to this headline">#</a></h2>
 <p>Please sign up for a UBC Student Email. This account will also grant you access to a range of UBC services, including Microsoft Teams and OneDrive. To do so navigate to <a class="reference external" href="https://it.ubc.ca/services/email-voice-internet/ubc-student-email-service">https://it.ubc.ca/services/email-voice-internet/ubc-student-email-service</a> and follow the instructions under “Get Started”.</p>
-</div>
-<div class="section" id="web-browser">
-<h2>Web browser<a class="headerlink" href="#web-browser" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="web-browser">
+<h2>Web browser<a class="headerlink" href="#web-browser" title="Permalink to this headline">#</a></h2>
 <p>In MDS we will be using many tools that work most reliably on Google Chrome and Firefox (including our online quiz software), so we recommend that you use one of these browsers.</p>
 <ul class="simple">
 <li><p>Firefox comes preinstalled with Ubuntu, so there is not need to download anything.</p></li>
@@ -740,9 +845,9 @@ to check that all software is setup correctly.</p>
 <blockquote>
 <div><p>Note that if you select “open with” and try to open the file directly with the Ubuntu Software app instead of downloading it first, the software app might complain that the file is not supported.</p>
 </div></blockquote>
-</div>
-<div class="section" id="visual-studio-code">
-<h2>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="visual-studio-code">
+<h2>Visual Studio Code<a class="headerlink" href="#visual-studio-code" title="Permalink to this headline">#</a></h2>
 <p>The open-source text editor Visual Studio Code (VS Code) is both a powerful text editor and a full-blown Python IDE, which we will use for more complex analysis. You can install VS Code either via the <a class="reference external" href="https://snapcraft.io/code">Snap store/Ubuntu software app through this link</a> or via the downloadable deb-file from the VS code website <a class="reference external" href="https://code.visualstudio.com/download">https://code.visualstudio.com/download</a>. The getting started instructions are here: <a class="reference external" href="https://code.visualstudio.com/docs/?dv=linux64_deb">https://code.visualstudio.com/docs/?dv=linux64_deb</a>.</p>
 <p>You can test that VS code is installed and can be opened from Terminal by restarting terminal and typing the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">--</span><span class="n">version</span>
@@ -754,16 +859,16 @@ to check that all software is setup correctly.</p>
 <span class="n">x64</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="github">
-<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="github">
+<h2>GitHub<a class="headerlink" href="#github" title="Permalink to this headline">#</a></h2>
 <p>In MDS we will use the publicly available <a class="reference external" href="https://github.com/">GitHub.com</a> as well as an Enterprise version of GitHub hosted here at UBC, <a class="reference external" href="https://github.ubc.ca">GitHub.ubc.ca</a>. Please follow the set-up instructions for both below.</p>
-<div class="section" id="github-com">
-<h3><a class="reference external" href="http://GitHub.com">GitHub.com</a><a class="headerlink" href="#github-com" title="Permalink to this headline">¶</a></h3>
+<section id="github-com">
+<h3><a class="reference external" href="http://GitHub.com">GitHub.com</a><a class="headerlink" href="#github-com" title="Permalink to this headline">#</a></h3>
 <p>Sign up for a free account at <a class="reference external" href="https://github.com/">GitHub.com</a> if you don’t have one already.</p>
-</div>
-<div class="section" id="github-ubc-ca">
-<h3><a class="reference external" href="http://GitHub.ubc.ca">GitHub.ubc.ca</a><a class="headerlink" href="#github-ubc-ca" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="github-ubc-ca">
+<h3><a class="reference external" href="http://GitHub.ubc.ca">GitHub.ubc.ca</a><a class="headerlink" href="#github-ubc-ca" title="Permalink to this headline">#</a></h3>
 <p>To add you to the MDS organization on <a class="reference external" href="https://github.ubc.ca">Github.ubc.ca</a> we need you to login to <a class="reference external" href="https://github.ubc.ca">Github.ubc.ca</a> using your CWL credentials.</p>
 <p>This step is required for</p>
 <ul class="simple">
@@ -771,10 +876,10 @@ to check that all software is setup correctly.</p>
 <li><p>all homework submission and grading</p></li>
 <li><p>working collaboratively</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="git">
-<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h2>
 <p>We will be using the command line version of Git as well as Git through RStudio and JupyterLab. Some of the Git commands we will use are only available since Git 2.23, so if you’re Git is older than this version, we ask you to update it using the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
 <span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">git</span>
@@ -784,8 +889,8 @@ to check that all software is setup correctly.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="o">--</span><span class="n">version</span>
 </pre></div>
 </div>
-<div class="section" id="configuring-git-user-info">
-<h3>Configuring Git user info<a class="headerlink" href="#configuring-git-user-info" title="Permalink to this headline">¶</a></h3>
+<section id="configuring-git-user-info">
+<h3>Configuring Git user info<a class="headerlink" href="#configuring-git-user-info" title="Permalink to this headline">#</a></h3>
 <p>Next, we need to configure Git by telling it your name and email. To do this type the following into the terminal (replacing Jane Doe and <a class="reference external" href="mailto:janedoe&#37;&#52;&#48;example&#46;com">janedoe<span>&#64;</span>example<span>&#46;</span>com</a>, with your name and email (the same you used on GitHub), respectively):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;Jane Doe&quot;</span>
 <span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">user</span><span class="o">.</span><span class="n">email</span> <span class="n">janedoe</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span>
@@ -794,9 +899,9 @@ to check that all software is setup correctly.</p>
 <blockquote>
 <div><p>Note: to ensure that you haven’t made a typo in any of the above, you can view your global Git configurations by either opening the configuration file in a text editor (e.g. via the command <code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">~/.gitconfig</span></code>) or by typing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--list</span> <span class="pre">--global</span></code>.</p>
 </div></blockquote>
-</div>
-<div class="section" id="setting-vs-code-as-the-default-editor">
-<h3>Setting VS Code as the default editor<a class="headerlink" href="#setting-vs-code-as-the-default-editor" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="setting-vs-code-as-the-default-editor">
+<h3>Setting VS Code as the default editor<a class="headerlink" href="#setting-vs-code-as-the-default-editor" title="Permalink to this headline">#</a></h3>
 <p>To make programs run from the terminal (such as <code class="docutils literal notranslate"><span class="pre">git</span></code>) use VS Code by default, we will modify the bash configuration file <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>. First, open it using VS Code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">code</span> <span class="o">~/.</span><span class="n">bashrc</span>
 </pre></div>
@@ -816,12 +921,12 @@ VISUAL=$EDITOR  # Use the same value as for &quot;EDITOR&quot; in the line above
 <blockquote>
 <div><p>Most terminal programs will read the <code class="docutils literal notranslate"><span class="pre">EDITOR</span></code> environmental variable when determining which editor to use, but some read <code class="docutils literal notranslate"><span class="pre">VISUAL</span></code>, so we’re setting both to the same value.</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="python-conda-and-jupyterlab">
-<h2>Python, Conda, and JupyterLab<a class="headerlink" href="#python-conda-and-jupyterlab" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="python-and-conda">
-<h3>Python and Conda<a class="headerlink" href="#python-and-conda" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="python-conda-and-jupyterlab">
+<h2>Python, Conda, and JupyterLab<a class="headerlink" href="#python-conda-and-jupyterlab" title="Permalink to this headline">#</a></h2>
+<section id="python-and-conda">
+<h3>Python and Conda<a class="headerlink" href="#python-and-conda" title="Permalink to this headline">#</a></h3>
 <p>We will be using Python for a large part of the program, and <code class="docutils literal notranslate"><span class="pre">conda</span></code> as our Python package manager. To install Python and the <code class="docutils literal notranslate"><span class="pre">conda</span></code> package manager, we will use the <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda platform (read more here)</a>, for which the <a class="reference external" href="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh">Python 3.8 64-bit version can be downloaded here</a>.</p>
 <p>Once the download is finished, open Terminal and execute the following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bash</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">file</span>
@@ -858,10 +963,10 @@ VISUAL=$EDITOR  # Use the same value as for &quot;EDITOR&quot; in the line above
 <blockquote>
 <div><p>Note: If instead you see <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">2.7.X</span></code> you installed the wrong version. Uninstall the Miniconda you just installed (which usually lives in the <code class="docutils literal notranslate"><span class="pre">/home/&lt;USER&gt;</span></code> directory), and try the installation again, selecting <strong>Python 3.8</strong>.</p>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="essential-python-packages">
-<h2>Essential Python packages<a class="headerlink" href="#essential-python-packages" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="essential-python-packages">
+<h2>Essential Python packages<a class="headerlink" href="#essential-python-packages" title="Permalink to this headline">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">conda</span></code> installs Python packages from different online repositories which are called “channels”.
 A package needs to go through thorough testing before it is included in the default channel,
 which is good for stability,
@@ -890,9 +995,9 @@ you can replace <code class="docutils literal notranslate"><span class="pre">con
 <blockquote>
 <div><p>Note: we will use many more packages than those listed above across the MDS program, however we will manage these using virtual environments (which you will learn about in DSCI 521: Platforms for Data Science).</p>
 </div></blockquote>
-</div>
-<div class="section" id="jupyterlab-setup">
-<h2>JupyterLab setup<a class="headerlink" href="#jupyterlab-setup" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="jupyterlab-setup">
+<h2>JupyterLab setup<a class="headerlink" href="#jupyterlab-setup" title="Permalink to this headline">#</a></h2>
 <p>We will be using the Jupytext Python package and the JupyterLab git extension to facilitate using Jupyter notebooks with Git &amp; GitHub. Install them via the following commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">nodejs</span><span class="o">=</span><span class="mf">10.</span><span class="o">*</span>
 <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">jupyterlab</span><span class="o">-</span><span class="n">git</span>
@@ -903,12 +1008,12 @@ you can replace <code class="docutils literal notranslate"><span class="pre">con
 <p>To test that your JupyterLab installation is functional, you can type <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">lab</span></code> into a terminal, which should open a new tab in your default browser with the JupyterLab interface.
 To exit out of JupyterLab you can click <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">-&gt;</span> <span class="pre">Shutdown</span></code>,
 or go to the terminal from which you launched JupyterLab and hold <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> while pressing <code class="docutils literal notranslate"><span class="pre">c</span></code> twice.</p>
-</div>
-<div class="section" id="r-irkernel-and-rstudio">
-<h2>R, IRkernel, and RStudio<a class="headerlink" href="#r-irkernel-and-rstudio" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="r-irkernel-and-rstudio">
+<h2>R, IRkernel, and RStudio<a class="headerlink" href="#r-irkernel-and-rstudio" title="Permalink to this headline">#</a></h2>
 <p>R is another programming language that we will be using a lot in the MDS program. We will use R both in Jupyter notebooks and in RStudio.</p>
-<div class="section" id="r">
-<h3>R<a class="headerlink" href="#r" title="Permalink to this headline">¶</a></h3>
+<section id="r">
+<h3>R<a class="headerlink" href="#r" title="Permalink to this headline">#</a></h3>
 <p>The version of R available in the default Ubuntu repositories (<code class="docutils literal notranslate"><span class="pre">3.6.*</span></code>) is older than the one we use in MDS (<code class="docutils literal notranslate"><span class="pre">4.*</span></code>). To obtain the latest R <code class="docutils literal notranslate"><span class="pre">4.*</span></code> packages, we need to add a new repository which is maintained directly by the r-project. To do this, first add the key for this repository by typing the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">key</span> <span class="n">adv</span> <span class="o">--</span><span class="n">keyserver</span> <span class="n">keyserver</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span> <span class="o">--</span><span class="n">recv</span><span class="o">-</span><span class="n">keys</span> <span class="n">E298A3A825C0D65DFD57CBB651716619E084DAB9</span>
 </pre></div>
@@ -940,9 +1045,9 @@ or go to the terminal from which you launched JupyterLab and hold <code class="d
 <blockquote>
 <div><p>Note: Although it is possible to install R through conda, we highly recommend not doing so. In case you have already installed R using conda you can remove it by executing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">uninstall</span> <span class="pre">r-base</span></code>.</p>
 </div></blockquote>
-</div>
-<div class="section" id="rstudio">
-<h3>RStudio<a class="headerlink" href="#rstudio" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="rstudio">
+<h3>RStudio<a class="headerlink" href="#rstudio" title="Permalink to this headline">#</a></h3>
 <p>Download the Ubuntu 18/Debian 10 Desktop version of RStudio Preview from <a class="reference external" href="https://rstudio.com/products/rstudio/download/preview/">https://rstudio.com/products/rstudio/download/preview/</a>. Open the file and follow the installer instructions.</p>
 <blockquote>
 <div><p>Note that there is not yet an official RStudio version for Ubuntu 20.04, so it is recommended to use the Ubuntu 18 version. Also note that if you select “open with” and try to open the file directly with the Ubuntu Software app instead of downloading it first, the software app might complain that the file is not supported.</p>
@@ -952,9 +1057,9 @@ or go to the terminal from which you launched JupyterLab and hold <code class="d
 <blockquote>
 <div><p>Note that since we installed RStudio directly from a deb file rather than from a repository or a snap package, it will not be updated when we run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">upgrade</span></code> and not automatically as for snap packages. Instead, RStudio will notify you of any available updates when the program is launched.</p>
 </div></blockquote>
-</div>
-<div class="section" id="essential-r-packages">
-<h3>Essential R packages<a class="headerlink" href="#essential-r-packages" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="essential-r-packages">
+<h3>Essential R packages<a class="headerlink" href="#essential-r-packages" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">tidyverse</span></code> R package (and some others) have external dependencies on Ubuntu outside of R. We need to install these first before we install such R packages:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libcurl4</span><span class="o">-</span><span class="n">openssl</span><span class="o">-</span><span class="n">dev</span> <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> <span class="n">libxml2</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
@@ -968,9 +1073,9 @@ typing the following into the R console inside RStudio:</p>
 <blockquote>
 <div><p>Note: we will use many more packages than those listed above across the MDS program, however we will manage these using the <code class="docutils literal notranslate"><span class="pre">renv</span></code> package manager (which you will learn about in DSCI 521: Platforms for Data Science).</p>
 </div></blockquote>
-</div>
-<div class="section" id="irkernel">
-<h3>IRkernel<a class="headerlink" href="#irkernel" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="irkernel">
+<h3>IRkernel<a class="headerlink" href="#irkernel" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">IRkernel</span></code> package is needed to make R work in Jupyter notebooks. To enable this kernel in the notebooks, install it and run the setup via the following two commands:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s1">&#39;IRkernel&#39;</span><span class="p">)</span>
 <span class="n">IRkernel</span><span class="p">::</span><span class="n">installspec</span><span class="p">()</span>
@@ -1002,10 +1107,10 @@ Run the following from terminal to install the extension:</p>
 open JupyterLab,
 launch an R notebook,
 and try inserting the operators by pressing <code class="docutils literal notranslate"><span class="pre">Alt</span></code> + <code class="docutils literal notranslate"><span class="pre">-</span></code> or <code class="docutils literal notranslate"><span class="pre">Shift</span></code> + <code class="docutils literal notranslate"><span class="pre">Ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">m</span></code>, respectively.</p>
-</div>
-</div>
-<div class="section" id="latex">
-<h2>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="latex">
+<h2>LaTeX<a class="headerlink" href="#latex" title="Permalink to this headline">#</a></h2>
 <p>We will install the lightest possible version of LaTeX and it’s necessary packages as possible so that we can render Jupyter notebooks and R Markdown documents to html and PDF. If you have previously installed LaTeX, please uninstall it before proceeding with these instructions.</p>
 <p>First, open RStudio and run the following commands to install the <code class="docutils literal notranslate"><span class="pre">tinytex</span></code> package and setup <code class="docutils literal notranslate"><span class="pre">tinytex</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">install</span><span class="o">.</span><span class="n">packages</span><span class="p">(</span><span class="s1">&#39;tinytex&#39;</span><span class="p">)</span>
@@ -1065,9 +1170,9 @@ You can also check by typing the following to ask for the version of latex:</p>
 <span class="n">Compiled</span> <span class="k">with</span> <span class="n">xpdf</span> <span class="n">version</span> <span class="mf">4.02</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="postgresql">
-<h2>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="postgresql">
+<h2>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">#</a></h2>
 <p>We will be using PostgreSQL as our database management system. To install PostgreSQL type the following command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">postgresql</span> <span class="n">postgresql</span><span class="o">-</span><span class="n">contrib</span>
 </pre></div>
@@ -1089,15 +1194,15 @@ but for now run the following to confirm that your installation was successful:<
 <blockquote>
 <div><p>Note: to exit from Postgres type <code class="docutils literal notranslate"><span class="pre">exit</span></code>, or press <code class="docutils literal notranslate"><span class="pre">ctrl</span></code> + <code class="docutils literal notranslate"><span class="pre">d</span></code>.</p>
 </div></blockquote>
-</div>
-<div class="section" id="docker">
-<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">#</a></h2>
 <p>You will use Docker to create reproducible, sharable and shippable computing environments for your analyses. For this you will need a Docker account. You can <a class="reference external" href="https://store.docker.com/signup?next=%2F%3Fref%3Dlogin">sign up for a free one here</a>.</p>
 <p>After signing-up, you also need to install Docker <strong>CE</strong> for Ubuntu. Install the stable version by following the installation instructions using the <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository">“Install using the repository” methods found here</a>, including the subheadings “Set up the repository” and “Install Docker engine”.</p>
 <p>Next, <a class="reference external" href="https://docs.docker.com/engine/install/linux-postinstall/">follow the Linux post installation steps here</a> so that you can run Docker without typing <code class="docutils literal notranslate"><span class="pre">sudo</span></code>, and confirm that docker is working by following the verification instructions on that same page.</p>
-</div>
-<div class="section" id="vs-code-extensions">
-<h2>VS Code extensions<a class="headerlink" href="#vs-code-extensions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vs-code-extensions">
+<h2>VS Code extensions<a class="headerlink" href="#vs-code-extensions" title="Permalink to this headline">#</a></h2>
 <p>The real magic of VS Code is in the extensions that let you add languages, debuggers, and tools to your installation to support your specific workflow. From within VS Code you can open up the <a class="reference external" href="https://code.visualstudio.com/docs/editor/extension-gallery">Extension Marketplace (read more here)</a> to browse and install extensions by clicking on the Extensions icon in the Activity Bar indicated in the figure below.</p>
 <img src="../../images/vscode.png" alt = ""/>
 <p>To install an extension, you simply search for it in the search bar, click the extension you want, and then click “Install”. There are extensions available to make almost any workflow or task you are interested in more efficient! Here we are interested in setting up VS Code as a Python IDE. To do this, search for and install the following extensions:</p>
@@ -1111,9 +1216,9 @@ but for now run the following to confirm that your installation was successful:<
 <li><p>(Optional) Bracket Pair Colorizer 2 (add colour to help distinguish your brackets: (), [], {})</p></li>
 </ul>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=06I63_p-2A4">This video tutorial</a> is an excellent introduction to using VS Code in Python.</p>
-</div>
-<div class="section" id="improving-the-bash-configuration">
-<h2>Improving the bash configuration<a class="headerlink" href="#improving-the-bash-configuration" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="improving-the-bash-configuration">
+<h2>Improving the bash configuration<a class="headerlink" href="#improving-the-bash-configuration" title="Permalink to this headline">#</a></h2>
 <p>To improve your experience using bash,
 we recommend appending a few lines to the end of your bash configuration file.
 This is optional,
@@ -1155,9 +1260,9 @@ and save it afterwards:</p>
 <span class="n">HISTFILESIZE</span><span class="o">=</span><span class="mi">50000</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="post-installation-notes">
-<h2>Post-installation notes<a class="headerlink" href="#post-installation-notes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="post-installation-notes">
+<h2>Post-installation notes<a class="headerlink" href="#post-installation-notes" title="Permalink to this headline">#</a></h2>
 <p>You have completed the installation instructions, well done 🙌!
 We have created a script to help you check that your installation was successful,
 and to provide instructions for how you can troubleshoot any issues.
@@ -1242,16 +1347,16 @@ Details on where to submit will be provided later.</p>
 <blockquote>
 <div><p>Note that in general you should be careful running scripts unless they come from a trusted source as in this case (just like how you should be careful when downloading and installing programs on your computer).</p>
 </div></blockquote>
-</div>
-<div class="section" id="attributions">
-<h2>Attributions<a class="headerlink" href="#attributions" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="attributions">
+<h2>Attributions<a class="headerlink" href="#attributions" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="http://cs109.github.io/2015/">Harvard CS109</a></p></li>
 <li><p><a class="reference external" href="http://stat545.com/packages01_system-prep.html#mac-os-system-prep">UBC STAT 545</a> licensed under the <a class="reference external" href="https://creativecommons.org/licenses/by-nc/3.0/legalcode">CC BY-NC 3.0</a>.</p></li>
 <li><p><a class="reference external" href="https://software-carpentry.org/">Software Carpentry</a></p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1275,34 +1380,40 @@ Details on where to submit will be provided later.</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By Dash Community Ambassadors<br/>
-    
-      <div class="extra_footer">
-        <div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dash Community Ambassadors<br/>
+  
+    <div class="extra_footer">
+      <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Chapter 8: Data Visualization &#8212; Dash Tutorial</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -63,7 +62,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -72,9 +85,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -92,14 +106,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../preface/about.html">
-   About
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../preface/about.html">
+                    About
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Installation Stack
  </span>
@@ -267,90 +282,180 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/part2/chapter8.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart2/chapter8.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart2/chapter8.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/part2/chapter8.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    Chapter 8: Data Visualization
@@ -525,12 +630,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Chapter 8: Data Visualization</h1>
@@ -721,11 +825,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-8-data-visualization">
-<h1>Chapter 8: Data Visualization<a class="headerlink" href="#chapter-8-data-visualization" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-8-data-visualization">
+<h1>Chapter 8: Data Visualization<a class="headerlink" href="#chapter-8-data-visualization" title="Permalink to this headline">#</a></h1>
 <p>In this chapter we will learn to use the Plotly graphing library given that it is the leading Python library for data visualization.</p>
 <div class="admonition-what-you-will-learn admonition">
 <p class="admonition-title">What you will learn</p>
@@ -736,15 +841,15 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>How to create common Plotly chart types</p></li>
 </ul>
 </div>
-<div class="section" id="principles-of-effective-visualizations">
-<h2>8.1 Principles of effective visualizations<a class="headerlink" href="#principles-of-effective-visualizations" title="Permalink to this headline">¶</a></h2>
+<section id="principles-of-effective-visualizations">
+<h2>8.1 Principles of effective visualizations<a class="headerlink" href="#principles-of-effective-visualizations" title="Permalink to this headline">#</a></h2>
 <p>Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualization you want. We will argue that Plotly Express charts both look good and offer means of effective visualizations right out of the box. But you will also learn how to make your own changes to themes and layouts.</p>
-<div class="section" id="message-first-visualization-second-focus-on-the-data-not-the-decoration">
-<h3>8.1.1 Message first, visualization second / Focus on the data, not the decoration<a class="headerlink" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration" title="Permalink to this headline">¶</a></h3>
+<section id="message-first-visualization-second-focus-on-the-data-not-the-decoration">
+<h3>8.1.1 Message first, visualization second / Focus on the data, not the decoration<a class="headerlink" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration" title="Permalink to this headline">#</a></h3>
 <p>With the power of this flexibiity at your hands, you should keep in mind that making effective data visualizations is all about storytelling and / or conveying a message, and <em>not</em> making good looking pictures. As already stated, you can and have it both ways with Plotly. However, what is <em>good looking</em> will always be subject to individual preferences. Nevertheless, there are a few principles that will let you get your messages through to any recipient regardless of their preferences</p>
-</div>
-<div class="section" id="shaffer-s-four-c-s">
-<h3>8.1.2 Shaffer’s four C’s<a class="headerlink" href="#shaffer-s-four-c-s" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="shaffer-s-four-c-s">
+<h3>8.1.2 Shaffer’s four C’s<a class="headerlink" href="#shaffer-s-four-c-s" title="Permalink to this headline">#</a></h3>
 <p>People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be <code class="docutils literal notranslate"><span class="pre">clear</span></code>, <code class="docutils literal notranslate"><span class="pre">clean</span></code>, <code class="docutils literal notranslate"><span class="pre">concise</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code>. These are the so-called Shaffer’s four <strong><code class="docutils literal notranslate"><span class="pre">C</span></code></strong>’s of data visualization.</p>
 <div class="highlight-{admonition}Shaffer's notranslate"><div class="highlight"><pre><span></span>
 1) `Clear -  easily seen; sharply defined`
@@ -761,9 +866,9 @@ const thebe_selector_output = ".output, .cell_output"
     - does it tell the story?
 </pre></div>
 </div>
-</div>
-<div class="section" id="data-ink-and-chart-junk">
-<h3>8.1.3 Data ink and chart junk<a class="headerlink" href="#data-ink-and-chart-junk" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="data-ink-and-chart-junk">
+<h3>8.1.3 Data ink and chart junk<a class="headerlink" href="#data-ink-and-chart-junk" title="Permalink to this headline">#</a></h3>
 <p>Whether or not your visualizations are <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code> will depend heavily on your actual data, message and audience. These factors will vary from case to case ans is not particularly suited for an introductory chapter on general principles for data visualization. What we will rather touch upon here are some elements of Shaffers <code class="docutils literal notranslate"><span class="pre">Clean</span></code> and <code class="docutils literal notranslate"><span class="pre">Concise</span></code> principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on <code class="docutils literal notranslate"><span class="pre">Chart</span> <span class="pre">junk</span></code> and <code class="docutils literal notranslate"><span class="pre">data-ink</span></code>. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. <code class="docutils literal notranslate"><span class="pre">Data-ink</span></code> is the non-erasable core of the a graphic, while <code class="docutils literal notranslate"><span class="pre">non-data-ink</span></code> can easily be regarded as redundant <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. So when you’re designing your visualizations, you should strive for a high ratio between <code class="docutils literal notranslate"><span class="pre">data-ink</span></code> and <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. This will help you focus on the message and not the picture your audience is resting their eyes on.</p>
 <div class="highlight-{admonition}Examples notranslate"><div class="highlight"><pre><span></span>1) `Borders` can be reduced
 2) `Gridlines` can be removed. Single X and Y axes are often enough.
@@ -774,16 +879,16 @@ const thebe_selector_output = ".output, .cell_output"
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="concise">
-<h3>8.1.4 Concise<a class="headerlink" href="#concise" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="concise">
+<h3>8.1.4 Concise<a class="headerlink" href="#concise" title="Permalink to this headline">#</a></h3>
 <p>Conciseness is all about making it easy to understand the content and message of the visualization.
 For long time series, it may be useful to summarize or resample datasets from yearly to monthly. If your point is to show changes in values over time, it’s often useful to index different series of different sizes to an index with 100 as a common staring point. If you do decide to wrangle the data in any way, make sure to not obscure or misrepresent your data in any way. One example is to use ranges or curoffs of your figure axes that give a skewed impression. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - data that you do not have the proper rights to share. Always cite your sources, for example through a label in the bottom right corner.</p>
 <p>Regarding other labels, always try to describe your data and axes properly. Many will suggest that you should label your data directly on particularly interestring data points, and not indirectly using a <code class="docutils literal notranslate"><span class="pre">legend</span></code>. While the former is often a good idea, the latter is not very fitting for Plotly figures that have got nice interactive capabilites connected to the legend. But do consider making your legend as brief and concise as possible. Instead of <code class="docutils literal notranslate"><span class="pre">Country</span> <span class="pre">=</span> <span class="pre">Jemen,</span> <span class="pre">Country</span> <span class="pre">=</span> <span class="pre">Japan,</span> <span class="pre">Country</span> <span class="pre">=</span> <span class="pre">Korea</span></code>, apply <code class="docutils literal notranslate"><span class="pre">Country</span></code> as a legend title and then list <code class="docutils literal notranslate"><span class="pre">Jemen,</span> <span class="pre">Japan</span> <span class="pre">,</span> <span class="pre">Korea</span></code>.</p>
 <p>We often see that some chose to apply different colors to labels and titles. This is rarely necessary as they mostly have different positoins, orientations or even font sizes to differentiate them rather than throug color. The next subchapter will focus on how colors should be used to <code class="docutils literal notranslate"><span class="pre">differentiate</span> <span class="pre">data</span> <span class="pre">values</span> <span class="pre">or</span> <span class="pre">categories</span></code> and not different decorating elements of your charts.</p>
-</div>
-<div class="section" id="colors">
-<h3>8.1.5 Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="colors">
+<h3>8.1.5 Colors<a class="headerlink" href="#colors" title="Permalink to this headline">#</a></h3>
 <p>The choice and use of colors play a major in data visualization, and is also subject for an array of books and research. Here, we will only focus on what we consider to be most important.</p>
 <p>When it comes to color themes, scales and color composition Plotly Express already has an array of palettes available. You can study them <a class="reference external" href="https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express">here</a>. You should know that different scales are used differently for two different types aof data, continous and discrete. A A typiocal example of continuos data are temperature, and…? Categorical data such as country and continent names serve as good examples for categorical data. Regardless of data types, the scales that Plotly Express uses have been carefully put together on the background of color theory to make them harmonize and look good together (bold statement? Maybe a citation of sorts?). But again, although Plotly Express makes things easy for you, there are a few things you should keep in mind here too.</p>
 <p>First of all, unless the colors you apply are a part of a reocurring theme, varying colors <em>should</em> reflect varying values or categories. Again, consider the earlier mentioned arguments regarding data ink. You should also keep in mind that colors have different meanings for alle people, and that some are colorblind which. Combining a greyscale with different symbols for, for example bars or lines, can more often that not be a good idea. If you combine a greyscale with only one or two colors on top, you’ll very likely produce a very effective visualizations. Take a look at the gif below and see if you agree with some of the choices we’ve made there. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide the look and feel of your Plotly figures for yourself!</p>
@@ -801,11 +906,11 @@ For long time series, it may be useful to summarize or resample datasets from ye
 <p><a class="reference external" href="https://www.dataplusscience.com/files/The%20Shaffer%204%20C%27s%20of%20Data%20Visualization.pdf">https://www.dataplusscience.com/files/The Shaffer 4 C’s of Data Visualization.pdf</a></p>
 <p>5 Eye-Tracking Discoveries for OPTIMAL Chart Design - Do you use these?</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=wc_caViJGQg&amp;ab_channel=LeilaGharani">https://www.youtube.com/watch?v=wc_caViJGQg&amp;ab_channel=LeilaGharani</a></p>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="not-actually-a-warning-but-a-placeholder-for-cut-outs">
-<h1>Not actually a warning but a placeholder for cut-outs<a class="headerlink" href="#not-actually-a-warning-but-a-placeholder-for-cut-outs" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="not-actually-a-warning-but-a-placeholder-for-cut-outs">
+<h1>Not actually a warning but a placeholder for cut-outs<a class="headerlink" href="#not-actually-a-warning-but-a-placeholder-for-cut-outs" title="Permalink to this headline">#</a></h1>
 <p>How these principles are applied will depend on the message and purpose of your visualizations.
 Some reoccuring purposes are:</p>
 <ol class="simple">
@@ -815,11 +920,11 @@ Some reoccuring purposes are:</p>
 </ol>
 <p>No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and makes the message clear. Here, the key often lies in choosing the most appropriate visualization type, of which the most common include tables, line graphs, scatter plots, bubble charts, bar charts, histograms, box plots, and heatmaps. Unique visualization types, such as timeline or treemaps, may also effectively communicate your data while captivating audience interest. You will learn more about these in chapter <code class="docutils literal notranslate"><span class="pre">8.3</span></code> and <code class="docutils literal notranslate"><span class="pre">8.4</span></code>. But before we get to that, let’s take a closer look at the other C’s; <code class="docutils literal notranslate"><span class="pre">clean</span></code>, <code class="docutils literal notranslate"><span class="pre">concise</span></code> and <code class="docutils literal notranslate"><span class="pre">cite</span></code> by visualizing some data from the stock market.</p>
 <p>The message we’ll try to convey is that, in a volatile market, the values two different companies C and E experienced two very different developments . <code class="docutils literal notranslate"><span class="pre">C</span></code> has an unfortunate start but comes out on top, while the opposite is true for <code class="docutils literal notranslate"><span class="pre">E</span></code>.</p>
-<div class="section" id="plotly-figures-inside-dash-apps">
-<h2>8.2 Plotly Figures inside Dash apps<a class="headerlink" href="#plotly-figures-inside-dash-apps" title="Permalink to this headline">¶</a></h2>
+<section id="plotly-figures-inside-dash-apps">
+<h2>8.2 Plotly Figures inside Dash apps<a class="headerlink" href="#plotly-figures-inside-dash-apps" title="Permalink to this headline">#</a></h2>
 <p>As an example of how to include Plotly figures in your Dash app, first we need to create the Plotly figure. Consider the following code snippet where we load the gapminder dataset from <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code>, filter the data to consist of only four countries, and make a line chart with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code>. The function call <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> in this snippet will contain attributes that you will learn more about in the section 8.3.</p>
-<div class="section" id="create-a-plotly-express-figure">
-<h3>8.2.1 Create a Plotly Express Figure<a class="headerlink" href="#create-a-plotly-express-figure" title="Permalink to this headline">¶</a></h3>
+<section id="create-a-plotly-express-figure">
+<h3>8.2.1 Create a Plotly Express Figure<a class="headerlink" href="#create-a-plotly-express-figure" title="Permalink to this headline">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
@@ -833,9 +938,9 @@ Some reoccuring purposes are:</p>
 </pre></div>
 </div>
 <p><img alt="create line chart" src="../_images/first-plotly-line.png" /></p>
-</div>
-<div class="section" id="incorporate-the-figure-into-a-dash-app">
-<h3>8.2.2 Incorporate the Figure into a Dash app<a class="headerlink" href="#incorporate-the-figure-into-a-dash-app" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="incorporate-the-figure-into-a-dash-app">
+<h3>8.2.2 Incorporate the Figure into a Dash app<a class="headerlink" href="#incorporate-the-figure-into-a-dash-app" title="Permalink to this headline">#</a></h3>
 <p>To display the line chart in our Dash app, we need to assign it to the <code class="docutils literal notranslate"><span class="pre">figure</span></code> property of the <code class="docutils literal notranslate"><span class="pre">dcc.Graph</span></code> component as shown below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -865,9 +970,9 @@ Some reoccuring purposes are:</p>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="incorporate-the-figure-into-an-interactive-dash-app">
-<h3>8.2.3 Incorporate the Figure into an interactive Dash app<a class="headerlink" href="#incorporate-the-figure-into-an-interactive-dash-app" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="incorporate-the-figure-into-an-interactive-dash-app">
+<h3>8.2.3 Incorporate the Figure into an interactive Dash app<a class="headerlink" href="#incorporate-the-figure-into-an-interactive-dash-app" title="Permalink to this headline">#</a></h3>
 <p>Although we created a beautiful app with a line chart, the app was static. One consequence is that the app user cannot interact with the data to change the elements of the graph. Let’s create an interactive app, where the callback allows the user to update the countries displayed in the figure through a dropdown.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -916,19 +1021,19 @@ Some reoccuring purposes are:</p>
 </div>
 <p><img alt="interactie line chart in dash" src="../_images/plotly-dash-line.gif" /></p>
 <p>As you can see from the code above, the callback is triggered as soon as the user selects a country from the dropdown; then, we filter the dataframe based on the countries selected; then, we build the line chart and return it as the object assigned to the <code class="docutils literal notranslate"><span class="pre">figure</span></code> property of the <code class="docutils literal notranslate"><span class="pre">dcc.Graph</span></code>.</p>
-</div>
-</div>
-<div class="section" id="introduction-to-the-powers-of-plotly-express">
-<h2>8.3 Introduction to the powers of Plotly Express<a class="headerlink" href="#introduction-to-the-powers-of-plotly-express" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="introduction-to-the-powers-of-plotly-express">
+<h2>8.3 Introduction to the powers of Plotly Express<a class="headerlink" href="#introduction-to-the-powers-of-plotly-express" title="Permalink to this headline">#</a></h2>
 <p>The Plotly Express module contains functions that can create entire figures at once and is usually referred to as <code class="docutils literal notranslate"><span class="pre">px</span></code>. Plotly Express is part of the Plotly library and it is the recommended starting point for creating some of the most common figures like the line, scatter, bar, and timeline figures. We’ll go through some of them in this chapter, but you can learn about many other figures in the <a class="reference external" href="https://plotly.com/python/">documentation</a>.</p>
 <p>First, let’s unveil the powers you can unleash with a multi-dimensinal dataset like <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code> and a simple Plotly Express function like <code class="docutils literal notranslate"><span class="pre">px.line()</span></code></p>
-<div class="section" id="about-the-gapminder-dataset">
-<h3>8.3.1 About the gapminder dataset<a class="headerlink" href="#about-the-gapminder-dataset" title="Permalink to this headline">¶</a></h3>
+<section id="about-the-gapminder-dataset">
+<h3>8.3.1 About the gapminder dataset<a class="headerlink" href="#about-the-gapminder-dataset" title="Permalink to this headline">#</a></h3>
 <p>The gapminder dataset is a built-in Plotly Express dataset provided by <a class="reference external" href="https://www.gapminder.org/">Gapminder.org</a>. Here you’ll find <code class="docutils literal notranslate"><span class="pre">1704</span></code> rows of data and the following columns <code class="docutils literal notranslate"><span class="pre">['country',</span> <span class="pre">'continent',</span> <span class="pre">'year',</span> <span class="pre">'lifeExp',</span> <span class="pre">'pop',</span> <span class="pre">'gdpPercap'</span> <span class="pre">'iso_alpha',</span> <span class="pre">'iso_num']</span></code>. Life expectancy at birth is stored as <code class="docutils literal notranslate"><span class="pre">lifeExp</span></code>, population by country is <code class="docutils literal notranslate"><span class="pre">pop</span></code>, and <code class="docutils literal notranslate"><span class="pre">gdpPercap</span></code> is the per capita GDP. The data is a so-called long (or  tidy) form type. Long-form data has one row per observation, and one column per variable. This data form is suitable for storing and displaying multivariate data (more dimensions than two).
 Plotly Express also handles <a class="reference external" href="https://plotly.com/python/wide-form/">wide-form and mixed-form data</a>.</p>
-</div>
-<div class="section" id="a-basic-line-chart-with-px-line">
-<h3>8.3.2 A basic line chart with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code><a class="headerlink" href="#a-basic-line-chart-with-px-line" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-basic-line-chart-with-px-line">
+<h3>8.3.2 A basic line chart with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code><a class="headerlink" href="#a-basic-line-chart-with-px-line" title="Permalink to this headline">#</a></h3>
 <p>As a minimal example, consider life expectancies in Canada in a period from 1952 to 2007:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -953,9 +1058,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 <li><p><code class="docutils literal notranslate"><span class="pre">template='plotly_white'</span></code> is also optional, and creates a minimal figure layout with a white background.</p></li>
 </ol>
 <p>See the <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.line.html#plotly.express.line">line chart page</a> of the Plotly Express high-level interface to read more about the line chart attributes</p>
-</div>
-<div class="section" id="adding-multiple-lines-with-different-colors">
-<h3>8.3.3 Adding multiple lines with different colors<a class="headerlink" href="#adding-multiple-lines-with-different-colors" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="adding-multiple-lines-with-different-colors">
+<h3>8.3.3 Adding multiple lines with different colors<a class="headerlink" href="#adding-multiple-lines-with-different-colors" title="Permalink to this headline">#</a></h3>
 <p>So far so good, but the data set includes data for many more countries that could be brought into the light. The way you add data from another country can seem a bit strange at first, but it’s also an important part of what makes Plotly Express so powerful and flexible.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -976,15 +1081,15 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 <p class="admonition-title">Warning</p>
 <p>Without the <code class="docutils literal notranslate"><span class="pre">color</span></code> attribute, an assignment of the y-axis to a multivariable column will create a <a class="reference external" href="https://i.stack.imgur.com/uS3TP.png">mess of a chart</a> where all lines are blue, and the end-point of one line is connected to the starting point of another.</p>
 </div>
-</div>
-<div class="section" id="the-interactivity-of-plotly-figures">
-<h3>8.3.4 The interactivity of Plotly Figures<a class="headerlink" href="#the-interactivity-of-plotly-figures" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="the-interactivity-of-plotly-figures">
+<h3>8.3.4 The interactivity of Plotly Figures<a class="headerlink" href="#the-interactivity-of-plotly-figures" title="Permalink to this headline">#</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">color='country'</span></code> initialized, a legend is also produced to let you know which line represents which country. The legend is interactive and lets you toggle the lines on and off.</p>
 <p>Both axes also have interactive functionalities that depend on where you click on the axes. If you, for example, grab the middle of the <code class="docutils literal notranslate"><span class="pre">y-axis</span></code>, the complete axis will slide when you move the mouse. If you grab the top of the axis, everything else other than the minumum value will change.</p>
 <p><img alt="legend" src="../_images/px-interactivity.gif" /></p>
-</div>
-<div class="section" id="multidimensional-data-with-lines-and-markers">
-<h3>8.3.5 Multidimensional data with lines and markers<a class="headerlink" href="#multidimensional-data-with-lines-and-markers" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="multidimensional-data-with-lines-and-markers">
+<h3>8.3.5 Multidimensional data with lines and markers<a class="headerlink" href="#multidimensional-data-with-lines-and-markers" title="Permalink to this headline">#</a></h3>
 <p>You can combine lines <em>and</em> markers in <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> to illustrate multiple dimensions of your data set through the addition of the <code class="docutils literal notranslate"><span class="pre">symbol</span></code> attribute. This works much like <code class="docutils literal notranslate"><span class="pre">color='country'</span></code>. But this time, we’re applying a symbol sequence to the unique values in <code class="docutils literal notranslate"><span class="pre">df['continent']</span></code> which are <code class="docutils literal notranslate"><span class="pre">'Americas'</span></code> and <code class="docutils literal notranslate"><span class="pre">'Europe'</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1000,9 +1105,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="adding markers to lines" src="../_images/line-with-markers.png" /></p>
-</div>
-<div class="section" id="scatter-charts">
-<h3>8.3.6 Scatter charts<a class="headerlink" href="#scatter-charts" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="scatter-charts">
+<h3>8.3.6 Scatter charts<a class="headerlink" href="#scatter-charts" title="Permalink to this headline">#</a></h3>
 <p>The only thing you have to do to drop the lines in our first figures and show markers only, is to replace the <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> call with <code class="docutils literal notranslate"><span class="pre">px.scatter()</span></code> and otherwise use the same arguments.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1018,9 +1123,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="scatter plot" src="../_images/scatter.png" /></p>
-</div>
-<div class="section" id="animated-scatter-bubble-charts">
-<h3>8.3.7 Animated scatter / bubble charts<a class="headerlink" href="#animated-scatter-bubble-charts" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="animated-scatter-bubble-charts">
+<h3>8.3.7 Animated scatter / bubble charts<a class="headerlink" href="#animated-scatter-bubble-charts" title="Permalink to this headline">#</a></h3>
 <p>Things get really interesting when you apply multiple settings like <code class="docutils literal notranslate"><span class="pre">animation_frame=&quot;year&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">animation_group=&quot;country&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">size=&quot;pop&quot;</span></code>. The complete snippet below will create an interactive, animated chart that illustrates both life expectancies, GDP per capita and populatoin for a multitude of countries accross several continents through multiple years.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -1045,14 +1150,14 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 <p class="admonition-title">Tip</p>
 <p>The animatoin snippet above introduced several new methods of the <code class="docutils literal notranslate"><span class="pre">fig</span></code> object. You can learn more about these methods in the <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.scatter.html#plotly.express.scatter">docs</a></p>
 </div>
-</div>
-</div>
-<div class="section" id="exploring-additional-plotly-express-figures">
-<h2>8.4 Exploring additional Plotly Express figures<a class="headerlink" href="#exploring-additional-plotly-express-figures" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="exploring-additional-plotly-express-figures">
+<h2>8.4 Exploring additional Plotly Express figures<a class="headerlink" href="#exploring-additional-plotly-express-figures" title="Permalink to this headline">#</a></h2>
 <p>Now that you’ve got a sense of the powers hidden in all Plotly figures, the time has come to introduce additional categories to line and scatter plots.</p>
 <p>One thing all of the following chart types have in common is that they use the very same data set and that very little data wrangling is required. The few data wrangling techniques that are used are only there because some chart types require a specific data format, or simply look better with a smaller subset of the gapminder data set.</p>
-<div class="section" id="stacked-bar-chart">
-<h3>8.4.1 Stacked Bar chart<a class="headerlink" href="#stacked-bar-chart" title="Permalink to this headline">¶</a></h3>
+<section id="stacked-bar-chart">
+<h3>8.4.1 Stacked Bar chart<a class="headerlink" href="#stacked-bar-chart" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> works similarly to <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> in that it uses <code class="docutils literal notranslate"><span class="pre">color=&quot;country&quot;</span></code> in the same way. By default, each colored category is stacked on top of one another for each unique occurence of <code class="docutils literal notranslate"><span class="pre">year</span></code> on the <code class="docutils literal notranslate"><span class="pre">x-axis</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -1064,9 +1169,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="bar plot" src="../_images/bar-plot.png" /></p>
-</div>
-<div class="section" id="grouped-bar-chart">
-<h3>8.4.2 Grouped bar chart<a class="headerlink" href="#grouped-bar-chart" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="grouped-bar-chart">
+<h3>8.4.2 Grouped bar chart<a class="headerlink" href="#grouped-bar-chart" title="Permalink to this headline">#</a></h3>
 <p>Stacking the bars makes sense to illustrate accumulations for data such as <code class="docutils literal notranslate"><span class="pre">population</span></code>, but not so much for life expectancies. In order to group subcategories next to each other, simply include <code class="docutils literal notranslate"><span class="pre">barmode='group'</span></code> in the function call.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1084,9 +1189,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="barmode group" src="../_images/bar-group.png" /></p>
-</div>
-<div class="section" id="histograms">
-<h3>8.4.3 Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="histograms">
+<h3>8.4.3 Histograms<a class="headerlink" href="#histograms" title="Permalink to this headline">#</a></h3>
 <p>Histograms can be considered a special kind of bar chart where the bars represent groups of data instead of individual observations. By default, <code class="docutils literal notranslate"><span class="pre">px.histogram()</span></code> will also stack categories on top of one another. To prevent that and display distributions of data individually, just inclue <code class="docutils literal notranslate"><span class="pre">barmode='overlay'</span></code> as seen in the snippet below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -1096,9 +1201,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="histogram" src="../_images/hist-plot.png" /></p>
-</div>
-<div class="section" id="box-plot">
-<h3>8.4.4 Box plot<a class="headerlink" href="#box-plot" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="box-plot">
+<h3>8.4.4 Box plot<a class="headerlink" href="#box-plot" title="Permalink to this headline">#</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">px.box</span></code> lets you investigate distributions of data even further. By default, <code class="docutils literal notranslate"><span class="pre">px.box()</span></code> displays <code class="docutils literal notranslate"><span class="pre">mean</span></code>, <code class="docutils literal notranslate"><span class="pre">quartiles</span></code>, and some <code class="docutils literal notranslate"><span class="pre">outliers</span></code> for the different categories in the order that they appear in the data set. In the following example we’ve included the argument <code class="docutils literal notranslate"><span class="pre">category_orders</span></code> to display mean values for each group in a decreasing manner.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -1110,9 +1215,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="box1" src="../_images/box1.png" /></p>
-</div>
-<div class="section" id="facet-trellis-plots">
-<h3>8.4.5 Facet / Trellis plots<a class="headerlink" href="#facet-trellis-plots" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="facet-trellis-plots">
+<h3>8.4.5 Facet / Trellis plots<a class="headerlink" href="#facet-trellis-plots" title="Permalink to this headline">#</a></h3>
 <p>This section uses a new attribute that splits a data set into several subplots: <code class="docutils literal notranslate"><span class="pre">facet_col</span></code>. Then, we use <code class="docutils literal notranslate"><span class="pre">facet_col_wrap</span></code> to define the number of columns in which we would like to organize the subplots.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -1127,9 +1232,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="facet" src="../_images/facet.png" /></p>
-</div>
-<div class="section" id="treemaps">
-<h3>8.4.6 Treemaps<a class="headerlink" href="#treemaps" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="treemaps">
+<h3>8.4.6 Treemaps<a class="headerlink" href="#treemaps" title="Permalink to this headline">#</a></h3>
 <p>Treemap charts visualize hierarchical data using nested rectangles. The hierarchy is defined by labels (names for px.treemap) and parents attributes. Another way to define the hierarchy is through the attribute <code class="docutils literal notranslate"><span class="pre">path</span></code>: list of columns names or columns of a rectangular dataframe defining the hierarchy of sectors, from root to leaves.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -1140,9 +1245,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="treemap" src="../_images/treemap.png" /></p>
-</div>
-<div class="section" id="heatmaps">
-<h3>8.4.7 Heatmaps<a class="headerlink" href="#heatmaps" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="heatmaps">
+<h3>8.4.7 Heatmaps<a class="headerlink" href="#heatmaps" title="Permalink to this headline">#</a></h3>
 <p>The term “heatmap” usually refers to a cartesian plot with data visualized as colored rectangular tiles.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
@@ -1153,9 +1258,9 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="heatmap" src="../_images/heatmap.png" /></p>
-</div>
-<div class="section" id="timeline-charts">
-<h3>8.4.8 Timeline charts<a class="headerlink" href="#timeline-charts" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="timeline-charts">
+<h3>8.4.8 Timeline charts<a class="headerlink" href="#timeline-charts" title="Permalink to this headline">#</a></h3>
 <p>Timeline or GANTT charts often describe start and end points of events or tasks. In the following example, we’ve made a few changes to the gapminder data set and removed some random dates. You can use this code snippet to illustrate the available time period data for each country. Missing years within a time period are not taken into account.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -1208,95 +1313,19 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="exercises">
-<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="exercises">
+<h1>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h1>
 <p>(1) Using the gapminder data, create a stacked bar chart where we have <code class="docutils literal notranslate"><span class="pre">year</span></code> on the x-axis and population (<code class="docutils literal notranslate"><span class="pre">pop</span></code>) on the y-axis. Each column of the chart should show the <code class="docutils literal notranslate"><span class="pre">continent</span></code> populations stacked one on the other. (In order to show one value per continent, the data should be grouped by year and continent). As chart <code class="docutils literal notranslate"><span class="pre">template</span></code>, use <code class="docutils literal notranslate"><span class="pre">plotly_dark</span></code>.</p>
-<details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header bg-primary text-white font-weight-bold">
-See Solution<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<p class="card-text"><img alt="solution_ex1" src="../_images/chapter08_ex1.png" /></p>
-</div>
-</details><p>(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select one metric among: <code class="docutils literal notranslate"><span class="pre">population</span></code>, <code class="docutils literal notranslate"><span class="pre">GDP</span> <span class="pre">per</span> <span class="pre">capita</span></code> or <code class="docutils literal notranslate"><span class="pre">Life</span> <span class="pre">expectancy</span></code>; build a callback so that the stacked bar chart will be generated with the selected metric (when grouping the data, for GDP per capita and life expectancy, use the mean).</p>
-<details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header bg-primary text-white font-weight-bold">
-See Solution<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-
-<span class="c1"># data</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-
-<span class="c1"># Dash App</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-
-<span class="c1"># Create app components</span>
-<span class="n">title_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Gapminder Stacked Bar Charts&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
-<span class="n">dropdown_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a metric&#39;</span><span class="p">,</span>
-                        <span class="n">options</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;pop&#39;</span><span class="p">},</span>
-                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;GDP per capita&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">},</span>
-                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Life Expectancy&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">}])</span>
-<span class="n">graph_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">)</span>
-
-<span class="c1"># App Layout</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)]),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">graph_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
-            <span class="p">]</span>
-        <span class="p">)</span>
-    <span class="p">]</span>
-<span class="p">)</span>
-
-<span class="c1"># Callbacks</span>
-<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
-    <span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
-<span class="p">)</span>
-<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">metric_</span><span class="p">):</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">metric_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">fig</span>
-
-<span class="c1"># Run the App</span>
-<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
-</pre></div>
-</div>
-<p class="card-text"><img alt="solution_ex1" src="../_images/chapter08_ex2.gif" /></p>
-</div>
-</details></div>
-<div class="tex2jax_ignore mathjax_ignore section" id="summary">
-<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h1>
+<p>(2) Using the chart we created in the previous exercise, incorporate it in an app. The app will have a title, a dropdown component and the chart. By using the dropdown component, the user should be able to select one metric among: <code class="docutils literal notranslate"><span class="pre">population</span></code>, <code class="docutils literal notranslate"><span class="pre">GDP</span> <span class="pre">per</span> <span class="pre">capita</span></code> or <code class="docutils literal notranslate"><span class="pre">Life</span> <span class="pre">expectancy</span></code>; build a callback so that the stacked bar chart will be generated with the selected metric (when grouping the data, for GDP per capita and life expectancy, use the mean).</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h1>
 <p>In this chapter you’ve learned the effective principles of data visualization and how to use Plotly graphs within Dash. You’ve also learned to plot common Plotly figures using the gapminder data set. <a class="reference external" href="https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook">This notebook</a> offers additional data analysis of the Gapminder data set with Plotly.</p>
 <p>In the next chapter we will do a deep dive into the Dash DataTable.</p>
-</div>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1320,9 +1349,11 @@ See Solution<div class="summary-down docutils">
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="chapter7.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1338,30 +1369,34 @@ See Solution<div class="summary-down docutils">
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By Dash Community Ambassadors<br/>
-    
-      <div class="extra_footer">
-        <div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dash Community Ambassadors<br/>
+  
+    <div class="extra_footer">
+      <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
