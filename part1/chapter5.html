@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chapter 5 - App Deployment &#8212; Dash Tutorial</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +39,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,21 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -85,10 +72,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -106,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../preface/about.html">
-                    About
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/about.html">
+   About
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Installation Stack
  </span>
@@ -275,17 +260,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -293,162 +273,77 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/open-resources/dash_curriculum"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart1/chapter5.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/part1/chapter5.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/part1/chapter5.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart1/chapter5.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-you-will-learn">
    What you will learn
@@ -557,11 +452,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Chapter 5 - App Deployment</h1>
@@ -686,14 +582,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="chapter-5-app-deployment">
-<h1>Chapter 5 - App Deployment<a class="headerlink" href="#chapter-5-app-deployment" title="Permalink to this headline">#</a></h1>
-<section id="what-you-will-learn">
-<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">#</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-5-app-deployment">
+<h1>Chapter 5 - App Deployment<a class="headerlink" href="#chapter-5-app-deployment" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <p>Running your Dash app on your computer is great, but the magic happens when you deploy your app to the web so you can share it with your friends! <strong>Heroku</strong> is a platform as a service (PaaS) that supports Python; it can be used to deploy and manage public Dash applications. Heroku uses containers called “dynos” to deploy your app by packaging its code and dependencies and executing it in a virtualized environment in a way that’s scalable, according to the changing resource-needs of your application.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
@@ -703,17 +598,17 @@ title="Print to PDF"
 <li><p>how to deploy your Dash application to the web publicly using CLI</p></li>
 </ul>
 </div>
-</section>
-<section id="prepare-your-app-for-deployment">
-<h2>5.1 Prepare your app for deployment<a class="headerlink" href="#prepare-your-app-for-deployment" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="prepare-your-app-for-deployment">
+<h2>5.1 Prepare your app for deployment<a class="headerlink" href="#prepare-your-app-for-deployment" title="Permalink to this headline">¶</a></h2>
 <p>As a framework for this chapter, we will be using the <a class="reference external" href="https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch4_files/ch4_app.py">previous app</a> created at the end of chapter 4. Save this app as <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code>. This is what your app should look like when you run it on your computer.</p>
 <p><img alt="gif4-3" src="../_images/gif-chap4-3.gif" /></p>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
 <p>Before continuing, make sure you have already set up a <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git version control</a> and a <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part1/chapter0_GitHub.html">GitHub repository</a>. Also, ensure that your Dash app runs locally on your computer successfully.</p>
 </div>
-<section id="turn-off-debugging-mode">
-<h3>5.1.1 Turn off Debugging mode<a class="headerlink" href="#turn-off-debugging-mode" title="Permalink to this headline">#</a></h3>
+<div class="section" id="turn-off-debugging-mode">
+<h3>5.1.1 Turn off Debugging mode<a class="headerlink" href="#turn-off-debugging-mode" title="Permalink to this headline">¶</a></h3>
 <p>In VScode, open your <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> script file and turn off the interactive debugging mode with <code class="docutils literal notranslate"><span class="pre">debug=False</span></code>, as such:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the app</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -722,24 +617,24 @@ title="Print to PDF"
 </div>
 <p>Here is a view of the updated file showing this change in the VScode editor’s main window.</p>
 <p><img alt="screen_shot_debug" src="../_images/ch5_screen_shot_debug.png" /></p>
-</section>
-<section id="declare-server-for-heroku-deplpoyment">
-<h3>5.1.2 Declare server for Heroku deplpoyment<a class="headerlink" href="#declare-server-for-heroku-deplpoyment" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="declare-server-for-heroku-deplpoyment">
+<h3>5.1.2 Declare server for Heroku deplpoyment<a class="headerlink" href="#declare-server-for-heroku-deplpoyment" title="Permalink to this headline">¶</a></h3>
 <p>Add the following line of code <code class="docutils literal notranslate"><span class="pre">server</span> <span class="pre">=</span> <span class="pre">app.server</span></code> under the line of code that instantiates your Dash app, as such:</p>
 <p><img alt="screen_shot_server" src="../_images/server-add.png" /></p>
 <p>Save and close the <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file.</p>
-</section>
-</section>
-<section id="create-a-heroku-user-account">
-<h2>5.2 Create a Heroku user account<a class="headerlink" href="#create-a-heroku-user-account" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="create-a-heroku-user-account">
+<h2>5.2 Create a Heroku user account<a class="headerlink" href="#create-a-heroku-user-account" title="Permalink to this headline">¶</a></h2>
 <p>If you have a Heroku account, you can skip to the next section: <strong>Install the Heroku Command Line Interface</strong>. If you don’t have a Heroku account, navigate to <a class="reference external" href="https://signup.heroku.com/dc">Heroku Signup</a> and follow the prompts to create your account.</p>
 <p>It’s free to create a Heroku user account, and a Free tier will suffice for the apps in this curriculum.</p>
-</section>
-<section id="install-the-heroku-command-line-interface-cli">
-<h2>5.3 Install the Heroku Command Line Interface (CLI)<a class="headerlink" href="#install-the-heroku-command-line-interface-cli" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="install-the-heroku-command-line-interface-cli">
+<h2>5.3 Install the Heroku Command Line Interface (CLI)<a class="headerlink" href="#install-the-heroku-command-line-interface-cli" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://devcenter.heroku.com/articles/heroku-cli#install-the-heroku-cli">The Heroku CLI</a> article provides instructions for installation and first time setup on multiple computer platforms (macOS, Windows, or Linux).</p>
-<section id="connect-the-heroku-cli-to-your-heroku-account">
-<h3>5.3.1 Connect the Heroku CLI to your Heroku account<a class="headerlink" href="#connect-the-heroku-cli-to-your-heroku-account" title="Permalink to this headline">#</a></h3>
+<div class="section" id="connect-the-heroku-cli-to-your-heroku-account">
+<h3>5.3.1 Connect the Heroku CLI to your Heroku account<a class="headerlink" href="#connect-the-heroku-cli-to-your-heroku-account" title="Permalink to this headline">¶</a></h3>
 <p>Open a VScode Terminal window and type the command: <code class="docutils literal notranslate"><span class="pre">heroku</span> <span class="pre">login</span></code>.</p>
 <p><img alt="screen_shot_heroku_login" src="../_images/heroku-login.png" /></p>
 <div class="admonition note">
@@ -749,19 +644,19 @@ title="Print to PDF"
 <p>Once logged in successfully, Heroku will display a confirmation page in your browser indicating you can return to your CLI (command line interface).</p>
 <p>Close the web browser window and return to the VS Code Terminal window.</p>
 <p><img alt="screen_shot_heroku_logged_in" src="../_images/ch5_screen_shot_heroku_logged_in.png" /></p>
-</section>
-</section>
-<section id="install-the-green-unicorn-gunicorn-web-server-gateway-interface-wsgi">
-<h2>5.4 Install the Green Unicorn <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> Web Server Gateway Interface (WSGI)<a class="headerlink" href="#install-the-green-unicorn-gunicorn-web-server-gateway-interface-wsgi" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="install-the-green-unicorn-gunicorn-web-server-gateway-interface-wsgi">
+<h2>5.4 Install the Green Unicorn <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> Web Server Gateway Interface (WSGI)<a class="headerlink" href="#install-the-green-unicorn-gunicorn-web-server-gateway-interface-wsgi" title="Permalink to this headline">¶</a></h2>
 <p>For your app to successfully be deployed to Heroku you will need an additional dependency called <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code>.</p>
 <p>Type the <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">gunicorn</span></code> command in your VS Code Terminal window.</p>
 <p><img alt="screen_shot_install_gunicorn" src="../_images/gunicorn.png" /></p>
-</section>
-<section id="add-necessary-files-for-deployment">
-<h2>5.5 Add necessary files for deployment<a class="headerlink" href="#add-necessary-files-for-deployment" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="add-necessary-files-for-deployment">
+<h2>5.5 Add necessary files for deployment<a class="headerlink" href="#add-necessary-files-for-deployment" title="Permalink to this headline">¶</a></h2>
 <p>To create the required files, you need to be in the root directory of your project, which is the same directory level where the <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file is located. In this example, the root directory is named <code class="docutils literal notranslate"><span class="pre">MyDashApps</span></code>.</p>
-<section id="make-a-procfile">
-<h3>5.5.1 Make a <strong>Procfile</strong><a class="headerlink" href="#make-a-procfile" title="Permalink to this headline">#</a></h3>
+<div class="section" id="make-a-procfile">
+<h3>5.5.1 Make a <strong>Procfile</strong><a class="headerlink" href="#make-a-procfile" title="Permalink to this headline">¶</a></h3>
 <p>This file tells Heroku all the commands that must be executed by the app on startup.</p>
 <p>Right-click on the root directory, click <strong>New File</strong> and name it <strong>Procfile</strong> without a file extension (no Procfile.txt or <a class="reference external" href="http://Procfile.py">Procfile.py</a>, etc.). Make sure to use an upper case P when you name the file.</p>
 <p>Open the Procfile. Type the following single line of text in the first line of the file.</p>
@@ -773,9 +668,9 @@ title="Print to PDF"
 <p>Make sure the first letter ‘<em>P</em>’ is capitalized in <em>Procfile</em> and that you spell it exactly that way or Heroku will not recognize it.<br />
 Also, if your app name is not ch5_app, make sure to replace the text inside the Procfile</p>
 </div>
-</section>
-<section id="make-a-requirements-txt-text-file">
-<h3>5.5.2 Make a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> text file<a class="headerlink" href="#make-a-requirements-txt-text-file" title="Permalink to this headline">#</a></h3>
+</div>
+<div class="section" id="make-a-requirements-txt-text-file">
+<h3>5.5.2 Make a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> text file<a class="headerlink" href="#make-a-requirements-txt-text-file" title="Permalink to this headline">¶</a></h3>
 <p>Heroku uses the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file to know what Python libraries it needs to install in order to run your app.</p>
 <p>Create a new file and name it <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p>
 <p>Open the file. Type the package names and version numbers of all of the packages your app requires to run. Each package should be its own single line. Include all packages listed in your import statements in your <code class="docutils literal notranslate"><span class="pre">ch5_app.py</span></code> file, as well as <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code>.</p>
@@ -791,10 +686,10 @@ Also, if your app name is not ch5_app, make sure to replace the text inside the 
 If you are deploying an app with Plotly Express graphs, include the Pandas library and Plotly Express in your requirements list.</p>
 </div>
 <p>Save and close the <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file.</p>
-</section>
-</section>
-<section id="add-files-to-git">
-<h2>5.6 Add files to Git<a class="headerlink" href="#add-files-to-git" title="Permalink to this headline">#</a></h2>
+</div>
+</div>
+<div class="section" id="add-files-to-git">
+<h2>5.6 Add files to Git<a class="headerlink" href="#add-files-to-git" title="Permalink to this headline">¶</a></h2>
 <p>Type these commands in your VS Code Terminal window to update changes——added and updated files——with git version control tracking.</p>
 <p>First, to ensure you are in the root directory of your project, type the following command replacing <code class="docutils literal notranslate"><span class="pre">MyDashApps</span></code> with the name of your directory.</p>
 <p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.\MyDashApps\</span></code></p>
@@ -814,24 +709,24 @@ If you are deploying an app with Plotly Express graphs, include the Pandas libra
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span>
 </pre></div>
 </div>
-</section>
-<section id="create-and-initialize-heroku-remote-application">
-<h2>5.7 Create and initialize Heroku Remote application<a class="headerlink" href="#create-and-initialize-heroku-remote-application" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="create-and-initialize-heroku-remote-application">
+<h2>5.7 Create and initialize Heroku Remote application<a class="headerlink" href="#create-and-initialize-heroku-remote-application" title="Permalink to this headline">¶</a></h2>
 <p>From the same root directory in your VS Code Terminal window, type the following command replacing <code class="docutils literal notranslate"><span class="pre">my-dash-ch5-app</span></code> with a specific name for your new app that will live on Heroku. Try to use a name that you don’t think is taken by anyone. If you get a notification that the app name you chose is taken, try using a different name.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">heroku</span> <span class="n">create</span> <span class="o">-</span><span class="n">a</span> <span class="n">my</span><span class="o">-</span><span class="n">dash</span><span class="o">-</span><span class="n">ch5</span><span class="o">-</span><span class="n">app</span>
 </pre></div>
 </div>
-</section>
-<section id="deploy-to-heroku">
-<h2>5.8 Deploy to Heroku<a class="headerlink" href="#deploy-to-heroku" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="deploy-to-heroku">
+<h2>5.8 Deploy to Heroku<a class="headerlink" href="#deploy-to-heroku" title="Permalink to this headline">¶</a></h2>
 <p>Type the following command in your terminal to deploy your app to Heroku.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">push</span> <span class="n">heroku</span> <span class="n">main</span>
 </pre></div>
 </div>
 <p>You should now be able to view your app at <code class="docutils literal notranslate"><span class="pre">http://my-dash-ch5-app.herokuapp.com</span></code> (changing <code class="docutils literal notranslate"><span class="pre">my-dash-ch5-app</span></code> to the app name you created in the step above).</p>
-</section>
-<section id="common-errors">
-<h2>5.9 Common errors<a class="headerlink" href="#common-errors" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="common-errors">
+<h2>5.9 Common errors<a class="headerlink" href="#common-errors" title="Permalink to this headline">¶</a></h2>
 <p>Common deployment errors you could encounter for this example app include:</p>
 <ul class="simple">
 <li><p>Missing a package dependency in your requirements file</p></li>
@@ -843,16 +738,16 @@ If you are deploying an app with Plotly Express graphs, include the Pandas libra
 <p class="admonition-title">Note</p>
 <p>In addition to minimum requirements, some new Python versions may not yet be supported on Heroku. For example, if Heroku supports Python 3.10.0, and your app is running a newer 3.11 version.</p>
 </div>
-</section>
-<section id="automating-the-deployment-process">
-<h2>5.10 Automating the deployment process<a class="headerlink" href="#automating-the-deployment-process" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="automating-the-deployment-process">
+<h2>5.10 Automating the deployment process<a class="headerlink" href="#automating-the-deployment-process" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/andrew-hossack/dash-tools">Dash-tools</a> is a an open-source package that automates much of the deployment process of a Dash app. If you wish to use this package, make sure to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">dash-tools</span></code> and follow the <a class="reference external" href="https://github.com/andrew-hossack/dash-tools/blob/main/README.md">Readme instructions</a>.</p>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>Congratulations! You are now able to share your app with anyone around the world. In the next chapter we will learn how to incorporate data into our Dash app.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -876,11 +771,9 @@ If you are deploying an app with Plotly Express graphs, include the Pandas libra
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="chapter4.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -896,34 +789,30 @@ If you are deploying an app with Plotly Express graphs, include the Pandas libra
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Dash Community Ambassadors<br/>
-  
-    <div class="extra_footer">
-      <div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
+      </div>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>

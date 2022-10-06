@@ -4,13 +4,11 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chapter 15: Advanced Features of Multi-page Apps &#8212; Dash Tutorial</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -20,16 +18,20 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -37,13 +39,12 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -62,21 +63,7 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -85,10 +72,9 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -106,15 +92,14 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        
-        <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1">
-                <a class="reference internal" href="../preface/about.html">
-                    About
-                </a>
-            </li>
-        </ul>
-        <p aria-level="2" class="caption" role="heading">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../preface/about.html">
+   About
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Installation Stack
  </span>
@@ -275,17 +260,12 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
-    </div>
-    <div id="rtd-footer-container"></div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
 </div>
 
 
@@ -293,162 +273,77 @@ const thebe_selector_output = ".output, .cell_output"
 
 
           
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="header-article row sticky-top noprint">
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/open-resources/dash_curriculum"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart5/chapter15.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/part5/chapter15.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/part5/chapter15.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart5/chapter15.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
     </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#what-you-will-learn">
    What you will learn
@@ -507,11 +402,12 @@ title="Print to PDF"
  </li>
 </ul>
 
-    </nav>
-</div>
+            </nav>
+        </div>
     </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Chapter 15: Advanced Features of Multi-page Apps</h1>
@@ -586,14 +482,13 @@ title="Print to PDF"
                     </div>
                 </div>
             </div>
-            <main id="main-content" role="main">
-                
+            
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="chapter-15-advanced-features-of-multi-page-apps">
-<h1>Chapter 15: Advanced Features of Multi-page Apps<a class="headerlink" href="#chapter-15-advanced-features-of-multi-page-apps" title="Permalink to this headline">#</a></h1>
-<section id="what-you-will-learn">
-<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">#</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="chapter-15-advanced-features-of-multi-page-apps">
+<h1>Chapter 15: Advanced Features of Multi-page Apps<a class="headerlink" href="#chapter-15-advanced-features-of-multi-page-apps" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-you-will-learn">
+<h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter we will cover more advanced features of Dash Pages, as we build a professional multi-page App.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
@@ -618,9 +513,9 @@ title="Print to PDF"
 <div><p>pip install dash-labs</p>
 </div></blockquote>
 </div>
-</section>
-<section id="default-and-custom-404">
-<h2>15.1 Default and Custom 404<a class="headerlink" href="#default-and-custom-404" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="default-and-custom-404">
+<h2>15.1 Default and Custom 404<a class="headerlink" href="#default-and-custom-404" title="Permalink to this headline">¶</a></h2>
 <p>Multi pages apps include, by default, a landing page whenever the user tries to reach an invalid URL.
 The default 404-page looks like the following:
 <img alt="app_structure" src="../_images/app404_default.gif" /></p>
@@ -643,9 +538,9 @@ The default 404-page looks like the following:
 <p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span> <span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;pages.not_found_404&quot;</span></code></p>
 <p>Run the app and try to type a fake name in the url to see the custom-amde 404 page displayed:</p>
 <p><img alt="app_structure" src="../_images/app404_custom.gif" /></p>
-</section>
-<section id="page-registry">
-<h2>15.2 Page registry<a class="headerlink" href="#page-registry" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="page-registry">
+<h2>15.2 Page registry<a class="headerlink" href="#page-registry" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">dash_labs</span></code> module has a function called <code class="docutils literal notranslate"><span class="pre">print_registry()</span></code> which allows to print the registry into the terminal to see the meta data of each registered page.</p>
 <p>Un-hashtag the below line of code in the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file, and rerun your app.</p>
 <p><code class="docutils literal notranslate"><span class="pre">print_registry(exclude=&quot;layout&quot;)</span></code></p>
@@ -659,9 +554,9 @@ The default 404-page looks like the following:
 <li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: name of the page to be displayed in the browser tab. If null, the app filename will be used.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">description</span></code> and <code class="docutils literal notranslate"><span class="pre">image</span></code> are extra properties that, if specified, allow the adding of meta information to our app URL when shared. <code class="docutils literal notranslate"><span class="pre">image</span></code> should contain the image filename located into the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p></li>
 </ul>
-</section>
-<section id="multi-page-order">
-<h2>15.3 Multi-page order<a class="headerlink" href="#multi-page-order" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="multi-page-order">
+<h2>15.3 Multi-page order<a class="headerlink" href="#multi-page-order" title="Permalink to this headline">¶</a></h2>
 <p>By looking at the app we have so far, you’ll notice that the order of the links in the navbar are Home, Graphs, and About, from left to right. This is because we assigned the number 0 to the <code class="docutils literal notranslate"><span class="pre">order</span></code> property of the <a class="reference external" href="http://home.py">home.py</a> file, the number 1 to the graphs_v2_fin.py file, and the number 2 to the <a class="reference external" href="http://about.py">about.py</a> file. Had we chosen not to supply an order, the app would have displayed the pages in an alphabetical order: “Home” first because it’s the home page, “About” second, and “Graphs” third.</p>
 <p>Here’s what the page registry looks like:</p>
 <ul class="simple">
@@ -670,18 +565,18 @@ The default 404-page looks like the following:
 <li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=1)</span></code></p></li>
 </ul>
 <p>Get your feet wet and try to change the order of the home page so it appears last (far right) in the Navbar.</p>
-</section>
-<section id="names-titles-and-urls-of-pages">
-<h2>15.4 Names, titles, and URLs of pages<a class="headerlink" href="#names-titles-and-urls-of-pages" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="names-titles-and-urls-of-pages">
+<h2>15.4 Names, titles, and URLs of pages<a class="headerlink" href="#names-titles-and-urls-of-pages" title="Permalink to this headline">¶</a></h2>
 <p>The graphs page of our app is represented by the file <code class="docutils literal notranslate"><span class="pre">graphs_v2_fin.py</span></code>. Dash will automatically assign the file name to the <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code> properties of the page registry. However, in our case, we made the app look more professional by assigning new names and titles in the page registry.</p>
 <ul class="simple">
 <li><p>pages/graphs_v2_fin.py : <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=1,</span> <span class="pre">name='Graphs',</span> <span class="pre">title='Dash</span> <span class="pre">App</span> <span class="pre">|</span> <span class="pre">Graphs')</span></code>.</p></li>
 </ul>
 <p>Notice that we did not modify the <code class="docutils literal notranslate"><span class="pre">path</span></code> property of the page registry. Consequently, the url of the graphs page will remain <code class="docutils literal notranslate"><span class="pre">/graphs-v2-fin</span></code>.</p>
 <p>Now try this yourself: go into one of the pages and update the <code class="docutils literal notranslate"><span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> properties with other values. Rerun the app and see how the text displayed in the navbar and the text displayed in the browser tab changes.</p>
-</section>
-<section id="updating-the-default-pages-directory">
-<h2>15.5 Updating the default <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory<a class="headerlink" href="#updating-the-default-pages-directory" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="updating-the-default-pages-directory">
+<h2>15.5 Updating the default <code class="docutils literal notranslate"><span class="pre">pages</span></code> directory<a class="headerlink" href="#updating-the-default-pages-directory" title="Permalink to this headline">¶</a></h2>
 <p>We can further customise a multipage app by renaming the folder which contains all pages. By default, the folder should be named <code class="docutils literal notranslate"><span class="pre">pages</span></code>; however, we can simply specify a custom folder name when instantiating our <code class="docutils literal notranslate"><span class="pre">app</span></code> if we prefer a different name.</p>
 <p>Let’s suppose we chose to rename the folder with all the app’s pages to <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">sections</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pages</span></code>. After we do that, we need to assign the new folder name to the <code class="docutils literal notranslate"><span class="pre">pages_folder</span></code> property in the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file:</p>
 <p><code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">Dash(__name__,</span> <span class="pre">use_pages=True,</span> <span class="pre">pages_folder='app</span> <span class="pre">sections')</span></code>.</p>
@@ -693,9 +588,9 @@ The default 404-page looks like the following:
 <li><p>to: <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">page</span> <span class="pre">in</span> <span class="pre">dash.page_registry.values()</span> <span class="pre">if</span> <span class="pre">page[&quot;module&quot;]</span> <span class="pre">!=</span> <span class="pre">&quot;app</span> <span class="pre">sections.not_found_404&quot;</span></code></p></li>
 </ul>
 </div>
-</section>
-<section id="meta-tags">
-<h2>15.6 Meta tags<a class="headerlink" href="#meta-tags" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="meta-tags">
+<h2>15.6 Meta tags<a class="headerlink" href="#meta-tags" title="Permalink to this headline">¶</a></h2>
 <p>Meta tags allow a card to be displayed with a preview of our app when sharing the link to our app (for example, on Twitter, LinkedIn, Plotly Forum, etc.). For the web to automatically create a page preview, you would need to define the <code class="docutils literal notranslate"><span class="pre">title</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code> and the <code class="docutils literal notranslate"><span class="pre">image</span></code> properties of the page registry.</p>
 <p>To test this feature, we would need the app to be published; here’s an example of a published app, made by a Dash community member, which includes meta tags.</p>
 <p><img alt="metatags_example" src="../_images/metatags_example.jpg" /></p>
@@ -715,15 +610,63 @@ The default 404-page looks like the following:
 </pre></div>
 </div>
 <p>Make sure to create your desired image and place that file, <code class="docutils literal notranslate"><span class="pre">graph_preview.png</span></code>, in the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder.</p>
-</section>
-<section id="app-theme-toggler">
-<h2>15.7 App theme toggler<a class="headerlink" href="#app-theme-toggler" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="app-theme-toggler">
+<h2>15.7 App theme toggler<a class="headerlink" href="#app-theme-toggler" title="Permalink to this headline">¶</a></h2>
 <p>As a reminder, the <code class="docutils literal notranslate"><span class="pre">app.py</span></code> file is what brings all the pages together and finalizes the build of the multi page app. In our app, the layout is defined as a <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code>, which contains the header (navbar), the theme toggler, and the <code class="docutils literal notranslate"><span class="pre">page_container</span></code> that displays the content of each page.</p>
 <p>This is the first time we’ve built and added a theme toggler to our app, which allows the switching between two themes. The theme toggler used is the <code class="docutils literal notranslate"><span class="pre">ThemeSwitchAIO</span></code>, which belongs to the ‘dash_bootstrap_templates’ library. We’ve picked two themes from <code class="docutils literal notranslate"><span class="pre">dbc.themes</span></code>: FLATLY and DARKLY (tipically you would choose a dark and a light theme). We’ve also added the sun and moon icons using the <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code></p>
 <p>Note that we’ve assiged <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code>, <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc_css</span></code> to the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code> of the app. The <code class="docutils literal notranslate"><span class="pre">url_theme2</span></code> defines the default theme when the app first loads. The <code class="docutils literal notranslate"><span class="pre">dbc.icons.FONT_AWESOME</span></code> enables the usage of the font awesome icons.</p>
 <p>Switching between Bootstrap themes in a Dash app will automatically style only the Dash Bootstrap components. However, it will not update the styling of any Dash Core Components or the Dash DataTable. By adding <code class="docutils literal notranslate"><span class="pre">className=&quot;dbc&quot;</span></code> to the outer container of the app and assigning the <code class="docutils literal notranslate"><span class="pre">dbc_css</span></code> sheet to the <code class="docutils literal notranslate"><span class="pre">external_stylesheets</span></code>, the app will automatically style the Dash Core Components and the DataTable in accordance with the selected Bootstrap theme.</p>
 <p><strong>App file:</strong></p>
-<p>The impact of the <code class="docutils literal notranslate"><span class="pre">dbc_class</span></code> is not observable in our app. However, try to add a Dropdown to the graphs page:</p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See the code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">from</span> <span class="nn">dash_bootstrap_templates</span> <span class="kn">import</span> <span class="n">ThemeSwitchAIO</span>
+<span class="kn">from</span> <span class="nn">dash_labs</span> <span class="kn">import</span> <span class="n">print_registry</span>
+
+<span class="c1"># Configure Themes</span>
+<span class="n">url_theme1</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">FLATLY</span>
+<span class="n">url_theme2</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">DARKLY</span>
+<span class="n">theme_toggle</span> <span class="o">=</span> <span class="n">ThemeSwitchAIO</span><span class="p">(</span>
+    <span class="n">aio_id</span><span class="o">=</span><span class="s2">&quot;theme&quot;</span><span class="p">,</span>
+    <span class="n">themes</span><span class="o">=</span><span class="p">[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">url_theme1</span><span class="p">],</span>
+    <span class="n">icons</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;left&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-sun&quot;</span><span class="p">,</span> <span class="s2">&quot;right&quot;</span><span class="p">:</span> <span class="s2">&quot;fa fa-moon&quot;</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">dbc_css</span> <span class="o">=</span> <span class="s2">&quot;https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css&quot;</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">use_pages</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">url_theme2</span><span class="p">,</span> <span class="n">dbc_css</span><span class="p">,</span> <span class="n">dbc</span><span class="o">.</span><span class="n">icons</span><span class="o">.</span><span class="n">FONT_AWESOME</span><span class="p">],</span> <span class="n">pages_folder</span><span class="o">=</span><span class="s1">&#39;pages&#39;</span><span class="p">)</span>
+
+<span class="c1"># print_registry(exclude=&quot;layout&quot;)</span>
+
+<span class="n">header</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">NavbarSimple</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Nav</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">NavLink</span><span class="p">(</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">href</span><span class="o">=</span><span class="n">page</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_registry</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="k">if</span> <span class="n">page</span><span class="p">[</span><span class="s2">&quot;module&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;pages.not_found_404&quot;</span>
+        <span class="p">])</span>
+    <span class="p">],</span>
+    <span class="n">brand</span><span class="o">=</span><span class="s2">&quot;Multi page app | Advanced&quot;</span><span class="p">,</span>
+    <span class="n">brand_href</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span>
+    <span class="n">dark</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dark&#39;</span>
+<span class="p">)</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">([</span><span class="n">header</span><span class="p">,</span> <span class="n">theme_toggle</span><span class="p">,</span> <span class="n">dash</span><span class="o">.</span><span class="n">page_container</span><span class="p">],</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;dbc&quot;</span><span class="p">,</span> <span class="n">fluid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+	<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</details><p>The impact of the <code class="docutils literal notranslate"><span class="pre">dbc_class</span></code> is not observable in our app. However, try to add a Dropdown to the graphs page:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="p">[</span>
     <span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;This is our Graphs page&#39;</span><span class="p">),</span>
     <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s1">&#39;one&#39;</span><span class="p">,</span><span class="s1">&#39;two&#39;</span><span class="p">,</span><span class="s1">&#39;three&#39;</span><span class="p">]),</span>
@@ -734,29 +677,97 @@ The default 404-page looks like the following:
 </pre></div>
 </div>
 <p>Relaunch the app and notice how the background color of the dropdown options updates as you toggle between the light and dark theme.</p>
-</section>
-<section id="exercises">
-<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">#</a></h2>
+</div>
+<div class="section" id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <p>(1) Using the <a class="reference external" href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part5/ch15_files/app15_final.zip?raw=true">app we’ve built in this chapter</a>, add a new page with the following features:</p>
 <ul class="simple">
 <li><p>The new page file should be named <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code></p></li>
 <li><p>The content of the page should be the app developed in the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 2 from chapter 8</a></p></li>
 <li><p>Tip: remember how the layout and the callback are defined inside a multi page app; remember to register the page instead of instatiating Dash</p></li>
 </ul>
-<hr class="docutils" />
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Solution<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">This is how the <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code> should look like. Place this file inside the <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">sections</span></code> folder (the remaining App files do not require any change).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">callback</span>
+<span class="kn">import</span> <span class="nn">dash</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+
+<span class="c1"># data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Dash App</span>
+<span class="n">dash</span><span class="o">.</span><span class="n">register_page</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Create app components</span>
+<span class="n">title_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Gapminder Stacked Bar Charts&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
+<span class="n">dropdown_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a metric&#39;</span><span class="p">,</span>
+                        <span class="n">options</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;pop&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;GDP per capita&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">},</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Life Expectancy&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">}])</span>
+<span class="n">graph_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">)</span>
+
+<span class="c1"># App Layout</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">title_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dropdown_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">graph_</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Callbacks</span>
+<span class="nd">@callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">metric_</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">metric_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fig</span>
+</pre></div>
+</div>
+<p class="card-text"><img alt="solution_ex1" src="../_images/chapter15_solution1.gif" /></p>
+</div>
+</details><hr class="docutils" />
 <p>(2) Building on exercise 1, make the following adjustments to the newly added page:</p>
 <ul class="simple">
 <li><p>Update the order of the <code class="docutils literal notranslate"><span class="pre">new_page.py</span></code>: make it the third linked page in the navbar, after <code class="docutils literal notranslate"><span class="pre">Graphs</span></code>.</p></li>
 <li><p>Update the name of the new page to: <code class="docutils literal notranslate"><span class="pre">Metrics</span></code></p></li>
 <li><p>Update the title of the new page to: <code class="docutils literal notranslate"><span class="pre">Gapminder</span> <span class="pre">|</span> <span class="pre">Metrics</span></code></p></li>
 </ul>
-</section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Solution<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
+<p class="card-text">To slove this exercise, we just need to update the <code class="docutils literal notranslate"><span class="pre">dash.register_page()</span></code> statements of the following files:</p>
+<ul class="simple">
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">new_page.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=2,</span> <span class="pre">name='Metrics',</span> <span class="pre">title='Gapminder</span> <span class="pre">|</span> <span class="pre">Metrics')</span></code></p></li>
+<li><p class="card-text"><code class="docutils literal notranslate"><span class="pre">about.py</span></code> should be registered as: <code class="docutils literal notranslate"><span class="pre">dash.register_page(__name__,</span> <span class="pre">order=3)</span></code></p></li>
+</ul>
+<p class="card-text"><img alt="solution_ex2" src="../_images/chapter15_solution2.png" /></p>
+</div>
+</details></div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter, we have gone through several advanced features specific to multi page apps. There are additional functionalities and examples that can be found in the <a class="reference external" href="https://dash.plotly.com/urls#dash-pages">Dash Pages section</a> of the Dash documentation.</p>
 <p>This concludes the section dedicated to multi page apps.</p>
-</section>
-</section>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -780,11 +791,9 @@ The default 404-page looks like the following:
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="chapter14.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -800,34 +809,30 @@ The default 404-page looks like the following:
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            </footer>
+            
         </div>
     </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Dash Community Ambassadors<br/>
-  
-    <div class="extra_footer">
-      <div>
+    <footer class="footer">
+  <p>
+    
+      By Dash Community Ambassadors<br/>
+    
+      <div class="extra_footer">
+        <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-    </div>
-</p>
-        </footer>
-    </div>
-    
-</div>
+      </div>
+  </p>
+</footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
-
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
   </body>
 </html>
