@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>551 Lec 4 - Deployment on Heroku and maps in Altair &#8212; Dash Tutorial</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../preface/about.html">
-   About
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../preface/about.html">
+                    About
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Installation Stack
  </span>
@@ -258,107 +273,209 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/ref_material/4-maps-deployment.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fref_material/4-maps-deployment.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/open-resources/dash_curriculum/main?urlpath=tree/tutorial/ref_material/4-maps-deployment.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/open-resources/dash_curriculum/main?urlpath=tree/tutorial/ref_material/4-maps-deployment.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fref_material/4-maps-deployment.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/ref_material/4-maps-deployment.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#lecture-learning-goals">
    Lecture learning goals
@@ -423,12 +540,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>551 Lec 4 - Deployment on Heroku and maps in Altair</h1>
@@ -509,14 +625,15 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lec-4-deployment-on-heroku-and-maps-in-altair">
-<h1>551 Lec 4 - Deployment on Heroku and maps in Altair<a class="headerlink" href="#lec-4-deployment-on-heroku-and-maps-in-altair" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="lec-4-deployment-on-heroku-and-maps-in-altair">
+<h1>551 Lec 4 - Deployment on Heroku and maps in Altair<a class="headerlink" href="#lec-4-deployment-on-heroku-and-maps-in-altair" title="Permalink to this headline">#</a></h1>
 <p>You need to download this notebook to view images.</p>
-<div class="section" id="lecture-learning-goals">
-<h2>Lecture learning goals<a class="headerlink" href="#lecture-learning-goals" title="Permalink to this headline">¶</a></h2>
+<section id="lecture-learning-goals">
+<h2>Lecture learning goals<a class="headerlink" href="#lecture-learning-goals" title="Permalink to this headline">#</a></h2>
 <p>By the end of the lecture you will be able to:</p>
 <ol class="simple">
 <li><p>Setup and Heroku account and run the Heroku CLI</p></li>
@@ -525,10 +642,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Work with geojson and topojson files</p></li>
 <li><p>Create maps in Altair with interactivity</p></li>
 </ol>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="deployment-with-heroku">
-<h2>Deployment with Heroku<a class="headerlink" href="#deployment-with-heroku" title="Permalink to this headline">¶</a></h2>
+<section id="deployment-with-heroku">
+<h2>Deployment with Heroku<a class="headerlink" href="#deployment-with-heroku" title="Permalink to this headline">#</a></h2>
 <p>Deploying our app essentially means everything we need to do
 in order for it to become available for others to use.
 For our dashboard,
@@ -572,9 +689,9 @@ details below.
 If some of the concepts below sound confusing and you want to learn more,
 <a class="reference external" href="https://towardsdatascience.com/deploying-your-dash-app-to-heroku-the-magical-guide-39bd6a0c586c">this is a good writeup</a>
 although it does not follow exactly the same steps as we do.</p>
-</div>
-<div class="section" id="pip">
-<h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="pip">
+<h2>Pip<a class="headerlink" href="#pip" title="Permalink to this headline">#</a></h2>
 <p>Heroku uses <code class="docutils literal notranslate"><span class="pre">pip</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> to install dependencies,
 so we will need to create a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file to control what Heroku will install.
 Instead of doing this via <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code>,
@@ -591,9 +708,9 @@ and could look like this for your app:</p>
 <span class="n">plotly</span><span class="o">==</span><span class="mf">4.14.3</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="gunicorn">
-<h2>gunicorn<a class="headerlink" href="#gunicorn" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="gunicorn">
+<h2>gunicorn<a class="headerlink" href="#gunicorn" title="Permalink to this headline">#</a></h2>
 <p>You need to include the <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> library even though you don’t use it locally.
 <code class="docutils literal notranslate"><span class="pre">gunicorn</span></code> is a HTTP server specifically for Python web applications which runs natively in Unix.
 You also need to create a <code class="docutils literal notranslate"><span class="pre">Procfile</span></code> which tells Heroku
@@ -614,9 +731,9 @@ see the example in the dash deployment docs for reference if this is unclear).</
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">server</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="push-and-deploy">
-<h2>Push and deploy!<a class="headerlink" href="#push-and-deploy" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="push-and-deploy">
+<h2>Push and deploy!<a class="headerlink" href="#push-and-deploy" title="Permalink to this headline">#</a></h2>
 <p>Almost there!
 The rest is following steps 4 and 5 in the heroku deployment guide:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>heroku create my-dash-app <span class="c1"># change my-dash-app to a unique name</span>
@@ -655,9 +772,9 @@ to ssave costs unless you pay for an account:</p>
 <p><a class="reference external" href="https://devcenter.heroku.com/articles/free-dyno-hours#usage">https://devcenter.heroku.com/articles/free-dyno-hours#usage</a></p>
 </div></blockquote>
 <p>You have about 500 free hours per month, which is plenty for one app.</p>
-</div>
-<div class="section" id="geographic-data-geojson-and-topojson">
-<h2>Geographic Data: GeoJSON and TopoJSON<a class="headerlink" href="#geographic-data-geojson-and-topojson" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="geographic-data-geojson-and-topojson">
+<h2>Geographic Data: GeoJSON and TopoJSON<a class="headerlink" href="#geographic-data-geojson-and-topojson" title="Permalink to this headline">#</a></h2>
 <p><em>This first half of this geo section is taken from
 <a class="reference external" href="https://github.com/uwdata/visualization-curriculum">https://github.com/uwdata/visualization-curriculum</a> with minor modifications.</em></p>
 <p>Up to this point, we have worked with JSON and CSV formatted datasets that correspond to data tables made up of rows (records) and columns (fields). In order to represent geographic regions (countries, states, <em>etc.</em>) and trajectories (flight paths, subway lines, <em>etc.</em>), we need to expand our repertoire with additional formats designed to support rich geometries.</p>
@@ -736,8 +853,8 @@ Countries often make geojson</p>
 </div>
 </div>
 <p>Now that we can load geographic data, we’re ready to start making maps!</p>
-<div class="section" id="geoshape-marks">
-<h3>Geoshape Marks<a class="headerlink" href="#geoshape-marks" title="Permalink to this headline">¶</a></h3>
+<section id="geoshape-marks">
+<h3>Geoshape Marks<a class="headerlink" href="#geoshape-marks" title="Permalink to this headline">#</a></h3>
 <p>To visualize geographic data, Altair provides the <code class="docutils literal notranslate"><span class="pre">geoshape</span></code> mark type. To create a basic map, we can create a <code class="docutils literal notranslate"><span class="pre">geoshape</span></code> mark and pass it our TopoJSON data, which is then unpacked into GeoJSON features, one for each country of the world:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -839,9 +956,9 @@ see these links:</p>
 <li><p><a class="reference external" href="https://stackoverflow.com/questions/55229651/dealing-with-missing-values-nulls-in-altair-choropleth-map">https://stackoverflow.com/questions/55229651/dealing-with-missing-values-nulls-in-altair-choropleth-map</a></p></li>
 <li><p><a class="reference external" href="https://stackoverflow.com/questions/58698545/can-you-add-a-label-for-missing-data-to-a-legend-for-an-altair-chart">https://stackoverflow.com/questions/58698545/can-you-add-a-label-for-missing-data-to-a-legend-for-an-altair-chart</a></p></li>
 </ul>
-</div>
-<div class="section" id="linking-datasets-together-via-lookups">
-<h3>Linking datasets together via lookups<a class="headerlink" href="#linking-datasets-together-via-lookups" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="linking-datasets-together-via-lookups">
+<h3>Linking datasets together via lookups<a class="headerlink" href="#linking-datasets-together-via-lookups" title="Permalink to this headline">#</a></h3>
 <p>Although any arbitrary information could be put in a geojson file,
 they often only contain spatial coordinates
 and we need to link any variables of interest from another data set
@@ -940,9 +1057,9 @@ here it is only the population.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">transform_lookup</span></code> is <a class="reference external" href="https://altair-viz.github.io/user_guide/transform/lookup.html">a one sided join similar to <code class="docutils literal notranslate"><span class="pre">pd.merge(how='left')</span></code>,
 which you can read more about in the Altair docs</a>.</p>
-</div>
-<div class="section" id="map-interactivity">
-<h3>Map interactivity<a class="headerlink" href="#map-interactivity" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="map-interactivity">
+<h3>Map interactivity<a class="headerlink" href="#map-interactivity" title="Permalink to this headline">#</a></h3>
 <p>Let’s also set the tooltip so we can see which state has which name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1160,9 +1277,9 @@ we can use the <code class="docutils literal notranslate"><span class="pre">near
 <img alt="../_images/4-maps-deployment_46_0.png" src="../_images/4-maps-deployment_46_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="a-note-on-choropleth-interpretation">
-<h3>A note on choropleth interpretation<a class="headerlink" href="#a-note-on-choropleth-interpretation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-note-on-choropleth-interpretation">
+<h3>A note on choropleth interpretation<a class="headerlink" href="#a-note-on-choropleth-interpretation" title="Permalink to this headline">#</a></h3>
 <p>Although pretty,
 choropleth maps have the disadvantage of hiding regions that have small land areas,
 even when it is not relevant for the measurement that we are showing
@@ -1238,9 +1355,9 @@ as seen in this example from the Altair docs</p>
 <img alt="../_images/4-maps-deployment_49_0.png" src="../_images/4-maps-deployment_49_0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="a-dataset-with-ids-for-all-the-world-s-countries">
-<h3>A dataset with IDs for all the world’s countries<a class="headerlink" href="#a-dataset-with-ids-for-all-the-world-s-countries" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="a-dataset-with-ids-for-all-the-world-s-countries">
+<h3>A dataset with IDs for all the world’s countries<a class="headerlink" href="#a-dataset-with-ids-for-all-the-world-s-countries" title="Permalink to this headline">#</a></h3>
 <p>The world geojson file contains the ID of each geometry,
 similar to the US states data.
 However,
@@ -1347,13 +1464,13 @@ look into the following resources:</p>
 </ul>
 <p>Lastly,
 here is a cool visualization of all the countries in the world ordered by area: <a class="reference external" href="https://www.jasondavies.com/maps/countries-by-area/">https://www.jasondavies.com/maps/countries-by-area/</a></p>
-</div>
-</div>
-<div class="section" id="attribution">
-<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="attribution">
+<h2>Attribution<a class="headerlink" href="#attribution" title="Permalink to this headline">#</a></h2>
 <p>These lecture notes were prepared by Dr. Joel Ostblom, a post-doctoral teaching fellow in the UBC Vancouver MDS program.</p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1377,34 +1494,40 @@ here is a cool visualization of all the countries in the world ordered by area: 
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By Dash Community Ambassadors<br/>
-    
-      <div class="extra_footer">
-        <div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dash Community Ambassadors<br/>
+  
+    <div class="extra_footer">
+      <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

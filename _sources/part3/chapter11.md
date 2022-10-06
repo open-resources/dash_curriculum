@@ -21,8 +21,8 @@ By the end of this chapter you will know how to build this app:
 ![offcanvas](ch11_files/img/offcanvas-example.gif)
 
 ````{dropdown} See the code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages
@@ -968,8 +968,8 @@ if __name__ == '__main__':
 Using the `px.data.stocks()` data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks `GOOG` and `AAPL` (which are columns of the stock dataset).
 Based on the date range set in the `DatePickerRange` component, the central card graph should show the records which fall in the date range; the left card should show any data prior to the start date; and the right card should show any data after the end date.
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages
@@ -1056,8 +1056,8 @@ if __name__== '__main__':
 - While the second tab should contain the app we built in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises)
 You can omit the title of each app inside the tabs. Since we will need callbacks that use content defined in other callbacks, instantiate your app in the following way to avoid warning messages: `app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)`.
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages

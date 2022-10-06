@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>OUT-TAKES from round2 20220401 &#8212; Dash Tutorial</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,20 +20,16 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -39,12 +37,13 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
@@ -61,7 +60,21 @@ const thebe_selector_output = ".output, .cell_output"
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,9 +83,10 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -90,14 +104,15 @@ const thebe_selector_output = ".output, .cell_output"
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../preface/about.html">
-   About
-  </a>
- </li>
-</ul>
-<p aria-level="2" class="caption" role="heading">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../preface/about.html">
+                    About
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Installation Stack
  </span>
@@ -258,90 +273,180 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/part2/ch8_files/curriculum_round2.md"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/open-resources/dash_curriculum"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart2/ch8_files/curriculum_round2.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/open-resources/dash_curriculum/issues/new?title=Issue%20on%20page%20%2Fpart2/ch8_files/curriculum_round2.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/part2/ch8_files/curriculum_round2.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
    OUT-TAKES from round2 20220401
@@ -472,12 +577,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>OUT-TAKES from round2 20220401</h1>
@@ -624,11 +728,12 @@ const thebe_selector_output = ".output, .cell_output"
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="out-takes-from-round2-20220401">
-<h1>OUT-TAKES from round2 20220401<a class="headerlink" href="#out-takes-from-round2-20220401" title="Permalink to this headline">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="out-takes-from-round2-20220401">
+<h1>OUT-TAKES from round2 20220401<a class="headerlink" href="#out-takes-from-round2-20220401" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
 <p><em><strong>…some initial thoughts…</strong></em></p>
 <div class="admonition tip">
@@ -659,8 +764,8 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p>and you’ll get:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/N1JSd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1JSd.png" /></a></p>
-<div class="section" id="line-chart">
-<h2>8.2.1 Line chart<a class="headerlink" href="#line-chart" title="Permalink to this headline">¶</a></h2>
+<section id="line-chart">
+<h2>8.2.1 Line chart<a class="headerlink" href="#line-chart" title="Permalink to this headline">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
@@ -671,29 +776,29 @@ const thebe_selector_output = ".output, .cell_output"
 <p><a class="reference external" href="https://i.stack.imgur.com/ENAiB.png"><img alt="enter image description here" src="https://i.stack.imgur.com/ENAiB.png" /></a></p>
 <p><em><strong>…needs more explaining if not covered in chapter 7…</strong></em></p>
 <p>As you can see from the function call above, <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">symbol</span></code> don’t take actual colors and symbols as  arguments, but rather columns of a dataset <code class="docutils literal notranslate"><span class="pre">df</span></code> from which unique values are assigned certain color and symbol sequences.</p>
-</div>
-<div class="section" id="scatter-plot">
-<h2>8.2.2 Scatter plot<a class="headerlink" href="#scatter-plot" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="scatter-plot">
+<h2>8.2.2 Scatter plot<a class="headerlink" href="#scatter-plot" title="Permalink to this headline">#</a></h2>
 <p>You can drop the lines and produce a scatter plot with markers only if you substitute <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> with <code class="docutils literal notranslate"><span class="pre">px.scatter()</span></code>:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/82TrL.png"><img alt="enter image description here" src="https://i.stack.imgur.com/82TrL.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="scatter-plot-with-trendlines">
-<h2>8.2.3 Scatter plot with trendlines<a class="headerlink" href="#scatter-plot-with-trendlines" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="scatter-plot-with-trendlines">
+<h2>8.2.3 Scatter plot with trendlines<a class="headerlink" href="#scatter-plot-with-trendlines" title="Permalink to this headline">#</a></h2>
 <p>From here you can also add a trendline for each trace by adding <code class="docutils literal notranslate"><span class="pre">trendline=&quot;ols&quot;</span></code> to the mix:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/EEylA.png"><img alt="enter image description here" src="https://i.stack.imgur.com/EEylA.png" /></a></p>
 <p>In this case, the trendlines will indicate the increase in life expectanciese for each country over the years.</p>
-</div>
-<div class="section" id="regression-a-special-case-of-scatter-plot">
-<h2>8.2.4 Regression - A special case of scatter plot<a class="headerlink" href="#regression-a-special-case-of-scatter-plot" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="regression-a-special-case-of-scatter-plot">
+<h2>8.2.4 Regression - A special case of scatter plot<a class="headerlink" href="#regression-a-special-case-of-scatter-plot" title="Permalink to this headline">#</a></h2>
 <p>In order to compare a relationship between two specifc variables, you would have to wrangle the dataset a little so that you can assign individual sereis to <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>. But this is pretty straight-forward with <code class="docutils literal notranslate"><span class="pre">pd.pivot</span></code> like this</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="section" id="from-long-to-wide-with-pd-pivot">
-<h3>From long to wide with <code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code><a class="headerlink" href="#from-long-to-wide-with-pd-pivot" title="Permalink to this headline">¶</a></h3>
+<section id="from-long-to-wide-with-pd-pivot">
+<h3>From long to wide with <code class="docutils literal notranslate"><span class="pre">pd.pivot()</span></code><a class="headerlink" href="#from-long-to-wide-with-pd-pivot" title="Permalink to this headline">#</a></h3>
 <p><a class="reference external" href="https://i.stack.imgur.com/lDZUC.png"><img alt="enter image description here" src="https://i.stack.imgur.com/lDZUC.png" /></a></p>
 <p>As you can see, the dataset is no longer of a long format. With column names that now describe unique variables instead of a category, we’ve moved on to a dataset with a wide format.</p>
 <p>The complete setup to produce the figure below is now:</p>
@@ -713,10 +818,10 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Tip</p>
 <p>You can retrieve regression results with <code class="docutils literal notranslate"><span class="pre">px.get_trendline_results(fig)</span></code> and include them in your figure as explained in <a class="reference external" href="https://i.stack.imgur.com/jn4rl.gif">Fitting multiple lines and retrieving the model parameters</a></p>
 </div>
-</div>
-</div>
-<div class="section" id="bar-plot">
-<h2>8.2.4 Bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="bar-plot">
+<h2>8.2.4 Bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this headline">#</a></h2>
 <p>So far, we’ve looked at chart types that are closely related in how they are structured. Bar charts are also widely used and introduces a few features that work a bit differently. Let’s take a look at the populations in two different countries.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
                  
@@ -728,9 +833,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/zPuh9.png"><img alt="enter image description here" src="https://i.stack.imgur.com/zPuh9.png" /></a></p>
 <p>As you can tell from the figure, you can now study the change in the total populations of these countries over the years. This makes sense for <code class="docutils literal notranslate"><span class="pre">population</span></code>, but not so much if you were to study life expectancies. In the latter case it would make more sense to display the bars for each country next to each other. The following section will introduce how to edit the <code class="docutils literal notranslate"><span class="pre">barmode</span></code> attribute for the figure object both in the function call and <em>after</em> you’ve produced the figure.</p>
-</div>
-<div class="section" id="how-to-edit-chart-features">
-<h2>8.2.5 How to edit chart features<a class="headerlink" href="#how-to-edit-chart-features" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="how-to-edit-chart-features">
+<h2>8.2.5 How to edit chart features<a class="headerlink" href="#how-to-edit-chart-features" title="Permalink to this headline">#</a></h2>
 <p>By default <code class="docutils literal notranslate"><span class="pre">px.bar()</span></code> uses <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'stacked'</span></code> which does exactly what it says, namely stacking the populations for each <code class="docutils literal notranslate"><span class="pre">country</span></code> (discerned by <code class="docutils literal notranslate"><span class="pre">color</span></code>) on top of each other. But you can change this behavior through <code class="docutils literal notranslate"><span class="pre">barmode</span> <span class="pre">=</span> <span class="pre">'group'</span></code> and get the following result:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/xU3El.png"><img alt="enter image description here" src="https://i.stack.imgur.com/xU3El.png" /></a></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span> <span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;pop&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span>
@@ -745,14 +850,14 @@ const thebe_selector_output = ".output, .cell_output"
 </pre></div>
 </div>
 <p>.</p>
-</div>
-</div>
+</section>
+</section>
 <hr class="docutils" />
-<div class="tex2jax_ignore mathjax_ignore section" id="out-takes-from-initial-suggestion">
-<h1>OUT-TAKES from initial suggestion<a class="headerlink" href="#out-takes-from-initial-suggestion" title="Permalink to this headline">¶</a></h1>
+<section class="tex2jax_ignore mathjax_ignore" id="out-takes-from-initial-suggestion">
+<h1>OUT-TAKES from initial suggestion<a class="headerlink" href="#out-takes-from-initial-suggestion" title="Permalink to this headline">#</a></h1>
 <hr class="docutils" />
-<div class="section" id="breakdown-of-px-line-and-relation-to-plotly-graph-objects">
-<h2>8.1.1 Breakdown of <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> and relation to Plotly Graph Objects<a class="headerlink" href="#breakdown-of-px-line-and-relation-to-plotly-graph-objects" title="Permalink to this headline">¶</a></h2>
+<section id="breakdown-of-px-line-and-relation-to-plotly-graph-objects">
+<h2>8.1.1 Breakdown of <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> and relation to Plotly Graph Objects<a class="headerlink" href="#breakdown-of-px-line-and-relation-to-plotly-graph-objects" title="Permalink to this headline">#</a></h2>
 <p>Running <a class="reference external" href="https://plotly.com/python/line-charts/"><code class="docutils literal notranslate"><span class="pre">px.line()</span></code></a> will produce a <a class="reference external" href="https://plotly.com/python/graph-objects/">Plotly Graph Objects</a> figure object <code class="docutils literal notranslate"><span class="pre">go.Figure</span></code> (where <code class="docutils literal notranslate"><span class="pre">go</span></code> is the commonly used alias for <code class="docutils literal notranslate"><span class="pre">plotly.graph_objects</span></code>) which is one of the main building blocks of the Plotly library; the canvas (better to call it something else?). Running <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> will produce a completely empty figure or canvas like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
 <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -791,9 +896,9 @@ const thebe_selector_output = ".output, .cell_output"
 <p class="admonition-title">Tip</p>
 <p>Notice how we’ve used both <code class="docutils literal notranslate"><span class="pre">fig.show()</span></code> and <code class="docutils literal notranslate"><span class="pre">fig.show</span></code> with and withou the parantheses at the end. The latter let’s you study the content of the figure object while the former displays a visual representation of the figure.</p>
 </div>
-</div>
-<div class="section" id="plotly-figure-object-methods">
-<h2>8.1.2 Plotly Figure object methods<a class="headerlink" href="#plotly-figure-object-methods" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="plotly-figure-object-methods">
+<h2>8.1.2 Plotly Figure object methods<a class="headerlink" href="#plotly-figure-object-methods" title="Permalink to this headline">#</a></h2>
 <p>The figure object has numerous useful methods that you can study through <code class="docutils literal notranslate"><span class="pre">dir(fig)</span></code>. One of them, <code class="docutils literal notranslate"><span class="pre">fig.add_traces()</span></code>, adds new data to an already existing figure object, and works much in the same way as <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> in that you’ll have to specify a trace category as well. Below we’ll use <code class="docutils literal notranslate"><span class="pre">fig.add_traces(go.Scatter())</span></code> to add another line to our lineplot.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>fig = go.Figure(data = go.Scatter(x= [1,2,3,4], y = [10,11,12,13]),
                 layout = go.Layout(title = &#39;My first Plotly figure with an extra trace&#39;))
@@ -803,9 +908,9 @@ fig.show()
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/rSm7d.png"><img alt="enter image description here" src="https://i.stack.imgur.com/rSm7d.png" /></a></p>
 <p>Aside from the new trace, you’ll see that the figure now also displays a legend as well as some default names for the different traces. The names of the traces aren’t that interesting yet since we haven’t specified any names.</p>
-</div>
-<div class="section" id="dataframes-as-data-source">
-<h2>8.1.3 DataFrames as data source<a class="headerlink" href="#dataframes-as-data-source" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="dataframes-as-data-source">
+<h2>8.1.3 DataFrames as data source<a class="headerlink" href="#dataframes-as-data-source" title="Permalink to this headline">#</a></h2>
 <p>It’s much more common to work with a pandas dataframe as your data source rather than individual lists. So let’s apply some of the things we’ve learned in the previous chapter (depends on the content of chapter 7) and organize our data in a <code class="docutils literal notranslate"><span class="pre">df</span></code> like this:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>df = pd.DataFrame({&#39;x&#39;:  [1,2,3,4],
                    &#39;y&#39;:  [10,11,12,13],
@@ -829,9 +934,9 @@ fig.show()
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">'layout'</span></code> is still the same, but more importantly we can see that <code class="docutils literal notranslate"><span class="pre">'data'</span></code> now contains a list with <strong>two</strong> traces complete with data and a <code class="docutils literal notranslate"><span class="pre">type</span></code> description. And that’s exactly what <code class="docutils literal notranslate"><span class="pre">fig.add_traces()</span></code> does; it just puts another <code class="docutils literal notranslate"><span class="pre">trace</span></code> into the <code class="docutils literal notranslate"><span class="pre">data</span></code> of an already existing figure.</p>
-</div>
-<div class="section" id="easy-data-handling-with-plotly-express">
-<h2>8.1.4 Easy data handling with Plotly Express<a class="headerlink" href="#easy-data-handling-with-plotly-express" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="easy-data-handling-with-plotly-express">
+<h2>8.1.4 Easy data handling with Plotly Express<a class="headerlink" href="#easy-data-handling-with-plotly-express" title="Permalink to this headline">#</a></h2>
 <p>As you can imagine, having to add a new line with <code class="docutils literal notranslate"><span class="pre">fig.add_traces(go.Scatter))</span></code> for each and every trace of data we’d like to include would quickly become very tedious. And this leads us right back to the start of this section. Using <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> we don’t have to worry about <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code>, <code class="docutils literal notranslate"><span class="pre">fig.add_traces()</span></code> or <code class="docutils literal notranslate"><span class="pre">go.Scatter()</span></code> at all. We can just create <em>almost</em> the very same figure through:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">],</span> <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;My first Plotly Express figure&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -839,9 +944,9 @@ fig.show()
 </div>
 <p>And as you can see, <em>almost</em> the same figure doesn’t mean that it’s <em>almost</em> as good as the previous figure. On the contrary, <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> improves the readability of the figure through the assignment of trace names in the legend, and adding names to the axes:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/lCE6Y.png"><img alt="enter image description here" src="https://i.stack.imgur.com/lCE6Y.png" /></a></p>
-</div>
-<div class="section" id="inspect-the-structure-of-a-px-line-figure">
-<h2>8.1.5 Inspect the structure of a <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> figure<a class="headerlink" href="#inspect-the-structure-of-a-px-line-figure" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="inspect-the-structure-of-a-px-line-figure">
+<h2>8.1.5 Inspect the structure of a <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> figure<a class="headerlink" href="#inspect-the-structure-of-a-px-line-figure" title="Permalink to this headline">#</a></h2>
 <p>There’s even more happening under the hood if we take another look at the output from the current <code class="docutils literal notranslate"><span class="pre">fig</span></code> object with <code class="docutils literal notranslate"><span class="pre">dir(fig)</span></code>. (The output is quickly growing in size, so we’ll reproduce the most relevant parts here).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;hovertemplate&#39;</span><span class="p">:</span> <span class="s1">&#39;variable=y&lt;br&gt;x=%</span><span class="si">{x}</span><span class="s1">&lt;br&gt;value=%</span><span class="si">{y}</span><span class="s1">&lt;extra&gt;&lt;/extra&gt;&#39;</span><span class="p">,</span>
           <span class="s1">&#39;line&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;#636efa&#39;</span><span class="p">,</span> <span class="s1">&#39;dash&#39;</span><span class="p">:</span> <span class="s1">&#39;solid&#39;</span><span class="p">},</span>
@@ -879,10 +984,10 @@ fig.show()
 <p class="admonition-title">Tip</p>
 <p>Be aware that <code class="docutils literal notranslate"><span class="pre">fig.show</span></code> only reveals <em>some</em> of the attributes of <code class="docutils literal notranslate"><span class="pre">fig</span></code>. If you’d like to scrutinize further details, you’ll have to use <code class="docutils literal notranslate"><span class="pre">fig.full_figure_for_development()</span></code> which we’ll get back to in the chapter <code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">plotly</span> <span class="pre">figure</span> <span class="pre">methods(???=)</span></code>.</p>
 </div>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="how-to-edit-the-attributes-of-traces">
-<h2>8.1.6 How to edit the attributes of traces<a class="headerlink" href="#how-to-edit-the-attributes-of-traces" title="Permalink to this headline">¶</a></h2>
+<section id="how-to-edit-the-attributes-of-traces">
+<h2>8.1.6 How to edit the attributes of traces<a class="headerlink" href="#how-to-edit-the-attributes-of-traces" title="Permalink to this headline">#</a></h2>
 <p>If you, as an example, would like to include the circle symbol for each datapoint, you can either do so through the call to <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> itself, with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;y1&#39;</span><span class="p">],</span>
                   <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;My first Plotly Express figure&#39;</span><span class="p">,</span>
@@ -902,9 +1007,9 @@ fig.show()
 </div>
 <p>Before we move on, you should also take notice of how the calls to <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> and <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> are fundamentally different in other ways. With <code class="docutils literal notranslate"><span class="pre">px.line()</span></code>, the data argument comes first. Just as with <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code>, but with different functionality. <code class="docutils literal notranslate"><span class="pre">data</span></code> in <code class="docutils literal notranslate"><span class="pre">go.Figure()</span></code> expects a collection of traces like <code class="docutils literal notranslate"><span class="pre">go.Scatter()</span></code>, while <code class="docutils literal notranslate"><span class="pre">data</span></code> in <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> expects a reference to a single data source like a pandas dataframe. In <code class="docutils literal notranslate"><span class="pre">px.line()</span></code>, defining <code class="docutils literal notranslate"><span class="pre">df</span></code> as the data source also means that further specifications, like <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">'x'</span></code> does not require you to include another reference to <code class="docutils literal notranslate"><span class="pre">df</span></code> in <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">df['x']</span></code> like you had to do for <code class="docutils literal notranslate"><span class="pre">go.Figure(go.Scatter(x</span> <span class="pre">=</span> <span class="pre">df['x'])</span></code>.</p>
 <p>There’s much to take in here, but the undeniable benefit is that what you have learnt now will prepare you to build beautiful, interactive and highly customizable figures that are also able to illustrate multiple dimensions of a dataset with often only one line of code.</p>
-</div>
-<div class="section" id="visualizing-multiple-dimensions-of-a-dataset">
-<h2>8.1.7 Visualizing multiple dimensions of a dataset<a class="headerlink" href="#visualizing-multiple-dimensions-of-a-dataset" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="visualizing-multiple-dimensions-of-a-dataset">
+<h2>8.1.7 Visualizing multiple dimensions of a dataset<a class="headerlink" href="#visualizing-multiple-dimensions-of-a-dataset" title="Permalink to this headline">#</a></h2>
 <p>Until now, we’ve only operated on a very simple dataset with made-up numbers. Let’s apply some more of what we’ve learnt in the chapter 7, and add another dimenson to the dataset. In that process, we will change the structure of our dataframe with <code class="docutils literal notranslate"><span class="pre">pd.melt()</span></code>. But first, let’s pretend that we’re looking at some data for two countries <code class="docutils literal notranslate"><span class="pre">[Canada,</span> <span class="pre">Norway]</span></code> instead of two meaningless variables <code class="docutils literal notranslate"><span class="pre">['x',</span> <span class="pre">'y']</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;year&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2021</span><span class="p">,</span><span class="mi">2022</span><span class="p">,</span><span class="mi">2023</span><span class="p">,</span><span class="mi">2024</span><span class="p">],</span>
                    <span class="s1">&#39;Canada&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">],</span>
@@ -912,9 +1017,9 @@ fig.show()
 </pre></div>
 </div>
 <p><a class="reference external" href="https://i.stack.imgur.com/N1uHD.png"><img alt="enter image description here" src="https://i.stack.imgur.com/N1uHD.png" /></a></p>
-</div>
-<div class="section" id="long-and-wide-data-format">
-<h2>8.1.7.1 Long and wide data format<a class="headerlink" href="#long-and-wide-data-format" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="long-and-wide-data-format">
+<h2>8.1.7.1 Long and wide data format<a class="headerlink" href="#long-and-wide-data-format" title="Permalink to this headline">#</a></h2>
 <p>This dataframe is of a so-called wide format with a unique index in the left-most column, unique column names, and associated values for each index in the belonging rows. If you were to add data for another country, you would do so by adding another column, and the dataset would have become <strong>wider</strong>. Hence the name.</p>
 <p>Plotly Express handles a dataset such as this with ease. But if we’d like to study and visualize more dimensions, like which continent each country belongs to, we’ll benefint greatly by transforming the dataset to a so-called long format. Now we’ll have duplicated values for the index, <em>one</em> column with country names, and one column for each new dimension in the dataset. If you were to add more countries with this format, you would have do so through adding more observations in the already existing columns. Thus the dataset would not have become wider, but <strong>longer</strong>.</p>
 <p>Running the following snippet will turn our new dataframe into the long dataframe <code class="docutils literal notranslate"><span class="pre">df_long</span></code> below:</p>
@@ -929,16 +1034,16 @@ fig.show()
 </div>
 <p>Now you no longer need to specify a list of names from a wide dataframe for <code class="docutils literal notranslate"><span class="pre">y</span></code> in <code class="docutils literal notranslate"><span class="pre">px.line()</span></code>. With this setup, the function recognizes that the input is a dataframe of a long format, and setting <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code> will let the function know that there are multiple unique values in that particular column to which a color cycle is assigned.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/VSCj0.png"><img alt="enter image description here" src="https://i.stack.imgur.com/VSCj0.png" /></a></p>
-</div>
-<div class="section" id="adding-another-dimension-to-a-dataframe-of-a-long-format">
-<h2>8.1.7.2 Adding another dimension to a dataframe of a long format<a class="headerlink" href="#adding-another-dimension-to-a-dataframe-of-a-long-format" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="adding-another-dimension-to-a-dataframe-of-a-long-format">
+<h2>8.1.7.2 Adding another dimension to a dataframe of a long format<a class="headerlink" href="#adding-another-dimension-to-a-dataframe-of-a-long-format" title="Permalink to this headline">#</a></h2>
 <p>From here we can add yet another dimension to the dataset through a new variable, <code class="docutils literal notranslate"><span class="pre">'continent'</span></code>, by mapping a dictionary to our already existing <code class="docutils literal notranslate"><span class="pre">'country'</span></code> column:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">df_long</span><span class="p">[</span><span class="s1">&#39;continent&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_long</span><span class="p">[</span><span class="s1">&#39;country&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Canada&#39;</span><span class="p">:</span> <span class="s1">&#39;Americas&#39;</span><span class="p">,</span> <span class="s1">&#39;Norway&#39;</span><span class="p">:</span><span class="s1">&#39;Europe&#39;</span><span class="p">})</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="recap">
-<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="recap">
+<h2>Recap<a class="headerlink" href="#recap" title="Permalink to this headline">#</a></h2>
 <p>By now you know the reasoning behind every part of:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df_long</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;country&#39;</span><span class="p">)</span>
 </pre></div>
@@ -951,9 +1056,9 @@ fig.show()
 <p>This works exactly the same way as <code class="docutils literal notranslate"><span class="pre">color</span> <span class="pre">=</span> <span class="pre">'country'</span></code>, but this time a symbol sequence is used to represent unique values of a dataframe column.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/xo5iL.png"><img alt="enter image description here" src="https://i.stack.imgur.com/xo5iL.png" /></a></p>
 <p>And this explains why <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> doesn’t assign symbols to markers by default; the function is simply waiting for you to make use of the multidimensional capabilites of the library.</p>
-</div>
-<div class="section" id="templates">
-<h2>8.1.8 Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="templates">
+<h2>8.1.8 Templates<a class="headerlink" href="#templates" title="Permalink to this headline">#</a></h2>
 <p>Our previous call to <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> is now only missing one element compared to the initial figure, the <code class="docutils literal notranslate"><span class="pre">template</span></code>. There we used <code class="docutils literal notranslate"><span class="pre">plotly_white</span></code>. Other available templates are:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;ggplot2&#39;</span><span class="p">,</span> <span class="s1">&#39;seaborn&#39;</span><span class="p">,</span> <span class="s1">&#39;simple_white&#39;</span><span class="p">,</span> <span class="s1">&#39;plotly&#39;</span><span class="p">,</span> <span class="s1">&#39;plotly_white&#39;</span><span class="p">,</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">,</span> <span class="s1">&#39;presentation&#39;</span><span class="p">,</span> <span class="s1">&#39;xgridoff&#39;</span><span class="p">,</span> <span class="s1">&#39;ygridoff&#39;</span><span class="p">,</span> <span class="s1">&#39;gridon&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">]</span>
 </pre></div>
@@ -962,13 +1067,13 @@ fig.show()
 <p><a class="reference external" href="https://i.stack.imgur.com/bGs6b.png"><img alt="enter image description here" src="https://i.stack.imgur.com/bGs6b.png" /></a></p>
 <p>Now that you’re able to master some of the basic powers of Plotly Express, we’ll soon move on to taking a look at how you can build other chart types than line charts and combine them with the template of your liking to create almost any chart with any design.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/uS3TP.png"><img alt="enter image description here" src="https://i.stack.imgur.com/uS3TP.png" /></a></p>
-</div>
+</section>
 <hr class="docutils" />
-<div class="section" id="ideas-for-the-next-section">
-<h2>IDEAS FOR THE NEXT SECTION:<a class="headerlink" href="#ideas-for-the-next-section" title="Permalink to this headline">¶</a></h2>
+<section id="ideas-for-the-next-section">
+<h2>IDEAS FOR THE NEXT SECTION:<a class="headerlink" href="#ideas-for-the-next-section" title="Permalink to this headline">#</a></h2>
 <p><a class="reference external" href="https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937">Plotly: How to make different plots using plotly?</a></p>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -992,34 +1097,40 @@ fig.show()
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
 <div class='prev-next-area'>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By Dash Community Ambassadors<br/>
-    
-      <div class="extra_footer">
-        <div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Dash Community Ambassadors<br/>
+  
+    <div class="extra_footer">
+      <div>
 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png"></a>
     All content on this site (unless otherwise specified) is licensed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0 license</a>
 </div>
 
-      </div>
-  </p>
-</footer>
-</main>
+    </div>
+</p>
+        </footer>
+    </div>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

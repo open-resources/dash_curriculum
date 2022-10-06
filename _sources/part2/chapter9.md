@@ -14,8 +14,8 @@ By the end of this chapter you will know how to build this app:
 ![data table with line plot](ch9_files/img/datatable_editing.gif)
 
 ````{dropdown} See the code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import libraries
@@ -122,8 +122,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![intro datatable](ch9_files/img/datatable_intro.png)
 ````
@@ -167,8 +167,8 @@ if __name__ == '__main__':
     app.run_server()
 ```
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![filtered datatable](ch9_files/img/datatable_filtered.png)
 ````
@@ -248,8 +248,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![data table with line plot](ch9_files/img/colum-select.gif)
 ````
@@ -329,8 +329,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![data table with line plot](ch9_files/img/datatable_editing.gif)
 ````
@@ -376,8 +376,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![data table sorting](ch9_files/img/sorting.gif)
 ````
@@ -439,8 +439,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![data table sorting](ch9_files/img/filtering.gif)
 
@@ -505,8 +505,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![delete columns](ch9_files/img/deletable_col.gif)
 
@@ -572,8 +572,8 @@ if __name__ == '__main__':
 ```
 
 ````{dropdown} See Table
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ![delete rows](ch9_files/img/deletable_row.gif)
 
@@ -583,8 +583,8 @@ if __name__ == '__main__':
 
 (1) Build an app composed by a title and a table. In terms of layout, the table should be wrapped in a `Col` component of `width = 6` and the table should show the following columns from the Gapminder dataset: `country, year, lifeExp, pop, gdpPercap`. The dataset should be filtered by `'continent'=='Americas'`. The table columns shuold be selectable (one column can be selected at the same time) and the native filtering option should be enabled.
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 from dash import Dash, dash_table, dcc
@@ -627,8 +627,8 @@ if __name__ == '__main__':
 
 (2) Based on the table created in the above exercise, complete the app with a line chart. The chart should be located in a new column, on the same row next to the table. The linechart should have years on the x-axis, one line per country and should show the selected column on the y-axis.
 ````{dropdown} See Solution
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 from dash import Dash, dash_table, dcc, Input, Output

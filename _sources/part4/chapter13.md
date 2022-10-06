@@ -18,8 +18,8 @@ Let's kick off with a simple app with a scatter plot that display the life expec
 
 
 ````{dropdown} See the code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages
@@ -146,8 +146,8 @@ The following app let's you compare the different durations for data loading whe
 ![comparing-performance](./ch13_files/webgl-vs-svg.gif)
 
 ````{dropdown} See the code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages
@@ -265,8 +265,8 @@ The following app let's you compare the different durations for data loading whe
 ![comparing-plotly-resampler](./ch13_files/webgl-svg-resampler.gif)
 
 ````{dropdown} See the code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```
 # Import packages
@@ -499,8 +499,8 @@ The following app shows the datashader in action. Use the code below to run it o
 ![datashader](./ch13_files/datashader-exp.gif)
 
 ````{dropdown} See the code
-    :class-container: sd-shadow-lg
-    :color: primary
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
   
 ```
 # Import packages
