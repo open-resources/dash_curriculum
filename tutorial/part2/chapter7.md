@@ -1,10 +1,19 @@
 # Chapter 7: Wrangling Data
 
 ## What you will learn
-`Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data that is useable in our dashbords.
+`Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will go over data cleaning and filtering techniques to prepare the data for use in our dashbords.
+
+```{admonition} What you will learn
+
+- common data exploration methods
+- How to clean data
+- How to filter data
+- Additional learning resources
+
+```
 
 ## 7.1 Exploring Data
-One of the most effective ways of exploring a data set is by using the pandas library. Pandas is an open source data analysis and manipulation tool, written in Python. Before you start, remember to `pip install pandas` in the terminal if you haven't done so yet. Now, let's learn a few common pandas functions for data exploration.
+One of the most effective ways of exploring a data set is by using the pandas library. Pandas is an open source data analysis and manipulation tool, written in Python. Before you start, remember to `pip install pandas` in the terminal if you haven't done so yet. Let's review a few common pandas functions for data exploration.
 
 ### Head
 Commonly, after the data is imported, you would use the [head](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html) command to see the top 5 rows of data:
@@ -140,10 +149,10 @@ print(raw_data.head())
 ![reset_index](./ch7_files/reset_index.png)
 
 ## 7.3 Filter Data
-Now that the data is clean, we can filter the data.
+In the next step of the data wrangling process, we will start filtering the data.
 
 ### Filter by value & astype
-Let's filter the data for temperatures over `18.5C`.  Notice that we need to use the Pandas method [`astype()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html) to use the `temp` data as `float` type data instead of `string` data. 
+Let's filter the data for temperatures over `18.5C`.  Notice that we need to use the pandas method [`astype()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html) to convert the `temp` column data to float type instead of the current string type. 
 
 ```python
 import pandas as pd
@@ -151,33 +160,53 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
 raw_data = pd.read_csv(url)
 
-print(raw_data.head())
-print(raw_data.shape)
-print(raw_data.info())
-print(raw_data.describe())
-
 raw_data.dropna(axis=0,inplace=True)
 
-print(raw_data.describe())
-
-for index, row in raw_data.iterrows():
+for index, col in raw_data.iterrows():
     try:
-        float(row[2]) # 'temp' column is index 2
+        float(col[2]) # 'temp' column is index 2
     except:
         raw_data.drop(index, axis=0, inplace=True)
 
-print(raw_data.head())
 raw_data.reset_index(drop=True, inplace=True)
-print(raw_data.head())
 
 print(raw_data.describe())
 fltr_df = raw_data[raw_data['temp'].astype(float) > 18.5]
 print(fltr_df.describe())
 ```
-![filter_by_value](./ch7_files/filter_by_value.png)
+
+![filter_by_value](./ch7_files/filter-value.png)
+
+The result is a new dataframe (`fltr_df`) with 73 rows where the `temp` data is bigger than 18.5
+
+### Multiple logical operators
+
+You might have noticed that the `temp` column has one row with the value of 300.2. This must be a mistake because temperatures on earth do not reach that level. Therefore, we should remove this row so it doesn't contaminate the data. We can use logic operators, such as the `&` (AND) or the `|` (OR), to apply multiple conditions on the `temp` column.
+
+```python
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
+raw_data = pd.read_csv(url)
+
+raw_data.dropna(axis=0,inplace=True)
+
+for index, col in raw_data.iterrows():
+    try:
+        float(col[2]) # 'temp' column is index 2
+    except:
+        raw_data.drop(index, axis=0, inplace=True)
+
+raw_data.reset_index(drop=True, inplace=True)
+
+fltr_df = raw_data[(raw_data['temp'].astype(float) > 18.5) & (raw_data['temp'].astype(float) < 50)]
+print(fltr_df.describe())
+```
+
+![the_logic_operators](./ch7_files/logic-operators.png)
 
 ### iloc
-The Pandas method [`iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html) is used to filter data by index value.  For example, if we wanted the first 20 values we could return that with:
+The Pandas method [`iloc`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html) is used to filter data by index value. For example, if we wanted to limit the dataframe to the first 20 values, we could do the following:
 
 ```python
 import pandas as pd
@@ -185,83 +214,30 @@ import pandas as pd
 url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
 raw_data = pd.read_csv(url)
 
-print(raw_data.head())
-print(raw_data.shape)
-print(raw_data.info())
-print(raw_data.describe())
-
 raw_data.dropna(axis=0,inplace=True)
 
-print(raw_data.describe())
-
-for index, row in raw_data.iterrows():
+for index, col in raw_data.iterrows():
     try:
-        float(row[2]) # 'temp' column is index 2
-    except:
-        raw_data.drop(index, axis=0, inplace=True)
-
-print(raw_data.head())
-raw_data.reset_index(drop=True, inplace=True)
-print(raw_data.head())
-
-print(raw_data.describe())
-fltr_df = raw_data[raw_data['temp'].astype(float) > 18.5]
-print(fltr_df.describe())
-
-first_20 = raw_data.iloc[:20]
-print(first_20.describe())
-```
-![first 20 values](./ch7_files/first_20.png)
-
-
-## 7.4 Concatenate
-Let's say we new temperature data to import and analyze. We'll use the [`concat`](https://pandas.pydata.org/docs/reference/api/pandas.concat.html) method.
-
-```python
-import pandas as pd
-
-url = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv'
-raw_data = pd.read_csv(url)
-raw_data.dropna(axis=0,inplace=True)
-
-for index, row in raw_data.iterrows():
-    try:
-        float(row[2]) # 'temp' column is index 2
+        float(col[2]) # 'temp' column is index 2
     except:
         raw_data.drop(index, axis=0, inplace=True)
 
 raw_data.reset_index(drop=True, inplace=True)
 
-# Import the 2nd data set
-url2 = 'https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data_2.csv'
-raw_data2 = pd.read_csv(url)
-raw_data2.dropna(axis=0,inplace=True)
+fltr_df = raw_data[(raw_data['temp'].astype(float) > 18.5) & (raw_data['temp'].astype(float) < 50)]
 
-for index, row in raw_data2.iterrows():
-    try:
-        float(row[2]) # 'temp' column is index 2
-    except:
-        raw_data2.drop(index, axis=0, inplace=True)
-
-raw_data2.reset_index(drop=True, inplace=True)
-
-print(raw_data.head())
-print(raw_data2.head())
-
-concat_df = pd.concat([raw_data, raw_data2])
-print(concat_df)
+first_20 = fltr_df.iloc[:20]
+print(first_20.shape)
 ```
+![first 20 values](./ch7_files/first-20.png)
 
-## 7.5 Other Resources
+## 7.4 Other Resources
 
-[Pandas](https://pandas.pydata.org/) is a data analysis and manipulation library
+The pandas features we chose to highlight in this chapter should be enough to help you start building Dash apps. Nonetheless, if you would like to explore the many other features pandas has to offer, we've added a few resources we found helpful.
 
-### Links to use for Pandas data wrangling
-- https://towardsdatascience.com/data-wrangling-using-pandas-library-ae26f8bbbdd2
+- https://pandas.pydata.org/docs/user_guide/index.html
 - https://towardsdatascience.com/7-must-know-data-wrangling-operations-with-python-pandas-849438a90d15
 - https://realpython.com/python-data-cleaning-numpy-pandas/
-- https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c
-- https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404
 
 ## Summary
-In this chapter we learned to explore, clean, and filter data.  These techniques are important to real-world data analysis.
+In this chapter we learned to explore, clean, and filter data to prepare it for use in Dash app. In the next chapter, we'll dive into data visualization with the Plotly Express library.
