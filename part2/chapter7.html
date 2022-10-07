@@ -416,6 +416,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-logical-operators">
+     Multiple logical operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#iloc">
      iloc
     </a>
@@ -423,21 +428,9 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#concatenate">
-   7.4 Concatenate
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-resources">
-   7.5 Other Resources
+   7.4 Other Resources
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#links-to-use-for-pandas-data-wrangling">
-     Links to use for Pandas data wrangling
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -529,6 +522,11 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-logical-operators">
+     Multiple logical operators
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#iloc">
      iloc
     </a>
@@ -536,21 +534,9 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#concatenate">
-   7.4 Concatenate
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#other-resources">
-   7.5 Other Resources
+   7.4 Other Resources
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#links-to-use-for-pandas-data-wrangling">
-     Links to use for Pandas data wrangling
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -570,11 +556,20 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 7: Wrangling Data<a class="headerlink" href="#chapter-7-wrangling-data" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">wrangling</span></code> is the processing of <code class="docutils literal notranslate"><span class="pre">raw</span></code> data into a useable form. In this chapter we will explore data cleaning and filtering techniques to produce data that is useable in our dashbords.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">wrangling</span></code> is the processing of <code class="docutils literal notranslate"><span class="pre">raw</span></code> data into a useable form. In this chapter we will go over data cleaning and filtering techniques to prepare the data for use in our dashbords.</p>
+<div class="admonition-what-you-will-learn admonition">
+<p class="admonition-title">What you will learn</p>
+<ul class="simple">
+<li><p>common data exploration methods</p></li>
+<li><p>How to clean data</p></li>
+<li><p>How to filter data</p></li>
+<li><p>Additional learning resources</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="exploring-data">
 <h2>7.1 Exploring Data<a class="headerlink" href="#exploring-data" title="Permalink to this headline">¶</a></h2>
-<p>One of the most effective ways of exploring a data set is by using the pandas library. Pandas is an open source data analysis and manipulation tool, written in Python. Before you start, remember to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas</span></code> in the terminal if you haven’t done so yet. Now, let’s learn a few common pandas functions for data exploration.</p>
+<p>One of the most effective ways of exploring a data set is by using the pandas library. Pandas is an open source data analysis and manipulation tool, written in Python. Before you start, remember to <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas</span></code> in the terminal if you haven’t done so yet. Let’s review a few common pandas functions for data exploration.</p>
 <div class="section" id="head">
 <h3>Head<a class="headerlink" href="#head" title="Permalink to this headline">¶</a></h3>
 <p>Commonly, after the data is imported, you would use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">head</a> command to see the top 5 rows of data:</p>
@@ -710,134 +705,96 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="filter-data">
 <h2>7.3 Filter Data<a class="headerlink" href="#filter-data" title="Permalink to this headline">¶</a></h2>
-<p>Now that the data is clean, we can filter the data.</p>
+<p>In the next step of the data wrangling process, we will start filtering the data.</p>
 <div class="section" id="filter-by-value-astype">
 <h3>Filter by value &amp; astype<a class="headerlink" href="#filter-by-value-astype" title="Permalink to this headline">¶</a></h3>
-<p>Let’s filter the data for temperatures over <code class="docutils literal notranslate"><span class="pre">18.5C</span></code>.  Notice that we need to use the Pandas method <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html"><code class="docutils literal notranslate"><span class="pre">astype()</span></code></a> to use the <code class="docutils literal notranslate"><span class="pre">temp</span></code> data as <code class="docutils literal notranslate"><span class="pre">float</span></code> type data instead of <code class="docutils literal notranslate"><span class="pre">string</span></code> data.</p>
+<p>Let’s filter the data for temperatures over <code class="docutils literal notranslate"><span class="pre">18.5C</span></code>.  Notice that we need to use the pandas method <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html"><code class="docutils literal notranslate"><span class="pre">astype()</span></code></a> to convert the <code class="docutils literal notranslate"><span class="pre">temp</span></code> column data to float type instead of the current string type.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
 <span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 <span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 <span class="n">fltr_df</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">18.5</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fltr_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
 </pre></div>
 </div>
-<p><img alt="filter_by_value" src="part2/ch7_files/filter_by_value.png" /></p>
+<p><img alt="filter_by_value" src="../_images/filter-value.png" /></p>
+<p>The result is a new dataframe (<code class="docutils literal notranslate"><span class="pre">fltr_df</span></code>) with 73 rows where the <code class="docutils literal notranslate"><span class="pre">temp</span></code> data is bigger than 18.5</p>
+</div>
+<div class="section" id="multiple-logical-operators">
+<h3>Multiple logical operators<a class="headerlink" href="#multiple-logical-operators" title="Permalink to this headline">¶</a></h3>
+<p>You might have noticed that the <code class="docutils literal notranslate"><span class="pre">temp</span></code> column has one row with the value of 300.2. This must be a mistake because temperatures on earth do not reach that level. Therefore, we should remove this row so it doesn’t contaminate the data. We can use logic operators, such as the <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> (AND) or the <code class="docutils literal notranslate"><span class="pre">|</span></code> (OR), to apply multiple conditions on the <code class="docutils literal notranslate"><span class="pre">temp</span></code> column.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
+<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">fltr_df</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">18.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">)]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fltr_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+<p><img alt="the_logic_operators" src="../_images/logic-operators.png" /></p>
 </div>
 <div class="section" id="iloc">
 <h3>iloc<a class="headerlink" href="#iloc" title="Permalink to this headline">¶</a></h3>
-<p>The Pandas method <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html"><code class="docutils literal notranslate"><span class="pre">iloc</span></code></a> is used to filter data by index value.  For example, if we wanted the first 20 values we could return that with:</p>
+<p>The Pandas method <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html"><code class="docutils literal notranslate"><span class="pre">iloc</span></code></a> is used to filter data by index value. For example, if we wanted to limit the dataframe to the first 20 values, we could do the following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
 <span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
 <span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-<span class="n">fltr_df</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">18.5</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">fltr_df</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-
-<span class="n">first_20</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">first_20</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
-</pre></div>
-</div>
-<p><img alt="first 20 values" src="part2/ch7_files/first_20.png" /></p>
-</div>
-</div>
-<div class="section" id="concatenate">
-<h2>7.4 Concatenate<a class="headerlink" href="#concatenate" title="Permalink to this headline">¶</a></h2>
-<p>Let’s say we new temperature data to import and analyze. We’ll use the <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.concat.html"><code class="docutils literal notranslate"><span class="pre">concat</span></code></a> method.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data.csv&#39;</span>
-<span class="n">raw_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">raw_data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">col</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="n">raw_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">raw_data</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Import the 2nd data set</span>
-<span class="n">url2</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part2/ch7_files/temp_data_2.csv&#39;</span>
-<span class="n">raw_data2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="n">raw_data2</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fltr_df</span> <span class="o">=</span> <span class="n">raw_data</span><span class="p">[(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">18.5</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">raw_data</span><span class="p">[</span><span class="s1">&#39;temp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">)]</span>
 
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">raw_data2</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># &#39;temp&#39; column is index 2</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="n">raw_data2</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">raw_data2</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">raw_data2</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
-
-<span class="n">concat_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">raw_data2</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">concat_df</span><span class="p">)</span>
+<span class="n">first_20</span> <span class="o">=</span> <span class="n">fltr_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">20</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">first_20</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </pre></div>
+</div>
+<p><img alt="first 20 values" src="../_images/first-20.png" /></p>
 </div>
 </div>
 <div class="section" id="other-resources">
-<h2>7.5 Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://pandas.pydata.org/">Pandas</a> is a data analysis and manipulation library</p>
-<div class="section" id="links-to-use-for-pandas-data-wrangling">
-<h3>Links to use for Pandas data wrangling<a class="headerlink" href="#links-to-use-for-pandas-data-wrangling" title="Permalink to this headline">¶</a></h3>
+<h2>7.4 Other Resources<a class="headerlink" href="#other-resources" title="Permalink to this headline">¶</a></h2>
+<p>The pandas features we chose to highlight in this chapter should be enough to help you start building Dash apps. Nonetheless, if you would like to explore the many other features pandas has to offer, we’ve added a few resources we found helpful.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://towardsdatascience.com/data-wrangling-using-pandas-library-ae26f8bbbdd2">https://towardsdatascience.com/data-wrangling-using-pandas-library-ae26f8bbbdd2</a></p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/user_guide/index.html">https://pandas.pydata.org/docs/user_guide/index.html</a></p></li>
 <li><p><a class="reference external" href="https://towardsdatascience.com/7-must-know-data-wrangling-operations-with-python-pandas-849438a90d15">https://towardsdatascience.com/7-must-know-data-wrangling-operations-with-python-pandas-849438a90d15</a></p></li>
 <li><p><a class="reference external" href="https://realpython.com/python-data-cleaning-numpy-pandas/">https://realpython.com/python-data-cleaning-numpy-pandas/</a></p></li>
-<li><p><a class="reference external" href="https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c">https://betterprogramming.pub/data-wrangling-with-pandas-57f7f72fe73c</a></p></li>
-<li><p><a class="reference external" href="https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404">https://medium.com/database-laboratory/data-cleaning-with-pandas-f8f869f63404</a></p></li>
 </ul>
-</div>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter we learned to explore, clean, and filter data.  These techniques are important to real-world data analysis.</p>
+<p>In this chapter we learned to explore, clean, and filter data to prepare it for use in Dash app. In the next chapter, we’ll dive into data visualization with the Plotly Express library.</p>
 </div>
 </div>
 
