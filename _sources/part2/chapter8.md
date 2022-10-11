@@ -1,31 +1,30 @@
 # Chapter 8: Data Visualization
 
-In this chapter we will learn to use the Plotly graphing library given that it is the leading Python library for data visualization. 
+This chapter will introduce you to the powers of Plotly Express and support you in making the most commonly used visualizations. Plotly Express charts both look good and offer means of effective visualizations right out of the box. Nonetheless, you will learn how to make your own changes to chart themes and layouts. 
 
 ```{admonition} What you will learn
 
 - Principles of Effective Visualizations
 - How to incorporate a Plotly Figure Object in a Dash App
-- The power behind of Plotly Express
+- The power behind Plotly Express
 - How to create common Plotly chart types
 
 ```
 ## 8.1 Principles of effective visualizations
 
+No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and converys a clear message. Below you will learn a few important principles to keep in mind when building your visualizations. 
 
-Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualization you want. We will argue that Plotly Express charts both look good and offer means of effective visualizations right out of the box. But you will also learn how to make your own changes to themes and layouts. 
+### 8.1.1 Message first, visualization decoration second
 
-### 8.1.1 Message first, visualization second / Focus on the data, not the decoration
+With the power of this flexibiity at your hands, you should know that making effective data visualizations is all about storytelling, conveying a message, and *not* trying to make good looking pictures. You can and have it both ways with Plotly graphs; however, what is *good looking* will always be subject to individual preferences. So focus on the data and the message it can tell, not the decoration of the graphs.
 
-With the power of this flexibiity at your hands, you should keep in mind that making effective data visualizations is all about storytelling and / or conveying a message, and *not* making good looking pictures. As already stated, you can and have it both ways with Plotly. However, what is *good looking* will always be subject to individual preferences. Nevertheless, there are a few principles that will let you get your messages through to any recipient regardless of their preferences
+###  8.1.2 Shaffer's Four C's
 
-###  8.1.2 Shaffer's four C's
-
-People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be `clear`, `clean`, `concise` and `captivating`. These are the so-called Shaffer's four **`C`**'s of data visualization.
+People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualization. To achieve this, your charts and figures should be `clear`, `clean`, `concise` and `captivating`. These are the so-called Shaffer's Four C's of data visualization.
 
 ```{admonition}Shaffer's 4 C's of data visualization
 
-1) `Clear -  easily seen; sharply defined`
+1) `Clear - easily seen; sharply defined`
     - who's the audience? What's the message?
     - clarity more important than aesthetics
 2) `Clean - thorough, complete, unadulterated`
@@ -41,77 +40,23 @@ People are generally very good at detecting patterns and structures with their e
 
 ###  8.1.3 Data ink and chart junk
 
-Whether or not your visualizations are `clear` and `captivating` will depend heavily on your actual data, message and audience. These factors will vary from case to case ans is not particularly suited for an introductory chapter on general principles for data visualization. What we will rather touch upon here are some elements of Shaffers `Clean` and `Concise` principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on `Chart junk` and `data-ink`. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. `Data-ink` is the non-erasable core of the a graphic, while `non-data-ink` can easily be regarded as redundant `chart junk`. So when you're designing your visualizations, you should strive for a high ratio between `data-ink` and `chart junk`. This will help you focus on the message and not the picture your audience is resting their eyes on.
+A pioneer in the field of data visualization, Eward Tufte's principles on `chart junk` and `data-ink` have their origin back in a time when the use of actual ink on a page was an issue. But that does not make them less relevant today. On the contrary, Tufte argues that a large share of ink on a graphic should present actual information about the underlying data. `Data-ink` is the non-erasable core of the a graphic, while `non-data-ink` can easily be regarded as redundant `chart junk`. When you're designing your visualizations, strive to tell a story through `data-ink`, minimizing the `chart junk`. 
 
+**Example of how to avoid chart junk:**
 
 ```{admonition}Examples of chart junk
-1) `Borders` can be reduced
-2) `Gridlines` can be removed. Single X and Y axes are often enough.
-3) `Fill colors` should be avoided when separating sections, titles, tablse and charts. `White space` is better.
-4) `Gradient fills` should be avoided. Solid colors are easier on the eye.
-5) `3D effects` can easily get confusing.
-6) More!?!
-
+1) Borders can be reduced
+2) Gridlines can be removed. Single X and Y axes are often enough.
+3) Fill colors should be avoided when separating sections, titles, tablse and charts. `White space` is better.
+4) Gradient fills should be avoided. Solid colors are easier on the eye.
+5) 3D effects can easily get confusing.
+6) Legends should be brief and concise. 
 ```
 
-### 8.1.4 Concise
-
-Conciseness is all about making it easy to understand the content and message of the visualization.
-For long time series, it may be useful to summarize or resample datasets from yearly to monthly. If your point is to show changes in values over time, it's often useful to index different series of different sizes to an index with 100 as a common staring point. If you do decide to wrangle the data in any way, make sure to not obscure or misrepresent your data in any way. One example is to use ranges or curoffs of your figure axes that give a skewed impression. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - data that you do not have the proper rights to share. Always cite your sources, for example through a label in the bottom right corner.
-
-Regarding other labels, always try to describe your data and axes properly. Many will suggest that you should label your data directly on particularly interestring data points, and not indirectly using a `legend`. While the former is often a good idea, the latter is not very fitting for Plotly figures that have got nice interactive capabilites connected to the legend. But do consider making your legend as brief and concise as possible. Instead of `Country = Jemen, Country = Japan, Country = Korea`, apply `Country` as a legend title and then list `Jemen, Japan , Korea`.
-
-
-We often see that some chose to apply different colors to labels and titles. This is rarely necessary as they mostly have different positoins, orientations or even font sizes to differentiate them rather than throug color. The next subchapter will focus on how colors should be used to `differentiate data values or categories` and not different decorating elements of your charts.
-
-### 8.1.5 Colors
-
-The choice and use of colors play a major in data visualization, and is also subject for an array of books and research. Here, we will only focus on what we consider to be most important.
-
-When it comes to color themes, scales and color composition Plotly Express already has an array of palettes available. You can study them [here](https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express). You should know that different scales are used differently for two different types aof data, continous and discrete. A A typiocal example of continuos data are temperature, and...? Categorical data such as country and continent names serve as good examples for categorical data. Regardless of data types, the scales that Plotly Express uses have been carefully put together on the background of color theory to make them harmonize and look good together (bold statement? Maybe a citation of sorts?). But again, although Plotly Express makes things easy for you, there are a few things you should keep in mind here too.
-
-First of all, unless the colors you apply are a part of a reocurring theme, varying colors *should* reflect varying values or categories. Again, consider the earlier mentioned arguments regarding data ink. You should also keep in mind that colors have different meanings for alle people, and that some are colorblind which. Combining a greyscale with different symbols for, for example bars or lines, can more often that not be a good idea. If you combine a greyscale with only one or two colors on top, you'll very likely produce a very effective visualizations. Take a look at the gif below and see if you agree with some of the choices we've made there. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide the look and feel of your Plotly figures for yourself!
-
-
-Figure 3 - Some principles of effective data visualization
+Take a look at the gif below to see how we clean the graph and reduce chart junk.
 
 [![enter image description here][1]][1]
 
-
-
-```{warning}
-# Not actually a warning but a placeholder for cut-outs
-
-How these principles are applied will depend on the message and purpose of your visualizations.
-Some reoccuring purposes are:
-
-1) understand distribution and composition of data
-2) explore changes in and between data categories over time
-3) Examine relationships between two or more variables
-
-No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and makes the message clear. Here, the key often lies in choosing the most appropriate visualization type, of which the most common include tables, line graphs, scatter plots, bubble charts, bar charts, histograms, box plots, and heatmaps. Unique visualization types, such as timeline or treemaps, may also effectively communicate your data while captivating audience interest. You will learn more about these in chapter `8.3` and `8.4`. But before we get to that, let's take a closer look at the other C's; `clean`, `concise` and `cite` by visualizing some data from the stock market. 
-
-The message we'll try to convey is that, in a volatile market, the values two different companies C and E experienced two very different developments . `C` has an unfortunate start but comes out on top, while the opposite is true for `E`.
-
-```
-
-Resources:
-
-Tufte:
-
-https://www.youtube.com/watch?v=zObrKaahU_U&ab_channel=TheEventfulGroup
-
-Effective visualizations:
-
-https://ikigailabs.medium.com/8-tips-for-creating-engaging-data-visualizations-6d26c2e0b408
-
-Shaffers 4 C's of visualization:
-
-https://www.dataplusscience.com/files/The%20Shaffer%204%20C's%20of%20Data%20Visualization.pdf
-
-5 Eye-Tracking Discoveries for OPTIMAL Chart Design - Do you use these?
-
-https://www.youtube.com/watch?v=wc_caViJGQg&ab_channel=LeilaGharani
 
 ## 8.2 Plotly Figures inside Dash apps
 

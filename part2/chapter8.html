@@ -362,13 +362,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration">
-       8.1.1 Message first, visualization second / Focus on the data, not the decoration
+      <a class="reference internal nav-link" href="#message-first-visualization-decoration-second">
+       8.1.1 Message first, visualization decoration second
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#shaffer-s-four-c-s">
-       8.1.2 Shaffer’s four C’s
+       8.1.2 Shaffer’s Four C’s
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
@@ -376,25 +376,8 @@ const thebe_selector_output = ".output, .cell_output"
        8.1.3 Data ink and chart junk
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#concise">
-       8.1.4 Concise
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#colors">
-       8.1.5 Colors
-      </a>
-     </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#not-actually-a-warning-but-a-placeholder-for-cut-outs">
-   Not actually a warning but a placeholder for cut-outs
-  </a>
-  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotly-figures-inside-dash-apps">
      8.2 Plotly Figures inside Dash apps
@@ -554,13 +537,13 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration">
-       8.1.1 Message first, visualization second / Focus on the data, not the decoration
+      <a class="reference internal nav-link" href="#message-first-visualization-decoration-second">
+       8.1.1 Message first, visualization decoration second
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
       <a class="reference internal nav-link" href="#shaffer-s-four-c-s">
-       8.1.2 Shaffer’s four C’s
+       8.1.2 Shaffer’s Four C’s
       </a>
      </li>
      <li class="toc-h3 nav-item toc-entry">
@@ -568,25 +551,8 @@ const thebe_selector_output = ".output, .cell_output"
        8.1.3 Data ink and chart junk
       </a>
      </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#concise">
-       8.1.4 Concise
-      </a>
-     </li>
-     <li class="toc-h3 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#colors">
-       8.1.5 Colors
-      </a>
-     </li>
     </ul>
    </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#not-actually-a-warning-but-a-placeholder-for-cut-outs">
-   Not actually a warning but a placeholder for cut-outs
-  </a>
-  <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#plotly-figures-inside-dash-apps">
      8.2 Plotly Figures inside Dash apps
@@ -726,28 +692,28 @@ const thebe_selector_output = ".output, .cell_output"
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-8-data-visualization">
 <h1>Chapter 8: Data Visualization<a class="headerlink" href="#chapter-8-data-visualization" title="Permalink to this headline">¶</a></h1>
-<p>In this chapter we will learn to use the Plotly graphing library given that it is the leading Python library for data visualization.</p>
+<p>This chapter will introduce you to the powers of Plotly Express and support you in making the most commonly used visualizations. Plotly Express charts both look good and offer means of effective visualizations right out of the box. Nonetheless, you will learn how to make your own changes to chart themes and layouts.</p>
 <div class="admonition-what-you-will-learn admonition">
 <p class="admonition-title">What you will learn</p>
 <ul class="simple">
 <li><p>Principles of Effective Visualizations</p></li>
 <li><p>How to incorporate a Plotly Figure Object in a Dash App</p></li>
-<li><p>The power behind of Plotly Express</p></li>
+<li><p>The power behind Plotly Express</p></li>
 <li><p>How to create common Plotly chart types</p></li>
 </ul>
 </div>
 <div class="section" id="principles-of-effective-visualizations">
 <h2>8.1 Principles of effective visualizations<a class="headerlink" href="#principles-of-effective-visualizations" title="Permalink to this headline">¶</a></h2>
-<p>Chapter 8 will introduce you to the powers of Plotly Express and start your journey towards making almost any visualization you want. We will argue that Plotly Express charts both look good and offer means of effective visualizations right out of the box. But you will also learn how to make your own changes to themes and layouts.</p>
-<div class="section" id="message-first-visualization-second-focus-on-the-data-not-the-decoration">
-<h3>8.1.1 Message first, visualization second / Focus on the data, not the decoration<a class="headerlink" href="#message-first-visualization-second-focus-on-the-data-not-the-decoration" title="Permalink to this headline">¶</a></h3>
-<p>With the power of this flexibiity at your hands, you should keep in mind that making effective data visualizations is all about storytelling and / or conveying a message, and <em>not</em> making good looking pictures. As already stated, you can and have it both ways with Plotly. However, what is <em>good looking</em> will always be subject to individual preferences. Nevertheless, there are a few principles that will let you get your messages through to any recipient regardless of their preferences</p>
+<p>No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and converys a clear message. Below you will learn a few important principles to keep in mind when building your visualizations.</p>
+<div class="section" id="message-first-visualization-decoration-second">
+<h3>8.1.1 Message first, visualization decoration second<a class="headerlink" href="#message-first-visualization-decoration-second" title="Permalink to this headline">¶</a></h3>
+<p>With the power of this flexibiity at your hands, you should know that making effective data visualizations is all about storytelling, conveying a message, and <em>not</em> trying to make good looking pictures. You can and have it both ways with Plotly graphs; however, what is <em>good looking</em> will always be subject to individual preferences. So focus on the data and the message it can tell, not the decoration of the graphs.</p>
 </div>
 <div class="section" id="shaffer-s-four-c-s">
-<h3>8.1.2 Shaffer’s four C’s<a class="headerlink" href="#shaffer-s-four-c-s" title="Permalink to this headline">¶</a></h3>
-<p>People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualizations. To achieve this, your charts and figures should be <code class="docutils literal notranslate"><span class="pre">clear</span></code>, <code class="docutils literal notranslate"><span class="pre">clean</span></code>, <code class="docutils literal notranslate"><span class="pre">concise</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code>. These are the so-called Shaffer’s four <strong><code class="docutils literal notranslate"><span class="pre">C</span></code></strong>’s of data visualization.</p>
+<h3>8.1.2 Shaffer’s Four C’s<a class="headerlink" href="#shaffer-s-four-c-s" title="Permalink to this headline">¶</a></h3>
+<p>People are generally very good at detecting patterns and structures with their eyes. People are also easily distracted. So as a rule of thumb, your audience should be able to get the message within the first 5 seconds of studying your visualization. To achieve this, your charts and figures should be <code class="docutils literal notranslate"><span class="pre">clear</span></code>, <code class="docutils literal notranslate"><span class="pre">clean</span></code>, <code class="docutils literal notranslate"><span class="pre">concise</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code>. These are the so-called Shaffer’s Four C’s of data visualization.</p>
 <div class="highlight-{admonition}Shaffer's notranslate"><div class="highlight"><pre><span></span>
-1) `Clear -  easily seen; sharply defined`
+1) `Clear - easily seen; sharply defined`
     - who&#39;s the audience? What&#39;s the message?
     - clarity more important than aesthetics
 2) `Clean - thorough, complete, unadulterated`
@@ -764,57 +730,20 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="data-ink-and-chart-junk">
 <h3>8.1.3 Data ink and chart junk<a class="headerlink" href="#data-ink-and-chart-junk" title="Permalink to this headline">¶</a></h3>
-<p>Whether or not your visualizations are <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">captivating</span></code> will depend heavily on your actual data, message and audience. These factors will vary from case to case ans is not particularly suited for an introductory chapter on general principles for data visualization. What we will rather touch upon here are some elements of Shaffers <code class="docutils literal notranslate"><span class="pre">Clean</span></code> and <code class="docutils literal notranslate"><span class="pre">Concise</span></code> principles, and apply them in light of another invaluable resource on quantitative visualization; Eward Tufte and his principles on <code class="docutils literal notranslate"><span class="pre">Chart</span> <span class="pre">junk</span></code> and <code class="docutils literal notranslate"><span class="pre">data-ink</span></code>. These principlies have their origin back in a time when the use of actual ink on a page was an issue, but that does not make them less relevant today. On the contrary. He argues that a large share of ink on a graphic should present actual information about the underlying data. <code class="docutils literal notranslate"><span class="pre">Data-ink</span></code> is the non-erasable core of the a graphic, while <code class="docutils literal notranslate"><span class="pre">non-data-ink</span></code> can easily be regarded as redundant <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. So when you’re designing your visualizations, you should strive for a high ratio between <code class="docutils literal notranslate"><span class="pre">data-ink</span></code> and <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. This will help you focus on the message and not the picture your audience is resting their eyes on.</p>
-<div class="highlight-{admonition}Examples notranslate"><div class="highlight"><pre><span></span>1) `Borders` can be reduced
-2) `Gridlines` can be removed. Single X and Y axes are often enough.
-3) `Fill colors` should be avoided when separating sections, titles, tablse and charts. `White space` is better.
-4) `Gradient fills` should be avoided. Solid colors are easier on the eye.
-5) `3D effects` can easily get confusing.
-6) More!?!
-
+<p>A pioneer in the field of data visualization, Eward Tufte’s principles on <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code> and <code class="docutils literal notranslate"><span class="pre">data-ink</span></code> have their origin back in a time when the use of actual ink on a page was an issue. But that does not make them less relevant today. On the contrary, Tufte argues that a large share of ink on a graphic should present actual information about the underlying data. <code class="docutils literal notranslate"><span class="pre">Data-ink</span></code> is the non-erasable core of the a graphic, while <code class="docutils literal notranslate"><span class="pre">non-data-ink</span></code> can easily be regarded as redundant <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>. When you’re designing your visualizations, strive to tell a story through <code class="docutils literal notranslate"><span class="pre">data-ink</span></code>, minimizing the <code class="docutils literal notranslate"><span class="pre">chart</span> <span class="pre">junk</span></code>.</p>
+<p><strong>Example of how to avoid chart junk:</strong></p>
+<div class="highlight-{admonition}Examples notranslate"><div class="highlight"><pre><span></span>1) Borders can be reduced
+2) Gridlines can be removed. Single X and Y axes are often enough.
+3) Fill colors should be avoided when separating sections, titles, tablse and charts. `White space` is better.
+4) Gradient fills should be avoided. Solid colors are easier on the eye.
+5) 3D effects can easily get confusing.
+6) Legends should be brief and concise. 
 </pre></div>
 </div>
-</div>
-<div class="section" id="concise">
-<h3>8.1.4 Concise<a class="headerlink" href="#concise" title="Permalink to this headline">¶</a></h3>
-<p>Conciseness is all about making it easy to understand the content and message of the visualization.
-For long time series, it may be useful to summarize or resample datasets from yearly to monthly. If your point is to show changes in values over time, it’s often useful to index different series of different sizes to an index with 100 as a common staring point. If you do decide to wrangle the data in any way, make sure to not obscure or misrepresent your data in any way. One example is to use ranges or curoffs of your figure axes that give a skewed impression. And this may be self-explanatory, but do not use erronus or false data. Or worse yet - data that you do not have the proper rights to share. Always cite your sources, for example through a label in the bottom right corner.</p>
-<p>Regarding other labels, always try to describe your data and axes properly. Many will suggest that you should label your data directly on particularly interestring data points, and not indirectly using a <code class="docutils literal notranslate"><span class="pre">legend</span></code>. While the former is often a good idea, the latter is not very fitting for Plotly figures that have got nice interactive capabilites connected to the legend. But do consider making your legend as brief and concise as possible. Instead of <code class="docutils literal notranslate"><span class="pre">Country</span> <span class="pre">=</span> <span class="pre">Jemen,</span> <span class="pre">Country</span> <span class="pre">=</span> <span class="pre">Japan,</span> <span class="pre">Country</span> <span class="pre">=</span> <span class="pre">Korea</span></code>, apply <code class="docutils literal notranslate"><span class="pre">Country</span></code> as a legend title and then list <code class="docutils literal notranslate"><span class="pre">Jemen,</span> <span class="pre">Japan</span> <span class="pre">,</span> <span class="pre">Korea</span></code>.</p>
-<p>We often see that some chose to apply different colors to labels and titles. This is rarely necessary as they mostly have different positoins, orientations or even font sizes to differentiate them rather than throug color. The next subchapter will focus on how colors should be used to <code class="docutils literal notranslate"><span class="pre">differentiate</span> <span class="pre">data</span> <span class="pre">values</span> <span class="pre">or</span> <span class="pre">categories</span></code> and not different decorating elements of your charts.</p>
-</div>
-<div class="section" id="colors">
-<h3>8.1.5 Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
-<p>The choice and use of colors play a major in data visualization, and is also subject for an array of books and research. Here, we will only focus on what we consider to be most important.</p>
-<p>When it comes to color themes, scales and color composition Plotly Express already has an array of palettes available. You can study them <a class="reference external" href="https://plotly.com/python/discrete-color/#color-sequences-in-plotly-express">here</a>. You should know that different scales are used differently for two different types aof data, continous and discrete. A A typiocal example of continuos data are temperature, and…? Categorical data such as country and continent names serve as good examples for categorical data. Regardless of data types, the scales that Plotly Express uses have been carefully put together on the background of color theory to make them harmonize and look good together (bold statement? Maybe a citation of sorts?). But again, although Plotly Express makes things easy for you, there are a few things you should keep in mind here too.</p>
-<p>First of all, unless the colors you apply are a part of a reocurring theme, varying colors <em>should</em> reflect varying values or categories. Again, consider the earlier mentioned arguments regarding data ink. You should also keep in mind that colors have different meanings for alle people, and that some are colorblind which. Combining a greyscale with different symbols for, for example bars or lines, can more often that not be a good idea. If you combine a greyscale with only one or two colors on top, you’ll very likely produce a very effective visualizations. Take a look at the gif below and see if you agree with some of the choices we’ve made there. Perhaps the last image is a bit too much? After reading the rest of chapter 8, you will be able to decide the look and feel of your Plotly figures for yourself!</p>
-<p>Figure 3 - Some principles of effective data visualization</p>
+<p>Take a look at the gif below to see how we clean the graph and reduce chart junk.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/Vtuc9.gif"><img alt="enter image description here" src="https://i.stack.imgur.com/Vtuc9.gif" /></a></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-</div>
-<p>Resources:</p>
-<p>Tufte:</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=zObrKaahU_U&amp;ab_channel=TheEventfulGroup">https://www.youtube.com/watch?v=zObrKaahU_U&amp;ab_channel=TheEventfulGroup</a></p>
-<p>Effective visualizations:</p>
-<p><a class="reference external" href="https://ikigailabs.medium.com/8-tips-for-creating-engaging-data-visualizations-6d26c2e0b408">https://ikigailabs.medium.com/8-tips-for-creating-engaging-data-visualizations-6d26c2e0b408</a></p>
-<p>Shaffers 4 C’s of visualization:</p>
-<p><a class="reference external" href="https://www.dataplusscience.com/files/The%20Shaffer%204%20C%27s%20of%20Data%20Visualization.pdf">https://www.dataplusscience.com/files/The Shaffer 4 C’s of Data Visualization.pdf</a></p>
-<p>5 Eye-Tracking Discoveries for OPTIMAL Chart Design - Do you use these?</p>
-<p><a class="reference external" href="https://www.youtube.com/watch?v=wc_caViJGQg&amp;ab_channel=LeilaGharani">https://www.youtube.com/watch?v=wc_caViJGQg&amp;ab_channel=LeilaGharani</a></p>
 </div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="not-actually-a-warning-but-a-placeholder-for-cut-outs">
-<h1>Not actually a warning but a placeholder for cut-outs<a class="headerlink" href="#not-actually-a-warning-but-a-placeholder-for-cut-outs" title="Permalink to this headline">¶</a></h1>
-<p>How these principles are applied will depend on the message and purpose of your visualizations.
-Some reoccuring purposes are:</p>
-<ol class="simple">
-<li><p>understand distribution and composition of data</p></li>
-<li><p>explore changes in and between data categories over time</p></li>
-<li><p>Examine relationships between two or more variables</p></li>
-</ol>
-<p>No matter the purpose, a common challenge is to chose a visualization type that captures the nature of your data and makes the message clear. Here, the key often lies in choosing the most appropriate visualization type, of which the most common include tables, line graphs, scatter plots, bubble charts, bar charts, histograms, box plots, and heatmaps. Unique visualization types, such as timeline or treemaps, may also effectively communicate your data while captivating audience interest. You will learn more about these in chapter <code class="docutils literal notranslate"><span class="pre">8.3</span></code> and <code class="docutils literal notranslate"><span class="pre">8.4</span></code>. But before we get to that, let’s take a closer look at the other C’s; <code class="docutils literal notranslate"><span class="pre">clean</span></code>, <code class="docutils literal notranslate"><span class="pre">concise</span></code> and <code class="docutils literal notranslate"><span class="pre">cite</span></code> by visualizing some data from the stock market.</p>
-<p>The message we’ll try to convey is that, in a volatile market, the values two different companies C and E experienced two very different developments . <code class="docutils literal notranslate"><span class="pre">C</span></code> has an unfortunate start but comes out on top, while the opposite is true for <code class="docutils literal notranslate"><span class="pre">E</span></code>.</p>
 <div class="section" id="plotly-figures-inside-dash-apps">
 <h2>8.2 Plotly Figures inside Dash apps<a class="headerlink" href="#plotly-figures-inside-dash-apps" title="Permalink to this headline">¶</a></h2>
 <p>As an example of how to include Plotly figures in your Dash app, first we need to create the Plotly figure. Consider the following code snippet where we load the gapminder dataset from <code class="docutils literal notranslate"><span class="pre">px.data.gapminder()</span></code>, filter the data to consist of only four countries, and make a line chart with <code class="docutils literal notranslate"><span class="pre">px.line()</span></code>. The function call <code class="docutils literal notranslate"><span class="pre">px.line()</span></code> in this snippet will contain attributes that you will learn more about in the section 8.3.</p>
