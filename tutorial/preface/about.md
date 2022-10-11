@@ -27,7 +27,7 @@ Marcel is a mathematician living in Frankfurt, Germany.  He worked as a manageme
 Arne Petter - 
 Arne Petter holds a master’s degree in finance and business strategy, and has worked as an analyst in the Nordic power market before he recently joined [Itera](https://www.itera.com/) Bergen in Norway as a managing consultant. He’s passionate about efficient storytelling, and has found Plotly Dash to be one of the finest tools available for gaining and sharing knowledge and insights with data and visualizations. He was the world’s first recipient of the Plotly gold badge on StackOverflow, and still holds the position as the all-time highest ranking contributor under the [Plotly tag](https://stackoverflow.com/tags/plotly/topusers) on StackOverflow. Follow him on [Linkedin](https://www.linkedin.com/in/arne-petter-drageset-459b608/) and [StackOverflow](https://stackoverflow.com/users/3437787/vestland).
 
-![apd-avatar1](./about_files/apd1.png)
+![apd-avatar1](./about_files/apd2.png)
 
 
 
