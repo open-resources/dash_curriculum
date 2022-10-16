@@ -22,7 +22,7 @@
 
 ## 12.1 The theme of a Dash app
 
-You can change the layout and add themes of your Plotly Dash app in many different ways you can . In this chapter you will learn how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
+Let's start by learning how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
 
 - `bootstrap`
 - `cosmo`
@@ -30,10 +30,11 @@ You can change the layout and add themes of your Plotly Dash app in many differe
 - `darkly`
 - `flatly`
 - `grid`
+- `slate`
 
-For an exhaustive list, run `dir(dbc.themes)` and see which are available to your current version of Dash Bootstrap Components (`dbc`).
+For an exhaustive list, run `dir(dbc.themes)` and see which are available to your current version of Dash Bootstrap Components (`dbc`). Or, check out the [ash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/)
  
-Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of cards or the size of each component for different sizes of your device screen.
+Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of Bootstrap cards.
 
 Here's how some elements will look like with the `bootstrap` theme:
 
@@ -46,22 +47,22 @@ And here's how the same elemets will look like with the `slate` theme:
 You can study more themes and components in [dash-bootstrap-components][3].
  
 
-## 12.2 Theme and the Cascading Style Sheet
+## 12.2 Theme and the Cascading Style Sheet (CSS)
 
-You set up your Dash app and select a theme like this:
+To set up your Dash app theme you would select a theme like this:
 
 ```python
 app = Dash(external_stylesheets=[dbc.themes.SLATE])
 ```
 
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css` which points to a certain cascading stylesheet or, `CSS`. For most web applicatoins, `CSS` goes hand in hand with `HTML`. In general, `HTML` is a language that lets you build web pages. and Plotly Dash can be regarded as a set of tools that lets you produce `HTML` components that look nice and act well togehter. A `CSS` file defines how these components look and behave with regards to the layout.
+What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css` which points to a certain cascading stylesheet or, `CSS`. A `CSS` file defines how Dash components appear in the layout.
 
-One such component can be the text container `dcc.Markdown()` that you can use as a title for your app or dashboard. If you use the `bootstrap` theme, the default font color of your heading will be of a dark grey type with the RGB code `(33, 37, 47)` and look like this:
+One such component is the `dcc.Markdown()` that you can use to insert a title to your app. If, instead of `SLATE`, you use the `BOOTSTRAP` theme, `external_stylesheets=[dbc.themes.BOOTSTRAP]`, the default font color of the title will be of a dark grey type with the RGB code `(33, 37, 47)` and look like this:
 
 [![enter image description here][4]][4]
 
 
- This particular color is mapped to `text-body` in the `CSS` file. And if you do a little search in the link above, you'll find *one* occurence of `text-body` in the `CSS` file:
+ This particular color is mapped to `text-body` in the `CSS` file. And if you do a little search inside the [the css file](https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css), you'll find *one* occurence of `text-body` in the `CSS` file:
 
     .text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
 
@@ -75,34 +76,28 @@ This points to a setting at the start of the document that reveals the `rgb()` c
 
     bs-body-color-rgb:33,37,43
 
-You can use reources such as [RapidTables][5] to verfiy that you're lookin at the correct color:
+You can use reources such as [RapidTables][5] to verfiy that you're looking at the correct color:
     
 [![enter image description here][6]][6]
 
-The reason this whole thing is structured this way, is that you can use the same color code through a unique variable across several parts of the `CSS`. The next section in this chapter will describe how to edit these properties through the `className` attribute. At the end of the chapter you'll also learn how to design specific details through the `style` attribute of your components.
-     
-## 12.3 The `className` attribute
 
-Most (or all?) Dash components have an attribute `className` that lets you reference the name of a class in a `CSS` file. This attribute will also let you change other layout features through selecting other class names than, for example, the default `text-body` for `dcc.Markdown()`.
+## 12.3 How to change font color
 
-```{warning}
-In order to be able to change the layout through `classNaame`, a stylesheet *must*  be specified in 
-    app = Dash(external_stylesheets=[dbc.themes.<theme>])
-```
+Almost all Dash components have an attribute `className` that lets you reference the name of a class in a `CSS` file. We will use this `className` to update the font color of a Dash app.
 
-## 12.3.1 How to change font color
+Some alternatives to `text-body` are:
 
-Some alternatives to `body` in `text-body` are:
+- `className="text-primary"`
+- `className="text-secondary"`
+- `className="text-success"`
+- `className="text-danger"`
+- `className="text-info"`
 
-- `primary`
-- `secondary`
-- `success`
-- `danger`
-- `info`
+For other options, take a look at the cheatsheet at [pythonanywhere.com][7], under the Utility Color section. 
 
-For other options, take a look at the cheatsheet at [pythonanywhere.com][7]. The following snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dasboards.¨
+**Code snippet 1**
 
-#### 12.3.1 - Code snippet 1
+The below snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dashboards.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -126,18 +121,17 @@ app.layout = dbc.Container(
     ]
 )
 
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-#### 12.3.1 - Code output 1
-
 [![enter image description here][8]][8]
 
-Below is the output with `Dasboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
+Above is the output with `Dashboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
 
 
-#### 12.3.1 - Code snippet 2
+**Code snippet 2**
 
 ````{dropdown} See Code
     :container: + shadow
@@ -159,25 +153,22 @@ app.layout = dbc.Container(
         )
     ]
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-#### 12.3.1 - Code output 2
-
 [![enter image description here][9]][9]
 
-```{admonition} Why all the extra components in the examples?
-You might wonder why we've chosen to include the full `dbc.Container([dbc.Row([dbc.Col([dcc.Markdown()])])])` in these demonstrations. That's to comply with established standards of the former chapters. A `dbc.Contatiner()` forms the foundation of the app and holds one or more `dbc.Row` components. These can hold one or more `dbc.Col` components which in turn hold all our tables, figures and controls etc.
 
-Also, all these components can offer slightly different functionalities on how to apply `className` and `style` depending on what you'd like to do. But we'll come back to that later.
-```
+## 12.3.1 How to change background color
 
-## 12.3.2 How to change background color
+Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but rather pointers to different colors set by the `CSS` file. So you can think of these options as different possible categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. 
 
-Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but rather pointers to different colors set by the `CSS` file. So you can think of these options as different possible categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className`. `bg` stands for *background*. Later we'll touch upon other abbreviations like `m` for *margin* and `p` for *padding*.
+The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className` because `bg` stands for *background*. 
 
-#### 12.3.2 - Code snippet
+**Code snippet**
+
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -198,28 +189,27 @@ app.layout = dbc.Container(
         )
     ]
 )
-app.run_server(debug=True)
-
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-#### 12.3.2 - Code output
-
 [![enter image description here][10]][10]
 
-Above we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
+Above, we've only changed the background color, and let the text color remain `text-body`. The following sections will demonstrate how to edit multiple features at the same time.
 
 ```{warning}
 
-Misspellings in `className` will *not* raise any errors. Any additions to `className` that can not be interpreted are simply ignored.
+Misspellings in classes assigned to `className` do *not* raise any errors; they are merely ignored if they cannot be interpreted.
 
 ```
 
-## 12.3.3 How to change font *and* background color
+## 12.3.2 Using multiple classes
 
-So far, the whole `CSS` thing can seem a bit complicated, but this particular section is where all suddenly (hopefully) makes sense. In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` in `className`:
+In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` inside `className`:
 
-#### 12.3.3 Code snippet
+**Code snippet**
+
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -244,23 +234,19 @@ app.layout = dbc.Container(
         )
     ]
 )
-app.run_server(debug=True) 
+if __name__=='__main__':
+    app.run_server(debug=True) 
 ```
 ````
 
-#### 12.3.3 Code output
-
-[![enter image description here][11]][11]
+[![enter image description here][11]][11
 
 
-And you do not have to stop there. In the next subchapters you'll learn how to add controls that are contained in a `dbc.Card()` component, how to style that component, and how to make room for the different elements using padding `p-1`, and margin `m-1` in the `className` attribute. By "controls", we mean anything from buttons to dropdowns and input fields, as well as accompanying labels to describe what they do.
-
-
-## 12.3.4 Spacing, margins and padding
+## 12.3.3 Spacing, margins and padding
 
 Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col` contained by a `dbc.Row` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
 
-#### 12.3.4 Code snippet 1
+**Code snippet 1**
 
 ````{dropdown} See Code
     :container: + shadow
@@ -286,12 +272,10 @@ app.layout = dbc.Container(
         )
     ]
 )
-
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True
 ```
 ````
-
-#### 12.3.4 Code output 1
 
 [![enter image description here][12]][12]
 
@@ -313,7 +297,7 @@ And `side` can be one of:
 
 At last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][13] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className.
 
-### 12.3.4 Code snippet 2
+**Code snippet 2**
 
 ````{dropdown} See Code
     :container: + shadow
@@ -344,16 +328,14 @@ app.run_server(debug=True)
 ```
 ````
 
-### 12.3.4 Code output 2
-
 [![enter image description here][14]][14]
 
-## 12.3.5 Component placement
+## 12.3.4 Component placement
 
 You should expect that different components from different libraries such as `dcc`, `dbc` and `HTML` come with different default settings with regards to margins, paddings and other features such as text alignment. This section will not go through all default settings for all relevant components, but rather demonstrate how to handle different settings and make sure your layout turns out the way you want it to. So lets take the setup that we've already got, and add a row with a `dbc.Label` component. Without defining any margins or padding, but with some background color to discern the different elements, the following snippet will produce the dashboard illustrated below.
 
 
-### 12.3.5 Code snippet 1
+### 12.3.4 Code snippet 1
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -386,7 +368,7 @@ app.run_server(debug=True)
 ```
 ````
 
-### 12.3.5 Code output 1
+### 12.3.4 Code output 1
 
 [![enter image description here][15]][15]
 
@@ -394,17 +376,17 @@ As it now stands, the dashboard isn't exactly very pleasing to the eye. The two 
 
 The first thing we'll do is adding `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same spacing around the texts `Dashboard title` and `Label 1`. The differnet font *sizes* still provide different emphasis to the content.
 
-### 12.3.5 Code output 2.1 (snippet below)
+### 12.3.4 Code output 2.1 (snippet below)
 
 [![enter image description here][16]][16]
 
 Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
 
-### 12.3.5 Code output 2.2 (snippet below)
+### 12.3.4 Code output 2.2 (snippet below)
 
 [![enter image description here][17]][17]
 
-### 12.3.5 Code snippet 2
+### 12.3.4 Code snippet 2
 
 ````{dropdown} See Code
     :container: + shadow
