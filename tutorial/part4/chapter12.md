@@ -819,7 +819,6 @@ if __name__=='__main__':
 
 If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
 
-### 12.4.6 Code snippet
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -843,7 +842,7 @@ app.layout = dbc.Container(
                     className="mt-2",
                 )
             ],
-            className="text-info bg-secondary m-0",
+            className="text-info m-0",
         ),
         dbc.Row(
             [
@@ -881,11 +880,11 @@ app.layout = dbc.Container(
     ],
     className="bg-secondary bg-opacity-75 rounded-3 mt-1 p-3",
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-### 12.4.6 Code output
 [![enter image description here][25]][25]
 
 ```{warning}
@@ -903,7 +902,6 @@ You can add a bit of depth to your dashboard by adding a shadow to your componen
 
 The last two options stand for `small` and `large`. Below we've included `shadow-lg` for the `dbc.Container` component.
 
-### 12.4.7 Code snippet
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -969,15 +967,12 @@ app.run_server(debug=True)
 ```
 ````
 
-### 12.4.7 Code output
 
 [![enter image description here][26]][26]
 
-### 12.4.8 Gradient
+## 12.4.8 Gradient
 
 Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will however only let you illustrate subtle changes. The image below compares the snippet we have so far with and without `bg-gradient` in `className` for `dbc.Container` on the right and left-hand side, respectively. If you look closely, you'll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you're setting with `bg-{color}`.
-
-#### 12.4.8 Code snippet 1
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1044,8 +1039,6 @@ app.run_server(debug=True)
 ```
 ````
 
-#### 12.4.8 Code output 1
-
 [![enter image description here][27]][27]
 
 In order to add more flexibility to the gradient effect of the background color, you'll have to resort to the `style` attribute. As an example, you can set a background color that transitions from white to grey from the left to the right with:
@@ -1055,8 +1048,6 @@ style={"background": "linear-gradient(90deg, white, grey"}
 ```
 
  `linear` in `linear-gradient` sets the gradient method. [Other alternatives][28] are `radial` and `conic`. `90` in `90deg` sets the direction through the degrees of the angle of the transition direction. Other options for `90` can be whatever you would like.
-
-#### 12.4.8 Code snippet 2
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1124,15 +1115,11 @@ app.run_server(debug=True)
 ```
 ````
 
-#### 12.4.8 Code Output 2
-
 [![enter image description here][29]][29]
 
 
 
 The color options are not limited to simple color names like `white` and `grey`. You can alose use `rgb` and even `rgba` to select any color with any grade of transparency you'd like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses `red`, `yellow` and a transparent `blue` with `rgba(0, 0 , 255, 0.3)`. Notice also that we've included `70%` right after the `rgba` color. This sets the share of the last color compared to the rest of the colors.
-
-#### 12.4.8 Code snippet 3
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1202,16 +1189,12 @@ app.run_server(debug=True)
 ```
 ````
 
-#### 12.4.8 Code output 3
-
 [![enter image description here][30]][30]
 
 
-### 12.4.9 Overflow
+## 12.4.9 Overflow
 
 So far we haven't filled any of the components with too much information. If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default behavioss of `dbc.Label` is to let the content flow over the component.
-
-#### 12.4.9 Code output 1.1 (snippet below)
 
 [![enter image description here][31]][31]
 
@@ -1225,11 +1208,9 @@ To change this behavior, include `overflow-{option}` in `className` where `optio
 
 Below is the same setup with `overflow-scroll` included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `atuo` and `scroll` in this case is that the latter adds both vertical and horizontal sliders by default.
 
-#### 12.4.9 Code output 1.2 (snippet below)
 
 [![enter image description here][32]][32]
 
-#### 12.4.9 Code snippet 1
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
