@@ -95,8 +95,6 @@ Some alternatives to `text-body` are:
 
 For other options, take a look at the cheatsheet at [pythonanywhere.com][7], under the Utility Color section. 
 
-**Code snippet 1**
-
 The below snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dashboards.
 
 ````{dropdown} See Code
@@ -131,8 +129,6 @@ if __name__=='__main__':
 Above is the output with `Dashboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
 
 
-**Code snippet 2**
-
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -166,8 +162,6 @@ if __name__=='__main__':
 Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but rather pointers to different colors set by the `CSS` file. So you can think of these options as different possible categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. 
 
 The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className` because `bg` stands for *background*. 
-
-**Code snippet**
 
 ````{dropdown} See Code
     :container: + shadow
@@ -208,8 +202,6 @@ Misspellings in classes assigned to `className` do *not* raise any errors; they 
 
 In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` inside `className`:
 
-**Code snippet**
-
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -239,53 +231,12 @@ if __name__=='__main__':
 ```
 ````
 
-[![enter image description here][11]][11
+[![enter image description here][11]][11]
 
 
 ## 12.3.3 Spacing, margins and padding
 
-Often, a `HTML` child component will take on the same size as its parent. This should mean that a `dbc.Col` contained by a `dbc.Row` component would span the entire height and width of the former. This is however not the case. If we add a color such as `bg-primary` to the `dbc.Row` component you'll see that there are margins on the right and left hand sides as well as at the bottom.
-
-**Code snippet 1**
-
-````{dropdown} See Code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
-```python
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container(
-    [
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dcc.Markdown(
-                            "# Dashboard title", className="text-info bg-primary mt-0"
-                        )
-                    ]
-                )
-            ],
-            className="bg-secondary",
-        )
-    ]
-)
-if __name__=='__main__':
-    app.run_server(debug=True
-```
-````
-
-[![enter image description here][12]][12]
-
-If we were to put this in `className` terms, this means the the default setting of the `dbc.Row` margin is `mt-0` which translates to `"margin at top is zero"`. This follows a naming convention `property-side-size`, where `property`, when it comes to [spacing][13], can be one of:
-
-- `m` - `margin`, the space between a parent and a child component.
-- `p` -  `padding`, component and features of that component such as text.
-
-
-And `side` can be one of:
+When building the app layout, the default margins and padding is equal to zero. To add space around components or their text, you can use `m` for `margin` and `p` for `padding`. Then, you would need to declare what side you would like to modify:
 
 - `t` - `top` for classes that set margin-top or padding-top
 - `b` - `bottom` for classes that set margin-bottom or padding-bottom
@@ -295,9 +246,9 @@ And `side` can be one of:
 - `y` - for classes that set both *-top and *-bottom
 - *`blank`* - for classes that set a margin or padding on all 4 sides of the element
 
-At last, `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][13] for more info on other size options. So far, you know enough to apply an arguably more visually appealing composition of these row and column components by replacing `m-0` with `m-1` or `m-2` in the `dbc.Row` className.
+Finally, you would need to state the size of margin or padding that you would like to add. `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][13] for more options. 
 
-**Code snippet 2**
+Let's see an example where we add 2 units of margin around the highlighted text and it's parent Div.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -324,7 +275,8 @@ app.layout = dbc.Container(
     ]
 )
 
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
@@ -332,10 +284,10 @@ app.run_server(debug=True)
 
 ## 12.3.4 Component placement
 
-You should expect that different components from different libraries such as `dcc`, `dbc` and `HTML` come with different default settings with regards to margins, paddings and other features such as text alignment. This section will not go through all default settings for all relevant components, but rather demonstrate how to handle different settings and make sure your layout turns out the way you want it to. So lets take the setup that we've already got, and add a row with a `dbc.Label` component. Without defining any margins or padding, but with some background color to discern the different elements, the following snippet will produce the dashboard illustrated below.
+You should expect that different components from different libraries such as `dcc`, `dbc` and `html` come with different default settings with regards to margins, paddings and other features such as text alignment. This section will demonstrate how to handle different settings and make sure your layout turns out the way you want it to. 
 
+So lets take the setup that we've already got, and add a row with a `dbc.Label` component. We won't define any margins or padding, but we'll add some background color to discern the different elements.
 
-### 12.3.4 Code snippet 1
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -364,29 +316,22 @@ app.layout = dbc.Container(
         ),
     ]
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-### 12.3.4 Code output 1
-
 [![enter image description here][15]][15]
 
-As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of the components they contain span *different* widths. In addition, the paddings for "Dashboard title" and "Label 1" look very different. In this case particular, we could overcome these obstacles by using the same component in both instances. But when you're going to build dashboards out in the wild, you're very likely going to need different components with different properties to align nicely. So let's take a look at the details on how to make it all visually pleasing.
+As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of each spans a *different* width. In addition, the paddings for "Dashboard title" and "Label 1" look very different. 
 
-The first thing we'll do is adding `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This way we'll get approximately the same spacing around the texts `Dashboard title` and `Label 1`. The differnet font *sizes* still provide different emphasis to the content.
-
-### 12.3.4 Code output 2.1 (snippet below)
+The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This will generate the same spacing around the texts `Dashboard title` and `Label 1`.
 
 [![enter image description here][16]][16]
 
-Another result is that the markdown and label components no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
-
-### 12.3.4 Code output 2.2 (snippet below)
+Another consequence is that the markdown and label components' backgrounds no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
 
 [![enter image description here][17]][17]
-
-### 12.3.4 Code snippet 2
 
 ````{dropdown} See Code
     :container: + shadow
@@ -416,16 +361,14 @@ app.layout = dbc.Container(
         ),
     ]
 )
-
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-## 12.3.6 How to handle layout challenges with `style`
+## 12.3.5 Set component width with `style
 
-In the previous snippet, notice how `className ="bg-primary"` is set for `dcc.Markdown`, and how `className = "bg-warning"` is set for `dbc.Label` with very different results for the backgrounds. This is because the two components are set to "fill" the width of their parent components in different ways. In previous chapters, we've unsurprisingly set the width of `dbc.Col` components through the `width` attribute. However, if you run `help(dcc.Markdown)` and `help(dbc.Label)` you'll see that neither component has got a `width` attribute. This is where the `style` attribute comes into play if you'd like to align your components in a more visually pleasing way. With `style`, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Here's the same layout with `style = {'width':'75%}` for both components:
-
-#### 12.3.6 Code snippet
+With `style`, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Let's add the `style = {'width':'75%}` for both components:
 
 ````{dropdown} See Code
     :container: + shadow
@@ -466,11 +409,10 @@ app.layout = dbc.Container(
         ),
     ]
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
-
-#### 12.3.6 Code output
 
 [![enter image description here][18]][18]
 
@@ -482,13 +424,11 @@ What you can do with `className` you can, for the most part, also do with `style
 
 ## 12.4 More components and more attributes
 
-With some basic principles now firmly in place, all you'll need to put together a working and nice looking app is to increase the number of component types in your toolbox, as well as methods to include in `className`. In this section you'll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component . The latter is often used to split a dashboard in different parts and as a container for more components. You'll also learn how to edit the appearance of your components with visual effects such as rounded edges and shadows.
+In this section you'll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component. The latter is often used to split a dashboard in different parts and it serves as a container for more components. You'll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.
 
 ## 12.4.1 A button and a card
 
-For a more comprehensive list of boostrap components, refer to [this source][19]. For now we'll just add a `dbc.Button` in a new `dbc.Col` component next to our already existing `dbc.Label`. In addition, we'll include a `dbc.Card` in a `dbc.Col` component in a new `dbc.Row`.
-
-#### 12.4.1 Code snippet
+We'll add a `dbc.Button` in a new `dbc.Col` component next to the already existing `dbc.Label`. In addition, we'll include a `dbc.Card` in a `dbc.Col` component within a new `dbc.Row`.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -548,16 +488,15 @@ app.layout = dbc.Container(
     ],
     className="",
 )
-app.run_server(debug=True, port=8118)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
-
-#### 12.4.1 Code output
 
 [![enter image description here][20]][20]
 
 ## 12.4.2 Justify row components
-In the previous snippet, we'ved used `width = 4` for both the `label` and the `button` which by default are placed at the start of the parent `row` component. To change this, you can include `justify = '<option>'` in the `row` component where your options are:
+In the previous snippet, we'ved used `width = 4` for both the `label` and the `button` which by default are placed at the start of the parent `row` component. To change this, you can include `justify = '<option>'` in the `row` component, where your options are:
 
 - `start`
 - `center`
@@ -568,13 +507,10 @@ In the previous snippet, we'ved used `width = 4` for both the `label` and the `b
 
 The image below shows the result for `justify = 'evenly'`. In additon we've included some margins and padding to make the title, label and button look a little nicer.
 
-#### 12.4.2 Code snippet
-
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
 ```python
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
@@ -631,110 +567,16 @@ app.layout = dbc.Container(
     ],
     className="mt-2",
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
-
-#### 12.4.2 Code output 
 
 [![enter image description here][21]][21]
 
-## 12.4.3 Set component height with `style = {'height':'200px'}`
+## 12.4.3 Set component height with `style`
 
-Notice how we've cheated a bit by adding `'height':'65%'` for the `label` component style to make it align a bit better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
-
-#### 12.4.3 Code snippet
-
-````{dropdown} See Code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
-```python
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-app = rDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container(
-    [
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dcc.Markdown(
-                            "#### Dashboard title",
-                            className="text-info bg-primary p-2",
-                            style={"width": "100%"},
-                        )
-                    ],
-                    className="mt-2",
-                )
-            ],
-            className="text-info bg-secondary m-0",
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dbc.Label(
-                            "Label 1",
-                            className="bg-warning mt-2 p-2",
-                            style={"width": "100%", "height": "65%"},
-                        )
-                    ],
-                    width=4,
-                ),
-                dbc.Col(
-                    dbc.Button(
-                        "Click me",
-                        className="m-2",
-                    ),
-                    width=4,
-                ),
-            ],
-            className="bg-secondary m-0",
-            justify="evenly",
-        ),
-        dbc.Row(
-            dbc.Col(
-                dbc.Card(
-                    "Put your card content here",
-                    className=" mt-2",
-                    style={"height": "200px"},
-                ),
-                width=12,
-            )
-        ),
-    ],
-    className="bg-mt-2",
-)
-app.run_server(debug=True)
-```
-````
-
-#### 12.4.3 Code output 1
-
-[![enter image description here][22]][22]
-
-
-## 12.4.4 Rounded edges
-
-If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner` can be:
-
-- `top`
-- `bottom`
-- `start`
-- `end`
-- `circle`
-- `pill`
-
-The two last one will change not only the corners but the complete structure of the whole card to become circle or pill shaped.
-
-```{tip}
-When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`.
-```
-
-In the snippet below, we've rounded off the bottom of the card only, and set the weight to `3`.
-
-#### 12.4.4 Code snippet
+Notice how we've cheated a bit in the snippet above by adding `'height':'65%'` for the `label` component style to make it align better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -788,7 +630,95 @@ app.layout = dbc.Container(
             dbc.Col(
                 dbc.Card(
                     "Put your card content here",
-                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
+                    className=" mt-2",
+                    style={"height": "200px"},
+                ),
+                width=12,
+            )
+        ),
+    ],
+    className="bg-mt-2",
+)
+if __name__=='__main__':
+    app.run_server(debug=True)
+```
+````
+
+[![enter image description here][22]][22]
+
+
+## 12.4.4 Rounded edges
+
+If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner` can be:
+
+- `top`
+- `bottom`
+- `start`
+- `end`
+- `circle`
+- `pill`
+
+The last two will change not only the corners but the complete structure of the whole card to become circle or pill shaped.
+
+```{tip}
+When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`.
+```
+
+In the snippet below, we've rounded off the bottom of the card only, and set the weight to `3`.
+
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
+```python
+from dash import Dash, html, dcc
+import dash_bootstrap_components as dbc
+
+app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.layout = dbc.Container(
+    [
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dcc.Markdown(
+                            "#### Dashboard title",
+                            className="text-info bg-primary p-2",
+                            style={"width": "100%"},
+                        )
+                    ],
+                    className="mt-2",
+                )
+            ],
+            className="text-info bg-secondary m-0",
+        ),
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        dbc.Label(
+                            "Label 1",
+                            className="bg-warning mt-2 p-2",
+                            style={"width": "100%", "height": "65%"},
+                        )
+                    ],
+                    width=4,
+                ),
+                dbc.Col(
+                    dbc.Button(
+                        "Click me",
+                        className="m-2",
+                    ),
+                    width=4,
+                ),
+            ],
+            className="bg-secondary m-0",
+            justify="evenly",
+        ),
+        dbc.Row(
+            dbc.Col(
+                dbc.Card(
+                    "Put your card content here",
+                    className=" mt-2 rounded-0 rounded-bottom rounded-3",
                     style={"height": "200px"},
                 ),
                 width=12,
@@ -797,28 +727,24 @@ app.layout = dbc.Container(
     ],
     className="mt-1",
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-#### 12.4.4 Code output
-
-[![enter image description here][23]][423]
+[![enter image description here][23]][23]
 
 ## 12.4.5 Borders
 
-So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let's drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with `border-{size}` where `size` can range from `1` to `5`. As with `rounded` you can set the position of the border with `border-{direction}` where `direction` can be:
+So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let's drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with `border-{size}` where `size` can range from `1` to `5`. As with `rounded`, you can set the position of the border with `border-{direction}` where `direction` can be:
 
 - `top`
 - `end`
 - `bottom`
 - `start`.
 
-Don't forget that you can use a comnination of the list above with `className = " border-top border-bottom`.
-In the snippet below we've added a thick grey border line below the title by adding `className = "border-top border-secondary border-3"` to the second `dbc.Row` component. We've also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the `dbc.Container` itself with `className = 'bg-secondary mt-1 p-3'`
+In the snippet below we've added a thick grey border line below the title by adding `className = "border-top border-white border-3"` to the second `dbc.Row` component. We've also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the `dbc.Container` itself with `className = 'bg-secondary mt-1 p-3'`
 
-
-#### 12.4.5 Code snippet
 
 ````{dropdown} See Code
     :container: + shadow
@@ -881,14 +807,12 @@ app.layout = dbc.Container(
     ],
     className="bg-secondary mt-1 p-3",
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
-#### 12.4.5 Code output
-
 [![enter image description here][24]][24]
-
 
 
 ## 12.4.6 Opacity
@@ -2803,13 +2727,11 @@ app.run_server(mode="external", port=8009, debug=True)
   [10]: https://i.stack.imgur.com/vLWvz.png
   [11]: https://i.stack.imgur.com/dfjKw.png
   [12]: https://i.stack.imgur.com/muWaZ.png
-  [13]: https://mdbootstrap.com/docs/standard/utilities/spacing/
   [14]: https://i.stack.imgur.com/PkwOL.png
   [15]: https://i.stack.imgur.com/Uu0Ee.png
   [16]: https://i.stack.imgur.com/UWulS.png
   [17]: https://i.stack.imgur.com/RylgH.png
   [18]: https://i.stack.imgur.com/jRrsW.png
-  [19]: https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout/
   [20]: https://i.stack.imgur.com/kTRZ4.png
   [21]: https://i.stack.imgur.com/UrTWh.png
   [22]: https://i.stack.imgur.com/B77Zv.png
