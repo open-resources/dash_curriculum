@@ -157,7 +157,7 @@ if __name__=='__main__':
 [![enter image description here][9]][9]
 
 
-## 12.3.1 How to change background color
+### 12.3.1 How to change background color
 
 Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but rather pointers to different colors set by the `CSS` file. So you can think of these options as different possible categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. 
 
@@ -198,7 +198,7 @@ Misspellings in classes assigned to `className` do *not* raise any errors; they 
 
 ```
 
-## 12.3.2 Using multiple classes
+### 12.3.2 Using multiple classes
 
 In order to change text color and background color at the same time, just include both `text-info` and `bg-primary` separated by `space` inside `className`:
 
@@ -234,7 +234,7 @@ if __name__=='__main__':
 [![enter image description here][11]][11]
 
 
-## 12.3.3 Spacing, margins and padding
+### 12.3.3 Spacing, margins and padding
 
 When building the app layout, the default margins and padding is equal to zero. To add space around components or their text, you can use `m` for `margin` and `p` for `padding`. Then, you would need to declare what side you would like to modify:
 
@@ -282,7 +282,7 @@ if __name__=='__main__':
 
 [![enter image description here][14]][14]
 
-## 12.3.4 Component placement
+### 12.3.4 Component placement
 
 You should expect that different components from different libraries such as `dcc`, `dbc` and `html` come with different default settings with regards to margins, paddings and other features such as text alignment. This section will demonstrate how to handle different settings and make sure your layout turns out the way you want it to. 
 
@@ -366,7 +366,7 @@ if __name__=='__main__':
 ```
 ````
 
-## 12.3.5 Set component width with `style
+### 12.3.5 Set component width with `style`
 
 With `style`, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Let's add the `style = {'width':'75%}` for both components:
 
@@ -426,7 +426,7 @@ What you can do with `className` you can, for the most part, also do with `style
 
 In this section you'll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component. The latter is often used to split a dashboard in different parts and it serves as a container for more components. You'll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.
 
-## 12.4.1 A button and a card
+### 12.4.1 A button and a card
 
 We'll add a `dbc.Button` in a new `dbc.Col` component next to the already existing `dbc.Label`. In addition, we'll include a `dbc.Card` in a `dbc.Col` component within a new `dbc.Row`.
 
@@ -495,7 +495,7 @@ if __name__=='__main__':
 
 [![enter image description here][20]][20]
 
-## 12.4.2 Justify row components
+### 12.4.2 Justify row components
 In the previous snippet, we'ved used `width = 4` for both the `label` and the `button` which by default are placed at the start of the parent `row` component. To change this, you can include `justify = '<option>'` in the `row` component, where your options are:
 
 - `start`
@@ -574,7 +574,7 @@ if __name__=='__main__':
 
 [![enter image description here][21]][21]
 
-## 12.4.3 Set component height with `style`
+### 12.4.3 Set component height with `style`
 
 Notice how we've cheated a bit in the snippet above by adding `'height':'65%'` for the `label` component style to make it align better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
 
@@ -647,7 +647,7 @@ if __name__=='__main__':
 [![enter image description here][22]][22]
 
 
-## 12.4.4 Rounded edges
+### 12.4.4 Rounded edges
 
 If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner` can be:
 
@@ -734,7 +734,7 @@ if __name__=='__main__':
 
 [![enter image description here][23]][23]
 
-## 12.4.5 Borders
+### 12.4.5 Borders
 
 So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let's drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with `border-{size}` where `size` can range from `1` to `5`. As with `rounded`, you can set the position of the border with `border-{direction}` where `direction` can be:
 
@@ -815,7 +815,7 @@ if __name__=='__main__':
 [![enter image description here][24]][24]
 
 
-## 12.4.6 Opacity
+### 12.4.6 Opacity
 
 If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
 
@@ -892,7 +892,7 @@ If you do not specify the context of `opacity`, like `bg-opacity`, *all* element
 ```
 
 
-## 12.4.7 Shadow
+### 12.4.7 Shadow
 
 You can add a bit of depth to your dashboard by adding a shadow to your components with `shadow-{size}` where `size` can be left out all together, or set to:
 
@@ -970,7 +970,7 @@ app.run_server(debug=True)
 
 [![enter image description here][26]][26]
 
-## 12.4.8 Gradient
+### 12.4.8 Gradient
 
 Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will however only let you illustrate subtle changes. The image below compares the snippet we have so far with and without `bg-gradient` in `className` for `dbc.Container` on the right and left-hand side, respectively. If you look closely, you'll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you're setting with `bg-{color}`.
 
@@ -1192,7 +1192,7 @@ app.run_server(debug=True)
 [![enter image description here][30]][30]
 
 
-## 12.4.9 Overflow
+### 12.4.9 Overflow
 
 So far we haven't filled any of the components with too much information. If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default behavioss of `dbc.Label` is to let the content flow over the component.
 
@@ -1284,17 +1284,14 @@ In our latest examples, the app fills up only a limited space of the background.
 
 The image below shows how an app fills the avaiable screen space by default. There's no extra room on top, some extra room on both sides, and plenty of room below.
 
-#### 12.5.1 Code output 1.1 (snippet below)
 
 [![enter image description here][33]][33]
 
 If you drag the screen to the any side, you'll see that the dashboard adjusts to still leave some room on either side. If you'd like to fill the entire available horizontal space, you can do so through setting `fluid = True` for the `dbc.Container` object.
 
-#### 12.4.5 Code output 1.2 (snippet below)
 
 [![enter image description here][34]][34]
 
-#### 12.5.1 Code snippet 1
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -1363,7 +1360,6 @@ app.run_server(debug=True)
 
 Combining `fluid=True` with margin options in `className` can trigger some strange behavior. `me-4 ` will make the app still fill up the entire space to the right. `ms-4` will provide some space to the left of the app, but "push" the app to the right of the screen and trigger a horizontal scrollbar to appear. You can, however, safely add some space on top with `mt-2`
 
-#### 12.5.1 Code snippet 2
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1431,16 +1427,12 @@ app.run_server(debug=True)
 ```
 ````
 
-#### 12.5.1 Code output 2
 
 [![enter image description here][35]][35]
 
 
-### 12.5.2 Set component height
-
 This subchapter introduces a new concept for style, the [viewport][36] height or `vh`. This is what you'll use to apply the same behaviour to the height of the app as we've seen for the *width* of the app with `fluid = True`.
 
-#### 12.5.2 Code snippet
 ````{dropdown} See Code
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
