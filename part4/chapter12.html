@@ -659,9 +659,8 @@ const thebe_selector_output = ".output, .cell_output"
 <div class="admonition-what-you-will-learn admonition">
 <p class="admonition-title">What you will learn</p>
 <ul class="simple">
-<li><p>How to set a theme with a CSS stylesheet using <code class="docutils literal notranslate"><span class="pre">JupyterDash(external_stylesheets=[dbc.themes.SLATE])</span></code></p></li>
-<li><p>How elements of a theme are styled through references to different classes in the stylesheet</p></li>
-<li><p>How you can change component layout through changing references to your stylesheet with <code class="docutils literal notranslate"><span class="pre">className</span></code> or <code class="docutils literal notranslate"><span class="pre">class_name</span></code> dending on library and version.</p></li>
+<li><p>How to set a theme with a CSS stylesheet</p></li>
+<li><p>How elements of a theme are styled</p></li>
 <li><p>A variety of classnames</p>
 <ul>
 <li><p>text color <code class="docutils literal notranslate"><span class="pre">text-primary</span></code></p></li>
@@ -672,19 +671,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>opacity <code class="docutils literal notranslate"><span class="pre">opacity-25</span></code></p></li>
 </ul>
 </li>
-<li><p>How multiple features are referenced in the same className call <code class="docutils literal notranslate"><span class="pre">&quot;text-info</span> <span class="pre">bg-primary&quot;</span></code></p></li>
-<li><p>How the same component part can be referenced multiple times with <code class="docutils literal notranslate"><span class="pre">&quot;bg-primary</span> <span class="pre">bg-opacity-25&quot;</span></code></p></li>
-<li><p>Special layout attributes for <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'start'</span></code> # or center, end, between, around</p></li>
-</ul>
-</li>
-<li><p>Special layout attributes for <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">fluid</span> <span class="pre">=</span> <span class="pre">True</span></code></p></li>
-</ul>
-</li>
-<li><p>How to change the layout of a component directly with <code class="docutils literal notranslate"><span class="pre">style</span></code></p></li>
+<li><p>How to reference multiple features in the same className</p></li>
+<li><p>Special layout attributes for the <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code></p></li>
+<li><p>Special layout attributes for the <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code></p></li>
+<li><p>How to modify the layout with <code class="docutils literal notranslate"><span class="pre">style</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="the-theme-of-a-dash-app">
@@ -2100,15 +2090,21 @@ See Code<div class="summary-down docutils">
 <hr class="docutils" />
 <div class="section" id="test-your-theme">
 <h2>12.7 Test your theme<a class="headerlink" href="#test-your-theme" title="Permalink to this headline">¶</a></h2>
-<p>The following screenshot shows a layout wiht the <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> theme with different settings for both <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> for several <code class="docutils literal notranslate"><span class="pre">dcc</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc</span></code> components. The app is available on <code class="docutils literal notranslate"><span class="pre">&lt;THIS</span> <span class="pre">LINK&gt;</span></code></p>
+<p>The following screenshot is an app that we built for you to practice the usage of classes and styles. It shows a layout wiht the <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> theme with different settings for both <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> for several <code class="docutils literal notranslate"><span class="pre">dcc</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc</span></code> components.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/dxVBF.png"><img alt="enter image description here" src="https://i.stack.imgur.com/dxVBF.png" /></a></p>
+<details class="sphinx-bs dropdown card mb-3 shadow">
+<summary class="summary-title card-header bg-primary text-white font-weight-bold">
+See Code<div class="summary-down docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="summary-up docutils">
+<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="summary-content card-body docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">from</span> <span class="nn">jupyter_dash</span> <span class="kn">import</span> <span class="n">JupyterDash</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">JupyterDash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># card options</span>
 <span class="n">opts_className_1</span> <span class="o">=</span> <span class="p">[</span>
@@ -2665,8 +2661,7 @@ See Code<div class="summary-down docutils">
                         <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
                             <span class="s2">&quot;Return to curriculum&quot;</span><span class="p">,</span>
                             <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;btn1&quot;</span><span class="p">,</span>
-                            <span class="c1"># href = &quot;https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part4/chapter12.md&quot;,</span>
-                            <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part4/chapter12.md&quot;</span><span class="p">,</span>
+                            <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://open-resources.github.io/dash_curriculum/part4/chapter12.html#test-your-theme&quot;</span><span class="p">,</span>
                             <span class="c1"># # options=[{&#39;label&#39;: k, &#39;value&#39;: k} for k in opts_years],</span>
                             <span class="c1"># color=&quot;warning&quot;,</span>
                             <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-primary rounded&quot;</span>
@@ -3238,13 +3233,12 @@ See Code<div class="summary-down docutils">
     <span class="k">except</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
 
-
-<span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;external&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8009</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8009</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details></div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
 <p>In the exercises below, we will apply some of the strategies learnt in this chapter, to style some of the apps we have build previosuly.</p>

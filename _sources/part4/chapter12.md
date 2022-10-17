@@ -1,9 +1,8 @@
 # Chapter 12  Advanced Styling and Layout
 
 ```{admonition} What you will learn
-- How to set a theme with a CSS stylesheet using `JupyterDash(external_stylesheets=[dbc.themes.SLATE])`
-- How elements of a theme are styled through references to different classes in the stylesheet
-- How you can change component layout through changing references to your stylesheet with `className` or `class_name` dending on library and version.
+- How to set a theme with a CSS stylesheet
+- How elements of a theme are styled
 - A variety of classnames
   - text color `text-primary`
   - background color `bg-primary`
@@ -11,13 +10,10 @@
   - padding `p-1`
   - rounded edges `rounded`
   - opacity `opacity-25`
-- How multiple features are referenced in the same className call `"text-info bg-primary"`
-- How the same component part can be referenced multiple times with `"bg-primary bg-opacity-25"`
-- Special layout attributes for `dbc.Row()`
-  - `justify = 'start'` # or center, end, between, around 
-- Special layout attributes for `dbc.Container()`
-  - `fluid = True`
-- How to change the layout of a component directly with `style`
+- How to reference multiple features in the same className
+- Special layout attributes for the `dbc.Row()`
+- Special layout attributes for the `dbc.Container()`
+- How to modify the layout with `style`
 ```
 
 ## 12.1 The theme of a Dash app
@@ -1456,19 +1452,21 @@ Notice how alle the `className` elements we've added can be found there. In addi
 
 ## 12.7 Test your theme
 
-The following screenshot shows a layout wiht the `bootstrap` theme with different settings for both `className` and `style` for several `dcc` and `dbc` components. The app is available on `<THIS LINK>`
+The following screenshot is an app that we built for you to practice the usage of classes and styles. It shows a layout wiht the `bootstrap` theme with different settings for both `className` and `style` for several `dcc` and `dbc` components. 
 
 [![enter image description here][39]][39]
 
+````{dropdown} See Code
+    :container: + shadow
+    :title: bg-primary text-white font-weight-bold
 
 ```python
 
-from jupyter_dash import JupyterDash
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 from dash import State, Input, Output, Dash, html, dcc
 
-app = JupyterDash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # card options
 opts_className_1 = [
@@ -2025,8 +2023,7 @@ app.layout = dbc.Container(
                         dbc.Button(
                             "Return to curriculum",
                             id="btn1",
-                            # href = "https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part4/chapter12.md",
-                            href="https://github.com/open-resources/dash_curriculum/blob/main/tutorial/part4/chapter12.md",
+                            href="https://open-resources.github.io/dash_curriculum/part4/chapter12.html#test-your-theme",
                             # # options=[{'label': k, 'value': k} for k in opts_years],
                             # color="warning",
                             className="bg-primary rounded"
@@ -2598,12 +2595,10 @@ def component_style(style):
     except:
         return None
 
-
-app.run_server(mode="external", port=8009, debug=True)
-
-
+if __name__=='__main__':
+    app.run_server(debug=True, port=8009)
 ```
-
+````
 
 
 
