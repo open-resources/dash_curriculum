@@ -81,7 +81,7 @@ You can use reources such as [RapidTables][5] to verfiy that you're looking at t
 [![enter image description here][6]][6]
 
 
-## 12.3 How to change font color
+## 12.3 Use className to reference a class
 
 Almost all Dash components have an attribute `className` that lets you reference the name of a class in a `CSS` file. We will use this `className` to update the font color of a Dash app.
 
@@ -963,7 +963,8 @@ app.layout = dbc.Container(
     ],
     className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3",
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
@@ -972,7 +973,7 @@ app.run_server(debug=True)
 
 ### 12.4.8 Gradient
 
-Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will however only let you illustrate subtle changes. The image below compares the snippet we have so far with and without `bg-gradient` in `className` for `dbc.Container` on the right and left-hand side, respectively. If you look closely, you'll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you're setting with `bg-{color}`.
+Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will only let you illustrate subtle changes. The image below compares the snippet we have with and without `bg-gradient` assigned to `className` for `dbc.Container`. If you look closely, you'll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you're setting with `bg-{color}`.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1035,7 +1036,8 @@ app.layout = dbc.Container(
     ],
     className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3 bg-gradient",
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
@@ -1047,7 +1049,7 @@ In order to add more flexibility to the gradient effect of the background color,
 style={"background": "linear-gradient(90deg, white, grey"}
 ```
 
- `linear` in `linear-gradient` sets the gradient method. [Other alternatives][28] are `radial` and `conic`. `90` in `90deg` sets the direction through the degrees of the angle of the transition direction. Other options for `90` can be whatever you would like.
+ `linear` in `linear-gradient` sets the gradient method. [Other alternatives][28] are `radial` and `conic`. `90` in `90deg` sets the direction through the degrees of the angle of the transition direction.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1111,7 +1113,8 @@ app.layout = dbc.Container(
     className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3",
     style={"background": "linear-gradient(90deg, white, grey"},
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
@@ -1185,7 +1188,8 @@ app.layout = dbc.Container(
         "background": "linear-gradient(125deg, red,  yellow, rgba(0, 0, 255, 0.3) 70%"
     },
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
@@ -1272,7 +1276,8 @@ app.layout = dbc.Container(
     ],
     className="bg-secondary bg-opacity-75 rounded-3 mt-1 p-3 bg-gradient",
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
@@ -1354,82 +1359,10 @@ app.layout = dbc.Container(
     className="bg-secondary bg-opacity-75 p-3 bg-gradient",
     fluid=True,
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
-
-Combining `fluid=True` with margin options in `className` can trigger some strange behavior. `me-4 ` will make the app still fill up the entire space to the right. `ms-4` will provide some space to the left of the app, but "push" the app to the right of the screen and trigger a horizontal scrollbar to appear. You can, however, safely add some space on top with `mt-2`
-
-
-````{dropdown} See Code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
-```python
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container(
-    [
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dcc.Markdown(
-                            "#### Dashboard title",
-                            className="text-info p-2",
-                            style={"width": "100%"},
-                        )
-                    ],
-                    className="mt-2",
-                )
-            ],
-            className="text-info m-0",
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dbc.Label(
-                            "Very important information that is too long for the component",
-                            className="bg-warning mt-2 p-2 overflow-auto",
-                            style={"width": "100%", "height": "45px"},
-                        )
-                    ],
-                    width=4,
-                ),
-                dbc.Col(
-                    dbc.Button(
-                        "Click me",
-                        className="m-2",
-                    ),
-                    width=4,
-                ),
-            ],
-            className="border-top border-white border-3 m-0",
-            justify="evenly",
-        ),
-        dbc.Row(
-            dbc.Col(
-                dbc.Card(
-                    "Put your card content here",
-                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
-                    style={"height": "200px"},
-                ),
-                width=12,
-            )
-        ),
-    ],
-    className="bg-secondary bg-opacity-75 p-3 bg-gradient ms-4",
-    fluid=True,
-)
-app.run_server(debug=True)
-```
-````
-
-
-[![enter image description here][35]][35]
-
 
 This subchapter introduces a new concept for style, the [viewport][36] height or `vh`. This is what you'll use to apply the same behaviour to the height of the app as we've seen for the *width* of the app with `fluid = True`.
 
@@ -1501,18 +1434,10 @@ app.run_server(debug=True)
 ````
 
 
-#### 12.5.2 Code output
-
 [![enter image description here][37]][37]
 
 
-```{warning}
-
-You'll see the same strange behaviour with `mt-1` in `className` as you did for other margin options while using `fluid = True` for the app width. `mt-1` *will* provide space on the top, but also trigger a vertical scrollbar that has no real practical use.
-
-```
-
-#### 12.6 Studying layouts with your browser's development tools
+## 12.6 Studying layouts with your browser's development tools
 
 By now you know how to assign different colors and formats to Dash components through `className` and `style`. You've also learnt how to study some of these settings in detail in the `CSS`. Instead of the `CSS` approach, you can also retrieve valuable information on colors and formatting by launching your browser's development tools. If you're using Edge or Chrome, you can do so with `Ctrl + Shift + I`. If you alsoe click the icon highlighted in the red rectangle below, you can hover over any element in your app and retrieve the associated information like this:
 
@@ -2720,7 +2645,6 @@ app.run_server(mode="external", port=8009, debug=True)
   [32]: https://i.stack.imgur.com/BdGEE.png
   [33]: https://i.stack.imgur.com/pay0z.png
   [34]: https://i.stack.imgur.com/OnxeJ.png
-  [35]: https://i.stack.imgur.com/erqRS.png
   [36]: https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts
   [37]: https://i.stack.imgur.com/IBPlh.png
   [38]: https://i.stack.imgur.com/1YYrX.png
