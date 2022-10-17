@@ -1429,7 +1429,8 @@ app.layout = dbc.Container(
     fluid=True,
     style={"height": "100vh"},
 )
-app.run_server(debug=True)
+if __name__=='__main__':
+    app.run_server(debug=True)
 ```
 ````
 
@@ -1437,9 +1438,9 @@ app.run_server(debug=True)
 [![enter image description here][37]][37]
 
 
-## 12.6 Studying layouts with your browser's development tools
+## 12.6 Studying layouts with browser development tools
 
-By now you know how to assign different colors and formats to Dash components through `className` and `style`. You've also learnt how to study some of these settings in detail in the `CSS`. Instead of the `CSS` approach, you can also retrieve valuable information on colors and formatting by launching your browser's development tools. If you're using Edge or Chrome, you can do so with `Ctrl + Shift + I`. If you alsoe click the icon highlighted in the red rectangle below, you can hover over any element in your app and retrieve the associated information like this:
+By now you know how to assign different colors and formats to Dash components through `className` and `style`. You've also learnt how to study some of these settings in detail in the `CSS`. Instead of the `CSS` approach, you can also retrieve valuable information on colors and formatting by launching your browser's development tools. If you're using Edge or Chrome, you can do so with `Ctrl + Shift + I`. If you also click the icon highlighted in the red rectangle below, you can hover over any element in your app and retrieve the associated information like this:
 
 [![enter image description here][38]][38]
 
@@ -1453,15 +1454,11 @@ Notice how alle the `className` elements we've added can be found there. In addi
 
 ---
 
-#### 12.7 Test your theme
+## 12.7 Test your theme
 
 The following screenshot shows a layout wiht the `bootstrap` theme with different settings for both `className` and `style` for several `dcc` and `dbc` components. The app is available on `<THIS LINK>`
 
-##### 12.7 Code output - Theme Tester App
-
 [![enter image description here][39]][39]
-
-##### 12.7 Code snippet - Theme Tester App
 
 
 ```python
