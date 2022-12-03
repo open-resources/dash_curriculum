@@ -1081,14 +1081,14 @@ the dash components require an active Python server running
 for their interactivity.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import altair as alt
+from vega_datasets import data
 
-<span class="n">cars</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+cars = data.cars()
 
-<span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">)</span>
+alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;)
 </pre></div>
 </div>
 </div>
@@ -1150,12 +1150,12 @@ An interval selection is often called a “brush”
 and connecting two plots is often referred to as “linked brushing”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval()
  
-<span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">)</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+(alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;)
+.add_selection(brush))
 </pre></div>
 </div>
 </div>
@@ -1221,13 +1221,13 @@ and then lets us define what to do if it is <code class="docutils literal notran
 <p><code class="docutils literal notranslate"><span class="pre">alt.condition(check-this,</span> <span class="pre">if-true-do-this,</span> <span class="pre">if-false-do-this)</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval()
  
-<span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+(alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)))
+.add_selection(brush))
 </pre></div>
 </div>
 </div>
@@ -1287,13 +1287,13 @@ and then lets us define what to do if it is <code class="docutils literal notran
 By default is is both x and y for scatter plots.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">(</span><span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval(encodings=[&#39;x&#39;])
  
-<span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+(alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)))
+.add_selection(brush))
 </pre></div>
 </div>
 </div>
@@ -1356,15 +1356,15 @@ By default is is both x and y for scatter plots.</p>
 This is great for comparing the same observations across multiple dimensions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval()
  
-<span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+points = (alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)))
+.add_selection(brush))
 
-<span class="n">points</span> <span class="o">|</span> <span class="n">points</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Weight_in_lbs&#39;</span><span class="p">)</span>
+points | points.encode(y=&#39;Weight_in_lbs&#39;)
 </pre></div>
 </div>
 </div>
@@ -1429,15 +1429,15 @@ and that points within any section are highlighted within all plots
 by setting <code class="docutils literal notranslate"><span class="pre">resolve='union'</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">(</span><span class="n">resolve</span><span class="o">=</span><span class="s1">&#39;union&#39;</span><span class="p">)</span>  <span class="c1"># The default is &#39;global&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval(resolve=&#39;union&#39;)  # The default is &#39;global&#39;
 
-<span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+points = (alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)))
+.add_selection(brush))
 
-<span class="n">points</span> <span class="o">|</span> <span class="n">points</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Weight_in_lbs&#39;</span><span class="p">)</span>
+points | points.encode(y=&#39;Weight_in_lbs&#39;)
 </pre></div>
 </div>
 </div>
@@ -1497,15 +1497,15 @@ by setting <code class="docutils literal notranslate"><span class="pre">resolve=
 the intersection of <em>all</em> the selections are highlighted.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">(</span><span class="n">resolve</span><span class="o">=</span><span class="s1">&#39;intersect&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval(resolve=&#39;intersect&#39;)
  
-<span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+points = (alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)))
+.add_selection(brush))
 
-<span class="n">points</span> <span class="o">|</span> <span class="n">points</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;Weight_in_lbs&#39;</span><span class="p">)</span>
+points | points.encode(y=&#39;Weight_in_lbs&#39;)
 </pre></div>
 </div>
 </div>
@@ -1579,23 +1579,23 @@ You can try this (especially if there is nothing under your plot),
 but make sure to test in different browsers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">()</span>
-<span class="n">click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval()
+click = alt.selection_multi()
  
-<span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+points = (alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)))
+.add_selection(brush))
 
-<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">click</span><span class="p">))</span>
+bars = (alt.Chart(cars).mark_bar().encode(
+    x=&#39;count()&#39;,
+    y=&#39;Origin&#39;,
+    color=&#39;Origin&#39;,
+    opacity=alt.condition(click, alt.value(0.9), alt.value(0.2)))
+.add_selection(click))
 
-<span class="n">points</span> <span class="o">&amp;</span> <span class="n">bars</span>
+points &amp; bars
 </pre></div>
 </div>
 </div>
@@ -1664,26 +1664,26 @@ between the two plots so Altair can’t link them automatically
 like the two scatters with the same axes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">()</span>
-<span class="n">click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Origin&#39;</span><span class="p">])</span>
-<span class="c1"># `encodings` could also be used like this</span>
-<span class="c1"># click = alt.selection_multi(encodings=[&#39;y&#39;])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval()
+click = alt.selection_multi(fields=[&#39;Origin&#39;])
+# `encodings` could also be used like this
+# click = alt.selection_multi(encodings=[&#39;y&#39;])
 
-<span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)),</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+points = (alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)),
+    opacity=alt.condition(click, alt.value(0.9), alt.value(0.2)))
+.add_selection(brush))
 
-<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">click</span><span class="p">))</span>
+bars = (alt.Chart(cars).mark_bar().encode(
+    x=&#39;count()&#39;,
+    y=&#39;Origin&#39;,
+    color=&#39;Origin&#39;,
+    opacity=alt.condition(click, alt.value(0.9), alt.value(0.2)))
+.add_selection(click))
 
-<span class="n">points</span> <span class="o">&amp;</span> <span class="n">bars</span>
+points &amp; bars
 </pre></div>
 </div>
 </div>
@@ -1750,23 +1750,23 @@ instead of to the bar chart
 since the legend belongs to both of them.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">()</span>
-<span class="n">click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Origin&#39;</span><span class="p">],</span> <span class="n">bind</span><span class="o">=</span><span class="s1">&#39;legend&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval()
+click = alt.selection_multi(fields=[&#39;Origin&#39;], bind=&#39;legend&#39;)
  
-<span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)),</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+points = (alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)),
+    opacity=alt.condition(click, alt.value(0.9), alt.value(0.2)))
+.add_selection(brush))
 
-<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))))</span>
+bars = (alt.Chart(cars).mark_bar().encode(
+    x=&#39;count()&#39;,
+    y=&#39;Origin&#39;,
+    color=&#39;Origin&#39;,
+    opacity=alt.condition(click, alt.value(0.9), alt.value(0.2))))
 
-<span class="p">(</span><span class="n">points</span> <span class="o">&amp;</span> <span class="n">bars</span><span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">click</span><span class="p">)</span>
+(points &amp; bars).add_selection(click)
 </pre></div>
 </div>
 </div>
@@ -1836,24 +1836,24 @@ so they are best used for operations like this where we can’t use pandas.
 This type of interaction is sometimes called a dynamic query.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">()</span>
-<span class="n">click</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_multi</span><span class="p">(</span><span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Origin&#39;</span><span class="p">],</span> <span class="n">bind</span><span class="o">=</span><span class="s1">&#39;legend&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>brush = alt.selection_interval()
+click = alt.selection_multi(fields=[&#39;Origin&#39;], bind=&#39;legend&#39;)
  
-<span class="n">points</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_circle</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;lightgray&#39;</span><span class="p">)),</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)))</span>
-<span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+points = (alt.Chart(cars).mark_circle().encode(
+    x=&#39;Horsepower&#39;,
+    y=&#39;Miles_per_Gallon&#39;,
+    color=alt.condition(brush, &#39;Origin&#39;, alt.value(&#39;lightgray&#39;)),
+    opacity=alt.condition(click, alt.value(0.9), alt.value(0.2)))
+.add_selection(brush))
 
-<span class="n">bars</span> <span class="o">=</span> <span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">cars</span><span class="p">)</span><span class="o">.</span><span class="n">mark_bar</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;count()&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span>
-    <span class="n">opacity</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">click</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)))</span>
-   <span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span><span class="n">brush</span><span class="p">))</span>
+bars = (alt.Chart(cars).mark_bar().encode(
+    x=&#39;count()&#39;,
+    y=&#39;Origin&#39;,
+    color=&#39;Origin&#39;,
+    opacity=alt.condition(click, alt.value(0.9), alt.value(0.2)))
+   .transform_filter(brush))
 
-<span class="p">(</span><span class="n">points</span> <span class="o">&amp;</span> <span class="n">bars</span><span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">click</span><span class="p">)</span>
+(points &amp; bars).add_selection(click)
 </pre></div>
 </div>
 </div>
@@ -1918,18 +1918,18 @@ a selection could bound to the domain of the scale which sets the axis range.
 This way one chart could be used as a minimap to navigate another chart.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">sp500</span><span class="o">.</span><span class="n">url</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>source = data.sp500.url
 
-<span class="n">base</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_area</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;date:T&#39;</span><span class="p">,</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;price:Q&#39;</span><span class="p">)</span>
+base = alt.Chart(source).mark_area().encode(
+    x = &#39;date:T&#39;,
+    y = &#39;price:Q&#39;)
 
-<span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection_interval</span><span class="p">(</span><span class="n">encodings</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">])</span>
-<span class="n">lower</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
+brush = alt.selection_interval(encodings=[&#39;x&#39;])
+lower = base.properties(height=60).add_selection(brush)
 
-<span class="n">upper</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">alt</span><span class="o">.</span><span class="n">X</span><span class="p">(</span><span class="s1">&#39;date:T&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Scale</span><span class="p">(</span><span class="n">domain</span><span class="o">=</span><span class="n">brush</span><span class="p">)))</span>
+upper = base.encode(alt.X(&#39;date:T&#39;, scale=alt.Scale(domain=brush)))
 
-<span class="n">upper</span> <span class="o">&amp;</span> <span class="n">lower</span>
+upper &amp; lower
 </pre></div>
 </div>
 </div>

@@ -977,47 +977,47 @@ you can <a class="reference external" href="https://altair-viz.github.io/gallery
 to update a plot area that looks like a table</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">altair</span> <span class="k">as</span> <span class="nn">alt</span>
-<span class="kn">from</span> <span class="nn">vega_datasets</span> <span class="kn">import</span> <span class="n">data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import altair as alt
+from vega_datasets import data
 
-<span class="n">source</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">cars</span><span class="p">()</span>
+source = data.cars()
 
-<span class="c1"># Brush for selection</span>
-<span class="n">brush</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">selection</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s1">&#39;interval&#39;</span><span class="p">)</span>
+# Brush for selection
+brush = alt.selection(type=&#39;interval&#39;)
 
-<span class="c1"># Scatter Plot</span>
-<span class="n">points</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_point</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">x</span><span class="o">=</span><span class="s1">&#39;Horsepower:Q&#39;</span><span class="p">,</span>
-    <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon:Q&#39;</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">condition</span><span class="p">(</span><span class="n">brush</span><span class="p">,</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;steelblue&#39;</span><span class="p">),</span> <span class="n">alt</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="s1">&#39;grey&#39;</span><span class="p">))</span>
-<span class="p">)</span><span class="o">.</span><span class="n">add_selection</span><span class="p">(</span><span class="n">brush</span><span class="p">)</span>
+# Scatter Plot
+points = alt.Chart(source).mark_point().encode(
+    x=&#39;Horsepower:Q&#39;,
+    y=&#39;Miles_per_Gallon:Q&#39;,
+    color=alt.condition(brush, alt.value(&#39;steelblue&#39;), alt.value(&#39;grey&#39;))
+).add_selection(brush)
 
-<span class="c1"># Base chart for data tables</span>
-<span class="n">ranked_text</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">Chart</span><span class="p">(</span><span class="n">source</span><span class="p">)</span><span class="o">.</span><span class="n">mark_text</span><span class="p">(</span><span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
-    <span class="n">y</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">Y</span><span class="p">(</span><span class="s1">&#39;row_number:O&#39;</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="p">)</span><span class="o">.</span><span class="n">transform_window</span><span class="p">(</span>
-    <span class="n">row_number</span><span class="o">=</span><span class="s1">&#39;row_number()&#39;</span>
-<span class="p">)</span><span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span>
-    <span class="n">brush</span>
-<span class="p">)</span><span class="o">.</span><span class="n">transform_window</span><span class="p">(</span>
-    <span class="n">rank</span><span class="o">=</span><span class="s1">&#39;rank(row_number)&#39;</span>
-<span class="p">)</span><span class="o">.</span><span class="n">transform_filter</span><span class="p">(</span>
-    <span class="n">alt</span><span class="o">.</span><span class="n">datum</span><span class="o">.</span><span class="n">rank</span><span class="o">&lt;</span><span class="mi">16</span>
-<span class="p">)</span>
+# Base chart for data tables
+ranked_text = alt.Chart(source).mark_text(align=&#39;right&#39;).encode(
+    y=alt.Y(&#39;row_number:O&#39;,axis=None)
+).transform_window(
+    row_number=&#39;row_number()&#39;
+).transform_filter(
+    brush
+).transform_window(
+    rank=&#39;rank(row_number)&#39;
+).transform_filter(
+    alt.datum.rank&lt;16
+)
 
-<span class="c1"># Data Tables</span>
-<span class="n">horsepower</span> <span class="o">=</span> <span class="n">ranked_text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Horsepower:N&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">TitleParams</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Horsepower&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">))</span>
-<span class="n">mpg</span> <span class="o">=</span> <span class="n">ranked_text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Miles_per_Gallon:N&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">TitleParams</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;MPG&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">))</span>
-<span class="n">origin</span> <span class="o">=</span> <span class="n">ranked_text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Origin:N&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">properties</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">alt</span><span class="o">.</span><span class="n">TitleParams</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;Origin&#39;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">))</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">alt</span><span class="o">.</span><span class="n">hconcat</span><span class="p">(</span><span class="n">horsepower</span><span class="p">,</span> <span class="n">mpg</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span> <span class="c1"># Combine data tables</span>
+# Data Tables
+horsepower = ranked_text.encode(text=&#39;Horsepower:N&#39;).properties(title=alt.TitleParams(text=&#39;Horsepower&#39;, align=&#39;right&#39;))
+mpg = ranked_text.encode(text=&#39;Miles_per_Gallon:N&#39;).properties(title=alt.TitleParams(text=&#39;MPG&#39;, align=&#39;right&#39;))
+origin = ranked_text.encode(text=&#39;Origin:N&#39;).properties(title=alt.TitleParams(text=&#39;Origin&#39;, align=&#39;right&#39;))
+text = alt.hconcat(horsepower, mpg, origin) # Combine data tables
 
-<span class="c1"># Build chart</span>
-<span class="n">alt</span><span class="o">.</span><span class="n">hconcat</span><span class="p">(</span>
-    <span class="n">points</span><span class="p">,</span>
-    <span class="n">text</span>
-<span class="p">)</span><span class="o">.</span><span class="n">resolve_legend</span><span class="p">(</span>
-    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;independent&quot;</span>
-<span class="p">)</span><span class="o">.</span><span class="n">configure_view</span><span class="p">(</span><span class="n">strokeWidth</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+# Build chart
+alt.hconcat(
+    points,
+    text
+).resolve_legend(
+    color=&quot;independent&quot;
+).configure_view(strokeWidth=0)
 </pre></div>
 </div>
 </div>
