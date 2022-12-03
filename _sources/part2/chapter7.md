@@ -1,7 +1,7 @@
 # Chapter 7: Wrangling Data
 
 ## What you will learn
-`Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will go over data cleaning and filtering techniques to prepare the data for use in our dashbords.
+`Data wrangling` is the processing of `raw` data into a useable form. In this chapter we will go over data cleaning and filtering techniques to prepare the data for use in our dashboards.
 
 ```{admonition} What you will learn
 
