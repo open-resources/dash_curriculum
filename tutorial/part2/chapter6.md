@@ -299,8 +299,10 @@ app.layout = dbc.Container(
     Input(component_id='continent-dropdown', component_property='value')
 )
 def dropdown_sel(value_dropdown):
-    selection = ("You've selected: "+value_dropdown)
-    return selection
+    if value_dropdown:
+        selection = ("You've selected: "+value_dropdown)
+        return selection
+    else: ""
 
 # Run the App
 if __name__ == '__main__':
