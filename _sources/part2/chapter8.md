@@ -1,5 +1,6 @@
 # Chapter 8: Data Visualization
 
+## What you will learn
 This chapter will introduce you to the powers of Plotly Express and support you in making the most commonly used visualizations. Plotly Express charts both look good and offer means of effective visualizations right out of the box. Nonetheless, you will learn how to make your own changes to chart themes and layouts. 
 
 ```{admonition} What you will learn
