@@ -414,11 +414,6 @@ data_table = dash_table.DataTable(
         filter_action='native',
 )
 
-# Create a line graph of life expectancy over time
-fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
-graph1 = dcc.Graph(id='figure1', figure=fig1)
-
-
 # Create the Dash application with Bootstrap CSS stylesheet
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -479,10 +474,6 @@ data_table = dash_table.DataTable(
         sort_action='native',
         filter_action='native',
 )
-
-# Create a line graph of life expectancy over time
-fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
-graph1 = dcc.Graph(id='figure1', figure=fig1)
 
 
 # Create the Dash application with Bootstrap CSS stylesheet
@@ -546,10 +537,6 @@ data_table = dash_table.DataTable(
         row_deletable=True,
 
 )
-
-# Create a line graph of life expectancy over time
-fig1 = px.line(df, x='year', y='lifeExp', color='country', markers=True)
-graph1 = dcc.Graph(id='figure1', figure=fig1)
 
 
 # Create the Dash application with Bootstrap CSS stylesheet
