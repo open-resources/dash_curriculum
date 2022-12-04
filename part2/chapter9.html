@@ -926,11 +926,6 @@ See Table<div class="summary-down docutils">
         <span class="n">filter_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># Create a line graph of life expectancy over time</span>
-<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
-
-
 <span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
@@ -991,10 +986,6 @@ See Table<div class="summary-down docutils">
         <span class="n">sort_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
         <span class="n">filter_action</span><span class="o">=</span><span class="s1">&#39;native&#39;</span><span class="p">,</span>
 <span class="p">)</span>
-
-<span class="c1"># Create a line graph of life expectancy over time</span>
-<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
 
 
 <span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
@@ -1058,10 +1049,6 @@ See Table<div class="summary-down docutils">
         <span class="n">row_deletable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 
 <span class="p">)</span>
-
-<span class="c1"># Create a line graph of life expectancy over time</span>
-<span class="n">fig1</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="n">markers</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">graph1</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span> <span class="n">figure</span><span class="o">=</span><span class="n">fig1</span><span class="p">)</span>
 
 
 <span class="c1"># Create the Dash application with Bootstrap CSS stylesheet</span>
