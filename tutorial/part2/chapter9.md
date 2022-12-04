@@ -102,7 +102,7 @@ import plotly.express as px
 df = px.data.gapminder()
 
 # Create a Dash DataTable
-data_table = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'), page_size=10)
+data_table = dash_table.DataTable(id="dataTable1", data=df.to_dict('records'))
 
 # Create the Dash application with Bootstrap CSS stylesheet
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
