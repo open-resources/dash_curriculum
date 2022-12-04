@@ -489,7 +489,7 @@ for k in kinds[:-1]:
     fig.show()
 ```
 
-# Exercises
+## Exercises
 (1) Using the gapminder data, create a stacked bar chart where we have `year` on the x-axis and population (`pop`) on the y-axis. Each column of the chart should show the `continent` populations stacked one on the other. (In order to show one value per continent, the data should be grouped by year and continent). As chart `template`, use `plotly_dark`.
 ````{dropdown} See Solution
     :container: + shadow
@@ -564,7 +564,7 @@ if __name__== '__main__':
 ![solution_ex1](./ch8_files/chapter08_ex2.gif)
 ````
 
-# Summary
+## Summary
 
 In this chapter you've learned the effective principles of data visualization and how to use Plotly graphs within Dash. You've also learned to plot common Plotly figures using the gapminder data set. [This notebook](https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook) offers additional data analysis of the Gapminder data set with Plotly. 
 
