@@ -301,16 +301,13 @@ fig.show()
 
 ```{note}
 
-Certain IDEs from time to time encounter probblems when running Plotly animations, even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at [this post](https://github.com/microsoft/vscode-jupyter/issues/4364) for more details: 
+Certain IDEs from time to time encounter probblems when running Plotly animations, even if the figure itself has been produced. If this happens to you, try including the following snippet in your code.
 
 ```python
 import plotly.io as pio
 pio.renderers.default = 'notebook_connected'
 ```
 
-```{tip}
-The animatoin snippet above introduced several new methods of the `fig` object. You can learn more about these methods in the [docs](https://plotly.com/python-api-reference/generated/plotly.express.scatter.html#plotly.express.scatter)
-```
 
 ## 8.4 Exploring additional Plotly Express figures
 

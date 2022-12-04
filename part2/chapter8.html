@@ -977,15 +977,11 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 <p><img alt="animated bubble plot" src="../_images/annimated-bubble.gif" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Certain IDEs from time to time encounter probblems when running Plotly animations, even if the figure itself has been produced. If this happens to you, try including the following snippet in your code. Take a look at <a class="reference external" href="https://github.com/microsoft/vscode-jupyter/issues/4364">this post</a> for more details:</p>
+<p>Certain IDEs from time to time encounter probblems when running Plotly animations, even if the figure itself has been produced. If this happens to you, try including the following snippet in your code.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.io</span> <span class="k">as</span> <span class="nn">pio</span>
 <span class="n">pio</span><span class="o">.</span><span class="n">renderers</span><span class="o">.</span><span class="n">default</span> <span class="o">=</span> <span class="s1">&#39;notebook_connected&#39;</span>
 </pre></div>
 </div>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>The animatoin snippet above introduced several new methods of the <code class="docutils literal notranslate"><span class="pre">fig</span></code> object. You can learn more about these methods in the <a class="reference external" href="https://plotly.com/python-api-reference/generated/plotly.express.scatter.html#plotly.express.scatter">docs</a></p>
 </div>
 </div>
 </div>
