@@ -548,7 +548,7 @@ if __name__== '__main__':
 
 ## Summary
 
-In this chapter you've learned the effective principles of data visualization and how to use Plotly graphs within Dash. You've also learned to plot common Plotly figures using the gapminder data set. [This notebook](https://www.kaggle.com/code/jhossain/explore-the-gapminder-dataset-with-plotly-express/notebook) offers additional data analysis of the Gapminder data set with Plotly. 
+In this chapter you've learned the effective principles of data visualization and how to use Plotly graphs within Dash. You've also learned to plot common Plotly figures using the gapminder data set. 
 
 In the next chapter we will do a deep dive into the Dash DataTable.
 
