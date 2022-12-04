@@ -513,9 +513,7 @@ title_ = dcc.Markdown(children='Gapminder Stacked Bar Charts', style={'textAlign
 dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
                         options= [{'label': 'Population', 'value': 'pop'},
                                 {'label': 'GDP per capita', 'value': 'gdpPercap'},
-                                {'label': 'Life Expectancy', 'value': 'lifeExp'}],
-                         value='gdpPercap',
-                         clearable=False)
+                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
 graph_ = dcc.Graph(id='figure1')
 
 # App Layout
@@ -535,6 +533,7 @@ app.layout = dbc.Container(
 @app.callback(
     Output('figure1','figure'),
     Input('metric-dropdown', 'value'),
+    prevent_initial_call=True
 )
 def update_markdown(metric_):
     fig = px.bar(df, x='year', y=metric_, color='continent', template='plotly_dark')
