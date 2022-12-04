@@ -470,24 +470,6 @@ fig.show()
 
 ![timeline](./ch8_files/timeline.png)
 
-```{tip}
-You can set Plotly to be the [plotting backend for pandas](https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937), and produce Plotly Figures with `df.plot(kind)` where `kind` can be any of ` ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']`. This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.
-
-```python
-import random
-import pandas as pd
-
-random.seed(123)
-df = pd.DataFrame({'x':[1,2,3,4,5,6]})
-pd.options.plotting.backend = "plotly"
-
-kinds = ['scatter', 'line', 'area', 'bar', 'barh', 'hist', 'box', 'violin', 'strip', 'funnel', 'density_heatmap', 'density_contour', 'imshow']
-
-for k in kinds[:-1]:
-    fig = df.plot(kind=k, title = k)
-    fig.update_layout(title = dict(font=dict(color='#EF553B')))
-    fig.show()
-```
 
 ## Exercises
 (1) Using the gapminder data, create a stacked bar chart where we have `year` on the x-axis and population (`pop`) on the y-axis. Each column of the chart should show the `continent` populations stacked one on the other. (In order to show one value per continent, the data should be grouped by year and continent). As chart `template`, use `plotly_dark`.
