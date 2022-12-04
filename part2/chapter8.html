@@ -1113,25 +1113,6 @@ Plotly Express also handles <a class="reference external" href="https://plotly.c
 </pre></div>
 </div>
 <p><img alt="timeline" src="../_images/timeline.png" /></p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>You can set Plotly to be the <a class="reference external" href="https://stackoverflow.com/questions/66664935/plotly-how-to-make-different-plots-using-plotly-as-a-plotting-backend-for-panda/66664937#66664937">plotting backend for pandas</a>, and produce Plotly Figures with <code class="docutils literal notranslate"><span class="pre">df.plot(kind)</span></code> where <code class="docutils literal notranslate"><span class="pre">kind</span></code> can be any of <code class="docutils literal notranslate"> <span class="pre">['scatter',</span> <span class="pre">'line',</span> <span class="pre">'area',</span> <span class="pre">'bar',</span> <span class="pre">'barh',</span> <span class="pre">'hist',</span> <span class="pre">'box',</span> <span class="pre">'violin',</span> <span class="pre">'strip',</span> <span class="pre">'funnel',</span> <span class="pre">'density_heatmap',</span> <span class="pre">'density_contour',</span> <span class="pre">'imshow']</span></code>. This is a nice way to quickly explore more Plotly Express graphing options. Run the following snippet to see 11 different options.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]})</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">backend</span> <span class="o">=</span> <span class="s2">&quot;plotly&quot;</span>
-
-<span class="n">kinds</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scatter&#39;</span><span class="p">,</span> <span class="s1">&#39;line&#39;</span><span class="p">,</span> <span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="s1">&#39;barh&#39;</span><span class="p">,</span> <span class="s1">&#39;hist&#39;</span><span class="p">,</span> <span class="s1">&#39;box&#39;</span><span class="p">,</span> <span class="s1">&#39;violin&#39;</span><span class="p">,</span> <span class="s1">&#39;strip&#39;</span><span class="p">,</span> <span class="s1">&#39;funnel&#39;</span><span class="p">,</span> <span class="s1">&#39;density_heatmap&#39;</span><span class="p">,</span> <span class="s1">&#39;density_contour&#39;</span><span class="p">,</span> <span class="s1">&#39;imshow&#39;</span><span class="p">]</span>
-
-<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kinds</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="n">k</span><span class="p">)</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">font</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#EF553B&#39;</span><span class="p">)))</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 <div class="section" id="exercises">
