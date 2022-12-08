@@ -2,7 +2,7 @@
 
 ## What you will learn
 
-As dashboards are designed for data analysis and visualisations, at some point you might run into efficiency constraints when the amount of data you are working with becomes too big. To circumvent possible performance issues, this chapter will give you some insights on wyas to improve your app performance. You'll learn about the built-in Dash Developer Tools, how to plot massive amount of data with higher performing plotly graphs, and how to use caching for improving the performance of your app. 
+As dashboards are designed for data analysis and visualisations, at some point you might run into efficiency constraints when the amount of data you are working with becomes too big. To circumvent possible performance issues, this chapter will give you some insights on ways to improve your app performance. You'll learn about the built-in Dash Developer Tools, how to plot massive amount of data with higher performing plotly graphs, and how to use caching for improving the performance of your app. 
 
 ```{admonition} Learning Intentions
 - Dash Developer Tools
