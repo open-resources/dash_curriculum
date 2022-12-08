@@ -103,11 +103,12 @@ if __name__ == '__main__':
 
 ## 10.1 Multiple Outputs and Inputs
 
-You might want to have a graph that is linked to more than one component that update different dimensions of your graph (multiple Inputs). If you think the other way around, you might want to have several graphs that are updated by the same component (multiple Outputs). Here is where multiple outputs and inputs come into play.
+You might want to have a graph that is linked to more than one component (multiple Inputs) that updates different dimensions of your graph. 
+If you think the other way around, you might want to have several graphs (multiple Outputs) that are updated by the same component. Here is where multiple outputs and inputs come into play.
 
-Let us see **multiple inputs** in action first. Let's build an app that has a dropdown and radio buttons, both of which will modify the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. The radio buttons will be used to build either a line chart or a scatter plot.
+Let us see **multiple Inputs** in action first. Let's build an app that has a dropdown and radio buttons, both of which will modify the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. The radio buttons will be used to build either a line chart or a scatter plot.
 
-Now, since we are using 2 Inputs in the callback decorator, we have 2 component properties. Each components property must be represented as callback function arguments (in this example `value_dropdown` and `value_radio`). Also, make sure that the order in which you write the component properties reflects the order of the function arguments: first Input component property is tied to the first function argument (top to bottom, left to right).
+Now, since we are using 2 Inputs in the callback decorator, we have 2 component properties. Each component property must be represented as callback function arguments (in this example `value_dropdown` and `value_radio`). Also, make sure that the order in which you write the component properties reflects the order of the function arguments: first Input component property is tied to the first function argument.
 
 ```
 # Import packages
@@ -179,7 +180,7 @@ if __name__ == '__main__':
 ```
 ![multiple input gif](./ch10_files/multiple-input-gif.gif)
 
-Similarly, we are able to define **multiple outputs** in one callback. For this, let us take another example, where we want to trigger a graph and a table at the same time through one dropdown. Again, we want to be able to select one specific country of interest to us, whose data then get displayed within the graph and the table.
+Similarly, we are able to define **multiple Outputs** in one callback. For this, let us take another example, where we want to trigger a graph and a table at the same time through one dropdown. Again, we want to be able to select one specific country of interest to us, whose data then get displayed within the graph and the table.
 
 Because we are using multiple outputs we need to add them as component properties in the callback decorator as well as return the same number of variables in the callback function (in this example `fig` and `data` separated by a comma). Also, make sure that the order you enter the variables reflects the order of the component properties: first component property is tied to the first returned variable. 
 
@@ -242,7 +243,7 @@ if __name__ == '__main__':
 
 ## 10.2 Buttons within a callback
 
-Now, that you know how to implement multiple inputs and outputs it's worth taking a closer look at buttons and how to approach them within callbacks. Besides the `children` and `id` properties, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked on. The `n_clicks` property therefore always is a non-negative integer. You would typically use this property to trigger the callback and return output components whenever the button is clicked. In the example below, we change the title of our app depending on if, and how often, the button has been clicked.
+Now, that you know how to implement multiple inputs and outputs, it's worth taking a closer look at buttons and how to approach them within callbacks. Aside from the `children` and `id` properties, buttons come with a property called `n_clicks`, which represents the number of times that the button has been clicked. The `n_clicks` property therefore always is a non-negative integer. You would typically use this property to trigger a callback and return output components whenever the button is clicked. In the example below, we change the title of our app depending on if, and how often, the button has been clicked.
 
 ```
 # Import packages
@@ -285,7 +286,7 @@ if __name__ == '__main__':
 
 ![button clicked gif](./ch10_files/button-click-gif.gif)
 
-To give you some more flexibility on programming your future apps, let us see how to reset the `n_clicks` component property of one button through another button. For this, we adjust the above example by adding a second button. Whenever the second button is clicked, the component property `n_clicks` of the first button will be reset to 0.
+To give you more flexibility programming your future apps, let us see how to reset the `n_clicks` component property of one button through another button. For this, we adjust the above example by adding a second button. Whenever the second button is clicked, the component property `n_clicks` of the first button will be reset to 0.
 
 ```
 # Import packages
@@ -343,9 +344,9 @@ if __name__ == '__main__':
 ```
 ![button reset gif](./ch10_files/button-reset-click-gif.gif)
 
-## 10.3 Callback Context - determine which Input was fired
+## 10.3 Callback Context - determine which Input fired
 
-In the previous example each button belonged to a separate callback. However, eventually you might want to create apps where multiple buttons exist in the same callback as two Inputs. For example, one button would create a scatter graph, whereas the other button would reset that same graph. Given that these two actions are mutually exclusive, we need to determine which button triggered the callback, thereby allowing the right action to take place. For this, there exists a global variable called the Dash Callback Context (`dash.ctx`), available only inside a callback. 
+In the previous example each button belonged to a separate callback. However, eventually you might want to create apps where multiple buttons exist in the same callback as two Inputs. For example, one button would create a scatter graph, whereas the other button would reset that same graph. Given that these two actions are mutually exclusive, we need to determine which button triggered the callback, thereby allowing the right action to take place. For this, there exists a global variable called the Dash Callback Context (`dash.ctx`).
 
 ```
 from dash import Dash, Input, Output, html, dcc, ctx
@@ -376,7 +377,7 @@ def update_graph(b1, b2):
     print(triggered_id)
 
     if triggered_id == 'reset':
-        return go.Figure()
+        return go.Figure()  # empty figure
 
     elif triggered_id == 'draw':
         df = px.data.iris()
@@ -393,10 +394,13 @@ if __name__ == '__main__':
 
 Notice in the code above that we imported `ctx` from `dash`. Then, we used its property `triggered_id` inside the callback function to determine the ID of the button that was triggered.
 
-Another useful property of the callback context is the **`triggered_prop_ids`**. This is a dictionary of the component IDs and props that triggered the callback. It is benefitial to use when multiple properties of the same component (ID) can trigger the callback. For example, let's build a scatter graph and display on the page data generated from the `selectedData` and the `clickData` properties of the graph.
+Another useful property of the callback context is the **`triggered_prop_ids`**. This is a dictionary of the component IDs and props that triggered the callback. It is beneficial to use when multiple properties of the same component (ID) can trigger the callback. For example, let's build a scatter graph and display on the page data generated from the `selectedData` and the `clickData` properties of the graph.
+
+Run the code and try to click on one of the scatter markers. Then, use the box tool to select a group of markers and see how the sentence changes.
 
 ```
-from dash import Dash, Input, Output, html, dcc, ctx
+import dash
+from dash import Dash, Input, Output, html, dcc, ctx, no_update
 import plotly.express as px
 import plotly.graph_objects as go
 import dash_bootstrap_components as dbc
@@ -410,7 +414,7 @@ fig = px.scatter(df, x=df.columns[0], y=df.columns[1])
 # App Layout
 app.layout = dbc.Container([
     dcc.Markdown(id='content'),
-    dcc.Graph(id='graph', figure=fig)
+    dcc.Graph(id='graph-id', figure=fig)
 ])
 
 
@@ -423,15 +427,17 @@ app.layout = dbc.Container([
 )
 def update_graph(selected, clicked):
     triggered_prop_id = ctx.triggered_prop_ids
-    print(triggered_prop_id)
 
     if 'graph.selectedData' in triggered_prop_id:
-        print(selected)
-        return 'The x range of the seclected data starts from {}'.format(selected['range']['x'][0])
+        if selected:
+            return 'The x range of the selected data starts from {}'.format(selected['range']['x'][0])
+        else:
+            no_update
 
     elif 'graph.clickData' in triggered_prop_id:
         print(clicked)
         return 'The Sepal width of the clicked data is {}'.format(clicked['points'][0]['y'])
+
 
 
 # Run the App
@@ -441,64 +447,15 @@ if __name__ == '__main__':
 
 ![ctx triggered id prop gif](./ch10_files/more-ctx-gif.gif)
 
-To read more about the callback context, see the [Advanced callback](https://dash.plotly.com/advanced-callbacks#determining-which-input-has-fired-with-dash.callback_context) in the Dash documentation.
-
-## Consider deleting this section
-
-To conclude this second part of the chapter, let us see how to implement a binary functionality of your button. This means you are triggering different outputs with clicking the button, depending if you have clicked it an even or an odd number of times. This can be easily handled with the modulo operator `%`.
-
-```{tip}
-For a comprehensive overview of the modulo operator and how to use it in Python, have a look at [Real Python](https://realpython.com/python-modulo-operator/).
-```
-
-```
-# Import packages
-from dash import Dash, dcc, html, Input, Output
-import dash_bootstrap_components as dbc
-
-# Initialise the App
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-
-# Create app components
-markdown = dcc.Markdown(id='our-markdown', children='My first app')
-button = html.Button(id='our-button', children='Update title')
-
-# App Layout
-app.layout = dbc.Container(
-    [
-        dbc.Row(dbc.Col(markdown)),
-        dbc.Row(dbc.Col(button))
-    ]
-)
-
-
-# Configure callbacks
-@app.callback(
-    Output(component_id='our-markdown', component_property='children'),
-    Input(component_id='our-button', component_property='n_clicks'),
-)
-def update_title(n_clicks):
-    if n_clicks % 2 == 0:
-        title = 'My first app'
-    else:
-        title = 'My first app, but with a changed title.'
-    return title
-
-
-# Run the App
-if __name__ == '__main__':
-    app.run_server()
-```
-##### [ADD GIF, SHOWING THE ABOVE CODE IN ACTION]
 
 ## 10.4 States
 
-So far, we have seen how all Input components of an app trigger the callback. In a more advanced setup it might be useful to wait for the app users to update all the Inputs before the callback is actually triggered. For this purpose there is a third argument that can be used within the callback decorator, the `State`. Formally, the State argument is written in the same manner as the Input argument, but the difference is that the component properties inside State will not trigger the callack.
+So far, we have seen how all Input components of an app trigger the callback. In certain situations it might be useful to wait for all the Inputs to update before the callback is actually triggered. For this purpose there is a third argument that can be used within the callback decorator, the `State`. The State argument is written in the same manner as the Input argument, but the difference is that the component property inside State will not trigger the callback.
 
-Let us bring everything together in one final example. We will implement an app with a dropdown, radio items, and a button which will trigger the callback, thereby updating a graph and a DataTable. We only want to trigger the callabck when the button is clicked. For this, we declare all arguments that should not trigger the callback (dropdown and radio buttons) as State arguments instead of Input arguments in the callback decorator.
+Let us bring everything together in one final example. We will implement an app with a dropdown, radio items, and a button which will trigger the callback, thereby updating a graph and a DataTable. We only want to trigger the callback when the button is clicked. For this, we declare all arguments that should not trigger the callback (dropdown and radio buttons) as State arguments instead of Input arguments in the callback decorator.
 
 ```{attention}
-Note that you need to import the state argument the same way we are importing the input and output arguments at the beginning of your code.
+Note that you need to import the state argument the same way we are importing the input and output arguments at the beginning of the code.
 ```
 
 ```
@@ -584,8 +541,8 @@ if __name__ == '__main__':
 
 ## Exercises
 
-(1) Build an app composed by a title, an empty table, a button and a chart.
-- The table should be editable and should have two columns 'x' and 'y'. All its 5 rows should be empty and the user would insert datapoints.
+(1) Build an app composed of a title, an empty table, a button and a chart.
+- The table should be editable and should have two columns 'x' and 'y'. All its 5 rows should be empty, allowing the user to insert data points.
 - Next to the table, a chart should plot the values contained in the 'x' and 'y' column of the table. We should expect integer values only.
 - The chart should be generated only when pressing on the button.
 ````{dropdown} See Solution
