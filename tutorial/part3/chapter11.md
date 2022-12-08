@@ -1,4 +1,4 @@
-# Chapter 11: Additional Components
+# Chapter 11: Advanced Components
 
 ## What you will learn
 Dash libraries include many components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include in your app.
