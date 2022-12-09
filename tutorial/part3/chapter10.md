@@ -541,10 +541,14 @@ if __name__ == '__main__':
 
 ## Exercises
 
-(1) Build an app composed of a title, an empty table, a button and a chart.
-- The table should be editable and should have two columns 'x' and 'y'. All its 5 rows should be empty, allowing the user to insert data points.
-- Next to the table, a chart should plot the values contained in the 'x' and 'y' column of the table. We should expect integer values only.
-- The chart should be generated only when pressing on the button.
+(1) Build an app composed of a title, a DataTable, a button and a bar chart.
+- The DataTable should display the `px.data.tips()` Plotly data set. The table should be editable and display 15 rows per page.
+- Create a callback that takes the `n_clicks` of the button and the `data` prop of the DataTable, and converts the data to a dataframe called `dff`. 
+- Use the newly created `dff` to create a bar chart that plots the `time` on the x-axis, the `total_bill` on the y-axis and the `day` as the color attribute. 
+- The bar chart should be generated only when pressing on the button.
+
+Run the app and try to change a few of the DataTable cell data and click the button to see an updated graph.
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -557,23 +561,23 @@ import plotly.express as px
 import pandas as pd
 
 # Setup data
-df = px.data.gapminder()
+df = px.data.tips()
 
 # Initialise the App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 markdown = dcc.Markdown(id='our-markdown', children='# Exercise 10.1', style={'textAlign': 'center'})
-button = html.Button(id='draw', children='PLOT TABLE DATA', n_clicks=0)
+button = html.Button(id='draw', children='Plot Graph', n_clicks=0)
 data_table = dash_table.DataTable(
-                id='input_data',
-                data = [{'x':'','y':''},{'x':'','y':''},{'x':'','y':''},{'x':'','y':''},{'x':'','y':''},{'x':'','y':''}], # Empty rows
+                id='input-data',
+                data = df.to_dict('records'),
+                columns=[{'name': i, 'id': i} for i in df.columns],
                 editable=True,
-                columns=[{'name': i, 'id': i, 'selectable':False} for i in ['x','y']],
                 page_size=15,
-                row_deletable=True
+                style_table={'overflowX': 'auto'}
 )
-graph = dcc.Graph(id='chart-1')
+graph = dcc.Graph(id='chart')
 
 # App Layout
 app.layout = dbc.Container(
@@ -588,7 +592,6 @@ app.layout = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(button, width=5, style={'textAlign': 'center'}),
-                dbc.Col(width=7)
             ]
         )
     ]
@@ -596,106 +599,113 @@ app.layout = dbc.Container(
 
 # Configure callbacks
 @app.callback(
-    Output(component_id='chart-1', component_property='figure'),
+    Output(component_id='chart', component_property='figure'),
     Input(component_id='draw', component_property='n_clicks'),
-    State(component_id='input_data', component_property='data'),
-    prevent_initial_call=True
+    State(component_id='input-data', component_property='data'),
 )
 def plot_table(n_clicks, table_data):
-    if n_clicks > 0:
-        x = []; y = []
-        for r in table_data:
-            if (r['x'] == '') or (r['y'] == ''):
-                pass
-            else:
-                x_ = int(r['x']); y_ = int(r['y'])
-                x.append(x_)
-                y.append(y_)
-        df_ = pd.DataFrame({'x':x, 'y':y})
-        df_.sort_values(by='x', inplace=True)
-        fig = px.line(df_, x='x', y='y', markers=True)
+    dff = pd.DataFrame(table_data)
+    fig = px.bar(dff, x='time', y='total_bill', color='day')
     return fig
 
 # Run the App
 if __name__ == '__main__':
     app.run_server()
 ```
-![solution_ex1](./ch10_files/chapter10_ex1.gif)
+![solution_ex1](./ch10_files/chapter10_ex1.png)
 ````
 
-(2) Starting from the app presented in the "Callback Context" section, build a similar app that shows in a Table, the click / selected datapoints from a scatter plot.
-- Using the `gapminder` dataset, filtered by countries `['Brazil','Germany','Pakistan']`, plot the `year` on the x-axis and `pop` on the y-axis of a scatter plot.
-- Next, create an empty table with columns `year` and `pop`.
-- Finally, build a `callback` that, with the use of `ctx`, fill the table with the points clicked or selected on the graph.
+(2) Modify the app in exercise 1:
+- Add a `column_selectable` and `selected_columns` props to the DataTable, and assign `['tip']` to the selected column.
+- Replace the button with an empty `html.Div()` and include the `children` of that Div as the second Output component in the callback.
+- The callback should have two Outputs (Div and Graph), and three Inputs that belong to the DataTable, whose component properties are: `active_cell`, `selected_columns`, and `data`.
+- Keep the same callback function content from example 1. But add to it the following content, based on the second example from chapter 10.3 callback context: 
+  - if `selected_columns` is in `triggered_prop_id` create a message the displays the column selected data
+  - if `active_cell` is in `triggered_prop_id` create a message the displays the active cell data 
+  - else create a message that says "Nothing selected yet."
+- Return both figure and message at the end.
+
+Run the app and see how the message changes based on the column or cell selected.
+
 
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
-from dash import Dash, dash_table, dcc, html, Input, Output, ctx
+# Import packages
+from dash import Dash, dash_table, dcc, html, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import pandas as pd
 
-# Import data & data preprocessing
-df = px.data.gapminder()
-df = df.loc[df['country'].isin(['Brazil','Germany','Pakistan']), :]
+# Setup data
+df = px.data.tips()
 
-# Create the Dash application
+# Initialise the App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
-title_ = dcc.Markdown(id='our-markdown', children='# Exercise 10.2', style={'textAlign': 'center'})
-graph = dcc.Graph(
-    id='chart-1',
-    figure = px.scatter(df, x='year', y='pop', color='continent', symbol='country', template='plotly_dark'))
+markdown = dcc.Markdown(id='our-markdown', children='# Exercise 10.2', style={'textAlign': 'center'})
 data_table = dash_table.DataTable(
-    id = 'selection-table',
-    columns=[{'name': i, 'id': i} for i in ['year','pop']],
-    page_size=10)
+                id='input-data',
+                data=df.to_dict('records'),
+                columns=[{'name': i, 'id': i, 'selectable':True} for i in df.columns],
+                editable=True,
+                page_size=15,
+                style_table={'overflowX': 'auto'},
+                column_selectable="single",
+                selected_columns=['tip'],
+)
+graph = dcc.Graph(id='chart')
 
 # App Layout
-app.layout = dbc.Container([
-    dbc.Row([dbc.Col([title_], width=12)]),
-    dbc.Row([
-        dbc.Col([graph], width=6),
-        dbc.Col([data_table], width=6)
-        ]),
-    ])
-
-#Callbacks
-@app.callback(
-    Output('selection-table','data'),
-    Input(component_id='chart-1', component_property='selectedData'),
-    Input(component_id='chart-1', component_property='clickData'),
-    prevent_initial_call=True
+app.layout = dbc.Container(
+    [
+        dbc.Row(dbc.Col(markdown)),
+        dbc.Row(
+            [
+                dbc.Col(data_table, width=5),
+                dbc.Col(graph, width=7)
+            ]
+        ),
+        dbc.Row([
+            dbc.Col([html.Div(id='content')])
+        ])
+    ]
 )
-def update_markdown(selected, clicked):
+
+# Configure callbacks
+@app.callback(
+    Output(component_id='chart', component_property='figure'),
+    Output(component_id='content', component_property='children'),
+    Input(component_id='input-data', component_property='active_cell'),
+    Input(component_id='input-data', component_property='selected_columns'),
+    Input(component_id='input-data', component_property='data'),
+)
+def plot_table(cell, col, table_data):
     triggered_prop_id = ctx.triggered_prop_ids
+    if 'input-data.selected_columns' in triggered_prop_id:
+        message = f"The column selected was: {col}"
+    elif 'input-data.active_cell' in triggered_prop_id:
+        message = f"The active cell selected was: {cell}"
+    else:
+        message = "Nothing selected yet."
 
-    if 'chart-1.selectedData' in triggered_prop_id:
-        chart_input = selected
-    elif 'chart-1.clickData' in triggered_prop_id:
-        chart_input = clicked
+    dff = pd.DataFrame(table_data)
+    fig = px.bar(dff, x='time', y='total_bill', color='day')
+    return fig, message
 
-    data_ = pd.DataFrame({'year':[], 'pop':[]})
-    for p in chart_input['points']:
-        new_row = [p['x'], p['y']]
-        data_.loc[-1] = new_row
-        data_.reset_index(inplace=True, drop=True)
-
-    return data_.to_dict('records')
 
 # Run the App
-if __name__== '__main__':
+if __name__ == '__main__':
     app.run_server()
 ```
-![solution_ex2](./ch10_files/chapter10_ex2.gif)
+![solution_ex2](./ch10_files/chapter10_ex2.png)
 ````
 
 ## Summary
 
-We have learned about how to link multiple input components with multiple output components. Furthermore, you now know how to use the button inside the callback and how to identify which Input triggered the callback with callback context. Additionally, with the understanding of the State argument, you are now well equipped to build even more complex, fully interactive apps.
+We have learned about how to link multiple input components with multiple output components. Furthermore, you now know how to use the button inside the callback and how to identify which Input triggered the callback with callback context. Additionally, with the understanding of the State argument, you are now well-equipped to build even more complex, fully interactive apps.
 
-In the next chapter you will learn about several additional components that can be used to enhance your Dash app.
+In the next chapter you will learn about additional components that can be used to enhance your Dash app.
