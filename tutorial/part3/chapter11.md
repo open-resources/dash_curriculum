@@ -1,14 +1,14 @@
 # Chapter 11: Advanced Components
 
 ## What you will learn
-Dash libraries include many components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include in your app.
+Dash libraries include many components that serve multiple purposes. It may be a bit overwhelming to navigate through all the components in search for the one that meets your needs. Therefore, in this chapter we will provide an overview of several components that are commonly used and that you may find useful to include as your apps develop.
 
 We will break down the components into categories, grouping together components that serve the same purpose. For each category, we will present some of the most common components in detail.
 
 All components in this chapter come from these libraries:
-- [Dash core components](https://dash.plotly.com/dash-core-components) (dcc)
-- [Dash boostrap components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/) (dbc)
 
+- [Dash core components (dcc)](https://dash.plotly.com/dash-core-components)
+- [Dash boostrap components (dbc)](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/)
 
 ```{admonition} Learning Intentions
 - Upload, Card, Modal, Alert components
@@ -91,7 +91,7 @@ if __name__ == '__main__':
 ## 11.1 Data Display Components
 
 ### 11.1.1 Upload
-The `Upload` component allows us to upload a file to the dashboard. For this example we will upload a [CSV file](https://www.howtogeek.com/348960/what-is-a-csv-file-and-how-do-i-open-it/) and plot the data on a line chart. [Download this CSV file](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/rotation_angle.csv), save it as `rotation_angle.csv`, run the follwing code, and try uploading the file into the drag and drop section of the app.
+The `Upload` component allows us to upload a file to the dashboard. For this example we will upload a CSV file and plot the data on a line chart. [Download this CSV file](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/rotation_angle.csv), save it as `rotation_angle.csv`, run the following code, and try uploading the file into the drag and drop section of the app.
 
 ```{attention}
 Note that the `update_fig()` callback function below is designed for CSV files exclusively. Different data wrangling inside the function would be required if you choose to work with other data files.
@@ -159,7 +159,7 @@ if __name__ == '__main__':
 
 
 ### 11.1.2 Card
-The `Card` component provides a container in which we can place content neatly such as: titles, main body text, images, graphs, buttons, and links. It often leads to a more appealing layout design. All you need to do is build the card body inside the `dbc.Card`
+The `Card` component provides a container in which we can place content neatly such as: titles, main body text, images, graphs, buttons, and links. It often leads to a more appealing layout design. All you need to do is build the card body inside the `dbc.Card`.
 
 ```python
 from dash import Dash, html
@@ -241,11 +241,8 @@ if __name__ == '__main__':
     app.run_server()
 ```
 
-[This Dash Bootstrap Components page has additional `Card` examples](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/card/). 
-
-
 ### 11.1.3 Modal
-`Modals` are pop-up boxes that allow for user notification, input, or other content to be displayed. A modal is often incorporated to draw the user's attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, just like the card, the modal bobdy can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.
+`Modals` are pop-up boxes that allow for user notification, input, or other content to be displayed. A modal is often incorporated to draw the user's attention to a specific section of the page. In the example below, the body of the modal solely contains text. However, just like the card, the modal body can contain many others elements within its children: dropdowns, graphs, input fields, images, links, etc.
 
 ```python
 from dash import Dash, Input, Output, State, html
@@ -259,7 +256,7 @@ close_button = dbc.Button("Close", id="close_modal")
 
 modal = dbc.Modal(
             [
-                dbc.ModalHeader(dbc.ModalTitle("Title")),
+                dbc.ModalHeader(html.H1("Title")),
                 dbc.ModalBody("This is the content of the modal"),
                 dbc.ModalFooter(close_button),
             ],
@@ -292,11 +289,9 @@ if __name__ == '__main__':
 
 ![modal](ch11_files/img/modal.gif)
 
-[This Dash Bootstrap Components page has additional `Modal` examples](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/modal/). 
-
 ### 11.1.4 Alert
 `Alerts` are boxes that provide messages depending on the user interaction with the app.
-Using the callback, you can update many of the component's properties such as: color, fading animation, duration of appearence.
+Using the callback, you can update many of the component's properties such as: color, fading animation, duration of appearance.
 
 In the example below, an alert pops up if the user chooses a quantity over 100.
 
@@ -329,11 +324,13 @@ app.layout = dbc.Container(
     Input("my-dropdown", "value"),
 )
 def toggle_offcanvas(value):
-    if value < 100:
-        return f"You have selected to purchase {value} computers."
-    if value > 100:
-        return dbc.Alert(children="We don't have so many computers in stock. Please select fewer computers",
-                         color="danger")
+    if value:
+        if value < 100:
+            return f"You have selected to purchase {value} computers."
+        if value > 100:
+            return dbc.Alert(children="We don't have so many computers in stock. Please select fewer computers",
+                             color="danger")
+    else: no_update
 
 
 # Launch the app server
@@ -346,7 +343,7 @@ if __name__ == '__main__':
 
 Let's see a more sophisticated example. Below, we have created alerts depending on the GDP Per Capita of a selected country and year, compared to the global average:
 - If the country's GDP Per Capita is greater than the world's average, the alert message will have a green background
-- Otherwise the message will become red
+- Otherwise, the message will become red
 
 ```python
 from dash import Dash, dcc, Input, Output, html
@@ -417,8 +414,6 @@ if __name__ == '__main__':
 ```
 
 ![Alert Example](ch11_files/img/alert2.gif)
-
-[See additional properties and examples of the `Alert` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/alert/). 
 
 
 ## 11.2 Date Filtering & Input Components
