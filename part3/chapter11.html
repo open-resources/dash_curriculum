@@ -957,15 +957,15 @@ Using the callback, you can update many of the component’s properties such as:
 <p>The DatePicker components allow the user to select a single date or a date range.
 There are two types of date pickers, both are part of the Dash Core Components library:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">DatePickerSingle</span></code> consists of one single date selection: by clicking on the object a calendar will pop-up, allowing the user to pick a date</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DatePickerSingle</span></code> consists of one single date selection: by clicking on the object a calendar will pop up, allowing the user to pick a date.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> is similar to the previous component, but includes two date selections, which should be read as “start” and “end” dates.</p></li>
 </ul>
 <p>The two components have very similar properties - the main ones are:</p>
 <ul class="simple">
-<li><p>min_date_allowed : minimum date the user can choose from</p></li>
-<li><p>max_date_allowed : maximum date the user can choose from</p></li>
-<li><p>start_date : default start date selected, when app page initially loads</p></li>
-<li><p>end_date : default end date selected, when app page initially loads</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_date_allowed</span></code>: minimum date the user can choose from</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_date_allowed</span></code>: maximum date the user can choose from</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start_date</span></code>: default start date selected, when app page initially loads</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_date</span></code>: default end date selected, when app page initially loads</p></li>
 </ul>
 <p>In the following app, a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.</p>
 <div class="admonition note">
@@ -1029,7 +1029,7 @@ There are two types of date pickers, both are part of the Dash Core Components l
 </div>
 <div class="section" id="store">
 <h3>11.2.2 Store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
+<p><code class="docutils literal notranslate"><span class="pre">Store</span></code> component stores app data in the user’s browser. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:</p>
 <ul class="simple">
 <li><p>this component can only store data in the following formats: json, list, dictionary data types. With the <code class="docutils literal notranslate"><span class="pre">data</span></code> property, we can access to the content stored in the memory.</p></li>
@@ -1041,7 +1041,7 @@ When using this component, it is important to pay attention to the following:</p
 <p>Try to run the app on your computer. Then, test the storage types by refreshing the page; then closing the browser and reopening it; and then clearing cookies.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Don’t worry about understanding the code below. This was written for the purpose of demonstrating the different <code class="docutils literal notranslate"><span class="pre">storage_type</span></code>s.</p>
+<p>Don’t worry about understanding the code below. This was written for the purpose of demonstrating the different storage types.</p>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
@@ -1143,7 +1143,7 @@ When using this component, it is important to pay attention to the following:</p
 </pre></div>
 </div>
 <p><img alt="Store_Example" src="../_images/store.gif" /></p>
-<p>Here is a real life example of how to use <code class="docutils literal notranslate"><span class="pre">dcc.Store</span></code> in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:</p>
+<p>Below is a real life example of how to use <code class="docutils literal notranslate"><span class="pre">dcc.Store</span></code> in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dash_table</span>
 <span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
@@ -1214,16 +1214,16 @@ When using this component, it is important to pay attention to the following:</p
 <div class="section" id="interval">
 <h3>11.2.3 Interval<a class="headerlink" href="#interval" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Interval</span></code> enables automatic recurrent updates of the app, by triggering callbacks periodically.
-One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting property, it is possible to configure the following:</p>
+One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting properly, it is possible to configure the following:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">interval</span></code> is a property that determines the refresh rate. This is measured in milliseconds and every time this interval expires, a counter is increased.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">max_intervals</span></code> can be configured to set a cap to the number of times the refresh happens. By default, this property is set to -1, meaning that refreshes will never stop.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">n_intervals</span></code> represent the counter, i.e. the number of times the interval has passed. This property is used to trigger the callback function.</p></li>
 </ul>
 <p>This is an invisible component: although it won’t affect app layout, the component must be included in the <code class="docutils literal notranslate"><span class="pre">app.layout</span></code> in order to work properly.</p>
-<p>In the following example, the current time in New York is refreshed every 2 seconds.</p>
+<p>In the following example, the current time in New York is refreshed every 2 seconds for 7 times, and then the Interval is disabled, stopping the app from refreshing.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
-<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">no_update</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 <span class="kn">from</span> <span class="nn">dash.exceptions</span> <span class="kn">import</span> <span class="n">PreventUpdate</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
@@ -1254,16 +1254,19 @@ One example where this component is typically used is when the app is connected 
 <span class="c1"># Configure callback</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;livet&quot;</span><span class="p">,</span> <span class="s2">&quot;children&quot;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;int1&quot;</span><span class="p">,</span> <span class="s2">&quot;n_intervals&quot;</span><span class="p">)</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;int1&quot;</span><span class="p">,</span> <span class="s2">&quot;disabled&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;int1&quot;</span><span class="p">,</span> <span class="s2">&quot;n_intervals&quot;</span><span class="p">),</span>
+<span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">refresh_time</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">PreventUpdate</span>  <span class="c1"># Prevent the callback from updating when the app first loads (n_intervals==0)</span>
-    <span class="k">else</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">8</span><span class="p">:</span>
         <span class="n">tz</span> <span class="o">=</span> <span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">)</span>
         <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">tz</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">now</span>
+        <span class="k">return</span> <span class="n">now</span><span class="p">,</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">no_update</span><span class="p">,</span> <span class="kc">True</span>
 
 
 <span class="c1"># Launch the app server</span>
@@ -1279,8 +1282,9 @@ One example where this component is typically used is when the app is connected 
 <h2>11.3 Navigation Components<a class="headerlink" href="#navigation-components" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="tabs">
 <h3>11.3.1 Tabs<a class="headerlink" href="#tabs" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Tabs</span></code> allow for easy navigation between different sections of an app. It is often used when you have a lot of information on one single page and you would like to improve user expriece by dividing the information into separate sections, each within a separate tab.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">dcc.Tabs</span></code> and <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> components can be used to create tabbed sections in your app. The <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> component controls the style and value of the individual tab and the <code class="docutils literal notranslate"><span class="pre">dcc.Tabs</span></code> component hold a collection of <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> components.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Tabs</span></code> allow for easy navigation between different sections of an app.
+It is often used when you have a lot of information on one single page, and you would like to improve user experience by dividing the information into separate sections, each within a separate tab.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">dcc.Tabs</span></code> and <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> components can be used to create tabbed sections in your app. The <code class="docutils literal notranslate"><span class="pre">dcc.Tabs</span></code> component hold a collection of <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> components. And the <code class="docutils literal notranslate"><span class="pre">dcc.Tab</span></code> component controls the style and value of each individual tab.</p>
 <p>In the example below, the content for each tab is housed within the children of a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -1350,7 +1354,7 @@ One example where this component is typically used is when the app is connected 
 </pre></div>
 </div>
 <p><img alt="tabs" src="../_images/tabs.gif" /></p>
-<p>Although the above is a nice and short app, housing the content in the children of each tab has a drawback. It requires the app to compute the children property for each individual tab upfront and send all of the tab’s content over the network at once, which could slow the app down.</p>
+<p>Although the above is a nice and short app, housing the content in the children of each tab has a drawback. It requires the app to compute the children property for each individual tab upfront and send all the tab’s content over the network at once, which could slow the app down.</p>
 <p>Another way to display the content of each tab is through the callback method, which allows you to compute the tab’s content on the fly, only when the tab is clicked. Here’s an example.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 
@@ -1409,78 +1413,87 @@ One example where this component is typically used is when the app is connected 
 <div class="section" id="offcanvas">
 <h3>11.3.2 OffCanvas<a class="headerlink" href="#offcanvas" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Offcanvas</span></code> component allows us to display a sidebar overlay on the app. It is often used when there are elements of the app that you would like to show your visitors in a non-invasive, user-friendly way. In the example below, the Offcanvas will contain our logo and two links to external resources the users might be interested in.</p>
-<div class="highlight-python# notranslate"><div class="highlight"><pre><span></span>from dash import Dash, html, dcc, Input, Output, State
-import dash_bootstrap_components as dbc
-import base64
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
+<span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span><span class="p">,</span> <span class="n">State</span>
+<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
+<span class="kn">import</span> <span class="nn">base64</span>
 
-# Initialise the App
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+<span class="c1"># Initialise the App</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
-image_file = &#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/img/plotly.png&#39;
-img = html.Img(src=image_file, width=300)
-offcanvas_doc = dcc.Link(&quot;Off-Canvas documentation&quot;, id=&#39;oc_doc&#39;,
-                         target=&#39;_blank&#39;,
-                         href=&#39;https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/&#39;)
-link_doc = dcc.Link(&quot;Link documentation&quot;, id=&#39;link_doc&#39;, target=&#39;_blank&#39;,
-                    href=&#39;https://dash.plotly.com/dash-core-components/link&#39;)
+<span class="n">image_file</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part3/ch11_files/img/plotly.png&#39;</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Img</span><span class="p">(</span><span class="n">src</span><span class="o">=</span><span class="n">image_file</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">offcanvas_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Off-Canvas documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;oc_doc&#39;</span><span class="p">,</span>
+                         <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span>
+                         <span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/&#39;</span><span class="p">)</span>
+<span class="n">link_doc</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Link</span><span class="p">(</span><span class="s2">&quot;Link documentation&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;link_doc&#39;</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;_blank&#39;</span><span class="p">,</span>
+                    <span class="n">href</span><span class="o">=</span><span class="s1">&#39;https://dash.plotly.com/dash-core-components/link&#39;</span><span class="p">)</span>
 
-offcanvas_layout = dbc.Container(
-    [
-        dbc.Row([dbc.Col(img)]),
-        dbc.Row([dbc.Col(offcanvas_doc)]),
-        dbc.Row([dbc.Col(link_doc)]),
-    ]
-)
-offcanvas = html.Div(
-    [
-        dbc.Button(&quot;Open Offcanvas&quot;, id=&quot;open-offcanvas&quot;, n_clicks=0),
-        dbc.Offcanvas(
-            [offcanvas_layout],
-            id=&quot;offcanvas&quot;,
-            title=&quot;Off-Canvas&quot;,
-            is_open=False,
-        ),
-    ]
-)
+<span class="n">offcanvas_layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">img</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">offcanvas_doc</span><span class="p">)]),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span><span class="n">link_doc</span><span class="p">)]),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">offcanvas</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">Div</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Open Offcanvas&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="n">n_clicks</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Offcanvas</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">offcanvas_layout</span><span class="p">],</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Off-Canvas&quot;</span><span class="p">,</span>
+            <span class="n">is_open</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
-# App Layout
-app.layout = dbc.Container(
-    [
-        dbc.Row([
-            dbc.Col([offcanvas], width=3),
-            dbc.Col([html.H1(&quot;Content of app here below&quot;, style={&#39;textAlign&#39;:&#39;center&#39;}),
-                     dcc.Dropdown([&quot;A&quot;,&quot;B&quot;,&quot;C&quot;]),
-                     html.H4(&quot;Empty Graph&quot;, style={&#39;textAlign&#39;:&#39;center&#39;}),
-                     dcc.Graph()], width=9)
-        ])
-    ]
-)
+<span class="c1"># App Layout</span>
+<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">offcanvas</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">html</span><span class="o">.</span><span class="n">H1</span><span class="p">(</span><span class="s2">&quot;Content of app here below&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">}),</span>
+                     <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">([</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">]),</span>
+                     <span class="n">html</span><span class="o">.</span><span class="n">H4</span><span class="p">(</span><span class="s2">&quot;Empty Graph&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span><span class="s1">&#39;center&#39;</span><span class="p">}),</span>
+                     <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">()],</span> <span class="n">width</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+        <span class="p">])</span>
+    <span class="p">]</span>
+<span class="p">)</span>
 
 
-@app.callback(
-    Output(&quot;offcanvas&quot;, &quot;is_open&quot;),
-    Input(&quot;open-offcanvas&quot;, &quot;n_clicks&quot;),
-    State(&quot;offcanvas&quot;, &quot;is_open&quot;)
-)
-def toggle_offcanvas(n1, is_open):
-    if n1:
-        return not is_open
-    return is_open
+<span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s2">&quot;open-offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;n_clicks&quot;</span><span class="p">),</span>
+    <span class="n">State</span><span class="p">(</span><span class="s2">&quot;offcanvas&quot;</span><span class="p">,</span> <span class="s2">&quot;is_open&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">toggle_offcanvas</span><span class="p">(</span><span class="n">n1</span><span class="p">,</span> <span class="n">is_open</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">is_open</span>
+    <span class="k">return</span> <span class="n">is_open</span>
 
-# Run the App
-if __name__ == &#39;__main__&#39;:
-    app.run_server()
+<span class="c1"># Run the App</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">()</span>
 </pre></div>
 </div>
 <p><img alt="offcanvas" src="../_images/offcanvas-example.gif" /></p>
-<p><a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/">See additional examples and properties of the <code class="docutils literal notranslate"><span class="pre">Offcanvas</span></code> component</a>.</p>
 </div>
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
-<p>(1) Build an app composed by a title, a <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> component and 3 <code class="docutils literal notranslate"><span class="pre">Card</span></code> components.
-Using the <code class="docutils literal notranslate"><span class="pre">px.data.stocks()</span></code> data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks <code class="docutils literal notranslate"><span class="pre">GOOG</span></code> and <code class="docutils literal notranslate"><span class="pre">AAPL</span></code> (which are columns of the stock dataset).
-Based on the date range set in the <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> component, the central card graph should show the records which fall in the date range; the left card should show any data prior to the start date; and the right card should show any data after the end date.</p>
+<p>(1) Build an app composed of a title, a <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code> component and 3 <code class="docutils literal notranslate"><span class="pre">Card</span></code> components.</p>
+<ul class="simple">
+<li><p>Using the <code class="docutils literal notranslate"><span class="pre">px.data.stocks()</span></code> data, build the same graph in each of the 3 cards: a line chart with date on the x-axis and a list of stock prices on the y-axis for stocks <code class="docutils literal notranslate"><span class="pre">GOOG</span></code> and <code class="docutils literal notranslate"><span class="pre">AAPL</span></code>.</p></li>
+<li><p>Assign to the <code class="docutils literal notranslate"><span class="pre">DatePickerRange</span></code>’s <code class="docutils literal notranslate"><span class="pre">start_date</span></code> prop the <code class="docutils literal notranslate"><span class="pre">date(2018,</span> <span class="pre">5,</span> <span class="pre">1)</span></code>, and assign to the <code class="docutils literal notranslate"><span class="pre">end_date</span></code> prop the <code class="docutils literal notranslate"><span class="pre">date(2019,</span> <span class="pre">2,</span> <span class="pre">1)</span></code>.</p></li>
+<li><p>The callback should filter the data, based on the dates selected, with the goal that:</p>
+<ul>
+<li><p>the left card should show any dataframe prior to the start date;</p></li>
+<li><p>the central card graph should show the records which fall in the date range;</p></li>
+<li><p>the right card should show any data after the end date.</p></li>
+</ul>
+</li>
+</ul>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Solution<div class="summary-down docutils">
@@ -1509,6 +1522,8 @@ See Solution<div class="summary-down docutils">
     <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;end date&#39;</span><span class="p">,</span>
     <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
     <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">end_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
     <span class="n">display_format</span><span class="o">=</span><span class="s1">&#39;DD-MMM-YYYY&#39;</span><span class="p">,</span>
     <span class="n">first_day_of_week</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">card_L</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
@@ -1549,17 +1564,12 @@ See Solution<div class="summary-down docutils">
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">plot_dt</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
-    <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-    <span class="n">figC</span> <span class="o">=</span> <span class="n">figL</span>
-    <span class="n">figR</span> <span class="o">=</span> <span class="n">figC</span>
-    <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">start_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">figC</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_date</span><span class="p">),</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">figR</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">end_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">start_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figC</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_date</span><span class="p">),</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figR</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">end_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">figL</span><span class="p">,</span> <span class="n">figC</span><span class="p">,</span> <span class="n">figR</span>
+    
 
 <span class="c1"># Run the App</span>
 <span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
@@ -1571,8 +1581,7 @@ See Solution<div class="summary-down docutils">
 </details><p>(2) Build a new up with a title and 2 Tabs. Display the content of the following tabs through a callback:</p>
 <ul class="simple">
 <li><p>The first tab should contain the app developed in the exercise 1 of this chapter</p></li>
-<li><p>While the second tab should contain the app we built in the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 2 from chapter 8</a>
-You can omit the title of each app inside the tabs. Since we will need callbacks that use content defined in other callbacks, instantiate your app in the following way to avoid warning messages: <code class="docutils literal notranslate"><span class="pre">app</span> <span class="pre">=</span> <span class="pre">Dash(__name__,</span> <span class="pre">external_stylesheets=[dbc.themes.BOOTSTRAP],</span> <span class="pre">suppress_callback_exceptions=True)</span></code>.</p></li>
+<li><p>While the second tab should contain the app we built in the <a class="reference external" href="https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises">exercise 2 from chapter 8</a></p></li>
 </ul>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -1589,54 +1598,59 @@ See Solution<div class="summary-down docutils">
 <span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
 
 <span class="c1"># Import data</span>
-<span class="n">dfS</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
-<span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">stocks</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="n">dfG</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span>
 <span class="n">dfG</span> <span class="o">=</span> <span class="n">dfG</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;year&#39;</span><span class="p">,</span><span class="s1">&#39;continent&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;pop&#39;</span><span class="p">:</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;lifeExp&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 
 <span class="c1"># Initialise the App</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">],</span> <span class="n">suppress_callback_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
 <span class="n">title_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="n">children</span><span class="o">=</span><span class="s1">&#39;Exercise 11.2&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;textAlign&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span><span class="s1">&#39;fontSize&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">})</span>
 <span class="n">tabs_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Tabs</span><span class="p">(</span>
-            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-app&#39;</span><span class="p">,</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-app-solution2&#39;</span><span class="p">,</span>
             <span class="n">children</span><span class="o">=</span><span class="p">[</span>
                 <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;App One&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-app-1&#39;</span><span class="p">),</span>
                 <span class="n">dcc</span><span class="o">.</span><span class="n">Tab</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;App Two&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-app-2&#39;</span><span class="p">)],</span>
             <span class="n">value</span><span class="o">=</span><span class="s1">&#39;tab-app-1&#39;</span>
         <span class="p">)</span>
-<span class="n">tabs_content_</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">)</span>
-<span class="c1"># Specific for App 1</span>
-<span class="n">date_range_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span>
+<span class="n">tabs_content_</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;tabs-content-solution2&#39;</span><span class="p">)</span>
+
+<span class="c1"># Specific for App 1</span>
+<span class="n">date_range_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">DatePickerRange</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;date-range-solution2&#39;</span><span class="p">,</span>
     <span class="n">start_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;start date&#39;</span><span class="p">,</span>
     <span class="n">end_date_placeholder_text</span><span class="o">=</span><span class="s1">&#39;end date&#39;</span><span class="p">,</span>
-    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">dfS</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
-    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">dfS</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">min_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">max_date_allowed</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2018</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">end_date</span><span class="o">=</span><span class="n">date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
     <span class="n">display_format</span><span class="o">=</span><span class="s1">&#39;DD-MMM-YYYY&#39;</span><span class="p">,</span>
     <span class="n">first_day_of_week</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">card_L</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
             <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
-                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-left&#39;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-left-solution2&#39;</span><span class="p">),</span>
         <span class="p">]),</span>
     <span class="p">)</span>
 <span class="n">card_C</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
             <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
-                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-center&#39;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-center-solution2&#39;</span><span class="p">),</span>
         <span class="p">]),</span>
     <span class="p">)</span>
 <span class="n">card_R</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
             <span class="n">dbc</span><span class="o">.</span><span class="n">CardBody</span><span class="p">([</span>
-                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-right&#39;</span><span class="p">),</span>
+                <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;my-graph-right-solution2&#39;</span><span class="p">),</span>
         <span class="p">]),</span>
     <span class="p">)</span>
-<span class="c1"># Specific for App 2</span>
-<span class="n">dropdown_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a metric&#39;</span><span class="p">,</span>
+<span class="c1"># Specific for App 2</span>
+<span class="n">dropdown_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;metric-dropdown-solution2&#39;</span><span class="p">,</span> <span class="n">placeholder</span> <span class="o">=</span> <span class="s1">&#39;Select a metric&#39;</span><span class="p">,</span>
                         <span class="n">options</span><span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Population&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;pop&#39;</span><span class="p">},</span>
                                 <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;GDP per capita&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;gdpPercap&#39;</span><span class="p">},</span>
-                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Life Expectancy&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">}])</span>
-<span class="n">graph_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1&#39;</span><span class="p">)</span>
+                                <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Life Expectancy&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="s1">&#39;lifeExp&#39;</span><span class="p">}],</span>
+                         <span class="n">value</span><span class="o">=</span><span class="s1">&#39;gdpPercap&#39;</span><span class="p">,</span>
+                         <span class="n">clearable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">graph_</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Graph</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;figure1-solution2&#39;</span><span class="p">)</span>
 
 <span class="c1"># App layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -1654,9 +1668,9 @@ See Solution<div class="summary-down docutils">
 
 <span class="c1"># Callbacks</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;tabs-content&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;tabs-app&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
-    <span class="n">suppress_callback_exceptions</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;tabs-content-solution2&#39;</span><span class="p">,</span> <span class="s1">&#39;children&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;tabs-app-solution2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="p">)</span>
 <span class="k">def</span> <span class="nf">render_content</span><span class="p">(</span><span class="n">tab</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">tab</span> <span class="o">==</span> <span class="s1">&#39;tab-app-1&#39;</span><span class="p">:</span>
         <span class="n">app1_layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
@@ -1687,30 +1701,23 @@ See Solution<div class="summary-down docutils">
 
 <span class="c1"># Callback for App1</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-left&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-center&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-right&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;start_date&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-left-solution2&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-center-solution2&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;my-graph-right-solution2&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range-solution2&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;start_date&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;date-range-solution2&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;end_date&#39;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">plot_dt</span><span class="p">(</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">):</span>
-    <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-    <span class="n">figC</span> <span class="o">=</span> <span class="n">figL</span>
-    <span class="n">figR</span> <span class="o">=</span> <span class="n">figC</span>
-    <span class="k">if</span> <span class="n">start_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">start_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">figC</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_date</span><span class="p">),</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">end_date</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">figR</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">dfS</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">dfS</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">end_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figL</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="n">start_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figC</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;=</span><span class="n">start_date</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&lt;=</span><span class="n">end_date</span><span class="p">),</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
+    <span class="n">figR</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="n">end_date</span><span class="p">,</span> <span class="p">:],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;date&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GOOG&#39;</span><span class="p">,</span><span class="s1">&#39;AAPL&#39;</span><span class="p">],</span> <span class="n">template</span> <span class="o">=</span> <span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">figL</span><span class="p">,</span> <span class="n">figC</span><span class="p">,</span> <span class="n">figR</span>
 
 <span class="c1"># Callback for App2</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
-    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
-    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;metric-dropdown&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
-    <span class="n">prevent_initial_call</span><span class="o">=</span><span class="kc">True</span>
+    <span class="n">Output</span><span class="p">(</span><span class="s1">&#39;figure1-solution2&#39;</span><span class="p">,</span><span class="s1">&#39;figure&#39;</span><span class="p">),</span>
+    <span class="n">Input</span><span class="p">(</span><span class="s1">&#39;metric-dropdown-solution2&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="k">def</span> <span class="nf">update_markdown</span><span class="p">(</span><span class="n">metric_</span><span class="p">):</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">dfG</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">metric_</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;plotly_dark&#39;</span><span class="p">)</span>
@@ -1726,7 +1733,9 @@ See Solution<div class="summary-down docutils">
 </details></div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the <a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash Documentation</a>. In addition, there are third-party libraries that have nice components such as <a class="reference external" href="https://dash-mantine-components.herokuapp.com/">Dash Mantine Components</a>; however, keep in mind that these are not maintained by Dash.</p>
+<p>In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples in the Dash Documentation.
+In addition, there are third-party libraries that have nice components such as the <a class="reference external" href="https://dash-mantine-components.herokuapp.com/">Dash Mantine Components</a>;
+however, keep in mind that these are not maintained by Plotly.</p>
 <p>This is the end of the section on Advanced Dash. In the next part, we will focus on polishing our Dash app through enhanced styling and improved app performance.</p>
 </div>
 </div>
