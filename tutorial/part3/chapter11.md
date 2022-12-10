@@ -421,14 +421,14 @@ if __name__ == '__main__':
 ### 11.2.1 DatePicker
 The DatePicker components allow the user to select a single date or a date range.
 There are two types of date pickers, both are part of the Dash Core Components library:
-- ```DatePickerSingle``` consists of one single date selection: by clicking on the object a calendar will pop-up, allowing the user to pick a date
-- ```DatePickerRange``` is similar to the previous component, but includes two date selections, which should be read as "start" and "end" dates.
+- `DatePickerSingle` consists of one single date selection: by clicking on the object a calendar will pop up, allowing the user to pick a date.
+- `DatePickerRange` is similar to the previous component, but includes two date selections, which should be read as "start" and "end" dates.
 
 The two components have very similar properties - the main ones are:
-- min_date_allowed : minimum date the user can choose from
-- max_date_allowed : maximum date the user can choose from
-- start_date : default start date selected, when app page initially loads
-- end_date : default end date selected, when app page initially loads
+- `min_date_allowed`: minimum date the user can choose from
+- `max_date_allowed`: maximum date the user can choose from
+- `start_date`: default start date selected, when app page initially loads
+- `end_date`: default end date selected, when app page initially loads
 
 In the following app, a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.
 
@@ -494,7 +494,7 @@ if __name__ == '__main__':
 
 
 ### 11.2.2 Store
-```Store``` component allows to use the browser memory in order to store app data. A typical use case for this component is to store data in memory and use it in a different tab.
+```Store``` component stores app data in the user's browser. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:
 - this component can only store data in the following formats: json, list, dictionary data types. With the ```data``` property, we can access to the content stored in the memory.
 - how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory, which are cleared by three different events. ```memory```: the data will be cleared when we refresh the browser page; ```session```: the data will be cleared when we close the browser; ```local```: the data will be cleared when we clean the browser cookies.
@@ -506,7 +506,7 @@ In the following example, a dropdown selection is stored in memory. We've genera
 Try to run the app on your computer. Then, test the storage types by refreshing the page; then closing the browser and reopening it; and then clearing cookies.
 
 ```{note}
-Don't worry about understanding the code below. This was written for the purpose of demonstrating the different `storage_type`s.
+Don't worry about understanding the code below. This was written for the purpose of demonstrating the different storage types.
 ```
 
 ```python
@@ -610,7 +610,7 @@ if __name__ == '__main__':
 ```
 ![Store_Example](./ch11_files/img/store.gif)
 
-Here is a real life example of how to use `dcc.Store` in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:
+Below is a real life example of how to use `dcc.Store` in your app. In this example, we store the gapminder data session chosen in one tab to use it in another tab:
 
 ```
 # Import packages
@@ -684,17 +684,18 @@ if __name__ == '__main__':
 
 ### 11.2.3 Interval
 `Interval` enables automatic recurrent updates of the app, by triggering callbacks periodically.
-One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting property, it is possible to configure the following:
+One example where this component is typically used is when the app is connected to an API to download data that is repeatedly updated (e.g. stock market data). By adjusting properly, it is possible to configure the following:
 - `interval` is a property that determines the refresh rate. This is measured in milliseconds and every time this interval expires, a counter is increased.
 - `max_intervals` can be configured to set a cap to the number of times the refresh happens. By default, this property is set to -1, meaning that refreshes will never stop.
 - `n_intervals` represent the counter, i.e. the number of times the interval has passed. This property is used to trigger the callback function.
 
 This is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
 
-In the following example, the current time in New York is refreshed every 2 seconds.
+In the following example, the current time in New York is refreshed every 2 seconds for 7 times, and then the Interval is disabled, stopping the app from refreshing.
+
 ```
 # Import packages
-from dash import Dash, dcc, Input, Output, html
+from dash import Dash, dcc, Input, Output, html, no_update
 import dash_bootstrap_components as dbc
 from dash.exceptions import PreventUpdate
 from datetime import datetime
@@ -725,16 +726,19 @@ app.layout = dbc.Container(
 # Configure callback
 @app.callback(
     Output("livet", "children"),
-    Input("int1", "n_intervals")
+    Output("int1", "disabled"),
+    Input("int1", "n_intervals"),
+prevent_initial_call=True
 )
 def refresh_time(i):
     if i == 0:
         raise PreventUpdate  # Prevent the callback from updating when the app first loads (n_intervals==0)
-    else:
+    elif i<8:
         tz = pytz.timezone('America/New_York')
         now = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
-
-    return now
+        return now, False
+    else:
+        return no_update, True
 
 
 # Launch the app server
@@ -749,9 +753,11 @@ if __name__ == '__main__':
 ## 11.3 Navigation Components
 
 ### 11.3.1 Tabs
-`Tabs` allow for easy navigation between different sections of an app. It is often used when you have a lot of information on one single page and you would like to improve user expriece by dividing the information into separate sections, each within a separate tab.
+`Tabs` allow for easy navigation between different sections of an app. 
+It is often used when you have a lot of information on one single page, and you would like to improve user experience by dividing the information into separate sections, each within a separate tab.
 
-The `dcc.Tabs` and `dcc.Tab` components can be used to create tabbed sections in your app. The `dcc.Tab` component controls the style and value of the individual tab and the `dcc.Tabs` component hold a collection of `dcc.Tab` components.
+
+The `dcc.Tabs` and `dcc.Tab` components can be used to create tabbed sections in your app. The `dcc.Tabs` component hold a collection of `dcc.Tab` components. And the `dcc.Tab` component controls the style and value of each individual tab.
 
 In the example below, the content for each tab is housed within the children of a `dbc.Card`. 
 
@@ -824,7 +830,7 @@ if __name__ == '__main__':
 ```
 ![tabs](ch11_files/img/tabs.gif)
 
-Although the above is a nice and short app, housing the content in the children of each tab has a drawback. It requires the app to compute the children property for each individual tab upfront and send all of the tab's content over the network at once, which could slow the app down. 
+Although the above is a nice and short app, housing the content in the children of each tab has a drawback. It requires the app to compute the children property for each individual tab upfront and send all the tab's content over the network at once, which could slow the app down. 
 
 Another way to display the content of each tab is through the callback method, which allows you to compute the tab's content on the fly, only when the tab is clicked. Here's an example.
 
@@ -890,7 +896,8 @@ if __name__ == '__main__':
 
 The `Offcanvas` component allows us to display a sidebar overlay on the app. It is often used when there are elements of the app that you would like to show your visitors in a non-invasive, user-friendly way. In the example below, the Offcanvas will contain our logo and two links to external resources the users might be interested in.
 
-```python# Import packages
+```python
+# Import packages
 from dash import Dash, html, dcc, Input, Output, State
 import dash_bootstrap_components as dbc
 import base64
@@ -956,12 +963,16 @@ if __name__ == '__main__':
 
 ![offcanvas](ch11_files/img/offcanvas-example.gif)
 
-[See additional examples and properties of the `Offcanvas` component](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/offcanvas/). 
 
 ## Exercises
-(1) Build an app composed by a title, a `DatePickerRange` component and 3 `Card` components.
-Using the `px.data.stocks()` data, build the same graph in each of the 3 cards, i.e. a line chart with date on the x-axis and the stock price on the y-axis for stocks `GOOG` and `AAPL` (which are columns of the stock dataset).
-Based on the date range set in the `DatePickerRange` component, the central card graph should show the records which fall in the date range; the left card should show any data prior to the start date; and the right card should show any data after the end date.
+(1) Build an app composed of a title, a `DatePickerRange` component and 3 `Card` components.
+- Using the `px.data.stocks()` data, build the same graph in each of the 3 cards: a line chart with date on the x-axis and a list of stock prices on the y-axis for stocks `GOOG` and `AAPL`.
+- Assign to the `DatePickerRange`'s `start_date` prop the `date(2018, 5, 1)`, and assign to the `end_date` prop the `date(2019, 2, 1)`.
+- The callback should filter the data, based on the dates selected, with the goal that:
+  - the left card should show any dataframe prior to the start date; 
+  - the central card graph should show the records which fall in the date range; 
+  - the right card should show any data after the end date.
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -988,6 +999,8 @@ date_range_ = dcc.DatePickerRange(id='date-range',
     end_date_placeholder_text='end date',
     min_date_allowed=df.date.min(),
     max_date_allowed=df.date.max(),
+    start_date=date(2018, 5, 1),
+    end_date=date(2019, 2, 1),
     display_format='DD-MMM-YYYY',
     first_day_of_week = 1)
 card_L = dbc.Card(
@@ -1028,17 +1041,12 @@ app.layout = dbc.Container(
     Input(component_id='date-range', component_property='end_date')
 )
 def plot_dt(start_date, end_date):
-    figL = px.line(df, x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-    figC = figL
-    figR = figC
-    if start_date is not None:
-        figL = px.line(df.loc[df['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-        if end_date is not None:
-            figC = px.line(df.loc[(df['date']>=start_date) & (df['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-    if end_date is not None:
-        figR = px.line(df.loc[df['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figL = px.line(df.loc[df['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figC = px.line(df.loc[(df['date']>=start_date) & (df['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figR = px.line(df.loc[df['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
 
     return figL, figC, figR
+    
 
 # Run the App
 if __name__== '__main__':
@@ -1046,10 +1054,11 @@ if __name__== '__main__':
 ```
 ![solution_ex1](./ch11_files/chapter11_ex1.gif)
 ````
+
 (2) Build a new up with a title and 2 Tabs. Display the content of the following tabs through a callback:
 - The first tab should contain the app developed in the exercise 1 of this chapter
 - While the second tab should contain the app we built in the [exercise 2 from chapter 8](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises)
-You can omit the title of each app inside the tabs. Since we will need callbacks that use content defined in other callbacks, instantiate your app in the following way to avoid warning messages: `app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)`.
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -1063,54 +1072,59 @@ from datetime import date
 import plotly.express as px
 
 # Import data
-dfS = px.data.stocks()
-dfS['date'] = pd.to_datetime(dfS['date'], format='%Y-%m-%d')
+df = px.data.stocks()
+df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
 
 dfG = px.data.gapminder()
 dfG = dfG.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
 
 # Initialise the App
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
 title_ = dcc.Markdown(children='Exercise 11.2', style={'textAlign': 'center','fontSize': 20})
 tabs_ = dcc.Tabs(
-            id='tabs-app',
+            id='tabs-app-solution2',
             children=[
                 dcc.Tab(label='App One', value='tab-app-1'),
                 dcc.Tab(label='App Two', value='tab-app-2')],
             value='tab-app-1'
         )
-tabs_content_ = dbc.Container(id='tabs-content')
-# Specific for App 1
-date_range_ = dcc.DatePickerRange(id='date-range',
+tabs_content_ = dbc.Container(id='tabs-content-solution2')
+
+# Specific for App 1
+date_range_ = dcc.DatePickerRange(id='date-range-solution2',
     start_date_placeholder_text='start date',
     end_date_placeholder_text='end date',
-    min_date_allowed=dfS.date.min(),
-    max_date_allowed=dfS.date.max(),
+    min_date_allowed=df.date.min(),
+    max_date_allowed=df.date.max(),
+    start_date=date(2018, 5, 1),
+    end_date=date(2019, 2, 1),
     display_format='DD-MMM-YYYY',
     first_day_of_week = 1)
 card_L = dbc.Card(
             dbc.CardBody([
-                dcc.Graph(id='my-graph-left'),
+                dcc.Graph(id='my-graph-left-solution2'),
         ]),
     )
 card_C = dbc.Card(
             dbc.CardBody([
-                dcc.Graph(id='my-graph-center'),
+                dcc.Graph(id='my-graph-center-solution2'),
         ]),
     )
 card_R = dbc.Card(
             dbc.CardBody([
-                dcc.Graph(id='my-graph-right'),
+                dcc.Graph(id='my-graph-right-solution2'),
         ]),
     )
-# Specific for App 2
-dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
+# Specific for App 2
+dropdown_ = dcc.Dropdown(id='metric-dropdown-solution2', placeholder = 'Select a metric',
                         options= [{'label': 'Population', 'value': 'pop'},
                                 {'label': 'GDP per capita', 'value': 'gdpPercap'},
-                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
-graph_ = dcc.Graph(id='figure1')
+                                {'label': 'Life Expectancy', 'value': 'lifeExp'}],
+                         value='gdpPercap',
+                         clearable=False)
+graph_ = dcc.Graph(id='figure1-solution2')
 
 # App layout
 app.layout = dbc.Container(
@@ -1128,9 +1142,9 @@ app.layout = dbc.Container(
 
 # Callbacks
 @app.callback(
-    Output('tabs-content', 'children'),
-    Input('tabs-app', 'value'),
-    suppress_callback_exceptions=True)
+    Output('tabs-content-solution2', 'children'),
+    Input('tabs-app-solution2', 'value')
+)
 def render_content(tab):
     if tab == 'tab-app-1':
         app1_layout = dbc.Container(
@@ -1161,30 +1175,23 @@ def render_content(tab):
 
 # Callback for App1
 @app.callback(
-    Output('my-graph-left','figure'),
-    Output('my-graph-center','figure'),
-    Output('my-graph-right','figure'),
-    Input(component_id='date-range', component_property='start_date'),
-    Input(component_id='date-range', component_property='end_date')
+    Output('my-graph-left-solution2','figure'),
+    Output('my-graph-center-solution2','figure'),
+    Output('my-graph-right-solution2','figure'),
+    Input(component_id='date-range-solution2', component_property='start_date'),
+    Input(component_id='date-range-solution2', component_property='end_date')
 )
 def plot_dt(start_date, end_date):
-    figL = px.line(dfS, x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-    figC = figL
-    figR = figC
-    if start_date is not None:
-        figL = px.line(dfS.loc[dfS['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-        if end_date is not None:
-            figC = px.line(dfS.loc[(dfS['date']>=start_date) & (dfS['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-    if end_date is not None:
-        figR = px.line(dfS.loc[dfS['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figL = px.line(df.loc[df['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figC = px.line(df.loc[(df['date']>=start_date) & (df['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
+    figR = px.line(df.loc[df['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
 
     return figL, figC, figR
 
 # Callback for App2
 @app.callback(
-    Output('figure1','figure'),
-    Input('metric-dropdown', 'value'),
-    prevent_initial_call=True
+    Output('figure1-solution2','figure'),
+    Input('metric-dropdown-solution2', 'value'),
 )
 def update_markdown(metric_):
     fig = px.bar(dfG, x='year', y=metric_, color='continent', template='plotly_dark')
@@ -1196,7 +1203,10 @@ if __name__== '__main__':
 ```
 ![solution_ex2](./ch11_files/chapter11_ex2.gif)
 ````
+
 ## Summary
-In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples that can be found in the [Dash Documentation](https://dash.plotly.com/dash-core-components). In addition, there are third-party libraries that have nice components such as [Dash Mantine Components](https://dash-mantine-components.herokuapp.com/); however, keep in mind that these are not maintained by Dash.
+In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples in the Dash Documentation. 
+In addition, there are third-party libraries that have nice components such as the [Dash Mantine Components](https://dash-mantine-components.herokuapp.com/); 
+however, keep in mind that these are not maintained by Plotly.
 
 This is the end of the section on Advanced Dash. In the next part, we will focus on polishing our Dash app through enhanced styling and improved app performance.
