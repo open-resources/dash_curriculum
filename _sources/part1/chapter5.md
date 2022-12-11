@@ -143,7 +143,7 @@ Once it's done, click the url at top left corner of the screen to run the app.
 ![run app on render](./ch5_files/run-app.png)
 
 
-## 5.5 Common errors
+## 5.5 Troubleshooting
 
 Common deployment errors you could encounter for this example app include:
 - Missing a package dependency in the `requirements.txt` file
