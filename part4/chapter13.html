@@ -392,13 +392,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#caching">
    13.4 Caching
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected">
-     [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO DIFFERENT COUNTRIES AND THEN RETURNS TO A COUNTRY ALREADY ONCE SELECTED]
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -466,13 +459,6 @@ const thebe_selector_output = ".output, .cell_output"
   <a class="reference internal nav-link" href="#caching">
    13.4 Caching
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected">
-     [ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO DIFFERENT COUNTRIES AND THEN RETURNS TO A COUNTRY ALREADY ONCE SELECTED]
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#summary">
@@ -492,7 +478,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 13: Improving App Performance<a class="headerlink" href="#chapter-13-improving-app-performance" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>As dashboards are designed for data analysis and visualisations, at some point you might run into efficiency constraints when the amount of data you are working with becomes too big. To circumvent possible performance issues, this chapter will give you some insights on ways to improve your app performance. You’ll learn about the built-in Dash Developer Tools, how to plot massive amount of data with higher performing plotly graphs, and how to use caching for improving the performance of your app.</p>
+<p>As dashboards are designed for data analysis and visualisations, at some point you might run into efficiency constraints when the amount of data you are working with becomes too big. To circumvent possible performance issues, this chapter will give you some insights on ways to improve your app performance. You’ll learn about the built-in Dash Developer Tools, how to plot massive amounts of data with higher performing plotly graphs, and how to use caching to improve the performance of your app.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
@@ -587,11 +573,11 @@ See the code<div class="summary-down docutils">
 </div>
 </div>
 </details><p>Notice how adjusting the range slider to the right increases the data set used, which increases the amount of time it takes the app to refresh and plot the data.
-As you can see, there are huge performance differences betweeen 600 data points and 100 thousand data points used. To handle even much larger data sets, you will learn the different graphs that you can use as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse and understand the performance of your app – the Dash Developer Tools. Let’s go!</p>
+As you can see, there are huge performance differences between 600 data points and 100 thousand data points used. To handle even much larger data sets, you will learn the different graphs that you can use as well as how to use stored data to improve app performance. Before that, Dash itself comes with a really handy built-in functionality to better analyse and understand the performance of your app – the Dash Developer Tools.</p>
 </div>
 <div class="section" id="dash-developer-tools">
 <h2>13.2 Dash Developer Tools<a class="headerlink" href="#dash-developer-tools" title="Permalink to this headline">¶</a></h2>
-<p>The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In order to make use of the Dash Developer Tools you must run your app with <code class="docutils literal notranslate"><span class="pre">debug=True</span></code>. When you do this, your app will always display a blue circular button on the bottom right corner of your app with angle brackets in it. This button will grant you access to error messages and information about your callbacks.</p>
+<p>The Dash Developer Tools is a set of tools to make debugging and developing Dash apps more productive and pleasant. These tools are enabled when developing your Dash app and are not intended when deploying your application to production. In order to make use of the Dash Developer Tools you must run your app with <code class="docutils literal notranslate"><span class="pre">debug=True</span></code>. When you do this, your app will always display a blue circular button in the bottom right corner of your app with angle brackets in it. This button will grant you access to error messages and information about your callbacks.</p>
 <div class="admonition-dash-developer-tools admonition">
 <p class="admonition-title">Dash Developer Tools</p>
 <p>For an overview of the other tools within the Developer Tools, look at the <a class="reference external" href="https://dash.plotly.com/devtools">official documentation</a>.</p>
@@ -629,12 +615,12 @@ As you can see, there are huge performance differences betweeen 600 data points 
 <p>So far, we have used the <code class="docutils literal notranslate"><span class="pre">plotly.express</span></code> library to implement our graphs. This is a very easy and convenient way to do so. However, most plotly charts are rendered with SVG (Scalable Vector Graphics). This provides crisp rendering, publication-quality image export, as SVG images can be scaled in size without loss of quality, and wide browser support. Unfortunately, rendering graphics in SVG can be slow for larger datasets as we have noticed in the first section of this chapter. To overcome this limitation, let’s explore the three common methods that will speed up your app when working with larger data sets.</p>
 <div class="section" id="scattergl">
 <h3>13.3.1 ScatterGL<a class="headerlink" href="#scattergl" title="Permalink to this headline">¶</a></h3>
-<p>First, let us have a look at the <a class="reference external" href="https://plotly.com/python/line-and-scatter/#large-data-sets">ScatterGL</a> plot which is a WebGL implementation of the scatter chart type. In addition to Plotly charts rendered with SVG, Plotly has WebGL (Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot but it is of WebGL type. To use it, you are required to import the <code class="docutils literal notranslate"><span class="pre">plotly.graph_objects</span></code> package.</p>
+<p>First, let us have a look at the ScatterGL plot which is a WebGL implementation of the scatter chart type. In addition to Plotly charts rendered with SVG, Plotly has WebGL (Web Graphics Library) alternatives to some chart types. WebGL uses the GPU to render graphics which make them higher performing. The ScatterGL plot is the equivalent to the scatter plot but it is of WebGL type. To use it, you are required to import the <code class="docutils literal notranslate"><span class="pre">plotly.graph_objects</span></code> package.</p>
 <div class="admonition-scattergl admonition">
 <p class="admonition-title">ScatterGL</p>
 <p>See the <a class="reference external" href="https://plotly.com/python/webgl-vs-svg/">official documentation</a> on how to implement the ScatterGL plot.</p>
 </div>
-<p>The following app let’s you compare the different durations for data loading when using a ScatterGL plot alongside a regular Scatter plot. You see how the use of a ScatterGL could improve the app performance the larger the data set.</p>
+<p>The following app lets you compare the different durations for data loading when using a ScatterGL plot alongside a regular Scatter plot. You see how the use of a ScatterGL could improve the app performance the larger the data set is.</p>
 <p><img alt="comparing-performance" src="../_images/webgl-vs-svg.gif" /></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -747,12 +733,12 @@ See the code<div class="summary-down docutils">
 </details></div>
 <div class="section" id="plotly-resampler">
 <h3>13.3.2 Plotly Resampler<a class="headerlink" href="#plotly-resampler" title="Permalink to this headline">¶</a></h3>
-<p>Even though the ScatterGL outperforms the px scatter plot, it slows down when using very large data sets and might not be as fast as you would like it to be when interacting with the plot, for example, zooming in. That’s where the <code class="docutils literal notranslate"><span class="pre">plotly_resampler</span></code> package comes in very handy. This package speeds up the figure by downsampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, etc.), callbacks are used to aggregate data and update the figure.</p>
+<p>Even though the ScatterGL outperforms the px scatter plot, it slows down when using very large data sets and might not be as fast as you would like it to be when interacting with the plot, for example, zooming in. That’s where the <code class="docutils literal notranslate"><span class="pre">plotly_resampler</span></code> package comes in very handy. This package speeds up the figure by down-sampling (aggregating) the data respective to the view and then plotting the aggregated points. When you interact with the plot (panning, zooming, etc.), callbacks are used to aggregate data and update the figure.</p>
 <div class="admonition-plotly-resampler admonition">
 <p class="admonition-title">Plotly Resampler</p>
-<p>This is a third-party, community, library, not officially maintained by Plotly. See the <a class="reference external" href="https://github.com/predict-idlab/plotly-resampler">documentation on Github</a> for more about the Plotly Resampler package. To work with this package, you would need to install <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">plotly-resampler</span></code> as well as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ipywidgets</span></code>.</p>
+<p>This is a third-party, community, library, not officially maintained by Plotly. See the <a class="reference external" href="https://github.com/predict-idlab/plotly-resampler">documentation on Github</a> for more about the Plotly Resampler package. To work with this package, you would need to run <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">plotly-resampler</span></code> as well as <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ipywidgets</span></code>.</p>
 </div>
-<p>The following app let’s you compare the different durations for data loading when working with the plotly resampler.</p>
+<p>The following app lets you compare the different durations for data loading when working with the plotly resampler.</p>
 <p><img alt="comparing-plotly-resampler" src="../_images/webgl-svg-resampler.gif" /></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -967,13 +953,21 @@ See the code<div class="summary-down docutils">
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Notice that instead of the <code class="docutils literal notranslate"><span class="pre">FigureResampler</span></code>, we use the <code class="docutils literal notranslate"><span class="pre">register_plotly_resampler</span></code>. As you can see in the <a class="reference external" href="https://github.com/predict-idlab/plotly-resampler">plotly-resampler documentation</a>, this function wraps all plotly graph object figures with a FigureResampler or FigureWidgetResampler, which is why it can be used for the plotly.express interface as well.</p>
+<p>Notice that instead of the <code class="docutils literal notranslate"><span class="pre">FigureResampler</span></code>, we use the <code class="docutils literal notranslate"><span class="pre">register_plotly_resampler</span></code>. This function wraps all plotly graph object figures with a FigureResampler or FigureWidgetResampler, which is why it can be used for the plotly.express interface as well.</p>
 </div>
 <div class="section" id="datashader">
 <h3>13.3.3 Datashader<a class="headerlink" href="#datashader" title="Permalink to this headline">¶</a></h3>
-<p>Another high-performing way of exploring correlations of large data sets is to use the <a class="reference external" href="https://plotly.com/python/datashader/">datashader</a> in combination with plotly. Datashader creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid, aggregating it by count, and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and other bright colors ranging logarithmically in between.</p>
+<p>Another high-performing way of exploring correlations of large data sets is to use the datashader in combination with plotly. Datashader creates rasterized representations of large data sets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid, aggregating it by count, and creating a color representation of the grid. Usually, the minimum count will be plotted in black, the maximum in white, and other bright colors ranging logarithmically in between.</p>
 <p>Compared to ScatterGL and Plotly Resampler, the datashader differs not only in speed but in the way it visualises data. Instead of the actual data points, it represents the occurence of the observed data, therefore letting you explore the correlation, especially any accumulations of your data set, really fast. We’ll use the same code from the examples above to introduce the datashader, but we’ll change the dropdown to select the continent instead of the country to really make use of the specifications of the datashader. Before you use the datashader, make sure to install the <code class="docutils literal notranslate"><span class="pre">datashader</span></code> package.</p>
-<p>The following app shows the datashader in action. Use the code below to run it on your computer as well.</p>
+<div class="admonition-using-the-datashader admonition">
+<p class="admonition-title">Using the Datashader</p>
+<p>As the datashader needs real numbers to process properly, we will use the numeric conversion that comes within the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> package for the input years and life expectation. We will set:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">df_new['year']</span> <span class="pre">=</span> <span class="pre">pd.to_numeric(df_new['year'])</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">df_new['lifeExp']</span> <span class="pre">=</span> <span class="pre">pd.to_numeric(df_new['lifeExp'])</span></code></p></li>
+</ul>
+</div>
+<p>Run the code below on your computer to see the datashader in action.</p>
 <p><img alt="datashader" src="../_images/datashader-exp.gif" /></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -1060,16 +1054,15 @@ See the code<div class="summary-down docutils">
 </div>
 <div class="section" id="caching">
 <h2>13.4 Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
-<p>Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way, repeated function calls that are made with the same parameters won’t have to be calculated multiple times. One popular use case may be recurvise functions. More general, whenever you process repititive but difficult or time-consuming calculations within your app, you might want to use caching as it allows you to store calculations to speed up your app performance.</p>
+<p>Caching, also known as Memoization, is a method used in computer science to speed up calculations by storing data so that future requests for that data can be served faster. Typically, this data stored in a cache is the result of an earlier computation. This way, repeated function calls that are made with the same parameters won’t have to be calculated multiple times. One popular use case may be recursive functions. More general, whenever you process repetitive but difficult or time-consuming calculations within your app, you might want to use caching as it allows you to store calculations to speed up your app performance.</p>
 <div class="admonition-memoization admonition">
 <p class="admonition-title">Memoization</p>
 <p>For an exemplary introduction to memoization and the implementation in Python also have a look at <a class="reference external" href="https://towardsdatascience.com/memoization-in-python-57c0a738179a">Towards Data Science</a> or <a class="reference external" href="https://realpython.com/lru-cache-python/">Real Python</a>.</p>
 </div>
-<p>Let’s stick with a minimal example of the one that we have used throughout this chapter; that is, only a dropdown with a graph, but we’ll add a repititve, time consuming functionality. Defining our own function <code class="docutils literal notranslate"><span class="pre">calculation_function</span></code>, we assure that whenever the callback for the graph gets triggered by selecting another country, we delay the app performance by three seconds. This will simulate a calculation that takes three seconds.</p>
-<p>Here is when caching comes into play: By storing the functions’ values for the selected countries i.e., remembering the country in the cache, the respective calculation does not have to be executed the next time. We will use the <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> (LRU for Least Recently Used) decorator from the <code class="docutils literal notranslate"><span class="pre">functools</span></code> package that goes infront our function and takes in the maximal size of values that can be stored as a parameter.</p>
-<p>The app below with the respective code gives you a minimal example on how to implement caching.</p>
-<div class="section" id="add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected">
-<h3>[ADD GIF, THAT SHOWS APP IN ACTION AND SELECTS TWO DIFFERENT COUNTRIES AND THEN RETURNS TO A COUNTRY ALREADY ONCE SELECTED]<a class="headerlink" href="#add-gif-that-shows-app-in-action-and-selects-two-different-countries-and-then-returns-to-a-country-already-once-selected" title="Permalink to this headline">¶</a></h3>
+<p>Let’s stick with a minimal example of the one that we have used throughout this chapter; that is, only a dropdown with a graph, but we’ll add a repetitive, time-consuming functionality. Defining our own function <code class="docutils literal notranslate"><span class="pre">calculation_function</span></code>, we assure that whenever the callback for the graph gets triggered by selecting another country, we delay the app by three seconds. This will simulate a calculation that takes three seconds.</p>
+<p>Here is when caching comes into play: By storing the functions’ values for the selected countries i.e., remembering the country in the cache, the respective calculation does not have to be executed the next time. We will use the <code class="docutils literal notranslate"><span class="pre">lru_cache</span></code> (LRU for Least Recently Used) decorator from the <code class="docutils literal notranslate"><span class="pre">functools</span></code> package that goes in front our function and takes in the maximal size of values that can be stored as a parameter.</p>
+<p>Copy the code below and run it on your computer to see a minimal example on how to implement caching.</p>
+<p><img alt="caching" src="../_images/caching-gif.gif" /></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages</span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -1128,10 +1121,9 @@ See the code<div class="summary-down docutils">
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>This chapter gave an introduction on how to analyse large data sets with Dash as you will have to face performance issues at some point in time. The first functionality that will help you to understand the performance of your app are the built-in Dash Developer Tools. When it comes to implementing higher performance within your app you have learned about different ways of higher performing graphs: ScatterGL, Plotly Resampler and the Datashader. Last, memorising difficult as well as repetitive calculations can be handled storing the results in the cache. Combining everything you have learned so far you will be able to build dash apps not just functional but performant.</p>
+<p>This chapter gave an introduction on how to analyse large data sets with Dash in case you face app performance issues at some point in time. The first functionality that will help you to understand the performance of your app are the built-in Dash Developer Tools. When it comes to implementing higher performance within your app you have learned about different ways of higher performing graphs: ScatterGL, Plotly Resampler and the Datashader. Lastly, memorising difficult as well as repetitive calculations can be handled by storing the results in the cache. Combining everything you have learned so far will allow you to build dash apps that are not only functional but also performant.</p>
 </div>
 </div>
 
