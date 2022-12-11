@@ -18,63 +18,45 @@
 
 ## 12.1 The theme of a Dash app
 
-Let's start by learning how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can by one of:
+Let's start by learning how to set a theme with `external_stylesheets=[dbc.themes.<theme>]` where `'<theme>'` can be one of:
 
-- `bootstrap`
-- `cosmo`
-- `cyborg`
-- `darkly`
-- `flatly`
-- `grid`
-- `slate`
+- `bootstrap`, `cosmo`, `cyborg`, `darkly`, `flatly`, `grid`, `slate`
 
-For an exhaustive list, run `dir(dbc.themes)` and see which are available to your current version of Dash Bootstrap Components (`dbc`). Or, check out the [ash Bootstrap Theme Explorer](https://hellodash.pythonanywhere.com/)
- 
 Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of Bootstrap cards.
 
 Here's how some elements will look like with the `bootstrap` theme:
 
 [![enter image description here][1]][1]
 
-And here's how the same elemets will look like with the `slate` theme:
+And here's how the same elements will look like with the `slate` theme:
 
 [![enter image description here][2]][2]
 
-You can study more themes and components in [dash-bootstrap-components][3].
+You can check out more themes and components in [dash-bootstrap-components theme explorer](https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/).
  
 
-## 12.2 Theme and the Cascading Style Sheet (CSS)
+## 12.2 Theme and Cascading Style Sheet (CSS)
 
 To set up your Dash app theme you would select a theme like this:
 
 ```python
-app = Dash(external_stylesheets=[dbc.themes.SLATE])
+app = Dash(__name__, external_stylesheets=[dbc.themes.SLATE])
 ```
 
-What hides behind `dbc.themes.SLATE` is the link `https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css` which points to a certain cascading stylesheet or, `CSS`. A `CSS` file defines how Dash components appear in the layout.
-
-One such component is the `dcc.Markdown()` that you can use to insert a title to your app. If, instead of `SLATE`, you use the `BOOTSTRAP` theme, `external_stylesheets=[dbc.themes.BOOTSTRAP]`, the default font color of the title will be of a dark grey type with the RGB code `(33, 37, 47)` and look like this:
+What hides behind `dbc.themes.SLATE` is the [following link](https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/slate/bootstrap.min.css) which points to a certain cascading stylesheet or, `CSS`. A `CSS` file defines how Dash components appear in the layout. One such component is the `dcc.Markdown()` that you can use to insert a title to your app. If, instead of `SLATE`, you use the `BOOTSTRAP` theme, `external_stylesheets=[dbc.themes.BOOTSTRAP]`, the default font color of the title will be of a dark grey type with the RGB code `(33, 37, 47)` and look like this:
 
 [![enter image description here][4]][4]
 
 
- This particular color is mapped to `text-body` in the `CSS` file. And if you do a little search inside the [the css file](https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css), you'll find *one* occurence of `text-body` in the `CSS` file:
+This particular color is mapped to `text-body` in the `CSS` file. 
+And if you do a little digging inside [the css file](https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css), you'll find one occurence of `text-body` in the `CSS` file:
+- `.text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))`
 
-    .text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
-
-This is called a class. All classes are preceded with a period sign. And within the curly brackets we have multiple `property-value` pairs with a colon separating the `property` and `value`, and a semicolon between each pair. One such `property` is `color` with the corresponding value:
-    
-  
-     var(--bs-body-color-rgb)
-     
+This is called a class. All classes are preceded with a period sign. And within the curly brackets we have multiple `property-value` pairs with a colon separating the `property` and `value`, and a semicolon between each pair. 
+One such `property` is `color` with the corresponding value `var(--bs-body-color-rgb)`.
      
 This points to a setting at the start of the document that reveals the `rgb()` code used by `text-body`:
-
-    bs-body-color-rgb:33,37,43
-
-You can use reources such as [RapidTables][5] to verfiy that you're looking at the correct color:
-    
-[![enter image description here][6]][6]
+- `bs-body-color-rgb:33,37,43`
 
 
 ## 12.3 Use className to reference a class
@@ -89,8 +71,6 @@ Some alternatives to `text-body` are:
 - `className="text-danger"`
 - `className="text-info"`
 
-For other options, take a look at the cheatsheet at [pythonanywhere.com][7], under the Utility Color section. 
-
 The below snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dashboards.
 
 ````{dropdown} See Code
@@ -101,7 +81,7 @@ The below snippet builds on elements and principles of former chapters, and prod
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -122,7 +102,7 @@ if __name__=='__main__':
 
 [![enter image description here][8]][8]
 
-Above is the output with `Dashboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color, just include, for example, `class_name = "text-info"` in your `dcc.Markdwon()` function call.
+Above is the output with `Dashboard title` displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with `text-body` in the `CSS` file. In order to change the color just include, for example, `className = "text-info"` in your `dcc.Markdwon()` function call.
 
 
 ````{dropdown} See Code
@@ -132,7 +112,7 @@ Above is the output with `Dashboard title` displayed as a heading in the colorco
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 app.layout = dbc.Container(
     [
@@ -153,11 +133,11 @@ if __name__=='__main__':
 [![enter image description here][9]][9]
 
 
-### 12.3.1 How to change background color
+### 12.3.1 Change background color
 
 Recall that the alternatives to `text-body` like `text-primary` and `text-secondary` aren't actual colors, but rather pointers to different colors set by the `CSS` file. So you can think of these options as different possible categories of the information you'd like to display. The same thing goes for other features of our `dcc.Markdown()` example like background color. 
 
-The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. And if you'd like to know *exactly* which color that is, you already know how to find that out through studying the `CSS` file. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className` because `bg` stands for *background*. 
+The following snippet changes the white background of the `BOOTSTRAP` theme to a rich blue color. Notice in the snippet below that all you have to do to change the background color is to include `bg-primary` in `className` because `bg` stands for background. 
 
 ````{dropdown} See Code
     :container: + shadow
@@ -166,7 +146,7 @@ The following snippet changes the white background of the `BOOTSTRAP` theme to a
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -205,7 +185,7 @@ In order to change text color and background color at the same time, just includ
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -242,9 +222,9 @@ When building the app layout, the default margins and padding is equal to zero. 
 - `y` - for classes that set both *-top and *-bottom
 - *`blank`* - for classes that set a margin or padding on all 4 sides of the element
 
-Finally, you would need to state the size of margin or padding that you would like to add. `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding. Take a look at [mdbootstrap.com][13] for more options. 
+Finally, you would need to state the size of margin or padding that you would like to add. `size` can be one of `0`, `1`, `2`, `3`, `4`, `5` where `0` eliminates the margin or padding.
 
-Let's see an example where we add 2 units of margin around the highlighted text and it's parent Div.
+Let's see an example where we add 2 units of margin around the highlighted text and its parent Div.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -253,7 +233,7 @@ Let's see an example where we add 2 units of margin around the highlighted text 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -291,7 +271,7 @@ So lets take the setup that we've already got, and add a row with a `dbc.Label` 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -319,13 +299,14 @@ if __name__=='__main__':
 
 [![enter image description here][15]][15]
 
-As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of each spans a *different* width. In addition, the paddings for "Dashboard title" and "Label 1" look very different. 
+As it now stands, the dashboard isn't exactly very pleasing to the eye. The two rows have got the same widths, but the background color of each one spans a different width. In addition, the paddings for "Dashboard title" and "Label 1" look very different; this is because `dcc` and `dbc` come with different default settings with regards to margins, paddings and other styling features.
 
-The first thing we'll do is add `p-1` in `className ="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This will generate the same spacing around the texts `Dashboard title` and `Label 1`.
+
+The first thing we'll do is add `p-1` in `className="text-info bg-primary p-1"` for the `dcc.Markdown` component and `p-2` in `className = "bg-warning p-2"` for the `dbc.Label` component. This will generate the same spacing around the texts `Dashboard title` and `Label 1`.
 
 [![enter image description here][16]][16]
 
-Another consequence is that the markdown and label components' backgrounds no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `"mt-2"` in `className = "bg-warning p-1 mt-2"` for the `dbc.Label` component:
+Another consequence is that the markdown and label components' backgrounds no longer have a gap between them. If you'd like to keep the gap, you can choose to include it through either component. The image below shows the effect of including `mt-2` in `className="bg-warning p-2 mt-2"` for the `dbc.Label` component:
 
 [![enter image description here][17]][17]
 
@@ -336,7 +317,7 @@ Another consequence is that the markdown and label components' backgrounds no lo
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -344,7 +325,7 @@ app.layout = dbc.Container(
                 dbc.Col(
                     [
                         dcc.Markdown(
-                            "#### Dashboard title", className="text-info bg-primary"
+                            "#### Dashboard title", className="text-info bg-primary p-1"
                         )
                     ]
                 )
@@ -352,7 +333,7 @@ app.layout = dbc.Container(
             className="bg-secondary",
         ),
         dbc.Row(
-            [dbc.Col([dbc.Label("Label 1", className="bg-warning p-1 mt-2")])],
+            [dbc.Col([dbc.Label("Label 1", className="bg-warning p-2 mt-2")])],
             className="bg-secondary",
         ),
     ]
@@ -364,7 +345,7 @@ if __name__=='__main__':
 
 ### 12.3.5 Set component width with `style`
 
-With `style`, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style = {'width':'100%}` or `style = {'width':'100pc}`. Let's add the `style = {'width':'75%}` for both components:
+With the `style` prop, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style={'width':'100%}` or `style={'width':'100pc}`. Let's add the `style={'width':'75%}` to both components:
 
 ````{dropdown} See Code
     :container: + shadow
@@ -374,7 +355,7 @@ With `style`, you can set the components widths to fill any percentage of the pa
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -418,7 +399,7 @@ if __name__=='__main__':
 What you can do with `className` you can, for the most part, also do with `style` and vice versa. However, the attributes of your components are often referenced differently. One example is `"fw-bold"` for `className` and `"font-weight":"bold"` for `style`. The result will be the same, namely a bold font type for the object in question.
 ```
 
-## 12.4 More components and more attributes
+## 12.4 More components and attributes
 
 In this section you'll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component. The latter is often used to split a dashboard in different parts and it serves as a container for more components. You'll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.
 
@@ -433,7 +414,7 @@ We'll add a `dbc.Button` in a new `dbc.Col` component next to the already existi
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -510,7 +491,7 @@ The image below shows the result for `justify = 'evenly'`. In additon we've incl
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -581,7 +562,7 @@ Notice how we've cheated a bit in the snippet above by adding `'height':'65%'` f
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -669,7 +650,7 @@ In the snippet below, we've rounded off the bottom of the card only, and set the
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -749,7 +730,7 @@ In the snippet below we've added a thick grey border line below the title by add
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -822,7 +803,7 @@ If you find that `bg-secondary` for the `db.Container` comes off as a bit too do
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -905,7 +886,7 @@ The last two options stand for `small` and `large`. Below we've included `shadow
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(

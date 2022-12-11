@@ -357,8 +357,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#theme-and-the-cascading-style-sheet-css">
-   12.2 Theme and the Cascading Style Sheet (CSS)
+  <a class="reference internal nav-link" href="#theme-and-cascading-style-sheet-css">
+   12.2 Theme and Cascading Style Sheet (CSS)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -367,8 +367,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-change-background-color">
-     12.3.1 How to change background color
+    <a class="reference internal nav-link" href="#change-background-color">
+     12.3.1 Change background color
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -399,8 +399,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-components-and-more-attributes">
-   12.4 More components and more attributes
+  <a class="reference internal nav-link" href="#more-components-and-attributes">
+   12.4 More components and attributes
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -514,8 +514,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#theme-and-the-cascading-style-sheet-css">
-   12.2 Theme and the Cascading Style Sheet (CSS)
+  <a class="reference internal nav-link" href="#theme-and-cascading-style-sheet-css">
+   12.2 Theme and Cascading Style Sheet (CSS)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -524,8 +524,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#how-to-change-background-color">
-     12.3.1 How to change background color
+    <a class="reference internal nav-link" href="#change-background-color">
+     12.3.1 Change background color
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -556,8 +556,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#more-components-and-more-attributes">
-   12.4 More components and more attributes
+  <a class="reference internal nav-link" href="#more-components-and-attributes">
+   12.4 More components and attributes
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -679,47 +679,36 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 <div class="section" id="the-theme-of-a-dash-app">
 <h2>12.1 The theme of a Dash app<a class="headerlink" href="#the-theme-of-a-dash-app" title="Permalink to this headline">¶</a></h2>
-<p>Let’s start by learning how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.&lt;theme&gt;]</span></code> where <code class="docutils literal notranslate"><span class="pre">'&lt;theme&gt;'</span></code> can by one of:</p>
+<p>Let’s start by learning how to set a theme with <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.&lt;theme&gt;]</span></code> where <code class="docutils literal notranslate"><span class="pre">'&lt;theme&gt;'</span></code> can be one of:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">bootstrap</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cosmo</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cyborg</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">darkly</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">flatly</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">grid</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">slate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bootstrap</span></code>, <code class="docutils literal notranslate"><span class="pre">cosmo</span></code>, <code class="docutils literal notranslate"><span class="pre">cyborg</span></code>, <code class="docutils literal notranslate"><span class="pre">darkly</span></code>, <code class="docutils literal notranslate"><span class="pre">flatly</span></code>, <code class="docutils literal notranslate"><span class="pre">grid</span></code>, <code class="docutils literal notranslate"><span class="pre">slate</span></code></p></li>
 </ul>
-<p>For an exhaustive list, run <code class="docutils literal notranslate"><span class="pre">dir(dbc.themes)</span></code> and see which are available to your current version of Dash Bootstrap Components (<code class="docutils literal notranslate"><span class="pre">dbc</span></code>). Or, check out the <a class="reference external" href="https://hellodash.pythonanywhere.com/">ash Bootstrap Theme Explorer</a></p>
 <p>Your choice of theme will determine the look and feel of a variety of elements in your dashboard, ranging from the color of the background to the opacity of Bootstrap cards.</p>
 <p>Here’s how some elements will look like with the <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> theme:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/Vunbd.png"><img alt="enter image description here" src="https://i.stack.imgur.com/Vunbd.png" /></a></p>
-<p>And here’s how the same elemets will look like with the <code class="docutils literal notranslate"><span class="pre">slate</span></code> theme:</p>
+<p>And here’s how the same elements will look like with the <code class="docutils literal notranslate"><span class="pre">slate</span></code> theme:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/EvbEU.png"><img alt="enter image description here" src="https://i.stack.imgur.com/EvbEU.png" /></a></p>
-<p>You can study more themes and components in <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/">dash-bootstrap-components</a>.</p>
+<p>You can check out more themes and components in <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/">dash-bootstrap-components theme explorer</a>.</p>
 </div>
-<div class="section" id="theme-and-the-cascading-style-sheet-css">
-<h2>12.2 Theme and the Cascading Style Sheet (CSS)<a class="headerlink" href="#theme-and-the-cascading-style-sheet-css" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="theme-and-cascading-style-sheet-css">
+<h2>12.2 Theme and Cascading Style Sheet (CSS)<a class="headerlink" href="#theme-and-cascading-style-sheet-css" title="Permalink to this headline">¶</a></h2>
 <p>To set up your Dash app theme you would select a theme like this:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">SLATE</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">SLATE</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>What hides behind <code class="docutils literal notranslate"><span class="pre">dbc.themes.SLATE</span></code> is the link <code class="docutils literal notranslate"><span class="pre">https://cdn.jsdelivr.net/npm/bootstrap&#64;5.1.3/dist/css/bootstrap.min.css</span></code> which points to a certain cascading stylesheet or, <code class="docutils literal notranslate"><span class="pre">CSS</span></code>. A <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file defines how Dash components appear in the layout.</p>
-<p>One such component is the <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> that you can use to insert a title to your app. If, instead of <code class="docutils literal notranslate"><span class="pre">SLATE</span></code>, you use the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme, <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.BOOTSTRAP]</span></code>, the default font color of the title will be of a dark grey type with the RGB code <code class="docutils literal notranslate"><span class="pre">(33,</span> <span class="pre">37,</span> <span class="pre">47)</span></code> and look like this:</p>
+<p>What hides behind <code class="docutils literal notranslate"><span class="pre">dbc.themes.SLATE</span></code> is the <a class="reference external" href="https://cdn.jsdelivr.net/npm/bootswatch&#64;5.1.3/dist/slate/bootstrap.min.css">following link</a> which points to a certain cascading stylesheet or, <code class="docutils literal notranslate"><span class="pre">CSS</span></code>. A <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file defines how Dash components appear in the layout. One such component is the <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> that you can use to insert a title to your app. If, instead of <code class="docutils literal notranslate"><span class="pre">SLATE</span></code>, you use the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme, <code class="docutils literal notranslate"><span class="pre">external_stylesheets=[dbc.themes.BOOTSTRAP]</span></code>, the default font color of the title will be of a dark grey type with the RGB code <code class="docutils literal notranslate"><span class="pre">(33,</span> <span class="pre">37,</span> <span class="pre">47)</span></code> and look like this:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/pHvGO.png"><img alt="enter image description here" src="https://i.stack.imgur.com/pHvGO.png" /></a></p>
-<p>This particular color is mapped to <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. And if you do a little search inside the <a class="reference external" href="https://cdn.jsdelivr.net/npm/bootstrap&#64;5.1.3/dist/css/bootstrap.min.css">the css file</a>, you’ll find <em>one</em> occurence of <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))
-</pre></div>
-</div>
-<p>This is called a class. All classes are preceded with a period sign. And within the curly brackets we have multiple <code class="docutils literal notranslate"><span class="pre">property-value</span></code> pairs with a colon separating the <code class="docutils literal notranslate"><span class="pre">property</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code>, and a semicolon between each pair. One such <code class="docutils literal notranslate"><span class="pre">property</span></code> is <code class="docutils literal notranslate"><span class="pre">color</span></code> with the corresponding value:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span> var(--bs-body-color-rgb)
-</pre></div>
-</div>
+<p>This particular color is mapped to <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file.
+And if you do a little digging inside <a class="reference external" href="https://cdn.jsdelivr.net/npm/bootstrap&#64;5.1.3/dist/css/bootstrap.min.css">the css file</a>, you’ll find one occurence of <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.text-body{--bs-text-opacity:1;color:rgba(var(--bs-body-color-rgb),var(--bs-text-opacity))</span></code></p></li>
+</ul>
+<p>This is called a class. All classes are preceded with a period sign. And within the curly brackets we have multiple <code class="docutils literal notranslate"><span class="pre">property-value</span></code> pairs with a colon separating the <code class="docutils literal notranslate"><span class="pre">property</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code>, and a semicolon between each pair.
+One such <code class="docutils literal notranslate"><span class="pre">property</span></code> is <code class="docutils literal notranslate"><span class="pre">color</span></code> with the corresponding value <code class="docutils literal notranslate"><span class="pre">var(--bs-body-color-rgb)</span></code>.</p>
 <p>This points to a setting at the start of the document that reveals the <code class="docutils literal notranslate"><span class="pre">rgb()</span></code> code used by <code class="docutils literal notranslate"><span class="pre">text-body</span></code>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bs-body-color-rgb:33,37,43
-</pre></div>
-</div>
-<p>You can use reources such as <a class="reference external" href="https://www.rapidtables.com/web/color/RGB_Color.html">RapidTables</a> to verfiy that you’re looking at the correct color:</p>
-<p><a class="reference external" href="https://i.stack.imgur.com/BFgvm.png"><img alt="enter image description here" src="https://i.stack.imgur.com/BFgvm.png" /></a></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bs-body-color-rgb:33,37,43</span></code></p></li>
+</ul>
 </div>
 <div class="section" id="use-classname-to-reference-a-class">
 <h2>12.3 Use className to reference a class<a class="headerlink" href="#use-classname-to-reference-a-class" title="Permalink to this headline">¶</a></h2>
@@ -732,7 +721,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p><code class="docutils literal notranslate"><span class="pre">className=&quot;text-danger&quot;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">className=&quot;text-info&quot;</span></code></p></li>
 </ul>
-<p>For other options, take a look at the cheatsheet at <a class="reference external" href="https://dashcheatsheet.pythonanywhere.com/">pythonanywhere.com</a>, under the Utility Color section.</p>
 <p>The below snippet builds on elements and principles of former chapters, and produces a markdown component that you can use as a header for your dashboards.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -744,7 +732,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -764,7 +752,7 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </details><p><a class="reference external" href="https://i.stack.imgur.com/iCkRA.png"><img alt="enter image description here" src="https://i.stack.imgur.com/iCkRA.png" /></a></p>
-<p>Above is the output with <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. In order to change the color, just include, for example, <code class="docutils literal notranslate"><span class="pre">class_name</span> <span class="pre">=</span> <span class="pre">&quot;text-info&quot;</span></code> in your <code class="docutils literal notranslate"><span class="pre">dcc.Markdwon()</span></code> function call.</p>
+<p>Above is the output with <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> displayed as a heading in the colorcode we demonstrated earlier. Recall that this color corresponds to the color associated with <code class="docutils literal notranslate"><span class="pre">text-body</span></code> in the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. In order to change the color just include, for example, <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;text-info&quot;</span></code> in your <code class="docutils literal notranslate"><span class="pre">dcc.Markdwon()</span></code> function call.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -775,7 +763,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
@@ -794,10 +782,10 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </details><p><a class="reference external" href="https://i.stack.imgur.com/d9pqj.png"><img alt="enter image description here" src="https://i.stack.imgur.com/d9pqj.png" /></a></p>
-<div class="section" id="how-to-change-background-color">
-<h3>12.3.1 How to change background color<a class="headerlink" href="#how-to-change-background-color" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="change-background-color">
+<h3>12.3.1 Change background color<a class="headerlink" href="#change-background-color" title="Permalink to this headline">¶</a></h3>
 <p>Recall that the alternatives to <code class="docutils literal notranslate"><span class="pre">text-body</span></code> like <code class="docutils literal notranslate"><span class="pre">text-primary</span></code> and <code class="docutils literal notranslate"><span class="pre">text-secondary</span></code> aren’t actual colors, but rather pointers to different colors set by the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. So you can think of these options as different possible categories of the information you’d like to display. The same thing goes for other features of our <code class="docutils literal notranslate"><span class="pre">dcc.Markdown()</span></code> example like background color.</p>
-<p>The following snippet changes the white background of the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme to a rich blue color. And if you’d like to know <em>exactly</em> which color that is, you already know how to find that out through studying the <code class="docutils literal notranslate"><span class="pre">CSS</span></code> file. Notice in the snippet below that all you have to do to change the background color is to include <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code> because <code class="docutils literal notranslate"><span class="pre">bg</span></code> stands for <em>background</em>.</p>
+<p>The following snippet changes the white background of the <code class="docutils literal notranslate"><span class="pre">BOOTSTRAP</span></code> theme to a rich blue color. Notice in the snippet below that all you have to do to change the background color is to include <code class="docutils literal notranslate"><span class="pre">bg-primary</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code> because <code class="docutils literal notranslate"><span class="pre">bg</span></code> stands for background.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -808,7 +796,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -846,7 +834,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -882,8 +870,8 @@ See Code<div class="summary-down docutils">
 <li><p><code class="docutils literal notranslate"><span class="pre">y</span></code> - for classes that set both *-top and *-bottom</p></li>
 <li><p><em><code class="docutils literal notranslate"><span class="pre">blank</span></code></em> - for classes that set a margin or padding on all 4 sides of the element</p></li>
 </ul>
-<p>Finally, you would need to state the size of margin or padding that you would like to add. <code class="docutils literal notranslate"><span class="pre">size</span></code> can be one of <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code> where <code class="docutils literal notranslate"><span class="pre">0</span></code> eliminates the margin or padding. Take a look at [<a class="reference external" href="http://mdbootstrap.com">mdbootstrap.com</a>][13] for more options.</p>
-<p>Let’s see an example where we add 2 units of margin around the highlighted text and it’s parent Div.</p>
+<p>Finally, you would need to state the size of margin or padding that you would like to add. <code class="docutils literal notranslate"><span class="pre">size</span></code> can be one of <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code> where <code class="docutils literal notranslate"><span class="pre">0</span></code> eliminates the margin or padding.</p>
+<p>Let’s see an example where we add 2 units of margin around the highlighted text and its parent Div.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -894,7 +882,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -933,7 +921,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -960,10 +948,10 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </details><p><a class="reference external" href="https://i.stack.imgur.com/Uu0Ee.png"><img alt="enter image description here" src="https://i.stack.imgur.com/Uu0Ee.png" /></a></p>
-<p>As it now stands, the dashboard isn’t exactly very pleasing to the eye. The two rows have got the same widths, but the background color of each spans a <em>different</em> width. In addition, the paddings for “Dashboard title” and “Label 1” look very different.</p>
-<p>The first thing we’ll do is add <code class="docutils literal notranslate"><span class="pre">p-1</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=&quot;text-info</span> <span class="pre">bg-primary</span> <span class="pre">p-1&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code> component and <code class="docutils literal notranslate"><span class="pre">p-2</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning</span> <span class="pre">p-2&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component. This will generate the same spacing around the texts <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">1</span></code>.</p>
+<p>As it now stands, the dashboard isn’t exactly very pleasing to the eye. The two rows have got the same widths, but the background color of each one spans a different width. In addition, the paddings for “Dashboard title” and “Label 1” look very different; this is because <code class="docutils literal notranslate"><span class="pre">dcc</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc</span></code> come with different default settings with regards to margins, paddings and other styling features.</p>
+<p>The first thing we’ll do is add <code class="docutils literal notranslate"><span class="pre">p-1</span></code> in <code class="docutils literal notranslate"><span class="pre">className=&quot;text-info</span> <span class="pre">bg-primary</span> <span class="pre">p-1&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code> component and <code class="docutils literal notranslate"><span class="pre">p-2</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning</span> <span class="pre">p-2&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component. This will generate the same spacing around the texts <code class="docutils literal notranslate"><span class="pre">Dashboard</span> <span class="pre">title</span></code> and <code class="docutils literal notranslate"><span class="pre">Label</span> <span class="pre">1</span></code>.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/UWulS.png"><img alt="enter image description here" src="https://i.stack.imgur.com/UWulS.png" /></a></p>
-<p>Another consequence is that the markdown and label components’ backgrounds no longer have a gap between them. If you’d like to keep the gap, you can choose to include it through either component. The image below shows the effect of including <code class="docutils literal notranslate"><span class="pre">&quot;mt-2&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;bg-warning</span> <span class="pre">p-1</span> <span class="pre">mt-2&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component:</p>
+<p>Another consequence is that the markdown and label components’ backgrounds no longer have a gap between them. If you’d like to keep the gap, you can choose to include it through either component. The image below shows the effect of including <code class="docutils literal notranslate"><span class="pre">mt-2</span></code> in <code class="docutils literal notranslate"><span class="pre">className=&quot;bg-warning</span> <span class="pre">p-2</span> <span class="pre">mt-2&quot;</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> component:</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/RylgH.png"><img alt="enter image description here" src="https://i.stack.imgur.com/RylgH.png" /></a></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -975,7 +963,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -983,7 +971,7 @@ See Code<div class="summary-down docutils">
                 <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
                     <span class="p">[</span>
                         <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
-                            <span class="s2">&quot;#### Dashboard title&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info bg-primary&quot;</span>
+                            <span class="s2">&quot;#### Dashboard title&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info bg-primary p-1&quot;</span>
                         <span class="p">)</span>
                     <span class="p">]</span>
                 <span class="p">)</span>
@@ -991,7 +979,7 @@ See Code<div class="summary-down docutils">
             <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary&quot;</span><span class="p">,</span>
         <span class="p">),</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Label 1&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-warning p-1 mt-2&quot;</span><span class="p">)])],</span>
+            <span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="s2">&quot;Label 1&quot;</span><span class="p">,</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-warning p-2 mt-2&quot;</span><span class="p">)])],</span>
             <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary&quot;</span><span class="p">,</span>
         <span class="p">),</span>
     <span class="p">]</span>
@@ -1004,7 +992,7 @@ See Code<div class="summary-down docutils">
 </details></div>
 <div class="section" id="set-component-width-with-style">
 <h3>12.3.5 Set component width with <code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#set-component-width-with-style" title="Permalink to this headline">¶</a></h3>
-<p>With <code class="docutils literal notranslate"><span class="pre">style</span></code>, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you’ll use <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100px'}</span></code>, and for the former you can use either <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100%}</span></code> or <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100pc}</span></code>. Let’s add the <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'75%}</span></code> for both components:</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">style</span></code> prop, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you’ll use <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100px'}</span></code>, and for the former you can use either <code class="docutils literal notranslate"><span class="pre">style={'width':'100%}</span></code> or <code class="docutils literal notranslate"><span class="pre">style={'width':'100pc}</span></code>. Let’s add the <code class="docutils literal notranslate"><span class="pre">style={'width':'75%}</span></code> to both components:</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -1015,7 +1003,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1058,8 +1046,8 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </div>
-<div class="section" id="more-components-and-more-attributes">
-<h2>12.4 More components and more attributes<a class="headerlink" href="#more-components-and-more-attributes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="more-components-and-attributes">
+<h2>12.4 More components and attributes<a class="headerlink" href="#more-components-and-attributes" title="Permalink to this headline">¶</a></h2>
 <p>In this section you’ll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a <code class="docutils literal notranslate"><span class="pre">dbc.Button()</span></code> and a <code class="docutils literal notranslate"><span class="pre">dbc.Card()</span></code> component. The latter is often used to split a dashboard in different parts and it serves as a container for more components. You’ll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.</p>
 <div class="section" id="a-button-and-a-card">
 <h3>12.4.1 A button and a card<a class="headerlink" href="#a-button-and-a-card" title="Permalink to this headline">¶</a></h3>
@@ -1074,7 +1062,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1154,7 +1142,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1227,7 +1215,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1315,7 +1303,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1396,7 +1384,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1470,7 +1458,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1554,7 +1542,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
