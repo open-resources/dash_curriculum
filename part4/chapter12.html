@@ -387,13 +387,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-component-width-with-style">
-     12.3.5 Set component width with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       style
-      </span>
-     </code>
+    <a class="reference internal nav-link" href="#set-width-with-style-prop">
+     12.3.5 Set width with style prop
     </a>
    </li>
   </ul>
@@ -404,8 +399,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-button-and-a-card">
-     12.4.1 A button and a card
+    <a class="reference internal nav-link" href="#button-and-card">
+     12.4.1 Button and card
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -414,8 +409,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-component-height-with-style">
-     12.4.3 Set component height with
+    <a class="reference internal nav-link" href="#set-height-with-style">
+     12.4.3 Set height with
      <code class="docutils literal notranslate">
       <span class="pre">
        style
@@ -544,13 +539,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-component-width-with-style">
-     12.3.5 Set component width with
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       style
-      </span>
-     </code>
+    <a class="reference internal nav-link" href="#set-width-with-style-prop">
+     12.3.5 Set width with style prop
     </a>
    </li>
   </ul>
@@ -561,8 +551,8 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#a-button-and-a-card">
-     12.4.1 A button and a card
+    <a class="reference internal nav-link" href="#button-and-card">
+     12.4.1 Button and card
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -571,8 +561,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#set-component-height-with-style">
-     12.4.3 Set component height with
+    <a class="reference internal nav-link" href="#set-height-with-style">
+     12.4.3 Set height with
      <code class="docutils literal notranslate">
       <span class="pre">
        style
@@ -990,8 +980,8 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </details></div>
-<div class="section" id="set-component-width-with-style">
-<h3>12.3.5 Set component width with <code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#set-component-width-with-style" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="set-width-with-style-prop">
+<h3>12.3.5 Set width with style prop<a class="headerlink" href="#set-width-with-style-prop" title="Permalink to this headline">¶</a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">style</span></code> prop, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you’ll use <code class="docutils literal notranslate"><span class="pre">style</span> <span class="pre">=</span> <span class="pre">{'width':'100px'}</span></code>, and for the former you can use either <code class="docutils literal notranslate"><span class="pre">style={'width':'100%}</span></code> or <code class="docutils literal notranslate"><span class="pre">style={'width':'100pc}</span></code>. Let’s add the <code class="docutils literal notranslate"><span class="pre">style={'width':'75%}</span></code> to both components:</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -1048,9 +1038,9 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="more-components-and-attributes">
 <h2>12.4 More components and attributes<a class="headerlink" href="#more-components-and-attributes" title="Permalink to this headline">¶</a></h2>
-<p>In this section you’ll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a <code class="docutils literal notranslate"><span class="pre">dbc.Button()</span></code> and a <code class="docutils literal notranslate"><span class="pre">dbc.Card()</span></code> component. The latter is often used to split a dashboard in different parts and it serves as a container for more components. You’ll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.</p>
-<div class="section" id="a-button-and-a-card">
-<h3>12.4.1 A button and a card<a class="headerlink" href="#a-button-and-a-card" title="Permalink to this headline">¶</a></h3>
+<p>In this section you’ll learn how to build on the previous examples and approach something that looks more like a complete dashboard by adding a <code class="docutils literal notranslate"><span class="pre">dbc.Button()</span></code> and a <code class="docutils literal notranslate"><span class="pre">dbc.Card()</span></code> component. The Card is often used to split a dashboard in different parts, and it serves as a container for more components. You’ll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.</p>
+<div class="section" id="button-and-card">
+<h3>12.4.1 Button and card<a class="headerlink" href="#button-and-card" title="Permalink to this headline">¶</a></h3>
 <p>We’ll add a <code class="docutils literal notranslate"><span class="pre">dbc.Button</span></code> in a new <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component next to the already existing <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code>. In addition, we’ll include a <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code> in a <code class="docutils literal notranslate"><span class="pre">dbc.Col</span></code> component within a new <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code>.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -1122,16 +1112,11 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="justify-row-components">
 <h3>12.4.2 Justify row components<a class="headerlink" href="#justify-row-components" title="Permalink to this headline">¶</a></h3>
-<p>In the previous snippet, we’ved used <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">=</span> <span class="pre">4</span></code> for both the <code class="docutils literal notranslate"><span class="pre">label</span></code> and the <code class="docutils literal notranslate"><span class="pre">button</span></code> which by default are placed at the start of the parent <code class="docutils literal notranslate"><span class="pre">row</span></code> component. To change this, you can include <code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'&lt;option&gt;'</span></code> in the <code class="docutils literal notranslate"><span class="pre">row</span></code> component, where your options are:</p>
+<p>In the previous code snippet, we’ve used <code class="docutils literal notranslate"><span class="pre">width</span> <span class="pre">=</span> <span class="pre">4</span></code> for both the <code class="docutils literal notranslate"><span class="pre">label</span></code> and the <code class="docutils literal notranslate"><span class="pre">button</span></code>, which by default are placed at the start of the parent <code class="docutils literal notranslate"><span class="pre">row</span></code> component. To change this, you can include <code class="docutils literal notranslate"><span class="pre">justify='&lt;option&gt;'</span></code> in the <code class="docutils literal notranslate"><span class="pre">row</span></code> component, where your options are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">center</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">end</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">around</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">between</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">evenly</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">around</span></code>, <code class="docutils literal notranslate"><span class="pre">between</span></code>, <code class="docutils literal notranslate"><span class="pre">evenly</span></code></p></li>
 </ul>
-<p>The image below shows the result for <code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'evenly'</span></code>. In additon we’ve included some margins and padding to make the title, label and button look a little nicer.</p>
+<p>The image below shows the result for <code class="docutils literal notranslate"><span class="pre">justify='evenly'</span></code>. In addition, we’ve included some margins and padding to make the title, label and button look a little nicer.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -1202,9 +1187,9 @@ See Code<div class="summary-down docutils">
 </div>
 </details><p><a class="reference external" href="https://i.stack.imgur.com/UrTWh.png"><img alt="enter image description here" src="https://i.stack.imgur.com/UrTWh.png" /></a></p>
 </div>
-<div class="section" id="set-component-height-with-style">
-<h3>12.4.3 Set component height with <code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#set-component-height-with-style" title="Permalink to this headline">¶</a></h3>
-<p>Notice how we’ve cheated a bit in the snippet above by adding <code class="docutils literal notranslate"><span class="pre">'height':'65%'</span></code> for the <code class="docutils literal notranslate"><span class="pre">label</span></code> component style to make it align better to the <code class="docutils literal notranslate"><span class="pre">button</span></code>. Before you’re ready to fill your <code class="docutils literal notranslate"><span class="pre">card</span></code> with more components, it’s often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we’ve included <code class="docutils literal notranslate"><span class="pre">'height':'200px'</span></code> for the <code class="docutils literal notranslate"><span class="pre">label</span></code> style attribute.</p>
+<div class="section" id="set-height-with-style">
+<h3>12.4.3 Set height with <code class="docutils literal notranslate"><span class="pre">style</span></code><a class="headerlink" href="#set-height-with-style" title="Permalink to this headline">¶</a></h3>
+<p>Notice how we’ve cheated a bit in the snippet above by adding <code class="docutils literal notranslate"><span class="pre">'height':'65%'</span></code> for the <code class="docutils literal notranslate"><span class="pre">label</span></code> component style to make it align better to the <code class="docutils literal notranslate"><span class="pre">button</span></code>. Before you’re ready to fill your <code class="docutils literal notranslate"><span class="pre">card</span></code> with more components, it’s often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completion. In the snippet below, we’ve included <code class="docutils literal notranslate"><span class="pre">'height':'200px'</span></code> for the <code class="docutils literal notranslate"><span class="pre">label</span></code> style attribute.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -1278,20 +1263,11 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="rounded-edges">
 <h3>12.4.4 Rounded edges<a class="headerlink" href="#rounded-edges" title="Permalink to this headline">¶</a></h3>
-<p>If you look closely at the edges of the <code class="docutils literal notranslate"><span class="pre">card</span></code>, you’ll see that they are rounded by default. In order to apply rounded edges to other components, just include <code class="docutils literal notranslate"><span class="pre">&quot;rounded&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. You can adjust the “weight” of the rounding by setting <code class="docutils literal notranslate"><span class="pre">rounded-{size}</span></code> where size can range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">3</span></code>. You can also specify which corners to round through <code class="docutils literal notranslate"><span class="pre">rounded-{corner}</span></code>, where <code class="docutils literal notranslate"><span class="pre">corner</span></code> can be:</p>
+<p>If you look closely at the edges of the <code class="docutils literal notranslate"><span class="pre">card</span></code>, you’ll see that they are rounded by default. In order to apply rounded edges to other components, simply include <code class="docutils literal notranslate"><span class="pre">&quot;rounded&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code>. You can adjust the “weight” of the rounding by setting <code class="docutils literal notranslate"><span class="pre">rounded-{size}</span></code> where size can range from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">3</span></code>. You can also specify which corners to round through <code class="docutils literal notranslate"><span class="pre">rounded-{corner}</span></code>, where <code class="docutils literal notranslate"><span class="pre">corner</span></code> can be:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">top</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bottom</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">end</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">circle</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pill</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">circle</span></code>, <code class="docutils literal notranslate"><span class="pre">pill</span></code></p></li>
 </ul>
-<p>The last two will change not only the corners but the complete structure of the whole card to become circle or pill shaped.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>When components come with rounded edges by default, you will sometimg have to include <code class="docutils literal notranslate"><span class="pre">rouned-0</span></code> before including <code class="docutils literal notranslate"><span class="pre">rounded-top</span></code> to round off the top <em>only</em>. This is the case with <code class="docutils literal notranslate"><span class="pre">dbc.Card</span></code>.</p>
-</div>
+<p>The last two options will change not only the corners but the complete structure of the whole card to become circle or pill shaped.</p>
 <p>In the snippet below, we’ve rounded off the bottom of the card only, and set the weight to <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -1348,7 +1324,7 @@ See Code<div class="summary-down docutils">
             <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
                 <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
                     <span class="s2">&quot;Put your card content here&quot;</span><span class="p">,</span>
-                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-3&quot;</span><span class="p">,</span>
+                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;mt-2 border rounded-0 rounded-bottom&quot;</span><span class="p">,</span>
                     <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;200px&quot;</span><span class="p">},</span>
                 <span class="p">),</span>
                 <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
@@ -1366,14 +1342,13 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="borders">
 <h3>12.4.5 Borders<a class="headerlink" href="#borders" title="Permalink to this headline">¶</a></h3>
-<p>So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let’s drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with <code class="docutils literal notranslate"><span class="pre">border-{size}</span></code> where <code class="docutils literal notranslate"><span class="pre">size</span></code> can range from <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code>. As with <code class="docutils literal notranslate"><span class="pre">rounded</span></code>, you can set the position of the border with <code class="docutils literal notranslate"><span class="pre">border-{direction}</span></code> where <code class="docutils literal notranslate"><span class="pre">direction</span></code> can be:</p>
+<p>So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let’s drop the background color, and rather separate the title from the components with a border.
+You can set the size of the border line with <code class="docutils literal notranslate"><span class="pre">border-{size}</span></code> where <code class="docutils literal notranslate"><span class="pre">size</span></code> can range from <code class="docutils literal notranslate"><span class="pre">1</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code>. As with <code class="docutils literal notranslate"><span class="pre">rounded</span></code>, you can set the position of the border with <code class="docutils literal notranslate"><span class="pre">border-{direction}</span></code> where <code class="docutils literal notranslate"><span class="pre">direction</span></code> can be:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">top</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">end</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bottom</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">start</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">end</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, <code class="docutils literal notranslate"><span class="pre">start</span></code></p></li>
 </ul>
-<p>In the snippet below we’ve added a thick grey border line below the title by adding <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">&quot;border-top</span> <span class="pre">border-white</span> <span class="pre">border-3&quot;</span></code> to the second <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component. We’ve also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> itself with <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">'bg-secondary</span> <span class="pre">mt-1</span> <span class="pre">p-3'</span></code></p>
+<p>In the snippet below we’ve added a thick grey border line below the title by adding <code class="docutils literal notranslate"><span class="pre">className=&quot;border-top</span> <span class="pre">border-white</span> <span class="pre">border-3&quot;</span></code> to the second <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> component.
+We’ve also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> itself with <code class="docutils literal notranslate"><span class="pre">className='bg-secondary</span> <span class="pre">mt-1</span> <span class="pre">p-3'</span></code></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -1447,7 +1422,7 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="opacity">
 <h3>12.4.6 Opacity<a class="headerlink" href="#opacity" title="Permalink to this headline">¶</a></h3>
-<p>If you find that <code class="docutils literal notranslate"><span class="pre">bg-secondary</span></code> for the <code class="docutils literal notranslate"><span class="pre">db.Container</span></code> comes off as a bit too dominating, you can adjust the opacity of the background color with <code class="docutils literal notranslate"><span class="pre">opacity-{number}</span></code> where <code class="docutils literal notranslate"><span class="pre">number</span></code> can be <code class="docutils literal notranslate"><span class="pre">25</span></code>, <code class="docutils literal notranslate"><span class="pre">50</span></code> or <code class="docutils literal notranslate"><span class="pre">75</span></code>. Below we’ve used <code class="docutils literal notranslate"><span class="pre">bg-opacity-75</span></code> and also rounded off the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> corners with <code class="docutils literal notranslate"><span class="pre">className</span> <span class="pre">=</span> <span class="pre">'bg-secondary</span> <span class="pre">bg-opacity-75</span> <span class="pre">rounded-3</span> <span class="pre">mt-1</span> <span class="pre">p-3'</span></code>.</p>
+<p>If you find that <code class="docutils literal notranslate"><span class="pre">bg-secondary</span></code> for the <code class="docutils literal notranslate"><span class="pre">db.Container</span></code> comes off as a bit too dominating, you can adjust the opacity of the background color with <code class="docutils literal notranslate"><span class="pre">opacity-{number}</span></code> where <code class="docutils literal notranslate"><span class="pre">number</span></code> can be <code class="docutils literal notranslate"><span class="pre">25</span></code>, <code class="docutils literal notranslate"><span class="pre">50</span></code> or <code class="docutils literal notranslate"><span class="pre">75</span></code>. Below we’ve used <code class="docutils literal notranslate"><span class="pre">bg-opacity-75</span></code> and also rounded off the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> corners with <code class="docutils literal notranslate"><span class="pre">className='bg-secondary</span> <span class="pre">bg-opacity-75</span> <span class="pre">rounded-3</span> <span class="pre">mt-1</span> <span class="pre">p-3'</span></code>.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -1518,18 +1493,12 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </details><p><a class="reference external" href="https://i.stack.imgur.com/UpEZe.png"><img alt="enter image description here" src="https://i.stack.imgur.com/UpEZe.png" /></a></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you do not specify the context of <code class="docutils literal notranslate"><span class="pre">opacity</span></code>, like <code class="docutils literal notranslate"><span class="pre">bg-opacity</span></code>, <em>all</em> elements that are contained in your component will be affected.</p>
-</div>
 </div>
 <div class="section" id="shadow">
 <h3>12.4.7 Shadow<a class="headerlink" href="#shadow" title="Permalink to this headline">¶</a></h3>
 <p>You can add a bit of depth to your dashboard by adding a shadow to your components with <code class="docutils literal notranslate"><span class="pre">shadow-{size}</span></code> where <code class="docutils literal notranslate"><span class="pre">size</span></code> can be left out all together, or set to:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sm</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">lg</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">none</span></code>, <code class="docutils literal notranslate"><span class="pre">sm</span></code>, <code class="docutils literal notranslate"><span class="pre">lg</span></code></p></li>
 </ul>
 <p>The last two options stand for <code class="docutils literal notranslate"><span class="pre">small</span></code> and <code class="docutils literal notranslate"><span class="pre">large</span></code>. Below we’ve included <code class="docutils literal notranslate"><span class="pre">shadow-lg</span></code> for the <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> component.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
@@ -1605,7 +1574,11 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="gradient">
 <h3>12.4.8 Gradient<a class="headerlink" href="#gradient" title="Permalink to this headline">¶</a></h3>
-<p>Including <code class="docutils literal notranslate"><span class="pre">bg-gradient</span></code> will add additional depth to the background of your app through a smooth transition between two colors. Using the <code class="docutils literal notranslate"><span class="pre">className</span></code> approach in this case will only let you illustrate subtle changes. The image below compares the snippet we have with and without <code class="docutils literal notranslate"><span class="pre">bg-gradient</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">className</span></code> for <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code>. If you look closely, you’ll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you’re setting with <code class="docutils literal notranslate"><span class="pre">bg-{color}</span></code>.</p>
+<p>Including <code class="docutils literal notranslate"><span class="pre">bg-gradient</span></code> will add additional depth to the background of your app through a smooth transition between two colors. In order to add more flexibility to the gradient effect of the background color, you’ll have to resort to the <code class="docutils literal notranslate"><span class="pre">style</span></code> prop. As an example, you can set a background color that transitions from white to grey from the left to the right with:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">style={&quot;background&quot;:</span> <span class="pre">&quot;linear-gradient(90deg,</span> <span class="pre">white,</span> <span class="pre">grey&quot;}</span></code></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">linear</span></code> in <code class="docutils literal notranslate"><span class="pre">linear-gradient</span></code> sets the gradient method. Other alternatives are <code class="docutils literal notranslate"><span class="pre">radial</span></code> and <code class="docutils literal notranslate"><span class="pre">conic</span></code>. <code class="docutils literal notranslate"><span class="pre">90</span></code> in <code class="docutils literal notranslate"><span class="pre">90deg</span></code> sets the direction through the degrees of the angle of the transition direction.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -1616,82 +1589,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
-<span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
-    <span class="p">[</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="p">[</span>
-                        <span class="n">dcc</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
-                            <span class="s2">&quot;#### Dashboard title&quot;</span><span class="p">,</span>
-                            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info p-2&quot;</span><span class="p">,</span>
-                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">},</span>
-                        <span class="p">)</span>
-                    <span class="p">],</span>
-                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;mt-2&quot;</span><span class="p">,</span>
-                <span class="p">)</span>
-            <span class="p">],</span>
-            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;text-info m-0&quot;</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="p">[</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="p">[</span>
-                        <span class="n">dbc</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span>
-                            <span class="s2">&quot;Label 1&quot;</span><span class="p">,</span>
-                            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-warning mt-2 p-2&quot;</span><span class="p">,</span>
-                            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="s2">&quot;100%&quot;</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;65%&quot;</span><span class="p">},</span>
-                        <span class="p">)</span>
-                    <span class="p">],</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                <span class="p">),</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                    <span class="n">dbc</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span>
-                        <span class="s2">&quot;Click me&quot;</span><span class="p">,</span>
-                        <span class="n">className</span><span class="o">=</span><span class="s2">&quot;m-2&quot;</span><span class="p">,</span>
-                    <span class="p">),</span>
-                    <span class="n">width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
-                <span class="p">),</span>
-            <span class="p">],</span>
-            <span class="n">className</span><span class="o">=</span><span class="s2">&quot;border-top border-white border-3 m-0&quot;</span><span class="p">,</span>
-            <span class="n">justify</span><span class="o">=</span><span class="s2">&quot;evenly&quot;</span><span class="p">,</span>
-        <span class="p">),</span>
-        <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
-            <span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">(</span>
-                <span class="n">dbc</span><span class="o">.</span><span class="n">Card</span><span class="p">(</span>
-                    <span class="s2">&quot;Put your card content here&quot;</span><span class="p">,</span>
-                    <span class="n">className</span><span class="o">=</span><span class="s2">&quot; mt-2 rounded-0 rounded-bottom rounded-4&quot;</span><span class="p">,</span>
-                    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="s2">&quot;200px&quot;</span><span class="p">},</span>
-                <span class="p">),</span>
-                <span class="n">width</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="p">),</span>
-    <span class="p">],</span>
-    <span class="n">className</span><span class="o">=</span><span class="s2">&quot;bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3 bg-gradient&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</details><p><a class="reference external" href="https://i.stack.imgur.com/VVPGV.png"><img alt="enter image description here" src="https://i.stack.imgur.com/VVPGV.png" /></a></p>
-<p>In order to add more flexibility to the gradient effect of the background color, you’ll have to resort to the <code class="docutils literal notranslate"><span class="pre">style</span></code> attribute. As an example, you can set a background color that transitions from white to grey from the left to the right with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background&quot;</span><span class="p">:</span> <span class="s2">&quot;linear-gradient(90deg, white, grey&quot;</span><span class="p">}</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">linear</span></code> in <code class="docutils literal notranslate"><span class="pre">linear-gradient</span></code> sets the gradient method. <a class="reference external" href="https://www.w3schools.com/css/css3_gradients.asp">Other alternatives</a> are <code class="docutils literal notranslate"><span class="pre">radial</span></code> and <code class="docutils literal notranslate"><span class="pre">conic</span></code>. <code class="docutils literal notranslate"><span class="pre">90</span></code> in <code class="docutils literal notranslate"><span class="pre">90deg</span></code> sets the direction through the degrees of the angle of the transition direction.</p>
-<details class="sphinx-bs dropdown card mb-3 shadow">
-<summary class="summary-title card-header bg-primary text-white font-weight-bold">
-See Code<div class="summary-down docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
-<div class="summary-up docutils">
-<svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
-</summary><div class="summary-content card-body docutils">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
-<span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
-
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1752,7 +1650,7 @@ See Code<div class="summary-down docutils">
 </div>
 </div>
 </details><p><a class="reference external" href="https://i.stack.imgur.com/tcSwu.png"><img alt="enter image description here" src="https://i.stack.imgur.com/tcSwu.png" /></a></p>
-<p>The color options are not limited to simple color names like <code class="docutils literal notranslate"><span class="pre">white</span></code> and <code class="docutils literal notranslate"><span class="pre">grey</span></code>. You can alose use <code class="docutils literal notranslate"><span class="pre">rgb</span></code> and even <code class="docutils literal notranslate"><span class="pre">rgba</span></code> to select any color with any grade of transparency you’d like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses <code class="docutils literal notranslate"><span class="pre">red</span></code>, <code class="docutils literal notranslate"><span class="pre">yellow</span></code> and a transparent <code class="docutils literal notranslate"><span class="pre">blue</span></code> with <code class="docutils literal notranslate"><span class="pre">rgba(0,</span> <span class="pre">0</span> <span class="pre">,</span> <span class="pre">255,</span> <span class="pre">0.3)</span></code>. Notice also that we’ve included <code class="docutils literal notranslate"><span class="pre">70%</span></code> right after the <code class="docutils literal notranslate"><span class="pre">rgba</span></code> color. This sets the share of the last color compared to the rest of the colors.</p>
+<p>The color options are not limited to simple color names like <code class="docutils literal notranslate"><span class="pre">white</span></code> and <code class="docutils literal notranslate"><span class="pre">grey</span></code>. You can also use <code class="docutils literal notranslate"><span class="pre">rgb</span></code> and even <code class="docutils literal notranslate"><span class="pre">rgba</span></code> to select any color with any grade of transparency you’d like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses <code class="docutils literal notranslate"><span class="pre">red</span></code>, <code class="docutils literal notranslate"><span class="pre">yellow</span></code> and a transparent <code class="docutils literal notranslate"><span class="pre">blue</span></code> with <code class="docutils literal notranslate"><span class="pre">rgba(0,</span> <span class="pre">0</span> <span class="pre">,</span> <span class="pre">255,</span> <span class="pre">0.3)</span></code>. Notice also that we’ve included <code class="docutils literal notranslate"><span class="pre">70%</span></code> right after the <code class="docutils literal notranslate"><span class="pre">rgba</span></code> color. This sets the share of the last color compared to the rest of the colors.</p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
 See Code<div class="summary-down docutils">
@@ -1763,7 +1661,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1829,16 +1727,14 @@ See Code<div class="summary-down docutils">
 </div>
 <div class="section" id="overflow">
 <h3>12.4.9 Overflow<a class="headerlink" href="#overflow" title="Permalink to this headline">¶</a></h3>
-<p>So far we haven’t filled any of the components with too much information. If we set the label to a fixed height of <code class="docutils literal notranslate"><span class="pre">45px</span></code> and add a text that’s a bit too long, you’ll see that the default behavioss of <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> is to let the content flow over the component.</p>
+<p>So far we haven’t filled any of the components with too much information.
+If we set the label to a fixed height of <code class="docutils literal notranslate"><span class="pre">45px</span></code> and add a text that’s a bit too long, you’ll see that the default behavior of <code class="docutils literal notranslate"><span class="pre">dbc.Label</span></code> is to let the content flow over the component.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/fkHbn.png"><img alt="enter image description here" src="https://i.stack.imgur.com/fkHbn.png" /></a></p>
 <p>To change this behavior, include <code class="docutils literal notranslate"><span class="pre">overflow-{option}</span></code> in <code class="docutils literal notranslate"><span class="pre">className</span></code> where <code class="docutils literal notranslate"><span class="pre">option</span></code> can be:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">hidden</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">visible</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">scroll</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code>, <code class="docutils literal notranslate"><span class="pre">hidden</span></code>, <code class="docutils literal notranslate"><span class="pre">visible</span></code>, <code class="docutils literal notranslate"><span class="pre">scroll</span></code></p></li>
 </ul>
-<p>Below is the same setup with <code class="docutils literal notranslate"><span class="pre">overflow-scroll</span></code> included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between <code class="docutils literal notranslate"><span class="pre">atuo</span></code> and <code class="docutils literal notranslate"><span class="pre">scroll</span></code> in this case is that the latter adds both vertical and horizontal sliders by default.</p>
+<p>Below, we added <code class="docutils literal notranslate"><span class="pre">overflow-auto</span></code> to the <code class="docutils literal notranslate"><span class="pre">className</span></code> prop of the label. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between <code class="docutils literal notranslate"><span class="pre">auto</span></code> and <code class="docutils literal notranslate"><span class="pre">scroll</span></code> is that the latter adds both vertical and horizontal sliders by default.</p>
 <p><a class="reference external" href="https://i.stack.imgur.com/BdGEE.png"><img alt="enter image description here" src="https://i.stack.imgur.com/BdGEE.png" /></a></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -1850,7 +1746,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -1930,7 +1826,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -2001,7 +1897,7 @@ See Code<div class="summary-down docutils">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span>
@@ -2075,7 +1971,6 @@ See Code<div class="summary-down docutils">
 </div>
 <p>Notice how alle the <code class="docutils literal notranslate"><span class="pre">className</span></code> elements we’ve added can be found there. In addition, you’ll see how using the <code class="docutils literal notranslate"><span class="pre">justify</span> <span class="pre">=</span> <span class="pre">'evenly'</span></code> attribute for the <code class="docutils literal notranslate"><span class="pre">dbc.Row</span></code> compnent in effect adds <code class="docutils literal notranslate"><span class="pre">justify-content-evenly</span></code> to the very same component.</p>
 </div>
-<hr class="docutils" />
 <div class="section" id="test-your-theme">
 <h2>12.7 Test your theme<a class="headerlink" href="#test-your-theme" title="Permalink to this headline">¶</a></h2>
 <p>The following screenshot is an app that we built for you to practice the usage of classes and styles. It shows a layout wiht the <code class="docutils literal notranslate"><span class="pre">bootstrap</span></code> theme with different settings for both <code class="docutils literal notranslate"><span class="pre">className</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> for several <code class="docutils literal notranslate"><span class="pre">dcc</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc</span></code> components.</p>
