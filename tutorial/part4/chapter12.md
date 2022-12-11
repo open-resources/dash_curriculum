@@ -343,7 +343,7 @@ if __name__=='__main__':
 ```
 ````
 
-### 12.3.5 Set component width with `style`
+### 12.3.5 Set width with style prop
 
 With the `style` prop, you can set the components widths to fill any percentage of the parent component, or to a certain amount of pixels. For the latter you'll use `style = {'width':'100px'}`, and for the former you can use either `style={'width':'100%}` or `style={'width':'100pc}`. Let's add the `style={'width':'75%}` to both components:
 
@@ -401,9 +401,9 @@ What you can do with `className` you can, for the most part, also do with `style
 
 ## 12.4 More components and attributes
 
-In this section you'll learn how to build further on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component. The latter is often used to split a dashboard in different parts and it serves as a container for more components. You'll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.
+In this section you'll learn how to build on the previous examples and approach something that looks more like a complete dashboard by adding a `dbc.Button()` and a `dbc.Card()` component. The Card is often used to split a dashboard in different parts, and it serves as a container for more components. You'll also learn how to edit the appearance of your components with effects such as rounded edges and shadows.
 
-### 12.4.1 A button and a card
+### 12.4.1 Button and card
 
 We'll add a `dbc.Button` in a new `dbc.Col` component next to the already existing `dbc.Label`. In addition, we'll include a `dbc.Card` in a `dbc.Col` component within a new `dbc.Row`.
 
@@ -473,16 +473,11 @@ if __name__=='__main__':
 [![enter image description here][20]][20]
 
 ### 12.4.2 Justify row components
-In the previous snippet, we'ved used `width = 4` for both the `label` and the `button` which by default are placed at the start of the parent `row` component. To change this, you can include `justify = '<option>'` in the `row` component, where your options are:
+In the previous code snippet, we've used `width = 4` for both the `label` and the `button`, which by default are placed at the start of the parent `row` component. To change this, you can include `justify='<option>'` in the `row` component, where your options are:
 
-- `start`
-- `center`
-- `end`
-- `around`
-- `between`
-- `evenly`
+- `start`, `center`, `end`, `around`, `between`, `evenly`
 
-The image below shows the result for `justify = 'evenly'`. In additon we've included some margins and padding to make the title, label and button look a little nicer.
+The image below shows the result for `justify='evenly'`. In addition, we've included some margins and padding to make the title, label and button look a little nicer.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -551,9 +546,9 @@ if __name__=='__main__':
 
 [![enter image description here][21]][21]
 
-### 12.4.3 Set component height with `style`
+### 12.4.3 Set height with `style`
 
-Notice how we've cheated a bit in the snippet above by adding `'height':'65%'` for the `label` component style to make it align better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completeness. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
+Notice how we've cheated a bit in the snippet above by adding `'height':'65%'` for the `label` component style to make it align better to the `button`. Before you're ready to fill your `card` with more components, it's often a good idea to increase the height of the card to give a better impression of how it will all look when your dashboard is nearing completion. In the snippet below, we've included `'height':'200px'` for the `label` style attribute.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -626,20 +621,12 @@ if __name__=='__main__':
 
 ### 12.4.4 Rounded edges
 
-If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, just include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner` can be:
+If you look closely at the edges of the `card`, you'll see that they are rounded by default. In order to apply rounded edges to other components, simply include `"rounded"` in `className`. You can adjust the "weight" of the rounding by setting `rounded-{size}` where size can range from `0` to `3`. You can also specify which corners to round through `rounded-{corner}`, where `corner` can be:
 
-- `top`
-- `bottom`
-- `start`
-- `end`
-- `circle`
-- `pill`
+- `top`, `bottom`, `start`, `end`, `circle`, `pill`
 
-The last two will change not only the corners but the complete structure of the whole card to become circle or pill shaped.
 
-```{tip}
-When components come with rounded edges by default, you will sometimg have to include `rouned-0` before including `rounded-top` to round off the top *only*. This is the case with `dbc.Card`.
-```
+The last two options will change not only the corners but the complete structure of the whole card to become circle or pill shaped.
 
 In the snippet below, we've rounded off the bottom of the card only, and set the weight to `3`.
 
@@ -695,7 +682,7 @@ app.layout = dbc.Container(
             dbc.Col(
                 dbc.Card(
                     "Put your card content here",
-                    className=" mt-2 rounded-0 rounded-bottom rounded-3",
+                    className="mt-2 border rounded-0 rounded-bottom",
                     style={"height": "200px"},
                 ),
                 width=12,
@@ -713,14 +700,13 @@ if __name__=='__main__':
 
 ### 12.4.5 Borders
 
-So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let's drop some of the background color, and rather separate the title from the components with a border. You can set the size of the border line with `border-{size}` where `size` can range from `1` to `5`. As with `rounded`, you can set the position of the border with `border-{direction}` where `direction` can be:
+So far, the background colors of the row and column components have served a purpose of visually discerning the various components rather than improving the aesthetics of the dashboard. So let's drop the background color, and rather separate the title from the components with a border. 
+You can set the size of the border line with `border-{size}` where `size` can range from `1` to `5`. As with `rounded`, you can set the position of the border with `border-{direction}` where `direction` can be:
 
-- `top`
-- `end`
-- `bottom`
-- `start`.
+- `top`, `end`, `bottom`, `start`
 
-In the snippet below we've added a thick grey border line below the title by adding `className = "border-top border-white border-3"` to the second `dbc.Row` component. We've also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the `dbc.Container` itself with `className = 'bg-secondary mt-1 p-3'`
+In the snippet below we've added a thick grey border line below the title by adding `className="border-top border-white border-3"` to the second `dbc.Row` component. 
+We've also dropped the background colors for some of the components, and rather added a background color and some margins and padding to the `dbc.Container` itself with `className='bg-secondary mt-1 p-3'`
 
 
 ````{dropdown} See Code
@@ -794,7 +780,7 @@ if __name__=='__main__':
 
 ### 12.4.6 Opacity
 
-If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className = 'bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
+If you find that `bg-secondary` for the `db.Container` comes off as a bit too dominating, you can adjust the opacity of the background color with `opacity-{number}` where `number` can be `25`, `50` or `75`. Below we've used `bg-opacity-75` and also rounded off the `dbc.Container` corners with `className='bg-secondary bg-opacity-75 rounded-3 mt-1 p-3'`.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -864,18 +850,12 @@ if __name__=='__main__':
 
 [![enter image description here][25]][25]
 
-```{warning}
-If you do not specify the context of `opacity`, like `bg-opacity`, *all* elements that are contained in your component will be affected.
-```
-
 
 ### 12.4.7 Shadow
 
 You can add a bit of depth to your dashboard by adding a shadow to your components with `shadow-{size}` where `size` can be left out all together, or set to:
 
-- `none`
-- `sm`
-- `lg`
+- `none`, `sm`, `lg`
 
 The last two options stand for `small` and `large`. Below we've included `shadow-lg` for the `dbc.Container` component.
 
@@ -945,12 +925,15 @@ if __name__=='__main__':
 ```
 ````
 
-
 [![enter image description here][26]][26]
 
 ### 12.4.8 Gradient
 
-Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. Using the `className` approach in this case will only let you illustrate subtle changes. The image below compares the snippet we have with and without `bg-gradient` assigned to `className` for `dbc.Container`. If you look closely, you'll notice that the top of the background in the right-hand image is slightly lighter. How this will look will also depend on which background color you're setting with `bg-{color}`.
+Including `bg-gradient` will add additional depth to the background of your app through a smooth transition between two colors. In order to add more flexibility to the gradient effect of the background color, you'll have to resort to the `style` prop. As an example, you can set a background color that transitions from white to grey from the left to the right with:
+
+- `style={"background": "linear-gradient(90deg, white, grey"}`
+
+`linear` in `linear-gradient` sets the gradient method. Other alternatives are `radial` and `conic`. `90` in `90deg` sets the direction through the degrees of the angle of the transition direction.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -959,83 +942,7 @@ Including `bg-gradient` will add additional depth to the background of your app 
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = dbc.Container(
-    [
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dcc.Markdown(
-                            "#### Dashboard title",
-                            className="text-info p-2",
-                            style={"width": "100%"},
-                        )
-                    ],
-                    className="mt-2",
-                )
-            ],
-            className="text-info m-0",
-        ),
-        dbc.Row(
-            [
-                dbc.Col(
-                    [
-                        dbc.Label(
-                            "Label 1",
-                            className="bg-warning mt-2 p-2",
-                            style={"width": "100%", "height": "65%"},
-                        )
-                    ],
-                    width=4,
-                ),
-                dbc.Col(
-                    dbc.Button(
-                        "Click me",
-                        className="m-2",
-                    ),
-                    width=4,
-                ),
-            ],
-            className="border-top border-white border-3 m-0",
-            justify="evenly",
-        ),
-        dbc.Row(
-            dbc.Col(
-                dbc.Card(
-                    "Put your card content here",
-                    className=" mt-2 rounded-0 rounded-bottom rounded-4",
-                    style={"height": "200px"},
-                ),
-                width=12,
-            )
-        ),
-    ],
-    className="bg-secondary bg-opacity-75 rounded-3 shadow-lg mt-1 p-3 bg-gradient",
-)
-if __name__=='__main__':
-    app.run_server(debug=True)
-```
-````
-
-[![enter image description here][27]][27]
-
-In order to add more flexibility to the gradient effect of the background color, you'll have to resort to the `style` attribute. As an example, you can set a background color that transitions from white to grey from the left to the right with:
-
-```python
-style={"background": "linear-gradient(90deg, white, grey"}
-```
-
- `linear` in `linear-gradient` sets the gradient method. [Other alternatives][28] are `radial` and `conic`. `90` in `90deg` sets the direction through the degrees of the angle of the transition direction.
-
-````{dropdown} See Code
-    :container: + shadow
-    :title: bg-primary text-white font-weight-bold
-```python
-from dash import Dash, html, dcc
-import dash_bootstrap_components as dbc
-
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -1098,8 +1005,7 @@ if __name__=='__main__':
 [![enter image description here][29]][29]
 
 
-
-The color options are not limited to simple color names like `white` and `grey`. You can alose use `rgb` and even `rgba` to select any color with any grade of transparency you'd like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses `red`, `yellow` and a transparent `blue` with `rgba(0, 0 , 255, 0.3)`. Notice also that we've included `70%` right after the `rgba` color. This sets the share of the last color compared to the rest of the colors.
+The color options are not limited to simple color names like `white` and `grey`. You can also use `rgb` and even `rgba` to select any color with any grade of transparency you'd like. You can also use multiple colors at the same time to show multiple steps of the gradient. Below is an example that uses `red`, `yellow` and a transparent `blue` with `rgba(0, 0 , 255, 0.3)`. Notice also that we've included `70%` right after the `rgba` color. This sets the share of the last color compared to the rest of the colors.
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1108,7 +1014,7 @@ The color options are not limited to simple color names like `white` and `grey`.
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -1175,19 +1081,16 @@ if __name__=='__main__':
 
 ### 12.4.9 Overflow
 
-So far we haven't filled any of the components with too much information. If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default behavioss of `dbc.Label` is to let the content flow over the component.
+So far we haven't filled any of the components with too much information. 
+If we set the label to a fixed height of `45px` and add a text that's a bit too long, you'll see that the default behavior of `dbc.Label` is to let the content flow over the component.
 
 [![enter image description here][31]][31]
 
-
 To change this behavior, include `overflow-{option}` in `className` where `option` can be:
 
-- `auto`
-- `hidden`
-- `visible`
-- `scroll`
+- `auto`, `hidden`, `visible`, `scroll`
 
-Below is the same setup with `overflow-scroll` included. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `atuo` and `scroll` in this case is that the latter adds both vertical and horizontal sliders by default.
+Below, we added `overflow-auto` to the `className` prop of the label. You can see that a slider with arrows has been added to the label component so that the content can be scrolled. The difference between `auto` and `scroll` is that the latter adds both vertical and horizontal sliders by default.
 
 
 [![enter image description here][32]][32]
@@ -1199,7 +1102,7 @@ Below is the same setup with `overflow-scroll` included. You can see that a slid
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -1281,7 +1184,7 @@ If you drag the screen to the any side, you'll see that the dashboard adjusts to
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -1350,7 +1253,7 @@ This subchapter introduces a new concept for style, the [viewport][36] height or
 from dash import Dash, html, dcc
 import dash_bootstrap_components as dbc
 
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(
     [
         dbc.Row(
@@ -1428,8 +1331,6 @@ In the image above, we're hovering over the third `row` component. If you look a
 div class="border-top border-white border-3 m-0 justify-content-evenly row"
 ```
 Notice how alle the `className` elements we've added can be found there. In addition, you'll see how using the `justify = 'evenly'` attribute for the `dbc.Row` compnent in effect adds `justify-content-evenly` to the very same component.
-
----
 
 ## 12.7 Test your theme
 
