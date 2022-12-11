@@ -14,7 +14,7 @@ We will use Render to deploy Dash apps to the web.
 
 ## 5.1 Prepare your app for deployment
 
-As a framework for this chapter, we will be using the [previous app](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch4_files/ch4_app.py) created at the end of chapter on Linking Dash Components. 
+As a framework for this chapter, we will be using the [previous app](https://raw.githubusercontent.com/open-resources/dash_curriculum/main/tutorial/part1/ch4_files/ch4_app.py) created at the end of the chapter on Linking Dash Components. 
 Create a new folder called "new-chapter5-app". Save this app inside that folder as `ch5_app.py`. 
 
 ```{attention} 
@@ -67,7 +67,7 @@ gunicorn==20.1.0
 Your requirements file should look similar to the above text. 
 Make sure to replace the specified version numbers to match the package versions that you have installed and are using with your app.
 
-An easy way to check the versions of Python packages you are using is to type the `pip list` or `pip3 list` command in your VS Code Terminal window.\
+An easy way to check the versions of Python packages you are using is to type the `pip list` or `pip3 list` command in your VS Code Terminal window.
 If you are deploying an app with Plotly Express graphs, include the pandas library in your requirements list.
 
 Save and close the `requirements.txt` file.
@@ -80,7 +80,7 @@ Then, run this command in the terminal: `pip3 freeze > requirements.txt`
 
 ## 5.3 Create a GitHub repository
 Render uses GitHub to connect to the necessary files to run a Dash app. Therefore, the next step is to create a GitHub public repository.
-To create a public repository, make sure you have an account on GitHub. If not, please [create GitHub account now](https://github.com/signup).
+To create a public repository, make sure you have an account on GitHub. If not, please [create a GitHub account now](https://github.com/signup).
 
 Once your account is created, go to "Your repositories" tab and create a new repository by clicking the green "New" button.
 Name the repository "chapter5-render-app". Make sure the radio item for a public repository is checked. And then check the box to add a README file.
@@ -130,13 +130,13 @@ Then, in the "Start Command" section update the gunicorn command to `gunicorn ch
 
 `gunicorn` and `:server` will rarely change. However, recall that the `ch5_app.py` is your app file name. 
 If your app file name is different, you will need to update this section (excluding the `.py` part).
-For example, let's say my app file was called `app.py`. Consequently, this section would have been: `gunicorn app:server`.
+For example, let's say your app file was called `app.py`. Consequently, this section would have been: `gunicorn app:server`.
 
 ![render gunicorn info](./ch5_files/gunicorn-info.png)
 
-Scrool all the way down the page and click the blue "Create Web Service" button.
+Scroll all the way down the page and click the blue "Create Web Service" button.
 
-Render will take approximately 5 to deploy the app to the web. For larger apps, this could take longer. 
+Render will take approximately 5 minutes to deploy the app to the web. For larger apps, this could take longer. 
 
 Once it's done, click the url at top left corner of the screen to run the app.
 
@@ -146,14 +146,12 @@ Once it's done, click the url at top left corner of the screen to run the app.
 ## 5.5 Common errors
 
 Common deployment errors you could encounter for this example app include:
-- Missing a package dependency in your requirements file
-- Mispelling the ```Procfile``` or the app name inside the ```Procfile```
+- Missing a package dependency in the `requirements.txt` file
+- Missing the gunicorn package in the `requirements.txt` file
 - Forgetting to add `server = app.server` to your main app file
 
-Refer to the Heroku documentation articles for [common error codes](https://devcenter.heroku.com/articles/error-codes) and [troubleshooting & support](https://devcenter.heroku.com/categories/troubleshooting).
-
 ```{note}
-In addition to minimum requirements, some new Python versions may not yet be supported on Heroku. For example, if Heroku supports Python 3.10.0, and your app is running a newer 3.11 version.
+In addition to minimum requirements, some new Python versions and packages may not yet be supported on Render. For example, if Render supports pandas 1.3.5, and your requirements file indicates a newer 1.5.2 version, your deployment will not work.
 ```
 
 ## Summary
