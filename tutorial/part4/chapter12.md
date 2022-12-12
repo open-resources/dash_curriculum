@@ -1328,9 +1328,9 @@ div class="border-top border-white border-3 m-0 justify-content-evenly row"
 
 Notice how all the `className` elements we've added can be found there. In addition, you'll see how using the `justify='evenly'` attribute for the `dbc.Row` component adds `justify-content-evenly` to the very same component.
 
-## 12.7 Test styling and classes
+## 12.7 Practice styling and classes
 
-The following screenshot is an app that we built for you to practice the usage of classes and styles. Copy the code and run the app locally to start practicing!
+The following screenshot is an app that we built for you to practice the usage of classes and styles. Copy the code and run the app locally on your computer to start practicing!
 
 ````{dropdown} See Code
     :container: + shadow
@@ -1839,56 +1839,17 @@ if __name__=='__main__':
 ![practice styling app](./ch12_files/theme-practice.png)
 
 
-
-
-  [1]: https://i.stack.imgur.com/Vunbd.png
-  [2]: https://i.stack.imgur.com/EvbEU.png
-  [3]: https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/
-  [4]: https://i.stack.imgur.com/pHvGO.png
-  [5]: https://www.rapidtables.com/web/color/RGB_Color.html
-  [6]: https://i.stack.imgur.com/BFgvm.png
-  [7]: https://dashcheatsheet.pythonanywhere.com/
-  [8]: https://i.stack.imgur.com/iCkRA.png
-  [9]: https://i.stack.imgur.com/d9pqj.png
-  [10]: https://i.stack.imgur.com/vLWvz.png
-  [11]: https://i.stack.imgur.com/dfjKw.png
-  [12]: https://i.stack.imgur.com/muWaZ.png
-  [14]: https://i.stack.imgur.com/PkwOL.png
-  [15]: https://i.stack.imgur.com/Uu0Ee.png
-  [16]: https://i.stack.imgur.com/UWulS.png
-  [17]: https://i.stack.imgur.com/RylgH.png
-  [18]: https://i.stack.imgur.com/jRrsW.png
-  [20]: https://i.stack.imgur.com/kTRZ4.png
-  [21]: https://i.stack.imgur.com/UrTWh.png
-  [22]: https://i.stack.imgur.com/B77Zv.png
-  [23]: https://i.stack.imgur.com/xFYRI.png
-  [24]: https://i.stack.imgur.com/PM6BH.png
-  [25]: https://i.stack.imgur.com/UpEZe.png
-  [26]: https://i.stack.imgur.com/4H9h8.png
-  [27]: https://i.stack.imgur.com/VVPGV.png
-  [28]: https://www.w3schools.com/css/css3_gradients.asp
-  [29]: https://i.stack.imgur.com/tcSwu.png
-  [30]: https://i.stack.imgur.com/J87m0.png
-  [31]: https://i.stack.imgur.com/fkHbn.png
-  [32]: https://i.stack.imgur.com/BdGEE.png
-  [33]: https://i.stack.imgur.com/pay0z.png
-  [34]: https://i.stack.imgur.com/OnxeJ.png
-  [36]: https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts
-  [37]: https://i.stack.imgur.com/IBPlh.png
-  [38]: https://i.stack.imgur.com/1YYrX.png
-  [39]: https://i.stack.imgur.com/dxVBF.png
-  [40]: https://i.stack.imgur.com/NGfOi.png
-  [41]: https://i.stack.imgur.com/EJw6S.png
-
 ## Exercises
-In the exercises below, we will apply some of the strategies learnt in this chapter, to style some of the apps we have build previosuly.
+In the exercises below, we will apply the strategies learnt in this chapter to style a few of the apps we built previously.
 
 (1) Starting from the app we built in [exercise 8.2](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises), just by adding the right `className` to the right components, perform the following layout enhancements:
-- Adjust the title text to make it dark.
-- Add a dark line (which is considered as a margin) below the title.
-- Make the App full page width and height.
-- Set the full app background to a grey-gradient colour using the following class (that we saw in an example from this chapter): `bg-secondary bg-opacity-75 m-0 p-3 bg-gradient`.
-You can find all available `className` values by downloading [this file](https://github.com/twbs/bootstrap/releases/download/v5.0.2/bootstrap-5.0.2-dist.zip) and opening `bootstrap-5.0.2-dist\css\bootstrap.css` with a text editor.
+(1) Starting from the app we built in [exercise 8.2](https://open-resources.github.io/dash_curriculum/part2/chapter8.html#exercises), add the `className` props to achieve the following layout enhancements:
+
+- Adjust the title text to make it orange.
+- Add a dark line below the title as size 3.
+- Make the border of the dropdown component blue
+- Make the background of the app layout container the color light grey.
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
@@ -1956,193 +1917,136 @@ def update_markdown(metric_):
 if __name__== '__main__':
     app.run_server()
 ```
-![solution_ex1](./ch12_files/chapter12_ex1.gif)
+![solution_ex1](./ch12_files/solution1.png)
 ````
 
-(2) Starting from the app we built in [exercise 11.2](https://open-resources.github.io/dash_curriculum/part3/chapter11.html#exercises), adjust the layout in the following way:
-- Make the title dark
-- Create a tab style variable (to be assigned to the `style` prop of each tab) so that the tab background color becomes `#800033`, the text becomes bold and color `#f2f2f2` and the border is `1px solid #ffe6f0`.
-- Create a selected tab style variable (to be assigned to the `selected_style` prop of each tab) where, in addition to the above, we also underline the text.
-- Add some padding to the tabs content container.
-- Assign this css class `bg-danger bg-opacity-75 m-0 p-3 bg-gradient` to the app layout to set proper background. Make it fluid and full height and width.
-- Remove the border and padding to each of the three cards in tab 1.
+(2) Building on the previous solution, adjust the layout in the following way: 
+- Update the overall theme to VAPOR
+- Add a row at the bottom of the app. Within that row, add two separate sliders with the following props `(min=0, max=10)`. Each slider should have a column width of 4
+- Justify the sliders' row as `center` and add 5 units of padding
+- Add an orange border around the app, 4 units thick
+- Make the app fill the screen vertically so there is no empty space above or below the border you just created
 
-We recommend to apply each layout change with `debug=True` option, so that you can see the effect of each command.
+
 ````{dropdown} See Solution
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
 ```
-# Import packages
-from dash import Dash, dcc, Input, Output, html
-import dash_bootstrap_components as dbc
+from dash import Dash, dcc, Output, Input
 import pandas as pd
-from datetime import date
 import plotly.express as px
+import dash_bootstrap_components as dbc
 
-# Import data
-dfS = px.data.stocks()
-dfS['date'] = pd.to_datetime(dfS['date'], format='%Y-%m-%d')
+# data
+df = px.data.gapminder()
+df = df.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
 
-dfG = px.data.gapminder()
-dfG = dfG.groupby(['year','continent']).agg({'pop':'sum', 'gdpPercap':'mean','lifeExp':'mean'}).reset_index()
-
-# Initialise the App
-app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True)
+# Dash App
+app = Dash(__name__, external_stylesheets=[dbc.themes.VAPOR])
 
 # Create app components
-tab_style = {
-    'background-color' : '#800033',
-    'fontWeight': 'bold',
-    'color' : '#f2f2f2',
-    'border': '1px solid #ffe6f0'
-}
-
-selected_tab_style = {
-    'background-color' : '#800033',
-    'fontWeight': 'bold',
-    'text-decoration': 'underline',
-    'color' : '#f2f2f2',
-    'border': '1px solid #ffe6f0'
-}
-
-card_style = {
-    'padding' : '0px',
-    'border' : '0px'
-}
-
-title_ = dcc.Markdown(children='Exercise 11.2', style={'textAlign': 'center','fontSize': 20}, className='text-dark')
-tabs_ = dcc.Tabs(
-            id='tabs-app',
-            children=[
-                dcc.Tab(label='App One', value='tab-app-1', style=tab_style, selected_style=selected_tab_style),
-                dcc.Tab(label='App Two', value='tab-app-2', style=tab_style, selected_style=selected_tab_style)],
-            value='tab-app-1'
-        )
-tabs_content_ = dbc.Container(id='tabs-content', className='p-3')
-# Specific for App 1
-date_range_ = dcc.DatePickerRange(id='date-range',
-    start_date_placeholder_text='start date',
-    end_date_placeholder_text='end date',
-    min_date_allowed=dfS.date.min(),
-    max_date_allowed=dfS.date.max(),
-    display_format='DD-MMM-YYYY',
-    first_day_of_week = 1)
-card_L = dbc.Card([
-            dbc.CardBody([
-                dcc.Graph(id='my-graph-left'),
-        ],
-        style = card_style),
-    ],
-    style = card_style)
-card_C = dbc.Card([
-            dbc.CardBody([
-                dcc.Graph(id='my-graph-center'),
-        ],
-        style = card_style),
-    ],
-    style = card_style)
-card_R = dbc.Card([
-            dbc.CardBody([
-                dcc.Graph(id='my-graph-right'),
-        ],
-        style = card_style),
-    ],
-    style = card_style)
-# Specific for App 2
+title_ = dcc.Markdown(children='Gapminder Stacked Bar Charts',
+                      style={'textAlign': 'center','fontSize': 20},
+                      className='text-warning')
 dropdown_ = dcc.Dropdown(id='metric-dropdown', placeholder = 'Select a metric',
-                        options= [{'label': 'Population', 'value': 'pop'},
+                         className="border border-primary",
+                         options= [{'label': 'Population', 'value': 'pop'},
                                 {'label': 'GDP per capita', 'value': 'gdpPercap'},
-                                {'label': 'Life Expectancy', 'value': 'lifeExp'}])
+                                {'label': 'Life Expectancy', 'value': 'lifeExp'}],
+                         value='gdpPercap',
+                         clearable=False)
 graph_ = dcc.Graph(id='figure1')
 
-# App layout
+slider_1 = dcc.Slider(min=0, max=10)
+slider_2 = dcc.Slider(min=0, max=10)
+
+# App Layout
 app.layout = dbc.Container(
     [
-        dbc.Row(dbc.Col([title_], width = 12)),
         dbc.Row(
             [
-                dbc.Col([
-                        tabs_,
-                        tabs_content_
-                ],
-                width = 12)
+                dbc.Col([title_], width=12)
+            ],
+        className="border-bottom border-dark border-3 m-3"
+        ),
+        dbc.Row(
+            [
+                dbc.Col([dropdown_], width=2),
+                dbc.Col([graph_], width=10),
             ]
-        )
+        ),
+        dbc.Row(
+            [
+                dbc.Col([slider_1], width=4),
+                dbc.Col([slider_1], width=4),
+            ],
+        justify='center',
+        className='p-5'
+       )
     ],
-    className="bg-danger bg-opacity-75 m-0 p-3 bg-gradient",
-    fluid=True,
-    style={"height": "100vh"},
+    className='border border-warning border-4', style={'height':'100vh'}
 )
 
 # Callbacks
 @app.callback(
-    Output('tabs-content', 'children'),
-    Input('tabs-app', 'value'),
-    suppress_callback_exceptions=True)
-def render_content(tab):
-    if tab == 'tab-app-1':
-        app1_layout = dbc.Container(
-            [
-                dbc.Row(dbc.Col([date_range_], width = 12, style={'textAlign': 'center'})),
-                dbc.Row([
-                    dbc.Col([card_L], width = 4),
-                    dbc.Col([card_C], width = 4),
-                    dbc.Col([card_R], width = 4)
-                ],
-                className = 'p-4'),
-            ]
-        )
-        return app1_layout
-
-    elif tab == 'tab-app-2':
-        # App 2 layout
-        app2_layout = dbc.Container(
-            [
-                dbc.Row(
-                    [
-                        dbc.Col([dropdown_], width=2),
-                        dbc.Col([graph_], width=10),
-                    ]
-                )
-            ]
-        )
-        return app2_layout
-
-# Callback for App1
-@app.callback(
-    Output('my-graph-left','figure'),
-    Output('my-graph-center','figure'),
-    Output('my-graph-right','figure'),
-    Input(component_id='date-range', component_property='start_date'),
-    Input(component_id='date-range', component_property='end_date')
-)
-def plot_dt(start_date, end_date):
-    figL = px.line(dfS, x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-    figC = figL
-    figR = figC
-    if start_date is not None:
-        figL = px.line(dfS.loc[dfS['date']<start_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-        if end_date is not None:
-            figC = px.line(dfS.loc[(dfS['date']>=start_date) & (dfS['date']<=end_date), :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-    if end_date is not None:
-        figR = px.line(dfS.loc[dfS['date']>end_date, :], x='date', y=['GOOG','AAPL'], template = 'plotly_dark')
-
-    return figL, figC, figR
-
-# Callback for App2
-@app.callback(
     Output('figure1','figure'),
     Input('metric-dropdown', 'value'),
-    prevent_initial_call=True
 )
 def update_markdown(metric_):
-    fig = px.bar(dfG, x='year', y=metric_, color='continent', template='plotly_dark')
+    fig = px.bar(df, x='year', y=metric_, color='continent', template='plotly_dark')
     return fig
 
 # Run the App
 if __name__== '__main__':
-    app.run_server()
+    app.run_server(debug=True)
 ```
-![solution_ex2](./ch12_files/chapter12_ex2.gif)
+![solution_ex2](./ch12_files/solution2.png)
 ````
+
+## Summary
+
+In this chapter you've learned many advanced styling features that will allow you to build a professional-looking app.
+You are now ready to build powerful Dash apps and explore data sets to help make this world a better place!
+Remember to start simple and focus on preparing the data set for your graphs first. Then tackle the callback. 
+And when you're happy with the performance of the app, start working on the layout and styling.
+
+
+  [1]: https://i.stack.imgur.com/Vunbd.png
+  [2]: https://i.stack.imgur.com/EvbEU.png
+  [3]: https://dash-bootstrap-components.opensource.faculty.ai/docs/themes/explorer/
+  [4]: https://i.stack.imgur.com/pHvGO.png
+  [5]: https://www.rapidtables.com/web/color/RGB_Color.html
+  [6]: https://i.stack.imgur.com/BFgvm.png
+  [7]: https://dashcheatsheet.pythonanywhere.com/
+  [8]: https://i.stack.imgur.com/iCkRA.png
+  [9]: https://i.stack.imgur.com/d9pqj.png
+  [10]: https://i.stack.imgur.com/vLWvz.png
+  [11]: https://i.stack.imgur.com/dfjKw.png
+  [12]: https://i.stack.imgur.com/muWaZ.png
+  [14]: https://i.stack.imgur.com/PkwOL.png
+  [15]: https://i.stack.imgur.com/Uu0Ee.png
+  [16]: https://i.stack.imgur.com/UWulS.png
+  [17]: https://i.stack.imgur.com/RylgH.png
+  [18]: https://i.stack.imgur.com/jRrsW.png
+  [20]: https://i.stack.imgur.com/kTRZ4.png
+  [21]: https://i.stack.imgur.com/UrTWh.png
+  [22]: https://i.stack.imgur.com/B77Zv.png
+  [23]: https://i.stack.imgur.com/xFYRI.png
+  [24]: https://i.stack.imgur.com/PM6BH.png
+  [25]: https://i.stack.imgur.com/UpEZe.png
+  [26]: https://i.stack.imgur.com/4H9h8.png
+  [27]: https://i.stack.imgur.com/VVPGV.png
+  [28]: https://www.w3schools.com/css/css3_gradients.asp
+  [29]: https://i.stack.imgur.com/tcSwu.png
+  [30]: https://i.stack.imgur.com/J87m0.png
+  [31]: https://i.stack.imgur.com/fkHbn.png
+  [32]: https://i.stack.imgur.com/BdGEE.png
+  [33]: https://i.stack.imgur.com/pay0z.png
+  [34]: https://i.stack.imgur.com/OnxeJ.png
+  [36]: https://developer.mozilla.org/en-US/docs/Web/CSS/Viewport_concepts
+  [37]: https://i.stack.imgur.com/IBPlh.png
+  [38]: https://i.stack.imgur.com/1YYrX.png
+  [39]: https://i.stack.imgur.com/dxVBF.png
+  [40]: https://i.stack.imgur.com/NGfOi.png
+  [41]: https://i.stack.imgur.com/EJw6S.png
