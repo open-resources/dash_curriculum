@@ -478,7 +478,7 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 2: Getting Started with Dash<a class="headerlink" href="#chapter-2-getting-started-with-dash" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we’ll explain the structure of a Dash app and demonstrate how to set up your first app.</p>
+<p>This chapter sets the foundation for the creation of Dash apps. Starting from a minimal example, we’ll explain the structure of a Dash app and demonstrate how to set up your first app.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
@@ -554,9 +554,9 @@ This one line of code is pretty much static for any Dash app you create. In late
 <span class="p">])</span>
 </pre></div>
 </div>
-<p>The app layout represents what will be displayed in the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a “Container”. In this minimal example, one single component was added: <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code>. This Dash Core Component let’s you use <a class="reference external" href="https://commonmark.org/help/">Markdown syntax</a> to format the text that is displayed on the page. This component has a few properties, such as <code class="docutils literal notranslate"><span class="pre">children</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code>:</p>
+<p>The app layout represents what will be displayed in the web browser. We use a <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> to hold the components we want in our layout. In this minimal example, one single component was added: <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code>. This Dash Core Component lets you use <a class="reference external" href="https://commonmark.org/help/">Markdown syntax</a> to format the text that is displayed on the page. This component has a few properties, such as <code class="docutils literal notranslate"><span class="pre">children</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code>:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">children</span></code> : this is a common property shared by many Dash components and it allows the adding of textual content. In this Markdown component, “My First App” will be the content displayed on the web page.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">children</span></code> : this is a common property shared by many Dash components and it allows the adding of text content. In this Markdown component, “My First App” will be the content displayed on the web page.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">style</span></code> : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.</p></li>
 </ul>
 </div>
@@ -569,33 +569,30 @@ This one line of code is pretty much static for any Dash app you create. In late
 <p>These lines are for running your app. A Dash server is launched which is required to keep the app up and running. The <code class="docutils literal notranslate"><span class="pre">if</span></code> statement makes sure that the app is not launched if we were to import the app as a module and is a Python convention for which an explanation goes beyond the scope of this curriculum.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The “server” is referring to a Python process that runs locally on your computer. It will be accessible from our laptop only. In Chapter 5 we will see how to start this Python process on a web server (“deployment”), which is a computer in the cloud that let’s anyone access the page.</p>
+<p><em>Server</em> refers to a Python process that runs locally on your computer. It will be accessible from your computer only. It will be accessible from our laptop only. In Chapter 5 we will see how to start this Python process on a web server (“deployment”), which is a computer in the cloud that lets anyone access the page. Making your app available to others is called <em>deploying</em> your app.</p>
 </div>
-<p>Once we have the full code ready and saved in a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file (conventionally <code class="docutils literal notranslate"><span class="pre">app.py</span></code> but any name works), we need to launch it:
+<p>Once we have the full code ready and saved in a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file (conventionally <code class="docutils literal notranslate"><span class="pre">app.py</span></code> but any name works), we need to launch it by selecting <strong>Run Python File</strong>:
 <img alt="runapp-gif" src="../_images/chap2-gif1.gif" /></p>
-<p>After launching the app, we will see the following console output:</p>
+<p>After launching the app, we will see the following lines in the terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Dash</span> <span class="ow">is</span> <span class="n">running</span> <span class="n">on</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">8050</span><span class="o">/</span>
 
- <span class="o">*</span> <span class="n">Serving</span> <span class="n">Flask</span> <span class="n">app</span> <span class="s1">&#39;chpater2-code1&#39;</span> <span class="p">(</span><span class="n">lazy</span> <span class="n">loading</span><span class="p">)</span>
+ <span class="o">*</span> <span class="n">Serving</span> <span class="n">Flask</span> <span class="n">app</span> <span class="s1">&#39;chap2&#39;</span> <span class="p">(</span><span class="n">lazy</span> <span class="n">loading</span><span class="p">)</span>
  <span class="o">*</span> <span class="n">Environment</span><span class="p">:</span> <span class="n">production</span>
    <span class="n">WARNING</span><span class="p">:</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">development</span> <span class="n">server</span><span class="o">.</span> <span class="n">Do</span> <span class="ow">not</span> <span class="n">use</span> <span class="n">it</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">production</span> <span class="n">deployment</span><span class="o">.</span>
    <span class="n">Use</span> <span class="n">a</span> <span class="n">production</span> <span class="n">WSGI</span> <span class="n">server</span> <span class="n">instead</span><span class="o">.</span>
  <span class="o">*</span> <span class="n">Debug</span> <span class="n">mode</span><span class="p">:</span> <span class="n">off</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>In order to display the app, click the URL shown in the console, or open the browser and navigate to the URL manually, in this case: <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a></p></li>
-</ul>
+<p>In order to display the app, click the URL shown in the console, or open the browser and navigate to the URL manually, in this case: <a class="reference external" href="http://127.0.0.1:8050/">http://127.0.0.1:8050/</a></p>
 <p><img alt="first_app" src="../_images/chap2-1.png" /></p>
 </div>
 </div>
-<hr class="docutils" />
 <div class="section" id="interacting-with-the-app">
 <h2>2.2 Interacting with the App<a class="headerlink" href="#interacting-with-the-app" title="Permalink to this headline">¶</a></h2>
 <p>Once the app is launched and working, we can:</p>
 <ul class="simple">
-<li><p><strong>Stop the app</strong>: typing (‘Ctrl+C’ on Windows, ‘Command+C’ on Mac) in the console will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.</p></li>
-<li><p><strong>Update the app</strong>: whenever we apply changes to the app code, we may first stop the app and re-launch it after making the changes in order to display the new version of the app. A quicker alternative can be to activate the “live updating”. Live update will refresh the app, from the browser, as you apply any modification to the app’s code. This way, you don’t need to stop the app prior to modifying the code. In order to activate this functionality, the statement to Launch the server should be modified to:</p></li>
+<li><p><strong>Stop the app</strong>: typing (‘Ctrl+C’ on Windows, ‘Command+C’ on Mac) in the terminal will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.</p></li>
+<li><p><strong>Update the app</strong>: whenever we apply changes to the app code, we may first stop the app and re-launch it after making the changes in order to display the new version of the app. To speed this up, consider turning on hot reloading, available as part of the Dash Developer Tools. Hot reloading will refresh the app in your browser as you apply any modification to the app’s code. This way, you don’t need to stop the app prior to modifying the code. In order to activate this functionality, the statement to Launch the server should be modified to:</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run_server</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -603,7 +600,7 @@ This one line of code is pretty much static for any Dash app you create. In late
 </div>
 <div class="admonition attention">
 <p class="admonition-title">Attention</p>
-<p>Make sure the live updating mode is deactivated (debug=False) before deploying the app. It is best practice to deactivate the debug mode, once the app is finalised</p>
+<p>Make sure the Dash Developer Tools are deactivated (debug=False) before deploying the app. It is best practice to deactivate the debug mode, once the app is finalised</p>
 </div>
 <p>Now that you know how to create and launch your first basic app, try to play around with it:</p>
 <ul class="simple">

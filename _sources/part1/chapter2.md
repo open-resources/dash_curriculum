@@ -1,7 +1,7 @@
 # Chapter 2: Getting Started with Dash
 
 ## What you will learn
-This chapter sets the foundation for the creation of Dash Applications. Starting from a minimal example, we'll explain the structure of a Dash app and demonstrate how to set up your first app. 
+This chapter sets the foundation for the creation of Dash apps. Starting from a minimal example, we'll explain the structure of a Dash app and demonstrate how to set up your first app. 
 
 ```{admonition} Learning Intentions
 - Structuring of Dash app
@@ -71,8 +71,8 @@ app.layout = dbc.Container([
     dcc.Markdown(children='My First App', style={'textAlign': 'center'})
 ])
 ```
-The app layout represents what will be displayed in the web browser. There are a lot of elements that you can include in the app layout, normally they are encapsulated into a "Container". In this minimal example, one single component was added: `dcc.Markdown`. This Dash Core Component let's you use [Markdown syntax](https://commonmark.org/help/) to format the text that is displayed on the page. This component has a few properties, such as `children` and `style`:
-- `children` : this is a common property shared by many Dash components and it allows the adding of textual content. In this Markdown component, "My First App" will be the content displayed on the web page.
+The app layout represents what will be displayed in the web browser. We use a `dbc.Container` to hold the components we want in our layout. In this minimal example, one single component was added: `dcc.Markdown`. This Dash Core Component lets you use [Markdown syntax](https://commonmark.org/help/) to format the text that is displayed on the page. This component has a few properties, such as `children` and `style`:
+- `children` : this is a common property shared by many Dash components and it allows the adding of text content. In this Markdown component, "My First App" will be the content displayed on the web page.
 - `style` : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
 
 ### 2.1.4 Run the App
@@ -83,40 +83,40 @@ if __name__ == '__main__':
 These lines are for running your app. A Dash server is launched which is required to keep the app up and running. The `if` statement makes sure that the app is not launched if we were to import the app as a module and is a Python convention for which an explanation goes beyond the scope of this curriculum.
 
 ```{note}
-The "server" is referring to a Python process that runs locally on your computer. It will be accessible from our laptop only. In Chapter 5 we will see how to start this Python process on a web server ("deployment"), which is a computer in the cloud that let's anyone access the page.
+*Server* refers to a Python process that runs locally on your computer. It will be accessible from your computer only. It will be accessible from our laptop only. In Chapter 5 we will see how to start this Python process on a web server ("deployment"), which is a computer in the cloud that lets anyone access the page. Making your app available to others is called *deploying* your app.
 ```
 
-Once we have the full code ready and saved in a `.py` file (conventionally `app.py` but any name works), we need to launch it:
+Once we have the full code ready and saved in a `.py` file (conventionally `app.py` but any name works), we need to launch it by selecting **Run Python File**:
 ![runapp-gif](./ch2_files/chap2-gif1.gif)
 
-After launching the app, we will see the following console output:
+After launching the app, we will see the following lines in the terminal:
 ```
 Dash is running on http://127.0.0.1:8050/
 
- * Serving Flask app 'chpater2-code1' (lazy loading)
+ * Serving Flask app 'chap2' (lazy loading)
  * Environment: production
    WARNING: This is a development server. Do not use it in a production deployment.
    Use a production WSGI server instead.
  * Debug mode: off
 ```
-- In order to display the app, click the URL shown in the console, or open the browser and navigate to the URL manually, in this case: http://127.0.0.1:8050/
+
+In order to display the app, click the URL shown in the console, or open the browser and navigate to the URL manually, in this case: http://127.0.0.1:8050/
 
 ![first_app](./ch2_files/chap2-1.png)
 
----
 
 ## 2.2 Interacting with the App
 Once the app is launched and working, we can:
-  - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) in the console will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.
+  - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) in the terminal will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.
 
-  - **Update the app**: whenever we apply changes to the app code, we may first stop the app and re-launch it after making the changes in order to display the new version of the app. A quicker alternative can be to activate the "live updating". Live update will refresh the app, from the browser, as you apply any modification to the app's code. This way, you don't need to stop the app prior to modifying the code. In order to activate this functionality, the statement to Launch the server should be modified to:
+  - **Update the app**: whenever we apply changes to the app code, we may first stop the app and re-launch it after making the changes in order to display the new version of the app. To speed this up, consider turning on hot reloading, available as part of the Dash Developer Tools. Hot reloading will refresh the app in your browser as you apply any modification to the app's code. This way, you don't need to stop the app prior to modifying the code. In order to activate this functionality, the statement to Launch the server should be modified to:
 ```
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
 
 ```{attention}
-Make sure the live updating mode is deactivated (debug=False) before deploying the app. It is best practice to deactivate the debug mode, once the app is finalised
+Make sure the Dash Developer Tools are deactivated (debug=False) before deploying the app. It is best practice to deactivate the debug mode, once the app is finalised
 ```
 
 Now that you know how to create and launch your first basic app, try to play around with it:
