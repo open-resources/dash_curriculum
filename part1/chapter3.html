@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chapter 3 - Dash Components and Layouts &#8212; Dash Tutorial</title>
+    <title>Chapter 3: Dash Components and Layouts &#8212; Dash Tutorial</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Chapter 3 - Dash Components and Layouts
+   Chapter 3: Dash Components and Layouts
   </a>
  </li>
  <li class="toctree-l1">
@@ -386,7 +386,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Chapter 3 - Dash Components and Layouts</h1>
+                <h1>Chapter 3: Dash Components and Layouts</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -431,7 +431,7 @@ const thebe_selector_output = ".output, .cell_output"
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="chapter-3-dash-components-and-layouts">
-<h1>Chapter 3 - Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
+<h1>Chapter 3: Dash Components and Layouts<a class="headerlink" href="#chapter-3-dash-components-and-layouts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter we will introduce you to the Dash Core and HTML components which are used to create rich app interfaces. These include the dropdown, the checklist, the button, and many more. We will also show you how to use Dash Bootstrap Components to design the layout of your app.</p>
@@ -506,7 +506,7 @@ Buttons<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass the <strong>children</strong> property to give the button a name in the dashboard.</p>
+<p class="card-text">Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data. We will pass the <strong>children</strong> property to give the button a name.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -652,7 +652,7 @@ Slider<div class="summary-down docutils">
 <div class="summary-up docutils">
 <svg version="1.1" width="24" height="24" class="octicon octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
 </summary><div class="summary-content card-body docutils">
-<p class="card-text">Sliders allow the user to select a value by moving an indicator.  We pass in the (<strong>start</strong>, <strong>end</strong>, <strong>increment</strong>) <code class="docutils literal notranslate"><span class="pre">properties</span></code> to this component.</p>
+<p class="card-text">Sliders allow the user to select a value by moving a handle.  We pass in the (<strong>start</strong>, <strong>end</strong>, <strong>increment</strong>) <code class="docutils literal notranslate"><span class="pre">properties</span></code> to this component.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -688,7 +688,7 @@ Slider<div class="summary-down docutils">
 </details></div>
 <div class="section" id="layout">
 <h2>3.2 Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
-<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> without any further specifications. We’ve seen that this will place our app components sequentially in one single column. To further customise the layout, we will use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>. This will allow us to declare the number of rows and columns in the layout as well as dictate the exact place where Dash components should appear (Markdown and Slider in our example).</p>
+<p>So far, we’ve only organized our app <strong>layout</strong> in a <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code> without any further specifications. We’ve seen that this will place our app components sequentially in one single column. To further customize the layout, we will use the <a class="reference external" href="https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout">dash-bootstrap-components</a> library components <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code> and <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>. This will allow us to define the number of rows and columns in the layout as well as the exact place where Dash components should appear (Markdown and Slider in our example).</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import packages </span>
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
@@ -728,8 +728,8 @@ Slider<div class="summary-down docutils">
 </div>
 <p>Best practices when constructing your layout using <strong>Dash Bootstrap Components</strong>:</p>
 <ol class="simple">
-<li><p>First, define the <code class="docutils literal notranslate"><span class="pre">Containter</span></code>, which will contain the entire app layout</p></li>
-<li><p>Then, inside the <code class="docutils literal notranslate"><span class="pre">dbc.Containter()</span></code>, define the <code class="docutils literal notranslate"><span class="pre">Rows</span></code></p></li>
+<li><p>First, define the <code class="docutils literal notranslate"><span class="pre">Container</span></code>, which will contain the entire app layout</p></li>
+<li><p>Then, inside the <code class="docutils literal notranslate"><span class="pre">dbc.Container()</span></code>, define the <code class="docutils literal notranslate"><span class="pre">Rows</span></code></p></li>
 <li><p>Then, inside each <code class="docutils literal notranslate"><span class="pre">dbc.Row()</span></code>, define the <code class="docutils literal notranslate"><span class="pre">Columns</span></code></p></li>
 <li><p>Then, inside each <code class="docutils literal notranslate"><span class="pre">dbc.Col()</span></code>, insert the app <code class="docutils literal notranslate"><span class="pre">Components</span></code></p></li>
 </ol>
@@ -776,10 +776,10 @@ Slider<div class="summary-down docutils">
 </pre></div>
 </div>
 <p><img alt="colored_app" src="../_images/app_colored.png" /></p>
-<p>We see there are four rows with columns of various widths which contain components. Notice that the total column width in the first and last row is 8 and 11 respectively. Having less than 12 assigned to column width is fine, just remember that the total amount of column width within each row should <strong>never surpasses 12</strong>.</p>
+<p>We see there are four rows with columns of various widths which contain components. Notice that the total column width in the first and last row is 8 and 11, respectively. Having less than 12 assigned to column width is fine– just remember that the total amount of column width within each row should <strong>never surpass 12</strong>.</p>
 <ul class="simple">
 <li><p>Play around with the <code class="docutils literal notranslate"><span class="pre">width</span></code> value of the column containing the dropdown and slider to see how it changes the app layout.</p></li>
-<li><p>Try to move the button to be in the same row as the Checklist and RadtioItem</p></li>
+<li><p>Try to move the button to be in the same row as the Checklist and RadioItem</p></li>
 </ul>
 </div>
 <div class="section" id="exercises">
