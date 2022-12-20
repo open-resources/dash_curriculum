@@ -1,4 +1,4 @@
-# Chapter 3 - Dash Components and Layouts
+# Chapter 3: Dash Components and Layouts
 
 ## What you will learn
 
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
   
-Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data.  We will pass the **children** property to give the button a name in the dashboard.
+Buttons are clickable components that will be used to trigger other actions such as submitting a form or plotting data. We will pass the **children** property to give the button a name.
 
 
 ```python
@@ -230,7 +230,7 @@ if __name__ == '__main__':
     :container: + shadow
     :title: bg-primary text-white font-weight-bold
     
-Sliders allow the user to select a value by moving an indicator.  We pass in the (**start**, **end**, **increment**) `properties` to this component.
+Sliders allow the user to select a value by moving a handle.  We pass in the (**start**, **end**, **increment**) `properties` to this component.
 
 ```python
 # Import packages 
@@ -268,7 +268,7 @@ if __name__ == '__main__':
 
 ## 3.2 Layout
 
-So far, we've only organized our app **layout** in a `dbc.Container()` without any further specifications. We've seen that this will place our app components sequentially in one single column. To further customise the layout, we will use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library components `dbc.Row()` and `dbc.Col()`. This will allow us to declare the number of rows and columns in the layout as well as dictate the exact place where Dash components should appear (Markdown and Slider in our example). 
+So far, we've only organized our app **layout** in a `dbc.Container()` without any further specifications. We've seen that this will place our app components sequentially in one single column. To further customize the layout, we will use the [dash-bootstrap-components](https://dash-bootstrap-components.opensource.faculty.ai/docs/components/layout) library components `dbc.Row()` and `dbc.Col()`. This will allow us to define the number of rows and columns in the layout as well as the exact place where Dash components should appear (Markdown and Slider in our example). 
 
 ```
 # Import packages 
@@ -309,8 +309,8 @@ if __name__ == '__main__':
 
 Best practices when constructing your layout using **Dash Bootstrap Components**:
 
-1. First, define the `Containter`, which will contain the entire app layout
-2. Then, inside the `dbc.Containter()`, define the `Rows`
+1. First, define the `Container`, which will contain the entire app layout
+2. Then, inside the `dbc.Container()`, define the `Rows`
 3. Then, inside each `dbc.Row()`, define the `Columns`
 4. Then, inside each `dbc.Col()`, insert the app `Components`
 
@@ -361,10 +361,10 @@ if __name__ == '__main__':
 
 ![colored_app](./ch3_files/app_colored.png)
 
-We see there are four rows with columns of various widths which contain components. Notice that the total column width in the first and last row is 8 and 11 respectively. Having less than 12 assigned to column width is fine, just remember that the total amount of column width within each row should **never surpasses 12**.  
+We see there are four rows with columns of various widths which contain components. Notice that the total column width in the first and last row is 8 and 11, respectively. Having less than 12 assigned to column width is fine-- just remember that the total amount of column width within each row should **never surpass 12**.  
 
   * Play around with the `width` value of the column containing the dropdown and slider to see how it changes the app layout.
-  * Try to move the button to be in the same row as the Checklist and RadtioItem
+  * Try to move the button to be in the same row as the Checklist and RadioItem
 
 ## Exercises
 (1) Add to the code below a dropdown component with the following options: 'CA', 'FL', 'DC'. Assign 'DC' as the initial value of the dropdown. Save the dropdown as a variable with name dropdown1, and add it to the layout.
