@@ -388,7 +388,7 @@ app.layout = dbc.Container(
 )
 def update_alert(y, c):
     gdp_sel = df.loc[(df['country']==c) & (df['year']==y), 'gdpPercap'] #Filter for selection
-    gdp_global_avg = df.loc[(df['year']==y), 'gdpPercap'] #Calculate world avg for the same yeara
+    gdp_global_avg = df.loc[(df['year']==y), 'gdpPercap'] #Calculate world avg for the same year
 
     if (gdp_sel.values.size > 0) & (gdp_global_avg.values.size > 0):
         gdp_sel_v = round(gdp_sel.values[0],2)
@@ -424,11 +424,11 @@ There are two types of date pickers, both are part of the Dash Core Components l
 - `DatePickerSingle` consists of one single date selection: by clicking on the object a calendar will pop up, allowing the user to pick a date.
 - `DatePickerRange` is similar to the previous component, but includes two date selections, which should be read as "start" and "end" dates.
 
-The two components have very similar properties - the main ones are:
+The two components have very similar properties. The main ones are:
 - `min_date_allowed`: minimum date the user can choose from
 - `max_date_allowed`: maximum date the user can choose from
-- `start_date`: default start date selected, when app page initially loads
-- `end_date`: default end date selected, when app page initially loads
+- `start_date`: default start date selected when app page initially loads
+- `end_date`: default end date selected when app page initially loads
 
 In the following app, a DatePickerRange is used as a filter for a line chart. Based on the user selection, a dataframe will be filtered inside the callback function and the chart will be updated.
 
@@ -496,8 +496,8 @@ if __name__ == '__main__':
 ### 11.2.2 Store
 ```Store``` component stores app data in the user's browser. A typical use case for this component is to store data in memory and use it in a different tab.
 When using this component, it is important to pay attention to the following:
-- this component can only store data in the following formats: json, list, dictionary data types. With the ```data``` property, we can access to the content stored in the memory.
-- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory, which are cleared by three different events. ```memory```: the data will be cleared when we refresh the browser page; ```session```: the data will be cleared when we close the browser; ```local```: the data will be cleared when we clean the browser cookies.
+- this component can only store data in the following formats: JSON, list, dictionary data types. With the ```data``` property, we can access to the content stored in memory.
+- how long the data is going to be stored is a customizable property called ```storage_type```. We can use three different types of memory, which are cleared by three different events. ```memory```: the data will be cleared when we refresh the browser page; ```session```: the data will be cleared when we close the browser; ```local```: the data will be cleared when we clear the browser cookies.
 - this is an invisible component: although it won't affect app layout, the component must be included in the ```app.layout``` in order to work properly.
 - it's generally safe to store up to 2MB in most environments, and 5~10MB in most desktop-only applications.
 
@@ -757,7 +757,7 @@ if __name__ == '__main__':
 It is often used when you have a lot of information on one single page, and you would like to improve user experience by dividing the information into separate sections, each within a separate tab.
 
 
-The `dcc.Tabs` and `dcc.Tab` components can be used to create tabbed sections in your app. The `dcc.Tabs` component hold a collection of `dcc.Tab` components. And the `dcc.Tab` component controls the style and value of each individual tab.
+The `dcc.Tabs` and `dcc.Tab` components can be used to create tabbed sections in your app. The `dcc.Tabs` component holds a collection of `dcc.Tab` components. And the `dcc.Tab` component controls the style and value of each individual tab.
 
 In the example below, the content for each tab is housed within the children of a `dbc.Card`. 
 
@@ -965,7 +965,7 @@ if __name__ == '__main__':
 
 
 ## Exercises
-(1) Build an app composed of a title, a `DatePickerRange` component and 3 `Card` components.
+(1) Build an app composed of a title, a `DatePickerRange` component, and 3 `Card` components.
 - Using the `px.data.stocks()` data, build the same graph in each of the 3 cards: a line chart with date on the x-axis and a list of stock prices on the y-axis for stocks `GOOG` and `AAPL`.
 - Assign to the `DatePickerRange`'s `start_date` prop the `date(2018, 5, 1)`, and assign to the `end_date` prop the `date(2019, 2, 1)`.
 - The callback should filter the data, based on the dates selected, with the goal that:
@@ -1205,7 +1205,7 @@ if __name__== '__main__':
 ````
 
 ## Summary
-In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples in the Dash Documentation. 
+In this chapter, we have gone through several components that can add functionalities to your app. There are additional components and examples in the Dash documentation. 
 In addition, there are third-party libraries that have nice components such as the [Dash Mantine Components](https://dash-mantine-components.herokuapp.com/); 
 however, keep in mind that these are not maintained by Plotly.
 
