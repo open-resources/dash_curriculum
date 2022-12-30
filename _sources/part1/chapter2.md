@@ -9,7 +9,7 @@ This chapter sets the foundation for the creation of Dash apps. Starting from a 
 - Interacting and updating an app
 ```
 
-By the end of this chapter you will know how to build and launch this inital app on your local browser:
+By the end of this chapter you will know how to build and launch this inital app on your local computer:
 
 ![first_app](./ch2_files/chap2-1.png)
 
@@ -56,9 +56,9 @@ import dash_bootstrap_components as dbc
 When creating Dash apps, we will almost always use the two import statements above, so let's examine each one in more detail:
 - **Dash** is the framework which is required to develop the app
 - **dcc** stands for dash_core_components which is a module that gives access to many interactive components that are used in Dash apps.
-- Via the **dash_bootstrap_components** module it is possible to incorporate design components from the HTML framework "Bootstrap" into the app. This makes it easier to customise the app layout and gives you access to additional components not found in Dash Core Components.
+- Via the **dash_bootstrap_components** module it is possible to incorporate design components from the HTML framework "Bootstrap" into the app. This makes it easier to customize the app layout and gives you access to additional components not found in Dash Core Components.
 
-### 2.1.2 Initialise the App
+### 2.1.2 Initialize the App
 ```
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 ```
@@ -73,7 +73,7 @@ app.layout = dbc.Container([
 ```
 The app layout represents what will be displayed in the web browser. We use a `dbc.Container` to hold the components we want in our layout. In this minimal example, one single component was added: `dcc.Markdown`. This Dash Core Component lets you use [Markdown syntax](https://commonmark.org/help/) to format the text that is displayed on the page. This component has a few properties, such as `children` and `style`:
 - `children` : this is a common property shared by many Dash components and it allows the adding of text content. In this Markdown component, "My First App" will be the content displayed on the web page.
-- `style` : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.
+- `style` : Defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify and the value represents how this feature would be modified. In this app, we want to modify the alignment of the text by centering it. Several Dash components have a `style` property.
 
 ### 2.1.4 Run the App
 ```
@@ -105,7 +105,7 @@ In order to display the app, click the URL shown in the console, or open the bro
 ![first_app](./ch2_files/chap2-1.png)
 
 
-## 2.2 Interacting with the App
+## 2.2 Modifying the App
 Once the app is launched and working, we can:
   - **Stop the app**: typing ('Ctrl+C' on Windows, 'Command+C' on Mac) in the terminal will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.
 
@@ -158,7 +158,7 @@ if __name__ == '__main__':
 from dash import Dash, dcc
 import dash_bootstrap_components as dbc
 
-# 2. Initialise the App
+# 2. Initialize the App
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # 3. App Layout
@@ -176,4 +176,4 @@ if __name__ == '__main__':
 ## Summary
 In this chapter we learned what a Dash app is as well as its recommended structure. We have also explored each building block and their core properties. Finally, we learned how to launch the app, stop and update the app.
 
-In the next chapter, we will discover additional Dash components and examine how to customise the layout.
+In the next chapter, we will discover additional Dash components and examine how to customize the layout.

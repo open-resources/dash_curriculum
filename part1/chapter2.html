@@ -367,8 +367,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialise-the-app">
-     2.1.2 Initialise the App
+    <a class="reference internal nav-link" href="#initialize-the-app">
+     2.1.2 Initialize the App
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -384,8 +384,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#interacting-with-the-app">
-   2.2 Interacting with the App
+  <a class="reference internal nav-link" href="#modifying-the-app">
+   2.2 Modifying the App
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -434,8 +434,8 @@ const thebe_selector_output = ".output, .cell_output"
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#initialise-the-app">
-     2.1.2 Initialise the App
+    <a class="reference internal nav-link" href="#initialize-the-app">
+     2.1.2 Initialize the App
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -451,8 +451,8 @@ const thebe_selector_output = ".output, .cell_output"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#interacting-with-the-app">
-   2.2 Interacting with the App
+  <a class="reference internal nav-link" href="#modifying-the-app">
+   2.2 Modifying the App
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -487,7 +487,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li><p>Interacting and updating an app</p></li>
 </ul>
 </div>
-<p>By the end of this chapter you will know how to build and launch this inital app on your local browser:</p>
+<p>By the end of this chapter you will know how to build and launch this inital app on your local computer:</p>
 <p><img alt="first_app" src="../_images/chap2-1.png" /></p>
 <details class="sphinx-bs dropdown card mb-3 shadow">
 <summary class="summary-title card-header bg-primary text-white font-weight-bold">
@@ -536,11 +536,11 @@ See Code<div class="summary-down docutils">
 <ul class="simple">
 <li><p><strong>Dash</strong> is the framework which is required to develop the app</p></li>
 <li><p><strong>dcc</strong> stands for dash_core_components which is a module that gives access to many interactive components that are used in Dash apps.</p></li>
-<li><p>Via the <strong>dash_bootstrap_components</strong> module it is possible to incorporate design components from the HTML framework “Bootstrap” into the app. This makes it easier to customise the app layout and gives you access to additional components not found in Dash Core Components.</p></li>
+<li><p>Via the <strong>dash_bootstrap_components</strong> module it is possible to incorporate design components from the HTML framework “Bootstrap” into the app. This makes it easier to customize the app layout and gives you access to additional components not found in Dash Core Components.</p></li>
 </ul>
 </div>
-<div class="section" id="initialise-the-app">
-<h3>2.1.2 Initialise the App<a class="headerlink" href="#initialise-the-app" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="initialize-the-app">
+<h3>2.1.2 Initialize the App<a class="headerlink" href="#initialize-the-app" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -557,7 +557,7 @@ This one line of code is pretty much static for any Dash app you create. In late
 <p>The app layout represents what will be displayed in the web browser. We use a <code class="docutils literal notranslate"><span class="pre">dbc.Container</span></code> to hold the components we want in our layout. In this minimal example, one single component was added: <code class="docutils literal notranslate"><span class="pre">dcc.Markdown</span></code>. This Dash Core Component lets you use <a class="reference external" href="https://commonmark.org/help/">Markdown syntax</a> to format the text that is displayed on the page. This component has a few properties, such as <code class="docutils literal notranslate"><span class="pre">children</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">children</span></code> : this is a common property shared by many Dash components and it allows the adding of text content. In this Markdown component, “My First App” will be the content displayed on the web page.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">style</span></code> : this is another common property shared by many Dash components and defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify, while the value represents how this feature would be modified. In this app, we want to modify the alignment of the text, by centering it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">style</span></code> : Defines the look of the component. It requires a dictionary, where the key represents the styling feature you would like to modify and the value represents how this feature would be modified. In this app, we want to modify the alignment of the text by centering it. Several Dash components have a <code class="docutils literal notranslate"><span class="pre">style</span></code> property.</p></li>
 </ul>
 </div>
 <div class="section" id="run-the-app">
@@ -587,8 +587,8 @@ This one line of code is pretty much static for any Dash app you create. In late
 <p><img alt="first_app" src="../_images/chap2-1.png" /></p>
 </div>
 </div>
-<div class="section" id="interacting-with-the-app">
-<h2>2.2 Interacting with the App<a class="headerlink" href="#interacting-with-the-app" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="modifying-the-app">
+<h2>2.2 Modifying the App<a class="headerlink" href="#modifying-the-app" title="Permalink to this headline">¶</a></h2>
 <p>Once the app is launched and working, we can:</p>
 <ul class="simple">
 <li><p><strong>Stop the app</strong>: typing (‘Ctrl+C’ on Windows, ‘Command+C’ on Mac) in the terminal will stop the app (when using VS Code). This is sometimes helpful when trying to update an app or when running multiple apps at the same time. Dash apps automatically run on the same browser port 8050, unless specified otherwise. As a result, if we forgot to stop the first app and we launch a second app, with the same port number, we would simply see the first app over and over again.</p></li>
@@ -648,7 +648,7 @@ See Solution<div class="summary-down docutils">
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="c1"># 2. Initialise the App</span>
+<span class="c1"># 2. Initialize the App</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># 3. App Layout</span>
@@ -666,7 +666,7 @@ See Solution<div class="summary-down docutils">
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>In this chapter we learned what a Dash app is as well as its recommended structure. We have also explored each building block and their core properties. Finally, we learned how to launch the app, stop and update the app.</p>
-<p>In the next chapter, we will discover additional Dash components and examine how to customise the layout.</p>
+<p>In the next chapter, we will discover additional Dash components and examine how to customize the layout.</p>
 </div>
 </div>
 
