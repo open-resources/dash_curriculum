@@ -492,15 +492,15 @@ const thebe_selector_output = ".output, .cell_output"
 <h1>Chapter 4: Linking Dash Components<a class="headerlink" href="#chapter-4-linking-dash-components" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-you-will-learn">
 <h2>What you will learn<a class="headerlink" href="#what-you-will-learn" title="Permalink to this headline">¶</a></h2>
-<p>In Dash, “callbacks” allow you to link together the various components of your Dash app. App callbacks are necessary to build interactive apps, e.g. to have a component change what is displayed in a plot.</p>
+<p>In Dash, <em>callbacks</em> allow you to link together the various components of your Dash app. App callbacks are necessary to build interactive apps, e.g. to have a component change what is displayed in a plot.</p>
 <p>To better understand the notation of a callback, we will start with a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
-After finishing this chapter you’ll have a fully-operational interactive app that links together multiple components.</p>
+After finishing this chapter you’ll have a fully operational interactive app that links together multiple components.</p>
 <div class="admonition-learning-intentions admonition">
 <p class="admonition-title">Learning Intentions</p>
 <ul class="simple">
 <li><p>Decorators in Python</p></li>
 <li><p>Structure of callbacks</p></li>
-<li><p>Component ids &amp; properties</p></li>
+<li><p>Component IDs and properties</p></li>
 <li><p>Additional examples of callbacks</p></li>
 </ul>
 </div>
@@ -517,7 +517,7 @@ See the code<div class="summary-down docutils">
 <span class="kn">from</span> <span class="nn">dash</span> <span class="kn">import</span> <span class="n">Dash</span><span class="p">,</span> <span class="n">dcc</span><span class="p">,</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Output</span>
 <span class="kn">import</span> <span class="nn">dash_bootstrap_components</span> <span class="k">as</span> <span class="nn">dbc</span>
 
-<span class="c1"># Initialise the App</span>
+<span class="c1"># Initialize the app</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Dash</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">external_stylesheets</span><span class="o">=</span><span class="p">[</span><span class="n">dbc</span><span class="o">.</span><span class="n">themes</span><span class="o">.</span><span class="n">BOOTSTRAP</span><span class="p">])</span>
 
 <span class="c1"># Create app components</span>
@@ -525,7 +525,7 @@ See the code<div class="summary-down docutils">
 <span class="n">dropdown</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;My First app&#39;</span><span class="p">,</span> <span class="s1">&#39;Welcome to the App&#39;</span><span class="p">,</span> <span class="s1">&#39;This is the title&#39;</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;My First app&#39;</span><span class="p">)</span>
 <span class="n">slider</span> <span class="o">=</span> <span class="n">dcc</span><span class="o">.</span><span class="n">Slider</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s1">&#39;our-slider&#39;</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="c1"># App Layout</span>
+<span class="c1"># Define the app layout</span>
 <span class="n">app</span><span class="o">.</span><span class="n">layout</span> <span class="o">=</span> <span class="n">dbc</span><span class="o">.</span><span class="n">Container</span><span class="p">(</span>
     <span class="p">[</span>
         <span class="n">dbc</span><span class="o">.</span><span class="n">Row</span><span class="p">([</span><span class="n">dbc</span><span class="o">.</span><span class="n">Col</span><span class="p">([</span><span class="n">markdown</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">8</span><span class="p">)]),</span>
@@ -539,7 +539,7 @@ See the code<div class="summary-down docutils">
 <span class="p">)</span>
 
 
-<span class="c1"># Callbacks</span>
+<span class="c1"># **Configure callback(s)**</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span>
     <span class="n">Output</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-markdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">),</span>
     <span class="n">Input</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s1">&#39;our-dropdown&#39;</span><span class="p">,</span> <span class="n">component_property</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
@@ -626,7 +626,7 @@ See the code<div class="summary-down docutils">
 <p>Let’s go through this code step by step. Note that for linking components with each other, we have to uniquely identify them in order to distinguish between them. For this purpose, you should add the <code class="docutils literal notranslate"><span class="pre">id</span></code> property to each component, as we do above with the Dropdown and Markdown components. In addition to <code class="docutils literal notranslate"><span class="pre">id</span></code> property, we also include the <code class="docutils literal notranslate"><span class="pre">value</span></code> property for the dropdown. This will indicate the default value of the dropdown displayed on the page when loaded for the first time.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>For a comprehensive overview of all the different properties of the Dash Core Components library, please have a look at the specific component in the <a class="reference external" href="https://dash.plotly.com/dash-core-components">Official documentation</a>.</p>
+<p>For a comprehensive overview of all the different properties of the Dash Core Components library, refer to the specific component in the <a class="reference external" href="https://dash.plotly.com/dash-core-components">Dash documentation</a>.</p>
 </div>
 <p>Now, let’s examine how the callback links the two components together. Despite the variety of usage of callbacks, they all share the same structure and are composed of two main elements: the callback decorator and the callback function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Callback decorator</span>
@@ -649,12 +649,12 @@ See the code<div class="summary-down docutils">
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>The decorator itself takes up two different arguments: <code class="docutils literal notranslate"><span class="pre">Output</span></code> and <code class="docutils literal notranslate"><span class="pre">Input</span></code>. Both of them again will take two arguments, the component id and the component property.</p>
+<p>The decorator itself takes up two different arguments: <code class="docutils literal notranslate"><span class="pre">Output</span></code> and <code class="docutils literal notranslate"><span class="pre">Input</span></code>. Both of them again will take two arguments, the component ID and the component property.</p>
 <p>The meaning of the different arguments is as follows:</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">Output</span></code> specifies the property of the component that will be modified; in this case, it’s the <code class="docutils literal notranslate"><span class="pre">children</span></code> property of the Markdown component.</p></li>
 <li><p>Accordingly, the <code class="docutils literal notranslate"><span class="pre">Input</span></code> specifies the property of the component that will activate the callback; in this case, it’s the <code class="docutils literal notranslate"><span class="pre">value</span></code> property of the dropdown.</p></li>
-<li><p>Whenever the property of the <code class="docutils literal notranslate"><span class="pre">Input</span></code> component is changed by the user, it will immediately trigger the callback and update the property of the Output component, based on the returned value in the callback function. You might compare this behavior with two cells in excel which are linked together.</p></li>
+<li><p>Whenever the property of the <code class="docutils literal notranslate"><span class="pre">Input</span></code> component is changed by the user, it will immediately trigger the callback and update the property of the Output component, based on the returned value in the callback function. You might compare this behavior with two cells in an Excel spreadsheet that are linked together.</p></li>
 </ul>
 </div>
 <div class="section" id="callback-function">
@@ -824,7 +824,7 @@ See Solution<div class="summary-down docutils">
 </div>
 <p class="card-text"><img alt="solution_ex1" src="../_images/chapter04_ex1.gif" /></p>
 </div>
-</details><p>(2) Copy the app code below that comes from the “Bring everything together” section. Now, incorporate into the app’s layout the RadioItems component that you built in exercise 1. Then, update the second callback of the app to include the RadioItems <code class="docutils literal notranslate"><span class="pre">value</span></code> property as the second callback Input. Update the callback function in such a way that the color of the app title changes, based on the Radio Item value chosen.</p>
+</details><p>(2) Copy the app code below that comes from the “Bring everything together” section. Incorporate the RadioItems component that you built in exercise 1 into the app’s layout. Then, update the second callback of the app to include the RadioItems <code class="docutils literal notranslate"><span class="pre">value</span></code> property as the second callback Input. Update the callback function in such a way that the color of the app title changes based on the radio item value chosen.</p>
 <ul class="simple">
 <li><p>Tip: the structure of a callback with multiple inputs should look like this - <code class="docutils literal notranslate"><span class="pre">&#64;app.callback(Output(...),</span> <span class="pre">Input(...),</span> <span class="pre">Input(...))</span></code></p></li>
 </ul>
@@ -942,7 +942,7 @@ See Solution<div class="summary-down docutils">
 </details></div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. Regardless if there is only one or multiple callbacks, you’ll be able to manage your app by linking different components together.</p>
+<p>Congratulations! You are now able to build a simple app with various components, structure them within the app, and understand the necessity of component IDs and properties. You have also learned about app callbacks and how they add interactivity to your app.</p>
 <p>In the next chapter we will learn how to deploy our app to the web.</p>
 </div>
 </div>
