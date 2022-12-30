@@ -2,15 +2,15 @@
 
 ## What you will learn
 
-In Dash, "callbacks" allow you to link together the various components of your Dash app. App callbacks are necessary to build interactive apps, e.g. to have a component change what is displayed in a plot.
+In Dash, *callbacks* allow you to link together the various components of your Dash app. App callbacks are necessary to build interactive apps, e.g. to have a component change what is displayed in a plot.
 
 To better understand the notation of a callback, we will start with a short introduction to decorators in Python. We will then dive into the general structure of callbacks and finally see some examples in action.
-After finishing this chapter you'll have a fully-operational interactive app that links together multiple components. 
+After finishing this chapter you'll have a fully operational interactive app that links together multiple components. 
 
 ```{admonition} Learning Intentions
 - Decorators in Python
 - Structure of callbacks
-- Component ids & properties
+- Component IDs and properties
 - Additional examples of callbacks
 ```
 
@@ -27,7 +27,7 @@ By the end of this chapter you will know how to build this app:
 from dash import Dash, dcc, Input, Output
 import dash_bootstrap_components as dbc
 
-# Initialise the App
+# Initialize the app
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Create app components
@@ -35,7 +35,7 @@ markdown = dcc.Markdown(id='our-markdown', children='My First app', style={'font
 dropdown = dcc.Dropdown(id='our-dropdown', options=['My First app', 'Welcome to the App', 'This is the title'], value='My First app')
 slider = dcc.Slider(id='our-slider', min=0, max=10, step=1, value=0)
 
-# App Layout
+# Define the app layout
 app.layout = dbc.Container(
     [
         dbc.Row([dbc.Col([markdown], width=8)]),
@@ -49,7 +49,7 @@ app.layout = dbc.Container(
 )
 
 
-# Callbacks
+# **Configure callback(s)**
 @app.callback(
     Output(component_id='our-markdown', component_property='children'),
     Input(component_id='our-dropdown', component_property='value')
@@ -141,7 +141,7 @@ if __name__ == '__main__':
 Let’s go through this code step by step. Note that for linking components with each other, we have to uniquely identify them in order to distinguish between them. For this purpose, you should add the `id` property to each component, as we do above with the Dropdown and Markdown components. In addition to `id` property, we also include the `value` property for the dropdown. This will indicate the default value of the dropdown displayed on the page when loaded for the first time.
 
 ```{tip}
-For a comprehensive overview of all the different properties of the Dash Core Components library, please have a look at the specific component in the [Official documentation](https://dash.plotly.com/dash-core-components).
+For a comprehensive overview of all the different properties of the Dash Core Components library, refer to the specific component in the [Dash documentation](https://dash.plotly.com/dash-core-components).
 ```
 
 Now, let's examine how the callback links the two components together. Despite the variety of usage of callbacks, they all share the same structure and are composed of two main elements: the callback decorator and the callback function:
@@ -169,12 +169,12 @@ The callback decorator makes up the first part of the callback. Here you specify
 )
 ```
 
-The decorator itself takes up two different arguments: `Output` and `Input`. Both of them again will take two arguments, the component id and the component property.
+The decorator itself takes up two different arguments: `Output` and `Input`. Both of them again will take two arguments, the component ID and the component property.
 
 The meaning of the different arguments is as follows: 
   * The `Output` specifies the property of the component that will be modified; in this case, it's the `children` property of the Markdown component.
   * Accordingly, the `Input` specifies the property of the component that will activate the callback; in this case, it's the `value` property of the dropdown. 
-  * Whenever the property of the `Input` component is changed by the user, it will immediately trigger the callback and update the property of the Output component, based on the returned value in the callback function. You might compare this behavior with two cells in excel which are linked together. 
+  * Whenever the property of the `Input` component is changed by the user, it will immediately trigger the callback and update the property of the Output component, based on the returned value in the callback function. You might compare this behavior with two cells in an Excel spreadsheet that are linked together. 
 
 ### 4.2.2 Callback Function
 
@@ -349,7 +349,7 @@ if __name__ == '__main__':
 ```
 ![solution_ex1](./ch4_files/chapter04_ex1.gif)
 ````
-(2) Copy the app code below that comes from the "Bring everything together" section. Now, incorporate into the app's layout the RadioItems component that you built in exercise 1. Then, update the second callback of the app to include the RadioItems `value` property as the second callback Input. Update the callback function in such a way that the color of the app title changes, based on the Radio Item value chosen.
+(2) Copy the app code below that comes from the "Bring everything together" section. Incorporate the RadioItems component that you built in exercise 1 into the app's layout. Then, update the second callback of the app to include the RadioItems `value` property as the second callback Input. Update the callback function in such a way that the color of the app title changes based on the radio item value chosen.
 
 - Tip: the structure of a callback with multiple inputs should look like this - `@app.callback(Output(...), Input(...), Input(...))`
 
@@ -464,7 +464,7 @@ if __name__ == '__main__':
 ````
 ## Summary
 
-Congratulations! You are now able to build a simple app with various components, structure them within the app and understand the necessity of component ids and properties. You have also learned about the concept of app callbacks and how they upgrade your app by adding interactivity. Regardless if there is only one or multiple callbacks, you'll be able to manage your app by linking different components together.
+Congratulations! You are now able to build a simple app with various components, structure them within the app, and understand the necessity of component IDs and properties. You have also learned about app callbacks and how they add interactivity to your app.
 
 In the next chapter we will learn how to deploy our app to the web.
 
