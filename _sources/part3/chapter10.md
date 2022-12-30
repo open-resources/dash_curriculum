@@ -7,7 +7,7 @@ You have already learned about callbacks in chapter 4. Now, it is time to enhanc
 ```{admonition} Learning Intentions
 - Multiple Outputs and Inputs
 - Buttons in callbacks
-- Callback Context to determine triggers
+- Callback context to determine triggers
 - States
 ```
 By the end of this chapter you will know how to build this app:
@@ -108,7 +108,7 @@ If you think the other way around, you might want to have several graphs (multip
 
 Let us see **multiple Inputs** in action first. Let's build an app that has a dropdown and radio buttons, both of which will modify the graph. The dropdown will be used to select a single country out of all the countries covered in the gapminder data set. The radio buttons will be used to build either a line chart or a scatter plot.
 
-Now, since we are using 2 Inputs in the callback decorator, we have 2 component properties. Each component property must be represented as callback function arguments (in this example `value_dropdown` and `value_radio`). Also, make sure that the order in which you write the component properties reflects the order of the function arguments: first Input component property is tied to the first function argument.
+Now, since we are using 2 Inputs in the callback decorator, we have 2 component properties. Each component property must be represented as callback function arguments (in this example `value_dropdown` and `value_radio`). Also, make sure that the order in which you write the component properties reflects the order of the function arguments: the first Input component property is tied to the first function argument.
 
 ```
 # Import packages
@@ -346,7 +346,7 @@ if __name__ == '__main__':
 
 ## 10.3 Callback Context - determine which Input fired
 
-In the previous example each button belonged to a separate callback. However, eventually you might want to create apps where multiple buttons exist in the same callback as two Inputs. For example, one button would create a scatter graph, whereas the other button would reset that same graph. Given that these two actions are mutually exclusive, we need to determine which button triggered the callback, thereby allowing the right action to take place. For this, there exists a global variable called the Dash Callback Context (`dash.ctx`).
+In the previous example each button belonged to a separate callback. However, eventually you might want to create apps where multiple buttons exist in the same callback as two Inputs. For example, one button would create a scatter plot, whereas the other button would reset that same graph. Given that these two actions are mutually exclusive, we need to determine which button triggered the callback, thereby allowing the right action to take place. For this, there exists a global variable called the Dash callback context (`dash.ctx`).
 
 ```
 from dash import Dash, Input, Output, html, dcc, ctx
@@ -394,7 +394,7 @@ if __name__ == '__main__':
 
 Notice in the code above that we imported `ctx` from `dash`. Then, we used its property `triggered_id` inside the callback function to determine the ID of the button that was triggered.
 
-Another useful property of the callback context is the **`triggered_prop_ids`**. This is a dictionary of the component IDs and props that triggered the callback. It is beneficial to use when multiple properties of the same component (ID) can trigger the callback. For example, let's build a scatter graph and display on the page data generated from the `selectedData` and the `clickData` properties of the graph.
+Another useful property of the callback context is the **`triggered_prop_ids`**. This is a dictionary of the component IDs and props that triggered the callback. It is beneficial to use when multiple properties of the same component (ID) can trigger the callback. For example, let's build a scatter plot and display on the page data generated from the `selectedData` and the `clickData` properties of the graph.
 
 Run the code and try to click on one of the scatter markers. Then, use the box tool to select a group of markers and see how the sentence changes.
 
