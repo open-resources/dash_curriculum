@@ -148,7 +148,7 @@ def update_fig(contents):
     return no_update
 
 
-# Launch the app server
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -188,7 +188,7 @@ app.layout = dbc.Container(
     ]
 )
 
-# Launch the app server
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -282,7 +282,7 @@ def toggle_modal(n1, n2, is_open):
         return not is_open
     return is_open
 
-# Launch the app server
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -333,7 +333,7 @@ def toggle_offcanvas(value):
     else: no_update
 
 
-# Launch the app server
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -408,7 +408,7 @@ def update_alert(y, c):
     return new_color, new_children
 
 
-# Launch the app server
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -741,7 +741,7 @@ def refresh_time(i):
         return no_update, True
 
 
-# Launch the app server
+# Run the app
 if __name__ == '__main__':
     app.run_server()
 ```
@@ -824,7 +824,7 @@ app.layout = dbc.Container(
     ]
 )
 
-# Launch the app server
+# Run the app
 if __name__ == '__main__':
     app.run_server(debug=True)
 ```
